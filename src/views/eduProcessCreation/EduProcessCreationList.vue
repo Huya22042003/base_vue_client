@@ -103,6 +103,7 @@
               </button>
               <button
                 type="button"
+                :disabled="!(listCheckBoxGrid.length === 1)"
                 class="btn_round btn_lg btn_gray"
                 @click="handleVersionUp()"
               >
@@ -178,6 +179,7 @@ import type { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 import { format } from "date-fns";
 import { CODE_VERSION } from "@/constants/screen.const";
 import { CODE_MAJOR } from "@/constants/screen.const";
+import { versionUpEduCourse } from "@/stores/eduProcessCreation/eduCourse/eduProcess.service";
 
 export default defineComponent({
   components: {
@@ -274,7 +276,7 @@ export default defineComponent({
           flex: 1.8,
           cellStyle: {
             display: "flex",
-            justifyContent: "left",
+            justifyContent: "center",
             alignItems: "start",
           },
         },
@@ -789,7 +791,27 @@ export default defineComponent({
 
       this.storeCommon.setLoading(false);
     },
-    handleVersionUp() {},
+    handleVersionUp() {
+      this.$swal({
+        title: "aaaa",
+        html: "aaaaa",
+        confirmButtonColor: "#5D87FF",
+        showCancelButton: true,
+        cancelButtonColor: "#fff",
+        reverseButtons: true,
+        confirmButtonText: "aaaa",
+        cancelButtonText: "aaaa",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.storeCommon.setLoading(true);
+          versionUpEduCourse({ eduCourseSeq: this.listCheckBoxGrid[0] }).then(
+            (res) => {
+              this.storeCommon.setLoading(false);
+            }
+          );
+        }
+      });
+    },
   },
 });
 </script>

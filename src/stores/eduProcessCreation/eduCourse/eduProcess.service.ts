@@ -35,3 +35,7 @@ export const getEduCourseSel = (data: EduCourseDescSelDTO) => {
 export const createEduCourseSel = (data: EduCourseSelRegistDTO) => {
   return http.post(url + 'edu-course-sel', data)
 }
+
+export const versionUpEduCourse = (data: any) => {
+  return http.post(url + 'version-up', data)
+}
