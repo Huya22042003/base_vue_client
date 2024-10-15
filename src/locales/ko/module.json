@@ -1,0 +1,6262 @@
+{
+  "common": {
+    "select": "선택",
+    "all": "전체",
+    "save": "저장",
+    "list": "목록",
+    "go_edit": "수정하기",
+    "edit": "수정",
+    "delete": "삭제",
+    "deleteItem": "삭제",
+    "next": "다음",
+    "cancel": "취소",
+    "home": "HOME",
+    "search": "조회",
+    "reset": "초기화",
+    "close": "닫기",
+    "add": "추가",
+    "confirm": "확인",
+    "startDate": "시작일",
+    "endDate": "종료일",    
+    "title": {
+      "search": "검색",
+      "list": "목록"
+    },
+    "message" : {
+      "save" : "저장하시겠어요?",
+      "saveSuccess" : "정상처리됐습니다.",
+      "deleteSuccess" : "삭제됐습니다",
+      "deleteFileSuccess": "삭제 되었습니다.",
+      "confirmDowloadExcel": "엑셀 다운로드를 하시겠습니까?",
+      "copyUrl":"URL이 복사됐습니다.",
+      "confirmDelete": "삭제 하시겠습니까?",
+      "confirmDeleteV1": "{name}을(를) 삭제 하시겠습니까?",
+      "confirmSaveTemp": "임시저장 하시겠어요?",
+      "successSaveTemp": "임시저장됐습니다."
+    },
+    "use": "사용",
+    "noUse": "미사용",
+    "show": "게시",
+    "noShow": "비게시",
+    "languageKr": "한국어",
+    "languageCh": "중국어",
+    "languageEn": "영어",
+    "multiLanguage": "다국어",
+    "saveTemp": "임시저장",
+    "rowNum": "번호",
+    "print": "인쇄",
+    "dowloadPng": "PNG 다운로드",
+    "dowloadJpg": "JPG 다운로드",
+    "copyUrlLabel": "URL 복사하기",
+    "btnCopyUrl": "URL 복사",
+    "printAll" : "일괄 인쇄",
+    "messageCheckDate": "종료일은 시작일보다 빠를 수 없습니다.",
+    "downloadExel": "Excel 다운로드",
+    "register": "신청",
+    "messageValidateRequired": "필수입력항목은 모두 입력해주세요.",
+    "messageSuccessNextTab": "저장되었습니다. 다음 단계로 이동하시겠어요?"
+  },
+  "02": {
+    "common": {
+      "yesUse": "사용",
+      "noUse": "미사용"
+    },
+    "learnAbility": {
+        "menu": "기초정보 관리",
+        "pageTitle": "학습역량 및 하위역량 관리",
+        "core": "학습역량",
+        "coreDefn": "학습역량 정의",
+        "child": "하위역량",
+        "childDefn": "하위역량 정의",
+        "useYn": "사용여부",
+        "manager": "관리",
+        "button": {
+            "addCore": "학습역량 추가",
+            "delCore": "학습역량 삭제",
+            "addChild": "하위역량 추가",
+            "delChild": "하위역량 삭제"
+        },
+        "alert": {
+            "save": "저장하시겠어요?",
+            "saveSuccess": "정상처리됐습니다.",
+            "abilityUse": "활용된 역량은 삭제할 수 없습니다.",
+            "delCore": "학습역량을 삭제하시겠어요? 관련 하위역량 모두 삭제됩니다.",
+            "delSuccess": "삭제됐습니다.",
+            "delChild": "하위역량을 삭제하시겠어요?",
+            "checkDuplicate": "동일한 이름의 역량명을 추가할 수 없습니다. "
+        }
+    },
+    "learnAbilytiMng": {
+      "title": "교수학습방법 관리",
+      "tableContent": "목록",
+      "button": {
+        "register": "등록",
+        "save": "저장",
+        "close": "닫기",
+        "cancel": "취소",
+        "oke": "확인"
+      },
+      "table": {
+        "rowNum": "번호",
+        "learnName": "교수학습방법",
+        "useYn": "사용여부",
+        "regBy": "등록자",
+        "regDate": "등록일"
+      },
+      "modal": {
+        "modalName": "교수학습방법 등록",
+        "learnName": "교수학습방법",
+        "content": "정의",
+        "useYn": "사용여부",
+        "createdBy": "등록일",
+        "createdDate": "등록자"
+      },
+      "message": {
+        "confirmSave": "저장하시겠어요?",
+        "success": "정상처리됐습니다."
+      }
+    },
+    "generalFactorLearn": {
+        "write": "작성",
+        "notWrite": "미작성",
+        "status": "상태",
+        "regId": "등록자",
+        "regDate": "등록일",
+        "pageTitle": "학습역량 구성요소 관리",
+        "cmpnElem": "구성요소 관리",
+        "useYn": "사용여부",
+        "textRed": "※ 등록된 학습역량-하위역량으로 목록이 자동구성됩니다.",
+        "titleAbility": "학습역량 정보",
+        "titleGeneral": "구성요소 관리",
+        "button": {
+            "addChild": "구성요소 추가"
+        },
+        "alert": {
+            "save": "저장하시겠어요?",
+            "saveSuccess": "정상처리됐습니다. ",
+            "del": "구성요소을(를) 삭제하시겠어요?",
+            "delSuccess": "삭제됐습니다.",
+            "delCancle": "활용된 구성요소는 삭제할 수 없습니다.",
+            "checkDuplicate": "이미 존재된 구성요소가 입니다. 다시 입력하세요."
+        }
+    },
+    "eduCourseTypeMng": {
+      "breadcrumb": "기초정보 관리",
+      "title": "교육과정 유형 관리",
+      "tableContent": "목록",
+      "button": {
+        "register": "교육과정융형 등록",
+        "save": "저장",
+        "close": "닫기",
+        "cancel": "취소",
+        "oke": "확인"
+      },
+      "table": {
+        "rowNum": "번호",
+        "typeNm": "교육과정유형명",
+        "useYn": "사용여부",
+        "regId": "등록자",
+        "regDate": "등록일"
+      },
+      "modal": {
+        "modalName": "교육과정 유형 등록",
+        "eduName": "교육과정 유형",
+        "content": "정의",
+        "useYn": "사용여부",
+        "createdBy": "등록자",
+        "createdDate": "등록일"
+      },
+      "message": {
+        "confirmSave": "저장하시겠어요?",
+        "success": "정상처리됐습니다.",
+        "confirmDelete": "삭제하시겠어요?",
+        "notDelete": "교육과정개발에 사용된 유형은 삭제할 수 없습니다.",
+        "duplicate": "이미 등록된 교육과정 유형입니다."
+      }
+    },
+    "profLearn": {
+      "title": "교수학습방법 관리",
+      "button": {
+        "register": "교수학습방법 등록",
+        "save": "저장",
+        "close": "닫기",
+        "cancel": "취소",
+        "oke": "확인"
+      },
+      "table": {
+        "learnName": "교수학습방법명",
+        "useYn": "사용여부",
+        "regBy": "등록자",
+        "regDate": "등록일",
+        "deleteAction": "관리"
+      },
+      "modal": {
+        "modalName": "교수학습방법 등록",
+        "learnName": "교수학습방법명",
+        "content": "교수학습방법 정의",
+        "useYn": "사용여부",
+        "createdBy": "등록자",
+        "createdDate": "등록일"
+      },
+      "message": {
+        "confirmSave": "저장하시겠어요?",
+        "success": "정상처리됐습니다.",
+        "duplicate": "이미 등록된 교육학습방법입니다.",
+        "confirmDelete": "저장하시겠어요?",
+        "notDelete": "교육과정개발에 사용된 유형은 삭제할 수 없습니다"
+      }
+    },
+    "evaluationMethodMng": {
+      "title": "평가방법 관리",
+      "button": {
+        "register": "교수학습방법 등록",
+        "save": "저장",
+        "close": "닫기",
+        "cancel": "취소",
+        "oke": "확인"
+      },
+      "table": {
+        "evalName": "평가방법명",
+        "useYn": "사용여부",
+        "regBy": "등록자",
+        "regDate": "등록일",
+        "deleteAction": "관리"
+      },
+      "modal": {
+        "modalName": "평가방법 등록",
+        "evalName": "평가방법명",
+        "content": "평가방법 정의",
+        "useYn": "사용여부",
+        "createdBy": "등록자",
+        "createdDate": "등록일"
+      },
+      "message": {
+        "confirmSave": "저장하시겠어요?",
+        "success": "정상처리됐습니다.",
+        "confirmDelete": "저장하시겠어요?",
+        "notDelete": "교육과정개발에 사용된 유형은 삭제할 수 없습니다.",
+        "duplicate": "이미 등록된 교육학습방법입니다."
+      }
+    },
+    "track": {
+      "breadcrumb": "기초정보 관리",
+      "title": "트랙과정 관리",
+      "button": {
+        "register": "트랙과정 등록"
+      },
+      "table": {
+        "rowNum": "번호",
+        "trackName": "트랙과정명",
+        "totalSubject": "구성 교과목 수",
+        "totalCer": "총 학점",
+        "useYn": "사용여부",
+        "regBy": "작성자",
+        "regDate": "작성일"
+      },
+      "crud": {
+        "title": "트랙과정 등록",
+        "form": {
+          "trackName": "트랙과정명",
+          "useYn": "사용여부",
+          "intro": "트랙과정 소개(선택입력)",
+          "subject": "교과목 편성",
+          "regBy": "작성자",
+          "regDate": "작성일",
+          "table": {
+            "nameSubKor": "교과목명(한글)",
+            "nameSubEn": "교과목명(영어)",
+            "codeSub": "교과코드",
+            "typeSub": "교과 구분",
+            "credit": "학점",
+            "theory": "이론",
+            "practice": "실습",
+            "manage": "관리"
+          }
+        },
+        "button": {
+          "openSub": "교과목 추가",
+          "save": "저장",
+          "back": "목록",
+          "search": "조회",
+          "reset": "초기화",
+          "choice": "선택",
+          "close": "닫기",
+          "delelte": "[삭제]",
+          "delelteSb": "[삭제]",
+          "cancel": "취소",
+          "oke": "확인"
+        },
+        "popup": {
+          "title": "교과목 추가",
+          "nameSub": "교과목명",
+          "codeSub": "과목코드",
+          "typeSub": "교과구분",
+          "credit": "학점",
+          "choice": "학점"
+        },
+        "message": {
+          "confirmSave": "저장하시겠어요?",
+          "confirmDelete": "교과목을 삭제하시겠어요?",
+          "duplicateTrack": "이미 등록된 트랙과정명입니다. ",
+          "success": "정상처리됐습니다.",
+          "deleteSuccess": "삭제됐습니다."
+        }
+      }
+    },
+    "modelTalentUni": {
+      "talentAndGoal": {
+        "menu": "기초정보 관리",
+        "pageTitle": "학교인재상 및 교육목표",
+        "pageNote": "※ 신규 교육과정개발개편 시 최근 학년도 내용으로 적용됩니다.",
+        "year": "학년도",
+        "regId": "등록자",
+        "regDate": "등록일",
+        "button": {
+          "register": "신규 등록"
+        },
+        "form": {
+          "formTitle": "학교인재상 및 교육목표 등록",
+          "cont": "건학이념",
+          "vision": "대학비전",
+          "talent": "인재상",
+          "edu": "교육목표",
+          "progress": "발전계획"
+        },
+        "alert": {
+          "delete": "항목을 삭제하시겠어요?",
+          "deleteSuccess": "삭제됐습니다.",
+          "deleteError": "활용된 항목은 삭제할 수 없습니다.",
+          "save": "저장하시겠어요?",
+          "saveSuccess": "정상처리됐습니다. ",
+          "saveError": "이미 등록된 학년도입니다."
+        }
+      }
+    },
+    "coreChildAbility":  {
+        "menu": "기초정보 관리",
+        "pageTitle": "핵심역량 및 하위역량 관리",
+        "core": "핵심역량",
+        "coreDefn": "핵심역량 정의",
+        "child": "하위역량",
+        "childDefn": "하위역량 정의",
+        "useYn": "사용여부",
+        "manager": "관리",
+        "button": {
+            "addCore": "핵심역량 추가",
+            "delCore": "핵심역량 삭제",
+            "addChild": "하위역량 추가",
+            "delChild": "하위역량 삭제  "
+        },
+        "alert": {
+            "save": "저장하시겠어요?",
+            "saveSuccess": "정상처리됐습니다.",
+            "abilityUse": "활용된 역량은 삭제할 수 없습니다.",
+            "delCore": "핵심역량을 삭제하시겠어요? 관련 하위역량 모두 삭제됩니다.",
+            "delSuccess": "삭제됐습니다.",
+            "delChild": "하위역량을 삭제하시겠어요?",
+            "checkDuplicate": "동일한 이름의 역량명을 추가할 수 없습니다. "
+        }
+      },
+      "generalFactor": {
+          "write": "작성",
+          "notWrite": "미작성",
+          "status": "상태",
+          "regId": "등록자",
+          "regDate": "등록일",
+          "pageTitle": "핵심역량 구성요소 관리",
+          "cmpnElem": "구성요소",
+          "useYn": "사용여부",
+          "textRed": "※ 등록된 핵심역량-하위역량으로 목록이 자동구성됩니다.",
+          "titleAbility": "핵심역량 정보",
+          "titleGeneral": "구성요소 관리",
+          "button": {
+              "addChild": "구성요소 추가"
+          },
+          "alert": {
+              "save": "저장하시겠어요?",
+              "saveSuccess": "정상처리됐습니다. ",
+              "del": "구성요소을(를) 삭제하시겠어요?",
+              "delSuccess": "삭제됐습니다.",
+              "delCancle": "활용된 구성요소는 삭제할 수 없습니다.",
+              "checkDuplicate": "이미 존재된 구성요소가 입니다. 다시 입력하세요"
+          }
+      },
+      "standardAction": {
+          "pageTitle": "행동지표, 행동기준평정척도 관리",
+          "textRed": "※ 등록된 핵심역량-하위역량-구성요소로 목록이 자동구성됩니다.",
+          "pageTitleReg": "행동지표, 행동기준평정척도 등록",
+          "title": "핵심역량 정보",
+          "titleAction": "행동지표, 행동기준평정척도",
+          "actionIndex": "행동지표",
+          "rank": "행동기준평정척도",
+          "high": "상",
+          "middle": "중",
+          "low": "하",
+          "alert": {
+              "save": "저장하시겠어요?",
+              "saveSuccess": "정상처리됐습니다.",
+              "del": "항목을 삭제하시겠어요?",
+              "delSuccess": "삭제됐습니다.",
+              "delFail": "활용된 항목은 삭제할 수 없습니다."
+          }
+      },
+      "profAbilityChd": {
+        "menu": "기초정보 관리",
+        "pageTitle": "교수역량 하위역량, 구성요소 등록",
+        "core": "하위역량",
+        "coreDefn": "하위역량 정의",
+        "child": "구성요소",
+        "childDefn": "구성요소정의",
+        "useYn": "사용여부",
+        "manager": "관리",
+        "button": {
+            "addCore": "하위역량 추가",
+            "delCore": "하위역량 삭제",
+            "addChild": "구성요소 추가",
+            "delChild": "구성요소 삭제",
+            "saveTemporary": "임시저장"
+        },
+        "alert": {
+            "save": "저장하시겠어요?",
+            "saveSuccess": "정상처리됐습니다.",
+            "abilityUse": "활용된 역량은 삭제할 수 없습니다.",
+            "delCore": "하위역량을 삭제하시겠어요?",
+            "delSuccess": "삭제됐습니다.",
+            "delChild": "구성요소를 삭제하시겠습니가?",
+            "checkDuplicate": "동일한 이름의 역량명을 추가할 수 없습니다. "
+        }
+      },
+      "profAbilityAction": {
+          "pageTitle": "WISE PRIDE 교수역량",  
+          "pageSubTitle": "구분 정보", 
+          "wisePrideNm": "WIDE PRIDE 교수역량", 
+          "wisePriDefn": "WIDE PRIDE 교수역량 정의", 
+          "wisePriYn": "사용여부", 
+          "laybalHDL": "구분", 
+          "score": "기준점수", 
+          "defn": "내용", 
+          "program": "프로그램", 
+          "btnSaveOff": "임시저장", 
+          "btnSave": "저장", 
+          "btnDel": "삭제", 
+          "btnBack": "목록",
+          "btnDelProgram": "삭제",
+          "btnAddProgram": "프로그램 추가",
+          "message":{
+            "quesSave":"저장 하시겠습니까?"
+            ,"ansSave":"저장 되었습니다."
+            ,"ansDelProg":"프로그램이 삭제됐습니다."
+            ,"ansDel":"삭제 되었습니다."
+            ,"checkWiseNm":"동일한 이름의 역량명을 추가할 수 없습니다. "
+            ,"checkProfUsed":"활용된 교수역량은 삭제할 수 없습니다."
+            ,"quesDelProg":"등록된 프로그램을 삭제하시겠어요?"
+            ,"checkValNum":"숫자만을 입력해주세요."
+            ,"checkMinMaxScore":"최저기준점수는 최고기준점수보다 클 수 없습니다. "
+            ,"checkEmpty":"필수입력항목은 모두 입력해주세요."
+            ,"checkValHM":"구분 '하'의 기준점수 max값은 구분 '중'의 기준점수 min값보다 클 수 없습니다. "
+            ,"checkValMS":"구분 '중'의 기준점수 max값은 구분 '상'의 기준점수 min값보다 클 수 없습니다."
+            ,"valWiseNm":"WIDE PRIDE 교수역량을 입력하세요"
+            ,"checkWiseUsed":"WISE PRIDE 교수역량이 사용되고 있습니다."
+            ,"quesDel":"삭제 하시겠습니까?"
+          }
+      },
+      "profAbilityList": {
+          "pageTitle": "WISE PRIDE 교수역량 관리",  
+          "pageSubTitle": "목록", 
+          "rowNum": "번호", 
+          "wisePriNm": "WISE PRIDE 교수역량", 
+          "regNm": "등록자", 
+          "regDate": "등록일", 
+          "btnAdd": "WISE PRIDE 교수역량 등록"          
+      },
+      "profAbilityChldList": {
+        "pageTitle": "교수역량 하위역량 관리",
+        "rowNum": "번호",
+        "chldName": "교수역량",
+        "wisPriNm": "WISE PRIDE 교수역량",
+        "stsNm": "작성여부",
+        "regId": "등록자",
+        "regDate": "등록일",
+        "btnReg":"WISE PRIDE 교수역량 등록"
+      },
+      "profAbilityChldAction": {
+        "pageTitle": "교수역량, 하위역량 등록",
+        "subTitle": "직원역량 및 하위역량 ",
+        "wisePrideNm": "WIDE PRIDE 교수역량",
+        "content": "교수역량 및 하위역량",
+        "profNm": "교수역량",
+        "profDefn": "교수역량 정의",
+        "chldNm": "하위역량",
+        "chldDefn": "하위역량 정의",
+        "stsNm":"사용여부",
+        "actionMng": "관리",
+        "btnAddProf": "교수역량 등록",
+        "btnAddChld": "하위역량 추가",
+        "btnDelProf": "교수역량 삭제",
+        "btnDelChld": "하위역량 삭제",
+        "btnDel": "삭제",
+        "btnSave": "저장",
+        "btnSaveOff": "임시저장",
+        "btnBack": "목록",
+        "message":{
+          "quesDelProf":"교수역량을 삭제하시겠습니까?"
+          ,"quesDelChld":"하위역량을 삭제하시겠어요?"
+          ,"checkProfUsed":"활용된 역량은 삭제할 수 없습니다."
+          ,"checkEmpty":"필수입력항목은 모두 입력해주세요."
+          ,"ansDel":"정상처리됐습니다."
+          ,"checkProfNm":"동일한 이름의 역량명을 추가할 수 없습니다."
+          ,"quesDel":"삭제 하시겠습니까?"          
+        }
+      },
+      "elemList": {
+        "laybal":{
+          "title":"교수역량 구성요소 관리"
+          ,"profNm":"교수역량"
+          ,"subNm":"하위역량"
+          ,"stsNm":"상태"
+          ,"regNm":"등록자"
+          ,"regDate":"등록일"
+        }    
+      },
+      "elemAction":{
+        "title":"교수역량 구성요소 관리"
+        ,"subTitle1":"교수역량 정보"
+        ,"subTitle2":"구성요소 관리"
+        ,"profNm":"교수역량"
+        ,"subNm":"하위역량"
+        ,"elemNm":"구성요소 "
+        ,"defn":"정의"
+        ,"useYn":"사용여부"
+        ,"btnAdd":"구성요소 추가"
+        ,"btnDel":"삭제",
+        "message":{
+          "quesDel":"구성요소을(를) 삭제하시겠어요?"
+          ,"qnsDel":"삭제됐습니다."
+          ,"checkUsed":"활용된 구성요소는 삭제할 수 없습니다."
+          ,"quesSave":"저장하시겠어요?"
+          ,"checkEmpty":"필수입력항목은 모두 입력해주세요."
+          ,"ansSave":"정상처리됐습니다."
+        }   
+      },
+      "modal":{
+        "programNm":"프로그램명",
+        "url":"url",
+        "title":"프로그램 등록",
+        "btnSave":"확인",
+        "btnClose":"닫기"
+      },
+      "empAbility": {
+      "list":{
+        "pageTitle": "1LEVEL 역량 관리",
+        "rowNum": "번호",
+        "abilityName": "1LEVEL 역량",     
+        "regName": "등록자",
+        "regDate": "등록일",
+        "btnCreate": "1 LEVEL 역량 등록"
+      },
+      "create":{
+        "pageTitleMain":"1LEVEL 역량 등록",
+        "pageTitleAbility":"핵심역량 정보",
+        "subTitile":"구분 정보",
+        "abilityName":"1LEVEL 역량 ",
+        "abilityDefi":"1LEVEL 역량 정의",
+        "pageTitle":"구분 정보",
+        "classify":"구분",
+        "content":"내용",
+        "program":"프로그램",
+        "useYn":"사용여부",
+        "score":"기준점수",
+        "btnSave":"저장",
+        "btnDel":"삭제",
+        "btnBack":"목록",
+        "addProgram":"프로그램 추가", 
+        "delProgram":"삭제",
+        "saveOff":"임시저장"
+      },
+      "popup":{
+        "title":"프로그램 등록"
+        ,"progNm":"프로그램명"
+        ,"url":"url"
+        ,"save":"닫기"
+        ,"close":"확인"
+      },
+      "message":{
+        "quesDelProg":"등록된 프로그램을 삭제하시겠어요?"
+        ,"quesSave":"저장 하시겠습니까?"
+        ,"ansSave":"저장 되었습니다."
+        ,"ansDelProg":"프로그램이 삭제됐습니다."
+        ,"quesDel":"삭제 하시겠습니까?"
+        ,"ansDel":"삭제 되었습니다."
+        ,"ansCheckName":"동일한 이름의 역량명을 추가할 수 없습니다."
+        ,"checkUseAbi":"활용된 교수역량은 삭제할 수 없습니다."
+        ,"ansCheckNum":"숫자만을 입력해주세요."
+        ,"checkValScore":"최저기준점수는 최고기준점수보다 클 수 없습니다."
+        ,"checkScoreHM":"구분 '하'의 기준점수 max값은 구분 '중'의 기준점수 min값보다 클 수 없습니다."
+        ,"checkScoreMS":"구분 '중'의 기준점수 max값은 구분 '상'의 기준점수 min값보다 클 수 없습니다."
+        ,"validNotEmpty":"필수입력항목은 모두 입력해주세요."
+        ,"checkLevelNm":"1LEVEL 역량을 입력하세요."
+        ,"checkLevelDouble":"1LEVEL 역량 중복되었습니다."
+        ,"checkProgNm":"동일한 이름의 역량명을 추가할 수 없습니다."
+        ,"checkLevelUse":"1LEVEL 역량 관리가 사용되었습니다."
+        ,"ansDelAll":"활용된 역량은 삭제할 수 없습니다."
+      } 
+    },
+    "subEmpAbility": {
+      "list":{
+        "pageTitle": "직원역량 하위역량 관리",
+        "rowNum": "번호",
+        "abilityName": "1LEVEL역량", 
+        "createYn": "작성여부",    
+        "regName": "등록자",
+        "regDate": "등록일"
+      },
+      "create":{
+        "pageTitleMain":"직원역량,  하위역량 등록",
+        "abilityName":"1LEVEL 역량",
+        "pageTitle":"직원역량 및 하위역량",
+        "empAbiNm":"직원역량",
+        "defnAbi":"직원역량 정의",
+        "chldNm":"하위역량",
+        "defnChld":"하위역량 정의",
+        "useYn":"사용여부",
+        "subMng":"관리",
+        "btnSave":"저장",
+        "btnDel":"삭제",
+        "btnBack":"목록",
+        "btnAddEmp":"직원역량 추가",
+        "btnDelEmp":"직원역량 삭제", 
+        "btnAddChld":"하위역량 추가",
+        "btnDelChld":"하위역량 삭제"        
+      },
+      "popup":{
+        "popupTitle":"프로그램 등록",
+        "nameProg":"프로그램 등록",
+        "urlProg":"url"
+      },
+      "message":{
+        "quesSave":"저장하시겠어요?"
+        ,"ansSave":"정상처리됐습니다."
+        ,"quesDel":"직원역량을 삭제하시겠습니까?"
+        ,"ansDel":"삭제됐습니다."
+        ,"checkEmpUsed":"활용된 역량은 삭제할 수 없습니다."
+        ,"checkEmpty":"필수입력항목은 모두 입력해주세요."
+        ,"checkEmpNm":"동일한 이름의 역량명을 추가할 수 없습니다."
+        ,"quesDelChld":"하위역량을 삭제하시겠어요?"
+        ,"quesDelEmp":"직원역량을 삭제하시겠습니까?"
+      }  
+    },
+    "empElemAbility":{
+      "elemList":{
+        "titleMain":"직원역량 구성요소 관리"
+        ,"title":"검색"
+        ,"empNm":"직원역량"
+        ,"subNm":"하위역량"
+        ,"stsNm":"상태"
+        ,"regNm":"등록자"
+        ,"regDate":"등록일" 
+        ,"use":"작성"
+        ,"not_use":"미작성"     
+      },
+      "elemAction":{
+        "titleMain":"직원역량 구성요소 관리"
+        ,"title1":"직원역량 정보"
+        ,"title2":"구성요소 관리"
+        ,"empNm":"직원역량"
+        ,"subNm":"하위역량"
+        ,"elemNm":"구성요소"
+        ,"defm":"정의"
+        ,"useYn":"사용여부"  
+        ,"btnAdd":"구성요소 추가" 
+        ,"btnDel":"삭제"    
+      },
+      "message":{
+        "quesDelElem":"구성요소을(를) 삭제하시겠어요?"
+        ,"quesDel":"저장하시겠어요?"
+        ,"ansDel":"삭제됐습니다."
+        ,"checkElemUsed":"활용된 구성요소는 삭제할 수 없습니다."
+        ,"checkEmpty":"필수입력항목은 모두 입력해주세요."
+        ,"ansSave":"정상처리됐습니다."
+      }  
+    }
+  },
+  "08": {
+    "topTalent": {
+      "title": "최우수 인재",
+      "searchBox": {
+        "university": "단과대학",
+        "major": "학과",
+        "studentCode": "학번",
+        "studentName": "성명",
+        "year": "학년도",
+        "grade": "학년"
+      },
+      "table": {
+        "graduationYear": "졸업 학년도",
+        "university": "단과대학",
+        "major": "학과",
+        "schoolYear": "학년",
+        "studentCode": "학번",
+        "studentName": "성명",
+        "medium": "평균",
+        "corecapacity1": "지혜로움",
+        "corecapacity2": "공감",
+        "corecapacity3": "자기주도",
+        "corecapacity4": "융합실무"
+      },
+      "button": {
+        "search": "조회",
+        "reset": "초기화",
+        "downloadExel": "엑셀파일 다운로드"
+      }
+    },
+    "topTalentOfYear": {
+      "title": "올해의 우수 인재"
+    },
+    "eliteTalentForType": {
+      "title": "역량별 우수 인재",
+      "searchBox": {
+        "yearWinning": "취득년도",
+        "university": "단과대학",
+        "major": "학과",
+        "grade": "학년",
+        "studentName": "성명",
+        "studentCode": "학번"
+      },
+      "table": {
+        "yearWinning": "취득년도",
+        "university": "단과대학",
+        "major": "학과",
+        "grade": "학년",
+        "studentCode": "학번",
+        "studentName": "성명"
+      }
+    },
+    "intellectualTalent": {
+      "title": "와이즈 인재",
+      "table": {
+        "graduationYear": "취득년도",
+        "university": "단과대학",
+        "major": "학과",
+        "schoolYear": "학년",
+        "studentCode": "학번",
+        "studentName": "성명",
+        "diagnosisDate": "최종 진단일"
+      }
+    }
+  },
+  "10": {
+    "role": {
+      "pageTitle": "권한 관리",
+      "rowNum": "번호",
+      "roleName": "권한명",
+      "roleCode": "권한코드",
+      "roleDefn": "권한설명(선택입력)",
+      "regId": "등록자",
+      "regDate": "등록일",
+      "siteType": "사이트 설정",
+      "menu": "접속메뉴",
+      "permisstion": "편집권한",
+      "placeHolderDefn": "저장 시 자동생성됩니다.",
+      "cmpnRole": "목록 구성",
+      "button": {
+        "addRole": "권한 등록"
+      },
+      "alert": {
+        "save": "저장하시겠어요?"
+      }
+    },
+    "historyLogin": {
+        "title": "로그인 이력 조회",
+        "searchBox": {
+          "time": "검색 기간",
+          "role": "권한",
+          "id": "교번",
+          "name": "성명",
+          "ipLogin": "접속IP",
+          "excelDownLoad":"excelDownLoad"
+          
+        },
+        "table": {
+          "dateLogin": "로그인 일시",
+          "role": "권한",
+          "id": "교번",
+          "name": "성명",
+          "ipLogin": "접속IP",
+          "succsessYn": "성공여부",
+          "browserInfo": "브라우저 정보",
+          "osInfo": "OS정보"
+        }
+      },
+    "historyMenuAccess": {
+      "title": "메뉴 접속 이력 조회",
+      "searchBox": {
+        "time": "검색 기간",
+        "startDate": "시작일",
+        "endDate": "종료일",
+        "user": "ID",
+        "name": "사용자 성명",
+        "menuNm": "화면명",
+        "excelDownLoad":"엑셀 다운로드"
+
+      },
+      "table": {
+        "connDate": "사용일시",
+        "userId": "ID",
+        "name": "사용자 성명",
+        "menuNm": "화면명",
+        "url": "URL"
+      }
+    }
+  },
+  "05" : {
+    "eduProcessCreation" : {
+      "title" : "교육과정개발개편",
+      "title2" : "학년도 ",
+      "title3" : " 교육과정 개발",
+      "label" : {
+        "eduProcessName" : "2025학년도 호텔관광대학 교육과정 개발"
+      },
+      "tabName": {
+        "creationTutorial" : "1.개발 개요",
+        "enviAndReqAnalysis" : "2.환경분석 및 요구분석",
+        "improveContentReflection" : "3.개선사항 반영",
+        "modeling": "4.전공능력 모델링"
+      },
+      "message" : {
+        "isNext" : "정상처리됐습니다. 다음 단계로 이동하시겠어요?",
+        "resetData" : "전공능력 모델링 단계부터 수정 시 이후 입력 단계가 초기화  됩니다. \n 수정하시겠어요?"
+      },
+      "button" : {
+        "goNextConfirm" : "이동"
+      },
+      "listAndApprove" : {
+        "title1" : "교육과정개발개편",
+        "title2" : "학과, 학년도 설정",
+        "title3" : "교육과정개발 심사 반려 사유",
+        "title4" : "교육과정개발 승인",
+        "title5" : "교육과정개발 반려",
+        "title6" : "교육과정개발 반려 사유",
+        "warning" : {
+          "warning1": "※ 최고 관리자 외에는 로그인한 학과장 소속 학과의 교육과정만 목록에 조회됩니다.",
+          "warning2": "※ 교육과정 개발은 1.환경분석 및 요구분석 > 2.개선사항 반영 > 3.전공능력 모델링 > 4.설계 및 개발 > 5.교과목 프로파일 개발 > 6.부록 단계로 진행됩니다.",
+          "warning3": "※ 모든 도출 교과목의 프로파일 개발 작성이 완료되면 작성완료됩니다.",
+          "warning4": "※ 승인요청 및 인쇄 버튼은 작성완료 후 활성화 됩니다.",
+          "warning5": "※ 반려 처리는 한 건씩 처리가능합니다.",
+          "warning6" : "※ 반려 사유를 입력해주세요."
+        },
+        "label" : {
+          "majorUni" : "단과대학",
+          "sust" : "학과",
+          "uniYear" : "학년도",
+          "status" : "상태",
+          "createdYear" : "개발 학년도",
+          "processStage" : "진행단계",
+          "approveRequest" : "승인요청",
+          "print" : "인쇄",
+          "printPreview" : "인쇄(미리보기)",
+          "register" : "작성자",
+          "regDate" : "작성일",
+          "approvedRegister" : "승인 신청자",
+          "approvedRegDate" : "승인 신청일",
+          "approver" : "결재자",
+          "approvedDate" : "결재일",
+          "approverName" : "결재자 성명",
+          "approverDepartment" : "결재자 소속",
+          "rejectReason" : "반려사유"
+        },
+        "button" : {
+          "create" : "신규 교육과정 개발",
+          "delete" : "교육과정 삭제",
+          "downloadExcel" : "엑셀 다운로드",
+          "goContinue" : "작성중 단계 이동",
+          "goFirstStage" : "첫 단계 이동",
+          "confirmApprove" : "승인요청",
+          "approveSuccess" : "승인완료",
+          "approve" : "승인",
+          "reject" : "반려",
+          "print" : "인쇄"
+        },
+        "message" : {
+          "isDelete" : "학년도 교육과정을 삭제하시겠어요?",
+          "deleteSuccess" : "교육과정이 정상삭제됐습니다.",
+          "goContinue" : "작성중인 단계로 이동하시겠어요?",
+          "alreadyInUse" : "해당 학년도의 동일 학과 교육과정이 이미 개발 되었습니다.",
+          "goFirstStage" : "교육과정 개발 첫 단계 “대내 여건 분석” 홤면으로 이동합니다.",
+          "askGoFirstStage" : "작성중인 단계로 이동하시겠어요?",
+          "approveRequest" : " 교육과정을 승인요청하시겠어요?",
+          "approveRequestSuccess" : "승인요청됐습니다.",
+          "approveCreation" : "승인처리하시겠어요?",
+          "approveCreationSuccess" : "승인처리됐습니다.",
+          "rejectSuccess" : "반려처리됐습니다",
+          "excel" : "엑셀 다운로드를 하시겠습니까?"
+        }
+      },
+      "creationTutorial" : {
+        "tabName": {
+          "definationAndTarget": "1.정의 및 목적",
+          "progressAndRule": "2.개발 절차 및 규정",
+          "eduProcessCommissary": "3.교육과정위원회"
+        },
+        "definationAndTarget" : {
+          "title" : "정의 및 목적",
+          "label" : {
+            "category" : "항목",
+            "content" : "내용",
+            "uniPolicyDirection" : "우리대학 전공 교육과정 정책방향",
+            "uniEnterprise" : "산학일체형 전공교육과정",
+            "necessary" : "산학일체형 학과(전공) 교육과정 개발 필요성",
+            "developTarget" : "전공능력 기반 학과(전공) 교육과정 개발 목적"
+          },
+          "button" : "매뉴얼 다운로드",
+          "button2" : "다운로드",
+          "message" : "매뉴얼을 다운로드 하시겠어요?"
+        },
+        "progressAndRule" : {
+          "title" : "개발 절차 및 규정",
+          "label" : {
+            "category" : "항목",
+            "content" : "내용",
+            "createAndTutorial" : "전공 교육과정 개발 및 운영 개관",
+            "createProcess" : "학과(전공) 교육과정 개발 절차",
+            "createRule" : "학과(전공) 교육과정 개발 및 운영 관련 규정"
+          }
+        },
+        "eduProcessCommissary" : {
+          "title1" : "전임교원",
+          "title2" : "재학생",
+          "title3" : "산업체전문가",
+          "title4" : "학과(전공) 교육과정운영위원회 역할",
+          "title5" : "전임교원 선택",
+          "title6" : "학생대표 선택",
+          "warning1" : "※ 회의록 작성자 소속 학과의 교원만 목록 구성됩니다.",
+          "warning2" : "※ 회의록 작성자 소속 학과의 학생만 목록 구성됩니다.",
+          "label" : {
+            "name" : "성명",
+            "department" : "소속",
+            "majorDetail" : "세부전공 및 전문분야",
+            "experience" : "경력",
+            "note" : "비고",
+            "action" : "관리",
+            "majorUni" : "단과대학",
+            "sust" : "학과",
+            "professorNo" : "교번",
+            "title" : "직책",
+            "select" : "선택",
+            "studentNo" : "학번",
+            "uniYear" : "학년"
+          },
+          "text" : {
+            "professor" : "전임교원",
+            "student" : "재학생",
+            "companyExpert" : "산업체전문가"
+          },
+          "placeHolder" : {
+            "name" : "선택버튼을 통해 입력해주세요.",
+            "autoInput" : "자동입력",
+            "searchTextPro" : "성명 또는 교번 검색",
+            "searchTextStu" : "성명 또는 학번 검색"
+          },
+          "message" : {
+            "deleteCommissary" : "교육과정위원회 위원을 삭제하시겠어요?",
+            "choosePro" : " 교수을(를) 선택하시겠어요?",
+            "chooseStu" : " 학생을(를) 선택하시겠어요?",
+            "duplicate" : "이미 선택된 위원입니다."
+          },
+          "button" : {
+            "print" : "개발 개요 인쇄"
+          }
+        }
+      },
+      "enviAndReqAnalysis" : {
+        "tabName": {
+          "inUniConditionAnalysis": "1.대내 여건 분석",
+          "outUniConditionAnalysis": "2.대외 여건 분석",
+          "userReqAnalysis": "3.수요자 요구분석",
+          "developmentDirection": "4.개발 방향성 도출"
+        },
+        "inUniConditionAnalysis" : {
+          "title" : "대내 여건 분석",
+          "label" : {
+            "category" : "항목",
+            "analysResult" : "분석 결과",
+            "developNote" : "교육과정 개발시 시사점",
+            "modelAndTarget" : "대학 인재상 및 교육목표",
+            "developPlan" : "대학 발전계획",
+            "directAndStrategy" : "학과(전공) 발전전략 및 특성화방향",
+            "profSituation" : "교원 현황",
+            "stuSituation" : "학생 현황",
+            "sustAchievement" : "학과(전공) 교육성과"
+          }
+        },
+        "outUniConditionAnalysis" : {
+          "title" : "대외 여건 분석",
+          "label" : {
+            "category" : "항목",
+            "analysResult" : "분석 결과",
+            "developNote" : "교육과정 개발시 시사점",
+            "nationIndustryAnalys" : "국가산업 분석",
+            "localInduSociAnalys" : "지역사회▪️산업 분석",
+            "studyDirAnalys" : "학문동향 분석",
+            "characteristicAnal" : "지역 경쟁학과 현황 및 특성 분석"
+          }
+        },
+        "userReqAnalysis" : {
+          "title1" : "수요자 요구분석",
+          "title2" : "수요자 요구분석 결과를 통한 고려사항",
+          "label" : {
+            "studyingStuReqAnalys" : "재학생 요구분석",
+            "gradStuReqAnalys" : "졸업생 요구분석",
+            "comReqAnalys" : "산업체 요구분석",
+            "category" : "항목",
+            "analysResult" : "분석 결과",
+            "mentionContent" : "교육과정 개발시 고려사항",
+            "studyingStu" : "재학생",
+            "gradStu" : "졸업생",
+            "company" : "산업체"
+          }
+        },
+        "developmentDirection" : {
+          "title" : "개발 방향성 도출",
+          "label" : {
+            "category" : "항목",
+            "analysResult" : "분석 결과",
+            "developNote" : "교육과정 개발시 시사점",
+            "InOutEnviAnalys" : "대내·외 환경분석",
+            "userReqAnalys" : "수요자 요구분석",
+            "uniDevelopPlan" : "대학발전 계획",
+            "characteristicSust" : "학과(전공) 특성화"
+          },
+          "button" : {
+            "print" : "환경분석 및 요구분석 인쇄"
+          }
+        }
+      },
+      "improveContentReflection" : {
+        "tabName": {
+          "diagResultAnalysis": "1.만족도 조사 및 전공능력 진단 결과분석",
+          "selfAssessmentSummary": "2.자체평가 결과 요약",
+          "improvePlanReflection": "3.개선계획에 따른 개선사항 반영"
+        },
+        "diagResultAnalysis": {
+          "title": "만족도 조사 및 전공능력 진단 결과분석",
+          "label": {
+            "category": "구분",
+            "analysResult": "결과분석",
+            "improveContent": "개선사항도출",
+            "creationReflection": "교육과정 개발·개편 시 반영내용",
+            "satisSurvey": "수요자 요구분석",
+            "majorCompetenceDiag": "대학발전 계획"
+          }
+        },
+        "selfAssessmentSummary": {
+          "title": "자체 평가 결과 요약",
+          "label": {
+            "category": "영역",
+            "analysResult": "자체평가 결과",
+            "improvePlan": "다음 학년도 전공 교육과정 개선·환류 계획",
+            "eduProcessCreation": "대내·외 환경분석",
+            "eduProcessOperation": "수요자 요구분석",
+            "achievAssessment": "대학발전 계획"
+          }
+        },
+        "improvePlanReflection": {
+          "title": "개선계획에 따른 개선사항 반영",
+          "label": {
+            "strongPoint": "직전 학년도 교육과정 장점",
+            "improveContentProvide": "개선사항도출",
+            "creationReflectContent": "교육과정 개발·개편 시 반영내용"
+          },
+          "button": {
+            "print": "개선사항 반영 인쇄"
+          }
+        },
+        "relevenceVerification":{
+          "title":"전공능력기반 전공-교양-비교과 연계 교육과정 개편 매트릭스 구성"
+        }
+      },
+      "modeling" : {
+        "tabName": {
+          "talentModelAndTarget": "1.학과 인재상 및 교육목표 수립",
+          "linkDiagramEduTarget": "2.교육목표 연계도",
+          "talentEduType": "3.인재양성유형 선정",
+          "analysis": "4.주요직무-세부과업(역할) 분석 및 요구역량",
+          "majorAbilityShowing": "5.전공능력후보군 도출",
+          "mainElement": "6.주구성요소 선정",
+          "suitableTest": "7.전공능력 타당도 검토",
+          "definitionTest": "8.(최종)전공능력 정의서 확인"
+        },
+        "talentModelAndTarget" : {
+          "title" : "학과(전공) 인재상 및 교육목표 수립",
+          "label" : {
+            "vision" : "학과 비전",
+            "talentModel" : "학과 인재상",
+            "eduTarget" : "학과 교육목표",
+            "developmentPlan" : "학과 발전계획",
+            "characteristicType" : "산학일체형 학과 특성화 교육과정 유형"
+          }
+        },
+        "linkDiagramEduTarget" : {
+          "title" : "대학 인재상 - 학과 교육목표 연계도",
+          "label" : {
+            "wiseTalent" : "지혜로운 인재",
+            "empathetic" : "공감할 줄 아는 인재",
+            "selfDirected" : "자기주도적 인재",
+            "businessMindset" : "기업가 정신을 갖춘 인재",
+            "high" : "상",
+            "medium" : "중",
+            "low" : "하"
+          },
+          "value" : {
+            "high" : "High",
+            "medium" : "Medium",
+            "low" : "Low"
+          }
+        },
+        "talentEduType" : {
+          "title" : "인재양성유형 선정",
+          "label" : {
+            "warning" : "※ 인재양성유형 한 개는 기본, 추가 버튼을 통해 두 개 이상 설정할 수 있습니다.",
+            "talentModel" : "학과(전공) 인재상",
+            "talentEduTypeASIS" : "인재양성유형(직업군) AS-IS",
+            "talentEduTypeTOBE" : "인제양성유형(직업군) TO-BE",
+            "talentEduTypeProof" : "인재양성유형(직업군) 근거"
+          },
+          "message" : {
+            "delete" : "인재양성유형을 삭제하시겠어요? \n 삭제 시 이후 모든 과정을 다시 입력해야 합니다.",
+            "deleteSuccess" : "인재양성유형이 삭제됐습니다",
+            "duplicate" : "동일한 인재양성유형을 선정할 수 없습니다."
+          }
+        },
+        "analysis" : {
+          "title" : "주요직무 - 세부과업(역할) 분석 및 요구역량",
+          "label" : {
+            "warning1" : "※ 본 교육과정에서 선정할 주요 직무는 체크박스를 선택해주세요.",
+            "warning2" : "※ 요구역량 우선순위는 (1순위)... (2순위)...(3순위) 까지 입력해주세요.",
+            "eduType" : "인재양성유형",
+            "select" : "선택",
+            "mainJob" : "주요 직무",
+            "specificRole" : "세부 과업(역할)",
+            "requiredTalent" : "요구역량",
+            "requiredTalentPriority" : "요구역량 우선순위"
+          }
+        },
+        "majorAbilityShowing" : {
+          "title" : "전공능력후보군 도출",
+          "label" : {
+            "warning1" : "※ 직무능력 엔터 입력 시 블릿(▪️) 추가됩니다",
+            "warning2" : "※ 전공능력 선택 시 귀속된 하위능력 목록이 표시됩니다.",
+            "warning3" : "※ 활용할 하위능력은 체크박스를 선택해주세요.",
+            "eduType" : "인재양성유형",
+            "mainJob" : "주요 직무",
+            "jobCompetence" : "직무 능력",
+            "majorCompetence" : "전공능력",
+            "lowLevelCompetence" : "하위능력"
+          },
+          "placeHolder" : {
+            "childCapa" : "전공능력을 선택해주세요."
+          },
+          "message" : {
+            "checkDup" : "동일한 전공능력을 중복 선정할 수 없습니다."
+          }
+        },
+        "mainElement" : {
+          "title" : "주구성요소 선정",
+          "label" : {
+            "warning" : "※ 주 구성요소를 선택해주세요. 선택 외 구성요소는 부 구성요소로 선정됩니다.",
+            "eduType" : "인재양성유형",
+            "majorCompetence" : "전공능력",
+            "majorCompetenceDefination" : "전공능력 정의",
+            "lowLevelCompetence" : "하위능력",
+            "lowLevelCompetenceDef" : "하위능력 정의",
+            "mainElement" : "주 구성요소"
+          }
+        },
+        "suitableTest" : {
+          "title1" : "전공능력 타당도 평가의원",
+          "title2" : "전공능력 선정",
+          "title3" : "교내 평가위원 선택",
+          "label" : {
+            "warning1" : "※ 교내 위원은 선택 버튼을 활용해 입력해주세요. 선택 버튼 클릭 시 교직원 목록이 호출됩니다.",
+            "warning2" : "※ 채택여부는 중요성, 내용 타당도 점수로 자동계산됩니다.",
+            "num" : "번호",
+            "inOutType" : "교내/교외 구분",
+            "name" : "이름",
+            "department" : "소속",
+            "major" : "전공",
+            "management" : "관리",
+            "majorCompetence" : "전공능력",
+            "importance" : "중요성(평균, 5점 척도)",
+            "suitableContent" : "I-CVI 내용타당도",
+            "selectReject" : "채택(O)/기각(X)",
+            "professorNo" : "교번",
+            "majorUniversity" : "단과대학",
+            "sust" : "학과"
+          },
+          "text" : {
+            "select" : "채택",
+            "reject" : "기각"
+          },
+          "placeHolder" : {
+            "nameBeforeChoose" : "교내/외 구분을 선택해주세요.",
+            "nameAfterChoose" : "선택버튼을 통해 입력해주세요.",
+            "major" : "이름 선택 시 자동입력됩니다."
+          },
+          "message" : {
+            "deleteCommissary" : "평가위원을 삭제하시겠어요?",
+            "selectProfessor" : "홍길동$을(를) 선택하시겠어요?"
+          }
+        },
+        "definitionTest" : {
+          "title" : "(최종) 전공능력 정의서",
+          "label" : {
+            "warning1" : "※ 학과정보 관리 > 전공능력 관리에 등록된 행동지표, 행동지표척도, KSA 자동입력됩니다.",
+            "warning2" : "※ 교양교육과정개발 시 KSA 항목은 제외됩니다.",
+            "warning3" : "※ 활용할 행동지표는 선정해주세요.",
+            "majorCompetenceDefination" : "전공능력(정의)",
+            "lowCompetenceDefination" : "하위능력(정의)",
+            "mainElement" : "구성요소",
+            "actionCriteria" : "행동지표(수행준거)",
+            "actionCriteriaPoint" : "행동기준평척도",
+            "ksa" : "KSA"
+          },
+          "button" : {
+            "print" : "전공능력 모델링 인쇄"
+          }
+        }
+      },
+      "subjectProfile": {
+        "tabName": "6.교과목 프로파일 개발",
+        "subTabName": "1.교과목 프로파일 개발",
+        "index": {
+          "title1":"교과목 프로파일 개발",
+          "table1": {
+            "header1": "전체 교과목수",
+            "header2": "지역연계형 교과목 수",
+            "header3": "자격연계형 교과목 수",
+            "header4": "미래융합형 교과목 수",
+            "header5": "창업연계형 교과목 수",
+            "header6": "글로벌연계형 교과목 수"
+          },
+          "table2": {
+            "header1": "교과목",
+            "header2": "과목코드",
+            "header3": "신설·개편·유지",
+            "header4": "이수구분",
+            "header5": "학년",
+            "header6": "학기",
+            "header7": "작성상태"
+          },
+          "grid": {
+            "header1": "선택",
+            "header2": "번호",
+            "header3": "교육과정 학년도",
+            "header4": "학과",
+            "header5": "교과목",
+            "header6": "과목코드",
+            "header7": "신설·개편·유지 ",
+            "header8": "이수구분",
+            "header9": "학년",
+            "header10": "학기",
+            "header11": "작성상태",
+            "header12": "인쇄"
+          }
+        },
+        "create": {
+          "pageTitle": "교육과정개발개편",
+          "subjectNameKo": "교과목명(국문)",
+          "subjectNameEn": "교과목명(영문)",
+          "classificationCompleted": "이수구분",
+          "prerequisiteSubjects": "선수과목(선택입력)",
+          "theory": "이론",
+          "practice": "실습",
+          "classType1": "수업유형1",
+          "classType2": "수업유형2",
+          "status": "개발·개편",
+          "reason": "개발·개편 사유",
+          "subjectOverview": "교과목 개요",
+          "subjectObjectives": "교과목 목표",
+          "learningOutcomes": "역량기반 학습성과(평가지표)",
+          "tableLearningOutcomes": {
+            "specializedCapacity": "전공능력",
+            "subordinateCapacity": "하위능력",
+            "constitutiveElements": "구성요소",
+            "behavioralIndicators": "행동지표",
+            "achievementCriteria": "성취기준"
+          },
+          "subjectMainContent": "교과목 주요내용",
+          "learningMethodProfessors": "산학일체형 교수학습방법 (복수체크가능)",
+          "practiceTool": "실습기자재",
+          "evaluationMethods": "평가방법",
+          "tableEvaluationMethods": {
+            "midterm": "중간",
+            "endterm": "기말",
+            "other": "수시 및 기타",
+            "exercise": "과제",
+            "attendance": "출석"
+          },
+          "evaluationStandards": "평가기준",
+          "tableEvaluationStandards": {
+            "performanceAssessment": "성적평가",
+            "ratedCapacity": "역량평가",
+            "explainOperatingStandards": "수행 수준 설명"
+          },
+          "modalCreateSubject": {
+            "title": "교과목 추가",
+            "subjectName": "교과목명",
+            "subjectCode": "과목코드",
+            "subjectCategory": "교과구분 ",
+            "credits": "학점",
+            "gridColumn": {
+              "header1": "교과목명",
+              "header2": "과목코드",
+              "header3": "교과구분",
+              "header4": "학점",
+              "header5": "선택"
+            }
+          },
+          "buttonPrint": "교과목 프로파일 인쇄",
+          "alert1":"저장하시겠어요?",
+          "alert2":"정상처리됐습니다. 목록으로 이동하시겠어요?",
+          "move": "이동",
+          "alert3":"을(를) 선택하시겠어요?"
+        }
+      }
+    },
+    "designAndDevelopment": {
+      "tabName": "5.설계 및 개발",
+      "noNewSubjects": "신설 교과목 없음",
+       "addSubjects": "교과목 추가",
+      "tableHeader": {
+        "subjectName": "교과목명",
+        "subjectClassification": "교과구분",
+        "grades": "학점",
+        "sisu": "시수",
+        "theory": "이론",
+        "training": "실습",
+        "grade": "학년",
+        "semester": "학기",
+        "newContents": "신설내용",
+        "delete": "삭제"
+      },
+      "print":"인쇄",
+      "next": "다음",
+      "message": {
+        "confirmDelete": "해당 항목을 삭제하시겠어요?",
+        "confirmSave": "저장하시겠어요?",
+        "deleteSuccess": "삭제됐습니다.",
+        "saveSuccess": "정상처리됐습니다. 다음 단계로 이동하시겠어요?",
+        "warring" : "전공능력 모델링 단계부터 수정 시 이후 입력 단계가 초기화  됩니다.\n수정하시겠어요?"
+      },
+      "back": "목록",
+      "stepList": {
+       "step1": "1.선설교과목코드생성신청",
+        "step2": "2.교과목 후보군 도출",
+        "step3": "3.교과목타당성검증",
+        "step4": "4.최종교과목선정",
+        "step5": "5.신설,개편,폐지교과목",
+        "step6": "6.교과목편성",
+        "step7": "7.연계성 검증"
+      },
+      "subjectList" : {
+        "tableHeader":{
+          "subject": "교과목 도출",
+          "component": "구성요소",
+          "newSubject": "신설.개편교과목",
+          "reasons": "신설·개편 교과목 개설이유",
+          "delete": "삭제"
+        },
+        "childAbility": "하위능력",
+        "addSubjects": "교과목 추가",
+        "subjectPopUp": {
+          "title": "교과목 추가",
+          "header":"검색",
+          "subjectName": "교과목명",
+          "subjectCode": "과목코드",
+          "subjectClassification": "교과구분",
+          "grades": "학점",
+          "titleGrid": "목록",
+          "select": "선택",
+          "message": {
+            "selectSubject": "선택하시겠어요?",
+            "duplicate" : "다른 하위능력에 교과목을 중복 편성할 수 없습니다.",
+            "elemDelete" : "구성요소를 삭제하시겠어요?",
+            "deleteSuccess" : "삭제됐습니다.",
+            "sbjtDelete" : "교과목을 삭제하시겠어요?"
+          }
+        }
+      },
+      "subjectCreation" : {
+        "title": "신설 교과목 코드생성 신청",
+        "warning" : {
+          "warning1" : "※ 교과목 코드 생성이 필요한 교과목 정보를 입력해주세요.",
+          "warning2" : "※ 저장 및 인쇄 후 교무처에 제출하여 신규 교과목 코드를 생성요청할 수 있습니다.",
+          "warning3" : "※ 신설·개편되는 교과목이 없는 경우 아래 🔲신설·개편 교과목 없음 체크 후 저장해주세요.",
+          "warning4" : "교과목 추가 버튼 선택하여 신규 교과목 입력란을 추가할 수 있습니다. "
+          ,"warning01" : "※ 교무처에서 신설 교과목 코드 생성 후 교과목 후보군 도출 단계를 진행해주세요."
+          ,"warning02" : "※ 하위능력별 교과목 도출 및 구성요소를 설정해주세요."
+        }
+      },
+      "sbjtSuitableTest" : {
+        "title" : "교과목 후보군 타당성 검증",
+        "warning" : "※ 평균 4.0 이상 선정, 미만 미선정으로 자동계산됩니다.",
+        "label" : {
+          "majorCapa" : "전공능력",
+          "chldCapap" : "하위능력",
+          "sbjtNm" : "교과목명",
+          "element" : "구성요소",
+          "sbjtSuitLv" : "교과목 적합도",
+          "sbjtWorthLv" : "교과목 타당도",
+          "average" : "평균",
+          "option" : "선정여부",
+          "auto" : "자동계산됩니다.",
+          "select" : "선정",
+          "deselect" : "미선정",
+          "point" : "점"
+        }
+      },
+      "lastSbjSelc" : {
+        "title" : "교과목 후보군 타당성 검증",
+        "warning1" : "※ 최종 검증여부는 자동계산됩니다.",
+        "warning2" : "※ 수정 및 보류 설정된 항목은 노랑색으로 표시됩니다.",
+        "label" : {
+          "majorCapa" : "전공능력",
+          "sbjtNm" : "교과목명",
+          "eduGoalClarity" : "교육목표 명확성",
+          "eduSectorCons" : "교육영역 연계성",
+          "currOrganValdt" : "교과편성 타당성",
+          "abilityArchPossi" : "역량 성취가능성",
+          "final" : "최종 검증",
+          "placeHolder" : "자동계산됩니다."
+        }
+      },
+      "sbjtType" : {
+        "title1" : "신설·개편·폐지 교과목",
+        "title2" : "신설/개편",
+        "title3" : "폐지",
+        "warning1" : "※ 신설·개편 교과목은 현 학년도 교육과정 선정 교과목 목록으로 자동 구성됩니다.  교과목 별 신설/개편 교과목을 구분해주세요.",
+        "warning2" : "※ 폐지 교과목은 전학년도 교육과정 교과목에서 현학년도 교육과정 교과목을 뺀 목록으로 자동 구성됩니다",
+        "warning3" : "※ 교과목 정보는 자동입력됩니다. 사유 및 전공능력 연계성은 입력해주세요.",
+        "label" : {
+          "sbjtNm" : "교과목명",
+          "type" : "구분",
+          "reason" : "사유",
+          "sustType" : "이수구분",
+          "grade" : "학년-학기",
+          "creadit" : "학점",
+          "theory" : "이론",
+          "practice" : "실습",
+          "relevence" : "전공능력 연계성"
+        }
+      },
+      "schedule" : {
+        "title" : "교과목 편성",
+        "label1" : "전공능력",
+        "label2" : "인재양성유형"
+      },
+      "verification" : {
+        "title" : "전공능력기반 전공-교양-비교과 연계 교육과정 개편 매트릭스 구성",
+        "label1" : "전공능력",
+        "label2" : "전공 교과목"
+      }
+    },
+    "appendix" : {
+      "tabName" : {
+        "tabName" : "7.부록",
+        "subTabName1" : "1.회의록",
+        "subTabName2" : "2.별첨"
+      },
+      "title1" : "목록",
+      "title2" : "부록(파일 업로드)",
+      "title3" : "부록 등록",
+      "warning1" : "※ 회의 목적 선택 시 회의록 미리보기 및 인쇄할 수 있습니다.",
+      "warning2" : "* 10mb 이하의 파일 한 개 등록 가능합니다. ",
+      "button1" : "일괄 인쇄",
+      "button2" : "등록",
+      "label" : {
+        "num" : "번호",
+        "majorUni" : "단과대학",
+        "dept" : "학과",
+        "year" : "교육과정 학년도",
+        "purpose" : "회의 목적",
+        "meetDate" : "회의일시",
+        "regNm" : "등록자",
+        "regDate" : "등록일",
+        "title" : "제목",
+        "attachFile" : "첨부파일"
+      }
+    },
+    "lookupEvaluationPlan": {
+      "pageTitle": "평가계획서 조회",
+      "search": {
+        "initiationYear": "개설연도",
+        "year": "학년",
+        "semester": "학기",
+        "subjectName": "교과목명",
+        "lecturer": "담당 교수",
+        "creationStatus": "작성 상태"
+      },
+      "gird": {
+        "header1": "개설연도",
+        "header2": "학기",
+        "header3": "학과",
+        "header4": "개설연도*",
+        "header5": "교과목명",
+        "header6": "교과목코드",
+        "header7": "학년",
+        "header8": "분반",
+        "header9": "담당 교수",
+        "header10": "이수구분",
+        "header11": "작성 상태"
+      }
+    }
+  },
+  "departmentMng": {
+    "consititutiveMajor": {
+      "pageTitle": "전공능력 구성요소 관리",
+      "breadcrumb": {
+        "01": "HOME",
+        "02": "학과정보 관리",
+        "03": "전공능력 구성요소 관리"
+      },
+      "search": {
+        "title": "검색",
+        "universityMajor": "단과대학",
+        "dept": "학과",
+        "capactityMajor": "전공능력",
+        "lowerGrade": "하위능력",
+        "status": "상태",
+        "search": "조회",
+        "clear": "초기화"
+      },
+      "list": {
+        "title": "목록",
+        "subtitle01": "※ 등록된 핵심역량-하위역량으로 목록이 자동구성됩니다.",
+        "subtitle02": "※ 최고 관리자 외에는 로그인한 학과장 소속 학과의 전공능력만 목록에 조회됩니다.",
+        "btnCreate": "등록",
+        "universityMajor": "단과대학",
+        "dept": "학과",
+        "capactityMajor": "전공능력",
+        "lowerGrade": "하위능력",
+        "status": "상태",
+        "createdBy": "등록자",
+        "createdDate": "등록일"
+      },
+      "form": {
+        "title": "학과 및 전공능력 정보",
+        "universityMajor": "단과대학",
+        "dept": "학과",
+        "capactityMajor": "전공능력",
+        "lowerGrade": "하위능력",
+        "title02": "구성요소 관리",
+        "constitutive": "구성요소 ",
+        "isActive": "사용여부",
+        "btnAdd": "추가",
+        "btnDelete": "삭제",
+        "btnSave": "저장",
+        "btnBack": "목록"
+      },
+      "message": {
+        "confirmSave": "저장하시겠어요? ",
+        "saveSuccess": "정상처리됐습니다.",
+        "deleteError": "활용된 구성요소는 삭제할 수 없습니다. ",
+        "confirmDelete": "구성요소을(를) 삭제하시겠어요?",
+        "deleteSuccess": "정상처리됐습니다."
+      }
+    },
+    "majorLowerGradeList": {
+      "pageTitle": "전공능력 및 하위능력 관리",
+      "breadcrumb": {
+        "01": "HOME",
+        "02": "학과정보 관리",
+        "03": "전공능력 및 하위능력 관리"
+      },
+      "search": {
+        "title": "검색",
+        "universityMajor": "단과대학",
+        "dept": "학과",
+        "search": "조회",
+        "clear": "초기화"
+      },
+      "list": {
+        "title": "목록",
+        "subTitle": "※ 최고 관리자 외에는 로그인한 학과장 소속 학과의 전공능력만 목록에 조회됩니다.",
+        "btnCreate": "등록",
+        "rowNum": "번호",
+        "universityMajor": "단과대학",
+        "dept": "학과",
+        "createdBy": "등록자",
+        "createdDate": "등록일"
+      },
+      "form": {
+        "title1": "학과 정보",
+        "major": "단과대학",
+        "deptment": "학과",
+        "title2": "전공능력 및 하위능력 관리",
+        "btnAdd": "전공능력 추가",
+        "majorItem": "전공능력",
+        "defineMajorItem": "전공능력 정의",
+        "lowerGrade": "하위능력",
+        "defineLowerGrade": "하위능력 정의",
+        "isActive": "사용여부",
+        "management": "관리",
+        "deleteMajor": "삭제",
+        "addLowerGrade": "추가",
+        "deleteLowerGrade": "삭제",
+        "btnSave": "저장",
+        "btnBack": "목록"
+      },
+      "message": {
+        "isSave": "저장하시겠어요?",
+        "success": "정상처리됐습니다.",
+        "deleteError": "활용된 능력은 삭제할 수 없습니다.",
+        "deleteMajor": "전공능력을 삭제하시겠어요? 관련 하위능력 모두 삭제됩니다.",
+        "deleteMajorSuccess": "삭제됐습니다. ",
+        "deleteLowgrade": "하위능력을 삭제하시겠어요?",
+        "deleteLowgradeSuccess": "삭제됐습니다. "
+      }
+    },
+    "talentEduGoalsMng": {
+      "title": "학과인재상 및 교육목표",
+      "breadcrumb": {
+        "01": "HOME",
+        "02": "학과정보 관리",
+        "03": "학과인재상 및 교육목표"
+      },
+      "list": {
+        "title": "목록",
+        "subTitle": "※ 신규 교육과정개발개편 시 최근 학년도 내용으로 적용됩니다.",
+        "openModal": "신규 등록",
+        "year": "학년도",
+        "major": "단과대학",
+        "dept": "학과",
+        "createdBy": "등록자",
+        "createdDate": "등록일"
+      },
+      "form": {
+        "title": "학과인재상 및 교육목표 등록",
+        "major": "단과대학",
+        "dept": "학과",
+        "year": "학년도",
+        "vision": "학과 비전",
+        "talent": "학과 인재상",
+        "edu": "학과 교육목표",
+        "progress": "학과 발전계획",
+        "btnClose": "닫기",
+        "btnSave": "확인"
+      },
+      "message": {
+        "confirmDelete": "항목을 삭제하시겠어요?",
+        "deleteSuccess": "삭제됐습니다.",
+        "deleteError": "활용된 항목은 삭제할 수 없습니다.",
+        "confirmSave": "저장하시겠어요?",
+        "saveSuccess": "정상처리됐습니다.",
+        "saveError": "이미 등록된 학년도 입니다."
+      }
+    },
+    "typeTalentNurturingMng": {
+      "title": "인재양성유형 관리",
+      "breadcrumb": {
+        "01": "HOME",
+        "02": "학과정보 관리",
+        "03": "인재양성유형 및 직무 관리"
+      },
+      "search": {
+        "title": "검색",
+        "dept": "학과/학부",
+        "typeTalent": "인재양성유형",
+        "btnSeach": "조회",
+        "btnClear": "초기화"
+      },
+      "list": {
+        "title": "인재양성유형 목록",
+        "waring" : "※ 로그인 사용자의 소속 학과의 인재양성유형 목록만 조회됩니다.",
+        "dept": "학과/학부",
+        "typeTalent": "인재양성유형",
+        "useYn" : "사용여부",
+        "createdBy": "작성자",
+        "createdDate": "작성일",
+        "btnCreate": "인재양성유형 등록"
+      },
+      "form": {
+        "title1": "인재양성유형 등록",
+        "note" : "로그인 사용자 소속 학과의 인재양성유형을 관리할 수 있습니다.",
+        "deptment": "학과/학부",
+        "talent": "인재양성유형",
+        "talentDefine": "인재양성유형 정의",
+        "track": "졸업 후 진로",
+        "isActive": "사용여부",
+        "title2": "인재양성유형 수정",
+        "btnDelete": "인재양성유형 삭제"
+      },
+      "mess": {
+        "confirmSave": "저장하시겠어요?",
+        "notificationSuccess": "정상처리됐습니다.",
+        "notDeleteType": "활용된 인재양성유형은 삭제할 수 없습니다.",
+        "notDeleteJob": "활용된 직무는 삭제할 수 없습니다.",
+        "confirmDelete": "인재양성유형을 삭제하시겠어요? 관련 하위역량 모두 삭제됩니다.",
+        "deleteSuccess": "삭제됐습니다.",
+        "confirmDeleteJob": "직무를 삭제하시겠어요? ",
+        "deleteJobSuccess": "삭제됐습니다."
+      }
+    },
+    "actionIndexKsa": {
+      "title": "행동지표, 행동기준평정척도, KSA 관리",
+      "subTitle": "",
+      "breadcrumb": {
+        "01": "HOME",
+        "02": "학과정보 관리",
+        "03": "행동지표, 행동기준평정척도, KSA 관리"
+      },
+      "search": {
+        "title": "검색",
+        "universityMajor": "단과대학",
+        "dept": "학과",
+        "capacityMajor": "전공능력",
+        "lowerGrade": "하위능력",
+        "constitutiveFactor": "구성요소",
+        "isAction": "상태",
+        "btnSeach": "조회",
+        "btnClear": "초기화",
+        "isActionFalse": "미작성",
+        "isActionTrue": "작성"
+      },
+      "list": {
+        "title": "목록",
+        "subTitle": "※ 최고 관리자 외에는 로그인한 학과장 소속 학과의 전공능력만 목록에 조회됩니다",
+        "universityMajor": "단과대학",
+        "dept": "학과",
+        "capacityMajor": "전공능력",
+        "lowerGrade": "하위능력",
+        "constitutiveFactor": "구성요소",
+        "isAction": "상태",
+        "createdBy": "등록자",
+        "createdDate": "등록일",
+        "btnCreate": "등록"
+      },
+      "form": {
+        "title1": "전공능력 정보",
+        "universityMajor": "단과대학",
+        "dept": "학과",
+        "capacityMajor": "전공능력",
+        "lowerGrade": "하위능력",
+        "constitutiveFactor": "구성요소",
+        "title2": "행동지표, 행동기준평정척도, KSA 관리",
+        "actionDetail": "행동지표",
+        "point": "행동기준평정척도",
+        "highPoint": "상",
+        "middlePoint": "중",
+        "lowPoint": "하",
+        "constitutive": "지식",
+        "technique": "기술",
+        "attitude": "태도",
+        "addCell": "추가",
+        "delCell": "삭제",
+        "btnAdd": "추가",
+        "btnDelete": "삭제",
+        "btnSave": "저장",
+        "btnBack": "목록"
+      },
+      "message": {
+        "confirmCreate": "저장하시겠어요?",
+        "successCreate": "정상처리됐습니다.",
+        "errorDelete": "활용된 항목은 삭제할 수 없습니다.",
+        "confirmDelete": "항목을 삭제하시겠어요?",
+        "deleteSuccess": "삭제됐습니다."
+      }
+    },
+    "meettingReportEdu": {
+      "title": "회의록 관리",
+      "breadcrumb": {
+        "01": "HOME",
+        "02": "학과정보 관리",
+        "03": "회의록 관리"
+      },
+      "search": {
+        "title": "검색",
+        "dept": "학과/학부",
+        "yearEdu": "학년도",
+        "job": "사업구분",
+        "btnSeach": "조회",
+        "btnClear": "초기화"
+      },
+      "list": {
+        "title": "목록",
+        "rowNum": "번호",
+        "job": "사업구분",
+        "dept": "학과/학부",
+        "yearEdu": "학년도",
+        "topic": "회의주제",
+        "userRegis": "등록자",
+        "dateGegis": "등록일",
+        "btnCreate": "등록"
+      },
+      "form": {
+        "title": "회의록 관리",
+        "job": "사업구분",
+        "dept": "학과/학부",
+        "yearEdu": "학년도",
+        "topic": "회의주제",
+        "meettingDate": "회의일시",
+        "writer": "작성자",
+        "location": "장소",
+        "cost": "회의비",
+        "purpose": "회의안건",
+        "contentMeetting": "의결사항",
+        "meettingFile": "첨부자료(회의사진)(선택입력)",
+        "listTeacher": "참석자",
+        "category": "구분",
+        "name": "성명",
+        "position": "소속",
+        "department": "사업참여역할(사업책임자, 연구원 등)",
+        "management": "관리",
+        "subTitle": "*회의사진 및 회의록을 필수 등록 필요합니다.",
+        "contentDetail": "상세내용(선택입력)"
+      },
+      "modalAdd": {
+        "titleStudent": "학생대표 선택",
+        "titleTeacher": "내부 참석자 선택",
+        "subTitle": "※ 회의록 작성자 소속 학과의 교원만 목록 구성됩니다.",
+        "searchPlace": "성명 또는 학번 검색",
+        "department": "학과",
+        "name": "성명",
+        "code": "교번",
+        "posi": "직책",
+        "management": "선택",
+        "select": "선택",
+        "search": "검색",
+        "clear": "초기화"
+      },
+      "message": {
+        "confirmDelete": "해당 참석자를 삭제하시겠어요? ",
+        "deleteSuccess": "삭제됐습니다. ",
+        "confirmSave": "저장하시겠어요?",
+        "saveSuccess": "정상처리됐습니다.",
+        "selectTeacher": "홍길동 교수을(를) 선택하시겠어요?",
+        "selectStudent": "홍길동 학생을(를) 선택하시겠어요?",
+        "deleteReport": "교육과정 회의록을 삭제하시겠어요?",
+        "deleteReportSuccess": "삭제됐습니다. ",
+        "validateTime": "종료일은 시작일보다 빠를 수 없습니다."
+      }
+    }
+  },
+  "07": {
+    "nodataMessage": "조회 결과가 없습니다.검색 필터를 이용해서 검색하세요.",
+    "coreCompetencyDiagnosticSheet": {
+      "pageTitle": "핵심역량 진단지 목록",
+      "rowNum": "번호",
+      "name": "진단지명",
+      "createdBy": "등록자(교번)",
+      "useYn": "사용여부",
+      "languageYn": "다국어 여부",
+      "status": "상태",
+      "createdDate": "등록일",
+      "search": "조회",
+      "reset": "초기화",
+      "register": "진단지등록",
+      "total": "전체",
+      "use": "사용",
+      "noUse": "미사용",
+      "krLanguage": "한국어",
+      "multiLanguage": "다국어",
+      "save": "저장",
+      "saveTemp": "임시저장",
+      "detail": {
+        "pageTitleDetail": "핵심역량 진단지 등록",
+        "infoOfSheet": "진단지 정보",
+        "nameSheet": "진단지명",
+        "setUpMultiLanguage": "다국어 설정",
+        "useYn": "사용여부",
+        "instructContent1": "※ 다국어 설정 시 핵심역량 단위로 한국어 입력 후 중국어, 영어 입력이 가능합니다.",
+        "instructContent2": "※ 안정적인 데이터 관리를 위해 임시저장을 자주 활용해주세요.",
+        "instructContent3": "※ 입력 완료 된 핵심역량은 파랑색으로 표시됩니다.",
+        "languageKR": "한국어",
+        "languageCN": "중국어",
+        "languageEN": "영어",
+        "storySituation": "상황스토리",
+        "question": "질문",
+        "level": "수준",
+        "btnSaveTemp": "임시저장",
+        "messageValidate": "한국어를 먼저 입력해주세요.",
+        "messageConfirmSaveTemp": "임시저장 하시겠어요?",
+        "messageSuccessSaveTemp": "임시저장됐습니다.",
+        "messageConfirmSave": "진단지 작성을 완료(저장) 하시겠어요?",
+        "messageSuccessSave": "진단지 작성이  완료됐습니다. 목록화면으로 이동합니다.",
+        "messageConfirmDelete": "진단지를 삭제 하시겠어요?",
+        "messageSuccessDelete": "삭제됐습니다. 목록으로 이동합니다.",
+        "messageCheckValidateDelete": "활용된 진단지는 삭제할 수 없습니다."
+      }
+    },
+    "coreCompetencyDiagnosis": {
+      "pageTitle": "핵심역량 진단 목록",
+      "name": "진단명",
+      "multiLanguageYn": "다국어 여부",
+      "status": "상태",
+      "dateCoreComp": "진단기간",
+      "search": "조회",
+      "reset": "초기화",
+      "btnRegister": "진단등록",
+      "rowNum": "번호",
+      "yearSemester": "학년도-학기",
+      "quantityObject": "대상자 수",
+      "createdDate": "등록일",
+      "show": "게시",
+      "noShow": "비게시",
+      "total": "전체",
+      "krLanguage": "한국어",
+      "multiLanguage": "다국어",
+      "detail": {
+        "pageTitleDetail": "핵심역량 진단 등록",
+        "subTitlePageDetail": "진단대상 및 등록 설정",
+        "multiLanguageYn": "다국어 여부",
+        "placeholderKR": "(한글) 진단명을 입력하세요",
+        "placeholderCN": "(중국어) 진단명을 입력하세요",
+        "placeholderEN": "(영어) 진단명을 입력하세요",
+        "name": "진단명",
+        "year": "학년도",
+        "semester": "학기",
+        "dateCoreComp": "진단기간",
+        "status": "상태",
+        "publicInfo": "개인정보 수집 및 이용 동의절차 설정",
+        "compPlan": "진단안내",
+        "object1": "진단대상1(단과대학)",
+        "object2": "진단대상2(학과)",
+        "object3": "진단대상3(성별)",
+        "object4": "진단대상4(학년)",
+        "object5": "진단대상5(해당자)",
+        "selectCompSheet": "진단지선택",
+        "subjectiveType": "주관식(선택)",
+        "krLanguage": "한국어",
+        "multiLanguage": "다국어",
+        "labelSelect": "선택",
+        "semester1": "1학기",
+        "semester2": "2학기",
+        "show": "게시",
+        "noShow": "비게시",
+        "publicYnYes": "적용",
+        "publicYnNo": "미적용",
+        "man": "남",
+        "women": "여",
+        "total": "전체",
+        "btnSelect": "선택",
+        "btnAdd": "추가",
+        "btnSave": "저장",
+        "btnList": "목록",
+        "messageConfirmDeleteCompSheet": "진단지를 삭제 하시겠습니까?",
+        "messageConfirmSave": "저장하시겠어요?",
+        "messageConfirmDeleteComp": "핵심역량 진단 입력하신거를 삭제 하시겠어요? 삭제 시 이후 모든 과정을 다시 입력해야 합니다.",
+        "messageDeleteSuccess": "삭제 되었습니다.",
+        "messageSaveSuccess": "정상처리됐습니다.",
+        "messageDeleteCompSuccess": "핵심역량 진단이 삭제됐습니다.",
+        "messageValidateSaveDiag": "진단이 진행된 진단은 수정이 불가능합니다.",
+        "messageValidateQuantityDiagTarget": "대상자가 0명입니다. 대상자 설정을 확인해주세요.",
+        "modalSelectCompSheet": {
+          "title": "진단지 선택",
+          "labelSearch": "검색",
+          "name": "진단지명",
+          "multiLanguageYn": "다국어 여부",
+          "total": "전체",
+          "createdBy": "등록자(학번)",
+          "timeRegister": "등록기간",
+          "search": "조회",
+          "reset": "초기화",
+          "labelList": "목록",
+          "createdDate": "등록일",
+          "columnSelect": "선택",
+          "close": "닫기"
+        }
+      }
+    },
+    "coreCompetencyDiagnosisResult": {
+      "pageTitle": "핵심역량 진단 결과목록",
+      "name": "진단명",
+      "multiLanguageYn": "다국어 여부",
+      "status": "진단상태",
+      "dateCoreComp": "진단기간",
+      "show": "게시",
+      "noShow": "비게시",
+      "year": "학년도",
+      "semester": "학기",
+      "yearSemester": "학년도-학기",
+      "quantityReal": "응답자/ 대상자",
+      "createdDate": "등록일",
+      "detail": {
+        "pageTitle": "핵심역량 진단 결과 조회",
+        "subTitle": "설문정보",
+        "name": "진단명",
+        "multiLanguageYn": "다국어 여부",
+        "dateCoreComp": "진단기간",
+        "yearSemester": "학년도-학기",
+        "object1": "진단대상1(단과대학)",
+        "object2": "진단대상2(학과)",
+        "object3": "진단대상3(성별)",
+        "object4": "진단대상4(학년)",
+        "object5": "진단대상5(해당자)",
+        "titleGraphic": "그래프식 결과",
+        "level": "수준",
+        "times": "회",
+        "columnLevel": "본인수준",
+        "quantityAnswer": "답변수",
+        "totalQuantityPeople": "전체 답변 수",
+        "excelDowload": "엑셀파일 다운로드"
+      }
+    },
+    "coreMajorCompDiagnosisSheet": {
+      "pageTitle": "전공능력 진단지 목록",
+      "messageConfirmSaveTemp": "임시저장 하시겠어요?",
+      "messageConfirmSave": "진단지 작성을 완료(저장) 하시겠어요?",
+      "messageSuccessSave": "진단지 작성이  완료됐습니다. 목록화면으로 이동합니다.",
+      "messageSuccessSaveTemp": "임시저장됐습니다.",
+      "messageConfirmDelete": "진단지를 삭제 하시겠어요?",
+      "messageSuccessDelete": "삭제됐습니다. 목록으로 이동합니다.",
+      "messageErrorDelete": "활용된 진단지는 삭제할 수 없습니다.",
+      "searchBox": {
+        "name": "진단지명",
+        "university": "단과대학",
+        "major": "학과",
+        "languageYn": "다국어여부",
+        "createdBy": "등록자(교번)",
+        "createdDate": "등록기간"
+      },
+      "table": {
+        "rowNum": "번호",
+        "name": "진단지명",
+        "university": "단과대학",
+        "major": "학과",
+        "languageYn": "다국어여부",
+        "createdBy": "등록자(여부)",
+        "status": "상태",
+        "createdDate": "등록일"
+      },
+      "button": {
+        "search": "조회",
+        "reset": "초기화",
+        "register": "진단지등록"
+      },
+      "crud": {
+        "pageTitle": "전공능력 진단지 등록(다국어)",
+        "title": "진단지 설정",
+        "table": {
+          "languageYn": "다국어 사용",
+          "name": "진단지명",
+          "university": "단과대학",
+          "major": "학과"
+        },
+        "tableTitle": "진단지 문항 설정",
+        "action": "행동지표",
+        "kor": "한국어",
+        "china": "중국어",
+        "en": "영어",
+        "button": {
+          "addAction": "행동지표(문항) 추가",
+          "remove1": "행동지표",
+          "remove2": " 삭제",
+          "save": "저장",
+          "back": "목록",
+          "delete": "삭제",
+          "saveCheck": "임시저장"
+        }
+      }
+    },
+    "coreMajorCompDiagnosis": {
+      "pageTitle": "전공능력 진단 목록",
+      "searchBox": {
+        "name": "진단명",
+        "major": "학과",
+        "languageYn": "다국어 여부",
+        "status": "상태",
+        "time": "진단기간"
+      },
+      "table": {
+        "rowNum": "번호",
+        "year": "학년도-학기",
+        "name": "진단명",
+        "major": "학과",
+        "time": "진단기간",
+        "languageYn": "다국어 여부",
+        "status": "상태",
+        "object": "대상자",
+        "regDate": "등록일"
+      },
+      "button": {
+        "search": "조회",
+        "reset": "초기화",
+        "register": "진단등록"
+      },
+      "crud": {
+        "pageTitle": "전공능력 진단 등록",
+        "title": "진단대상 및 등록 설정",
+        "languageYn": "다국어 여부",
+        "name": "진단명",
+        "placeholderKR": "(한글) 진단명을 입력하세요",
+        "placeholderCN": "(중국어) 진단명을 입력하세요",
+        "placeholderEN": "(영어) 진단명을 입력하세요",
+        "time": "진단기간",
+        "year": "학년도",
+        "semester": "학기",
+        "instruct": "진단안내",
+        "checkProcedure": "개인정보 수집 및 이용동의절차 설정",
+        "status": "상태",
+        "object1": "진단대상1(학과)",
+        "object2": "진단대상2(성별)",
+        "object3": "진단대상3(학년)",
+        "object4": "진단대상4(해당자)",
+        "selectCompSheet": "진단지선택",
+        "subjectiveType": "주관식(선택)",
+        "button": {
+          "choice": "선택",
+          "add": "추가",
+          "saveCheck": "저장",
+          "save": "목록",
+          "back": "목록"
+        }
+      }
+    },
+    "coreMajorCompDiagnosisResult": {
+      "pageTitle": "전공능력 진단 결과목록",
+      "searchBox": {
+        "name": "진단명",
+        "major": "학과명",
+        "languageYn": "다국어여부",
+        "status": "진단상태",
+        "time": "진단기간"
+      },
+      "button": {
+        "search": "조회",
+        "reset": "초기화"
+      },
+      "table": {
+        "rowNum": "번호",
+        "year": "학년도-학기",
+        "name": "진단명",
+        "major": "학과명",
+        "time": "진단기간",
+        "status": "진단상태",
+        "languageYn": "다국어여부",
+        "ansBy": "응답자/ 대상자",
+        "regDate": "등록일"
+      },
+      "result": {
+        "pageTitle": "전공능력 진단 결과",
+        "title": "진단정보",
+        "form": {
+          "name": "진단명",
+          "languageYn": "다국어 여부",
+          "time": "진단기간",
+          "year": "학년도-학기",
+          "object1": "진단대상1(학과)",
+          "object2": "진단대상2(성별)",
+          "object3": "진단대상3(학년)",
+          "object4": "진단대상4(해당자)",
+          "status": "진단상태"
+        },
+        "button": {
+          "download": "엑셀파일 다운로드",
+          "back": "목록"
+        },
+        "table": {
+          "level": "본인수준",
+          "point": "점",
+          "coutPer": "응답자 수"
+        },
+        "majorCapaDiagQus": "행동지표"
+      }
+    },
+    "diagnosisLearningAbility": {
+      "modalConfirm": {
+        "titleConfirmTemp": "임시저장 하시겠어요?",
+        "titleModifyTemp": "임시저장됐습니다.",
+        "titleConfirmSave": "진단지 작성을 완료(저장) 하시겠어요?",
+        "titleConfirmSaveDiag": "저장하시겠어요?",
+        "titleModifySave": "진단지 작성이  완료됐습니다. 목록화면으로 이동합니다.",
+        "titleConfirmDelete": "진단지를 삭제 하시겠어요?",
+        "titleModifyDelete1": "삭제됐습니다. 목록으로 이동합니다.",
+        "noDelete": "활용된 진단지는 삭제할 수 없습니다. ",
+        "importKr": "한국어를 먼저 입력해주세요."
+      },
+      "diagnosisTable": {
+        "breadcrumb": {
+          "pageTitle": "학습역량 진단지 목록"
+        },
+        "titleSearch": {
+          "name": "진단지명",
+          "idTeacher": "등록자(교번)",
+          "useYn": "사용여부",
+          "languageYn": "다국어 여부",
+          "status": "상태",
+          "date": "등록일"
+        },
+        "table": {
+          "rowNum": "번호",
+          "name": "진단지명",
+          "idTeacher": "등록자(교번)",
+          "useYn": "사용여부",
+          "languageYn": "다국어 여부",
+          "status": "상태",
+          "date": "등록일"
+        },
+        "create": {
+          "pageTitle": "학습역량 진단지 등록",
+          "languageKR": "한국어",
+          "languageCN": "중국어",
+          "languageEN": "영어",
+          "name": "진단지명",
+          "languageYn": "다국어 설정",
+          "useYn": "사용여부",
+          "infoOfSheet": "진단지 정보",
+          "instructContent1": "※ 다국어 설정 시 핵심역량 단위로 한국어 입력 후 중국어, 영어 입력이 가능합니다.",
+          "instructContent2": "※ 안정적인 데이터 관리를 위해 임시저장을 자주 활용해주세요.",
+          "instructContent3": "※ 입력 완료 된 핵심역량은 파랑색으로 표시됩니다.",
+          "behavior": "행동지표"
+        }
+      },
+      "diagnosis": {
+        "placeholderKR": "(한글) 진단명을 입력하세요",
+        "placeholderCN": "(중국어) 진단명을 입력하세요",
+        "placeholderEN": "(영어) 진단명을 입력하세요",
+        "breadcrumb": {
+          "pageTitle": "학습역량 진단 등록"
+        },
+        "titleSearch": {
+          "name": "진단명",
+          "languageYn": "다국어 여부",
+          "status": "상태",
+          "date": "진단기간"
+        },
+        "table": {
+          "rowNum": "번호",
+          "semester": "학년도-학기",
+          "name": "진단명",
+          "diagnosisTime": "진단기간",
+          "status": "상태",
+          "languageYn": "다국어 여부",
+          "target": "대상자 수",
+          "createdDate": "등록일"
+        },
+        "crud": {
+          "breadcrumb": {
+            "pageTitle": "학습역량 진단 등록(다국어)",
+            "titleTable": "진단대상 및 등록 설정"
+          },
+          "table": {
+            "languageYn": "다국어 여부",
+            "name": "진단명",
+            "eduYear": "학년도",
+            "semester": "학기",
+            "diagnosisTime": "진단기간",
+            "status": "상태",
+            "publicInfo": "개인정보 수집 및 이용 동의절차 설정",
+            "infomation": "진단안내",
+            "object1": "진단대상1(단과대학)",
+            "object2": "진단대상2(학과)",
+            "object3": "진단대상3(성별)",
+            "object4": "진단대상4(학년)",
+            "object5": "진단대상5(해당자)",
+            "selectSheet": "진단지선택",
+            "question": "주관식(선택)"
+          }
+        }
+      },
+      "diagnosisResults": {
+        "breadcrumb": {
+          "pageTitle": "학습역량 진단 목록"
+        },
+        "titleSearch": {
+          "name": "진단명",
+          "languageYn": "다국어 여부",
+          "status": "진단상태",
+          "date": "진단기간"
+        },
+        "table": {
+          "rowNum": "번호",
+          "semester": "학년도-학기",
+          "name": "진단명",
+          "diagnosisTime": "진단기간",
+          "status": "진당상태",
+          "languageYn": "다국어 여부",
+          "target": "응답자/대상자",
+          "createdDate": "등록일"
+        },
+        "detail": {
+          "pageTitle": "학습역량 진단 결과 조회",
+          "title1": "설문정보",
+          "title2": "그래프식 결과",
+          "table": {
+            "name": "진단명",
+            "languageYn": "다국어 여부",
+            "diagnosisTime": "진단기간",
+            "eduYear": "학년도-학기",
+            "object1": "진단대상1(단과대학)",
+            "object2": "진단대상2(학과)",
+            "object3": "진단대상3(성별)",
+            "object4": "진단대상4(학년)",
+            "object5": "진단대상5(해당자)",
+            "target": "응답자/ 대상자"
+          }
+        }
+      },
+      "button": {
+        "search": "조회",
+        "reset": "초기화",
+        "register1": "진단지등록",
+        "register2": "진단등록",
+        "select": "선택",
+        "downExcel": "엑셀파일 다운로드"
+      },
+      "radio": {
+        "semester1": "1학기",
+        "semester2": "2학기",
+        "publicYnYes": "적용",
+        "publicYnNo": "미적용",
+        "male": "남",
+        "female": "여"
+      }
+    },
+    "diagnosingLecturer": {
+      "modalConfirm": {
+        "titleConfirmTemp": "임시저장 하시겠어요?",
+        "titleModifyTemp": "임시저장됐습니다.",
+        "titleConfirmSave": "진단지 작성을 완료(저장) 하시겠어요? ",
+        "titleConfirmSaveDiag": "저장하시겠어요?",
+        "titleModifySave": "진단지 작성이  완료됐습니다. 목록화면으로 이동합니다.",
+        "titleConfirmDelete": "진단지를 삭제 하시겠어요?",
+        "titleModifyDelete1": "삭제됐습니다. 목록으로 이동합니다.",
+        "titleModifyDelete2": "활용된 진단지는 삭제할 수 없습니다.",
+        "noDelete": "활용된 진단지는 삭제할 수 없습니다. "
+      },
+      "diagnosisSheet": {
+        "pageTitle": "교수역량 진단지 목록",
+        "titleSearch": {
+          "name": "진단지명",
+          "idTeacher": "등록자(교번)",
+          "useYn": "사용여부",
+          "status": "상태",
+          "date": "등록일"
+        },
+        "table": {
+          "rowNum": "번호",
+          "name": "진단지명",
+          "idTeacher": "등록자(교번)",
+          "useYn": "사용여부",
+          "status": "상태",
+          "date": "등록일"
+        },
+        "crud": {
+          "pageTitle": "교수역량 진단지 등록",
+          "table1": {
+            "title": "진단지 정보",
+            "name": "진단지명",
+            "useYn": "사용여부"
+          },
+          "infoOfSheet": "진단지 정보",
+          "instructContent1": "※ 안정적인 데이터 관리를 위해 임시저장을 자주 활용해주세요.",
+          "instructContent2": "※ 입력 완료 된 역량은 파랑색으로 표시됩니다.",
+          "question": "정의",
+          "level": "수준"
+        }
+      },
+      "diagnosis": {
+        "pageTitle": "교수역량 진단 목록",
+        "titleSearch": {
+          "name": "진단명",
+          "status": "상태",
+          "date": "진단기간"
+        },
+        "table": {
+          "rowNum": "번호",
+          "eduYear": "학년도-학기",
+          "name": "진단명",
+          "diagnosisTime": "진단기간",
+          "status": "상태",
+          "target": "대상자 수",
+          "createdDate": "등록일"
+        },
+        "crud": {
+          "pageTitle": "교수역량 진단 등록",
+          "title": "진단대상 및 등록 설정",
+          "name": "진단명",
+          "diagnosisTime": "진단기간 ",
+          "eduYear": "학년도",
+          "semester": "학기",
+          "instruct": "진단안내",
+          "infomation": "개인정보 수집 및 이용 동의절차 설정",
+          "show": "게시여부",
+          "object1": "진단대상1(성별)",
+          "object2": "진단대상2(소속계열)",
+          "object3": "진단대상3(교육경력)",
+          "object4": "진단대상4(교원직급)",
+          "selectSheet": "진단지선택"
+        }
+      },
+      "diagnosisResults": {
+        "pageTitle": "교수역량 진단 결과목록",
+        "titleSearch": {
+          "name": "진단명",
+          "status": "진단상태",
+          "date": "진단기간"
+        },
+        "table": {
+          "rowNum": "번호",
+          "eduYear": "학년도-학기",
+          "name": "진단명",
+          "diagnosisTime": "진단기간",
+          "status": "진단상태",
+          "target": "응답자/대상자",
+          "createdDate": "등록일"
+        },
+        "crud": {
+          "pageTitle": "교수역량 진단 결과",
+          "titleTable": "설문정보",
+          "name": "진단명",
+          "diagnosisTime": "진단기간",
+          "eduYear": "학년도-학기",
+          "object1": "진단대상1(성별)",
+          "object2": "진단대상2(소속계열)",
+          "object3": "진단대상3(교육경력)",
+          "object4": "진단대상4(교원직급)",
+          "target": "응답자/ 대상자"
+        },
+        "detail": {
+          "pageTitle": "의 교수역량 진단 결과목록",
+          "profName": "교수명",
+          "profCode": "교번",
+          "department": "소속계열",
+          "role": "직급",
+          "experience": "교육경력",
+          "gender": "성별",
+          "startEnd": "진단기간",
+          "btnDowloadExcel": "엑셀파일 다운로드",
+          "time": "진단일",
+          "rowNum": "번호",
+          "detailStaffInfoPageTitle": "교수역량 진단 결과 상세화면",
+          "wisePrideTitle": "WISE PRIDE 교수역량",
+          "profAbilityTitle": "교수역량",
+          "nameAbility": "역량명",
+          "score": "점수",
+          "numberQus": "문항수",
+          "level": "상중하 구분"
+        }
+      },
+      "button": {
+        "register1": "진단지등록",
+        "register2": "진단등록",
+        "select": "선택",
+        "downExcel": "엑셀파일 다운로드"
+      }
+    },
+    "diagnosingEmployee": {
+      "modalConfirm": {
+        "titleConfirmTemp": "임시저장 하시겠어요?",
+        "titleModifyTemp": "임시저장됐습니다.",
+        "titleConfirmSave": "진단지 작성을 완료(저장) 하시겠어요? ",
+        "titleConfirmSaveDiag": "저장하시겠어요?",
+        "titleModifySave": "진단지 작성이  완료됐습니다. 목록화면으로 이동합니다.",
+        "titleConfirmDelete": "진단지를 삭제 하시겠어요?",
+        "titleModifyDelete1": "삭제됐습니다. 목록으로 이동합니다.",
+        "titleModifyDelete2": "활용된 진단지는 삭제할 수 없습니다.",
+        "noDelete": "활용된 진단지는 삭제할 수 없습니다. "
+      },
+      "diagnosisSheet": {
+        "pageTitle": "직원역량 진단지 목록",
+        "titleSearch": {
+          "name": "진단지명",
+          "idTeacher": "등록자(교번)",
+          "useYn": "사용여부",
+          "status": "상태",
+          "date": "등록일"
+        },
+        "table": {
+          "rowNum": "번호",
+          "name": "진단지명",
+          "idTeacher": "등록자(교번)",
+          "useYn": "사용여부",
+          "status": "상태",
+          "date": "등록일"
+        },
+        "crud": {
+          "pageTitle": "직원역량 진단지 등록",
+          "table1": {
+            "title": "진단지 정보",
+            "name": "진단지명",
+            "useYn": "사용여부"
+          },
+          "infoOfSheet": "진단지 정보",
+          "instructContent1": "※ 안정적인 데이터 관리를 위해 임시저장을 자주 활용해주세요.",
+          "instructContent2": "※ 입력 완료 된 핵심역량은 파랑색으로 표시됩니다. ",
+          "question": "정의",
+          "level": "수준"
+        }
+      },
+      "diagnosis": {
+        "pageTitle": "직원역량 진단 목록",
+        "titleSearch": {
+          "name": "진단명",
+          "status": "상태",
+          "date": "진단기간"
+        },
+        "table": {
+          "rowNum": "번호",
+          "eduYear": "학년도-학기",
+          "name": "진단명",
+          "diagnosisTime": "진단기간",
+          "status": "상태",
+          "target": "대상자 수",
+          "createdDate": "등록일"
+        },
+        "crud": {
+          "pageTitle": "직원역량 진단 등록",
+          "title": "진단대상 및 등록 설정",
+          "name": "진단명",
+          "diagnosisTime": "진단기간 ",
+          "eduYear": "학년도",
+          "semester": "학기",
+          "instruct": "진단안내",
+          "infomation": "개인정보 수집 및 이용 동의절차 설정",
+          "show": "게시여부",
+          "object1": "진단대상1(성별)",
+          "object2": "진단대상2(소속계열)",
+          "object3": "진단대상3(교육경력)",
+          "object4": "진단대상4(교원직급)",
+          "selectSheet": "진단지선택"
+        }
+      },
+      "diagnosisResults": {
+        "pageTitle": "직원역량 진단 결과목록",
+        "titleSearch": {
+          "name": "진단명",
+          "status": "진단상태",
+          "date": "진단기간"
+        },
+        "table": {
+          "rowNum": "번호",
+          "eduYear": "학년도-학기",
+          "name": "진단명",
+          "diagnosisTime": "진단기간",
+          "status": "진단상태",
+          "target": "응답자/대상자",
+          "createdDate": "등록일"
+        },
+        "crud": {
+          "pageTitle": "교수역량 진단 결과",
+          "titleTable": "설문정보",
+          "name": "진단명",
+          "diagnosisTime": "진단기간",
+          "eduYear": "학년도-학기",
+          "object1": "진단대상1(성별)",
+          "object2": "진단대상2(소속계열)",
+          "object3": "진단대상3(교육경력)",
+          "object4": "진단대상4(교원직급)",
+          "target": "응답자/ 대상자"
+        },
+        "detail": {
+          "pageTitle": "의 직원역량 진단 결과목록",
+          "empName": "직원명",
+          "empCode": "교번",
+          "department": "소속계열",
+          "role": "직급",
+          "experience": "교육경력",
+          "gender": "성별",
+          "startEnd": "진단기간",
+          "btnDowloadExcel": "엑셀파일 다운로드",
+          "time": "진단일",
+          "rowNum": "번호",
+          "detailStaffInfoPageTitle": "직원역량 진단 결과 상세화면",
+          "ability1levelTitle": "1LEVEL 직원역량",
+          "empAbilityTitle": "직원역량",
+          "nameAbility": "역량명",
+          "score": "점수",
+          "numberQus": "문항수",
+          "level": "상중하 구분"
+        }
+      },
+      "button": {
+        "register1": "진단지등록",
+        "register2": "진단등록",
+        "select": "선택",
+        "downExcel": "엑셀파일 다운로드"
+      }
+    },
+    "basicAcademicDiagnosisSheet": {
+      "pageTitle": "기초학력진단지 목록",
+      "name": "진단지명",
+      "createdBy": "등록자(교번)",
+      "useYn": "사용여부",
+      "status": "상태",
+      "createdDate": "등록일",
+      "btnRegister": "진단지등록",
+      "detail": {
+        "pageTitle": "기초학력 진단지 등록",
+        "subTitle1": "진단지 등록 설정",
+        "name": "진단지명",
+        "useYn": "사용여부",
+        "instructContent": "※ 보기 중 정답을 선택해주세요.",
+        "subTitle2": "기초학력진단지 설정",
+        "category": "구분",
+        "question": "문항질문",
+        "answer": "보기",
+        "number": "번",
+        "confirmSaveTemp": "임시 저장 하시겠습니까?",
+        "successSaveTemp": "정상처리되었습니다",
+        "confirmDeleteQuestion": "문항질문을 삭제 하시겠습니까?",
+        "successDeleteQuestion": "삭제 되었습니다.",
+        "confirmDeleteBaseLearnItem1to4": "구분1~4 을(를) 삭제 하시겠습니까?",
+        "successDeleteBaseLearnItem1to4": "삭제 되었습니다.",
+        "confirmSave": "저장하시겠어요?",
+        "successSave": "정상처리되었습니다",
+        "confirmClearContent": "기초학력진단지 입력하신거를 삭제 하시겠어요? 삭제 시 이후 모든 과정을 다시 입력해야 합니다.",
+        "successClearContent": "기초학력진단지가 삭제됐습니다.",
+        "checkBaseLearnItem": "구분은 중복 설정할 수 없습니다."
+      }
+    },
+    "basicAcademicDiagnosis": {
+      "pageTitle": "기초학력진단 목록",
+      "name": "진단명",
+      "status": "상태",
+      "dateCoreComp": "진단기간",
+      "yearSemester": "학년도-학기",
+      "quantityObject": "대상자 수",
+      "createdDate": "등록일",
+      "btnRegister": "진단등록",
+      "detail": {
+        "pageTitleDetail": "기초학력 진단 등록",
+        "subTitlePageDetail": "진단 설정",
+        "name": "진단명",
+        "year": "학년도",
+        "semester": "학기",
+        "dateCoreComp": "진단기간",
+        "status": "상태",
+        "publicInfo": "개인정보 수집 및 이용 동의절차 설정",
+        "compPlan": "진단안내",
+        "object1": "진단대상1(단과대학)",
+        "object2": "진단대상2(학과)",
+        "object3": "진단대상3(성별)",
+        "object4": "진단대상4(학년)",
+        "object5": "진단대상5(해당자)",
+        "selectCompSheet": "진단지선택",
+        "labelSelect": "선택",
+        "semester1": "1학기",
+        "semester2": "2학기",
+        "publicYnYes": "적용",
+        "publicYnNo": "미적용",
+        "man": "남",
+        "women": "여",
+        "btnSelect": "선택",
+        "modalSelectBasicSheet": {
+          "title": "진단지 선택",
+          "labelSearch": "검색",
+          "name": "진단지명",
+          "multiLanguageYn": "다국어 여부",
+          "total": "전체",
+          "createdBy": "등록자(학번)",
+          "timeRegister": "등록기간",
+          "search": "조회",
+          "reset": "초기화",
+          "labelList": "목록",
+          "createdDate": "등록일",
+          "columnSelect": "선택",
+          "close": "닫기"
+        }
+      }
+    },
+    "basicAcademicDiagnosisResult": {
+      "pageTitle": "기초학력진단 결과",
+      "name": "진단명",
+      "status": "진단상태",
+      "dateCoreComp": "진단기간",
+      "diaging": "진단중",
+      "completeDiag": "진단완료",
+      "expectedDiag": "예정",
+      "noShow": "비게시",
+      "year": "학년도",
+      "semester": "학기",
+      "yearSemester": "학년도-학기",
+      "quantityReal": "응답자/ 대상자",
+      "createdDate": "등록일",
+      "detail": {
+        "pageTitle": "기초학력진단 결과",
+        "subTitle": "설문정보",
+        "name": "진단명",
+        "multiLanguageYn": "다국어 여부",
+        "dateCoreComp": "진단기간",
+        "yearSemester": "학년도-학기",
+        "object1": "진단대상1(단과대학)",
+        "object2": "진단대상2(학과)",
+        "object3": "진단대상3(성별)",
+        "object4": "진단대상4(학년)",
+        "object5": "진단대상5(해당자)",
+        "titleGraphic": "그래프식 결과",
+        "level": "수준",
+        "columnLevel": "본인수준",
+        "quantityAnswer": "응답자 수",
+        "totalQuantityPeople": "전체 답변 수",
+        "excelDowload": "엑셀파일 다운로드",
+        "textQus": "문항질문",
+        "validateBaseLearnItem": "문항 및 답변을 입력하기 전에 구분을 먼저 선택해주세요."
+      }
+    },
+    "searchLevelCapacity": {
+      "pageTitle": "핵심역량 향상도 목록",
+      "titleSearch": {
+        "university": "단과대학",
+        "department": "학과",
+        "status": "상태",
+        "studyYn": "학사경고",
+        "nameStd": "이름(학번)",
+        "gender": "성별",
+        "eduYear": "학년"
+      },
+      "table": {
+        "university": "단과대학",
+        "department": "학과",
+        "nameStd": "이름(학번)",
+        "gender": "성별",
+        "eduYear": "학년",
+        "status": "상태",
+        "studyYn": "학사경고 ",
+        "number": "진단횟수",
+        "capacity1": "지혜로움",
+        "capacity2": "공감",
+        "capacity3": "자기주도",
+        "capacity4": "융합실무"
+      },
+      "detail": {
+        "pageTitle": "핵심역량 향상도 조회",
+        "title1": "학생정보",
+        "title2": "핵심역량 향상도 결과 그래프",
+        "title3": "핵심역량 진단 결과",
+        "university": "단과대학",
+        "department": "학과",
+        "nameStd": "이름",
+        "idStd": "학번",
+        "gender": "성별",
+        "eduYear": "학년",
+        "status": "상태",
+        "studyYn": "학고상태",
+        "name": "진단명"
+      },
+      "button": {
+        "downExcel": "엑셀파일 다운로드"
+      }
+    },
+    "searchLevelSpecialized": {
+      "pageTitle": "전공능력 향상도 목록",
+      "titleSearch": {
+        "university": "단과대학",
+        "department": "학과",
+        "status": "상태",
+        "studyYn": "학사경고",
+        "nameStd": "이름(학번)",
+        "gender": "성별",
+        "eduYear": "학년"
+      },
+      "table": {
+        "university": "단과대학",
+        "department": "학과",
+        "nameStd": "이름(학번)",
+        "gender": "성별",
+        "eduYear": "학년",
+        "status": "상태",
+        "studyYn": "학사경고 ",
+        "number": "진단횟수",
+        "capacity1": "전공능력1",
+        "capacity2": "전공능력2",
+        "capacity3": "전공능력3",
+        "capacity4": "전공능력4"
+      },
+      "detail": {
+        "pageTitle": "전공능력 향상도 조회",
+        "title1": "학생정보",
+        "title2": "전공능력 향상도 결과 그래프",
+        "title3": "전공능력 진단 결과",
+        "university": "단과대학",
+        "department": "학과",
+        "nameStd": "이름",
+        "idStd": "학번",
+        "gender": "성별",
+        "eduYear": "학년",
+        "status": "상태",
+        "studyYn": "학고상태",
+        "name": "진단명",
+        "level": "본인수준",
+        "nameTarget": "행동지표"
+      },
+      "button": {
+        "downExcel": "엑셀파일 다운로드"
+      }
+    },
+    "searchLevelAbilityStudy": {
+      "pageTitle": "학습역량 향상도 목록",
+      "titleSearch": {
+        "university": "단과대학",
+        "department": "학과",
+        "status": "상태",
+        "studyYn": "학사경고",
+        "nameStd": "이름(학번)",
+        "gender": "성별",
+        "eduYear": "학년"
+      },
+      "table": {
+        "university": "단과대학",
+        "department": "학과",
+        "nameStd": "이름(학번)",
+        "gender": "성별",
+        "eduYear": "학년",
+        "status": "상태",
+        "studyYn": "학사경고 ",
+        "number": "진단횟수",
+        "capacity1": "역량구분1",
+        "capacity2": "역량구분2",
+        "capacity3": "역량구분3",
+        "capacity4": "역량구분4"
+      },
+      "detail": {
+        "pageTitle": "학습역량 향상도 조회",
+        "title1": "학생정보",
+        "title2": "학습역량 향상도 결과 그래프",
+        "title3": "학습역량 진단 결과",
+        "university": "단과대학",
+        "department": "학과",
+        "nameStd": "이름",
+        "idStd": "학번",
+        "gender": "성별",
+        "eduYear": "학년",
+        "status": "상태",
+        "studyYn": "학고상태",
+        "name": "진단명",
+        "level": "본인수준",
+        "nameTarget": "행동지표"
+      },
+      "button": {
+        "downExcel": "엑셀파일 다운로드"
+      }
+    },
+    "searchLevelAcademicSpe": {
+      "pageTitle": "전공 학습성 향상도 목록",
+      "titleSearch": {
+        "university": "단과대학",
+        "department": "학과",
+        "status": "상태",
+        "studyYn": "학사경고",
+        "nameStd": "이름(학번)",
+        "gender": "성별",
+        "eduYear": "학년"
+      },
+      "table": {
+        "university": "단과대학",
+        "department": "학과",
+        "nameStd": "이름(학번)",
+        "gender": "성별",
+        "eduYear": "학년",
+        "status": "상태",
+        "studyYn": "구분 ",
+        "subject": "교과목명",
+        "capacity1": "전공능력1",
+        "capacity2": "전공능력2",
+        "capacity3": "전공능력3",
+        "capacity4": "전공능력4"
+      },
+      "detail": {
+        "pageTitle": "전공 학습성과 향상도 조회",
+        "title1": "학생정보",
+        "title2": "나의 전공능력 조회 및 동일학년 비교",
+        "title3": "나의 전공능력점수 획득 내역",
+        "university": "단과대학",
+        "department": "학과",
+        "nameStd": "이름",
+        "idStd": "학번",
+        "gender": "성별",
+        "eduYear": "학년",
+        "status": "상태",
+        "studyYn": "학고상태",
+        "yearSemester": "학년도-학기",
+        "classify": "구분",
+        "subject": "과목 "
+      },
+      "button": {
+        "downExcel": "엑셀파일 다운로드"
+      }
+    },
+    "searchLeveloutlineSpe": {
+      "pageTitle": "교양 학습성과 향상도 조회",
+      "titleSearch": {
+        "university": "단과대학",
+        "department": "학과",
+        "status": "상태",
+        "studyYn": "학사경고",
+        "nameStd": "이름(학번)",
+        "gender": "성별",
+        "eduYear": "학년"
+      },
+      "table": {
+        "university": "단과대학",
+        "department": "학과",
+        "nameStd": "이름(학번)",
+        "gender": "성별",
+        "eduYear": "학년",
+        "status": "상태",
+        "studyYn": "구분 ",
+        "subject": "과목/프로그램 명",
+        "capacity1": "핵심역량1",
+        "capacity2": "핵심역량2",
+        "capacity3": "핵심역량3",
+        "capacity4": "핵심역량4"
+      },
+      "detail": {
+        "pageTitle": "전공 학습성과 향상도 조회",
+        "title1": "학생정보",
+        "title2": "나의 전공능력 조회 및 동일학년 비교",
+        "title3": "나의 전공능력점수 획득 내역",
+        "university": "단과대학",
+        "department": "학과",
+        "nameStd": "이름",
+        "idStd": "학번",
+        "gender": "성별",
+        "eduYear": "학년",
+        "status": "상태",
+        "studyYn": "학고상태",
+        "yearSemester": "학년도-학기",
+        "classify": "구분",
+        "subject": "과목/프로그램 "
+      },
+      "button": {
+        "downExcel": "엑셀파일 다운로드"
+      }
+    },
+    "surveySatisfile": {
+      "title": "만족도 조사 목록",
+      "search": {
+        "field1": "설문지명",
+        "field2": "등록자",
+        "field3": "등록기간"
+      },
+      "table": {
+        "btnAdd": "조사지등록",
+        "field1": "설문제목",
+        "field2": "조사기간",
+        "title2": "상태",
+        "field3": "응답자/대상자",
+        "field4": "공유하기",
+        "field5": "결과보기",
+        "field6": "등록일",
+        "field7": "등록자",
+        "share": "[공유하기]",
+        "result": "[결과보기]",
+        "answerPeople": "응답자"
+      },
+      "shareSurveyStatisfied": {
+        "title": "만족도 조사 공유하기",
+        "title1": "QR코드 다운로드",
+        "title2": "PNG 다운로드",
+        "title3": "JPG 다운로드",
+        "title4": "URL 복사하기",
+        "title5": "URL 복사"
+      },
+      "formAdd": {
+        "pageTitle": "만족도 조사 등록",
+        "title": "기초 정보",
+        "field1": "설문조사명",
+        "field2": "조사기간",
+        "field3": "설문대상",
+        "field4": "조사 내용 (선택)",
+        "title1": "조사 문항",
+        "button1": "설문 불러오기",
+        "button2": "문항 추가",
+        "table1": "설문조사명",
+        "table2": "문항지",
+        "table3": "선택지",
+        "table4": "순서변경",
+        "table5": "삭제",
+        "deleteItem": "[문항 삭제]",
+        "button3": "만족도 조사",
+        "button4": "저장",
+        "button5": "목록",
+        "openModalObject": "대상자 관리",
+        "people": "명",
+        "messageConfirmDeleteQus": "문항을 삭제하시겠어요?",
+        "messageConfirmDeleteAns": "선택지를 삭제하시겠어요?",
+        "messageConfirmDeleteSurvey": "만족도 조사를 삭제하시겠어요?",
+        "messageConfirmSave": "저장하시겠어요?",
+        "messageSuccessSave": "저장됐습니다.",
+        "messageSuccessDelete": "삭제됐습니다.",
+        "placeholderQus": "문항지 내용을 입력하세요.",
+        "placeholderScore5": "*5점 척도는 5점~1점까지 자동설정됩니다.",
+        "placeholderBoss": "*주관식은 설문자 직접 입력으로 자동설정됩니다.",
+        "placeholderNoBoss1": "선택지",
+        "placeholderNoBoss2": " 내용을 입력하세요.",
+        "up": "위로 이동",
+        "down": "아래로 이동"
+      },
+      "modalAddObject": {
+        "title": "대상자 관리",
+        "title1": "검색",
+        "field1": "단과대학",
+        "field2": "학과",
+        "field3": "성별",
+        "field4": "학년",
+        "field5": "이름(학번)",
+        "field6": "해당자",
+        "button1": "조회",
+        "button2": "초기화",
+        "button3": "닫기",
+        "button4": "확인",
+        "title2": "목록",
+        "col1": "단과대학",
+        "col2": "학과",
+        "col3": "성별",
+        "col4": "학년",
+        "col5": "이름",
+        "col6": "학번",
+        "col7": "해당자",
+        "messageConfirm": "설문 대상을 저장하시겠어요?",
+        "select": "명 선택"
+      },
+      "callSurvey": {
+        "title": "만족도 조사 불러오기",
+        "title1": "검색",
+        "field1": "만족도 조사 제목",
+        "field2": "등록일",
+        "field3": "이름(학번)",
+        "button1": "조회",
+        "button2": "초기화",
+        "button3": "닫기",
+        "button4": "확인",
+        "title2": "목록",
+        "table1": "만족도 조사 제목",
+        "table2": "조사기간",
+        "table3": "만족도 조사 제목",
+        "table4": "만족도 조사 제목",
+        "table5": "만족도 조사 제목",
+        "table6": "선택",
+        "messageConfirm": "만족도 조사 불러오기 시 기존 작성하던 문항은 초기화 됩니다. 선택한 만족도 조사지를 불러오기 하시겠어요?"
+      },
+      "result": {
+        "pageTitle": "만족도 조사 결과",
+        "title1": "설문조사 정보",
+        "title2": "설문조사 결과",
+        "diagNm": "설문조사명",
+        "date": "조사기간",
+        "quantityTarget": "설문대상",
+        "content": "조사 내용 (선택)",
+        "quantity": "응답자/대상자",
+        "plan1": "*설문조사 결과는 5점 척도만 표시됩니다.",
+        "plan2": "*모든 문항의 결과는 설문결과 엑셀다운로드를 이용해주세요.",
+        "btnDowloadExcel": "설문결과 엑셀다운로드",
+        "question": "문항지",
+        "column1": "선택지",
+        "column2": "응답수",
+        "average": "평균"
+      }
+    },
+    "surveySatisfactionOffCampus": {
+      "list": {
+        "pageTitle": "만족도 조사 목록",
+        "diagNm": "설문지명",
+        "regBy": "등록자",
+        "regDate": "등록기간",
+        "btnGotoCreate": "조사지등록",
+        "column1": "설문제목",
+        "column2": "조사기간",
+        "column3": "응답자",
+        "column4": "공유하기",
+        "column5": "결과보기",
+        "column6": "등록일",
+        "column7": "등록자"
+      },
+      "crud": {
+        "pageTitle": "교외 만족도 조사 등록",
+        "title1": "기초 정보",
+        "diagNm": "설문조사명",
+        "diagTime": "조사기간",
+        "surveyUrl": "만족도 조사 URL",
+        "planUrl": "만족도 조사 등록 시 자동생성됩니다.",
+        "diagContent": "조사 내용 (선택)",
+        "title2": "조사 문항",
+        "btnCallSurvey": "설문 불러오기",
+        "btnAddQus": "문항 추가",
+        "qusType": "유형",
+        "question": "문항지",
+        "answer": "선택지",
+        "order": "순서변경",
+        "delete": "삭제",
+        "deleteQus": "[문항 삭제]",
+        "deleteSurvey": "만족도 조사 삭제",
+        "btnCopyUrl": "URL 복사"
+      },
+      "result": {
+        "pageTitle": "교외 만족도 조사 결과",
+        "title1": "[설문조사 정보]",
+        "title2": "[설문조사 결과]",
+        "plan1": "*설문조사 결과는 5점 척도만 표시됩니다.",
+        "plan2": "*모든 문항의 결과는 설문결과 엑셀다운로드를 이용해주세요.",
+        "btnDownload": "설문결과 엑셀다운로드"
+      },
+      "callSurvey": {
+        "pageTitle": "교외 만족도 조사 불러오기"
+      }
+    }
+  },
+  "09": {
+    "questAndAns": {
+      "title": "Q&A",
+      "searchBox": {
+        "category": "제목",
+        "regBy": "접수자",
+        "status": "상태",
+        "regDate": "접수기간",
+        "ansBy": "답변자"
+      },
+      "table": {
+        "rowNum": "번호",
+        "category": "제목",
+        "status": "상태",
+        "regBy": "접수자",
+        "regDate": "접수일",
+        "ansBy": "답변자 ",
+        "ansDateLast": "최종 답변일"
+      },
+      "button": {
+        "search": "조회",
+        "reset": "초기화"
+      },
+      "ansTtl": "Q&A 조회 및 답변",
+      "ansTtl2": "문의 및 접수자 정보",
+      "regBy": "접수자 성명",
+      "regCode": "접수자 교번",
+      "regDept": "접수자 소속",
+      "qusCont": "내용",
+      "file": "첨부파일",
+      "ansTtl3": "답변 및 답변자 정보",
+      "ansCont": "답변 내용",
+      "saveAns": "답변 저장",
+      "ansId": "답변자 성명",
+      "ansCode": "답변자 교번",
+      "ansDept": "답변자 소속",
+      "ansDate": "답변일"
+    },
+    "notificationMessage": {
+      "title": "알림톡 목록",
+      "search": {
+        "title": "검색",
+        "heading": "제목",
+        "receiver": "수신자",
+        "acceptOrNot": "수신여부"
+      },
+      "table": {
+        "title": "목록",
+        "rowNum": "번호",
+        "messageNotifications": "알림톡제목",
+        "receiver": "수신자",
+        "dateSend": "발송일시",
+        "acceptOrNot": "수신여부",
+        "send":"발신하기"
+      },
+      "form": {
+        "title": "알림톡 작성",
+        "subTitle": "수신자 목록",
+        "action": {
+          "setting": "수신자 설정",
+          "detete": "선택항목삭제",
+          "reset": "초기화",
+          "settingSleep": "예약발송",
+          "send": "발송하기"
+        },
+        "table": {
+          "select": "□ 선택",
+          "faculty": "학과",
+          "year": "학년",
+          "studentCode": "학번",
+          "gender": "성별",
+          "name": "이름"
+        },
+        "form": {
+          "title": "발신",
+          "topic": "제목",
+          "content": "내용",
+          "file": "첨부파일"
+        },
+        "popup": {
+          "title": "수신자 설정",
+          "search": {
+            "faculty": "학과",
+            "year": "학년",
+            "gender": "성별",
+            "name": "이름",
+            "studentCode": "학번"
+          },
+          "table": {
+            "faculty": "학과",
+            "year": "학년",
+            "gender": "성별",
+            "name": "이름",
+            "studentCode": "학번"
+          }
+        }
+      }
+    },
+    "notificationCategory": {
+      "title": "공지사항",
+      "scum01":"관리자",
+      "scum02":"커뮤니티",
+      "scum03":"공지시항",
+      "search": {
+        "title": "검색",
+        "site": "대상사이트",
+        "heading": "제목",
+        "regDate": "등록일",
+        "subscribers": "등록자",
+        "showOrNot": "게시여부",
+        "btnCreate":"공지사항 등록"
+      },
+      "table": {
+        "title": "목록",
+        "rowNum": "번호",
+        "heading": "제목",
+        "regName": "등록자",
+        "regDate": "등록일",
+        "views": "조회수",
+        "showOrNot": "게시여부",
+        "topFixYn": "상단고정",
+        "btnSearch":"검색",
+        "btnReset":"목록"
+      },
+      "form":{
+        "ttl":"제목",
+        "cont":"내용",
+        "showYn":"게시여부",
+        "permanentYn":"상단고정",
+        "file":"첨부파일(선택)",
+        "openY":"게시",
+        "openN":"비게시",
+        "topY":"고정",
+        "topN":"비고정",
+        "btnDelete":"삭제",
+        "btnEdit":"저장"
+      },
+      "message":{
+        "warringProf":"최대 3개 가능.",
+        "saveSuccess":"저장 되었습니다.",
+        "quesDel":"삭제 하시겠습니까? ",
+        "quesSave":"저장하시겠어요?",
+        "file":"첨부파일(선택)",
+        "delSuccess":"삭제 되었습니다.",
+        "checkEmpty":"필수입력항목은 모두 입력해주세요."
+      }
+    },
+    "documentRoom": {
+      "title": "자료실 목록",
+      "search": {
+        "title": "검색",
+        "ttl": "제목",
+        "subscribers": "등록자",
+        "regDate": "등록기간"
+      },
+      "table": {
+        "title": "목록",
+        "rowNum": "번호",
+        "ttl": "제목",
+        "subscribers": "등록자",
+        "regDate": "등록기간",
+        "fileYn": "첨부파일",
+        "register": "등록하기"
+      },
+      "form":{
+        "title": "자료실 등록",
+        "ttl": "제목",
+        "content": "내용",
+        "file": "첨부파일(선택)",
+        "regName": "등록자",
+        "regDate": "등록일",
+        "yes": "유",
+        "no": "무"
+      },
+      "message": {
+        "confirmSave": "저장 하시겠습니까?",
+        "success": "저장되었습니다."
+      }
+    }
+  },
+  "04": {
+    "eduScheduleCreativeMng": {
+      "menu": "교육과정 일정관리",
+      "term": "학기",
+      "hour": "시",
+      "massSchedule": "일괄 일정 설정",
+      "notSetStatus": "미설정",
+      "alert": {
+        "save": " 교육과정개발 일정을 설정하시겠어요?",
+        "saveAll": "모든 학과 교육과정개발 일정을 일괄 설정하시겠어요?",
+        "saveAllTeaching": "모든 학과 강의계획서 작성 일정을 일괄 설정하시겠습니까?",
+        "saveTeaching": " 의 강의계획서 작성 일정을 설정하시겠습니까?",
+        "saveAllCqi": "모든 학과 CQI 작성 일정을 일괄 설정하시겠습니까?",
+        "saveCqi": " 의 CQI 작성 일정을 설정하시겠습니까?"
+      },
+      "newEducationSchedule": {
+        "meesageNotice": "※ 당해+1학년도까지 일정 설정이 가능합니다.",
+        "title": "교육과정개발 일정",
+        "search": {
+          "title": "검색",
+          "schoolYear": "학년도",
+          "specializedUniversity": "계열",
+          "faculty": "학과/학부"
+        },
+        "table": {
+          "title": "목록",
+          "sub": "※ 당해+1학년도까지 일정 설정이 가능합니다.",
+          "schoolYear": "학년도",
+          "specializedUniversity": "계열",
+          "faculty": "학과/학부",
+          "newCreationTime": "기간",
+          "regId":"작성자",
+          "regDate":"작성일"
+
+        },
+        "modal": {
+          "title": "교육과정개발 일괄 일정 설정",
+          "title2": "교육과정개발 학과별 일정 설정",
+          "schoolYear": "학년도",
+          "specializedUniversity": "단과대학",
+          "faculty": "학과",
+          "newCreationTime": "개설/개편 기간 설정",
+          "action": {
+            "save": "저장",
+            "cancel": "닫기"
+          }
+        }
+      },
+      "teachingSchedule": {
+        "title": "강의계획서 작성 일정",
+        "search": {
+          "title": "검색",
+          "schoolYear": "학년도",
+          "semester": "학기",
+          "specializedUniversity": "단과대학",
+          "faculty": "학과"
+        },
+        "table": {
+          "title": "목록",
+          "schoolYear": "학년도",
+          "semester": "학기",
+          "specializedUniversity": "단과대학",
+          "faculty": "학과",
+          "setupTime": "설정 기간"
+        },
+        "modal": {
+          "title": "강의계획서 작성 일괄 일정 설정",
+          "title2": "강의계획서 작성 학과별 일정 설정",
+          "schoolYear": "학년도",
+          "semester": "학기",
+          "specializedUniversity": "단과대학",
+          "faculty": "학과",
+          "setupTime": "강의계획서 작성 기간 설정",
+          "action": {
+            "save": "저장",
+            "cancel": "닫기"
+          }
+        }
+      },
+      "cqiSchedule": {
+        "title": "교과목CQI 작성 일정",
+        "search": {
+          "title": "검색",
+          "schoolYear": "학년도",
+          "semester": "학기",
+          "specializedUniversity": "단과대학",
+          "faculty": "학과"
+        },
+        "table": {
+          "title": "목록",
+          "schoolYear": "학년도",
+          "semester": "학기",
+          "specializedUniversity": "단과대학",
+          "faculty": "학과",
+          "setupTime": "설정 기간"
+        },
+        "modal": {
+          "title": "CQI 작성 일괄 일정 설정",
+          "title2": "CQI 작성 학과별 일정 설정",
+          "schoolYear": "학년도",
+          "semester": "학기",
+          "specializedUniversity": "단과대학",
+          "faculty": "학과",
+          "setupTime": "CQI 작성 기간 설정",
+          "action": {
+            "save": "저장",
+            "cancel": "닫기"
+          }
+        }
+      }
+    },
+    "mesStatusActiton": {
+      "success": "정상처리됐습니다"
+    },
+    "messageDownload": "엑셀 다운로드 하시겠어요?",
+    "confirmDown": "다운로드",
+    "subjectProfiles": {
+      "title": "교과목 프로파일 조회",
+      "searchBox": {
+        "dept": "교과목",
+        "deptCode": "과목코드",
+        "status": "이수구분",
+        "grade": "학년",
+        "semester": "학기"
+      },
+      "download": "엑셀 다운로드",
+      "table": {
+        "year": "교육과정 학년도",
+        "dept": "학과/전공",
+        "subject": "교과목",
+        "subjectCode": "과목코드",
+        "status": "이수구분",
+        "grade": "학년",
+        "semester": "학기",
+        "regId": "작성자"
+      }
+    },
+    "teachingPlans": {
+      "title": "강의계획서 조회",
+      "searchBox": {
+        "year": "개설년도",
+        "subject": "과목명",
+        "professor": "담당교수",
+        "yearLearn": "교육과정 학년도",
+        "status": "작성상태",
+        "selectAll":"전체",
+        "term": "학기",
+        "grade": "학년"
+      },
+      "download": "엑셀 다운로드",
+      "table": {
+        "semester": "개설년도-학기",
+        "university": "단과대학",
+        "dept": "학과 ",
+        "subject": "과목명",
+        "status": "이수구분",
+        "grade": "학년",
+        "division": "분반",
+        "professor": "담당 교수",
+        "yearLearn": "교육과정 학년도",
+        "statusCre": "작성상태",
+        "selectAll":"전체",
+        "year": "개설연도",
+        "categorySbjt": "교과구분*",
+        "sbjtCd": "교과목코드",
+        "term": "학기"
+        
+      }
+    },
+    "lookUpCQI": {
+      "title": "CQI 조회",
+      "searchBox": {
+        "year": "개설년도",
+        "subject": "과목명",
+        "professor": "담당교수",
+        "yearLearn": "교육과정 학년도",
+        "status": "작성상태",
+        "selectAll":"전체",
+        "selectNot":"미작성",
+        "selectNo":"작성중",
+        "selectYes":"작성완료",
+        "categorySbjt": "교과구분*",
+        "sbjtCd": "교과목코드",
+        "term": "학기",
+        "grade": "학년"
+      },
+      "download": "엑셀 다운로드",
+      "table": {
+        "semester": "개설년도-학기",
+        "university": "단과대학",
+        "dept": "학과 ",
+        "subject": "과목명",
+        "status": "이수구분",
+        "grade": "학년",
+        "division": "분반",
+        "professor": "담당 교수",
+        "yearLearn": "교육과정 학년도",
+        "statusCre": "작성상태",
+        "year": "개설연도",
+        "categorySbjt": "교과구분*",
+        "sbjtCd": "교과목코드",
+        "term": "학기"
+      }
+    },
+    "talentTrainingReport": {
+      "title": "교육과정 인재양성 보고서 조회",
+      "searchBox": {
+        "year": "교육과정 학년도",
+        "university": "단과대학",
+        "dept": "학과",
+        "regId": "작성자",
+        "selectAll":"전체"
+      },
+      "download": "엑셀 다운로드"
+    }
+  },
+  "06": {
+    "manageAssessmentReports": {
+      "title": "자체평가보고서 승인 관리",
+      "title1": "자체평가보고서 관리",
+      "search": {
+        "title": "검색",
+        "table": {
+          "college": "단과대학",
+          "department": "학과",
+          "schoolYear": "학년도",
+          "situation": "상태",
+          "selectBoxStatus": {
+            "notWritten": "미작성",
+            "temporaryStorage": "임시저장",
+            "completed": "작성완료",
+            "underReview": "심사중",
+            "approved": "승인완료",
+            "reject": "반려"
+          }
+        },
+        "button": {
+          "search": "조회",
+          "reset": "초기화"
+        }
+      },
+      "grid": {
+        "list": "목록",
+        "title": "최고 관리자 외에는 로그인한 학과장 소속 학과의 교육과정만 목록에 조회됩니다",
+        "title1": "※ 반려 처리는 한 건씩 처리가능합니다.",
+        "number": "번호",
+        "college": "단과대학",
+        "department": "학과(전공)",
+        "curriculumAcademicYear": "교육과정 학년도",
+        "situation": "상태",
+        "approvalRequest": "승인요청",
+        "print": "인쇄",
+        "writer": "작성자",
+        "dateCreated": "작성일",
+        "btnApprove": "[승인요청]",
+        "btnPrint": "[인쇄]",
+        "exportExcel": "엑셀 다운로드",
+        "approve": "승인",
+        "reject": "반려",
+        "userApprove": "결재자",
+        "approveDate": "결재일"
+      },
+      "popUp": {
+        "title": "자체평가보고서 반려 사유",
+        "subTitle": "※ 반려 사유를 입력해주세요.",
+        "title2": "자체평가보고서 반려 사유",
+        "popUpYear": {
+          "confirm": "작성중 단계 이동",
+          "cancel": "첫 단계 이동"
+        },
+        "popUpApprove": {
+          "confirm": "승인요청",
+          "cancel": "취소",
+          "completed": "확인"
+        },
+        "popUpFail": {
+          "nameOfApprover": "결재자 성명",
+          "approverAffiliation": "결재자 소속",
+          "reasonForRejection": "반려사유",
+          "completed": "확인"
+        }
+      }
+    },
+    "detailReport": {
+      "title": "자체평가보고서 관리",
+      "titleScreen": "학과(전공) 정보",
+      "plansTitle": "Plan(계획)",
+      "dosTitle": "Do(실행)",
+      "checksTitle": "Check(평가)",
+      "actsTitle": "Act(개선)",
+      "detail": {
+        "university": "대학",
+        "department": "학과",
+        "downloadManual": "매뉴얼 다운로드"
+      },
+      "confirmDownload": "매뉴얼을 다운로드 하시겠어요?",
+
+      "collapsePlan": {
+        "table": {
+          "evaluationFactors": "평가요소",
+          "evaluationIndicators": "평가지표",
+          "indicatorDescription": "지표설명",
+          "evaluation": "평가 주안점",
+          "ratingScale": "평가척도",
+          "evidence1": "증빙자료1. 인재양성보고서",
+          "evidence2": "증빙자료2. 학과 규정(내규), 지침, 제도, 관련 공문 등",
+          "titleRequired": "10mb 이하의 파일 한 개 등록 가능합니다. ",
+          "buttonDelete": "삭제"
+        }
+      },
+      "button": {
+        "temporaryStorage": "임시 저장",
+        "save": "저장",
+        "list": "목록"
+      },
+      "message": {
+        "btnUnderInvest": "승인 신청",
+        "confirmTemporarySave": "임시저장하시겠어요?",
+        "successTemporarySave": "정상처리됐습니다",
+        "confirmSave": "작성 완료(저장)하시겠어요?",
+        "successSave": "정상처리됐습니다.  승인 신청하시겠어요? 목록에서도 승인 신청할 수 있습니다.",
+        "confirmRequestApprove": "{year}자체평가보고서를 승인요청하시겠어요?",
+        "successRequestApprove": "승인요청됐습니다.",
+        "confirmApprove": "승인처리하시겠어요?",
+        "successApprove": "승인처리됐습니다.",
+        "successReject": "승인 신청이 되었습니다. ",
+        "confirmSelectEduCourse": "{year}학년도 {department} 교육과정 인증을 신청 하시겠어요?",
+        "eduSaveSuccess": "정상처리됐습니다. 총점 {score}점으로 {status}입니다. 목록화면으로 이동합니다."
+      },
+      "status": {
+        "ECCS02": "미인증",
+        "ECCS03": "기초인증",
+        "ECCS04": "고급인증"
+      }
+    },
+    "evalCourse": {
+      "modal": {
+        "title": "인증 신청 교육과정 선택",
+        "title1": "교육과정 인증제 심사 종합의견",
+        "field1": "심사자 성명",
+        "field2": "심사자 소속",
+        "field3": "심사자 종합의견"
+      },
+      "title": "교육과정 인증제 신청",
+      "subTitle": "※ 최고 관리자 외에는 로그인한 사용자가 작성 및 승인완료 된 교육과정으로 목록이 구성됩니다.",
+      "subTitle1": "※ 교육과정 인증제 신청서는 자체평가 보고서와 연동됩니다. 미인증 시 자체평가보고서 수정 후 재 신청을 진행해주세요.",
+      "requestApprove": "교육과정 인증 신청하시겠어요?",
+      "requestApproveSuccess": "신청됐습니다",
+      "title1": "교육과정 인증제 승인 관리",
+      "field1": "대학",
+      "field2": "학과",
+      "field3": "상태",
+      "field4": "총점",
+      "field5": "자체평가 결과 요약",
+      "field6": "심사자 종합의견",
+      "title2": "교육과정 인증 신청",
+      "field7": "교육과정 학년도",
+      "field8": "교육과정 유형",
+      "field9": "학과 인원수",
+      "field10": "학과장 학과",
+      "field11": "연락처",
+      "field12": "자체평가 결과요약",
+      "btn1": "신청",
+      "btn2": "재신청"
+    },
+
+    "manageApprovedSubjects": {
+      "title": "교과목 인증제 승인 관리",
+      "search": {
+        "title": "검색",
+        "division": "구분",
+        "situation": "상태",
+        "subjectName": "과목명",
+        "applicant": "신청자",
+        "approver": "결재자",
+        "searchButton": "조회",
+        "resetButton": "초기화"
+      },
+      "grid": {
+        "list": "목록",
+        "downloadExcel": "엑셀 다운로드",
+        "division": "구분",
+        "situation": "상태",
+        "applicationField": "신청 분야",
+        "yearOfEstablishmentSemester": "개설년도-학기",
+        "subjectName": "과목명",
+        "courseClassification": "이수구분",
+        "grade": "학년",
+        "applicant": "신청자",
+        "applicantDate": "신청일",
+        "approver": "결재자",
+        "paymentDate": "결재일"
+      },
+      "popUp": {
+        "title": "교과목 인증제 반려 사유",
+        "nameOfApprover": "결재자 성명",
+        "approverAffiliation": "결재자 소속",
+        "reasonForRejection": "반려사유",
+        "confirm": "확인"
+      }
+    },
+    "capstoneDesign": {
+      "tableSubject": {
+        "title": "교과목 정보",
+        "subjectName": "교과목명",
+        "courseCode": "수강코드",
+        "applicant": "담당교수(신청자)",
+        "category": "유형",
+        "applicationField": "신청분야"
+      },
+      "tableDesign": {
+        "title": "설계",
+        "attachment": "첨부파일",
+        "lectureSyllabus": "1.강의계획서 [보기]",
+        "educationPlan": "2.교육계획서 [보기]",
+        "plan(Learner)": "3.계획서(학습자) [보기]",
+        "certificationCriteria": "인증기준",
+        "text1": "환경 및 요구분석 결과를 기반으로 하여 캡스톤디자인 교과목에 적합하도록 수업설계를 해야한다.",
+        "text2": "캡스톤디자인 교과목에서 문제의 요건을 충족하여야 한다.",
+        "text3": "학습자들이 캡스톤디자인 학습활동을 준비할 수 있도록 안내하여야 한다.",
+        "point": "배점",
+        "evaluationScore": "평가점수",
+        "supplementaryMatters": "보완사항",
+        "button": {
+          "print": "인쇄",
+          "1stApproval": "1차 승인",
+          "2stApproval": "2차 승인",
+          "companion": "반려",
+          "list": "목록"
+        }
+      },
+      "tabelOperate": {
+        "tabelOperate": "운영",
+        "attachment": "첨부파일",
+        "certificationCriteria": "인증기준",
+        "resultReport": "4.결과보고서(학습자) [보기]",
+        "classOperation": "5.수업운영결과보고서 [보기]",
+        "text1": "학습자들이 캡스톤디자인 과제수행계획을 수립하도록 지도한다.",
+        "text2": "학습자들이 팀 과제를 충실하게 해결할 수 있도록 지도한다.",
+        "points": "배점",
+        "evaluationScore": "평가점수",
+        "select": "선택",
+        "supplementaryMatters": "보완사항"
+      },
+      "tableAchievements": {
+        "title": "성과",
+        "certificationCriteria":"인증기준",
+        "attachment": "첨부파일",
+        "evaluationResult": "6.평가결과표 [보기]",
+        "CQIReport": "7.CQI보고서 [보기]",
+        "text1": "학습자들의 학습결과물에 대한 평가를 실시하고, 전공역량 향상도를 분석한다.",
+        "text2": "교과목 운영성과 분석을 토대로 수업성찰 및 수업개선 계획을 작성한다.",
+        "points": "배점",
+        "evaluationScore": "평가점수",
+        "select": "선택",
+        "supplementaryMatters": "보완사항",
+        "button": {
+          "print": "인쇄",
+          "1stApproval": "1차 승인",
+          "companion": "반려",
+          "list": "목록"
+        }
+      },
+      "popUp": {
+        "title": "교육목 인증제 반려",
+        "required": "※ 반려 사유를 입력해주세요."
+      }
+    },
+    "hyflexAL": {
+      "tableSubject": {
+        "title": "교과목 정보",
+        "subjectName": "교과목명",
+        "courseCode": "수강코드",
+        "applicant": "담당교수(신청자)",
+        "operatingMethod": "운영방식",
+        "applicationTrack": "신청트랙",
+        "applicationProcess": "적용과정",
+        "pre-class": "(수업 전)",
+        "in-class": "(수업 중)",
+        "post-class": "(수업 후)"
+      },
+      "tablePreClassAssessment": {
+        "title": "수업 전 평가서",
+        "evaluationItems": "평가항목",
+        "evaluationFactors": "평가요소",
+        "points": "배점",
+        "score": "평가결과(점수)",
+        "courseOutline": "교과목 개요",
+        "titleCourse": "수업목표 및 사전동영상 자료 제공 목적의 제시 및 적절성: 수업목표, 사전동영상 자료 제공 이유의 명확성평가방법의 제시 및 적절성: 평가 관련 사항(평가비율, 평가 기준, 평가도구 등) 여부기대성과의 제시 및 적절성: 수업 후 학습자들의 기대효과, 학습활동 관련 결과물 등",
+        "advance": "사전계획 및 준비",
+        "titleAdvance": "교과목 선정 및 학습유형 결정 계획의 제시 및 적절성: 실시간(오프라인, 온라인), 비실시간(온라인) 등콘텐츠 개발 계획의 제시 및 적절성: 교수학습자료, 안내자료 등학습환경 안내 사전점검 계획의 제시 및 적절성: 팀 구성, 학습 도구, 온라인 학습환경 등",
+        "advanceLearning": "온라인 선행학습",
+        "titleAdvanceLearning": "사전 출결 사항 점검 방법의 적절성: LMS에서 온라인 출결 확인 학습방법 안내 및 학습자료 제공 방법의 적절성: 자료 검색사이트 안내, 개별학습방법 등학습환경, 협력학습, 상호작용 방법의 적절성 : 설명(개념 및 원리), 제시(문제풀이, 과제물), 질문(공지사항,자료실, Q&A 게시판 등)에 관해 교수자와 학습자, 학습자와 학습자, 학습자와 매체를 사용한 협력 및 상호작용 방법",
+        "classResults": "수업운영 결과 및 수업성찰 계획",
+        "titleClassResults": "수업 전 활동에 대한 소감의 제시 및 적절성 : 느낀 점, 향후 사전 수업 관련 개선사항 등수업 전 활동에 대한 성과 및 제언의 제시 및 적절성: 운영 결과의 성과, 운영에 대한 제언 사항 등 학습자 요구분석의 적절성: 수업 관련 간단한 설문 또는 질문 등으로 본 교과목의 요구 확인",
+        "advanceVideoMaterial": "사전 동영상 자료 제공",
+        "titleAdvanceVideoMaterial": "사전 동영상 자료 계획 방법의 제시 및 적절성: 동영상 재생 시간, 동영상 담을 내용(콘텐츠) 등사전 동영상 자료 제작 방법의 제시 및 적절성: 동영상을 제작하기 위한 도구(휴대폰, 카메라, PC 등)사전 동영상 자료 안내  방법의 제시 및 적절성: 제작된 사전 동영상 시청 안내(게시판, 카톡, 문자 등)",
+        "totalScore": "총점"
+      },
+      "table-B-track": {
+        "title": "수업 중 Hyflex AL / B트랙 수업 평가서",
+        "evaluationItems": "평가항목",
+        "evaluationFactors": "평가요소",
+        "points": "배점",
+        "score": "평가결과(점수)",
+        "courseOutline": "교과목 개요",
+        "titleCourse": "수업목표 및 동영상 자료 제공 목적의 제시 및 적절성: 수업목표, 동영상 자료 제공 이유의 명확평가방법의 제시 및 적절성: 평가 관련 사항(평가비율, 평가 기준, 평가도구 등) 여부기대성과의 제시 및 적절성: 수업 후 학습자들의 기대효과, 학습활동 관련 결과물 등",
+        "advance": "사전계획 및 준비",
+        "titleAdvance": "수업 중 활동에 대한 소감의 제시 및 적절성: 느낀 점, 향후 사전 수업 관련 개선사항 등에 관해 기술수업 중 활동에 대한 성과 및 제언의 제시 및 적절성: 운영 결과의 성과, 운영에 대한 제언 사항 등에 관해 기술실시한 수업방법 안내 및 학습자 의견수렴 평가:학습자 준비도 확인, 출석체크, 수업 후 교과목 복습 및 심화학습 방법 안내, 학습자의 의견수렴 결과 등",
+        "classManagement": "수업운영 방식 선택",
+        "titleClassManagement": "※ 아래 해당 수업 운영방식 한 가지만 평가",
+        "radioText1": "오프라인 실시간 수업",
+        "titleRadioText1": "학습환경, 협력학습, 상호작용 방법의 적절성: 설명(개념 및 원리), 제시(문제풀이, 과제물), 질문(공지사항, 자료실, Q&A 게시판 등)에 관해 교수자와 학습자, 학습자와 학습자, 학습자와 매체를 사용한 협력 및 상호작용 방법",
+        "radioText2": "온라인 실시간 수업",
+        "titleRadioText2": "학습환경, 협력학습, 상호작용 방법의 적절성: 설명(개념 및 원리), 제시(문제풀이, 과제물), 질문(공지사항, 자료실, Q&A 게시판 등)에 관해 교수자와 학습자, 학습자와 학습자, 학습자와 매체를 사용한 협력 및 상호작용 방법",
+        "radioText3": "온라인 비실시간 수업",
+        "titleRadioText3": "학습환경, 협력학습, 상호작용 방법의 적절성: 설명(개념 및 원리), 제시(문제풀이, 과제물), 질문(공지사항, 자료실, Q&A 게시판 등)에 관해 교수자와 학습자, 학습자와 학습자, 학습자와 매체를 사용한 협력 및 상호작용 방법",
+        "totalScore": "총점"
+      },
+      "table-A-track": {
+        "title": "수업 중 Hyflex AL / A트랙 수업 평가서",
+        "evaluationItems": "평가항목",
+        "evaluationFactors": "평가요소",
+        "points": "배점",
+        "score": "평가결과(점수)",
+        "courseOutline": "교과목 개요",
+        "titleCourse": "수업목표 및 동영상 자료 제공 목적의 제시 및 적절성 : 수업목표, 동영상 자료 제공 이유의 명확성 평가방법의 제시 및 적절성: 평가 관련 사항(평가비율, 평가 기준, 평가도구 등) 여부기대성과의 제시 및 적절성: 수업 후 학습자들의 기대효과, 학습활동 관련 결과물 등",
+        "advance": "사전계획 및 준비",
+        "titleAdvance": "수업 중 활동에 대한 소감의 제시 및 적절성: 느낀 점, 향후 사전 수업 관련 개선사항 등에 관해 기술수업 중 활동에 대한 성과 및 제언의 제시 및 적절성: 운영 결과의 성과, 운영에 대한 제언 사항 등에 관해 기술실시한 수업방법 안내 및 학습자 의견수렴 평가:학습자 준비도 확인, 출석체크, 수업 후 교과목 복습 및 심화학습 방법 안내, 학습자의 의견수렴 결과 등",
+        "classManagement": "수업운영 방식 선택",
+        "titleClassManagement": "※ 아래 해당 수업 운영방식 한 가지만 평가",
+        "radioText1": "오프라인 실시간 수업",
+        "titleRadioText1": " 학습 과정의 녹화 진행 방법의 적절성: 대면 수업 및 향후 LMS 탑재 방오프라인 대면 수업방법의 제시 및 적절성: 학습자 준비도 확인, 학습자 질문 유도 및 질문, 학습자 팀별 토론, 교수자 내용정리, 학습자 의견수렴 등학습환경, 협력학습, 상호작용 방법의 제시 및 적절성: 설명(개념 및 원리), 제시(문제풀이, 과제물), 질문(공지사항, 자료실, Q&A 게시판 등)에 관해 교수자와 학습자, 학습자와 학습자, 학습자와 매체를 사용한 협력 및 상호작용 방법",
+        "radioText2": "온라인 실시간 수업",
+        "titleRadioText2": "온라인 실시간 진행 방법: 출석체크 방법, 온라인 환경에서 실시간 수업방법의 적절성 학습환경, 협력학습, 상호작용 방법의 적절성: 설명(개념 및 원리), 제시(문제풀이, 과제물), 질문(공지사항, 자료실, Q&A 게시판 등)에 관해 교수자와 학습자, 학습자와 학습자, 학습자와 매체를 사용한 협력 및 상호작용 방법",
+        "radioText3": "온라인 비실시간 수업",
+        "titleRadioText3": "온라인 비실시간 진행 방법의 적절성: 출석체크 방법, 녹화한 동영상을 LMS에 탑재 여부, 수업 후 또는 면대면 참석이 어려운 경우의 복습 방법 안내(KOCW, K-MOOC 등 사이트 탐색) 등의 기술학습환경, 협력학습, 상호작용 방법의 적절성: 설명(개념 및 원리), 제시(문제풀이, 과제물), 질문(공지사항, 자료실, Q&A 게시판 등)에 관해 교수자와 학습자, 학습자와 학습자, 학습자와 매체를 사용한 협력 및 상호작용 방법",
+        "totalScore": "총점"
+        
+      },
+      "tableAfter":{
+        "title": "수업 후 평가서",
+        "evaluationItems": "평가항목",
+        "evaluationFactors": "평가요소",
+        "points": "배점",
+        "score": "평가결과(점수)",
+        "courseOutline": "교과목 개요",
+        "titleCourse": "수업목표(동영상 자료 제공 목적)의 제시 및 적절성: 수업목표, (해당 교과목의 경우) 동영상 자료 제공 이유의 명확성평가방법의 제시 및 적절성: 평가 관련 사항(평가비율, 평가 기준, 평가도구 등) 여부기대성과의 제시 및 적절성: 수업 후 학습자들의 기대효과, 학습활동 관련 결과물 등",
+        "gatherOpinions": "의견 수렴",
+        "titleGatherOpinions": "수업 후 진행 방법의 적절성: 출석체크 방법, 온라인 환경에서의 수업 활동 방법에 관해 기술학습자 협력학습 및 상호작용 방법의 적절성: 수준별 학습(심화, 보충, 재수강 등) 및 교수자 피드백(정리, 답변 등)      방법 제시, 수행 정도",
+        "reflectionActivity": "성찰활동",
+        "titleReflect": "수업내용 복습 확인 및 학습자의 성찰 활동(느낀 점, 소감 등)의 적절성 수업 후 평가방법의 제시 및 적절성 : 학습자 만족도 평가, 교수자 자기평가, CQI 작성 등에 관해 기술",
+        "operationPlan": "수업운영결과 및 수업개선계획",
+        "titleOperationPlan": "향후 수업 후 활동 관련 개선사항의 적절성: 수업후 학습자 성찰활동, 의견수렴에 따른 활동 등의 결과물 확인수업 후 활동에 대한 성과 및 제언의 적절성: 수업 후 학습자 의견수렴 및 수업 성과에 따른 제언",
+        "classOperation": "수업운영",
+        "titleClassOperation": "학습환경, 협력학습, 상호작용 방법의 제시 및 적절성: 설명(개념 및 원리), 제시(문제풀이, 과제물), 질문(공지사항, 자료실,      Q&A 게시판 등)에 관해 교수자와 학습자, 학습자와 학습자, 학습자      와 매체를 사용한 협력 및 상호작용 방법 기술온라인 비실시간 진행 방법의 제시 및 적절성: 출석체크 방법, 녹화한 동영상을 LMS에 탑재 여부, 수업 후 또는 면대면 참석이 어려운 경우의 복습 방법 안내(KOCW, K-MOOC 등사이트 탐색) 등의 기술",
+        "totalScore": "총점"      
+      },
+      "textNote":"종합의견"
+    }
+  },
+  "capacityDeMng": {
+    "portfolio": {
+      "meesageNotice": "※ 검색조건을 설정하여 검색을 진행해주세요.",
+      "breadcrumb": {
+        "pageTitle": "포트폴리오 목록"
+      },
+      "titleSearch": {
+        "university": "단과대학",
+        "department": "학과",
+        "eduYear": "학년",
+        "stdId": "학번",
+        "stdName": "성명",
+        "studyStatus": "재학구분",
+        "professor": "담당교수"
+      },
+      "table": {
+        "university": "단과대학",
+        "department": "학과",
+        "eduYear": "학년",
+        "stdId": "학번",
+        "stdName": "성명",
+        "studyStatus": "재학구분",
+        "professor": "담당교수",
+        "credit": "이수학점",
+        "mediumScore": "성적평균 "
+      }
+    },
+    "track": {
+      "breadcrumb": {
+        "pageTitle": "트랙과정 이수 현황"
+      },
+      "titleSearch": {
+        "university": "단과대학",
+        "department": "학과",
+        "stdId": "학번",
+        "stdName": "학생명",
+        "eduYear": "학년",
+        "trackName": "트랙교육과정명",
+        "status": "상태",
+        "dataStatus": {
+          "dataStatus": "전체",
+          "complete": "이수중",
+          "unfinished": "이수완료"
+        }
+      },
+      "table": {
+        "rowNum": "번호",
+        "university": "단과대학",
+        "department": "학과",
+        "stdId": "학번",
+        "stdName": "학생명",
+        "eduYear": "학년",
+        "trackName": "트랙교육과정명",
+        "status": "상태",
+        "numberSubject": "수강완료 교과목수"
+      },
+      "detail": {
+        "breadcrumb": {
+          "pageTitle": "트랙별 이수 현황 상세",
+          "nameTable1": "학생 정보",
+          "nameTable2": "스타호텔리어트랙"
+        },
+        "information": {
+          "university": "단과대학",
+          "department": "학과",
+          "stdId": "학번",
+          "stdName": "학생명",
+          "eduYear": "학년"
+        },
+        "nameTrack": {
+          "engName": "교과목명(한글)",
+          "krName": "교과목명(영문)",
+          "classify": "교과 구분",
+          "credits": "학점",
+          "theory": "이론",
+          "practice": "실습",
+          "situation": "이수 현황"
+        }
+      },
+      "button": {
+        "search": "조회",
+        "refresh": "초기화",
+        "back": "목록"
+      }
+    },
+    "tutoring": {
+      "breadcrumb": {
+        "pageTitle": "학습튜터링 관리"
+      },
+      "titleSearch": {
+        "campus": "캠퍼스",
+        "status": "상태",
+        "team": "팀명",
+        "nameOrId": "멘토/멘티 이름/학번"
+      },
+      "table": {
+        "rowNum": "번호",
+        "campus": "캠퍼스",
+        "team": "팀명",
+        "nameOrIdMtor": "멘토 이름/학번",
+        "nameOrIdMti": "멘티 이름/학번",
+        "status": "상태",
+        "report": "주차별 학습보고서"
+      },
+      "detail": {
+        "tab": {
+          "tab1": "참여 신청서",
+          "tab2": "활동계획서",
+          "tab3": "학습보고서 "
+        },
+        "table": {
+          "table1": {
+            "name": "팀정보",
+            "team": "팀명",
+            "campus": "해운대"
+          },
+          "table2": {
+            "name": "멘토 인적사항",
+            "nameMentor": "멘토이름",
+            "idStudent": "학번",
+            "gpa": "직전학기 평균평점",
+            "eduYear": "학년",
+            "major": "소속 단과대학",
+            "department": "소속 학과",
+            "phone": "연락처(휴대폰)",
+            "receiver": "예금주",
+            "bankName": "은행명",
+            "bankNumber": "계좌번호",
+            "studyProgram": "직적학기 교수학습 프로그램 참여 여부",
+            "programName": "참여한 프로그램명",
+            "attachBank": "통장사본 첨부",
+            "achievement": "성적표 첨부"
+          },
+          "table3": {
+            "name": "멘티 인적사항",
+            "nameMenti": "멘티이름",
+            "idStudent": "학번",
+            "gpa": "직전학기 평균평점",
+            "eduYear": "학년",
+            "major": "소속 단과대학",
+            "department": "소속 학과",
+            "phone": "연락처(휴대폰)",
+            "receiver": "예금주",
+            "bankName": "은행명",
+            "bankNumber": "계좌번호",
+            "studyProgram": "직적학기 교수학습 프로그램 참여 여부",
+            "programName": "참여한 프로그램명",
+            "attachBank": "통장사본 첨부",
+            "achievement": "성적표 첨부"
+          },
+          "subtitle": "※ 인쇄 시 신청서와 활동계획서가 함께 인쇄됩니다. "
+        },
+        "tab2": {
+          "team": "팀 소개",
+          "subjectName": "학습교과목명",
+          "target": "활동 주체 및 학습목표",
+          "plan": "주차별 활동계획",
+          "topic": "추가 활동 주체 및 학습 목표",
+          "method": "학습방법",
+          "document": "참고도서",
+          "week": "주차",
+          "week1": "1주차",
+          "week2": "2주차",
+          "week3": "3주차",
+          "week4": "4주차",
+          "week5": "5주차",
+          "content": "내용"
+        },
+        "tab3": {
+          "reportTitle": "주차 학습보고서",
+          "subject": "교과목",
+          "target": "이번 주 학습목표",
+          "eduDate": "학습일자",
+          "eduTime": "학습시간",
+          "eduAddress": "학습장소",
+          "eduContent": "학습활동 진행내용",
+          "eduShare": "느낀점 · 배운점 감사 나누기",
+          "planWeekLast": "다음 주 활동 계획",
+          "eduImg": "학습수행 증거 사진"
+        },
+        "button": {
+          "approve": "승인",
+          "reject": "반려",
+          "print": "인쇄",
+          "back": "목록"
+        },
+        "message": {
+          "confirmApprove": "승인처리하시겠어요?",
+          "approveSuccess": "승인처리됐습니다.",
+          "approveError": "승인되지 않았습니다.",
+          "confirmReject": "반려처리하시겠어요?",
+          "rejectSuccess": "반려처리됐습니다.",
+          "rejectError": "거절할 수는 없어."
+        }
+      }
+    },
+    "educationSDL": {
+      "title": "학습SDL 관리",
+      "titleMenti": "멘티{index} 인적사항"
+    },
+    "volunteerActivities": {
+      "title": "사회봉사 관리",
+      "formSearch": {
+        "status": "상태",
+        "topic": "봉사 제목",
+        "typeVolunteer": "봉사 유형",
+        "fieldVolunteer": "봉사 분야",
+        "objectVolunteer": "봉사 대상"
+      },
+      "perAplyAlert": "신청자가 있어서 수정할 수 없습니다",
+      "table": {
+        "status": "상태",
+        "topic": "봉사 제목",
+        "volunteerTime": "봉사기간",
+        "recruitmentTime": "모집기간",
+        "quantityRecruitment": "모집인원",
+        "quantityRegister": "신청인원",
+        "typeVolunteer": "봉사유형",
+        "fieldVolunteer": "봉사분야",
+        "objectVolunteer": "봉사대상"
+      },
+      "form": {
+        "hour": "시간",
+        "peopel": "명",
+        "subPeopel": "※1~100명까지 설정할 수 있습니다. ",
+        "title": "사회봉사 등록",
+        "typeVolunteer": "봉사유형",
+        "topic": "봉사제목",
+        "contentVolunteer": "봉사내용",
+        "uptimeAdmitted": "인정봉사시간",
+        "workTime": "봉시기간",
+        "workDate": "활동시간 및 요일",
+        "recruitmentTime": "모집기간",
+        "recruitmentQuantity": "모집인원",
+        "objectVolunteer": "봉사대상",
+        "fieldVolunteer": "봉사분야",
+        "addressVolunteer": "봉사장소",
+        "file": "첨부파일",
+        "url": "URL",
+        "chargeName": "담당자 성명",
+        "chargePhone": "담당자 연락처",
+        "btnCheckPer": "신청자 조회",
+        "errorDate" : "종료일은 시작일보다 빠를 수 없습니다.",
+        "errorRecruitmentDate": "봉시기간은 모집기간보다 빠를 수 없습니다",
+        "confirmSave": "저장하시겠어요?",
+        "saveSuccess": "정상처리됐습니다."
+      },
+      "userRegist": {
+        "title": "봉사활동 정보",
+        "topic": "봉사제목",
+        "volunteerTime": "봉사기간",
+        "quantityRegister": "모집인원",
+        "volunteerReality": "인정봉사시간",
+        "typeVolunteer": "봉사자 유형",
+        "fieldVolunteer": "봉사 분야",
+        "objectVolunteer": "봉사 대상",
+        "name": "이름",
+        "code": "학번/교번",
+        "date": "생년월일",
+        "type": "구분",
+        "department": "학과/부서",
+        "id": "1365 ID",
+        "result": "이수 결과",
+        "btnExportExcel": "전체 인원 엑셀 다운로드",
+        "confirmPass": "{count}명 이수결과 pass 처리하시겠어요?",
+        "passSuccess": "{count}명이 pass 처리됐습니다.",
+        "confirmFail": "{count}명 이수결과 fail 처리하시겠어요? ",
+        "failSuccess": "{count}명이 fail 처리됐습니다. ",
+        "confirmDownload": "전체 인원 엑셀 다운로드 하시겠어요?"
+      }
+    },
+    "researchVolunteerActivities": {
+      "title": "사회봉사 현황 조회",
+      "search": {
+        "major": "단과대학",
+        "department": "학과",
+        "year": "학년",
+        "name": "이름(학번)",
+        "typeVolunteer": "봉사 구분",
+        "nameVolunteer": "사회봉사명",
+        "typeOfVolunteer": "봉사 유형"
+      },
+      "table": {
+        "typeRole": "구분",
+        "department": "학과/소속",
+        "code": "학번 /직번",
+        "name": "이름",
+        "typeVolunteer": "봉사 구분",
+        "nameVolunteer": "사회봉사명",
+        "typeActiveVolunteer": "봉사 유형",
+        "volunteerDate": "진행 기간",
+        "volunteerTime": "봉사 시간",
+        "exportExcel": "엑셀 다운로드"
+      }
+    },
+    "volunteerIndividual": {
+      "title": "개인참여 사회봉사 관리",
+      "search": {
+        "status": "상태",
+        "major": "단과대학",
+        "department": "학과",
+        "name": "이름(학번)"
+      },
+      "table": {
+        "status": "상태",
+        "major": "단과대학",
+        "department": "학과",
+        "code": "학번",
+        "name": "이름",
+        "eduYear": "학년",
+        "deptVolunteer": "봉사 기관",
+        "volunteerDate": "봉사 시간",
+        "document": "증빙자료",
+        "download": "[다운로드]",
+        "downloadError": "증빙서류가 존재하지 않습니다."
+      },
+      "modal": {
+        "title": "개인참여 사회봉사 승인 신청",
+        "status": "상태",
+        "major": "단과대학",
+        "department": "학과",
+        "code": "학번",
+        "name": "이름",
+        "eduYear": "학년",
+        "typeOfVolunteer": "봉사 유형",
+        "nameVolunteer": "사회봉사명",
+        "volunteerDate": "봉사 시간",
+        "volunteerTime": "봉사 기관",
+        "document": "증빙자료",
+        "approveConfirm": "승인처리하시겠어요?",
+        "approveSuccess": "승인처리됐습니다.",
+        "rejectConfirm": "반려처리하시겠어요?",
+        "rejectSuccess": "반려처리됐습니다."
+      }
+    }
+  },
+  "schoolStaff": {
+    "teachPlan": {
+      "pageTitle": "강의계획서 작성",
+      "dept2": "강의계획서 작성 목록",
+      "stsDone": "작성완료",
+      "stsNotDone": "미작성",
+      "stsDoing": "작성중",
+      "index": {
+        "year": "개설년도",
+        "subject": "과목명",
+        "professor": "담당교수",
+        "trainingProcessYear": "교육과정 학년도",
+        "creationStatus": "작성상태",
+        "grid": {
+          "header1": "개설년도-학기",
+          "header2": "단과대학",
+          "header3": "학과",
+          "header4": "과목명",
+          "header5": "이수구분",
+          "header6": "학년",
+          "header7": "분반",
+          "header8": "담당교수",
+          "header9": "교육과정 학년도",
+          "header10": "작성상태"
+        }
+      },
+      "detail": {
+        "pageTitleMj": "강의계획서 작성(전공)",
+        "pageTitleOutline": "강의계획서 작성(교양)",
+        "table1": {
+          "subjectTitle": "교과목명",
+          "subjectCode": "과목코드",
+          "categories": "구분",
+          "point": "학점",
+          "actualPoint": "시수",
+          "professor": "담당교수",
+          "evaluationMethods": "평가방법"
+        },
+        "table2": {
+          "typeClass1": "수업유형1",
+          "typeClass2": "수업유형2"
+        },
+        "table3": {
+          "majorCompetence": "전공능력",
+          "talentType": "인재양성유형",
+          "competence": "전공능력",
+          "subCompetence": "하위능력",
+          "components": "구성요소",
+          "behaviorIndicators": "행동지표",
+          "coreCompetence": "대학 핵심역량",
+          "coreCompetenceLabel": "핵심역량",
+          "subCoreCompetence": "하위역량"
+        },
+        "table4": {
+          "teachingPhilosophy": "교수의 교육철학",
+          "courseSummary": "교과목의 개요",
+          "learningGoals": "교과목 학습목표",
+          "prerequisites": "권장 선수과목 및 지식",
+          "cqi": "CQI 반영사항"
+        },
+        "table5": {
+          "teachingMethods": "교수학습방법(복수체크가능)",
+          "other": "기타"
+        },
+        "table6": {
+          "exerciseContent": "과제물 내용",
+          "feedbackMethod": "과제물 피드백 방법"
+        },
+        "table7": {
+          "assessmentElement": "평가요소",
+          "evaluationCriteria": "평가기준방법",
+          "ratio": "비율",
+          "attendance": "출석",
+          "competencyBasedEvaluation": "역량기반 학습성가 평가",
+          "talentType": "인재양성유형",
+          "majorCompetency": "전공능력",
+          "subCompetency": "하위능력",
+          "component": "구성요소",
+          "behaviorIndicator": "행동지표",
+          "achievementCriteria": "성취기준",
+          "evaluationMethod": "평가방법",
+          "weight": "가중치",
+          "midtermExam": "중간시험",
+          "finalExam": "기말시험",
+          "exercise": "과제물",
+          "additionalPoints": "수시 및 기타(가산점)"
+        },
+        "table8": {
+          "type": "구분",
+          "textbookName": "교재명",
+          "author": "저자",
+          "publisher": "출판사",
+          "otherInput": "기타(선택입력)",
+          "mainTextbook": "주교재",
+          "additionalTextbook": "부교재",
+          "optionalClassics": "필독고전(선택입력)"
+        },
+        "table9": {
+          "studentNote": "학생 유의 사항"
+        },
+        "tableSupport": {
+          "classification": {
+            "index": "구분",
+            "common": "공통",
+            "hearingImpairment": "청각장애",
+            "physicalDisability": "지체장애",
+            "visualImpairment": "시각장애"
+          },
+          "supportContent": {
+            "index": "지원내용",
+            "common": "시험시간 연장, 과제물 제출 시한 배려, 장애학생 도우미 지원 등",
+            "hearingImpairment": "대필도우미, 좌석지정 등",
+            "physicalDisability": "대필 및 이동보조 도우미, 휠체어 접근 가능 강의실 제공, 좌석지정 등",
+            "visualImpairment": "대필도우미, 시험문제 읽어주고 구술답변을 대필할 수 있도록 공간 제공 등"
+          }
+        },
+        "week": {
+          "classContent": "수업내용",
+          "studyMethod": "수업방법",
+          "operate": "수업운영",
+          "preparationCategory": "준비사항"
+        },
+        "alert": {
+          "saveTemp": "임시저장하시겠어요?",
+          "saveTempSuccess": "임시저장됐습니다.",
+          "save": "저장하시겠어요?",
+          "saveSuccess": "정상처리됐습니다.",
+          "total100": "평가요소 비율의 합을 100%가 되도록 설정해주세요."
+        }
+      }
+    },
+    "subject": {
+      "index": {
+        "pageTitle": "교과목 프로파일 조회",
+        "subject": "교과목",
+        "subjectCode": "과목코드",
+        "academicStatus": "이수구분",
+        "grade": "학년",
+        "semester": "학기",
+        "grid": {
+          "header1": "번호",
+          "header2": "교육과정 학년도",
+          "header3": "학과",
+          "header4": "교과목",
+          "header5": "과목코드",
+          "header6": "이수구분",
+          "header7": "학년",
+          "header8": "학기",
+          "header9": "작성자"
+        }
+      }
+    },
+    "studentReceive": {
+      "index": {
+        "pageTitle": "수강생 조회",
+        "year": "학년도",
+        "semester": "학년",
+        "trainingYear": "학기",
+        "subject": "과목명",
+        "professor": "담당교수",
+        "grid": {
+          "header1": "개설년도-학기",
+          "header2": "단과대학",
+          "header3": "학과",
+          "header4": "과목명",
+          "header5": "이수구분",
+          "header6": "학년",
+          "header7": "분반",
+          "header8": "담당교수",
+          "header9": "수강학생 수"
+        }
+      },
+      "list": {
+        "trainingMonthYear": "개설학년도-학기",
+        "majorName": "게열/학부",
+        "department": "학과/전공",
+        "subject": "과목명",
+        "sustDivNm": "이수구분",
+        "grade": "학년",
+        "divName": "분반",
+        "staffName": "담당교수",
+        "totalStudent": "수강학생 수",
+        "trainingYear": "교육과정 학년도"
+      },
+      "detail": {
+        "pageTitle": "수강생 목록",
+        "major": "학과",
+        "year": "학년",
+        "nameStd": "이름",
+        "codeStd": "학번",
+        "list" : {
+          "stt": "번호",
+          "majorName": "계열/학부",
+          "department": "학과",
+          "grade": "학년",
+          "userName": "이름",
+          "userCode": "학번",
+          "phone": "연락처"
+        },
+        "button": {
+          "downloadExcel": "엑셀 다운로드"
+        }
+      }
+    },
+    "socialActivities": {
+      "index": {
+        "pageTitle": "교직원 사회봉사 신청 ",
+        "searchFields": {
+          "status": "상태",
+          "topic": "봉사 제목",
+          "activeName": "봉사 유형",
+          "activeTime": "봉사기간",
+          "startDate": "시작일",
+          "endDate": "종료일"
+        },
+        "checkboxLabels": {
+          "selectAll": "전체선택"
+        },
+        "grid": {
+          "header1": "번호",
+          "header2": "봉사유형",
+          "header3": "봉사제목",
+          "header4": "봉사기간",
+          "header5": "모집기간",
+          "header6": "상태",
+          "header7": "모집인원",
+          "header8": "인정봉사시간",
+          "header9": "신청여부"
+        }
+      },
+      "detail": {
+        "pageTitle": "사회봉사 신청",
+        "register": "사회봉사 신청",
+        "cancelRegister": "신청 취소",
+        "type": "봉사유형",
+        "topic": "봉사제목",
+        "content": "봉사내용",
+        "certificationTime": "인정봉사시간",
+        "activityTime": "봉시기간",
+        "dayTime": "활동시간 및 요일",
+        "recruitmentTime": "모집기간",
+        "recruitmentCount": "모집인원",
+        "volunteerSubjects": "봉사대상",
+        "activityField": "봉사분야",
+        "place": "봉사장소",
+        "file": "첨부파일",
+        "url": "URL",
+        "teamLead": "담당자 성명",
+        "phone": "담당자 연락처",
+        "modal": {
+          "register": {
+            "title": "사회봉사 신청을 위해 1365ID를 입력해주세요.",
+            "placeholder": "1365 ID",
+            "validator": "1365 ID를 입력해주세요.",
+            "alertMessage": "신청 됐습니다."
+          },
+          "cancelRegister": {
+            "title": "신청을 취소하시겠어요?",
+            "alertMessage": "신청 쉬소됐습니다."
+          }
+        }
+      }
+    },
+    "notification": {
+      "index": {
+        "pageTitle": "공지사항",
+        "grid": {
+          "header1": "번호",
+          "header2": "제목",
+          "header3": "등록일",
+          "header4": "조회수",
+          "header5": "등록자"
+        }
+      },
+      "detail": {
+        "pageTitle": "공지사항",
+        "author": "작성자",
+        "date": "등록일",
+        "view": "Views",
+        "prev": "이전글",
+        "next": "다음글"
+      }
+    },
+    "cqi": {
+      "index": {
+        "pageTitle": "CQI 작성",
+        "dept2": "CQI 작성 목록",
+        "openYear": "개설년도",
+        "subjectName": "과목명",
+        "professor": "담당교수",
+        "trainingYear": "교육과정 학년도",
+        "writingStatus": "작성상태",
+        "grid": {
+          "header1": "개설년도-학기",
+          "header2": "단과대학",
+          "header3": "학과",
+          "header4": "과목명",
+          "header5": "이수구분",
+          "header6": "학년",
+          "header7": "분반",
+          "header8": "담당 교수",
+          "header9": "교육과정 학년도",
+          "header10": "작성상태"
+        }
+      },
+      "detail": {
+        "pageTitleMajor": "CQI 작성(전공)",
+        "pageTitleGeneral": "CQI 작성(교양)",
+        "boxTitle1": "기초 정보",
+        "boxTitle2": "전공능력 달성도평가",
+        "boxTitle3": "강의과정평가",
+        "boxTitle4": "강의평가 결과 분석",
+        "boxTitle5": "성적분석",
+        "tableHeaderMajor": {
+          "header1":"인재양성유형",
+          "header2":"전공능력",
+          "header3":"하위능력",
+          "header4":"구성요소",
+          "header5":"행동지표",
+          "header6":"성취기준",
+          "header7":"평가방법"
+        },
+        "tableHeaderGeneral": {
+          "header1":"핵심역량",
+          "header2":"하위역량",
+          "header3":"구성요소",
+          "header4":"행동지표",
+          "header5":"평가방법",
+          "header6":"평가방법",
+          "header7":"성취기준"
+        },
+        "table1": {
+          "yearSemester": "년도-학기",
+          "subjectTitle": "교과목명",
+          "point": "학점",
+          "initDate": "작성일시",
+          "initYear": "개설학년",
+          "classify": "이수구분",
+          "count": "수강인원",
+          "professor": "홍길동",
+          "unit": "명"
+        },
+        "table3": {
+          "performanceAssessment": "전공능력 전반 달성도(자가평가)"
+        },
+        "table4": {
+          "category": "구분",
+          "question": "문항",
+          "evaluation": "평가",
+          "category1": "준비",
+          "category2": "진행",
+          "category3": "평가"
+        },
+        "table5": {
+          "title": "교수자 분석 의견"
+        },
+        "table6": {
+          "title": "성적 분석 의견",
+          "coreCompetencies": "핵심역량",
+          "personnel": "인원",
+          "total": "계"
+        },
+        "table7": {
+          "title": "성적 분석 의견"
+        },
+        "table8": {
+          "title": "교수자 분석 의견"
+        },
+        "alert": {
+          "save": "저장하시겠어요?",
+          "saveSuccess": "정상처리됐습니다.",
+          "validate": "필수입력항목은 모두 입력해주세요."
+        }
+      }
+    },
+    "qna": {
+      "title": "Q&A",
+      "titleReg": "Q&A 등록",
+      "titleAns": "답변 조회",
+      "goCreate": "질문 등록",
+      "rowNum": "번호",
+      "ttl": "제목",
+      "regDate": "접수일",
+      "stsCd": "상태",
+      "ansDate": "답변일",
+      "ansId": "답변자",
+      "cont": "내용",
+      "file": "첨부파일",
+      "contAns": "답변 내용",
+      "goNew": "추가 문의 등록하기"
+    }
+  },
+  "certificationReport": {
+    "manageApprovedSubjects": {
+      "title": "수강 개설년도",
+      "field1": "과목명",
+      "field2": "담당교수",
+      "field3": "구분",
+      "field4": "작성상태",
+      "exportExcel": "교과목 인증제 신청",
+      "title1": "교과목 인증제 신청",
+      "header1": "개설년도-학기",
+      "header2": "학과",
+      "header3": "과목명",
+      "header4": "신청분야",
+      "header5": "이수구분",
+      "header6": "학년",
+      "header7": "분반",
+      "header8": "담당 교수",
+      "header9": "구분",
+      "header10": "상태",
+      "field5": "교과목명",
+      "field6": "수강코드",
+      "field7": "구분",
+      "field8": "성명",
+      "field9": "소속학과",
+      "field10": "대상학년",
+      "field11": "교과목 특성",
+      "field12": "신청트랙",
+      "field13": "운영방식",
+      "field14": "적용과정",
+      "field15": "적용주차",
+      "field16": "Y’sU Hyflex AL 수업 운영에 대한 소개",
+      "button1": "심사 신청",
+      "title2": "Hyflex AL 교과목 인증제 신청",
+      "message": "교과목 인증제 승인처리하시겠어요?",
+      "message1": "승인처리됐습니다",
+      "title3": "Hyflex AL 교과목 인증 심사",
+      "message2": "반려처리됐습니다.",
+      "message3": "교과목 인증제 승인처리하시겠어요?",
+      "approve": "승인",
+      "message4": "승인처리됐습니다.",
+      "message5": "반려처리됐습니다.",
+      "field17": "교과목명",
+      "field18": "수강코드",
+      "field19": "구분",
+      "field20": "신청분야",
+      "field21": "성명",
+      "field22": "소속학과",
+      "field23": "대상학년",
+      "field24": "유형",
+      "field25": "설계",
+      "field26": "1.강의계획서",
+      "field27": "2.교육계획서",
+      "field28": "3.계획서(학습자)",
+      "field29": "운영",
+      "field30": "4.결과보고서(학습자)",
+      "field31": "5.수업운영결과보고서",
+      "field32": "성과",
+      "field33": "6.평가결과표",
+      "field34": "7.CQI보고서",
+      "button2": "심사 신청",
+      "title4": "캡스톤 디자인 교과목 인증제 신청",
+      "message6": "교과목 인증제 승인처리하시겠어요?",
+      "message7": "반려처리됐습니다.",
+      "message8": "교과목 인증제 승인처리하시겠어요?",
+      "message9": "승인처리됐습니다.",
+      "message10": "반려처리됐습니다.",
+      "header11": "개설년도-학기",
+      "header12": "학과",
+      "header13": "과목명",
+      "header14": "이수구분",
+      "header15": "학년",
+      "header16": "분반",
+      "header17": "담당교수",
+      "header18": "구분",
+      "header19": "선택",
+      "message13": "교과목{subjectNm}을(를) 하시겠어요?",
+      "title5": "교육목 인증제 반려",
+      "reject": "반려"
+    }
+  },
+  "11": {
+    "diagEmployeeAbility": {
+      "pageTitle": "직원역량진단",
+      "subTitle1": "직원역량진단 목록",
+      "subTitle2": "직원역량진단 결과",
+      "seeResult": "결과보기",
+      "notParticipate": "미참여",
+      "end": "종료",
+      "diagnosing": "진단중",
+      "complete": "응시완료",
+      "titleModal": "개인정보 수집 및 이용에 대한 동의",
+      "content1": "수집 및 이용 항목 : 소속, 성별, 학번 등",
+      "content2": "수집 및 이용 목적 : 직원역량진단 조사 통계 분석",
+      "content3": "보유 및 이용기간 : 3개월",
+      "confirm": "개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 동의를 거부할 경우 조사에 응답이 불가합니다.개인정보를 수집•이용하는데 동의하십니까?",
+      "yes": "예",
+      "no": "아니오",
+      "detail": {
+        "pageTitle": "직원역량진단 진행",
+        "title1": "교수정보",
+        "title2": "진단 안내",
+        "title3": "직원역량진단",
+        "level": "수준",
+        "send": "제출",
+        "question": "질문",
+        "previous": "이전",
+        "next": "다음",
+        "column1": "소속계열",
+        "column2": "교육경력",
+        "column3": "교원직급",
+        "column4": "교번",
+        "column5": "성별",
+        "column6": "성함",
+        "messageConfirmSave": "저장하시겠어요?",
+        "messageSuccessSave": "저장되었습니다. 다음 단계로 이동합니다.",
+        "messageConfirmSend": "제출하시겠어요?",
+        "messageSuccessSend": "정상 제출됐습니다. 목록 화면으로 이동합니다.",
+        "messageValidateRequired": "현재 화면의 모든 질문 응답 시 저장가능합니다."
+      },
+      "result": {
+        "pageTitle": "직원역량진단 결과",
+        "title1": "교수정보",
+        "title2": "진단 결과",
+        "column1": "1LEVEL 역량",
+        "column2": "구분",
+        "column3": "내용",
+        "column4": "프로그램"
+      }
+    },
+    "diagProfessorAbility": {
+      "pageTitle": "교수역량진단",
+      "subTitle1": "교수역량진단 목록",
+      "subTitle2": "교수역량진단 결과",
+      "seeResult": "결과보기",
+      "notParticipate": "미참여",
+      "end": "종료",
+      "diagnosing": "진단중",
+      "complete": "응시완료",
+      "titleModal": "개인정보 수집 및 이용에 대한 동의",
+      "content1": "수집 및 이용 항목 : 소속, 성별, 학번 등",
+      "content2": "수집 및 이용 목적 : 교수역량진단 조사 통계 분석",
+      "content3": "보유 및 이용기간 : 3개월",
+      "confirm": "개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있습니다. 동의를 거부할 경우 조사에 응답이 불가합니다.개인정보를 수집•이용하는데 동의하십니까?",
+      "yes": "예",
+      "no": "아니오",
+      "detail": {
+        "pageTitle": "교수역량진단 진행",
+        "title1": "교수정보",
+        "title2": "진단 안내",
+        "title3": "교수역량진단",
+        "level": "수준",
+        "send": "제출",
+        "question": "질문",
+        "previous": "이전",
+        "next": "다음",
+        "column1": "소속계열",
+        "column2": "교육경력",
+        "column3": "교원직급",
+        "column4": "교번",
+        "column5": "성별",
+        "column6": "성함",
+        "messageConfirmSave": "저장하시겠어요?",
+        "messageSuccessSave": "저장되었습니다. 다음 단계로 이동합니다.",
+        "messageConfirmSend": "제출하시겠어요?",
+        "messageSuccessSend": "정상 제출됐습니다. 목록 화면으로 이동합니다.",
+        "messageValidateRequired": "현재 화면의 모든 질문 응답 시 저장가능합니다."
+      },
+      "result": {
+        "pageTitle": "교수역량진단 결과",
+        "title1": "교수정보",
+        "title2": "진단 결과",
+        "column1": "WISE PRIDE",
+        "column2": "구분",
+        "column3": "내용",
+        "column4": "프로그램"
+      }
+    }
+  },  
+  "dashboard": {
+    "title": "대시보드(관리자)",
+    "title1": "교육과정 진행 현황",
+    "title2": "교육과정개발 작성 현황",
+    "title3": "교육과정개발 승인 현황",
+    "title4": "자체평가보고서 승인 현황",
+    "title5": "1학기 강의계획서 작성 현황",
+    "title6": "2학기 강의계획서 작성 현황",
+    "title7": "1학기 CQI 작성 현황",
+    "title8": "2학기 CQI 작성 현황",
+    "title9": "핵심역량 진단 현황",
+    "title10": "학년도",
+    "title11": "참여자",
+    "title12": "대상자",
+    "title13": "참여율",
+    "title14": "명",
+    "title15": "학년도 1학기",
+    "title16": "학년도 2학기",
+    "title17": "학습역량 진단 현황",
+    "title18": "교육과정",
+    "title19": "산출물",
+    "title20": "편리하게",
+    "title21": "이용해보세요",
+    "title22": "교과목 프로파일",
+    "title23": "강의계획서",
+    "title24": "CQI",
+    "title25": "인재양성보고서",
+    "title26": "공지사항",
+    "title27": "최신 등록순으로 표시됩니다.",
+    "title28": "자세한 사항은 상세페이지에서.",
+    "title29": "확인해 주세요.",
+    "title30": "학생",
+    "title31": "교직원",
+    "title32": "자료실",
+    "title33": "바로가기",
+    "title34": "바로가기 버튼으로 편리하게 이용해 보세요",
+    "title35": "교과목",
+    "title36": "프로파일 조회",
+    "title37": "교수역량",
+    "title38": "진단",
+    "title39": "인증제 신청",
+    "title40": "직원역량",
+    "title41": "바로가기",
+    "title42": "강의계획서 작성",
+    "title43": "* 당해 학년도 담당 교과목 목록이 표시됩니다.",
+    "title44": "바로가기",
+    "title45": "개설년도-학기",
+    "title46": "단과대학",
+    "title47": "학과",
+    "title48": "과목명",
+    "title49": "이수구분",
+    "title50": "학년",
+    "title51": "분반",
+    "title52": "담당교수",
+    "title53": "교육과정 학년도",
+    "title54": "작성상태",
+    "title55": "CQI 작성",
+    "title56": "* 당해 학년도 담당 교과목 목록이 표시됩니다.",
+    "title57": "교직원",
+    "title58": "봉사활동 신청",
+    "title59": "최근 모집중인 봉사활동",
+    "title60": "3건이 표시됩니다.",
+    "title61": "바로가기",
+    "title62": "모집기간 :",
+    "title63": "봉사기간 :"
+  },
+  "userManagement": {
+    "pageTitle": "사용자 관리",
+    "univ": "단과대학",
+    "dept": "학과",
+    "staffNo": "교번",
+    "name": "이름",
+    "role": "권한",
+    "position": "직랙",
+    "ipAccess": "접근허용 IP",
+    "roleOfDept": "학과 권한 정보",
+    "messageConfirmSave": "저장하시겠어요?",
+    "messageSuccessSave": "정상처리됐습니다."
+  },
+  "03":{
+    "basicInfoManagement":{
+        "infoUniversity": {
+          "pageTitle": "대학 정보",
+          "pageNote":"※ 교육과정 개발 시 등록된 최신 버전으로 적용됩니다. ",
+          "year": "학년도",
+          "regId": "등록자",
+          "regDate":"등록일",
+          "button":{
+            "register": "등록"
+          },
+          "form": {
+            "pageTitle": "대학정보",
+            "formTitle": "대학 등록 정보",
+            "cont": "학년도",
+            "vision": "비전",
+            "edu": "교육목표",
+            "talent": "인재상",
+            "btnClose": "목록",
+            "pageTitleAction":"대학정보 등록"
+          },
+          "alert": {
+            "delete": "항목을 삭제하시겠어요?",
+            "deleteSuccess": "삭제됐습니다.",
+            "deleteError": "활용된 항목은 삭제할 수 없습니다.",
+            "save": "저장하시겠어요?",
+            "saveSuccess": "정상처리됐습니다. ",
+            "saveError": "이미 등록된 학년도입니다.",
+            "valid": "필수입력항목을 모두 입력해주세"
+          }
+        }
+    }
+  },
+  "jobManagement": {
+    "pageTitle": "직무 관리",
+    "dept": "학과/학부",
+    "talt": "인재양성유형",
+    "jobNm": "직무",
+    "plan1": "※ 로그인 사용자의 소속 학과의 직무 목록만 조회됩니다.",
+    "btnReg": "직무 등록",
+    "useYn": "사용여부",
+    "regBy": "작성자",
+    "regDate": "작성일",
+    "createJob": "직무 등록",
+    "updateJob": "직무 수정",
+    "plan2": "로그인 사용자 소속 학과의 직무를 관리할 수 있습니다.",
+    "defn": "직무 정의",
+    "related": "관련 자격증"
+  },
+  "talentEduGoalsMng": {
+      "title": "학과정보",
+      "breadcrumb": {
+        "01": "HOME",
+        "02": "학과정보 관리",
+        "03": "학과인재상 및 교육목표"
+      },
+      "list": {
+        "title": "목록",
+        "subTitle": "※ 교육과정 개발 시 등록된 최신 버전으로 적용됩니다. ",
+        "openModal": "등록",
+        "year": "학년도",
+        "major": "단과대학",
+        "dept": "학과/학부",
+        "createdBy": "작성자",
+        "createdDate": "작성일"
+      },
+      "form": {
+        "title": "학과정보 등록",
+        "major": "단과대학",
+        "dept": "학과/학부",
+        "year": "학년도",
+        "vision": "비전",
+        "talent": "인재상",
+        "edu": "교육목표",
+        "progress": "주문식교육과정 교육목표",
+        "carrerAfterGraduation": "졸업 후 진로",
+        "qualificationsAvailable": "취득 가능 자격증",
+        "btnClose": "목록",
+        "btnSave": "확인"
+      },
+      "message": {
+        "confirmDelete": "항목을 삭제하시겠어요?",
+        "deleteSuccess": "삭제됐습니다.",
+        "deleteError": "활용된 항목은 삭제할 수 없습니다.",
+        "confirmSave": "저장하시겠어요?",
+        "saveSuccess": "정상처리됐습니다.",
+        "saveError": "이미 등록된 학년도 입니다.",
+        "valid": "필수입력항목을 모두 입력해주세"
+      }
+    },
+  "learningModule": {
+    "pageTitle": "KCS/NCS 분류 및 학습모듈",
+    "add": "분류추가",
+    "rename": "분류명변경",
+    "change": "사용유무변경",
+    "delete": "분류삭제",
+    "table": {
+      "header1": "분류체계",
+      "header2": "능력단위",
+      "header3": "학습모듈명",
+      "header4": "사용유무"
+    },
+    "modal": {
+      "add": {
+        "title": "분류등록",
+        "itemName": "분류명"
+      },
+      "rename": {
+        "title": "분류명변경",
+        "itemName": "분류명"
+      }
+    }
+  },
+  "coreAbilityJobList": {
+    "pageTitle": "핵심역량 기초직업능력 관리",
+    "coreAbility": "핵심역량",
+    "lowerLever": "하위역량",
+    "status": "작성상태",
+    "regBy": "작성자",
+    "regDate": "작성일",
+    "detailTitle": "핵심역량 기초직업능력 관리",
+    "detailTitle2": "핵심역량 정보",
+    "detailTitle3": "직업기초능력 매칭",
+    "mainFiled": "주요영역",
+    "subordinateField": "하위영역"
+  },
+  "jobAbilityManagement": {
+    "register": "등록",
+    "notYes": "미개발",
+    "pageTitle": "직무역량 관리(KCS/NCS 능력단위)",
+    "search1": "구분",
+    "search2": "대분류",
+    "search3": "중분류",
+    "search4": "소분류",
+    "search5": "세분류",
+    "search6": "능력단위명",
+    "column2": "유형",
+    "column3": "분류체계",
+    "column4": "분류번호 (직무역량 코드)",
+    "column5": "직무역량",
+    "column6": "수준",
+    "column7": "버전",
+    "column8": "학습모듈명 (교수학습지침서명)",
+    "btnExcelDowload": "목록 엑셀 다운로드",
+    "btnRegister": "직무역량 추가",
+    "pageTitleCrud": "직무역량 관리",
+    "pageHistory": "개발 이력",
+    "tab1": {
+      "titleTab": "01.직무역량(능력단위) 등록",
+      "pageTitle": "직무역량(능력단위) 등록",
+      "column1": "유형",
+      "column2": "분류선택",
+      "column3": "직무역량 명칭",
+      "column4": "직무역량 코드",
+      "column5": "개발연도",
+      "column6": "직무역량 버전",
+      "column7": "정의",
+      "column8": "학습모듈명(교수학습지침서명)",
+      "column9": "수준",
+      "column10": "첨부파일",
+      "btnVersionUp": "버전 올리기",
+      "btnNext": "다음",
+      "update": "수정",
+      "defaultSelect1": "대분류 선택",
+      "defaultSelect2": "중분류 선택",
+      "defaultSelect3": "소분류 선택",
+      "defaultSelect4": "세분류 선",
+      "no": "없음",
+      "confirmNextTab": "저장 후 다음단계로 이동하시겠어요?",
+      "confirmVersionUp": "직무역량 버전을 올리기시겠어요?",
+      "yesVersionUp": "올리기",
+      "dupliCateCVer": "이미 존재된 직무역량 코드를 저장할 수 없습니다. 다시 확인해주세요.",
+      "nextTab": "다음 단계로 이동하시겠습니까?",
+      "maxVer": "버전은 최대 9버전까지만 올리수 있습니다. 다시 확인해주세요."
+    },
+    "tab2": {
+      "titleTab": "02.하위역량(능력단위 요소) 등록",
+      "pageTitle": "하위역량(능력단위요소) 등록",
+      "createChildAbility": "하위역량 추가",
+      "deleteChildAbility": "하위역량",
+      "childAbilityCd": "하위역량 코드",
+      "childAbilityNm": "하위역량명",
+      "conductingStandards": "수행준거",
+      "knowledge": "지식",
+      "technical": "기술",
+      "attitude": "태도",
+      "useYn": "사용여부",
+      "confirmDeleteChildAbility": "활용된 하위역량은 삭제할 수 없습니다.",
+      "validateDeleteChildAbility": "활용된 하위역량은 삭제할 수 없습니다."
+    },
+    "tab3": {
+      "titleTab": "03.적용범위 및 작업상황",
+      "pageTitle": "적용범위 및 작업상황",
+      "column1": "고려사항",
+      "column2": "자료 및 관련서류",
+      "column3": "장비 및 도구",
+      "column4": "재료"
+    },
+    "tab4": {
+      "titleTab": "04.개발이력",
+      "previous": "이전",
+      "column1": "직무명(세분류)",
+      "column2": "분류번호",
+      "column3": "개발연도 현재",
+      "column4": "개발연도 최초(1차)",
+      "column5": "개발자 현재",
+      "column6": "개발자 최초(1차)",
+      "column7": "향후보완연도(예정)(선택입력)"
+    }
+  },
+  "lookupReport":{
+      "title": "교육과정개발보고서 조회",
+      "breadcrumb":"",
+      "list":{
+        "title":"검색",
+        "year": "학년도",
+        "lesson": "학과",
+        "regBy": "작성자",
+        "search": "검색",
+        "reset": "초기화"
+      },
+      "form":{
+        "title":"교육과정개발보고서 목록",
+        "subTitle": "※ 로그인 사용자 소속의 작성완료 된 교육과정개발 보고서를 조회할 수 있습니다. ",
+        "year": "학년도",
+        "lesson": "학과",
+        "regBy": "작성자",
+        "lookup": "조회"
+      }
+  },
+  "lookupTechPlan":{
+      "title": "강의계획서 조회",
+      "breadcrumb":"",
+      "list":{
+        "title": "검색",
+        "year": "개설연도",
+        "grade": "학년",
+        "semester": "학기",
+        "subName": "교과목명",
+        "professCharge": "담당 교수",
+        "status": "작성 상태",
+        "search": "검색",
+        "reset": "초기화"
+      },
+      "form":{
+        "title": "강의계획서 목록",
+        "year": "개설연도",
+        "seemester": "학기",
+        "department": "학과",
+        "courseCategory*": "교과구분*",
+        "courseName": "교과목명",
+        "courseCode": "교과목코드",
+        "grade": "학년",
+        "classGroup": "분반",
+        "professorCharge": "담당 교수",
+        "CoursCategory": "이수구분",
+        "status": "작성 상태"
+      }
+  },
+  "lookupAchievement": {
+      "title": "최종성적조회",
+      "breadcrumb":"",
+      "list":{
+        "title": "검색",
+        "year": "학년도",
+        "semester": "학기",
+        "subjectName": "과목명",
+        "status": "평가상태",
+        "search": "검색",
+        "reset": "초기화"
+      },
+      "form":{
+        "title": "목록",
+        "year": "개설학년도-학기",
+        "department": "계열",
+        "faculty": "학과/학부",
+        "subjectName": "과목명",
+        "compClassic": "이수구분",
+        "grade": "학년",
+        "class": "분반",
+        "professorCharge": "담당교수",
+        "curriculumYear": "교육과정 학년도",
+        "status": "상태"
+      },
+      "detail":{
+        "title": "최종성적조회",
+        "subTitle": "1.역량별 성취도 평가 결과",
+        "restriction": "제한",
+        "rating": "평점",
+        "total": "총원",
+        "higherA": "A0이상",
+        "higherB": "B0이상",
+        "A": "A+",
+        "A0": "A0",
+        "B": "B+",
+        "B0": "B0",
+        "C": "C+",
+        "C0": "C0",
+        "D": "D+",
+        "D0": "D0",
+        "F": "F",
+        "titleSubject": "2.교과목명A(교과목 코드) 2025학년도 1학년 1학기 01반(담당교수명) 최종성적관리",
+        "number":"번호",
+        "grade":"학년",
+        "studentName":"학번",
+        "name":"이름",
+        "class":"분반",
+        "academicRecord":"학적",
+        "1st":"1차",
+        "2st":"2차",
+        "subtotal":"소계",
+        "archievementLevel":"성취수준",
+        "attendance":"출석",
+        "totalScore": "총점",
+        "ranking":"순위",
+        "percentile":"백분위",
+        "score":"최종성적(점수)",
+        "list": "목록",
+        "print": "성적평가표 인쇄",
+        "download": "엑셀 다운로드"
+      }
+
+  },
+  "lectureDesignSchedule": {
+        "pageTitle": "강의설계 일정",
+        "title": "강의설계 일정",
+        "breadcrumb": "",
+        "alertPage": "학년도, 학기 설정 후 검색을 진행해주세요.",
+        "alertCheck": "강의설계 일정 선택하세요.",
+        "list": {
+          "year": "학년도",
+          "term": "학기",
+          "subjectName": "교과목명",
+          "syllabusStatus": "강의계획서 상태",
+          "planStatus": "평가계획서 상태",
+          "evaluationStatus": "평가 상태",
+          "subjectCqiStatus": "교과목CQI 상태",
+          "search": "검색",
+          "reset": "초기화"
+        },
+        "sts1": "미작성",
+        "sts2": "작성중",
+        "sts3": "작성완료",
+        "form": {
+          "title": "목록",
+          "select": "선택",
+          "year": "학년도",
+          "term": "학기",
+          "department": "학과/학부",
+          "subjectName": "교과목명",
+          "grade": "학년",
+          "classDivision": "분반",
+          "lecturePlanWriting": "강의계획서 작성기간",
+          "syllabusStatus": "강의계획서 상태",
+          "evalPlanPeriod":"평가계획서 작성기간",
+          "evalPlanStatus": "평가계획서 상태",
+          "evalPeriod": "평가 기간",
+          "evalStatus": "평가 상태",
+          "subjectCQI": "교과목 CQI 작성기간",
+          "cqiStatus": "CQI 상태",
+          "regId": "작성자",
+          "date": "작성일",
+          "setOption": "선택 일정 설정",
+          "setAll": "일괄 설정"
+        },
+        "modal": {
+          "title": "강의설계 일정 일괄설정",
+          "titleChooseDivision": "강의설계 일정 설정(분반을 선택했을 경우)",
+          "titleChooseCheckbox": "강의설계 선택 일정 설정(체크박스 선택했을 경우)",
+          "year":"학년도",
+          "term":"학기",
+          "lecturePlanWritingPeriod": "강의계획서 작성 기간",
+          "evalPlanPeriod": "평가계획서 작성 기간",
+          "studentJobEval":"학생 직무수행능력 평가 기간",
+          "subjectCqiWritingPeriod": "교과목CQI 작성 기간",
+          "subjectName": "교과목명",
+          "classDivision": "분반",
+          "save": "저장",
+          "close": "닫기"
+        }
+  },
+  "finalGradeManagement": {
+      "title1": "학생 직무수행능력 평가",
+      "title": "최종성적관리",
+      "titleNoti": "2025학년도 1학기 학생 직무수행능력 평가기간은 YYYY-MM-DD ~ YYYY-MM-DD 입니다. ",
+      "list": {
+        "titleSearc": "검색",
+        "year": "학년도",
+        "term": "학기",
+        "subjectname": "과목명",
+        "status": "상태",
+        "reset": "초기화",
+        "search": "검색"
+      },
+      "form": {
+        "title": "목록",
+        "year": "개설학년도-학기",
+        "department": "게열/학부",
+        "major": "학과/전공",
+        "subjectName": "과목명",
+        "distinctionDegrees": "이수구분",
+        "grade": "학년",
+        "classDivision": "분반",
+        "curiAcademicYear": "교육과정 학년도",
+        "situation": "상태"
+      },
+      "modal": {
+        "title": "최종성적 작성",
+        "titleheader1": "1.역량별 성취도 평가 결과",
+        "titleheader2": "2.교과목명A(교과목 코드) 2025학년도 1학년 1학기 01반(담당교수명) 최종성적관리",
+        "limit": "제한",
+        "rate":"평점",
+        "total": "총원",
+        "height": "A0이상",
+        "heightB": "B0이상",
+        "A": "A+",
+        "A0": "A0",
+        "B": "B+",
+        "B0": "B0",
+        "C": "C+",
+        "C0": "C0",
+        "D": "D+",
+        "D0": "D0",
+        "F": "F",
+        "number":"번호",
+        "grade":"학년",
+        "studentNumber": "학번",
+        "name": "이름",
+        "classDivision": "분반",
+        "academicRecord": "학적",
+        "1st": "1차",
+        "2st": "2차",
+        "subtotal": "소계",
+        "level": "성취수준",
+        "attendance": "출석",
+        "totalScore": "총점",
+        "ranking": "순위",
+        "percentile": "백분위",
+        "print": "성적평가표(제출용) 인쇄",
+        "download": "엑셀 다운로드",
+        "complete": "완료",
+        "inventory": "완료취소",
+        "cancel": "완료취소"
+      },
+      "modalStuPerformance": {
+        "title": "학생 직무수행능력 평가 입력",
+        "header": "1.교과목 정보",
+        "header1": "2.직무수행능력 평가",
+        "courseName": "교과목명(교과목코드)",
+        "year": "개설 학년도-학기",
+        "credit": "학점-시수",
+        "distin": "이수구분",
+        "numberStudent": "수강학생수",
+        "lesson": "학과",
+        "grade": "학년-분반",
+        "theory": "이론/실습",
+        "professCharge": "담당교수",
+        "evaluation": "평가완료일시",
+        "number": "번호",
+        "studentNumber": "학번",
+        "name": "이름",
+        "academicRecord": "학적",
+        "attendance": "출석(00%)",
+        "totalEval": "평가 합계(00%)",
+        "1st": "1차",
+        "jobCompetencyA": "직무역량A",
+        "jobCompetencyB": "직무역량B",
+        "jobCompetencyC": "직무역량C",
+        "subCompetencyA": "하위역량A-1",
+        "subCompetencyA2": "하위역량A-2",
+        "subCompetencyB": "하위역량B-1",
+        "subtotal": "소계",
+        "2st":"2차",
+        "subCompetencyC": "직무역량C-2",
+        "download": "엑셀 다운로드",
+        "temporaryStorage": "임시저장",
+        "save": "저장",
+        "inventory": "목록"
+
+      }
+  },
+  "competencyStudent": {
+    "title": "학생별 직무능력성취도",
+    "form": {
+      "header": "검색",
+      "year": "학년도",
+      "term": "학기",
+      "grade": "학년",
+      "lesson": "학과",
+      "studentNumber": "학번",
+      "name": "성명",
+      "search": "검색",
+      "reset": "초기화"
+    },
+    "list": {
+      "header": "학생별 직무역량 성취도 목록",
+      "student": "학생",
+      "job": "직무",
+      "abilityUnit": "능력단위",
+      "division": "구분",
+      "abilityUnitName": "능력단위명",
+      "abilityUnitElement": "능력단위 요소명",
+      "jobAchievement": "직무능력성취도",
+      "competencyUnitElement": "능력단위요소",
+      "download": "엑셀 다운로드"
+    }
+  },
+  "jobCompetency": {
+    "title": "직무별 직무능력성취도",
+    "form": {
+      "header": "검색",
+      "year": "학년도",
+      "term": "학기",
+      "grade": "학년",
+      "lesson": "학과",
+      "job": "직무",
+      "search": "검색",
+      "reset": "초기화"
+    },
+    "list": {
+      "header": "직무별 직무역량 성취도 목록",
+      "job": "직무",
+      "abilityUnit": "능력단위",
+      "abilityUnitName": "능력단위명",
+      "abilityUnitElement": "능력단위 요소명",
+      "jobAchievement": "직무능력성취도",
+      "competencyUnitElement": "능력단위요소",
+      "linkedSubject": "연계교과목",
+      "associatedDepartment": "연계학과",
+      "download": "엑셀 다운로드"
+    }
+  },
+  "jobCompetencyDepartment": {
+    "title": "학과별 직무능력성취도",
+    "form": {
+      "header": "검색",
+      "year": "학년도",
+      "term": "학기",
+      "grade": "학년",
+      "lesson":"학과",
+      "search": "검색",
+      "reset": "초기화"
+    },
+    "list": {
+      "title": "학과별 직무역량 성취도 목록",
+      "headerLeft": "건축디자인과",
+      "headerRight": "* NCS 능력단위평가에 0.8, 직업기초능력에 0.2의 가중치 적용",
+      "job": "직무",
+      "abilityUnit": "능력단위",
+      "division": "구분",
+      "abilityUnitName": "능력단위명",
+      "abilityUnitElement": "능력단위 요소명",
+      "jobAchievement": "직무능력성취도",
+      "competencyUnitElement": "능력단위요소",
+      "lesson":"학과",
+      "linkedSubject": "연계교과목",
+      "download": "엑셀 다운로드"
+    }
+  },
+  "jobCompetencyUniversity": {
+    "title": "대학전체 직무능력성취도",
+    "form": {
+      "title": "검색",
+      "year": "학년도",
+      "term": "학기",
+      "grade": "학년",
+      "lesson":"학과",
+      "search": "검색",
+      "reset": "초기화"
+    },
+    "list": {
+      "title": "대학전체 직무역량 성취도 목록",
+      "headerLeft": "대학 직무능력성취도 : 77.31",
+      "headerRight": "* NCS 능력단위평가에 0.8, 직업기초능력에 0.2의 가중치 적용",
+      "lesson":"학과",
+      "job": "직무",
+      "abilityUnit": "능력단위",
+      "division": "구분",
+      "abilityUnitName": "능력단위명",
+      "abilityUnitElement": "능력단위 요소명",
+      "jobAchievement": "직무능력성취도",
+      "competencyUnitElement": "능력단위요소",
+      "note": "비고",
+      "download": "엑셀 다운로드"
+    }
+  },
+  "trainingProcess" : {
+    "title" : "교육과정CQI",
+    "search1" : "학년도",
+    "search2" : "학과",
+    "btnSearch" : "조회하기",
+    "column1" : "번호",
+    "column2" : "학년도",
+    "column3" : "학과",
+    "column4" : "교육과정 유형",
+    "column5" : "상태",
+    "column6" : "작성자",
+    "column7" : "작성일",
+    "column8" : "인쇄"
+  },
+  "createTrainingProcess" : {
+    "title" : "교육과정CQI",
+    "tab1" : "탭제목 1",
+    "tab2" : "탭제목 2"
+  },
+  "generalTab1": {
+    "table1": {
+      "title": "1.학생현황(단위: 명, %)",
+      "caption": "테이블 제목",
+      "header1": "구분",
+      "header2": "성명",
+      "header3": "소속 학과(학부)",
+      "header4": "직위",
+      "header5": "주요역할",
+      "header6": "관리"
+    },
+    "table2": {
+      "title": "2.교육과정 자체평가 목적",
+      "caption": "테이블제목",
+      "content1": "대학과 학과의 교육목표에 따라 양질의 교육과정을 제공하기 위한 학과 차원의 지속적인 모니터링 시행",
+      "content2": "교육과정의 체계적인 진단과 평가를 통해 학생의 역량(학습성과)을 향상시키고, 수업을 개선하는 등 교육의 선순환 체계 구축",
+      "content3": "차년도 교육과정 개발 개편 및 운영을 위한 개선사항 도출"
+    },
+    "table3": {
+      "title": "3.교육과정 자체평가 조직(내부/산업체)",
+      "item1": {
+        "internalTitle": "내부",
+        "caption": "테이블 제목",
+        "header1": "성명",
+        "header2": "전공분야",
+        "header3": "소속",
+        "header4": "직위",
+        "header5": "비고",
+        "header6": "삭제",
+        "addButton": "추가",
+        "emptyMessage": "※ 추가 버튼을 이용해서 입력해주세요."
+      },
+      "item2": {
+        "companyTitle": "산업체",
+        "caption": "테이블 제목",
+        "header1": "성명",
+        "header2": "전공분야",
+        "header3": "소속",
+        "header4": "직위",
+        "header5": "비고",
+        "header6": "삭제",
+        "addButton": "추가",
+        "emptyMessage": "※ 추가 버튼을 이용해서 입력해주세요."
+      }
+    },
+    "table4": {
+      "title": "4.교육과정 자체평가 절차",
+      "caption": "테이블 제목",
+      "header1": "절차",
+      "header2": "교육과정CQI 계획 수립",
+      "header3": "교육과정CQI 시행",
+      "header4": "교육과정CQI 결과 보고",
+      "header5": "교육과정 환류",
+      "contentHeader1": "내용",
+      "content1_1": "교육과정CQI 세부계획 수립",
+      "content1_2": "교육과정CQI 추진일정 수립",
+      "content1_3": "대학정보공시 학과 현황자료 수집 및 제공",
+      "content2_1": "대학정보공시 학과 현황자료 분석",
+      "content2_2": "당해년도 1~2학기 교과목CQI, 진단평가, 역량성취도 결과 분석",
+      "content2_3": "교육과정 개발, 교육과정 운영, 교육과정 지원, 교육과정 성과 및 개선 4개 영역으로 구분하여 자체평가 시행",
+      "content2_4": "평가위원별 평가결과 종합",
+      "content2_5": "교육과정CQI 결과 시스템 입력 및 제출",
+      "content2_6": "차년도 개선계획 수립(학과차원)",
+      "content3_1": "학과별 교육과정CQI 평가 결과 교무위원회 보고",
+      "content3_2": "차년도 개선계획 수립(대학차원)",
+      "content4_1": "도출된 학과/대학차원 개선계획을 차년도 교육과정 개발 개편 시 반영",
+      "contentHeader2": "시행주체",
+      "content5_1": "주관부서",
+      "content5_2": "학과교육과정개발운영위원회",
+      "content5_3": "주관부서",
+      "content5_4": "주관부서",
+      "subContent5_4": "학과교육과정개발운영위원회"
+    },
+    "table5": {
+      "title": "5.교양 교육과정 자체평가 내용 및 방법",
+      "caption": "테이블 제목",
+      "header1": "평가영역",
+      "header2": "평가항목",
+      "header3": "평가방법",
+      "content1_1": "1.교육과정 개발",
+      "content1_2": "교육목표의 타당성",
+      "content1_3": "대학의 교육목표 및 핵심역량과의 연계성",
+      "content1_4": "교육과정구성",
+      "content2_1": "2.교육과정 운영",
+      "content2_2": "교육과정 운영 적절성",
+      "content3_1": "3.교육과정 지원",
+      "content3_2": "교양교육의 행·재정 지원",
+      "content3_3": "교육환경 및 기자재",
+      "content4_1": "4.교육과정 성과 및 개선",
+      "content4_2": "교육과정 성과",
+      "content4_3": "교육과정 개선",
+      "evaluationMethod": "평가위원 5점 리커트 척도 및 기술평가"
+    },
+    "table6": {
+      "title": "6.교육과정 자체평가 환류 및 활용방안",
+      "caption": "테이블제목",
+      "header": "환류 및 활용방안",
+      "subHeader" : "(자율 기술(상기 내용중심)"
+    }
+  },
+  "majorTab1": {
+    "table1": {
+      "title": "1.학생현황(단위: 명, %)",
+      "caption": "테이블 제목",
+      "header1": "구분",
+      "header2": "재학생",
+      "header3": "휴학생",
+      "header4": "재적생",
+      "header5": "재학율 (A/B*100)",
+      "subHeader1": "정워내",
+      "subHeader2": "정원외",
+      "subHeader3": "합계(A)",
+      "subHeader4": "정원내",
+      "subHeader5": "정원외",
+      "subHeader6": "합계",
+      "subHeader7": "정원내",
+      "subHeader8": "정원외",
+      "subHeader9": "합계(B)",
+      "text1" : "1학기"
+    },
+    "table2": {
+      "title": "2.교원현황(단위: 명, %)",
+      "caption": "테이블 제목",
+      "header1": "구분",
+      "header2": "재학생수",
+      "header3": "전임교원",
+      "header4": "전임교원1 인당 학생수",
+      "header5": "비전임교원",
+      "header6": "계",
+      "subHeader1": "교수",
+      "subHeader2": "부교수",
+      "subHeader3": "조교수",
+      "subHeader4": "합계",
+      "subHeader5": "겸임교원",
+      "subHeader6": "초빙교원",
+      "subHeader7": "시간강사",
+      "subHeader8": "기타",
+      "text1" : "학과명A"
+    },
+    "table3": {
+      "title": "3.교육과정 자체평가 목적",
+      "caption": "테이블제목",
+      "content1": "대학과 학과의 교육목표에 따라 양질의 교육과정을 제공하기 위한 학과 차원의 지속적인 모니터링 시행",
+      "content2": "교육과정의 체계적인 진단과 평가를 통해 학생의 역량(학습성과)을 향상시키고, 수업을 개선하는 등 교육의 선순환 체계 구축",
+      "content3": "차년도 교육과정 개발 개편 및 운영을 위한 개선사항 도출"
+    },
+    "table4": {
+      "title": "4.교육과정 자체평가 조직(내부/산업체)",
+      "item1": {
+        "internalTitle": "내부",
+        "caption": "테이블 제목",
+        "header1": "구분",
+        "header2": "구분",
+        "header3": "구분",
+        "header4": "구분",
+        "header5": "구분",
+        "header6": "구분",
+        "emptyMessage": "※ 추가 버튼을 이용해서 입력해주세요."
+      },
+      "item2": {
+        "companyTitle": "산업체",
+        "caption": "테이블 제목",
+        "header1": "구분",
+        "header2": "구분",
+        "header3": "구분",
+        "header4": "구분",
+        "header5": "구분",
+        "header6": "구분",
+        "emptyMessage": "※ 추가 버튼을 이용해서 입력해주세요."
+      }
+    },
+    "table5": {
+      "title": "5.교육과정 자체평가 절차",
+      "caption": "테이블 제목",
+      "header1": "절차",
+      "header2": "교육과정CQI 계획 수립",
+      "header3": "교육과정CQI 시행",
+      "header4": "교육과정CQI 결과 보고",
+      "header5": "교육과정 환류",
+      "contentHeader1": "내용",
+      "content1_1": "교육과정CQI 세부계획 수립",
+      "content1_2": "교육과정CQI 추진일정 수립",
+      "content1_3": "대학정보공시 학과 현황자료 수집 및 제공",
+      "content2_1": "대학정보공시 학과 현황자료 분석",
+      "content2_2": "당해년도 1~2학기 교과목CQI, 진단평가, 역량성취도 결과 분석",
+      "content2_3": "교육과정 개발, 교육과정 운영, 교육과정 지원, 교육과정 성과 및 개선 4개 영역으로 구분하여 자체평가 시행",
+      "content2_4": "평가위원별 평가결과 종합",
+      "content2_5": "교육과정CQI 결과 시스템 입력 및 제출",
+      "content2_6": "차년도 개선계획 수립(학과차원)",
+      "content3_1": "학과별 교육과정CQI 평가 결과 교무위원회 보고",
+      "content3_2": "차년도 개선계획 수립(대학차원)",
+      "content4_1": "도출된 학과/대학차원 개선계획을 차년도 교육과정 개발 개편 시 반영",
+      "contentHeader2": "시행주체",
+      "content5_1": "주관부서",
+      "content5_2": "학과교육과정개발운영위원회",
+      "content5_3": "주관부서",
+      "content5_4": "주관부서",
+      "subContent5_4": "학과교육과정개발운영위원회"
+    },
+    "table6": {
+      "title": "6.전공 교육과정 자체평가 내용 및 방법",
+      "caption": "테이블 제목",
+      "header1": "평가영역",
+      "header2": "평가항목",
+      "header3": "평가방법",
+      "content1_1": "1.교육과정 개발",
+      "content1_2": "2.교육과정 운영",
+      "content1_3": "3.교육과정 지원",
+      "content1_4": "4.교육과정 성과 및 개선",
+      "content2_1": "대내외 환경 및 요구분석 적절성",
+      "content2_2": "교육과정 편성 타당성",
+      "content2_3": "교육과정 운영 적절성",
+      "content2_4": "교육과정 이수현황",
+      "content2_5": "교육환경 및 기자재",
+      "content2_6": "교육과정 성과 및 분석",
+      "content2_7": "교육과정 개선",
+      "content3_1": "평가위원 5점 리커트 척도 및 기술평가",
+      "evaluationMethod": "평가위원 5점 리커트 척도 및 기술평가"
+    },
+    "table7": {
+      "title": "7.교육과정 자체평가 목적",
+      "caption": "테이블제목",
+      "header": "환류 및 활용방안",
+      "subHeader" : "(자율 기술(상기 내용중심)"
+    }
+  },
+  "generalTab2": {
+    "table1": {
+      "title": "1.교육과정 개발",
+      "caption": "테이블 제목",
+      "header1": "평가항목",
+      "header2": "평가내용",
+      "header3": "점수",
+      "header4": "평가결과",
+      "header5": "개선방안",
+      "header6": "달성시기",
+      "row1": {
+        "header1": "교육목표의 타당성",
+        "content1": "교양 교육과정의 교육목표는 교육환경 변화를 반영하여 타당하게 제시되었는가?",
+        "content2": "교양 교육과정의 교육목표는 학습자의 요구 및 수준을 반영하여 타당하게 제시되었는가?"
+      },
+      "row2": {
+        "header1": "대학의 교육목표 및 핵심역량과의 연계성",
+        "content1": "교양 교육과정의 교육목표는 대학 교육목표와 연계성을 가지고 있는가?",
+        "content2": "교양 교육과정은 대학 교양교육의 핵심역량과 연계성을 가지고 있는가?"
+      },
+      "average": "교육과정 개발 자체평가 평균점수"
+    },
+    "table2": {
+      "title": "2.교육과정 운영",
+      "caption": "테이블 제목",
+      "header1": "평가항목",
+      "header2": "평가내용",
+      "header3": "점수",
+      "header4": "평가결과",
+      "header5": "개선방안",
+      "header6": "달성시기",
+      "row1": {
+        "header1": "교육과정 운영 적절성",
+        "content1": "구성 교과목은 강좌규모 비율 및 분반의 수가 적정한가?",
+        "content2": "구성 교과목의 강의계획서는 구체적으로 작성되어 있는가?",
+        "content3": "구성 교과목은 핵심역량별 함양에 따른 다양한 수업방법 및 평가도구를 적용하고 있는가?"
+      },
+      "average": "교육과정 운영 자체평가 평균점수"
+    },
+    "table3": {
+      "title": "3.교육과정 지원",
+      "caption": "테이블 제목",
+      "header1": "평가항목",
+      "header2": "평가내용",
+      "header3": "점수",
+      "header4": "평가결과",
+      "header5": "개선방안",
+      "header6": "달성시기",
+      "row1": {
+        "header1": "교양교육의 행·재정 지원",
+        "content1": "교양 교육을 담당하는 교원 및 강사의 전문성을 적절하게 확보하고, 구성되어 있는가?",
+        "content2": "교양 교육을 담당하는 교원의 교수 역량 강화를 위하여 지속적으로 노력하고 있는가?"
+      },
+      "row2": {
+        "header1": "교육환경 및 기자재",
+        "content1": "교육환경 및 기자재는 교육과정 운영을 위하여 적절하게 확보되었는가?"
+      },
+      "average": "교육과정 지원 자체평가 평균점수"
+    },
+    "table4": {
+      "title": "4.교육과정 성과 및 개선",
+      "caption": "테이블 제목",
+      "header1": "평가항목",
+      "header2": "평가내용",
+      "header3": "점수",
+      "header4": "평가결과",
+      "header5": "개선방안",
+      "header6": "달성시기",
+      "row1": {
+        "header1": "교육과정 성과",
+        "content1": "교양 교육과정에 대한 학습자 만족도 결과를 분석하고 있는가?",
+        "content2": "교양 교육과정에 대한 학습자의 역량 함양 정도를 분석하고 있는가?",
+        "content3": "교양 교육과정에 대한 강의평가를 분석하고 있는가?",
+        "content4": "교양 교육과정은 자체평가 분석을 통해서 강점, 개선점, 시사점을 객관적으로 도출하고 있는가?"
+      },
+      "row2": {
+        "header1": "교육과정 개선",
+        "content1": "작년에 계획하였던 교양 교육과정 개선사항을 반영, 수행하였는가?",
+        "content2": "교육과정 성과분석을 토대로 교양 교육과정 개선방안 및 계획을 구체적으로 수립하였는가?"
+      },
+      "average": "교육과정 성과 및 개선 자체평가 평균점수"
+    }
+  },
+  "majorTab2": {
+    "table1": {
+      "title": "1.교육과정 개발",
+      "caption": "테이블 제목",
+      "header1": "평가항목",
+      "header2": "평가내용",
+      "header3": "점수",
+      "header4": "평가결과",
+      "header5": "개선방안",
+      "header6": "달성시기",
+      "row1": {
+        "header1": "대내외 환경 및 요구분석 적절성",
+        "content1": "대학 인재상, 교육목표, 대학･학과 발전계획, 학과 현황 등의 내부환경분석이 적절하게 수행되었는가?",
+        "content2": "지역 및 국가산업, 지역사회, 학문 변화 등의 외부환경분석이 적절하게 수행되었는가?",
+        "content3": "전공 관련 산업체, 졸업생, 재학생 등의 요구분석이 적절하게 수행되었는가?"
+      },
+      "row2": {
+        "header1": "교육과정 편성 타당성",
+        "content1": "대학 인재상, 교육목표, 대학･학과 발전계획, 학과 현황 등의 내부환경분석이 적절하게 수행되었는가?",
+        "content2": "전공역량 설정을 위해 인재양성유형에 부합된 역량 분석이 이루어졌는가?",
+        "content3": "전공역량 체계(역량-하위역량-행동지표)가 교육과정 개편 및 수업에 적용될 수 있도록 구체적 내용으로 제시되었는가?",
+        "content4": "전공역량 함양을 위해 교과목 편성이 타당하게 이루어졌는가?",
+        "content5": "전공 교육과정 개편에 의해 교과목 신설, 개편, 폐지 등의 개선이 적절히 이루어졌는가?",
+        "content6": "학과 교육과정개발운영위원회를 통해 개편된 교육과정의 심의 과정이 적절하게 이루어졌는가?"
+      },
+      "average": "교육과정 개발 자체평가 평균점수"
+    },
+    "table2": {
+      "title": "2.교육과정 운영",
+      "caption": "테이블 제목",
+      "header1": "평가항목",
+      "header2": "평가내용",
+      "header3": "점수",
+      "header4": "평가결과",
+      "header5": "개선방안",
+      "header6": "달성시기",
+      "row1": {
+        "header1": "교육과정 운영 적절성",
+        "content1": "전공 교육과정 편성 및 운영 계획에 따라 교과목이 적절하게 개설, 운영되었는가?",
+        "content2": "산업체 현장감각 및 기술 습득을 위하여 현장실습, 캡스톤디자인, 주문식교육과정 운영이 적절히 이루어졌는가?",
+        "content3": "수업의 질 제고를 위한 전임교원 담당 학점 비율, 강의규모 등은 적정한 수준으로 운영되었는가?",
+        "content4": "교과목 수업관리(출결, 휴・보강(수업기간) 등)는 규정 및 지침에 따라 엄정하게 이루어졌는가?",
+        "content5": "수업에 적합한 다양한 교수·학습방법을 활용하였는가?",
+        "content6": "학생들의 전공역량을 평가하기 위한 타당한 평가방법들이 적절히 활용되었는가?"
+      },
+      "average": "교육과정 운영 자체평가 평균점수"
+    },
+    "table3": {
+      "title": "3.교육과정 지원",
+      "caption": "테이블 제목",
+      "header1": "평가항목",
+      "header2": "평가내용",
+      "header3": "점수",
+      "header4": "평가결과",
+      "header5": "개선방안",
+      "header6": "달성시기",
+      "row1": {
+        "header1": "교육과정 이수현황",
+        "content1": "재학생의 전공 및 부전공, 트랙 신청/이수 현황을 파악하고 관리하고 있는가?"
+      },
+      "row2": {
+        "header1": "교육환경 및 기자재",
+        "content1": "강의실 및 실험·실습실이 교육과정 운영을 위하여 적절하게 구축되었는가?",
+        "content2": "장비 및 도구는 교육과정 운영을 위하여 적절하게 확보되었는가?"
+      },
+      "average": "교육과정 지원 자체평가 평균점수"
+    },
+    "table4": {
+      "title": "4.교육과정 성과 및 개선",
+      "caption": "테이블 제목",
+      "header1": "평가항목",
+      "header2": "평가내용",
+      "header3": "점수",
+      "header4": "평가결과",
+      "header5": "개선방안",
+      "header6": "달성시기",
+      "row1": {
+        "header1": "교육과정 성과 및 분석",
+        "content1": "전공 교육과정 운영을 통한 정량적 교육성과(교육만족도, 강의평가 등)는 양호하게 도출되었는가?",
+        "content2": "학생들의 지난해 대비 전공역량별 향상도는 우수한가?",
+        "content3": "학생들의 학업부진 및 전공능력 미달 학생들의 추수 관리가 적절하게 수행되었는가?",
+        "content4": "전공 교육과정이 학과의 신입생 등록률, 재학생 충원률, 취업률 등에 기여하고 있는가?"
+      },
+      "row2": {
+        "header1": "교육과정 개선",
+        "content1": "작년에 계획하였던 전공 교육과정 개선사항을 반영, 수행하였는가?",
+        "content2": "교육과정 성과분석을 토대로 전공 교육과정 개선방안 및 계획을 구체적으로 수립하였는가?"
+      },
+      "average": "교육과정 성과 및 개선 자체평가 평균점수"
+    }
+  },
+  "eduProcessCreation": {
+    "use": "활용",
+    "noUse": "미활용",
+    "title": "교육과정개발 관리",
+    "btnVersionUp": "버전 올리기",
+    "table": {
+      "year": "교육과정 학년도",
+      "gradeNm": "계열",
+      "deptNm": "학과/학부",
+      "eduCourseTypeNm": "유형",
+      "progStepNm": "작성단계",
+      "status": "상태",
+      "print": "인쇄",
+      "version": "버전",
+      "register": "작성자",
+      "regDate": "작성일(최종 수정일)"
+    },
+    "modal": {
+      "title": "신규 교육과정개발 학년도 설정",
+      "title1": "교육과정 유형"
+    },
+    "analysisAchievement": {
+      "title1": "1-1. 전년도 교육과정표",
+      "title2": "1-2. 교육과정CQI 분석 결과",
+      "title3": "전년도 교육과정표",
+      "title4": "학년도 교육과정표",
+      "title5": "학과명",
+      "title6": "운영기간 :",
+      "title7": "학기",
+      "title8": "교과목명",
+      "title9": "학점",
+      "title10": "이론",
+      "title11": "실습",
+      "title12": "KCS",
+      "title13": "NCS",
+      "title14": "학점 소계",
+      "title15": "총계",
+      "title16": "1.교육과정 개발",
+      "title17": "평가항목",
+      "title18": "평가내용",
+      "title19": "점수",
+      "title20": "평가결과",
+      "title21": "개선방안",
+      "title22": "달성시기",
+      "title23": "2.교육과정 운영",
+      "title24": "3.교육과정 지원",
+      "title25": "4.교육과정 성과 및 개선",
+      "title26": "5.차년도 교육과정 개발 및 운영 중점계획 도출",
+      "title27": "구분",
+      "title28": "중점계획",
+      "title29": "교육과정 개발",
+      "title30": "교육과정 운영",
+      "title31": "1.전년도 교육과정 운영 실적 분석 인쇄",
+      "title32": "교육과정 개발 자체평가 평균점수"
+    },
+    "environmentDemand": {
+      "title1": "2-1. 내부환경 분석",
+      "title2": "2-2. 외부환경 분석",
+      "title3": "2-3. 요구분석 및 시사점 도출",
+      "title4": "2-4. 교육과정 개선방향 도출",
+      "title5": "사업체(SME)",
+      "title6": "분석 결과",
+      "title7": "시사점(교육과정개발 고려사항)",
+      "title8": "졸업생",
+      "title9": "재학생",
+      "title10": "항목",
+      "title11": "강점(S)",
+      "title12": "약점(W)",
+      "title13": "기획(O)",
+      "title14": "S-O 전략(기회활용)",
+      "title15": "W-O 전략(약점 보완)",
+      "title16": "위협(T)",
+      "title17": "S-T 전략(경쟁대응 전략)",
+      "title18": "W-T 전략(혁신전략)",
+      "title19": "2.환경분석 및 요구분석 인쇄",
+      "title20": "학과 현황",
+      "title21": "학생 현황",
+      "title22": "교원 현황",
+      "title23": "교육 여건",
+      "title24": "산업 동향",
+      "title25": "인력 동향",
+      "title26": "지역 동향(기술 동향)",
+      "title27": "교육 동향",
+      "title28": "자격 동향"
+    },
+    "jobEduMng": {
+      "title1": "4-1.분류체계 기술",
+      "title2": "4-2.직무역량 검증",
+      "title3": "4-3.하위역량 및 수행준거 검증",
+      "title4": "직무명",
+      "title5": "직무정의",
+      "title6": "NCS분류체계기술",
+      "title7": "NCS/KCS 구분",
+      "title8": "대분류",
+      "title9": "중분류",
+      "title10": "소분류",
+      "title11": "세분류",
+      "title12": "관리",
+      "title13": "능력단위 구분",
+      "title14": "능력단위 코드",
+      "title15": "직무역량",
+      "title16": "교육 필요도",
+      "title17": "직무 중요도",
+      "title18": "평균",
+      "title19": "활용",
+      "title20": "능력단위 구분",
+      "title21": "직무역량(직무역량코드)",
+      "title22": "하위역량",
+      "title23": "수행준거",
+      "title24": "활용",
+      "title25": "미활용 사유",
+      "title26": "4.직무 정의 및 직무모형 설정 인쇄",
+      "messageConfirmSave": "해당 단계 수정 시 이후 단계가 모두 초기화 됩니다. 수정하시겠어요?",
+      "messageValidateDuplicate": "이미 선택된 세분류를 선택할 수 없습니다. 다시 확인해주세요.",
+      "messageValidateChooseJobAbility1": "직무역량을 하나 이상 선택해야 됩니다. 다시 확인해주세요.",
+      "messageValidateChooseJobAbility4": "직무역량은 최대 4개까지 활용할 수 있습니다.",
+      "messageValidateChildAbility": "직무역량 최소 하나 이상의 하위역량, 수행준거를 활용해야 합니다."
+    },
+    "subjectMng": {
+      "title1": "5-1.신설 교과목 코드 신청",
+      "title2": "5-2.교과목 도출",
+      "title3": "5-3.교과목별 역량 매핑",
+      "title4": "5-4.신설/폐지/동일대체교과목 지정",
+      "title5": "작성 지침",
+      "title6": "동일교과목: 폐지 교과목과 현재 교과목의 명칭이 동일하며, 학점 이론 실습 중 하나라도 변경이 있는 교과목",
+      "title7": "대체교과목: 폐지 교과목과 현재 교과목의 교과내용이 동일하나, 한글 또는 영문 교과목 명칭이 바뀐 교과목",
+      "title8": "지정사유:",
+      "title9": "(1 Level) 교과 폐지, 교과 신설",
+      "title10": "(2 Level)",
+      "title11": "① 이수구분 변경: 전공필수⤑전공선택 혹은 전공선택⤑전공필수와 같이 이수구분이 변경되는 교과목",
+      "title12": "② 교과목명 변경: 한글 또는 영문 교과목 명이 변경되는 교과목",
+      "title13": "③ 학점/시수 변경: 학점 또는 이론/실습 시수가 변경되는 교과목",
+      "title14": "④ 기타: 회의록에 변경사유 작성",
+      "title15": "참고사항:",
+      "title16": "(1) 동일•대체교과목 지정은 교과폐지, 교과신설에 따른 교육과정 연계를 위한 처리로 학과에서 자율적으로 설정하되,",
+      "title17": "동일•대체교과목 미지정에 따른 재학생(복학생) 수강 문제가 발생하지 않도록 숙려 필요",
+      "title18": "(2) 운영 중인 기존 교과목을 동일/대체교과목으로 신규 지정 시학기 이동 자제(재학생 수강에 영향)",
+      "title19": "(3) 운영 중인 기존 교과목의 학년도 변경 시 수강신청 전 재학생공지 필수(최소 2년간)",
+      "title20": "변경 전 교과목",
+      "title21": "지정 사유",
+      "title22": "동일/대체",
+      "title23": "변경 후 교과목",
+      "title24": "관리",
+      "title25": "구분",
+      "title26": "교과목",
+      "title27": "코드",
+      "title28": "개설",
+      "title29": "학기",
+      "title30": "이수",
+      "title31": "구분",
+      "title32": "교과목명",
+      "title33": "(영문명)",
+      "title34": "학점",
+      "title35": "(이론/실습)",
+      "title36": "지정사유1",
+      "title37": "지정사유2",
+      "title38": "동일/대체",
+      "title39": "교과목 코드",
+      "title40": "개설",
+      "title41": "학기",
+      "title42": "이수",
+      "title43": "구분",
+      "title44": "교과목명",
+      "title45": "(영문명)",
+      "title46": "학점",
+      "title47": "(이론/실습)",
+      "title48": "관리",
+      "title49": "[추가] 버튼을 눌러 입력란을 추가해주세요.",
+      "title50": "동일•대체교과목 없음",
+      "title51": "교과목 선택",
+      "title52": "5.교과목 도출 인쇄",
+      "title53": "교과목 추가",
+      "title54": "교과목명",
+      "title55": "교과목 코드",
+      "title56": "학점",
+      "title57": "직무역량",
+      "title58": "하위역량",
+      "title59": "수행준거",
+      "title60": "관리",
+      "title61": "학기구분",
+      "title62": "교과목명",
+      "title63": "이수구분",
+      "title64": "직무역량",
+      "title65": "하위역량",
+      "title66": "비율",
+      "title67": "공감소통",
+      "title68": "실무협업",
+      "title69": "창의융합",
+      "title70": "소통",
+      "title71": "인문적",
+      "title72": "소향",
+      "title73": "예술적",
+      "title74": "감수성",
+      "title75": "기술적",
+      "title76": "준비성",
+      "title77": "전문성",
+      "title78": "협업",
+      "title79": "통합적",
+      "title80": "사고",
+      "title81": "기업가",
+      "title82": "정신",
+      "title83": "문제해결",
+      "title84": "능력",
+      "title85": "신설 교과목 없음",
+      "title86": "교과목 추가",
+      "title87": "교과목명",
+      "title88": "이수구분",
+      "title89": "시수",
+      "title90": "이론",
+      "title91": "실습",
+      "title92": "학년",
+      "title93": "학기",
+      "title94": "신설내용",
+      "title95": "관리",
+      "title96": "(*) 입력된  동일•대체교과목이 있는 경우 동일대체교곽목 없음을 선택할 수 없습니다.",
+      "modal": {
+        "title1": "교과목 추가",
+        "title2": "교과목명",
+        "title3": "과목코드",
+        "title4": "교과구분",
+        "title5": "학점",
+        "title6": "시수",
+        "title7": "이론",
+        "title8": "실습",
+        "column1": "교과목명",
+        "column2": "과목코드",
+        "column3": "교과구분",
+        "column4": "학점",
+        "column5": "시수",
+        "column6": "이론",
+        "column7": "실습",
+        "column8": "생성일",
+        "column9": "선택",
+        "titleBefore": "변경 전 교과목 추가",
+        "titleAfter": "변경 후 교과목 추가"
+      },
+      "messageValidateDuplicateSbjt": "중복 교과목을 선택할 수 없습니다. 다시 확인해주세요.",
+      "messageValidate100": "직무역량, 핵심역량 비율의 합은 100%이어야 합니다.",
+      "messageValidate3CoreAbility": "교과목 당 최대 3개 핵심역량을 선택할 수 있습니다."
+    },
+    "typeTalentEdu": {
+      "title1": "3-1. 교육과정개발운영위원회 구성",
+      "title2": "3-2. 교육목표 및 인재상 수립",
+      "title3": "3-3. 인재양성유형 설정",
+      "title4": "3-4. 핵심직무 선정",
+      "title5": "3-5. 인재양성유형 선정 결과",
+      "title6": "내부",
+      "title7": "성명",
+      "title8": "전공분야",
+      "title9": "소속",
+      "title10": "직위",
+      "title11": "비고",
+      "title12": "삭제",
+      "title13": "※ 추가 버튼을 이용해서 내부 교육과정운영위워을 선택해주세요.",
+      "title14": "대학 비전",
+      "title15": "대학 교육목표",
+      "title16": "대학 인재상",
+      "title17": "학과(학부) 비전",
+      "title18": "학과(학부) 교육목표",
+      "title19": "학과(학부) 인재상",
+      "title20": "교육과정 세부 교육목표",
+      "title21": "AS-IS",
+      "title22": "교육과정 목록",
+      "title23": "인재양성유형",
+      "title24": "핵심직무",
+      "title25": "한계점",
+      "title26": "TO-BE",
+      "title27": "교육과정 목록",
+      "title28": "인재양성유형",
+      "title29": "핵심직무",
+      "title30": "변경사유",
+      "title31": "3.인재양성유형 설정 및 교육목표 수립 인쇄",
+      "title32": "인재양성유형",
+      "title33": "직무",
+      "title34": "비전",
+      "title35": "중요도",
+      "title36": "가능성",
+      "title37": "공간 면적 및",
+      "title38": "시설 적합성",
+      "title39": "기자재 구비",
+      "title40": "및 활 적합성",
+      "title41": "재학생",
+      "title42": "선호도",
+      "title43": "합계",
+      "title44": "판정",
+      "title45": "평가일",
+      "title46": "평가 참여자 수",
+      "title47": "직무 분야",
+      "title48": "인재양성유형(명)",
+      "title49": "직업(군)",
+      "title50": "직무중요도",
+      "title51": "직업전망",
+      "title52": "취업성과",
+      "title53": "학과비전",
+      "title54": "교육효과성",
+      "title55": "평균",
+      "title56": "결과",
+      "title57": "전공 선택"
+    },
+    "attachFile": {
+      "title1": "등록",
+      "title2": "제목",
+      "title3": "첨부파일",
+      "title4": "관리",
+      "title5": "부록 등록",
+      "title6": "제목",
+      "title7": "첨부파일"
+    },
+    "meetingReport": {
+      "title1": "교육과정개발위원회 회의록 목록",
+      "title2": "번호",
+      "title3": "사업구분",
+      "title4": "학년도",
+      "title5": "학과/학부",
+      "title6": "회의주제",
+      "title7": "작성자",
+      "title8": "작성일"
+    },
+    "roadmapMng": {
+      "title1": "학년-학기",
+      "title2": "직무역량",
+      "title3": "하위역량",
+      "title4": "교과목명",
+      "title5": "교과목",
+      "title6": "학년-학기",
+      "title7": "주문식 교과목",
+      "title8": "중점 교과목",
+      "title9": "캡스톤 디자인 교과목",
+      "title10": "창업 교과목",
+      "title11": "학과명",
+      "title12": "교육목표",
+      "title13": "인재상",
+      "title14": "인재양성유형 핵심직무",
+      "title15": "인재양성유형",
+      "title16": "주요직무내용",
+      "title17": "관련 분야 비전",
+      "title18": "핵심역량",
+      "title19": "인재양성유형",
+      "title20": "핵심역량",
+      "title21": "하위역량",
+      "title22": "관련 자격증",
+      "title23": "직무",
+      "title24": "관련 자격증",
+      "title25": "졸업 후 진로",
+      "title26": "인재양성유형",
+      "title27": "졸업 후 진로"
+    },
+    "subjectProfile": {
+      "title1": "교과목구분",
+      "title2": "전공",
+      "title3": "교과목번호(학사)",
+      "title4": "교과목명",
+      "title5": "학년",
+      "title6": "학기",
+      "title7": "학점",
+      "title8": "시수(이론/실습)",
+      "title9": "작성상태",
+      "title10": "교과목명",
+      "title11": "이수구분",
+      "title12": "이수기간",
+      "title13": "시수(이론/실습)",
+      "title14": "인재양성유형 및 직무역량",
+      "title15": "인재양성유형",
+      "title16": "직무명",
+      "title17": "직무역량",
+      "title18": "학습모듈명",
+      "title19": "교과목 개요 및 특징",
+      "title20": "교육목표",
+      "title21": "교육내용",
+      "title22": "교육정보",
+      "title23": "교수학습법",
+      "title24": "평가방법",
+      "title25": "교과 구분",
+      "title26": "타학과 수강 가능 여부",
+      "title27": "원격수업 여부",
+      "title28": "장비 및 도구",
+      "title29": "NCS능력단위",
+      "title30": "KCS능력단위(자체능력단위)",
+      "title31": "하위역량 / 수행준거 / 지식•기술•태도",
+      "title32": "하위역량",
+      "title33": "수행준거",
+      "title34": "지식•기술•태도"
+    }
+  },
+  "eduCourseCqi": {
+    "eduCourseCqiApprove": {},
+    "levelAchDept": {},
+    "levelAchJob": {},
+    "levelAchSchool": {},
+    "levelAchStudent": {
+      "pageTitle": "학생별 직무능력성취도",
+      "search1": "학년도",
+      "search2": "학기",
+      "search3": "학년",
+      "search4": "학과",
+      "search5": "학번",
+      "search6": "성명",
+      "column1": "학생",
+      "column2": "직무",
+      "column3": "능력단위",
+      "column4": "구분",
+      "column5": "능력단위명",
+      "column6": "능력단위 요소명",
+      "column7": "직무능력성취도",
+      "column8": "능력단위 요소",
+      "column9": "능력 단위",
+      "column10": "직무",
+      "column11": "학생"
+    }
+  },
+  "curriculumManagement": {
+    "pageTitle": "교과 구분 관리",
+    "dept": "학과/학부",
+    "training": "교육과정",
+    "register": "트랙 등록",
+    "program": "교과 구분",
+    "useYn": "사용여부",
+    "regBy": "작성자",
+    "regDate": "작성일",
+    "regTitleModal": "교육과정 등록",
+    "detailTitleModal": "교육과정 수정",
+    "alert": "로그인 사용자 소속 학과의 트랙을 관리할 수 있습니다.",
+    "define": "교육과정 정의",
+    "aletr1": "교육과정 목록",
+    "aletr2": "※ 로그인 사용자의 소속 학과의 트랙 목록만 조회됩니다."
+    },  
+  "eduCourseRp" :{
+    "year":"학년도"
+    ,"deptNm":"학과"
+    ,"regNm":"작성자"
+    ,"titleSearch":"조회"
+    ,"pageTitle":"교육과정개발보고서 조회"
+    ,"strRp":"[미리보기 및 인쇄]"
+  }
+}

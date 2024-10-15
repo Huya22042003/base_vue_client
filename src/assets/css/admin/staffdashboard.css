@@ -1,0 +1,201 @@
+@charset "utf-8";
+
+/* 교수 대시보드 css */
+.dashboard .page_toparea {
+  position: relative;
+  margin-bottom: 48px;
+}
+.dashboard .page_title {
+  display: inline-block;
+  font-size: 6rem; font-weight: 600; line-height: 6.4rem;
+  color: var(--black);
+}
+.dashboard .page_toparea {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+.dashboard .page_toparea .page_title {
+  display: inline-block;
+  color: var(--black); font-size: 6rem; font-weight: 600; line-height: 6.4rem; font-family: 'Gotham';
+}
+.dashboard .year_select .select_box {
+  border: none;
+}
+.dashboard .year_select .select_box .vs__actions {
+  margin-left: 8px;
+  width: 24px;
+  background: url(@/assets/images/common/icon_dash_year_dropdown.png) no-repeat;
+  background-position: right center;
+}
+.dashboard .year_select .select_box.v-select {
+  height: 44px;
+  background: none;
+  font-family: 'Gotham'; font-size: 4rem; font-weight: 600;
+}
+.dashboard .year_select .vs--unsearchable .vs__dropdown-toggle {
+  height: 48px;
+}
+.dashboard .year_select .vs--single .vs__selected {
+  font-family: 'Gotham'; font-size: 4rem; font-weight: 600; line-height: 3.6rem;
+}
+
+.dashboard.staff .sub_section > div {
+  display: inline-block;
+}
+.dashboard.staff .sub_section .dshb_banner {
+  position: relative; z-index: 2;
+  width: 484px; height: 510px;
+  margin-right: 32px;
+  vertical-align: top;
+}
+.dashboard.staff .sub_section .dshb_banner::before {
+ content: '';
+ position: absolute; right: 0; bottom: 0;  z-index: -2;
+ width: 418px; height: 463px;
+ background: #fff;
+ border-radius: 32px;
+ box-shadow: 0 0 16px rgba(0, 0, 0, 0.06);
+}
+.dashboard.staff .sub_section .dshb_banner::after {
+  content: '';
+  position: absolute; left: 0; top: 0; z-index: -2;
+  width: 378px; height: 454px;
+  background: #fff;
+  border-radius: 32px; 
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.06); 
+}
+.dashboard.staff .sub_section .dshb_banner > div {
+  width: 100%; height: 100%; 
+  padding: 40px 30px 81px 50px;
+  background: url(@/assets/images/dashboard/bg_staffdash_banner.png) no-repeat center;
+}
+.dashboard.staff .sub_section .dshb_banner .title {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 27px;
+  color: var(--dark1); font-size: 2.6rem;letter-spacing: -0.03em; line-height: 3.6rem;
+}
+.dashboard.staff .sub_section .dshb_banner  img {
+  width: 248px; height: 177px;
+  margin-left: 132px;
+  margin-bottom: 11px;
+}
+.dashboard.staff .sub_section .dshb_banner .my_todo strong {
+  display: block;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  font-size: 2rem; font-weight: 600; line-height: 2.6rem;
+  border-bottom: 3px solid var(--dark1);
+} 
+.dashboard.staff .sub_section .dshb_banner .my_todo p {
+  color: var(--dark1); font-size: 1.6rem; font-weight: 500; letter-spacing: -0.04em;
+}
+.dashboard.staff .sub_section .lecture_schedule_wrap {
+  width: calc(100% - 516px);
+  padding-top: 39px;
+  vertical-align: top;
+}
+.dashboard.staff .sub_section .lecture_schedule_wrap > div {
+  position: relative;
+  padding: 65px 38px 20px;  
+  background: var(--white);
+  border-radius: 32px 0 32px 32px;
+  box-shadow: 0 0 10px rgba(34,34,34, 0.06);
+}
+.dashboard.staff .sub_section .lecture_schedule_wrap strong {
+  position: absolute; right: 38px; top: -6px; z-index: 1;
+}
+.dashboard.staff .sub_section .lecture_schedule_wrap strong::before {
+  content: '';
+  position: absolute; top: -33px; right: -38px; z-index: -1;
+  width: calc(100% + 104px); height: 80px;
+  background: var(--white);
+  border-radius: 32px;
+}
+.dashboard.staff .sub_section .lecture_schedule_wrap strong::after {
+  content: '';
+  position: absolute; top: -19px; left: -115px;
+  width: 57px; height: 26px;
+  background: url(@/assets/images/main/bg_section_term2.png) no-repeat;
+}
+
+.lecture_schedule_wrap .tbl {
+  border: none;
+}
+.lecture_schedule_wrap .tbl_row thead {
+  color: var(--dark3); font-size: 1.6rem; font-weight: 500;
+  border-bottom: 3px solid var(--dark1);
+}
+.lecture_schedule_wrap .tbl_row thead th {
+  padding-top: 0;
+  padding-bottom: 20px;
+}
+
+.lecture_schedule_wrap .tbl table tbody th,
+.lecture_schedule_wrap .tbl table tbody td {
+ padding: 30px 0 29px;
+ border-bottom: 1px solid var(--dark1); line-height: 2.5rem;
+}
+.lecture_schedule_wrap .tbl table tbody th {
+  font-weight: 500;
+}
+.lecture_schedule_wrap .tbl table tbody td {
+  text-align: center;
+}
+.lecture_schedule_wrap .tbl table tbody td.days {
+  font-family: "Gotham"; font-size: 2rem; font-weight: 600; line-height: 2.5rem;
+}
+.lecture_schedule_wrap .tbl table {
+  border: none;
+} 
+.lecture_schedule_wrap .tbl table tbody tr:last-child th,
+.lecture_schedule_wrap .tbl table tbody tr:last-child td {
+  border: none;
+}
+.dashboard.staff .tbl table tbody td {
+  vertical-align: middle;
+}
+.dashboard.staff .tbl table tbody td a {
+  display: block;
+  /* vertical-align: baseline; */
+}
+.dashboard.staff .board_wrapper .qna_wrap ul li {
+  gap: 30px;
+}
+.dashboard.staff .board_wrapper .qna_wrap ul li a {
+  max-width: 394px;
+  flex-grow: 1;
+}
+.dashboard.staff .board_wrapper .qna_wrap ul li .answer_status {
+  height: 21px;
+  padding: 0 8px;
+  flex-shrink: 0;
+  color: var(--dark1); font-size: 1.2rem; font-weight: 500;
+  background: #95EE70;
+  border-radius: 4px;
+}
+.dashboard.staff .board_wrapper .qna_wrap ul li .answer_status.on {
+  color: var(--white);
+  background: var(--dark1);
+}
+.dashboard.staff .board_wrapper .qna_wrap ul li .date {
+  max-width: 70px;
+  flex-shrink: 0;
+  color: var(--dark3); font-size: 1.4rem; text-align: center;
+}
+
+@media screen and (max-width: 1280px) {
+  .dashboard.staff .sub_section .lecture_schedule_wrap > div {
+    padding: 65px 20px 21px;
+  }
+  
+  .lecture_schedule_wrap .tbl table tbody th, 
+  .lecture_schedule_wrap .tbl table tbody td {
+    padding: 20px 0;
+  }
+  .lecture_schedule_wrap .tbl table tbody td.days {
+    font-family: "Gotham"; font-size: 1.8rem; font-weight: 600; line-height: 2.5rem;
+  }
+}

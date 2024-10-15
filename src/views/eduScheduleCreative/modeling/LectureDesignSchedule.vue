@@ -1,0 +1,656 @@
+<template>
+  <div class="page_wrapper">
+    <section id="content" class="content_wrapper grid_content" tabindex="0">
+      <Breadcrumb :pageTitle="pageTitle"></Breadcrumb>
+      <div class="search_box mg_b30">
+        <div class="search_section">
+          <div class="search_toggle sm">
+            <div class="left"></div>
+            <div class="right">
+              <div class="search_daywrap mg_r10 mg_t10">
+                <span class="tag">{{
+                  t("lectureDesignSchedule.list.year")
+                }}</span>
+                <div class="">
+                  <SelectBoxBase
+                    :id="'year'"
+                    :name="'year'"
+                    :data="listSelectBoxSchoolYear"
+                    v-model="searchData.year"
+                  >
+                  </SelectBoxBase>
+                </div>
+              </div>
+
+              <div class="search_daywrap mg_r10 mg_t10">
+                <span class="tag">{{
+                  t("lectureDesignSchedule.list.term")
+                }}</span>
+                <div class="">
+                  <SelectBoxBase
+                    :id="'term'"
+                    :name="'term'"
+                    :data="listSelectBoxSemester"
+                    v-model="searchData.termCd"
+                  >
+                  </SelectBoxBase>
+                </div>
+              </div>
+              <div class="search_daywrap mg_r10 mg_t10">
+                <span class="tag">{{
+                  t("lectureDesignSchedule.list.subjectName")
+                }}</span>
+                <div class="">
+                  <InputBase
+                    :id="'subjectName'"
+                    :name="'subjectName'"
+                    v-model="searchData.sbjtNm"
+                  />
+                </div>
+              </div>
+              <div class="search_daywrap mg_r10 mg_t10">
+                <span class="tag">{{
+                  t("lectureDesignSchedule.list.planStatus")
+                }}</span>
+                <div class="">
+                  <SelectBoxBase
+                    :id="'planStatus'"
+                    :name="'planStatus'"
+                    :data="listStsLect"
+                    v-model="searchData.lectSts"
+                  >
+                  </SelectBoxBase>
+                </div>
+              </div>
+
+              <div class="search_daywrap mg_r10 mg_t10">
+                <span class="tag">{{
+                  t("lectureDesignSchedule.list.evaluationStatus")
+                }}</span>
+                <div class="">
+                  <SelectBoxBase
+                    :id="'evaluationStatus'"
+                    :name="'evaluationStatus'"
+                    :data="listStsEval"
+                    v-model="searchData.evalSts"
+                  >
+                  </SelectBoxBase>
+                </div>
+              </div>
+
+              <div class="search_daywrap mg_r10 mg_t10">
+                <span class="tag">{{
+                  t("lectureDesignSchedule.list.subjectCqiStatus")
+                }}</span>
+                <div class="">
+                  <SelectBoxBase
+                    :id="'subjectCqiStatus'"
+                    :name="'subjectCqiStatus'"
+                    :data="listStsJob"
+                    v-model="searchData.jobSts"
+                  >
+                  </SelectBoxBase>
+                </div>
+              </div>
+
+              <div class="search_daywrap mg_r10 mg_t10">
+                <span class="tag">{{
+                  t("lectureDesignSchedule.list.syllabusStatus")
+                }}</span>
+                <div class="">
+                  <SelectBoxBase
+                    :id="'syllabusStatus'"
+                    :name="'syllabusStatus'"
+                    :data="listStsCqi"
+                    v-model="searchData.cqiSts"
+                  />
+                </div>
+              </div>
+
+              <div class="search_daywrap mg_r10 mg_t10">
+                <button
+                  type="button"
+                  class="btn_round btn_lg btn_primary mg_l10"
+                  @click="search"
+                >
+                  {{ t("lectureDesignSchedule.list.search") }}
+                </button>
+                <button
+                  type="button"
+                  class="btn_round btn_lg btn_gray mg_l5"
+                  @click="reset"
+                >
+                  {{ t("lectureDesignSchedule.list.reset") }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="box_section">
+          <p v-if="!checkData" class="box_title_sm center">
+            {{ t("lectureDesignSchedule.alertPage") }}
+          </p>
+          <GridComponentV2
+            v-if="checkData"
+            :rowData="rowData"
+            :columnDefs="columnDefs"
+            :pagination="true"
+            :paginationPageSize="paginationPageSize"
+            :paginationPageSizeSelector="paginationPageSizeSelector"
+            ref="grid"
+            :paginationClientFlag="false"
+            @customPagination="fnPagination"
+            :totalRecord="totalRows"
+            :key="key"
+            :newGridOptions="gridOptions"
+          >
+            <template #button>
+              <button
+                type="button"
+                class="btn_round btn_lg btn_primary mg_l10"
+                v-on:click="handleSetupOption()"
+              >
+                {{ t("lectureDesignSchedule.form.setOption") }}
+              </button>
+              <button
+                type="button"
+                class="btn_round btn_lg btn_primary mg_l10"
+                v-on:click="handleSetupAll()"
+              >
+                {{ t("lectureDesignSchedule.form.setAll") }}
+              </button>
+            </template>
+          </GridComponentV2>
+        </div>
+      </div>
+      <LectureDesignScheduleModal
+        v-if="modalOpen"
+        :isOpen="modalOpen"
+        @closeModal="closeModal"
+        :modalType="modalType"
+        :lectCd="lectCd"
+        :listLectCd="listLectCd"
+        :yearAdd="yearAdd"
+        :termAdd="termAdd"
+        :getDataAll="fnPagination"
+      >
+      </LectureDesignScheduleModal>
+    </section>
+  </div>
+</template>
+
+<script lang="ts">
+import InputTextBase from "@/components/common/input/InputTextBase.vue";
+import SelectBoxBase from "@/components/common/input/SelectBoxBase.vue";
+import GridComponentV2 from "@/components/common/grid/GridComponentV2.vue";
+import LinkGridComponent from "@/components/common/grid/LinkGridComponent.vue";
+import { defineComponent, ref } from "vue";
+import { useI18n } from "vue-i18n";
+import BaseDatePicker from "@/components/common/datepicker/BaseDatePicker.vue";
+import { commonStore } from "../../../stores/common";
+import { codeMngStore } from "../../../stores/common/codeMng";
+
+import CheckboxGrid from "@/components/common/grid/CheckboxGrid.vue";
+import LectureDesignScheduleModal from "./modal/LectureDesignScheduleModal.vue";
+import {
+  FORMAT_YYY_MM_DD,
+  PAGINATION_PAGE_SIZE,
+  PAGINATION_PAGE_SIZE_SELECTOR,
+} from "@/constants/screen.const";
+import type {
+  LectureDesignSchudeModel,
+  SearchData,
+} from "@/stores/LectureDesignSchedule/LectureDesignSchedule.type";
+import { getListData } from "@/stores/LectureDesignSchedule/LectureDesignSchedule.service";
+import { format } from "date-fns";
+import { getListCodeMng } from "@/stores/common/codeMng/codeMng.service";
+import {
+  UP_CD_ID_SEMESTER,
+  UP_CD_ID_WRITE,
+  CD_ID_NOT_DO,
+} from "@/constants/common.const";
+import Swal from "sweetalert2";
+
+export default defineComponent({
+  components: {
+    SelectBoxBase,
+    InputTextBase,
+    LinkGridComponent,
+    BaseDatePicker,
+    GridComponentV2,
+    LectureDesignScheduleModal,
+  },
+  setup: () => {
+    const { t } = useI18n();
+    const cmn = commonStore();
+    const storeCodeMng = codeMngStore();
+    const modalType = ref<"type1" | "type2" | "type3">("type1");
+    const gridOptions = {
+      defaultColDef: {
+        flex: 1,
+        minWidth: 120,
+        resizable: true,
+        suppressMovable: true,
+      },
+      rowSelection: "multiple",
+      suppressRowClickSelection: true,
+      domLayout: "autoHeight",
+    };
+    const currentYear = new Date().getFullYear();
+    return { t, cmn, storeCodeMng, modalType, gridOptions, currentYear };
+  },
+  data() {
+    return {
+      listSelectBox: [],
+      pageTitle: this.t("lectureDesignSchedule.title"),
+      key: 1,
+      columnDefs: ref([
+        {
+          headerComponent: CheckboxGrid,
+          headerComponentParams: {
+            onCustomEvent: this.checkAll,
+            valueChecked: this.selectAll,
+            type: "selectAll",
+            selectAllGridId: "selectAllGrid",
+            childName: "childName",
+          },
+          cellRenderer: CheckboxGrid,
+          cellRendererParams: {
+            onCustomEvent: this.checkChild,
+            type: "selectChild",
+            selectAllGridId: "selectAllGrid",
+            childName: "childName",
+          },
+          field: "checkedFlag",
+          width: 10,
+          cellStyle: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.year"),
+          field: "year",
+          flex: 0.5,
+          cellStyle: { textAlign: "center" },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.term"),
+          field: "termNm",
+          flex: 0.3,
+          cellStyle: { textAlign: "center" },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.department"),
+          field: "deptNm",
+          flex: 1,
+          cellStyle: { textAlign: "center" },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.subjectName"),
+          field: "sbjtNm",
+          flex: 1,
+          cellStyle: { textAlign: "center" },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.grade"),
+          field: "gradeNm",
+          flex: 1,
+          cellStyle: { textAlign: "center" },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.classDivision"),
+          field: "divNm",
+          flex: 1,
+          cellRenderer: LinkGridComponent,
+          cellRendererParams: { onCustomEvent: this.handleSetupDetail },
+          cellStyle: {
+            color: "#2704FF",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.lecturePlanWriting"),
+          flex: 1,
+          cellStyle: { textAlign: "center" },
+          valueGetter: (params: any) => {
+            if (!params.data.lectPlanStrDate) {
+              return "-";
+            } else {
+              return (
+                params.data.lectPlanStrDate +
+                " ~ " +
+                params.data.lectPlanEndDate
+              );
+            }
+          },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.syllabusStatus"),
+          field: "stsLectNm",
+          flex: 1,
+          cellStyle: { textAlign: "center" },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.evalPlanPeriod"),
+          flex: 1,
+          cellStyle: { textAlign: "center" },
+          valueGetter: (params: any) => {
+            if (!params.data.evalPlanStrDate) {
+              return "-";
+            } else {
+              return (
+                params.data.evalPlanStrDate +
+                " ~ " +
+                params.data.evalPlanEndDate
+              );
+            }
+          },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.evalPlanStatus"),
+          field: "stsEvalNm",
+          flex: 1,
+          cellStyle: { textAlign: "center" },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.evalPeriod"),
+          flex: 1,
+          cellStyle: { textAlign: "center" },
+          valueGetter: (params: any) => {
+            if (!params.data.jobCapaStrDate) {
+              return "-";
+            } else {
+              return (
+                params.data.jobCapaStrDate + " ~ " + params.data.jobCapaEndDate
+              );
+            }
+          },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.evalStatus"),
+          field: "stsJobCapaNm",
+          flex: 1,
+          cellStyle: { textAlign: "center" },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.subjectCQI"),
+          flex: 1,
+          cellStyle: { textAlign: "center" },
+          valueGetter: (params: any) => {
+            if (!params.data.cqiStrDate) {
+              return "-";
+            } else {
+              return params.data.cqiStrDate + " ~ " + params.data.cqiEndDate;
+            }
+          },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.cqiStatus"),
+          field: "stsCqiNm",
+          flex: 1,
+          cellStyle: { textAlign: "center" },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.regId"),
+          field: "regNm",
+          flex: 1,
+          cellStyle: { textAlign: "center" },
+        },
+        {
+          headerName: this.t("lectureDesignSchedule.form.date"),
+          field: "regDate",
+          flex: 1,
+          cellStyle: { textAlign: "center" },
+        },
+      ]),
+      rowData: [] as Array<LectureDesignSchudeModel>,
+      paginationPageSize: PAGINATION_PAGE_SIZE,
+      paginationPageSizeSelector: PAGINATION_PAGE_SIZE_SELECTOR,
+      modalOpen: false,
+      totalRows: 0,
+      listCheckBoxGrid: [],
+      searchData: {
+        page: 1,
+        size: 10,
+        sort: "",
+        year: this.currentYear,
+        lectSts: "",
+        evalSts: "",
+        jobSts: "",
+        cqiSts: "",
+      } as SearchData,
+      lectCd: "",
+      listLectCd: [],
+      yearAdd: "",
+      termAdd: "",
+      listSelectBoxSchoolYear: [
+        {
+          cdId: this.currentYear.toString(),
+          cdNm: this.currentYear.toString(),
+        },
+        {
+          cdId: (this.currentYear + 1).toString(),
+          cdNm: (this.currentYear + 1).toString(),
+        },
+      ],
+      listSelectBoxSemester: [],
+      checkData: false,
+      upCdIdList: [],
+      listStsLect: [
+        {
+          cdId: "",
+          upCdId: "",
+          cdNm: this.t("common.all"),
+        },
+      ],
+      listStsEval: [
+        {
+          cdId: "",
+          upCdId: "",
+          cdNm: this.t("common.all"),
+        },
+      ],
+      listStsJob: [
+        {
+          cdId: "",
+          upCdId: "",
+          cdNm: this.t("common.all"),
+        },
+        {
+          cdId: CD_ID_NOT_DO,
+          upCdId: "",
+          cdNm: this.t("lectureDesignSchedule.sts1"),
+        },
+        {
+          cdId: "N",
+          upCdId: "",
+          cdNm: this.t("lectureDesignSchedule.sts2"),
+        },
+        {
+          cdId: "Y",
+          upCdId: "",
+          cdNm: this.t("lectureDesignSchedule.sts3"),
+        },
+      ],
+      listStsCqi: [
+        {
+          cdId: "",
+          upCdId: "",
+          cdNm: this.t("common.all"),
+        },
+      ],
+    };
+  },
+  beforeMount() {
+    Promise.all([this.getCodeType()]);
+  },
+  methods: {
+    fnPagination(pageNumber: any, pageSize: any) {
+      this.searchData.size = pageSize;
+      this.searchData.page = pageNumber;
+      this.searchData.sort = "";
+      this.cmn.setLoading(true);
+      getListData(this.searchData)
+        .then((res) => {
+          this.rowData = res.data.data.content.map((el) => {
+            const isChecked = this.listCheckBoxGrid.some(
+              (item) => item.lectCd === el.lectCd
+            );
+            el.checkedFlag = isChecked;
+            return el;
+          });
+          this.rowData.forEach((item) => {
+            const dateFields = [
+              "lectPlanStrDate",
+              "lectPlanEndDate",
+              "evalPlanStrDate",
+              "evalPlanEndDate",
+              "jobCapaStrDate",
+              "jobCapaEndDate",
+              "cqiStrDate",
+              "cqiEndDate",
+            ];
+            dateFields.forEach((field) => {
+              this.formatDateIfNotNull(item, field);
+            });
+          });
+          this.totalRows = res.data.data.totalElements;
+          this.updateSelectAllCheckbox();
+        })
+        .finally(() => {
+          this.cmn.setLoading(false);
+        });
+    },
+    formatDateIfNotNull(item: any, fieldName: any) {
+      if (item[fieldName] != null) {
+        item[fieldName] = format(new Date(item[fieldName]), FORMAT_YYY_MM_DD);
+      }
+    },
+    closeModal() {
+      this.searchData.page = 1;
+      this.modalOpen = false;
+      this.lectCd = "";
+      this.listLectCd = [];
+    },
+    openModal(type: "type1" | "type2" | "type3") {
+      this.modalType = type;
+      this.modalOpen = true;
+    },
+    handleSetupDetail(data: any) {
+      this.lectCd = data.lectCd;
+      this.openModal("type2");
+    },
+    handleSetupOption() {
+      if (this.listCheckBoxGrid.length == 0) {
+        Swal.fire({
+          text: this.t("lectureDesignSchedule.alertCheck"),
+          type: "warning",
+          showConfirmButton: false,
+          showCancelButton: true,
+          cancelButtonText: this.t("common.cancel"),
+        });
+      } else {
+        this.listCheckBoxGrid.forEach((item) => {
+          this.listLectCd.push(item.lectCd);
+        });
+        this.yearAdd = this.listCheckBoxGrid[0].year;
+        this.termAdd = this.listCheckBoxGrid[0].termNm;
+        this.openModal("type1");
+      }
+    },
+    handleSetupAll() {
+      this.openModal("type3");
+    },
+    search() {
+      this.checkData = true;
+      this.searchData.page = 1;
+      this.key++;
+    },
+    formatDate(date: any) {
+      const originalDate = new Date(date);
+      const year = originalDate.getFullYear();
+      const month = String(originalDate.getMonth() + 1).padStart(2, "0");
+      const day = String(originalDate.getDate()).padStart(2, "0");
+
+      return `${year}-${month}-${day}`;
+    },
+    checkAll(value: any) {
+      this.rowData.forEach((item) => {
+        item.checkedFlag = value;
+        if (value) {
+          if (!this.listCheckBoxGrid.some((el) => el.lectCd === item.lectCd)) {
+            this.listCheckBoxGrid.push(item);
+          }
+        } else {
+          this.listCheckBoxGrid = this.listCheckBoxGrid.filter(
+            (el) => el.lectCd !== item.lectCd
+          );
+        }
+      });
+    },
+    checkChild(value: any, data: any) {
+      data.checkedFlag = value;
+      if (value) {
+        if (
+          !this.listCheckBoxGrid.some((item) => item.lectCd === data.lectCd)
+        ) {
+          this.listCheckBoxGrid.push(data);
+        }
+      } else {
+        this.listCheckBoxGrid = this.listCheckBoxGrid.filter(
+          (item) => item.lectCd !== data.lectCd
+        );
+      }
+      this.updateSelectAllCheckbox();
+    },
+    updateSelectAllCheckbox() {
+      const allChecked = this.rowData.every((item) => item.checkedFlag);
+      const selectAllCheckbox = document.getElementById("selectAllGrid");
+      if (selectAllCheckbox) {
+        selectAllCheckbox.checked = allChecked;
+      }
+    },
+    getCodeType() {
+      this.cmn.setLoading(true);
+      getListCodeMng({ upCdIdList: [UP_CD_ID_SEMESTER, UP_CD_ID_WRITE] })
+        .then((response: any) => {
+          response.data.data.forEach((item: any) => {
+            if (item.upCdId == UP_CD_ID_SEMESTER) {
+              this.listSelectBoxSemester.push(item);
+            } else if (item.upCdId == UP_CD_ID_WRITE) {
+              this.listStsLect.push(item);
+              this.listStsEval.push(item);
+              this.listStsCqi.push(item);
+            }
+          });
+          if (this.listSelectBoxSemester.length > 0) {
+            this.searchData.termCd = this.listSelectBoxSemester[0].cdId;
+          }
+        })
+        .finally(() => {
+          this.cmn.setLoading(false);
+        });
+    },
+    reset() {
+      this.searchData.year = this.currentYear;
+      this.searchData.termCd = this.searchData.termCd =
+        this.listSelectBoxSemester[0].cdId;
+      this.searchData.sbjtNm = "";
+    },
+  },
+});
+</script>
+<style scoped>
+.search_data {
+  display: flex;
+}
+.center {
+  text-align: center;
+}
+</style>

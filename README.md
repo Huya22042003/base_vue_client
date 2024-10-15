@@ -1,93 +1,142 @@
-# kaywon.curr.fe.admin
+# vue3-base
 
+This template should help get you started developing with Vue 3 in Vite.
 
+## Recommended IDE Setup
 
-## Getting started
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## What do we have?
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+1. [Axios](https://axios-http.com/docs/intro): Promise-base http client, config in `src/utils/http.ts`
+2. [Pinia](https://pinia.vuejs.org/introduction.html): State management, use as a composable in vue 3, [core-concept](https://pinia.vuejs.org/core-concepts/)
+3. [Js-cookie](https://www.npmjs.com/package/js-cookie): Simple and lightweight for handling cookie
+4. [Vue-router](https://router.vuejs.org/guide/essentials/dynamic-matching.html): Official router for Vue, if you have a nested router, [read it](https://router.vuejs.org/guide/essentials/nested-routes.html)
+5. [Vee-validate](https://vee-validate.logaretm.com/v4/guide/components/handling-forms/): Validate with Vee, it is very simple
 
-## Add your files
+```vue
+<template>
+  <Form @submit="onSubmit" :validation-schema="schema">
+    <Field name="email" type="email" />
+    <ErrorMessage name="email" />
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+    <Field name="password" type="password" />
+    <ErrorMessage name="password" />
+
+    <button>Submit</button>
+  </Form>
+</template>
+<script setup>
+import { Form, Field, ErrorMessage } from 'vee-validate'
+import * as yup from 'yup'
+
+const schema = yup.object({
+  email: yup.string().required().email(),
+  password: yup.string().required().min(8)
+})
+
+function onSubmit(values) {
+  // Submit values to API....
+  alert(JSON.stringify(values, null, 2))
+}
+</script>
+```
+
+- If you need custom, read [custom-input](https://vee-validate.logaretm.com/v4/guide/composition-api/custom-inputs/)
+
+6. [Vue 3](https://vuejs.org/guide/typescript/composition-api.html#typing-component-props): Composition API
+
+7. Auto import your component, config in `vite.config.ts`
+
+```ts
+Components({
+  dirs: ['src/components'],
+  // ...
+}),
+```
+
+8. Auto import component of Library
+
+```ts
+AutoImport({
+  imports: ['vue', 'vue-router', 'vue-i18n', 'vee-validate', 'pinia']
+  // ...
+})
+```
+
+## What do you have to do?
+
+1. Create branch start with one of keywords: `feature|feedback|force|hotfix|revert|reset|refactor|release` and your task id
 
 ```
-cd existing_repo
-git remote add origin http://gitlab.idpass.kr/winwintek/university/kaywon.curr/kaywon.curr.fe.admin.git
-git branch -M main
-git push -uf origin main
+Example: feature/task_01
 ```
 
-## Integrate with your tools
+2. After you run the commit command, It will automate the check of the commit message format, run the test, check eslint, and show you the results. If errors, your commitment will be ignored. Please fix all of the errors before committing again.
 
-- [ ] [Set up project integrations](http://gitlab.idpass.kr/winwintek/university/kaywon.curr/kaywon.curr.fe.admin/-/settings/integrations)
+```
+Don't be shy to ask me if you need help ^^!
+```
 
-## Collaborate with your team
+3. After you run the push command, It will check your branch name format. Ignore this if you did step 1. If you aren't, Please change your branch name like step 1
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+## Type Support for `.vue` Imports in TS
 
-## Test and Deploy
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
 
-Use the built-in continuous integration in GitLab.
+If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+1. Disable the built-in TypeScript Extension
+   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
-***
+## Customize configuration
 
-# Editing this README
+See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+## Project Setup
 
-## Suggestions for a good README
+```sh
+yarn
+```
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+### Compile and Hot-Reload for Development
 
-## Name
-Choose a self-explaining name for your project.
+```sh
+yarn dev
+```
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### Type-Check, Compile and Minify for Production
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+```sh
+yarn build
+```
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+### Run Unit Tests with [Vitest](https://vitest.dev/)
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+```sh
+yarn test
+```
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+```sh
+yarn test:e2e:dev
+```
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+This runs the end-to-end tests against the Vite development server.
+It is much faster than the production build.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+```sh
+yarn build
+yarn test:e2e
+```
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+### Lint with [ESLint](https://eslint.org/)
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+```sh
+yarn lint
+```

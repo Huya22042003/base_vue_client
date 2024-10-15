@@ -1,0 +1,126 @@
+@charset "utf-8";
+
+/* 교육과정개발 상단 */
+.location {
+  height: 17px;
+  margin-bottom: 51px;
+}
+.location ul {
+  display: flex;
+  gap: 24px; flex-wrap: wrap;
+  width: 100%; height: 100%;
+}
+.location ul li {
+  flex-shrink: 0;
+}
+.location ul li a {
+  position: relative;
+  color: var(--dark3); font-size: 1.2rem; font-weight: 500; vertical-align: top;
+}
+.location ul li a::before {
+  content: '';
+  position: absolute; top: 50%; right: -13px;
+  width: 3px; height: 3px; 
+  margin-top: -1px;
+  background: var(--dark3);
+  border-radius: 50%;
+}
+.location ul li:last-child a {
+  color: var(--dark1); font-weight: 600;
+}
+.location ul li:last-child a::before {
+  display: none
+}
+.edu_curri_dev .page_title {
+  margin-bottom: 9px;
+  line-height: 5.8rem;
+}
+.edu_curri_dev .section_tit {
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+.edu_curri_dev .section_tit strong {
+  font-weight: 500; line-height: 3rem; vertical-align: top;
+}
+.edu_curri_dev_step {
+  width: 100%;
+  padding: 52px 20px 48px;
+  background: rgba(149,238,112, 0.2);
+  border-radius: 16px;
+}
+.edu_curri_dev_step ul {
+  display: flex;
+  gap: 40px;
+  align-items: center; justify-content: center;
+}
+.edu_curri_dev_step ul li {
+  position: relative;
+  width: 178px; height: 178px; 
+  padding: 46px 17px 0;
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: var(--white);
+  border: 1px dashed var(--primary);
+  border-radius: 50%;
+}
+.edu_curri_dev_step ul li::before {
+  content: '';
+  position: absolute; right: -40px; top: 88px;
+  width: 40px; height: 1px; 
+  background: var(--primary);
+}
+.edu_curri_dev_step ul li:last-child::before {
+  display: none;
+}
+.edu_curri_dev_step ul li strong {
+  color: var(--primary); font-size: 1.4rem; line-height: 2rem; font-weight: 400;
+}
+.edu_curri_dev_step ul li > div {
+  color: var(--dark1); font-size: 1.8rem; font-weight: 500; line-height: 2.6rem; letter-spacing: -0.03em;
+} 
+.edu_curri_dev_step ul li.on {
+  background: var(--primary);
+  border: none;
+}
+.edu_curri_dev_step ul li.on strong {
+  color: var(--dark1);
+}
+.edu_curri_dev_step ul li.on > div {
+  color: var(--white);
+}
+.edu_curri_dev .section_tit_wrap {
+  display: flex;
+  justify-content: space-between; align-items: center;
+  margin-bottom: 20px;
+}
+
+.edu_curri_dev .scrollx_tbl_xl {
+	width: 100%;
+  overflow: visible;
+}
+
+@media screen and (max-width: 1280px) {
+  .edu_curri_dev_step ul {
+    display: flex;
+    gap: 30px;
+    align-items: center; justify-content: center;
+  }
+  .edu_curri_dev_step ul li {
+    width: 150px; height: 150px; 
+    padding: 35px 0 0;
+  }
+  .edu_curri_dev_step ul li::before {
+    right: -30px; top: 75px;
+    width: 30px;
+  }
+  .edu_curri_dev_step ul li > div {
+  color: var(--dark1); font-size: 1.6rem; line-height: 2.2rem;
+  } 
+  .edu_curri_dev .scrollx_tbl_xl {
+    width: 100%;
+    overflow-x: auto;
+  }
+}

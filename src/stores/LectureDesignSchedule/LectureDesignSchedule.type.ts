@@ -1,0 +1,52 @@
+export type LectureDesignSchudeModel = {
+    lectCd: string,
+    year: string,
+    termNm: string,
+    deptNm: string,
+    sbjtNm: string,
+    gradeNm: string,
+    divNm: string,
+    lectPlanStrDate: string,
+    lectPlanEndDate: string,
+    stsLectNm: string,
+    evalPlanStrDate: string,
+    evalPlanEndDate: string,
+    stsEvalNm: string,
+    jobCapaStrDate: string,
+    jobCapaEndDate: string,
+    stsJobCapaNm: string,
+    cqiStrDate: string,
+    cqiEndDate: string,
+    stsCqiNm: string,
+    regNm: string,
+    regDate: string,
+    divCd: string,
+}
+
+export type SearchData = {
+    year: string,
+    termCd: string,
+    sbjtNm: string,
+    lectSts: string,
+    evalSts: string,
+    jobSts: string,
+    cqiSts: string,
+    page: number,
+    size: number,
+    sort: string,
+}
+
+export type LectRegModel = {
+    divCd: string,
+    year: string,
+    termCd: string,
+    lectPlanStrDate: string,
+    lectPlanEndDate: string,
+    evalPlanStrDate: string,
+    evalPlanEndDate: string,
+    jobCapaStrDate: string,
+    jobCapaEndDate: string,
+    cqiStrDate: string,
+    cqiEndDate: string,
+    listLectCd: Array<string>
+}
