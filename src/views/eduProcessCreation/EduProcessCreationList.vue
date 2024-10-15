@@ -97,7 +97,7 @@
                 type="button"
                 :disabled="!listCheckBoxGrid.length"
                 class="btn_round btn_lg btn_black"
-                @click="openDeleteAlert()"
+                @click="confirmDelete()"
               >
                 {{ t("05.eduProcessCreation.listAndApprove.button.delete") }}
               </button>
@@ -179,7 +179,10 @@ import type { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 import { format } from "date-fns";
 import { CODE_VERSION } from "@/constants/screen.const";
 import { CODE_MAJOR } from "@/constants/screen.const";
-import { versionUpEduCourse } from "@/stores/eduProcessCreation/eduCourse/eduProcess.service";
+import {
+  deleteEduCourse,
+  versionUpEduCourse,
+} from "@/stores/eduProcessCreation/eduCourse/eduProcess.service";
 
 export default defineComponent({
   components: {
@@ -792,16 +795,24 @@ export default defineComponent({
       this.storeCommon.setLoading(false);
     },
     handleVersionUp() {
+      const eduCourseSeq = this.listCheckBoxGrid[0];
+      const foundEduProcess = this.eduProcessCreationList.find(
+        (item) => item.eduCursSeq === eduCourseSeq
+      );
+      const versionCd = foundEduProcess?.version;
+
       this.$swal({
-        title: "aaaa",
-        html: "aaaaa",
+        title: "알림",
+        html: `${
+          "V" + (Number(versionCd?.charAt(1)) + 1)
+        } 버전을 올리시겠어요?`,
         confirmButtonColor: "#5D87FF",
         showCancelButton: true,
         cancelButtonColor: "#fff",
         reverseButtons: true,
-        confirmButtonText: "aaaa",
-        cancelButtonText: "aaaa",
-      }).then((result) => {
+        confirmButtonText: "올리기",
+        cancelButtonText: this.t("common.cancel"),
+      }).then((result: any) => {
         if (result.isConfirmed) {
           this.storeCommon.setLoading(true);
           versionUpEduCourse({ eduCourseSeq: this.listCheckBoxGrid[0] }).then(
@@ -810,6 +821,37 @@ export default defineComponent({
             }
           );
         }
+      });
+    },
+    confirmDelete() {
+      this.$swal({
+        title: "알림",
+        html: this.t("common.message.confirmDelete"),
+        confirmButtonColor: "#5D87FF",
+        showCancelButton: true,
+        cancelButtonColor: "#fff",
+        reverseButtons: true,
+        confirmButtonText: this.t("common.confirm"),
+        cancelButtonText: this.t("common.cancel"),
+      }).then((result: any) => {
+        if (result.isConfirmed) {
+          this.delete();
+        }
+      });
+    },
+    delete() {
+      this.storeCommon.setLoading(true);
+      deleteEduCourse(this.listCheckBoxGrid).then((res) => {
+        this.storeCommon.setLoading(false);
+        this.$swal({
+          title: "알림",
+          html: this.t("common.message.deleteSuccess"),
+          confirmButtonText: this.t("common.confirm"),
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.fnPagination(1, 10);
+          }
+        });
       });
     },
   },

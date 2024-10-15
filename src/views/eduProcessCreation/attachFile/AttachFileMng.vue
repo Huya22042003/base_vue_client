@@ -206,8 +206,15 @@ export default {
       this.storeCommon.setLoading(true);
       deleteEduCourseApdx({ apdxSeq: apdxSeq }).then((res) => {
         this.storeCommon.setLoading(false);
-        this.$alert(this.t("common.message.deleteSuccess"));
-        this.fnPagination(1, 10);
+        this.$swal({
+          title: "알림",
+          html: this.t("common.message.deleteSuccess"),
+          confirmButtonText: this.t("common.confirm"),
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.fnPagination(1, 10);
+          }
+        });
       });
     },
   },
