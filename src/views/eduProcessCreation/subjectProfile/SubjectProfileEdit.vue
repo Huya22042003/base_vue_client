@@ -191,7 +191,7 @@
                       </th>
                       <td scope="row" :colspan="1">
                         <ListCheckBoxBase
-                          v-if="dataSubject.evalSel"
+                          v-if="dataSubject.listEvalMethod"
                           :listData="dataSubject.listEvalMethod"
                           :mode="'show'"
                           v-model="dataSubject.evalSel"
@@ -212,7 +212,7 @@
                       </th>
                       <td scope="row" :colspan="1">
                         <ListCheckBoxBase
-                          v-if="dataSubject.profEvalSel"
+                          v-if="dataSubject.listProfLearnMng"
                           :listData="dataSubject.listProfLearnMng"
                           :mode="'show'"
                           v-model="dataSubject.profEvalSel"
@@ -233,7 +233,7 @@
                       </th>
                       <td scope="row" :colspan="1">
                         <ListCheckBoxBase
-                          v-if="dataSubject.curriculumSel"
+                          v-if="dataSubject.listCurriculum"
                           :listData="dataSubject.listCurriculum"
                           :mode="'show'"
                           v-model="dataSubject.curriculumSel"
@@ -557,9 +557,7 @@ export default {
             ? this.dataSubject.remoteClassYn
             : `${this.listClassOnline[0].cdId}`;
         })
-        .finally(() => {
-          this.storeCommon.setLoading(false);
-        });
+        this.storeCommon.setLoading(false);
     },
     save() {
       if (this.storeCommon.check) {

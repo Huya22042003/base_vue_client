@@ -22,6 +22,15 @@
         </GridComponentV2>
       </div>
     </div>
+    <div class="btn_group btn_end">
+      <button
+        type="button"
+        class="btn_round btn_md btn_white"
+        @click="back()"
+      >
+        {{ t("common.list") }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -40,6 +49,7 @@ import { commonStore } from "../../../stores/common";
 import { useI18n } from "vue-i18n";
 import { getPageMeetingReport } from "@/stores/eduProcessCreation/meetingReport/meetingReport.service";
 import { format } from "date-fns";
+import { SCREEN } from "@/router/screen";
 export default {
   components: { LinkGridComponent },
   props: {
@@ -178,6 +188,11 @@ export default {
     },
     goToReportModule() {
       this.$alert("웹레포팅툴 호출 (Report Module)");
+    },
+    back() {
+      this.router.push({
+        name: SCREEN.eduProcessCreation.name,
+      });
     },
   },
 };

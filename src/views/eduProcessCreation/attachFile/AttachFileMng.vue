@@ -25,6 +25,15 @@
         </GridComponentV2>
       </div>
     </div>
+    <div class="btn_group btn_end">
+      <button
+        type="button"
+        class="btn_round btn_md btn_white"
+        @click="back()"
+      >
+        {{ t("common.list") }}
+      </button>
+    </div>
   </div>
   <ModalAddFile
     v-if="modalOpen"
@@ -54,6 +63,7 @@ import {
   deleteEduCourseApdx,
   getEduCourseApdx,
 } from "@/stores/eduProcessCreation/attachFile/attachFile.service";
+import { SCREEN } from "@/router/screen";
 export default {
   components: {
     ButtonGridComponent,
@@ -215,6 +225,11 @@ export default {
             this.fnPagination(1, 10);
           }
         });
+      });
+    },
+    back() {
+      this.router.push({
+        name: SCREEN.eduProcessCreation.name,
       });
     },
   },

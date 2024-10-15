@@ -509,11 +509,6 @@ export default defineComponent({
             const resetSelect = document.getElementById("selectAll");
             resetSelect.checked = true;
           }
-          // this.listAllCheck = this.eduProcessCreationList.filter(item => {
-          //     if (item.stsCd == CODE_103920 || item.stsCd == CODE_103950) {
-          //         return item.eduCursSeq
-          //     }
-          // })
         }
       } catch (error: any) {
         this.confirmMessage = error.message;
