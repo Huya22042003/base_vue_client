@@ -152,6 +152,7 @@
           }}
         </button>
         <button
+          v-if="version"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="confirmSave"
@@ -195,6 +196,7 @@ import {
   getListVerifyChildCoreJob,
   saveListVerifyChildCoreJob,
 } from "../../../stores/eduProcessCreation/jobEduMng/jobEduMng.service";
+import { VERSION_V1 } from "@/constants/common.const";
 
 export default defineComponent({
   setup: () => {
@@ -202,8 +204,9 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const version = window.history.state.version == VERSION_V1;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, version };
   },
   data() {
     return {

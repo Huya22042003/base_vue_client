@@ -252,3 +252,4 @@ export const UP_CD_ID_SUST_DIV_CD = "1064";
 export const UP_LECTURE_YN = "1214";
 export const UP_CLASS_ONLINE_YN = "1215";
 export const EDU_TYPE_OTHER = "학부"
+export const VERSION_V1 = "V1"

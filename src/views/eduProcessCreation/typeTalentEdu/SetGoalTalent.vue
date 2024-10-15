@@ -220,6 +220,7 @@
     <div class="btn_group btn_end mg_t20">
       <div class="btn_group btn_end">
         <button
+          v-if="version"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="save()"
@@ -262,7 +263,8 @@ import {
   UP_CD_MAJOR,
   CD_SELCT_TALT_NO,
   CD_SELCT_TALT_YES,
-  EDU_TYPE_OTHER
+  EDU_TYPE_OTHER,
+  VERSION_V1
 } from "@/constants/common.const";
 import { TaltNrtgSelResDTO } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.type";
 
@@ -272,8 +274,9 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const version = window.history.state.version == VERSION_V1;
 
-    return { router, storeCommon, t, id, EDU_TYPE_OTHER };
+    return { router, storeCommon, t, id, EDU_TYPE_OTHER, version };
   },
   beforeMount() {
     this.goToDetail();
@@ -300,9 +303,6 @@ export default defineComponent({
         .then((res: any) => {
           this.data = res.data.data as TaltNrtgResDTO;
 
-          console.log(this.data);
-          
-          
           if (this.data.taltNrtgSeq) {
             this.isDisabled = false;
           }

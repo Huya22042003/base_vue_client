@@ -153,6 +153,7 @@
     </div>
     <div class="btn_group btn_end mg_t35">
       <button
+        v-if="version"
         type="button"
         class="btn_round btn_md btn_primary"
         @click="confirmSave()"
@@ -181,7 +182,7 @@ import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { JobEduVerifyCoreJobListModel } from "../../../stores/eduProcessCreation/jobEduMng/jobEduMng.type";
-import { STATUS_NO, STATUS_YES } from "../../../constants/common.const";
+import { STATUS_NO, STATUS_YES, VERSION_V1 } from "../../../constants/common.const";
 import {
   getListVerifyJobAbility,
   saveListVerifyJobAbility,
@@ -198,8 +199,9 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const version = window.history.state.version == VERSION_V1;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, version };
   },
   data() {
     return {

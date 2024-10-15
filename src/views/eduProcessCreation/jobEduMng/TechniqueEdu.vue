@@ -150,6 +150,7 @@
 
     <div class="btn_group btn_end mg_t25">
       <button
+        v-if="version"
         type="button"
         class="btn_round btn_md btn_primary"
         @click="confirmSave()"
@@ -183,6 +184,7 @@ import {
   STATUS_NO,
   STATUS_YES,
   UP_CD_NCS_KCS,
+  VERSION_V1,
 } from "../../../constants/common.const";
 import {
   getJobEduCoreJobSelcList,
@@ -201,8 +203,9 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const version = window.history.state.version == VERSION_V1;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, version };
   },
   beforeMount() {
     this.getCodeNcsKcs();

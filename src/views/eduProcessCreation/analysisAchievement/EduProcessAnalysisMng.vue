@@ -7,7 +7,7 @@
             <input
               type="radio"
               id="radio_round1"
-              @change="stageChild < 11 ? '' : tabChange1(11)"
+              @change="tabChange1(11)"
               :checked="tabCheck == 11 ? true : false"
             />
             <label for="radio_round1">
@@ -20,7 +20,7 @@
             <input
               type="radio"
               id="radio_round2"
-              @change="stageChild < 12 ? '' : tabChange1(12)"
+              @change="tabChange1(12)"
               :checked="tabCheck == 12 ? true : false"
             />
             <label for="radio_round2">

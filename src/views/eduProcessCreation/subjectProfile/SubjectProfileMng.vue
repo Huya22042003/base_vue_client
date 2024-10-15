@@ -64,8 +64,9 @@ export default {
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const version = window.history.state.version;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, version };
   },
   data() {
     return {
@@ -219,6 +220,7 @@ export default {
         name: SCREEN.eduSubjectProfileDetail.name,
         state: {
           id: this.id,
+          version: this.version,
           sbjtCd: data.sbjtCd,
         },
       });

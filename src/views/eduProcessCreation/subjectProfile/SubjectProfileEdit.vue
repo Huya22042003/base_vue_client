@@ -514,8 +514,9 @@ export default {
     const { t } = useI18n();
     const id = window.history.state.id;
     const sbjtCd = window.history.state.sbjtCd;
+    const version = window.history.state.version;
 
-    return { router, storeCommon, t, id, sbjtCd };
+    return { router, storeCommon, t, id, sbjtCd, version };
   },
   data() {
     return {
@@ -605,6 +606,7 @@ export default {
         },
         state: {
           id: this.id,
+          version: this.version,
         },
       });
     },

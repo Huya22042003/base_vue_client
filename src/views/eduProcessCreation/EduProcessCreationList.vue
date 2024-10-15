@@ -205,7 +205,7 @@ export default defineComponent({
     const storeDepartment = departmentStore();
     const codeStore = codeMngStore();
     const { t } = useI18n();
-    const id = ref<string>();
+    const dataSel = ref<EduCourseResModel>();
     const codeList = ref<CodeMngModel[]>();
     const exportExcelRef = ref(null);
 
@@ -218,7 +218,7 @@ export default defineComponent({
       codeStore,
       codeList,
       selectAll: ref(false),
-      id,
+      dataSel,
       exportExcelRef,
     };
   },
@@ -629,7 +629,8 @@ export default defineComponent({
           mode: MODE_EDIT,
         },
         state: {
-          id: this.id,
+          id: this.dataSel?.eduCursSeq,
+          version: this.dataSel?.version,
           first: false,
         },
       });
@@ -641,7 +642,8 @@ export default defineComponent({
           mode: MODE_EDIT,
         },
         state: {
-          id: this.id,
+          id: this.dataSel?.eduCursSeq,
+          version: this.dataSel?.version,
           first: true,
         },
       });
@@ -667,7 +669,7 @@ export default defineComponent({
       this.showAlert(this.deleteRow, () => {});
     },
     openContinueAlert(data: EduCourseResModel) {
-      this.id = data.eduCursSeq;
+      this.dataSel = data;
 
       this.showCancel = true;
       this.confirmMessage = this.t(

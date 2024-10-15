@@ -144,7 +144,6 @@ export default {
     const departmentFilterDTO = {} as DepartmentFilterDTO;
 
     const userInfo = JSON.parse(getUserInfo());
-    console.log(userInfo);
 
     return {
       t,
