@@ -632,6 +632,7 @@ export default defineComponent({
           id: this.dataSel?.eduCursSeq,
           version: this.dataSel?.version,
           first: false,
+          isSave: true,
         },
       });
     },
@@ -645,6 +646,7 @@ export default defineComponent({
           id: this.dataSel?.eduCursSeq,
           version: this.dataSel?.version,
           first: true,
+          isSave: true,
         },
       });
     },

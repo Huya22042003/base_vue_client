@@ -449,6 +449,7 @@
               {{ t("common.print") }}
             </button>
             <button
+              v-if="isSave"
               type="button"
               class="btn_round btn_md btn_primary"
               @click="save()"
@@ -515,8 +516,9 @@ export default {
     const id = window.history.state.id;
     const sbjtCd = window.history.state.sbjtCd;
     const version = window.history.state.version;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id, sbjtCd, version };
+    return { router, storeCommon, t, id, sbjtCd, version, isSave };
   },
   data() {
     return {
@@ -607,6 +609,7 @@ export default {
         state: {
           id: this.id,
           version: this.version,
+          isSave: this.isSave
         },
       });
     },

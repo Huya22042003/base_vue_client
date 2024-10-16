@@ -16,6 +16,7 @@
           <template #button>
             <button
               type="button"
+              v-if="isSave"
               @click="gotoCreate"
               class="btn_round btn_md btn_primary"
             >
@@ -81,8 +82,9 @@ export default {
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, isSave };
   },
   data() {
     return {

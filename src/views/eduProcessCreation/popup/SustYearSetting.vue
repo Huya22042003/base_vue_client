@@ -256,6 +256,7 @@ export default {
         state: {
           id: this.response,
           version: VERSION_V1,
+          isSave: true,
         },
       });
     },

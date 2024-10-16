@@ -182,7 +182,7 @@
     <div class="btn_group btn_end mg_t20">
       <div class="btn_group btn_end">
         <button
-          v-if="version"
+          v-if="version && isSave"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="save()"
@@ -229,8 +229,9 @@ export default defineComponent({
     const { t } = useI18n();
     const id = window.history.state.id;
     const version = window.history.state.version == VERSION_V1;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id, version };
+    return { router, storeCommon, t, id, version, isSave };
   },
   data() {
     return {

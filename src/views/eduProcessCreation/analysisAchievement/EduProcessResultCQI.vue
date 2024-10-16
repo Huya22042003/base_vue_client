@@ -509,6 +509,7 @@
           }}
         </button>
         <button
+          v-if="isSave"
           type="button"
           class="btn_md btn_round btn_primary"
           @click="confirmSaveData()"
@@ -558,8 +559,9 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, isSave };
   },
   data() {
     return {

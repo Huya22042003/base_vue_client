@@ -173,6 +173,7 @@
     <div class="btn_group btn_end mg_t20">
       <div class="btn_group btn_end">
         <button
+          v-if="isSave"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="save()"
@@ -219,8 +220,9 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, isSave };
   },
   data() {
     return {
