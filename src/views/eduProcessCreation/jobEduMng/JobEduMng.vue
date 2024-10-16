@@ -105,6 +105,9 @@ export default {
   methods: {
     updateStage(stage: number) {
       this.stageChild = stage;
+      if (stage > 43) {
+        this.$emit("updateStage", stage)
+      }
     },
     nextTab() {
       this.$emit("tabChange", 50);

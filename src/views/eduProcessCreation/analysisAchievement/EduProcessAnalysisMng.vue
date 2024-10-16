@@ -33,10 +33,13 @@
       </div>
     </div>
   </div>
-  <EduProcessNow @tabChange1="tabChange1" v-if="tabName == 'EduProcessNow'">
+  <EduProcessNow
+    @updateStage="updateStage"
+   @tabChange1="tabChange1" v-if="tabName == 'EduProcessNow'">
   </EduProcessNow>
   <EduProcessResultCQI
     @nextTab="nextTab"
+    @updateStage="updateStage"
     v-if="tabName == 'EduProcessResultCQI'"
   >
   </EduProcessResultCQI>
@@ -74,6 +77,12 @@ export default {
   methods: {
     nextTab() {
       this.$emit("tabChange", 20);
+    },
+    updateStage(stage: number) {
+      this.stageChild = stage;
+      if (stage > 12) {
+        this.$emit("updateStage", stage)
+      }
     },
     tabChange1(tabId: any) {
       switch (tabId) {

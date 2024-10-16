@@ -592,7 +592,7 @@ export default defineComponent({
           this.operationDevelopmentPlanListModel.length > 0 &&
           this.operationDevelopmentPlanListModel[0].dataSeq
         ) {
-          this.isDisabled = false;
+          // this.isDisabled = false;
         }
         this.storeCommon.setLoading(false);
       });

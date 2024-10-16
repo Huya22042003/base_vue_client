@@ -17,6 +17,7 @@
         <p class="radio_tab inline">
           <input
             type="radio"
+            :key="`radio_round_black1_${checkKey}`"
             id="radio_round_black1"
             name="radio_tab"
             @click="tabChange(10)"
@@ -29,6 +30,7 @@
         <p class="radio_tab inline">
           <input
             type="radio"
+            :key="`radio_round_black2_${checkKey}`"
             id="radio_round_black2"
             :disabled="stage < 15"
             name="radio_tab"
@@ -40,6 +42,7 @@
         <p class="radio_tab inline">
           <input
             type="radio"
+            :key="`radio_round_black3_${checkKey}`"
             id="radio_round_black3"
             :disabled="stage < 26"
             name="radio_tab"
@@ -53,6 +56,7 @@
         <p class="radio_tab inline">
           <input
             type="radio"
+            :key="`radio_round_black4_${checkKey}`"
             id="radio_round_black4"
             :disabled="stage < 33"
             name="radio_tab"
@@ -64,6 +68,7 @@
         <p class="radio_tab inline">
           <input
             type="radio"
+            :key="`radio_round_black5_${checkKey}`"
             id="radio_round_black5"
             :disabled="stage < 48"
             name="radio_tab"
@@ -75,6 +80,7 @@
         <p class="radio_tab inline">
           <input
             type="radio"
+            :key="`radio_round_black6_${checkKey}`"
             id="radio_round_black6"
             :disabled="stage < 57"
             name="radio_tab"
@@ -86,6 +92,7 @@
         <p class="radio_tab inline">
           <input
             type="radio"
+            :key="`radio_round_black7_${checkKey}`"
             id="radio_round_black7"
             :disabled="stage < 57"
             name="radio_tab"
@@ -97,6 +104,7 @@
         <p class="radio_tab inline">
           <input
             type="radio"
+            :key="`radio_round_black8_${checkKey}`"
             id="radio_round_black8"
             :disabled="stage < 57"
             name="radio_tab"
@@ -108,6 +116,7 @@
         <p class="radio_tab inline">
           <input
             type="radio"
+            :key="`radio_round_black9_${checkKey}`"
             id="radio_round_black9"
             :disabled="stage < 57"
             name="radio_tab"
@@ -247,6 +256,7 @@ export default defineComponent({
         },
       ],
       data: {} as EduCourseDetailDTO,
+      checkKey: 1,
     };
   },
   beforeMount() {
@@ -275,6 +285,7 @@ export default defineComponent({
     },
     updateStage(stage: number) {
       this.stage = stage;
+      this.checkKey++;
     },
     tabChange(tabId: any) {
       switch (tabId) {
