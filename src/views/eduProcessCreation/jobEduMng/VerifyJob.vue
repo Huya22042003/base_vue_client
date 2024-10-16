@@ -182,7 +182,11 @@ import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { JobEduVerifyCoreJobListModel } from "../../../stores/eduProcessCreation/jobEduMng/jobEduMng.type";
-import { STATUS_NO, STATUS_YES, VERSION_V1 } from "../../../constants/common.const";
+import {
+  STATUS_NO,
+  STATUS_YES,
+  VERSION_V1,
+} from "../../../constants/common.const";
 import {
   getListVerifyJobAbility,
   saveListVerifyJobAbility,
