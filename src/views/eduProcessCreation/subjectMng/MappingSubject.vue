@@ -155,7 +155,7 @@
                         v-if="indexJob === 0"
                         ><td
                           scope="row"
-                          :rowspan="jobAbility.listChild.length + 1"
+                          :rowspan="jobAbility.listChild.length + 2"
                           style="position: relative"
                           class="td__rate__core"
                         >
