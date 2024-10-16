@@ -96,7 +96,10 @@
 <script lang="ts">
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
-import type { EduCourseDetailDTO, EduCourseReqModel } from "../../../stores/eduProcessCreation/eduCourse/eduProcess.type";
+import type {
+  EduCourseDetailDTO,
+  EduCourseReqModel,
+} from "../../../stores/eduProcessCreation/eduCourse/eduProcess.type";
 import { EduCourseStore } from "../../../stores/eduProcessCreation";
 import { SUCCSESS_STATUS } from "@/constants/screen.const";
 import { commonStore } from "@/stores/common";
@@ -117,6 +120,7 @@ import {
 import { MODE_EDIT } from "@/constants/screen.const";
 import { START_YEAR_NUMBER } from "@/constants/screen.const";
 import { getUserInfo } from "@/utils/storage";
+import { VERSION_V1 } from "@/constants/common.const";
 
 export default {
   props: {
@@ -189,7 +193,7 @@ export default {
       }
       this.eduCourseRequest.year = currentYear + 1 + "";
       this.departmentFilterDTO.deptDivCd = [CODE_MAJOR];
-      this.departmentFilterDTO.deptCd = this.userInfo.userDepts.split(",")
+      this.departmentFilterDTO.deptCd = this.userInfo.userDepts.split(",");
       await this.storeDepartment.getDepartment(this.departmentFilterDTO);
       if (
         this.storeDepartment &&
@@ -244,18 +248,15 @@ export default {
       }
     },
     async goCreateForm() {
-      await detailEduCourse({ eduCourseSeq: this.response }).then((res: any) => {
-        const dataDetail = res.data.data as EduCourseDetailDTO;
-        this.router.push({
+      this.router.push({
         name: SCREEN.eduProcessCreationMng.name,
         params: {
           mode: MODE_EDIT,
         },
         state: {
-          id: dataDetail.eduCourseSeq,
-          version: dataDetail.version
+          id: this.response,
+          version: VERSION_V1,
         },
-      });
       });
     },
   },
