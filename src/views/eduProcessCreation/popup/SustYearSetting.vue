@@ -96,7 +96,7 @@
 <script lang="ts">
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
-import type { EduCourseReqModel } from "../../../stores/eduProcessCreation/eduCourse/eduProcess.type";
+import type { EduCourseDetailDTO, EduCourseReqModel } from "../../../stores/eduProcessCreation/eduCourse/eduProcess.type";
 import { EduCourseStore } from "../../../stores/eduProcessCreation";
 import { SUCCSESS_STATUS } from "@/constants/screen.const";
 import { commonStore } from "@/stores/common";
@@ -112,6 +112,7 @@ import { CODE_MAJOR } from "@/constants/screen.const";
 import {
   getFormAdd,
   createEduCourse,
+  detailEduCourse,
 } from "@/stores/eduProcessCreation/eduCourse/eduProcess.service";
 import { MODE_EDIT } from "@/constants/screen.const";
 import { START_YEAR_NUMBER } from "@/constants/screen.const";
@@ -242,15 +243,19 @@ export default {
         );
       }
     },
-    goCreateForm() {
-      this.router.push({
+    async goCreateForm() {
+      await detailEduCourse({ eduCourseSeq: this.response }).then((res: any) => {
+        const dataDetail = res.data.data as EduCourseDetailDTO;
+        this.router.push({
         name: SCREEN.eduProcessCreationMng.name,
         params: {
           mode: MODE_EDIT,
         },
         state: {
-          id: this.response,
+          id: dataDetail.eduCourseSeq,
+          version: dataDetail.version
         },
+      });
       });
     },
   },
