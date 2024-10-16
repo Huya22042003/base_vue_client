@@ -211,7 +211,7 @@ import {
   NewSubjectReqDTO,
 } from "@/stores/eduProcessCreation/subjectMng/subjectMng.type";
 import { getListCodeMng } from "@/stores/common/codeMng/codeMng.service";
-import { SUBJECT_TYPE_CD } from "@/constants/common.const";
+import { STATUS_NO, STATUS_YES, SUBJECT_TYPE_CD } from "@/constants/common.const";
 
 export default defineComponent({
   setup: () => {
@@ -254,11 +254,14 @@ export default defineComponent({
       };
       getNewSubject(dataSearch)
         .then((res: any) => {
-          this.data = res.data.data;
-          
-          if (this.data && this.data.length == 0) {
-            this.isCheckCreate = true;
+          const response = res.data.data;
+          this.data = response.listData;
+
+          this.isCheckCreate = response.isData == STATUS_YES
+          if (this.isCheckCreate || this.data && this.data.length != 0) {
+            this.isDisabled = false;
           }
+          
         })
         .finally(() => {
           this.storeCommon.setLoading(false);
@@ -298,6 +301,7 @@ export default defineComponent({
           this.storeCommon.setLoading(true);
           const dataSave = {
             eduCourseSeq: this.id,
+            isData: this.isCheckCreate ? STATUS_YES : STATUS_NO,
             listData: this.isCheckCreate ? [] : this.data
           } as NewSubjectReqDTO;
           saveNewSubject(dataSave).then((res:any) => {
@@ -308,7 +312,9 @@ export default defineComponent({
                   if (isConfirm) {
                     this.next();
                   }
-                  this.$emit("updateStage", 52);
+                  if (this.isDisabled) {
+                    this.$emit("updateStage", 52);
+                  }
                   this.isDisabled = false;
                 }
               );

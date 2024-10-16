@@ -210,14 +210,16 @@ export default defineComponent({
             if (isConfirm) {
               this.next();
             }
-            this.$emit("updateStage", 31);
+            if (this.isDisabled) {
+              this.$emit("updateStage", 31);
+            }
             this.isDisabled = false;
           }
         );
       });
     },
     next() {
-      this.$emit("nextTab", 31);
+      this.$emit("nextTab", 30);
     },
     back() {
       this.router.push({

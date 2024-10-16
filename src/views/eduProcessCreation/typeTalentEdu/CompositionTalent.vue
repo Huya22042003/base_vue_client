@@ -374,7 +374,9 @@ export default defineComponent({
                 if (isConfirm) {
                   this.next();
                 }
-                this.$emit("updateStage", 32);
+                if (this.isDisabled) {
+                  this.$emit("updateStage", 32);
+                }
                 this.isDisabled = false;
               }
             );

@@ -350,7 +350,7 @@ export default defineComponent({
       });
     },
     next() {
-      this.$emit("nextTab", 51);
+      this.$emit("nextTab", 50);
     },
     back() {
       this.router.push({
