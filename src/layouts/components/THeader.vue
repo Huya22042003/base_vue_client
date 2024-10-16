@@ -36,7 +36,7 @@
         <div class="grid_content">
           <ul id="gnbMenu" class="sub_1depth">
             <li v-for="submenu in menu" :key="submenu?.id">
-              <router-link to=""><span>{{ submenu?.name }}</span></router-link>
+              <router-link to="" @click.prevent="handleNextScreen(submenu.screenName)"><span>{{ submenu?.name }}</span></router-link>
               <ul class="sub_2depth">
                 <li v-for="submenus in submenu?.subMenus" :key="submenus?.id">
                   <router-link to="" @click.prevent="handleNextScreen(submenus.screenName)">{{ submenus?.name }}
