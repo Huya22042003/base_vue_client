@@ -120,7 +120,7 @@ import {
 import { MODE_EDIT } from "@/constants/screen.const";
 import { START_YEAR_NUMBER } from "@/constants/screen.const";
 import { getUserInfo } from "@/utils/storage";
-import { VERSION_V1 } from "@/constants/common.const";
+import { BAD_REQUEST_EDU_COURSE, BAD_REQUEST_NO_REGISTER_WRITE_SCHDL, VERSION_V1 } from "@/constants/common.const";
 
 export default {
   props: {
@@ -238,6 +238,14 @@ export default {
                   this.response = res.data.data;
                   this.goCreateForm();
                   this.$toast(this.t("common.message.saveSuccess"));
+                }).
+                catch((error) => {
+                  if (error.response.data.code == BAD_REQUEST_EDU_COURSE) {
+                    this.$alert("교과과정 개발 기간이 아닙니다. 다시 확인해주세요.");
+                  }
+                  if (error.response.data.code == BAD_REQUEST_NO_REGISTER_WRITE_SCHDL) {
+                    this.$alert("교과과정 개발 기간이 아닙니다. 다시 확인해주세요.");
+                  }
                 })
                 .finally(() => {
                   this.storeCommon.setLoading(false);

@@ -254,3 +254,5 @@ export const UP_CLASS_ONLINE_YN = "1215";
 export const EDU_TYPE_OTHER = "학부"
 export const VERSION_V1 = "V1"
 export const CD_EDU12 = "EDU12"
+export const BAD_REQUEST_EDU_COURSE = "400070";
+export const BAD_REQUEST_NO_REGISTER_WRITE_SCHDL = "400071";

@@ -65,8 +65,9 @@ export default {
     const { t } = useI18n();
     const id = window.history.state.id;
     const version = window.history.state.version;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id, version };
+    return { router, storeCommon, t, id, version, isSave };
   },
   data() {
     return {
@@ -222,6 +223,7 @@ export default {
           id: this.id,
           version: this.version,
           sbjtCd: data.sbjtCd,
+          isSave: this.isSave
         },
       });
     },

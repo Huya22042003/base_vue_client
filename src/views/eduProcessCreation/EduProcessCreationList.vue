@@ -183,6 +183,10 @@ import {
   deleteEduCourse,
   versionUpEduCourse,
 } from "@/stores/eduProcessCreation/eduCourse/eduProcess.service";
+import {
+  BAD_REQUEST_EDU_COURSE,
+  BAD_REQUEST_NO_REGISTER_WRITE_SCHDL,
+} from "@/constants/common.const";
 
 export default defineComponent({
   components: {
@@ -814,11 +818,30 @@ export default defineComponent({
       }).then((result: any) => {
         if (result.isConfirmed) {
           this.storeCommon.setLoading(true);
-          versionUpEduCourse({ eduCourseSeq: this.listCheckBoxGrid[0] }).then(
-            (res) => {
+          versionUpEduCourse({ eduCourseSeq: this.listCheckBoxGrid[0] })
+            .then((res) => {
+              this.$swal({
+                title: "알림",
+                html: "버전을 올리기가 성공되었습니다.",
+                confirmButtonText: this.t("common.confirm"),
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  this.fnPagination(1, 10);
+                }
+              });
+            })
+            .catch((error) => {
+              if (
+                error.response.data.code == BAD_REQUEST_NO_REGISTER_WRITE_SCHDL
+              ) {
+                this.$alert(
+                  "교과과정 개발 기간이 아닙니다. 다시 확인해주세요."
+                );
+              }
+            })
+            .finally(() => {
               this.storeCommon.setLoading(false);
-            }
-          );
+            });
         }
       });
     },
