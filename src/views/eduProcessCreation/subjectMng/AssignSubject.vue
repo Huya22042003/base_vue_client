@@ -608,7 +608,7 @@ export default defineComponent({
     deleteSameReplace(index: number) {
       const item = this.listSameMapping[index];
 
-      if (item.sameReplaceMappSeq !== null) {
+      if (item.sameReplaceMappSeq) {
         this.listSameMapping[index].delYn = STATUS_YES;
       } else {
         this.listSameMapping.splice(index, 1);

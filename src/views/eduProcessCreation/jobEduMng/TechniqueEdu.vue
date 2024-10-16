@@ -356,7 +356,7 @@ export default defineComponent({
       if (indexSys >= 0 && indexSys < item.listNcsSysClassification.length) {
         const classSystem = item.listNcsSysClassification[indexSys];
 
-        if (classSystem.classSystemListSeq === null) {
+        if (!classSystem.classSystemListSeq) {
           item.listNcsSysClassification.splice(indexSys, 1);
         } else {
           classSystem.delYn = this.stateY;
