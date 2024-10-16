@@ -478,26 +478,24 @@
               </th>
             </tr>
             <!-- Row1 -->
-            <tr>
-              <td scope="row" :colspan="1">
-                <!-- 교육과정 개발 -->{{
-                  t("eduProcessCreation.analysisAchievement.title29")
-                }}
-              </td>
-              <td scope="row" :colspan="1">
-                <TextArea :id="'item_1'" required rows="5"></TextArea>
-              </td>
-            </tr>
-            <tr>
-              <td scope="row" :colspan="1">
-                <!-- 교육과정 운영 -->{{
-                  t("eduProcessCreation.analysisAchievement.title30")
-                }}
-              </td>
-              <td scope="row" :colspan="1">
-                <TextArea :id="'item_2'" required rows="5"></TextArea>
-              </td>
-            </tr>
+            <template
+              v-for="(operation, index) in operationDevelopmentPlanListModel"
+              :key="index"
+            >
+              <tr>
+                <td scope="row" :colspan="1">
+                  {{ operation.dataNm }}
+                </td>
+                <td scope="row" :colspan="1">
+                  <TextArea
+                    :id="'operation' + index"
+                    required
+                    v-model="operation.cont"
+                    rows="5"
+                  ></TextArea>
+                </td>
+              </tr>
+            </template>
           </tbody>
         </table>
       </div>
@@ -513,7 +511,7 @@
         <button
           type="button"
           class="btn_md btn_round btn_primary"
-          @click="save()"
+          @click="confirmSaveData()"
         >
           {{ t("common.save") }}
         </button>
@@ -521,10 +519,15 @@
           type="button"
           class="btn_md btn_round btn_primary"
           @click="next()"
+          :disabled="isDisabled"
         >
           {{ t("common.next") }}
         </button>
-        <button type="button" class="btn_md btn_round btn_white" @click="back()">
+        <button
+          type="button"
+          class="btn_md btn_round btn_white"
+          @click="back()"
+        >
           {{ t("common.list") }}
         </button>
       </div>
@@ -538,6 +541,16 @@ import { commonStore } from "@/stores/common";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { SCREEN } from "@/router/screen";
+import {
+  OperationDevelopmentPlanListModel,
+  OperationDevelopmentPlanReqModel,
+  OperationDevelopmentPlanSaveModel,
+} from "@/stores/eduProcessCreation/analysisAchievement/analysisAchievement.type";
+import { CD_EDU12 } from "@/constants/common.const";
+import {
+  getOperationDevelopmentPlanList,
+  saveOperationDevelopmentPlanList,
+} from "@/stores/eduProcessCreation/analysisAchievement/analysisAchievement.service";
 
 export default defineComponent({
   setup: () => {
@@ -548,11 +561,75 @@ export default defineComponent({
 
     return { router, storeCommon, t, id };
   },
-  beforeMount() {},
   data() {
-    return {};
+    return {
+      operationDevelopmentPlanListModel:
+        [] as Array<OperationDevelopmentPlanListModel>,
+      operationDevelopmentPlanReqModel: {} as OperationDevelopmentPlanReqModel,
+      operationDevelopmentPlanSaveModel:
+        {} as OperationDevelopmentPlanSaveModel,
+      isDisabled: true,
+    };
+  },
+  beforeMount() {
+    this.operationDevelopmentPlanReqModel.eduCourseSeq = this.id;
+    this.operationDevelopmentPlanReqModel.upCdId = CD_EDU12;
+
+    this.operationDevelopmentPlanSaveModel.eduCourseSeq = this.id;
+
+    this.getDataOperation();
   },
   methods: {
+    getDataOperation() {
+      this.storeCommon.setLoading(true);
+      getOperationDevelopmentPlanList(
+        this.operationDevelopmentPlanReqModel
+      ).then((res) => {
+        this.operationDevelopmentPlanListModel = res.data.data;
+        if (
+          this.operationDevelopmentPlanListModel.length > 0 &&
+          this.operationDevelopmentPlanListModel[0].dataSeq
+        ) {
+          this.isDisabled = false;
+        }
+        this.storeCommon.setLoading(false);
+      });
+    },
+    confirmSaveData() {
+      if (this.storeCommon.check) {
+        this.$alert(this.t("common.messageValidateRequired"));
+        return;
+      }
+      this.$confirm(this.t("common.message.save"), "", (isConfirm: Boolean) => {
+        if (isConfirm) {
+          this.saveOperationDevelopment();
+        }
+      });
+    },
+    saveOperationDevelopment() {
+      this.storeCommon.setLoading(true);
+      this.operationDevelopmentPlanSaveModel.listOperationDevelopmentPlan =
+        this.operationDevelopmentPlanListModel;
+      saveOperationDevelopmentPlanList(
+        this.operationDevelopmentPlanSaveModel
+      ).then((res) => {
+        this.storeCommon.setLoading(false);
+        this.$confirm(
+          this.t("common.messageSuccessNextTab"),
+          "",
+          (isConfirm: Boolean) => {
+            if (isConfirm) {
+              this.next();
+            } else {
+              if (this.isDisabled) {
+                this.$emit("updateStage", 23);
+              }
+            }
+            this.isDisabled = false;
+          }
+        );
+      });
+    },
     next() {
       this.$emit("nextTab", 20);
     },
@@ -565,5 +642,4 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped>
-</style>
+<style scoped></style>

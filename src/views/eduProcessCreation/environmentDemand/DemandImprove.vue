@@ -113,6 +113,7 @@
           type="button"
           class="btn_round btn_md btn_primary"
           @click="next()"
+          :disabled="isDisabled"
         >
           {{ t("common.next") }}
         </button>

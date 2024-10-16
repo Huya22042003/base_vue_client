@@ -75,3 +75,20 @@ export type AnalysisAchieSbjtModel = {
   kcsYn: string;
   ncsYn: string;
 };
+
+export type OperationDevelopmentPlanListModel = {
+  dataSeq: string;
+  dataCd: string;
+  dataNm: string;
+  cont: string;
+};
+
+export type OperationDevelopmentPlanReqModel = {
+  eduCourseSeq: string;
+  upCdId: string;
+};
+
+export type OperationDevelopmentPlanSaveModel = {
+  eduCourseSeq: string;
+  listOperationDevelopmentPlan: Array<OperationDevelopmentPlanListModel>;
+};
