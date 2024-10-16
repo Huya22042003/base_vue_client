@@ -1163,12 +1163,12 @@ export const routes = [
       {
         path: SCREEN.coreAbilityJob.path,
         name: SCREEN.coreAbilityJob.name,
-        component: () => import(`@/views/coreAbilityJob/coreAbilityJobList.vue`),
+        component: () => import(`@/views/coreAbilityJob/CoreAbilityJobList.vue`),
       },
       {
         path: SCREEN.coreAbilityJobDetail.path,
         name: SCREEN.coreAbilityJobDetail.name,
-        component: () => import(`@/views/coreAbilityJob/coreAbilityJobDetail.vue`),
+        component: () => import(`@/views/coreAbilityJob/CoreAbilityJobDetail.vue`),
       },
       {
         path: SCREEN.eduProcessMeetingMinutes.path,
