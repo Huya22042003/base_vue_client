@@ -18,7 +18,7 @@
           <nav class="nav_wrap">
             <ul id="gnbMenu" class="gnb_1depth">
               <li v-for="submenu in menu" :key="submenu?.id">
-                <router-link to=""><span>{{ submenu?.name }}</span></router-link>
+                <router-link to="" @click.prevent="handleNextScreen(submenu.screenName)"><span>{{ submenu?.name }}</span></router-link>
                 <ul class="gnb_2depth">
                   <li v-for="submenus in submenu?.subMenus" :key="submenus?.id">
                     <router-link to="" @click.prevent="handleNextScreen(submenus.screenName)">{{ submenus?.name }}
