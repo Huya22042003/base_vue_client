@@ -64,7 +64,7 @@
                   class="wd_p60"
                   :id="'selectbox1'"
                   :name="'selectbox1'"
-                  :data="listEduType"
+                  :data="getListType(listEduType)"
                 >
                 </SelectBoxBase>
               </td>
@@ -120,7 +120,7 @@ import {
 import { MODE_EDIT } from "@/constants/screen.const";
 import { START_YEAR_NUMBER } from "@/constants/screen.const";
 import { getUserInfo } from "@/utils/storage";
-import { BAD_REQUEST_EDU_COURSE, BAD_REQUEST_NO_REGISTER_WRITE_SCHDL, VERSION_V1 } from "@/constants/common.const";
+import { BAD_REQUEST_EDU_COURSE, BAD_REQUEST_NO_REGISTER_WRITE_SCHDL, DEPT_TYPE_SPECIAL, EDU_TYPE_OTHER, VERSION_V1 } from "@/constants/common.const";
 
 export default {
   props: {
@@ -219,6 +219,16 @@ export default {
         });
       });
       this.storeCommon.setLoading(false);
+    },
+    getListType(listType:any) {
+      if (this.eduCourseRequest && this.eduCourseRequest.deptCd) {
+        if (this.eduCourseRequest.deptCd == DEPT_TYPE_SPECIAL) {
+          this.eduCourseRequest.eduCourseTypeSeq = listType.filter((item:any) => item.cdNm == EDU_TYPE_OTHER)[0].cdId
+          return listType.filter((item:any) => item.cdNm == EDU_TYPE_OTHER);
+        }
+      }
+      this.eduCourseRequest.eduCourseTypeSeq = "";
+      return listType.filter((item:any) => item.cdNm != EDU_TYPE_OTHER);
     },
     async onCreate() {
       if (
