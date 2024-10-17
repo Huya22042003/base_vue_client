@@ -33,6 +33,7 @@
                   :id="'selectbox2'"
                   :name="'selectbox2'"
                   :data="listDept"
+                  @change="loadDataTypeTalent"
                 >
                 </SelectBoxBase>
               </td>
@@ -64,7 +65,7 @@
                   class="wd_p60"
                   :id="'selectbox1'"
                   :name="'selectbox1'"
-                  :data="getListType(listEduType)"
+                  :data="listEduTypeData"
                 >
                 </SelectBoxBase>
               </td>
@@ -171,6 +172,7 @@ export default {
       listEduType: [{ id: 0, cdId: "", cdNm: this.t("common.select") }] as any,
       listDept: [{ id: 0, cdId: "", cdNm: this.t("common.select") }] as any,
       listYear: [] as any,
+      listEduTypeData: [{ id: 0, cdId: "", cdNm: this.t("common.select") }] as any,
     };
   },
   beforeMount() {
@@ -183,6 +185,9 @@ export default {
     },
     closeModal() {
       this.$emit("close-modal");
+    },
+    loadDataTypeTalent() {
+      this.listEduTypeData = this.getListType(this.listEduType);
     },
     async getDepartment() {
       this.storeCommon.setLoading(true);
@@ -217,6 +222,7 @@ export default {
             cdNm: item.typeNm,
           });
         });
+        this.loadDataTypeTalent();
       });
       this.storeCommon.setLoading(false);
     },
@@ -225,9 +231,10 @@ export default {
         if (this.eduCourseRequest.deptCd == DEPT_TYPE_SPECIAL) {
           this.eduCourseRequest.eduCourseTypeSeq = listType.filter((item:any) => item.cdNm == EDU_TYPE_OTHER)[0].cdId
           return listType.filter((item:any) => item.cdNm == EDU_TYPE_OTHER);
+        } else {
+          this.eduCourseRequest.eduCourseTypeSeq = "";
         }
       }
-      this.eduCourseRequest.eduCourseTypeSeq = "";
       return listType.filter((item:any) => item.cdNm != EDU_TYPE_OTHER);
     },
     async onCreate() {
