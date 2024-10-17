@@ -169,6 +169,7 @@ export default {
 };
 </script>
 <style>
+@import url("../eduCourseCustom.css");
 .attach_filewrap {
   padding: 0;
 }

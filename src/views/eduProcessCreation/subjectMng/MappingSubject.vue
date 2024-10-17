@@ -485,6 +485,7 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+@import url("../eduCourseCustom.css");
 .core__ability__center {
   display: flex;
   justify-content: center;

@@ -562,6 +562,7 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+@import url("../eduCourseCustom.css");
 .between {
   justify-content: space-between;
 }
