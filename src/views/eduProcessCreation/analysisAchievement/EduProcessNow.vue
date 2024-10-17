@@ -18,7 +18,7 @@
             : ""
         }}
       </p>
-      <div class="tbl_col tbl tbl_border">
+      <div class="tbl_col tbl">
         <table>
           <tbody>
             <tr>
@@ -300,6 +300,8 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+@import url('../eduCourseCustom.css');
+
 .deptnm-style-custom {
   text-align: left;
   padding-left: 20px;

@@ -7,7 +7,7 @@
           t("eduProcessCreation.analysisAchievement.title16")
         }}
       </p>
-      <div class="tbl tbl_col tbl_border">
+      <div class="tbl tbl_col">
         <table>
           <thead>
             <tr>
@@ -148,7 +148,7 @@
           t("eduProcessCreation.analysisAchievement.title23")
         }}
       </p>
-      <div class="tbl tbl_col tbl_border">
+      <div class="tbl tbl_col">
         <table>
           <thead>
             <tr>
@@ -259,7 +259,7 @@
           t("eduProcessCreation.analysisAchievement.title24")
         }}
       </p>
-      <div class="tbl tbl_col tbl_border">
+      <div class="tbl tbl_col">
         <table>
           <thead>
             <tr>
@@ -348,7 +348,7 @@
           t("eduProcessCreation.analysisAchievement.title25")
         }}
       </p>
-      <div class="tbl tbl_col tbl_border">
+      <div class="tbl tbl_col">
         <table>
           <thead>
             <tr>
@@ -462,7 +462,7 @@
           t("eduProcessCreation.analysisAchievement.title26")
         }}
       </p>
-      <div class="tbl tbl_col tbl_border">
+      <div class="tbl tbl_col">
         <table>
           <tbody>
             <tr>
@@ -643,4 +643,6 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped></style>
+<style scoped>
+@import url('../eduCourseCustom.css');
+</style>

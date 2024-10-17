@@ -6,7 +6,7 @@
       :key="coreJobSelc.coreJobSelcSeq"
     >
       <p class="box_title_sm">{{ coreJobSelc.jobNm }}</p>
-      <div class="tbl tbl_col">
+      <div class="tbl tbl_col tbl_border_vertify_capa_chld">
         <table>
           <colgroup>
             <col style="width: 10%" />
@@ -48,56 +48,72 @@
             <template
               v-for="ncsKcs in coreJobSelc.listNcsKcs"
               :key="ncsKcs.code"
-              ><tr>
-                <td scope="row" :colspan="1" :rowspan="ncsKcs.rowSpan">
-                  {{ ncsKcs.code }}
-                </td>
-              </tr>
+            >
               <template
-                v-for="jobAbility in ncsKcs.listJobAbility"
+                v-for="(jobAbility, indexJobAbility) in ncsKcs.listJobAbility"
                 :key="jobAbility.jobAbilSeq"
               >
-                <tr>
-                  <td scope="row" :colspan="1" :rowspan="jobAbility.rowSpan">
-                    {{
-                      jobAbility.jobAbilNm + " (" + jobAbility.jobAbilCd + ")"
-                    }}
-                  </td>
-                </tr>
                 <template
-                  v-for="jobCapaUnit in jobAbility.listJobCapaUnit"
+                  v-for="(
+                    jobCapaUnit, indexJobCapaUnit
+                  ) in jobAbility.listJobCapaUnit"
                   :key="jobCapaUnit.jobCapaUnitSeq"
-                  ><tr>
-                    <td scope="row" :colspan="1" :rowspan="jobCapaUnit.rowSpan">
-                      <CheckboxBase
-                        :mode="'show'"
-                        v-model="jobCapaUnit.isCheck"
-                        :id="
-                          'capaUnitCheckbox' +
-                          coreJobSelc.coreJobSelcSeq +
-                          jobAbility.jobAbilSeq +
-                          jobCapaUnit.jobCapaUnitSeq
-                        "
-                        :name="
-                          'capaUnitCheckbox' +
-                          coreJobSelc.coreJobSelcSeq +
-                          jobAbility.jobAbilSeq +
-                          jobCapaUnit.jobCapaUnitSeq
-                        "
-                        :label="jobCapaUnit.capaUnitNm"
-                        @change="handleChangeCheckboxJobCapaUnit(jobCapaUnit)"
-                      >
-                      </CheckboxBase>
-                    </td>
-                  </tr>
+                >
                   <template
-                    v-for="capaUnitPerform in jobCapaUnit.listJobCapaUnitPerform"
+                    v-for="(
+                      capaUnitPerform, indexCapaUnitPerform
+                    ) in jobCapaUnit.listJobCapaUnitPerform"
                     :key="capaUnitPerform.capaUnitPerformStnrdSeq"
                   >
                     <tr>
-                      <td scope="row" :colspan="1">
-                        {{ capaUnitPerform.cont }}
+                      <td
+                        v-if="
+                          indexJobAbility === 0 &&
+                          indexJobCapaUnit === 0 &&
+                          indexCapaUnitPerform === 0
+                        "
+                        :rowspan="ncsKcs.rowSpan"
+                      >
+                        {{ ncsKcs.code }}
                       </td>
+                      <td
+                        :rowspan="jobAbility.rowSpan"
+                        v-if="
+                          indexJobCapaUnit === 0 && indexCapaUnitPerform === 0
+                        "
+                      >
+                        {{
+                          jobAbility.jobAbilNm +
+                          " (" +
+                          jobAbility.jobAbilCd +
+                          ")"
+                        }}
+                      </td>
+                      <td
+                        :rowspan="jobCapaUnit.rowSpan"
+                        v-if="indexCapaUnitPerform === 0"
+                      >
+                        <CheckboxBase
+                          :mode="'show'"
+                          v-model="jobCapaUnit.isCheck"
+                          :id="
+                            'capaUnitCheckbox' +
+                            coreJobSelc.coreJobSelcSeq +
+                            jobAbility.jobAbilSeq +
+                            jobCapaUnit.jobCapaUnitSeq
+                          "
+                          :name="
+                            'capaUnitCheckbox' +
+                            coreJobSelc.coreJobSelcSeq +
+                            jobAbility.jobAbilSeq +
+                            jobCapaUnit.jobCapaUnitSeq
+                          "
+                          :label="jobCapaUnit.capaUnitNm"
+                          @change="handleChangeCheckboxJobCapaUnit(jobCapaUnit)"
+                        >
+                        </CheckboxBase>
+                      </td>
+                      <td>{{ capaUnitPerform.cont }}</td>
                       <td>
                         <CheckboxBase
                           :mode="'show'"
@@ -259,23 +275,20 @@ export default defineComponent({
       let sum = 0;
       ncsKcs.listJobAbility.forEach((jobAbility) => {
         jobAbility.listJobCapaUnit.forEach((capaUnit) => {
-          sum += capaUnit.listJobCapaUnitPerform.length + 1;
+          sum += capaUnit.listJobCapaUnitPerform.length;
         });
-        sum += 2;
       });
       return sum;
     },
     calculateJobAbilityRowSpan(
       ability: JobEduVerifyCmmnJobAbilityModel
     ): number {
-      return (
-        ability.listJobCapaUnit.reduce((sum, capaUnit) => {
-          return sum + capaUnit.listJobCapaUnitPerform.length + 1;
-        }, 0) + 1
-      );
+      return ability.listJobCapaUnit.reduce((sum, capaUnit) => {
+        return sum + capaUnit.listJobCapaUnitPerform.length;
+      }, 0);
     },
     calculateCapaUnitRowSpan(capaUnit: JobEduVerifyJobCapaUnitModel): number {
-      return capaUnit.listJobCapaUnitPerform.length + 1;
+      return capaUnit.listJobCapaUnitPerform.length;
     },
     handleChangeCheckboxJobCapaUnit(item: JobEduVerifyJobCapaUnitModel) {
       if (!item.isCheck) {
@@ -363,6 +376,6 @@ export default defineComponent({
 </script>
 <style>
 .check_row > label {
-  min-height: 20px;
+  min-height: 20px !important;
 }
 </style>

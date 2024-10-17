@@ -6,7 +6,7 @@
       v-for="coreJobSelc in listCoreJobSelc"
       :key="coreJobSelc.coreJobSelcSeq"
     >
-      <div class="tbl_col tbl tbl_border">
+      <div class="tbl_col tbl">
         <table>
           <colgroup>
             <col style="width: 15%" />
@@ -430,4 +430,6 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped></style>
+<style scoped>
+@import url("../eduCourseCustom.css");
+</style>

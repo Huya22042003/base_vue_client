@@ -396,6 +396,7 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+@import url("../eduCourseCustom.css");
 .text_blue {
   color: #0029ff;
 }

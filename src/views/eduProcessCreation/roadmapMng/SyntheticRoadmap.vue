@@ -147,7 +147,11 @@
           </colgroup>
           <thead>
             <tr>
-              <th scope="row" :colspan="1" :rowspan="data.relatedCertificate.length + 1">
+              <th
+                scope="row"
+                :colspan="1"
+                :rowspan="data.relatedCertificate.length + 1"
+              >
                 <!-- 관련 자격증 -->{{
                   t("eduProcessCreation.roadmapMng.title22")
                 }}
@@ -161,7 +165,7 @@
                 }}
               </th>
             </tr>
-            <tr v-for="(item) in data.relatedCertificate">
+            <tr v-for="item in data.relatedCertificate">
               <td scope="row" :colspan="1" class="ta_c">
                 <div class="line_heigth pd_20">{{ item.jobNm }}</div>
               </td>
@@ -179,7 +183,11 @@
           </colgroup>
           <thead>
             <tr>
-              <th scope="row" :colspan="1" :rowspan="data.graduationRoadmap.length + 1">
+              <th
+                scope="row"
+                :colspan="1"
+                :rowspan="data.graduationRoadmap.length + 1"
+              >
                 <!-- 졸업 후 진로 -->{{
                   t("eduProcessCreation.roadmapMng.title25")
                 }}
@@ -195,12 +203,12 @@
                 }}
               </th>
             </tr>
-            <tr v-for="(item) in data.graduationRoadmap">
+            <tr v-for="item in data.graduationRoadmap">
               <td scope="row" :colspan="1" class="ta_c">
                 <div class="line_heigth pd_20">{{ item.typeNm }}</div>
               </td>
               <td scope="row" :colspan="1" class="ta_c">
-                <div class="line_heigth pd_20">{{item.career}}</div>
+                <div class="line_heigth pd_20">{{ item.career }}</div>
               </td>
             </tr>
           </thead>
@@ -286,6 +294,7 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+@import url("../eduCourseCustom.css");
 .line_heigth {
   line-height: 30px;
 }

@@ -25,12 +25,36 @@
             <template v-for="(abil, indexAbil) in view.listAbil">
               <template v-for="(capa, indexCapa) in abil.capaUnit">
                 <tr>
-                  <td scope="row" class="ta_c" v-if="indexCapa == 0" :rowspan="abil.capaUnit.length" :colspan="1">{{ view.yearSemester }}</td>
-                  <td scope="row" class="ta_c" v-if="indexCapa == 0" :rowspan="abil.capaUnit.length" :colspan="1">{{ abil.jobAbilNm }}</td>
-                  <td scope="row" class="ta_c" :colspan="1">{{ capa.capaUnitNm }}</td>
-                  <td scope="row" class="ta_c" :colspan="1">{{ capa.typeCd ? '' : '🔴' }}</td>
-                  <td scope="row" class="ta_c" :colspan="1">{{ capa.typeCd ? '🔴' : '' }}</td>
-                  <td scope="row" class="ta_c" :colspan="1">{{ capa.sbjtNm }}</td>
+                  <td
+                    scope="row"
+                    class="ta_c"
+                    v-if="indexCapa == 0"
+                    :rowspan="abil.capaUnit.length"
+                    :colspan="1"
+                  >
+                    {{ view.yearSemester }}
+                  </td>
+                  <td
+                    scope="row"
+                    class="ta_c"
+                    v-if="indexCapa == 0"
+                    :rowspan="abil.capaUnit.length"
+                    :colspan="1"
+                  >
+                    {{ abil.jobAbilNm }}
+                  </td>
+                  <td scope="row" class="ta_c" :colspan="1">
+                    {{ capa.capaUnitNm }}
+                  </td>
+                  <td scope="row" class="ta_c" :colspan="1">
+                    {{ capa.typeCd ? "" : "🔴" }}
+                  </td>
+                  <td scope="row" class="ta_c" :colspan="1">
+                    {{ capa.typeCd ? "🔴" : "" }}
+                  </td>
+                  <td scope="row" class="ta_c" :colspan="1">
+                    {{ capa.sbjtNm }}
+                  </td>
                 </tr>
               </template>
             </template>
@@ -69,7 +93,10 @@ import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { getLinkRoadMap } from "@/stores/eduProcessCreation/roadmapMng/roadmapMng.service";
-import { LinkRoadMapResDTO, LinkRoadMapView } from "@/stores/eduProcessCreation/roadmapMng/roadmapMng.type";
+import {
+  LinkRoadMapResDTO,
+  LinkRoadMapView,
+} from "@/stores/eduProcessCreation/roadmapMng/roadmapMng.type";
 import { KCS_CD_ID } from "@/constants/common.const";
 
 export default defineComponent({
@@ -84,8 +111,8 @@ export default defineComponent({
   data() {
     return {
       dataRes: [] as LinkRoadMapResDTO[],
-      dataView: [] as LinkRoadMapView[]
-    }
+      dataView: [] as LinkRoadMapView[],
+    };
   },
   beforeMount() {
     this.getData();
@@ -93,47 +120,64 @@ export default defineComponent({
   methods: {
     getData() {
       this.storeCommon.setLoading(true);
-      getLinkRoadMap({eduCourseSeq: this.id}).then((res) => {
-        this.dataRes = res.data.data;
-        this.convertData();
-      }).finally(() => {
-        this.storeCommon.setLoading(false);
-      })
+      getLinkRoadMap({ eduCourseSeq: this.id })
+        .then((res) => {
+          this.dataRes = res.data.data;
+          this.convertData();
+        })
+        .finally(() => {
+          this.storeCommon.setLoading(false);
+        });
     },
     convertData() {
       let dataYear = [] as any[];
-      
-      this.dataRes.forEach(item => {
+
+      this.dataRes.forEach((item) => {
         const yearSemester = `${item.gradeNm}-${item.termNm}`;
-        if (!dataYear.filter(item => yearSemester.includes(item.yearSemester))[0]) {
-          dataYear.push({yearSemester: yearSemester})
+        if (
+          !dataYear.filter((item) =>
+            yearSemester.includes(item.yearSemester)
+          )[0]
+        ) {
+          dataYear.push({ yearSemester: yearSemester });
         }
       });
 
       dataYear.sort((a, b) => a.yearSemester.localeCompare(b.yearSemester));
 
-      dataYear = dataYear.map(item => {
+      dataYear = dataYear.map((item) => {
         const listAbil = [] as any[];
         this.dataRes.forEach((res) => {
-          if (`${res.gradeNm}-${res.termNm}`.includes(item.yearSemester) && !listAbil.filter(item => res.jobAbilSeq.includes(item.jobAbilSeq))[0]) {
-            listAbil.push({jobAbilSeq: res.jobAbilSeq, jobAbilNm: res.jobAbilNm})
+          if (
+            `${res.gradeNm}-${res.termNm}`.includes(item.yearSemester) &&
+            !listAbil.filter((item) =>
+              res.jobAbilSeq.includes(item.jobAbilSeq)
+            )[0]
+          ) {
+            listAbil.push({
+              jobAbilSeq: res.jobAbilSeq,
+              jobAbilNm: res.jobAbilNm,
+            });
           }
         });
 
         listAbil.forEach((abil, index) => {
           const capaUnit = [] as any[];
-          this.dataRes.forEach((res:LinkRoadMapResDTO) => {
-            if (`${res.gradeNm}-${res.termNm}`.includes(item.yearSemester) && abil.jobAbilSeq == res.jobAbilSeq) {
+          this.dataRes.forEach((res: LinkRoadMapResDTO) => {
+            if (
+              `${res.gradeNm}-${res.termNm}`.includes(item.yearSemester) &&
+              abil.jobAbilSeq == res.jobAbilSeq
+            ) {
               capaUnit.push({
                 capaUnitSeq: res.capaUnitSeq,
                 capaUnitNm: res.capaUnitNm,
                 typeCd: res.typeCd == KCS_CD_ID,
-                sbjtNm: res.sbjtNm
+                sbjtNm: res.sbjtNm,
               });
             }
           });
           listAbil.splice(index, 1, {
-            jobAbilSeq: abil.jobAbilSeq, 
+            jobAbilSeq: abil.jobAbilSeq,
             jobAbilNm: abil.jobAbilNm,
             capaUnit: capaUnit,
           });
@@ -143,7 +187,7 @@ export default defineComponent({
 
         return item;
       });
-      
+
       this.dataView = dataYear as LinkRoadMapView[];
     },
     next() {
@@ -157,4 +201,6 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped></style>
+<style scoped>
+@import url("../eduCourseCustom.css");
+</style>
