@@ -150,6 +150,7 @@
 
     <div class="btn_group btn_end mg_t25">
       <button
+        v-if="version && isSave"
         type="button"
         class="btn_round btn_md btn_primary"
         @click="confirmSave()"
@@ -183,6 +184,7 @@ import {
   STATUS_NO,
   STATUS_YES,
   UP_CD_NCS_KCS,
+  VERSION_V1,
 } from "../../../constants/common.const";
 import {
   getJobEduCoreJobSelcList,
@@ -201,8 +203,10 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const version = window.history.state.version == VERSION_V1;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, version, isSave };
   },
   beforeMount() {
     this.getCodeNcsKcs();
@@ -353,7 +357,7 @@ export default defineComponent({
       if (indexSys >= 0 && indexSys < item.listNcsSysClassification.length) {
         const classSystem = item.listNcsSysClassification[indexSys];
 
-        if (classSystem.classSystemListSeq === null) {
+        if (!classSystem.classSystemListSeq) {
           item.listNcsSysClassification.splice(indexSys, 1);
         } else {
           classSystem.delYn = this.stateY;
@@ -391,11 +395,8 @@ export default defineComponent({
           (isConfirm: Boolean) => {
             if (isConfirm) {
               this.next();
-            } else {
-              if (this.isDisabled) {
-                this.$emit("updateStage", 42);
-              }
             }
+            this.$emit("updateStage", 42);
             this.isDisabled = false;
           }
         );

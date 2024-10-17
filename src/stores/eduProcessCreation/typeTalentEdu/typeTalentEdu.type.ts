@@ -89,6 +89,7 @@ export type TaltNrtgResDTO = {
     evalDate: string;
     evalPartiCnt: Number;
     jobField: string;
+    eduCourseType: string;
     taltNrtgSel: TaltNrtgSelResDTO[];
 }
 

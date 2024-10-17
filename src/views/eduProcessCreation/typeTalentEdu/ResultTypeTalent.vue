@@ -319,6 +319,7 @@
           }}
         </button>
         <button
+          v-if="isSave"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="save()"
@@ -391,6 +392,7 @@ export default defineComponent({
     const id = window.history.state.id;
     const TYPE_JOB = ref<string>("TYPE_JOB");
     const TYPE_TALT = ref<string>("TYPE_TALT");
+      const isSave = window.history.state.isSave;
 
     return {
       router,
@@ -402,6 +404,7 @@ export default defineComponent({
       CD_RESULT_SEL_03,
       TYPE_JOB,
       TYPE_TALT,
+      isSave
     };
   },
   data() {
@@ -542,10 +545,9 @@ export default defineComponent({
                 (isConfirm: Boolean) => {
                   if (isConfirm) {
                     this.next();
-                  } else {
-                    if (this.isDisabled) {
-                      this.$emit("updateStage", 35);
-                    }
+                  }
+                  if (this.isDisabled) {
+                    this.$emit("updateStage", 41);
                   }
                   this.isDisabled = false;
                 }

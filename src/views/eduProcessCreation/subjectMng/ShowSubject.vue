@@ -173,6 +173,7 @@
     <div class="btn_group btn_end mg_t20">
       <div class="btn_group btn_end">
         <button
+          v-if="isSave"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="save()"
@@ -211,7 +212,7 @@ import {
   NewSubjectReqDTO,
 } from "@/stores/eduProcessCreation/subjectMng/subjectMng.type";
 import { getListCodeMng } from "@/stores/common/codeMng/codeMng.service";
-import { SUBJECT_TYPE_CD } from "@/constants/common.const";
+import { STATUS_NO, STATUS_YES, SUBJECT_TYPE_CD } from "@/constants/common.const";
 
 export default defineComponent({
   setup: () => {
@@ -219,8 +220,9 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, isSave };
   },
   data() {
     return {
@@ -254,11 +256,14 @@ export default defineComponent({
       };
       getNewSubject(dataSearch)
         .then((res: any) => {
-          this.data = res.data.data;
-          
-          if (this.data && this.data.length == 0) {
-            this.isCheckCreate = true;
+          const response = res.data.data;
+          this.data = response.listData;
+
+          this.isCheckCreate = response.isData == STATUS_YES
+          if (this.isCheckCreate || this.data && this.data.length != 0) {
+            this.isDisabled = false;
           }
+          
         })
         .finally(() => {
           this.storeCommon.setLoading(false);
@@ -298,6 +303,7 @@ export default defineComponent({
           this.storeCommon.setLoading(true);
           const dataSave = {
             eduCourseSeq: this.id,
+            isData: this.isCheckCreate ? STATUS_YES : STATUS_NO,
             listData: this.isCheckCreate ? [] : this.data
           } as NewSubjectReqDTO;
           saveNewSubject(dataSave).then((res:any) => {
@@ -307,10 +313,9 @@ export default defineComponent({
                 (isConfirm: Boolean) => {
                   if (isConfirm) {
                     this.next();
-                  } else {
-                    if (this.isDisabled) {
-                      this.$emit("updateStage", 52);
-                    }
+                  }
+                  if (this.isDisabled) {
+                    this.$emit("updateStage", 52);
                   }
                   this.isDisabled = false;
                 }

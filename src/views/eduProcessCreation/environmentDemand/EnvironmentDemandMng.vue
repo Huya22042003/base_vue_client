@@ -126,6 +126,9 @@ export default {
     },
     updateStage(stage: number) {
       this.stageChild = stage;
+      if (stage > 25) {
+        this.$emit("updateStage", stage)
+      }
     },
     tabChange2(tabId: any) {
       switch (tabId) {

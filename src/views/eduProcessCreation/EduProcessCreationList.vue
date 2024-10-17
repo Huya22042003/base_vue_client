@@ -82,27 +82,17 @@
         >
           <template #button>
             <div class="search_btnarea">
-              <!-- <ExportFileExcel
-                :callData="true"
-                ref="exportExcelRef"
-                @click="exportExcel"
-                :data="dataExport"
-                :fileName="fileNameExport"
-                :btnName="
-                  t('05.eduProcessCreation.listAndApprove.button.downloadExcel')
-                "
-              >
-              </ExportFileExcel> -->
               <button
                 type="button"
-                :disabled="!listCheckBoxGrid.length"
+                :disabled="disableButtonDelete"
                 class="btn_round btn_lg btn_black"
-                @click="openDeleteAlert()"
+                @click="confirmDelete()"
               >
                 {{ t("05.eduProcessCreation.listAndApprove.button.delete") }}
               </button>
               <button
                 type="button"
+                :disabled="disableButtonUpversion"
                 class="btn_round btn_lg btn_gray"
                 @click="handleVersionUp()"
               >
@@ -163,10 +153,8 @@ import {
 import { commonStore } from "@/stores/common";
 import { EduCourseStore } from "@/stores/eduProcessCreation";
 import type {
-  EduCourseSeqModel,
   EduCourseResModel,
   EduCourseSearchModel,
-  EduCourseAppReqReqModel,
 } from "../../stores/eduProcessCreation/eduCourse/eduProcess.type";
 import { useI18n } from "vue-i18n";
 import { SCREEN } from "../../router/screen";
@@ -178,6 +166,19 @@ import type { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 import { format } from "date-fns";
 import { CODE_VERSION } from "@/constants/screen.const";
 import { CODE_MAJOR } from "@/constants/screen.const";
+import {
+  deleteEduCourse,
+  versionUpEduCourse,
+} from "@/stores/eduProcessCreation/eduCourse/eduProcess.service";
+import {
+  BAD_REQUEST_EDU_COURSE,
+  BAD_REQUEST_NO_REGISTER_WRITE_SCHDL,
+  BAD_REQUEST_NO_VERIFY_VERSION,
+  BAD_REQUEST_NO_VERSION_MAX,
+  STATUS_EDU_COURSE,
+  VERSION_V7,
+} from "@/constants/common.const";
+import RadioButtonGrid from "@/components/common/grid/RadioButtonGrid.vue";
 
 export default defineComponent({
   components: {
@@ -200,7 +201,7 @@ export default defineComponent({
     const storeDepartment = departmentStore();
     const codeStore = codeMngStore();
     const { t } = useI18n();
-    const id = ref<string>();
+    const dataSel = ref<EduCourseResModel>();
     const codeList = ref<CodeMngModel[]>();
     const exportExcelRef = ref(null);
 
@@ -213,7 +214,7 @@ export default defineComponent({
       codeStore,
       codeList,
       selectAll: ref(false),
-      id,
+      dataSel,
       exportExcelRef,
     };
   },
@@ -225,11 +226,6 @@ export default defineComponent({
       keyId: 0,
       pageTitle: this.t("eduProcessCreation.title"),
       breadcrumbItems: [],
-      displayTypes: [
-        { cdId: "", cdNm: this.t("common.all") },
-        { cdId: "Y", cdNm: "" },
-        { cdId: "N", cdNm: "" },
-      ],
       searhParms: {
         page: PAGINATION_PAGE_1,
         size: PAGINATION_PAGE_SIZE,
@@ -242,26 +238,16 @@ export default defineComponent({
       paginationPageSize: PAGINATION_PAGE_SIZE,
       paginationPageSizeSelector: PAGINATION_PAGE_SIZE_SELECTOR,
       eduProcessCreationList: [] as Array<EduCourseResModel>,
-      dataList: [] as Array<EduCourseResModel>,
       columnDefs: ref([
         {
-          headerComponent: CheckboxGrid,
-          headerComponentParams: {
-            onCustomEvent: this.checkAll,
-            valueChecked: this.selectAll,
-            selectAllGridId: "selectAll",
-            childName: "childName",
-            type: "selectAll",
-          },
-          cellRenderer: CheckboxGrid,
+          cellRenderer: RadioButtonGrid,
           cellRendererParams: {
             onCustomEvent: this.checkChild,
-            type: "selectChildCheckShow",
-            selectAllGridId: "selectAll",
-            childName: "childName",
+            id: "eduCursSeq",
+            name: "childName",
           },
-          field: "checkedFlag",
-          flex: 0.6,
+          field: "선택",
+          flex: 0.8,
           cellStyle: {
             display: "flex",
             justifyContent: "center",
@@ -274,7 +260,7 @@ export default defineComponent({
           flex: 1.8,
           cellStyle: {
             display: "flex",
-            justifyContent: "left",
+            justifyContent: "center",
             alignItems: "start",
           },
         },
@@ -387,9 +373,7 @@ export default defineComponent({
       confirmMessage: "",
       confirmButton: "",
       cancelButton: "",
-      apprReqModel: {} as EduCourseAppReqReqModel,
       showCancel: false,
-      delModel: [] as Array<EduCourseSeqModel>,
       pageable: {} as any,
       year: new Date().getFullYear() as number,
       listDept: [] as any[],
@@ -397,23 +381,14 @@ export default defineComponent({
       listYear: [] as any,
       listSts: [{ id: 0, cdId: "", cdNm: this.t("common.all") }] as any,
       departmentFilterDTO: {} as DepartmentFilterDTO,
-      listAllCheck: [] as any,
       data: {} as any,
-      yearTemp: "",
-      fileNameExport: "교육과정개발개편",
-      dataExport: [] as any,
+      dataSelectRadio: {} as EduCourseResModel,
+      disableButtonDelete: true,
+      disableButtonUpversion: true,
     };
   },
   beforeMount() {
-    Promise.all([this.getDepartment()]).catch((e) => {
-      this.confirmMessage = e.message;
-      this.confirmButton = this.t("common.confirm");
-      this.showCancel = false;
-      this.showAlert(
-        () => {},
-        () => {}
-      );
-    });
+    this.getDepartment();
   },
   beforeUnmount() {
     document.removeEventListener("keypress", this.handleKeyPress);
@@ -487,28 +462,19 @@ export default defineComponent({
                   ? format(item.regDate, FORMAT_YYY_MM_DD)
                   : "";
                 item.checkedShow = item.stsCd == CODE_103920;
-                item.checkedFlag = this.listCheckBoxGrid.includes(
-                  item.eduCursSeq
-                );
+
+                if (
+                  this.dataSelectRadio &&
+                  this.dataSelectRadio.eduCursSeq &&
+                  this.dataSelectRadio.eduCursSeq == item.eduCursSeq
+                ) {
+                  item.checkedFlag = true;
+                } else {
+                  item.checkedFlag = false;
+                }
                 return item;
               }
             );
-
-          let check = true;
-          this.eduProcessCreationList.forEach((row) => {
-            if (!row.checkedFlag) {
-              check = false;
-            }
-          });
-          if (check) {
-            const resetSelect = document.getElementById("selectAll");
-            resetSelect.checked = true;
-          }
-          // this.listAllCheck = this.eduProcessCreationList.filter(item => {
-          //     if (item.stsCd == CODE_103920 || item.stsCd == CODE_103950) {
-          //         return item.eduCursSeq
-          //     }
-          // })
         }
       } catch (error: any) {
         this.confirmMessage = error.message;
@@ -573,55 +539,6 @@ export default defineComponent({
 
       this.getAllData();
     },
-    async requestApprove() {
-      try {
-        this.storeCommon.setLoading(true);
-        this.apprReqModel.stsCd = CODE_103960;
-        // await this.eduCourseStore.requestEduCourseApprove([this.apprReqModel]);
-        // if (this.eduCourseStore) {
-        //     if (this.eduCourseStore.status == CREATED_STATUS) {
-        //         this.confirmMessage = this.t('05.eduProcessCreation.listAndApprove.message.approveRequestSuccess')
-        //         this.confirmButton = this.t('common.confirm')
-        //         this.showCancel = false
-        //         this.showAlert(this.getAllData,()=>{})
-        //     }
-        // }
-      } catch (error: any) {
-        this.confirmMessage = error.message;
-        this.showCancel = false;
-        this.confirmButton = this.t("common.confirm");
-        this.showAlert(
-          () => {},
-          () => {}
-        );
-      } finally {
-        this.storeCommon.setLoading(false);
-      }
-    },
-    async deleteRow() {
-      try {
-        this.storeCommon.setLoading(true);
-        this.delModel = this.listCheckBoxGrid.map((e: any) => {
-          return { data: e };
-        });
-        // await this.eduCourseStore.deleteEduCourse(this.delModel);
-        // if (this.eduCourseStore && this.eduCourseStore.status == SUCCSESS_STATUS) {
-        //     this.confirmMessage = this.t('05.eduProcessCreation.listAndApprove.message.deleteSuccess')
-        //     this.showCancel = false
-        //     this.showAlert(this.getAllData,()=>{})
-        // }
-      } catch (error: any) {
-        this.confirmMessage = error.message;
-        this.confirmButton = this.t("common.confirm");
-        this.showCancel = false;
-        this.showAlert(
-          () => {},
-          () => {}
-        );
-      } finally {
-        this.storeCommon.setLoading(false);
-      }
-    },
     goUpdateForm() {
       this.router.push({
         name: SCREEN.eduProcessCreationMng.name,
@@ -629,8 +546,10 @@ export default defineComponent({
           mode: MODE_EDIT,
         },
         state: {
-          id: this.id,
+          id: this.dataSel?.eduCursSeq,
+          version: this.dataSel?.version,
           first: false,
+          isSave: true,
         },
       });
     },
@@ -641,8 +560,10 @@ export default defineComponent({
           mode: MODE_EDIT,
         },
         state: {
-          id: this.id,
+          id: this.dataSel?.eduCursSeq,
+          version: this.dataSel?.version,
           first: true,
+          isSave: true,
         },
       });
     },
@@ -657,17 +578,8 @@ export default defineComponent({
       this.isOpenSetting = false;
       this.isOpenReason = false;
     },
-    openDeleteAlert() {
-      this.showCancel = true;
-      this.confirmMessage =
-        this.yearTemp +
-        this.t("05.eduProcessCreation.listAndApprove.message.isDelete");
-      this.confirmButton = this.t("common.deleteItem");
-      this.cancelButton = this.t("common.cancel");
-      this.showAlert(this.deleteRow, () => {});
-    },
     openContinueAlert(data: EduCourseResModel) {
-      this.id = data.eduCursSeq;
+      this.dataSel = data;
 
       this.showCancel = true;
       this.confirmMessage = this.t(
@@ -680,18 +592,6 @@ export default defineComponent({
         "05.eduProcessCreation.listAndApprove.button.goFirstStage"
       );
       this.showAlert(this.goUpdateForm, this.goUpdateFormFirst);
-    },
-    openApproveAlert(data: any) {
-      this.apprReqModel.eduCourseSeq = data.eduCourseSeq;
-      this.showCancel = true;
-      this.confirmMessage =
-        data.year +
-        this.t("05.eduProcessCreation.listAndApprove.message.approveRequest");
-      this.confirmButton = this.t(
-        "05.eduProcessCreation.listAndApprove.button.confirmApprove"
-      );
-      this.cancelButton = this.t("common.cancel");
-      this.showAlert(this.requestApprove, () => {});
     },
     showAlert(callBackConfirm: Function, callBackCancel: Function) {
       this.$swal({
@@ -710,88 +610,120 @@ export default defineComponent({
         }
       });
     },
-    checkChild(value: any, data: EduCourseResModel) {
-      if (value) {
-        this.listCheckBoxGrid.push(data.eduCursSeq);
-        this.yearTemp = data.year;
+    checkChild(value: EduCourseResModel) {
+      this.dataSelectRadio = value;
+      if (this.dataSelectRadio && this.dataSelectRadio.stsCd != STATUS_EDU_COURSE) {
+        this.disableButtonDelete = false;
       } else {
-        const index = this.listCheckBoxGrid.indexOf(data.eduCursSeq);
-        if (index !== -1) {
-          this.listCheckBoxGrid.splice(index, 1);
-        }
+        this.disableButtonDelete = true;
       }
-      this.listCheckBoxGrid = [...new Set(this.listCheckBoxGrid)];
+      
+      if (this.dataSelectRadio && this.dataSelectRadio.version != VERSION_V7) {
+        this.disableButtonUpversion = false;
+      } else {
+        this.disableButtonUpversion = true;
+      }
     },
-    checkAll(value: boolean) {
-      let newRow = this.eduProcessCreationList.map((item) => {
-        this.yearTemp = item.year;
-        if (item.stsCd == CODE_103920 || item.stsCd == CODE_103950) {
-          if (value) {
-            this.listCheckBoxGrid.push(item.eduCursSeq);
-          } else {
-            const index = this.listCheckBoxGrid.indexOf(item.eduCursSeq);
-            if (index !== -1) {
-              this.listCheckBoxGrid.splice(index, 1);
-            }
-          }
+    clearCheck() {
+      this.dataSelectRadio = {} as EduCourseResModel;
+      this.disableButtonDelete = true;
+      this.disableButtonUpversion = true;
+    },
+    handleVersionUp() {
+      const eduCourseSeq = this.listCheckBoxGrid[0];
+      const foundEduProcess = this.eduProcessCreationList.find(
+        (item) => item.eduCursSeq === eduCourseSeq
+      );
+      const versionCd = foundEduProcess?.version;
+
+      this.$swal({
+        title: "알림",
+        html: `${
+          "V" + (Number(versionCd?.charAt(1)) + 1)
+        } 버전을 올리시겠어요?`,
+        confirmButtonColor: "#5D87FF",
+        showCancelButton: true,
+        cancelButtonColor: "#fff",
+        reverseButtons: true,
+        confirmButtonText: "올리기",
+        cancelButtonText: this.t("common.cancel"),
+      }).then((result: any) => {
+        if (result.isConfirmed) {
+          this.storeCommon.setLoading(true);
+          versionUpEduCourse({ eduCourseSeq: this.dataSelectRadio.eduCursSeq })
+            .then((res) => {
+              this.$swal({
+                title: "알림",
+                html: "버전을 올리기가 성공되었습니다.",
+                confirmButtonText: this.t("common.confirm"),
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  this.clearCheck();
+                  this.fnPagination(1, 10);
+                }
+              });
+            })
+            .catch((error) => {
+              if (
+                error.response.data.code == BAD_REQUEST_NO_REGISTER_WRITE_SCHDL
+              ) {
+                this.$alert(
+                  "교과과정 개발 기간이 아닙니다. 다시 확인해주세요."
+                );
+              }
+              
+              if (
+                error.response.data.code == BAD_REQUEST_NO_VERIFY_VERSION
+              ) {
+                this.$alert(
+                  "중복된 버전으로 올릴 수 없습니다. 다시 확인해주세요."
+                );
+              }
+            })
+            .finally(() => {
+              this.storeCommon.setLoading(false);
+            });
         }
-        return {
-          ...item,
-          checkedFlag: value,
-        };
       });
-
-      this.listCheckBoxGrid = [...new Set(this.listCheckBoxGrid)];
-      this.eduProcessCreationList = newRow;
     },
-    async exportExcel() {
+    confirmDelete() {
+      this.$swal({
+        title: "알림",
+        html: this.t("common.message.confirmDelete"),
+        confirmButtonColor: "#5D87FF",
+        showCancelButton: true,
+        cancelButtonColor: "#fff",
+        reverseButtons: true,
+        confirmButtonText: this.t("common.confirm"),
+        cancelButtonText: this.t("common.cancel"),
+      }).then((result: any) => {
+        if (result.isConfirmed) {
+          this.delete();
+        }
+      });
+    },
+    delete() {
       this.storeCommon.setLoading(true);
-      let paramExport = this.searhParms;
-      paramExport.size = this.pageable.totalElements;
-
-      // await this.eduCourseStore.getAll(paramExport)
-      if (
-        this.eduCourseStore &&
-        this.eduCourseStore.status == SUCCSESS_STATUS
-      ) {
-        let dataContent = this.eduCourseStore.EduCourseResListModel.content;
-        const header = [
-          this.t("common.rowNum"),
-          this.t("05.eduProcessCreation.listAndApprove.label.majorUni"),
-          this.t("05.eduProcessCreation.listAndApprove.label.sust"),
-          this.t("05.eduProcessCreation.listAndApprove.label.createdYear"),
-          this.t("05.eduProcessCreation.listAndApprove.label.processStage"),
-          this.t("05.eduProcessCreation.listAndApprove.label.status"),
-          this.t("05.eduProcessCreation.listAndApprove.label.register"),
-          this.t("05.eduProcessCreation.listAndApprove.label.regDate"),
-        ];
-        let content = [] as Array<any>;
-        dataContent.forEach((element: any, index: number) => {
-          let contentItem = [];
-
-          contentItem.push(index + 1);
-          contentItem.push(element.schNm);
-          contentItem.push(element.deptNm);
-          contentItem.push(element.year);
-          contentItem.push(element.progStepCd);
-          contentItem.push(element.stsNm);
-          contentItem.push(element.regId);
-          contentItem.push(format(element.regDate, FORMAT_YYY_MM_DD));
-
-          content.push(contentItem);
+      deleteEduCourse([this.dataSelectRadio.eduCursSeq]).then((res) => {
+        this.storeCommon.setLoading(false);
+        this.$swal({
+          title: "알림",
+          html: this.t("common.message.deleteSuccess"),
+          confirmButtonText: this.t("common.confirm"),
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.fnPagination(1, 10);
+            this.clearCheck();
+          }
         });
-        this.dataExport = [
-          { sheetName: "sheet1", data: content, header: header },
-        ];
-
-        this.exportExcelRef.downloadExcel();
-      }
-
-      this.storeCommon.setLoading(false);
+      });
     },
-    handleVersionUp() {},
   },
 });
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.search_box.col_3 > ul > li > p:first-child {
+  width: 115px;
+}
+</style>

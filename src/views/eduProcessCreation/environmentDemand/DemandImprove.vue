@@ -103,6 +103,7 @@
           }}
         </button>
         <button
+          v-if="isSave"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="confirmSaveData"
@@ -113,6 +114,7 @@
           type="button"
           class="btn_round btn_md btn_primary"
           @click="next()"
+          :disabled="isDisabled"
         >
           {{ t("common.next") }}
         </button>
@@ -151,8 +153,9 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, isSave };
   },
   data() {
     return {
@@ -208,10 +211,9 @@ export default defineComponent({
           (isConfirm: Boolean) => {
             if (isConfirm) {
               this.next();
-            } else {
-              if (this.isDisabled) {
-                this.$emit("updateStage", 31);
-              }
+            }
+            if (this.isDisabled) {
+              this.$emit("updateStage", 31);
             }
             this.isDisabled = false;
           }
@@ -219,7 +221,7 @@ export default defineComponent({
       });
     },
     next() {
-      this.$emit("nextTab", 31);
+      this.$emit("nextTab", 30);
     },
     back() {
       this.router.push({

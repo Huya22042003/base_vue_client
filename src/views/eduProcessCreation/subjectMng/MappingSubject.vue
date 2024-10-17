@@ -155,7 +155,7 @@
                         v-if="indexJob === 0"
                         ><td
                           scope="row"
-                          :rowspan="jobAbility.listChild.length + 1"
+                          :rowspan="jobAbility.listChild.length + 2"
                           style="position: relative"
                           class="td__rate__core"
                         >
@@ -216,6 +216,7 @@
     </div>
     <div class="btn_group btn_end mg_t30">
       <button
+        v-if="isSave"
         type="button"
         class="btn_round btn_md btn_gray"
         @click="confirmSaveTemp"
@@ -224,6 +225,7 @@
         {{ t("common.saveTemp") }}
       </button>
       <button
+        v-if="isSave"
         type="button"
         class="btn_round btn_md btn_primary"
         @click="confirmSave"
@@ -278,8 +280,9 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, isSave };
   },
   data() {
     return {
@@ -462,11 +465,8 @@ export default defineComponent({
             (isConfirm: Boolean) => {
               if (isConfirm) {
                 this.next();
-              } else {
-                if (this.isDisabled) {
-                  this.$emit("updateStage", 54);
-                }
               }
+              this.$emit("updateStage", 54);
               this.isDisabled = false;
             }
           );

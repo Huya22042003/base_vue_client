@@ -43,6 +43,8 @@ export type EduCourseDetailDTO = {
     stage: string;
     parentStage: string;
     stsCd: string;
+    typeNm: string;
+    version: string;
 }
 
 export type EduCourseSelReqDTO = {

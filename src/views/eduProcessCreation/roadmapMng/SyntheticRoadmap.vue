@@ -266,8 +266,6 @@ export default defineComponent({
           this.data = res.data.data;
           this.data.targetNm = this.convertDataNmToString(this.data.targetDept);
           this.data.typeDeptNm = this.convertDataNmToString(this.data.typeDept);
-
-          console.log(this.data);
         })
         .finally(() => {
           this.storeCommon.setLoading(false);

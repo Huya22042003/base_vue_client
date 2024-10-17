@@ -4,7 +4,8 @@
       <div class="tbl tbl_col">
         <GridComponentV2
           :rowData="data"
-          :columnDefs="columnDefs"
+          v-if="dataEduCourse"
+          :columnDefs="convertEduCourseType(columnDefs)"
           :paginationClientFlag="false"
           :key="key"
           :paginationPageSize="paginationPageSize"
@@ -45,6 +46,9 @@ import {
   SubjectProfileFilterDTO,
   SubjectProfileResDTO,
 } from "@/stores/eduProcessCreation/subjectProfile/subjectProfile.type";
+import { detailEduCourse } from "@/stores/eduProcessCreation/eduCourse/eduProcess.service";
+import { EduCourseDetailDTO } from "@/stores/eduProcessCreation/eduCourse/eduProcess.type";
+import { EDU_TYPE_OTHER } from "@/constants/common.const";
 export default {
   components: {
     LinkGridComponent,
@@ -60,8 +64,10 @@ export default {
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const version = window.history.state.version;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, version, isSave };
   },
   data() {
     return {
@@ -178,9 +184,16 @@ export default {
           },
         },
       ],
+      dataEduCourse: {} as EduCourseDetailDTO
     };
   },
-  beforeMount() {},
+  async beforeMount() {
+    this.storeCommon.setLoading(true);
+    await detailEduCourse({ eduCourseSeq: this.id }).then((res: any) => {
+      this.dataEduCourse = res.data.data as EduCourseDetailDTO;
+    });
+    this.storeCommon.setLoading(false);
+  },
   methods: {
     getAllPage() {
       this.storeCommon.setLoading(true);
@@ -208,7 +221,9 @@ export default {
         name: SCREEN.eduSubjectProfileDetail.name,
         state: {
           id: this.id,
+          version: this.version,
           sbjtCd: data.sbjtCd,
+          isSave: this.isSave
         },
       });
     },
@@ -217,6 +232,13 @@ export default {
       this.dataSearch.size = pagesSize;
 
       this.getAllPage();
+    },
+    convertEduCourseType(columnDefs: any[]) {
+      if (this.dataEduCourse && this.dataEduCourse.typeNm && this.dataEduCourse.typeNm.includes(EDU_TYPE_OTHER)) {
+        return columnDefs.filter(item => item.field != 'major')
+      }
+
+      return columnDefs;
     },
     back() {
       this.router.push({

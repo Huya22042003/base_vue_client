@@ -9,6 +9,7 @@
               id="radio_round1"
               @change="stageChild < 41 ? '' : tabChange4(41)"
               :checked="tabCheck == 41 ? true : false"
+              :disabled="stageChild < 41"
             />
             <label for="radio_round1">
               <!-- 4-1.분류체계 기술 -->{{
@@ -22,6 +23,7 @@
               id="radio_round2"
               @change="stageChild < 42 ? '' : tabChange4(42)"
               :checked="tabCheck == 42 ? true : false"
+              :disabled="stageChild < 42"
             />
             <label for="radio_round2">
               <!-- 4-2.직무역량 검증 -->{{
@@ -35,6 +37,7 @@
               id="radio_round3"
               @change="stageChild < 43 ? '' : tabChange4(43)"
               :checked="tabCheck == 43 ? true : false"
+              :disabled="stageChild < 43"
             />
             <label for="radio_round3">
               <!-- 4-3.하위역량 및 수행준거 검증 -->{{
@@ -46,11 +49,23 @@
       </div>
     </div>
   </div>
-  <TechniqueEdu @tabChange4="tabChange4" v-if="tabName == 'TechniqueEdu'">
+  <TechniqueEdu
+    @tabChange4="tabChange4"
+    @updateStage="updateStage"
+    v-if="tabName == 'TechniqueEdu'"
+  >
   </TechniqueEdu>
-  <VerifyJob @tabChange4="tabChange4" v-if="tabName == 'VerifyJob'">
+  <VerifyJob
+    @tabChange4="tabChange4"
+    @updateStage="updateStage"
+    v-if="tabName == 'VerifyJob'"
+  >
   </VerifyJob>
-  <VerifyCapaChld @nextTab="nextTab" v-if="tabName == 'VerifyCapaChld'">
+  <VerifyCapaChld
+    @nextTab="nextTab"
+    @updateStage="updateStage"
+    v-if="tabName == 'VerifyCapaChld'"
+  >
   </VerifyCapaChld>
 </template>
 
@@ -88,6 +103,12 @@ export default {
     );
   },
   methods: {
+    updateStage(stage: number) {
+      this.stageChild = stage;
+      if (stage > 43) {
+        this.$emit("updateStage", stage)
+      }
+    },
     nextTab() {
       this.$emit("tabChange", 50);
     },
