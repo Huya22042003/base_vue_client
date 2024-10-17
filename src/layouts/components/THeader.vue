@@ -275,12 +275,10 @@ export default {
               div: 'prof'
             });
             const token = response.data;
-            const isCheck = false;
-            const url = isCheck ? import.meta.env.VITE_ADMIN_URL : import.meta.env.VITE_PROF_URL;
-
             vm.$toast("로그인 되었습니다. <br />교수사이트로 이동합니다.");
 
-            window.location.href = `${url}?token=${token}`;
+            window.location.href = `${import.meta.env.VITE_PROF_URL}?token=${token}`;
+            // window.open(`${ import.meta.env.VITE_PROF_URL}?token=${token}`, '_blank');
           } catch (e) {
             vm.$toast("로그인에 실패했습니다. 다시 시도해주세요.");
             console.error(error);
