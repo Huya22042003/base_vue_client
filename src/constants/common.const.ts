@@ -256,3 +256,7 @@ export const VERSION_V1 = "V1"
 export const CD_EDU12 = "EDU12"
 export const BAD_REQUEST_EDU_COURSE = "400070";
 export const BAD_REQUEST_NO_REGISTER_WRITE_SCHDL = "400071";
+export const STATUS_EDU_COURSE = "103950"
+export const BAD_REQUEST_NO_VERSION_MAX = "400072";
+export const BAD_REQUEST_NO_VERIFY_VERSION = "400073";
+export const VERSION_V7 = "V7"

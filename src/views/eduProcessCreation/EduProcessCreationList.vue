@@ -84,7 +84,7 @@
             <div class="search_btnarea">
               <button
                 type="button"
-                :disabled="!listCheckBoxGrid.length"
+                :disabled="disableButtonDelete"
                 class="btn_round btn_lg btn_black"
                 @click="confirmDelete()"
               >
@@ -92,7 +92,7 @@
               </button>
               <button
                 type="button"
-                :disabled="!(listCheckBoxGrid.length === 1)"
+                :disabled="disableButtonUpversion"
                 class="btn_round btn_lg btn_gray"
                 @click="handleVersionUp()"
               >
@@ -173,7 +173,12 @@ import {
 import {
   BAD_REQUEST_EDU_COURSE,
   BAD_REQUEST_NO_REGISTER_WRITE_SCHDL,
+  BAD_REQUEST_NO_VERIFY_VERSION,
+  BAD_REQUEST_NO_VERSION_MAX,
+  STATUS_EDU_COURSE,
+  VERSION_V7,
 } from "@/constants/common.const";
+import RadioButtonGrid from "@/components/common/grid/RadioButtonGrid.vue";
 
 export default defineComponent({
   components: {
@@ -235,23 +240,14 @@ export default defineComponent({
       eduProcessCreationList: [] as Array<EduCourseResModel>,
       columnDefs: ref([
         {
-          headerComponent: CheckboxGrid,
-          headerComponentParams: {
-            onCustomEvent: this.checkAll,
-            valueChecked: this.selectAll,
-            selectAllGridId: "selectAll",
-            childName: "childName",
-            type: "selectAll",
-          },
-          cellRenderer: CheckboxGrid,
+          cellRenderer: RadioButtonGrid,
           cellRendererParams: {
             onCustomEvent: this.checkChild,
-            type: "selectChildCheckShow",
-            selectAllGridId: "selectAll",
-            childName: "childName",
+            id: "eduCursSeq",
+            name: "childName",
           },
-          field: "checkedFlag",
-          flex: 0.6,
+          field: "선택",
+          flex: 0.8,
           cellStyle: {
             display: "flex",
             justifyContent: "center",
@@ -386,9 +382,9 @@ export default defineComponent({
       listSts: [{ id: 0, cdId: "", cdNm: this.t("common.all") }] as any,
       departmentFilterDTO: {} as DepartmentFilterDTO,
       data: {} as any,
-      yearTemp: "",
-      fileNameExport: "교육과정개발개편",
-      dataExport: [] as any,
+      dataSelectRadio: {} as EduCourseResModel,
+      disableButtonDelete: true,
+      disableButtonUpversion: true,
     };
   },
   beforeMount() {
@@ -466,23 +462,19 @@ export default defineComponent({
                   ? format(item.regDate, FORMAT_YYY_MM_DD)
                   : "";
                 item.checkedShow = item.stsCd == CODE_103920;
-                item.checkedFlag = this.listCheckBoxGrid.includes(
-                  item.eduCursSeq
-                );
+
+                if (
+                  this.dataSelectRadio &&
+                  this.dataSelectRadio.eduCursSeq &&
+                  this.dataSelectRadio.eduCursSeq == item.eduCursSeq
+                ) {
+                  item.checkedFlag = true;
+                } else {
+                  item.checkedFlag = false;
+                }
                 return item;
               }
             );
-
-          let check = true;
-          this.eduProcessCreationList.forEach((row) => {
-            if (!row.checkedFlag) {
-              check = false;
-            }
-          });
-          if (check) {
-            const resetSelect = document.getElementById("selectAll");
-            resetSelect.checked = true;
-          }
         }
       } catch (error: any) {
         this.confirmMessage = error.message;
@@ -618,39 +610,24 @@ export default defineComponent({
         }
       });
     },
-    checkChild(value: any, data: EduCourseResModel) {
-      if (value) {
-        this.listCheckBoxGrid.push(data.eduCursSeq);
-        this.yearTemp = data.year;
+    checkChild(value: EduCourseResModel) {
+      this.dataSelectRadio = value;
+      if (this.dataSelectRadio && this.dataSelectRadio.stsCd != STATUS_EDU_COURSE) {
+        this.disableButtonDelete = false;
       } else {
-        const index = this.listCheckBoxGrid.indexOf(data.eduCursSeq);
-        if (index !== -1) {
-          this.listCheckBoxGrid.splice(index, 1);
-        }
+        this.disableButtonDelete = true;
       }
-      this.listCheckBoxGrid = [...new Set(this.listCheckBoxGrid)];
+      
+      if (this.dataSelectRadio && this.dataSelectRadio.version != VERSION_V7) {
+        this.disableButtonUpversion = false;
+      } else {
+        this.disableButtonUpversion = true;
+      }
     },
-    checkAll(value: boolean) {
-      let newRow = this.eduProcessCreationList.map((item) => {
-        this.yearTemp = item.year;
-        if (item.stsCd == CODE_103920 || item.stsCd == CODE_103950) {
-          if (value) {
-            this.listCheckBoxGrid.push(item.eduCursSeq);
-          } else {
-            const index = this.listCheckBoxGrid.indexOf(item.eduCursSeq);
-            if (index !== -1) {
-              this.listCheckBoxGrid.splice(index, 1);
-            }
-          }
-        }
-        return {
-          ...item,
-          checkedFlag: value,
-        };
-      });
-
-      this.listCheckBoxGrid = [...new Set(this.listCheckBoxGrid)];
-      this.eduProcessCreationList = newRow;
+    clearCheck() {
+      this.dataSelectRadio = {} as EduCourseResModel;
+      this.disableButtonDelete = true;
+      this.disableButtonUpversion = true;
     },
     handleVersionUp() {
       const eduCourseSeq = this.listCheckBoxGrid[0];
@@ -673,7 +650,7 @@ export default defineComponent({
       }).then((result: any) => {
         if (result.isConfirmed) {
           this.storeCommon.setLoading(true);
-          versionUpEduCourse({ eduCourseSeq: this.listCheckBoxGrid[0] })
+          versionUpEduCourse({ eduCourseSeq: this.dataSelectRadio.eduCursSeq })
             .then((res) => {
               this.$swal({
                 title: "알림",
@@ -681,6 +658,7 @@ export default defineComponent({
                 confirmButtonText: this.t("common.confirm"),
               }).then((result) => {
                 if (result.isConfirmed) {
+                  this.clearCheck();
                   this.fnPagination(1, 10);
                 }
               });
@@ -691,6 +669,14 @@ export default defineComponent({
               ) {
                 this.$alert(
                   "교과과정 개발 기간이 아닙니다. 다시 확인해주세요."
+                );
+              }
+              
+              if (
+                error.response.data.code == BAD_REQUEST_NO_VERIFY_VERSION
+              ) {
+                this.$alert(
+                  "중복된 버전으로 올릴 수 없습니다. 다시 확인해주세요."
                 );
               }
             })
@@ -718,7 +704,7 @@ export default defineComponent({
     },
     delete() {
       this.storeCommon.setLoading(true);
-      deleteEduCourse(this.listCheckBoxGrid).then((res) => {
+      deleteEduCourse([this.dataSelectRadio.eduCursSeq]).then((res) => {
         this.storeCommon.setLoading(false);
         this.$swal({
           title: "알림",
@@ -727,6 +713,7 @@ export default defineComponent({
         }).then((result) => {
           if (result.isConfirmed) {
             this.fnPagination(1, 10);
+            this.clearCheck();
           }
         });
       });

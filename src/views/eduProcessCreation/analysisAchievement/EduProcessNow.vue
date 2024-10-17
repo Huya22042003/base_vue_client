@@ -15,7 +15,7 @@
             ? analysisAchievementModel.startDate +
               " - " +
               analysisAchievementModel.endDate
-            : "-"
+            : ""
         }}
       </p>
       <div class="tbl_col tbl tbl_border">
