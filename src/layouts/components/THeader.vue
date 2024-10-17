@@ -274,7 +274,7 @@ export default {
             const response = await http.post('/auth/impersonate', {
               userStaff: '33330001',
               currentUser: 'dainls',
-              div: 'prof'
+              div: 'profsw'
             });
             const token = response.data;
             vm.$toast("로그인 되었습니다. <br />교수사이트로 이동합니다.");
