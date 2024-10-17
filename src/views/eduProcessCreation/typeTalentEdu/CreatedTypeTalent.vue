@@ -165,6 +165,7 @@
           type="button"
           class="btn_round btn_md btn_primary"
           @click="save()"
+          v-if="isSave"
         >
           {{ t("common.save") }}
         </button>
@@ -222,6 +223,7 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const isSave = window.history.state.isSave;
 
     return {
       router,
@@ -234,6 +236,7 @@ export default defineComponent({
       CD_DEPT_VISION,
       CD_DEPT_TARGET,
       CD_DEPT_TALENT,
+      isSave
     };
   },
   data() {
@@ -341,10 +344,9 @@ export default defineComponent({
                 (isConfirm: Boolean) => {
                   if (isConfirm) {
                     this.next();
-                  } else {
-                    if (this.isDisabled) {
-                      this.$emit("updateStage", 32);
-                    }
+                  }
+                  if (this.isDisabled) {
+                    this.$emit("updateStage", 33);
                   }
                   this.isDisabled = false;
                 }

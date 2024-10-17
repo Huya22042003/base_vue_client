@@ -149,9 +149,17 @@ export default {
       const res = await saveEduCourseApdx(this.eduCourseApdxModel);
       this.uploadFile(res.data.data);
       this.storeCommon.setLoading(false);
-      await this.fnPagination(1, 10);
-      this.onClose();
-      this.$alert(this.t("common.message.saveSuccess"));
+
+      this.$swal({
+        title: "알림",
+        html: this.t("common.message.saveSuccess"),
+        confirmButtonText: this.t("common.confirm"),
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.fnPagination(1, 10);
+          this.onClose();
+        }
+      });
     },
     uploadFile(apdxSeq: string) {
       const chilRef = this.$refs.childRefUpLoad;

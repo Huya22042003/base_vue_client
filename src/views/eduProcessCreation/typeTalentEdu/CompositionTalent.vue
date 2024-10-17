@@ -185,6 +185,7 @@
       <div class="btn_group btn_end">
         <button type="button" class="btn_round btn_md btn_primary"
         @click="save()"
+        v-if="isSave"
         >
           {{ t("common.save") }}
         </button>
@@ -238,8 +239,9 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, isSave };
   },
   beforeMount() {
     this.detailEduCourseComm();
@@ -373,10 +375,9 @@ export default defineComponent({
               (isConfirm: Boolean) => {
                 if (isConfirm) {
                   this.next();
-                } else {
-                  if (this.isDisabled) {
-                    this.$emit("updateStage", 32);
-                  }
+                }
+                if (this.isDisabled) {
+                  this.$emit("updateStage", 32);
                 }
                 this.isDisabled = false;
               }

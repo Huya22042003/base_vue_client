@@ -182,6 +182,7 @@
     <div class="btn_group btn_end mg_t20">
       <div class="btn_group btn_end">
         <button
+          v-if="version && isSave"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="save()"
@@ -219,7 +220,7 @@ import {
   getCoreJobSel,
   saveCoreJobSel,
 } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.service";
-import { CD_SELCT_TALT_NO, CD_SELCT_TALT_YES } from "@/constants/common.const";
+import { CD_SELCT_TALT_NO, CD_SELCT_TALT_YES, VERSION_V1 } from "@/constants/common.const";
 
 export default defineComponent({
   setup: () => {
@@ -227,8 +228,10 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const version = window.history.state.version == VERSION_V1;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, version, isSave };
   },
   data() {
     return {
@@ -332,11 +335,8 @@ export default defineComponent({
                 (isConfirm: Boolean) => {
                   if (isConfirm) {
                     this.next();
-                  } else {
-                    if (this.isDisabled) {
-                      this.$emit("updateStage", 35);
-                    }
                   }
+                  this.$emit("updateStage", 35);
                   this.isDisabled = false;
                 }
               );

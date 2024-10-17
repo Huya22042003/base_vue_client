@@ -82,7 +82,11 @@
       >
         {{ t("common.cancel") }}
       </button>
-      <button type="button" class="button btn_xl btn_primary" @click="onCreate()">
+      <button
+        type="button"
+        class="button btn_xl btn_primary"
+        @click="onCreate()"
+      >
         {{ t("common.save") }}
       </button>
     </template>
@@ -92,21 +96,31 @@
 <script lang="ts">
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
-import type { EduCourseReqModel } from "../../../stores/eduProcessCreation/eduCourse/eduProcess.type";
+import type {
+  EduCourseDetailDTO,
+  EduCourseReqModel,
+} from "../../../stores/eduProcessCreation/eduCourse/eduProcess.type";
 import { EduCourseStore } from "../../../stores/eduProcessCreation";
-import {
-  SUCCSESS_STATUS,
-} from "@/constants/screen.const";
+import { SUCCSESS_STATUS } from "@/constants/screen.const";
 import { commonStore } from "@/stores/common";
 import { SCREEN } from "../../../router/screen";
 import { useRouter } from "vue-router";
 import { departmentStore } from "@/stores/common/department";
-import type { DepartmentFilterDTO } from "@/stores/common/department/department.type";
+import type {
+  DepartmentDTO,
+  DepartmentFilterDTO,
+} from "@/stores/common/department/department.type";
 import { codeMngStore } from "@/stores/common/codeMng";
 import { CODE_MAJOR } from "@/constants/screen.const";
-import { getFormAdd, createEduCourse } from "@/stores/eduProcessCreation/eduCourse/eduProcess.service";
+import {
+  getFormAdd,
+  createEduCourse,
+  detailEduCourse,
+} from "@/stores/eduProcessCreation/eduCourse/eduProcess.service";
 import { MODE_EDIT } from "@/constants/screen.const";
 import { START_YEAR_NUMBER } from "@/constants/screen.const";
+import { getUserInfo } from "@/utils/storage";
+import { BAD_REQUEST_EDU_COURSE, BAD_REQUEST_NO_REGISTER_WRITE_SCHDL, VERSION_V1 } from "@/constants/common.const";
 
 export default {
   props: {
@@ -134,6 +148,8 @@ export default {
     const modalOpen = false;
     const departmentFilterDTO = {} as DepartmentFilterDTO;
 
+    const userInfo = JSON.parse(getUserInfo());
+
     return {
       t,
       eduCourseStore,
@@ -147,6 +163,7 @@ export default {
       storeDepartment,
       departmentFilterDTO,
       codeStore,
+      userInfo,
     };
   },
   data() {
@@ -170,51 +187,75 @@ export default {
     async getDepartment() {
       this.storeCommon.setLoading(true);
       const currentYear = new Date().getFullYear();
-      this.listYear = [];      
+      this.listYear = [];
       for (let index = START_YEAR_NUMBER; index <= currentYear + 1; index++) {
         this.listYear.push({ id: index, cdId: index, cdNm: index });
       }
-      this.eduCourseRequest.year = (currentYear + 1) + '';
+      this.eduCourseRequest.year = currentYear + 1 + "";
       this.departmentFilterDTO.deptDivCd = [CODE_MAJOR];
+      this.departmentFilterDTO.deptCd = this.userInfo.userDepts.split(",");
       await this.storeDepartment.getDepartment(this.departmentFilterDTO);
       if (
         this.storeDepartment &&
         this.storeDepartment.status == SUCCSESS_STATUS
       ) {
-        this.storeDepartment.deptRes?.forEach((element: any, index: number) => {
-          this.listDept.push({
-            id: index + 1,
-            cdId: element.deptCd,
-            cdNm: element.deptNm,
+        this.storeDepartment.deptRes?.forEach(
+          (element: DepartmentDTO, index: number) => {
+            this.listDept.push({
+              id: index + 1,
+              cdId: element.deptCd,
+              cdNm: element.deptNm,
+            });
+          }
+        );
+      }
+      getFormAdd().then((res: any) => {
+        res.data.data.forEach((item: any, index: number) => {
+          this.listEduType.push({
+            id: index,
+            cdId: item.eduCursTypeSeq,
+            cdNm: item.typeNm,
           });
         });
-      }
-      getFormAdd().then((res:any) => {
-        res.data.data.forEach((item:any, index:number) => {
-          this.listEduType.push({id: index, cdId: item.eduCursTypeSeq, cdNm: item.typeNm});
-        })
-      })
+      });
       this.storeCommon.setLoading(false);
     },
     async onCreate() {
-      if (!this.eduCourseRequest.deptCd || !this.eduCourseRequest.eduCourseTypeSeq) {
-        this.$alert(this.t('common.messageValidateRequired'));
+      if (
+        !this.eduCourseRequest.deptCd ||
+        !this.eduCourseRequest.eduCourseTypeSeq
+      ) {
+        this.$alert(this.t("common.messageValidateRequired"));
       } else {
-        this.$confirm(this.t('common.message.save'), '', (isConfirm: Boolean) => {
-          if (isConfirm) {
-            this.storeCommon.setLoading(true);
-            createEduCourse(this.eduCourseRequest).then((res:any) => {
-              this.response = res.data.data;
-              this.goCreateForm();
-              this.$toast(this.t('common.message.saveSuccess'));
-            }).finally(() => {
-              this.storeCommon.setLoading(false);
-            });
+        this.$confirm(
+          this.t("common.message.save"),
+          "",
+          (isConfirm: Boolean) => {
+            if (isConfirm) {
+              this.storeCommon.setLoading(true);
+              createEduCourse(this.eduCourseRequest)
+                .then((res: any) => {
+                  this.response = res.data.data;
+                  this.goCreateForm();
+                  this.$toast(this.t("common.message.saveSuccess"));
+                }).
+                catch((error) => {
+                  if (error.response.data.code == BAD_REQUEST_EDU_COURSE) {
+                    this.$alert("중복된 교육과정을 등록할 수 없습니다. 다시 확인해주세요. ");
+                  }
+                  if (error.response.data.code == BAD_REQUEST_NO_REGISTER_WRITE_SCHDL) {
+                    this.$alert("교과과정 개발 기간이 아닙니다. 다시 확인해주세요.");
+                  }
+                })
+                .finally(() => {
+                  this.storeCommon.setLoading(false);
+                });
+            }
           }
-        });
+        );
       }
     },
-    goCreateForm() {
+    async goCreateForm() {
       this.router.push({
         name: SCREEN.eduProcessCreationMng.name,
         params: {
@@ -222,6 +263,8 @@ export default {
         },
         state: {
           id: this.response,
+          version: VERSION_V1,
+          isSave: true,
         },
       });
     },

@@ -17,6 +17,7 @@ export type NewSubjectDTO = {
   estbTermNm: string;
   newCont: string;
   eduCursSeq: string;
+  isData: string;
 };
 
 export type NewSubjectReqDTO = {
@@ -101,6 +102,7 @@ export type CreateListSbjtSelResDTO = {
   sbjtCd: string;
   sbjtNm: string;
   acqGpa: string;
+  tempSaveYn: string;
   jobAbility: CreateSubjectSelDTO[];
 };
 

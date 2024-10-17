@@ -152,6 +152,7 @@
           }}
         </button>
         <button
+          v-if="version && isSave"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="confirmSave"
@@ -195,6 +196,7 @@ import {
   getListVerifyChildCoreJob,
   saveListVerifyChildCoreJob,
 } from "../../../stores/eduProcessCreation/jobEduMng/jobEduMng.service";
+import { VERSION_V1 } from "@/constants/common.const";
 
 export default defineComponent({
   setup: () => {
@@ -202,8 +204,10 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const version = window.history.state.version == VERSION_V1;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, version, isSave };
   },
   data() {
     return {
@@ -339,18 +343,15 @@ export default defineComponent({
           (isConfirm: Boolean) => {
             if (isConfirm) {
               this.next();
-            } else {
-              if (this.isDisabled) {
-                this.$emit("updateStage", 51);
-              }
             }
+            this.$emit("updateStage", 51);
             this.isDisabled = false;
           }
         );
       });
     },
     next() {
-      this.$emit("nextTab", 51);
+      this.$emit("nextTab", 50);
     },
     back() {
       this.router.push({

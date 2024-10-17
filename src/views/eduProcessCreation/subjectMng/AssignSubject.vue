@@ -411,6 +411,7 @@
         </button>
 
         <button
+          v-if="isSave"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="confirmSave"
@@ -481,8 +482,9 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, isSave };
   },
   data() {
     return {
@@ -608,7 +610,7 @@ export default defineComponent({
     deleteSameReplace(index: number) {
       const item = this.listSameMapping[index];
 
-      if (item.sameReplaceMappSeq !== null) {
+      if (item.sameReplaceMappSeq) {
         this.listSameMapping[index].delYn = STATUS_YES;
       } else {
         this.listSameMapping.splice(index, 1);
@@ -714,11 +716,8 @@ export default defineComponent({
             (isConfirm: Boolean) => {
               if (isConfirm) {
                 this.next();
-              } else {
-                if (this.isDisabled) {
-                  this.$emit("updateStage", 61);
-                }
-              }
+              } 
+              this.$emit("updateStage", 61);
               this.isDisabled = false;
             }
           );

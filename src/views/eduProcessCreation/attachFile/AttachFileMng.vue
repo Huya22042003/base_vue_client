@@ -16,6 +16,7 @@
           <template #button>
             <button
               type="button"
+              v-if="isSave"
               @click="gotoCreate"
               class="btn_round btn_md btn_primary"
             >
@@ -24,6 +25,15 @@
           </template>
         </GridComponentV2>
       </div>
+    </div>
+    <div class="btn_group btn_end">
+      <button
+        type="button"
+        class="btn_round btn_md btn_white"
+        @click="back()"
+      >
+        {{ t("common.list") }}
+      </button>
     </div>
   </div>
   <ModalAddFile
@@ -54,6 +64,7 @@ import {
   deleteEduCourseApdx,
   getEduCourseApdx,
 } from "@/stores/eduProcessCreation/attachFile/attachFile.service";
+import { SCREEN } from "@/router/screen";
 export default {
   components: {
     ButtonGridComponent,
@@ -71,8 +82,9 @@ export default {
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, isSave };
   },
   data() {
     return {
@@ -206,8 +218,20 @@ export default {
       this.storeCommon.setLoading(true);
       deleteEduCourseApdx({ apdxSeq: apdxSeq }).then((res) => {
         this.storeCommon.setLoading(false);
-        this.$alert(this.t("common.message.deleteSuccess"));
-        this.fnPagination(1, 10);
+        this.$swal({
+          title: "알림",
+          html: this.t("common.message.deleteSuccess"),
+          confirmButtonText: this.t("common.confirm"),
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.fnPagination(1, 10);
+          }
+        });
+      });
+    },
+    back() {
+      this.router.push({
+        name: SCREEN.eduProcessCreation.name,
       });
     },
   },

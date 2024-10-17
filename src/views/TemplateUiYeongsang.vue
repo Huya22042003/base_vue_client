@@ -2034,6 +2034,7 @@ import ImageUploader from 'quill-image-uploader'
 import TModalQR from '@/components/common/modal/TModalQR.vue'
 import {getListData} from "@/stores/category/category.service"
 import VueSelect from "@/components/common/vueSelect/VueSelect.vue";
+import RadioButtonGrid from '@/components/common/grid/RadioButtonGrid.vue'
 
 export default defineComponent({
   data() {
@@ -2299,7 +2300,7 @@ export default defineComponent({
             selectAllGridId: "selectAllGridId01",
             childName: "childName"
           },
-          cellRenderer: CheckboxGrid,
+          cellRenderer: RadioButtonGrid,
           cellRendererParams: {
             onCustomEvent: this.checkChild,
             type: "selectChild",

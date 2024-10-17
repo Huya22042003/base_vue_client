@@ -38,6 +38,7 @@
     <div class="btn_group btn_end mg_t25">
       <div class="btn_group btn_end">
         <button
+          v-if="isSave"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="confirmSaveData()"
@@ -92,8 +93,9 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, isSave };
   },
   beforeMount() {
     this.environDemReqModel.eduCourseSeq = this.id;
@@ -149,10 +151,9 @@ export default defineComponent({
           (isConfirm: Boolean) => {
             if (isConfirm) {
               this.next();
-            } else {
-              if (this.isDisabled) {
-                this.$emit("updateStage", 23);
-              }
+            }
+            if (this.isDisabled) {
+              this.$emit("updateStage", 23);
             }
             this.isDisabled = false;
           }

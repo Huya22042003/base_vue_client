@@ -191,7 +191,7 @@
                       </th>
                       <td scope="row" :colspan="1">
                         <ListCheckBoxBase
-                          v-if="dataSubject.evalSel"
+                          v-if="dataSubject.listEvalMethod"
                           :listData="dataSubject.listEvalMethod"
                           :mode="'show'"
                           v-model="dataSubject.evalSel"
@@ -212,7 +212,7 @@
                       </th>
                       <td scope="row" :colspan="1">
                         <ListCheckBoxBase
-                          v-if="dataSubject.profEvalSel"
+                          v-if="dataSubject.listProfLearnMng"
                           :listData="dataSubject.listProfLearnMng"
                           :mode="'show'"
                           v-model="dataSubject.profEvalSel"
@@ -233,7 +233,7 @@
                       </th>
                       <td scope="row" :colspan="1">
                         <ListCheckBoxBase
-                          v-if="dataSubject.curriculumSel"
+                          v-if="dataSubject.listCurriculum"
                           :listData="dataSubject.listCurriculum"
                           :mode="'show'"
                           v-model="dataSubject.curriculumSel"
@@ -449,6 +449,7 @@
               {{ t("common.print") }}
             </button>
             <button
+              v-if="isSave"
               type="button"
               class="btn_round btn_md btn_primary"
               @click="save()"
@@ -514,8 +515,10 @@ export default {
     const { t } = useI18n();
     const id = window.history.state.id;
     const sbjtCd = window.history.state.sbjtCd;
+    const version = window.history.state.version;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id, sbjtCd };
+    return { router, storeCommon, t, id, sbjtCd, version, isSave };
   },
   data() {
     return {
@@ -557,9 +560,7 @@ export default {
             ? this.dataSubject.remoteClassYn
             : `${this.listClassOnline[0].cdId}`;
         })
-        .finally(() => {
-          this.storeCommon.setLoading(false);
-        });
+        this.storeCommon.setLoading(false);
     },
     save() {
       if (this.storeCommon.check) {
@@ -607,6 +608,8 @@ export default {
         },
         state: {
           id: this.id,
+          version: this.version,
+          isSave: this.isSave
         },
       });
     },

@@ -63,13 +63,29 @@
       </div>
     </div>
   </div>
-  <ShowSubject @tabChange5="tabChange5" v-if="tabName == 'ShowSubject'">
+  <ShowSubject
+    @tabChange5="tabChange5"
+    @updateStage="updateStage"
+    v-if="tabName == 'ShowSubject'"
+  >
   </ShowSubject>
-  <CreatedSubject @tabChange5="tabChange5" v-if="tabName == 'CreatedSubject'">
+  <CreatedSubject
+    @tabChange5="tabChange5"
+    @updateStage="updateStage"
+    v-if="tabName == 'CreatedSubject'"
+  >
   </CreatedSubject>
-  <MappingSubject @tabChange5="tabChange5" v-if="tabName == 'MappingSubject'">
+  <MappingSubject
+    @tabChange5="tabChange5"
+    @updateStage="updateStage"
+    v-if="tabName == 'MappingSubject'"
+  >
   </MappingSubject>
-  <AssignSubject @nextTab="nextTab" v-if="tabName == 'AssignSubject'">
+  <AssignSubject
+    @nextTab="nextTab"
+    @updateStage="updateStage"
+    v-if="tabName == 'AssignSubject'"
+  >
   </AssignSubject>
 </template>
 
@@ -109,6 +125,12 @@ export default {
     );
   },
   methods: {
+    updateStage(stage: number) {
+      this.stageChild = stage;
+      if (stage > 54) {
+        this.$emit("updateStage", stage)
+      }
+    },
     nextTab() {
       this.$emit("tabChange", 60);
     },

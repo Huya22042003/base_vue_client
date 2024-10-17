@@ -198,9 +198,10 @@
       </div>
     </div>
 
-    <div class="btn_group btn_end grid_content mg_t20 mr-8">
+    <div class="btn_group btn_end mg_t35">
       <div class="btn_group btn_end">
         <button
+          v-if="checkTemp && isSave"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="saveTemp()"
@@ -208,6 +209,7 @@
           {{ t("common.saveTemp") }}
         </button>
         <button
+          v-if="isSave"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="save()"
@@ -273,8 +275,9 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, isSave };
   },
   data() {
     return {
@@ -284,6 +287,7 @@ export default defineComponent({
       keyJob: 1,
       indexSelect: -1,
       isDisabled: true,
+      checkTemp: true,
     };
   },
   beforeMount() {
@@ -305,6 +309,9 @@ export default defineComponent({
           (job: CreateSubjectResDTO, indexJob: number) => {
             job.subjectNm = job.subjectNm.map(
               (sbjt: CreateListSbjtSelResDTO, indexSbjt: number) => {
+
+                this.checkTemp = sbjt.tempSaveYn == STATUS_YES;
+
                 if (sbjt.jobAbility.length == 0) {
                   this.addJobAbility(indexJob, indexSbjt);
                 }
@@ -412,11 +419,8 @@ export default defineComponent({
               (isConfirm: Boolean) => {
                 if (isConfirm) {
                   this.next();
-                } else {
-                  if (this.isDisabled) {
-                    this.$emit("updateStage", 52);
-                  }
                 }
+                this.$emit("updateStage", 53);
                 this.isDisabled = false;
               }
             );

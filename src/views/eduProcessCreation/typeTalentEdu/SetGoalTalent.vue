@@ -71,7 +71,7 @@
             <col style="width: auto" />
             <col style="width: 10%" />
             <col style="width: 10%" />
-            <col style="width: 20%" />
+            <col style="width: 20%" v-if="data.eduCourseType && !data.eduCourseType.includes(EDU_TYPE_OTHER)"/>
           </colgroup>
           <thead>
             <tr>
@@ -113,7 +113,7 @@
               <th scope="row" class="ta_c" :colspan="1">
                 <!-- 결과 -->{{ t("eduProcessCreation.typeTalentEdu.title56") }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c" :colspan="1" v-if="data.eduCourseType && !data.eduCourseType.includes(EDU_TYPE_OTHER)">
                 <!-- 전공 선택 -->{{
                   t("eduProcessCreation.typeTalentEdu.title57")
                 }}
@@ -201,7 +201,7 @@
                     : t("eduProcessCreation.use")
                 }}
               </td>
-              <td scope="row" :colspan="1">
+              <td scope="row" :colspan="1" v-if="data.eduCourseType && !data.eduCourseType.includes(EDU_TYPE_OTHER)">
                 <SelectBoxBase
                   :id="`major_${index}`"
                   :name="`major_${index}`"
@@ -220,6 +220,7 @@
     <div class="btn_group btn_end mg_t20">
       <div class="btn_group btn_end">
         <button
+          v-if="version && isSave"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="save()"
@@ -262,6 +263,8 @@ import {
   UP_CD_MAJOR,
   CD_SELCT_TALT_NO,
   CD_SELCT_TALT_YES,
+  EDU_TYPE_OTHER,
+  VERSION_V1
 } from "@/constants/common.const";
 import { TaltNrtgSelResDTO } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.type";
 
@@ -271,8 +274,10 @@ export default defineComponent({
     const storeCommon = commonStore();
     const { t } = useI18n();
     const id = window.history.state.id;
+    const version = window.history.state.version == VERSION_V1;
+    const isSave = window.history.state.isSave;
 
-    return { router, storeCommon, t, id };
+    return { router, storeCommon, t, id, EDU_TYPE_OTHER, version, isSave };
   },
   beforeMount() {
     this.goToDetail();
@@ -298,7 +303,7 @@ export default defineComponent({
       await getTaltNrtgSel({ eduCourseSeq: this.id })
         .then((res: any) => {
           this.data = res.data.data as TaltNrtgResDTO;
-          
+
           if (this.data.taltNrtgSeq) {
             this.isDisabled = false;
           }
@@ -334,12 +339,12 @@ export default defineComponent({
         return;
       }
 
-      if (!this.validateTaltNrtgSel()) {
+      if (!this.data.eduCourseType.includes(EDU_TYPE_OTHER) && !this.validateTaltNrtgSel()) {
         this.$alert("하나 이상의 인재양성유형이 선정되어야 합니다");
         return;
       }
 
-      if (!this.validateTaltNrtgSelMajor()) {
+      if (!this.data.eduCourseType.includes(EDU_TYPE_OTHER) && !this.validateTaltNrtgSelMajor()) {
         this.$alert(this.t("common.messageValidateRequired"));
         return;
       }
@@ -360,11 +365,8 @@ export default defineComponent({
                 (isConfirm: Boolean) => {
                   if (isConfirm) {
                     this.next();
-                  } else {
-                    if (this.isDisabled) {
-                      this.$emit("updateStage", 34);
-                    }
                   }
+                  this.$emit("updateStage", 34);
                   this.isDisabled = false;
                 }
               );
