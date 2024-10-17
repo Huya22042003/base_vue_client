@@ -82,17 +82,6 @@
         >
           <template #button>
             <div class="search_btnarea">
-              <!-- <ExportFileExcel
-                :callData="true"
-                ref="exportExcelRef"
-                @click="exportExcel"
-                :data="dataExport"
-                :fileName="fileNameExport"
-                :btnName="
-                  t('05.eduProcessCreation.listAndApprove.button.downloadExcel')
-                "
-              >
-              </ExportFileExcel> -->
               <button
                 type="button"
                 :disabled="!listCheckBoxGrid.length"
@@ -164,10 +153,8 @@ import {
 import { commonStore } from "@/stores/common";
 import { EduCourseStore } from "@/stores/eduProcessCreation";
 import type {
-  EduCourseSeqModel,
   EduCourseResModel,
   EduCourseSearchModel,
-  EduCourseAppReqReqModel,
 } from "../../stores/eduProcessCreation/eduCourse/eduProcess.type";
 import { useI18n } from "vue-i18n";
 import { SCREEN } from "../../router/screen";
@@ -234,11 +221,6 @@ export default defineComponent({
       keyId: 0,
       pageTitle: this.t("eduProcessCreation.title"),
       breadcrumbItems: [],
-      displayTypes: [
-        { cdId: "", cdNm: this.t("common.all") },
-        { cdId: "Y", cdNm: "" },
-        { cdId: "N", cdNm: "" },
-      ],
       searhParms: {
         page: PAGINATION_PAGE_1,
         size: PAGINATION_PAGE_SIZE,
@@ -251,7 +233,6 @@ export default defineComponent({
       paginationPageSize: PAGINATION_PAGE_SIZE,
       paginationPageSizeSelector: PAGINATION_PAGE_SIZE_SELECTOR,
       eduProcessCreationList: [] as Array<EduCourseResModel>,
-      dataList: [] as Array<EduCourseResModel>,
       columnDefs: ref([
         {
           headerComponent: CheckboxGrid,
@@ -396,9 +377,7 @@ export default defineComponent({
       confirmMessage: "",
       confirmButton: "",
       cancelButton: "",
-      apprReqModel: {} as EduCourseAppReqReqModel,
       showCancel: false,
-      delModel: [] as Array<EduCourseSeqModel>,
       pageable: {} as any,
       year: new Date().getFullYear() as number,
       listDept: [] as any[],
@@ -406,7 +385,6 @@ export default defineComponent({
       listYear: [] as any,
       listSts: [{ id: 0, cdId: "", cdNm: this.t("common.all") }] as any,
       departmentFilterDTO: {} as DepartmentFilterDTO,
-      listAllCheck: [] as any,
       data: {} as any,
       yearTemp: "",
       fileNameExport: "교육과정개발개편",
@@ -414,15 +392,7 @@ export default defineComponent({
     };
   },
   beforeMount() {
-    Promise.all([this.getDepartment()]).catch((e) => {
-      this.confirmMessage = e.message;
-      this.confirmButton = this.t("common.confirm");
-      this.showCancel = false;
-      this.showAlert(
-        () => {},
-        () => {}
-      );
-    });
+    this.getDepartment();
   },
   beforeUnmount() {
     document.removeEventListener("keypress", this.handleKeyPress);
@@ -577,55 +547,6 @@ export default defineComponent({
 
       this.getAllData();
     },
-    async requestApprove() {
-      try {
-        this.storeCommon.setLoading(true);
-        this.apprReqModel.stsCd = CODE_103960;
-        // await this.eduCourseStore.requestEduCourseApprove([this.apprReqModel]);
-        // if (this.eduCourseStore) {
-        //     if (this.eduCourseStore.status == CREATED_STATUS) {
-        //         this.confirmMessage = this.t('05.eduProcessCreation.listAndApprove.message.approveRequestSuccess')
-        //         this.confirmButton = this.t('common.confirm')
-        //         this.showCancel = false
-        //         this.showAlert(this.getAllData,()=>{})
-        //     }
-        // }
-      } catch (error: any) {
-        this.confirmMessage = error.message;
-        this.showCancel = false;
-        this.confirmButton = this.t("common.confirm");
-        this.showAlert(
-          () => {},
-          () => {}
-        );
-      } finally {
-        this.storeCommon.setLoading(false);
-      }
-    },
-    async deleteRow() {
-      try {
-        this.storeCommon.setLoading(true);
-        this.delModel = this.listCheckBoxGrid.map((e: any) => {
-          return { data: e };
-        });
-        // await this.eduCourseStore.deleteEduCourse(this.delModel);
-        // if (this.eduCourseStore && this.eduCourseStore.status == SUCCSESS_STATUS) {
-        //     this.confirmMessage = this.t('05.eduProcessCreation.listAndApprove.message.deleteSuccess')
-        //     this.showCancel = false
-        //     this.showAlert(this.getAllData,()=>{})
-        // }
-      } catch (error: any) {
-        this.confirmMessage = error.message;
-        this.confirmButton = this.t("common.confirm");
-        this.showCancel = false;
-        this.showAlert(
-          () => {},
-          () => {}
-        );
-      } finally {
-        this.storeCommon.setLoading(false);
-      }
-    },
     goUpdateForm() {
       this.router.push({
         name: SCREEN.eduProcessCreationMng.name,
@@ -665,15 +586,6 @@ export default defineComponent({
       this.isOpenSetting = false;
       this.isOpenReason = false;
     },
-    openDeleteAlert() {
-      this.showCancel = true;
-      this.confirmMessage =
-        this.yearTemp +
-        this.t("05.eduProcessCreation.listAndApprove.message.isDelete");
-      this.confirmButton = this.t("common.deleteItem");
-      this.cancelButton = this.t("common.cancel");
-      this.showAlert(this.deleteRow, () => {});
-    },
     openContinueAlert(data: EduCourseResModel) {
       this.dataSel = data;
 
@@ -688,18 +600,6 @@ export default defineComponent({
         "05.eduProcessCreation.listAndApprove.button.goFirstStage"
       );
       this.showAlert(this.goUpdateForm, this.goUpdateFormFirst);
-    },
-    openApproveAlert(data: any) {
-      this.apprReqModel.eduCourseSeq = data.eduCourseSeq;
-      this.showCancel = true;
-      this.confirmMessage =
-        data.year +
-        this.t("05.eduProcessCreation.listAndApprove.message.approveRequest");
-      this.confirmButton = this.t(
-        "05.eduProcessCreation.listAndApprove.button.confirmApprove"
-      );
-      this.cancelButton = this.t("common.cancel");
-      this.showAlert(this.requestApprove, () => {});
     },
     showAlert(callBackConfirm: Function, callBackCancel: Function) {
       this.$swal({
@@ -751,51 +651,6 @@ export default defineComponent({
 
       this.listCheckBoxGrid = [...new Set(this.listCheckBoxGrid)];
       this.eduProcessCreationList = newRow;
-    },
-    async exportExcel() {
-      this.storeCommon.setLoading(true);
-      let paramExport = this.searhParms;
-      paramExport.size = this.pageable.totalElements;
-
-      // await this.eduCourseStore.getAll(paramExport)
-      if (
-        this.eduCourseStore &&
-        this.eduCourseStore.status == SUCCSESS_STATUS
-      ) {
-        let dataContent = this.eduCourseStore.EduCourseResListModel.content;
-        const header = [
-          this.t("common.rowNum"),
-          this.t("05.eduProcessCreation.listAndApprove.label.majorUni"),
-          this.t("05.eduProcessCreation.listAndApprove.label.sust"),
-          this.t("05.eduProcessCreation.listAndApprove.label.createdYear"),
-          this.t("05.eduProcessCreation.listAndApprove.label.processStage"),
-          this.t("05.eduProcessCreation.listAndApprove.label.status"),
-          this.t("05.eduProcessCreation.listAndApprove.label.register"),
-          this.t("05.eduProcessCreation.listAndApprove.label.regDate"),
-        ];
-        let content = [] as Array<any>;
-        dataContent.forEach((element: any, index: number) => {
-          let contentItem = [];
-
-          contentItem.push(index + 1);
-          contentItem.push(element.schNm);
-          contentItem.push(element.deptNm);
-          contentItem.push(element.year);
-          contentItem.push(element.progStepCd);
-          contentItem.push(element.stsNm);
-          contentItem.push(element.regId);
-          contentItem.push(format(element.regDate, FORMAT_YYY_MM_DD));
-
-          content.push(contentItem);
-        });
-        this.dataExport = [
-          { sheetName: "sheet1", data: content, header: header },
-        ];
-
-        this.exportExcelRef.downloadExcel();
-      }
-
-      this.storeCommon.setLoading(false);
     },
     handleVersionUp() {
       const eduCourseSeq = this.listCheckBoxGrid[0];
@@ -880,4 +735,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.search_box.col_3 > ul > li > p:first-child {
+  width: 115px;
+}
+</style>
