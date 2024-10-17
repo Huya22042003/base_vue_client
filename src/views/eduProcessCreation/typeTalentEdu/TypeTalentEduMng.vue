@@ -144,8 +144,6 @@ export default {
   },
   methods: {
     updateStage(stage: number) {
-      console.log(stage, 'Type Talent');
-      
       this.stageChild = stage;
       if (stage > 35) {
         this.$emit("updateStage", stage)
