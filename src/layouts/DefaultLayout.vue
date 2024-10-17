@@ -2,7 +2,7 @@
   <!-- <Loading /> -->
   <div class="page_wrap">
     <!-- header -->
-    <THeader />
+     <THeader />
 
     <!-- main -->
     <main id="main_content">

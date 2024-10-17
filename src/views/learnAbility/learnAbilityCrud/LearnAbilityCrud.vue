@@ -1,5 +1,5 @@
 <template>
-  <THeader />
+
   <div class="page_wrapper">
     <section id="content" class="content_wrapper grid_content" tabindex="0">
       <Breadcrumb
