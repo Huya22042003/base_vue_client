@@ -212,6 +212,8 @@ export default {
     function handleNextScreen(screenName: string) {
       if (screenName && SCREEN[screenName] && SCREEN[screenName].path) {
         router.push({path: SCREEN[screenName].path})
+        const bodyTag = document.body
+        bodyTag.classList.remove("gnb");
       }
     }
 
