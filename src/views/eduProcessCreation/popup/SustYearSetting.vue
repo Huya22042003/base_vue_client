@@ -258,7 +258,7 @@ export default {
                 }).
                 catch((error) => {
                   if (error.response.data.code == BAD_REQUEST_EDU_COURSE) {
-                    this.$alert("중복된 교육과정을 등록할 수 없습니다. 다시 확인해주세요. ");
+                    this.$alert("이미 개발중 또는 개발된 교육과정유형입니다.");
                   }
                   if (error.response.data.code == BAD_REQUEST_NO_REGISTER_WRITE_SCHDL) {
                     this.$alert("교과과정 개발 기간이 아닙니다. 다시 확인해주세요.");
