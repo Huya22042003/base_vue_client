@@ -77,7 +77,7 @@ const store = commonStore()
 const router = useRouter()
 
 onMounted(()=>{
-  picked.value = 'One'
+  picked.value = 'Two'
   mode.value = route.params.mode
 })
 

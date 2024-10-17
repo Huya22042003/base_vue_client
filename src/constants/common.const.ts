@@ -266,3 +266,5 @@ export const BAD_REQUEST_NO_VERIFY_VERSION = "400073";
 export const VERSION_V7 = "V7"
 export const DEPT_TYPE_SPECIAL = "1033";
 export const DEPT_TYPE_GENERAL_EDUCATION = "1034";
+export const UP_CD_ID_121901 = "121901";
+export const UP_CD_ID_121902 = "121902";
