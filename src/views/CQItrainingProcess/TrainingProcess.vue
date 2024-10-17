@@ -56,7 +56,7 @@
             :totalRecord="paginationFake"
             @customPagination="fnPagination"
             ref="gridKey"
-            :id="'test'"
+            :id="'trainingProcess'"
           >
           </GridComponentV2>
         </div>
@@ -87,6 +87,7 @@ import { commonStore } from "@/stores/common";
 import { getEduCourseCqiList } from "@/stores/cqiTrainingProcess/cqiTrainingProcess.service";
 import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 import {
+  DEPT_TYPE_GENERAL_EDUCATION,
   STS_EDU_CQI_CREATE,
   STS_EDU_CQI_NOT_CREATE,
   STS_EDU_CQI_SUCCESS,
@@ -96,19 +97,6 @@ import ButtonGridComponent from "@/components/common/grid/ButtonGridComponent.vu
 const { t } = useI18n();
 const router = useRouter();
 const storeCommon = commonStore();
-
-// const rowDataService1 = ref([
-//   {
-//     number: 1,
-//     major: "Major",
-//     typeOfRedirect: "major",
-//   },
-//   {
-//     number: 1,
-//     major: "General",
-//     typeOfRedirect: "general",
-//   },
-// ]);
 
 const columnDefs1 = ref([
   {
@@ -188,7 +176,7 @@ const columnDefs1 = ref([
   },
 ]);
 
-const dataRow = ref<EduCourseCqiListModel>();
+const dataRow = ref<EduCourseCqiListModel[]>([]);
 
 const listYear = ref<Array<CodeMngModel>>([]);
 
@@ -233,8 +221,12 @@ const getAllData = () => {
   storeCommon.setLoading(true);
   getEduCourseCqiList(searchParams.value)
     .then((res) => {
-      dataRow.value = res.data.data.content as EduCourseCqiListModel;
-      console.log(dataRow.value);
+      dataRow.value = res.data.data.content.map((item: EduCourseCqiListModel) => {
+        item.typeOfRedirect = item.deptCd == DEPT_TYPE_GENERAL_EDUCATION ? 'general' : 'major'
+
+        return item;
+      }) as EduCourseCqiListModel[];
+      paginationFake.value = res.data.data.totalElements;
     })
     .finally(() => {
       storeCommon.setLoading(false);
