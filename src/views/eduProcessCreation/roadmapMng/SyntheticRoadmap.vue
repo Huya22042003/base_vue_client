@@ -274,6 +274,9 @@ export default defineComponent({
           this.data = res.data.data;
           this.data.targetNm = this.convertDataNmToString(this.data.targetDept);
           this.data.typeDeptNm = this.convertDataNmToString(this.data.typeDept);
+
+          console.log(this.data);
+          
         })
         .finally(() => {
           this.storeCommon.setLoading(false);
@@ -300,5 +303,10 @@ export default defineComponent({
 }
 .tbl table thead td {
   border-bottom: 1px solid var(--dark1);
+  border-right: 1px solid var(--dark1);
+}
+.tbl table thead th {
+  border-right: 1px solid var(--gray-lavender);
+  border-bottom: 1px solid var(--gray-lavender);
 }
 </style>

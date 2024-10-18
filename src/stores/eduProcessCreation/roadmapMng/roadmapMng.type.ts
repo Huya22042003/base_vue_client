@@ -1,3 +1,4 @@
+import type { CodeMngModel } from '@/stores/common/codeMng/codeMng.type';
 import type { EduCourseSelResDTO } from './../eduCourse/eduProcess.type';
 
 export type LinkRoadMapResDTO = {
@@ -69,3 +70,23 @@ export type GraduationRoadmapResDTO = {
   typeNm: string;
   career: string;
 };
+
+export type OverviewRoadMapDTO = {
+  listCurriculum: CodeMngModel[];
+  listOverview: OverviewSubjectDTO[];
+}
+
+export type OverviewSubjectDTO = {
+  sbjtCd: string;
+  sbjtNm: string;
+  termCd: string;
+  termNm: string;
+  gradeCd: string;
+  gradeNm: string;
+  prflSeq: string;
+  select: EduCourseSelResDTO[];
+}
+
+export type OverviewRoadMapFilterDTO = {
+  eduCourseSeq: string;
+}
