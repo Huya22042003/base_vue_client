@@ -1,5 +1,6 @@
 import http from "@/utils/http";
 import type {
+  AnalysisEvalStnrdReqModel,
   EduCourseDetailReqDTO,
   OperationDevelopmentPlanReqModel,
   OperationDevelopmentPlanSaveModel,
@@ -22,4 +23,10 @@ export const saveOperationDevelopmentPlanList = (
   data: OperationDevelopmentPlanSaveModel
 ) => {
   return http.post(url + "save-operation-development", data);
+};
+
+export const getListEduCourseCqiEvalStnrd = (
+  data: AnalysisEvalStnrdReqModel
+) => {
+  return http.post(`${url}list-cqi-eval-stnrd`, data);
 };
