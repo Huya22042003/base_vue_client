@@ -87,6 +87,12 @@
                 </tr>
               </template>
             </template>
+            <tr>
+              <th scope="row" colspan="2">
+                {{ t("majorTab2.table1.average") }}
+              </th>
+              <th scope="row" colspan="4">{{  }}</th>
+            </tr>
           </tbody>
         </table>
       </div>
