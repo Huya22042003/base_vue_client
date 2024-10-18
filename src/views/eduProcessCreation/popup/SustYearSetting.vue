@@ -33,6 +33,7 @@
                   :id="'selectbox2'"
                   :name="'selectbox2'"
                   :data="listDept"
+                  @change="loadDataTypeTalent"
                 >
                 </SelectBoxBase>
               </td>
@@ -64,7 +65,7 @@
                   class="wd_p60"
                   :id="'selectbox1'"
                   :name="'selectbox1'"
-                  :data="listEduType"
+                  :data="listEduTypeData"
                 >
                 </SelectBoxBase>
               </td>
@@ -120,7 +121,7 @@ import {
 import { MODE_EDIT } from "@/constants/screen.const";
 import { START_YEAR_NUMBER } from "@/constants/screen.const";
 import { getUserInfo } from "@/utils/storage";
-import { BAD_REQUEST_EDU_COURSE, BAD_REQUEST_NO_REGISTER_WRITE_SCHDL, VERSION_V1 } from "@/constants/common.const";
+import { BAD_REQUEST_EDU_COURSE, BAD_REQUEST_NO_REGISTER_WRITE_SCHDL, DEPT_TYPE_SPECIAL, EDU_TYPE_OTHER, VERSION_V1 } from "@/constants/common.const";
 
 export default {
   props: {
@@ -171,6 +172,7 @@ export default {
       listEduType: [{ id: 0, cdId: "", cdNm: this.t("common.select") }] as any,
       listDept: [{ id: 0, cdId: "", cdNm: this.t("common.select") }] as any,
       listYear: [] as any,
+      listEduTypeData: [{ id: 0, cdId: "", cdNm: this.t("common.select") }] as any,
     };
   },
   beforeMount() {
@@ -183,6 +185,9 @@ export default {
     },
     closeModal() {
       this.$emit("close-modal");
+    },
+    loadDataTypeTalent() {
+      this.listEduTypeData = this.getListType(this.listEduType);
     },
     async getDepartment() {
       this.storeCommon.setLoading(true);
@@ -217,8 +222,20 @@ export default {
             cdNm: item.typeNm,
           });
         });
+        this.loadDataTypeTalent();
       });
       this.storeCommon.setLoading(false);
+    },
+    getListType(listType:any) {
+      if (this.eduCourseRequest && this.eduCourseRequest.deptCd) {
+        if (this.eduCourseRequest.deptCd == DEPT_TYPE_SPECIAL) {
+          this.eduCourseRequest.eduCourseTypeSeq = listType.filter((item:any) => item.cdNm == EDU_TYPE_OTHER)[0].cdId
+          return listType.filter((item:any) => item.cdNm == EDU_TYPE_OTHER);
+        } else {
+          this.eduCourseRequest.eduCourseTypeSeq = "";
+        }
+      }
+      return listType.filter((item:any) => item.cdNm != EDU_TYPE_OTHER);
     },
     async onCreate() {
       if (
@@ -241,7 +258,7 @@ export default {
                 }).
                 catch((error) => {
                   if (error.response.data.code == BAD_REQUEST_EDU_COURSE) {
-                    this.$alert("중복된 교육과정을 등록할 수 없습니다. 다시 확인해주세요. ");
+                    this.$alert("이미 개발중 또는 개발된 교육과정유형입니다.");
                   }
                   if (error.response.data.code == BAD_REQUEST_NO_REGISTER_WRITE_SCHDL) {
                     this.$alert("교과과정 개발 기간이 아닙니다. 다시 확인해주세요.");

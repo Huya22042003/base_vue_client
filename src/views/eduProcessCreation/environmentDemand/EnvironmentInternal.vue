@@ -170,3 +170,6 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped>
+@import url("../eduCourseCustom.css");
+</style>

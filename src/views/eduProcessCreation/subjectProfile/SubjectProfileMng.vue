@@ -248,3 +248,6 @@ export default {
   },
 };
 </script>
+<style scoped>
+@import url("../eduCourseCustom.css");
+</style>

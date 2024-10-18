@@ -371,6 +371,7 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+@import url("../eduCourseCustom.css");
 .font_green {
   color: #026700;
 }

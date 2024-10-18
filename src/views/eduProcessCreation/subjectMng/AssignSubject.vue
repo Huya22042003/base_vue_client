@@ -728,6 +728,7 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+@import url("../eduCourseCustom.css");
 .list_style_disc {
   list-style: disc;
   font-size: 16px;

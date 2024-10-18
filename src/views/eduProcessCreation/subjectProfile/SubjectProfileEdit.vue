@@ -616,7 +616,8 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
+@import url("../eduCourseCustom.css");
 .font_weigth {
   font-weight: bold;
 }
