@@ -9,8 +9,12 @@ export const getDashboardAdmin = (searchForm: DashboardFilterDTO) => {
     return http.post(url, searchForm)
 }
 
-export const getNoticeDashboard = (searchForm: DashboardFilterDTO) => {
-    return http.post(url + '/notice', searchForm)
+export const getUniDashboard = () => {
+    return http.get(url + '/')
+}
+
+export const getListDeptByUni = (searchForm: DashboardFilterDTO) => {
+    return http.post(url + '/change-uni', searchForm)
 }
 
 export const getFileBoardDashboard = (searchForm: DashboardFilterDTO) => {
