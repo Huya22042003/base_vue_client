@@ -398,8 +398,12 @@ export default defineComponent({
               ? this.t("04.eduScheduleCreativeMng.notSetStatus")
               : `${format(item.strDate, FORMAT_YYY_MM_DD)}` +
                 ` ~ ${format(item.endDate, FORMAT_YYY_MM_DD)}`;
-          item.regDate = format(new Date(item.regDate), FORMAT_YYY_MM_DD);
-          item.regId = item.regNm + `(${item.regId})`;
+          if (item.regDate) {
+            item.regDate = format(new Date(item.regDate), FORMAT_YYY_MM_DD);
+          }
+          if (item.regId) {
+            item.regId = item.regNm + `(${item.regId})`;
+          }
         });
         this.totalRecord = this.store.newEducationScheduleData.totalElements;
       }

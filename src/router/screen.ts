@@ -177,7 +177,7 @@ export const SCREEN = {
   },
   questAndAns: {
     path: '/qna-mng',
-    name: 'qna-mng',
+    name: 'questAndAns',
   },
   crudAns: {
     path: '/detail-ans/:mode',
@@ -197,15 +197,15 @@ export const SCREEN = {
   },
   eduCourseType: {
     path: '/edu-course-type-mng',
-    name: 'edu-course-type-mng',
+    name: 'eduCourseType',
   },
   profLearn: {
     path: '/prof-learn-mng',
-    name: 'profLearnMng',
+    name: 'profLearn',
   },
   evaluationMethod: {
     path: '/evaluation-method-mng',
-    name: 'evaluation-method-mng',
+    name: 'evaluationMethod',
   },
   trackMng: {
     path: '/track-mng',
@@ -257,7 +257,7 @@ export const SCREEN = {
   },
   eduScheduleCreative: {
     path: '/edu-schedule-creative',
-    name: 'edu-schedule-creative',
+    name: 'eduScheduleCreative',
   },
   portfolio: {
     path: '/portfolio',
