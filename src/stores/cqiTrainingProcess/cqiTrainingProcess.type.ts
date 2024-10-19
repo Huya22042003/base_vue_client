@@ -1,4 +1,5 @@
 import type { EduCourseOverviewDTO } from "./overview/overview.type";
+import type { EduCourseCqiEvalStnrdModel } from "./selfAssessmentResult/selfAssessmentResult.type";
 
 export type EduCourseCqiListModel = {
   rowNum: number;
@@ -6,6 +7,7 @@ export type EduCourseCqiListModel = {
   year: string;
   deptCd: string;
   deptNm: string;
+  eduCursTypeSeq: string;
   eduCourseTypeNm: string;
   stsCd: string;
   stsNm: string;
@@ -36,4 +38,5 @@ export type EduCourseCqiReq = {
   stsCd: string;
   usagePlan: string;
   overview: EduCourseOverviewDTO;
+  evalStnrd: EduCourseCqiEvalStnrdModel[];
 }

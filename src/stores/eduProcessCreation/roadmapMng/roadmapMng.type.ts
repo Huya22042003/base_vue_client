@@ -1,4 +1,5 @@
-import type { EduCourseSelResDTO } from './../eduCourse/eduProcess.type';
+import type { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
+import type { EduCourseSelResDTO } from "./../eduCourse/eduProcess.type";
 
 export type LinkRoadMapResDTO = {
   sbjtCd: string;
@@ -46,6 +47,9 @@ export type SyntheticRoadmapResDTO = {
   coreCompetency: CoreCompetencyResDTO[];
   relatedCertificate: RelatedCertificateResDTO[];
   graduationRoadmap: GraduationRoadmapResDTO[];
+  listCoreAbility: Array<RoadMapAbilityListModel>;
+  listJobAbility: Array<RoadMapAbilityListModel>;
+  listTaltNrtgSelc: Array<RoadmapTaltNrtgSelcModel>;
 };
 
 export type TypeTalentJobResDTO = {
@@ -68,4 +72,37 @@ export type RelatedCertificateResDTO = {
 export type GraduationRoadmapResDTO = {
   typeNm: string;
   career: string;
+};
+
+export type OverviewRoadMapDTO = {
+  listCurriculum: CodeMngModel[];
+  listOverview: OverviewSubjectDTO[];
+};
+
+export type OverviewSubjectDTO = {
+  sbjtCd: string;
+  sbjtNm: string;
+  termCd: string;
+  termNm: string;
+  gradeCd: string;
+  gradeNm: string;
+  prflSeq: string;
+  select: EduCourseSelResDTO[];
+};
+
+export type OverviewRoadMapFilterDTO = {
+  eduCourseSeq: string;
+};
+
+export type RoadMapAbilityListModel = {
+  abilitySeq: string;
+  abilityNm: string;
+  listChild: Array<RoadMapAbilityListModel>;
+};
+
+export type RoadmapTaltNrtgSelcModel = {
+  taltNrtgTypeSeq: string;
+  taltNrtgTypeNm: string;
+  jobCont: string;
+  vision: string;
 };
