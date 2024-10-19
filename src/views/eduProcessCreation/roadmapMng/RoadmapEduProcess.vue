@@ -4,30 +4,97 @@
       <table>
         <thead>
           <tr>
-            <th scope="row" class="ta_c" :colspan="1">
-              <!-- 학년-학기 -->{{ t("eduProcessCreation.roadmapMng.title1") }}
+            <th scope="row" class="ta_c" :colspan="2">
+              트랙구분
+            </th>
+            <th scope="row" class="ta_c" :colspan="3">
+              전공트랙
+            </th>
+            <th scope="row" class="ta_c" :colspan="3">
+              주문식트랙 (과정명: )
+            </th>
+          </tr>
+          <tr>
+            <th scope="row" class="ta_c" :colspan="2">
+              인재양성유형
+            </th>
+            <th scope="row" class="ta_c" :colspan="3">
+              
+            </th>
+            <th scope="row" class="ta_c" :colspan="3">
+              
+            </th>
+          </tr>
+          <tr>
+            <th scope="row" class="ta_c" :colspan="2">
+              핵심직무
             </th>
             <th scope="row" class="ta_c" :colspan="1">
-              <!-- 직무역량 -->{{ t("eduProcessCreation.roadmapMng.title2") }}
+              000기획
             </th>
             <th scope="row" class="ta_c" :colspan="1">
-              <!-- 하위역량 -->{{ t("eduProcessCreation.roadmapMng.title3") }}
+              개발
             </th>
-            <th scope="row" class="ta_c" :colspan="1">NCS</th>
-            <th scope="row" class="ta_c" :colspan="1">KCS</th>
             <th scope="row" class="ta_c" :colspan="1">
-              <!-- 교과목명 -->{{ t("eduProcessCreation.roadmapMng.title4") }}
+              000
+            </th>
+            <th scope="row" class="ta_c" :colspan="1">
+              000
+            </th>
+            <th scope="row" class="ta_c" :colspan="1">
+              000
+            </th>
+            <th scope="row" class="ta_c" :colspan="1">
+              000
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td scope="row" class="ta_c" :colspan="1">1-1</td>
-            <td scope="row" class="ta_c" :colspan="1">직무역량A</td>
-            <td scope="row" class="ta_c" :colspan="1">하위역량A-1</td>
-            <td scope="row" class="ta_c" :colspan="1">🔴</td>
+            <td scope="row" class="ta_c" :colspan="1" :rowspan="6">전공 교과목</td>
+            <td scope="row" class="ta_c" :colspan="1">1 - 1</td>
             <td scope="row" class="ta_c" :colspan="1"></td>
-            <td scope="row" class="ta_c" :colspan="1">A교과목</td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+          </tr>
+          <tr>
+            <td scope="row" class="ta_c" :colspan="1">1 - 2</td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+          </tr>
+          <tr>
+            <td scope="row" class="ta_c" :colspan="1">2 - 1</td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+          </tr>
+          <tr>
+            <td scope="row" class="ta_c" :colspan="1">2 - 2</td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+          </tr>
+          <tr>
+            <td scope="row" class="ta_c" :colspan="1">1 - 2</td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
+            <td scope="row" class="ta_c" :colspan="1"></td>
           </tr>
         </tbody>
       </table>

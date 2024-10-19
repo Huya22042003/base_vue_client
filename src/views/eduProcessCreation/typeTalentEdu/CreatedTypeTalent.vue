@@ -9,7 +9,7 @@
           </colgroup>
           <tbody>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 대학 비전 -->{{
                   t("eduProcessCreation.typeTalentEdu.title14")
                 }}
@@ -26,7 +26,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 대학 교육목표 -->{{
                   t("eduProcessCreation.typeTalentEdu.title15")
                 }}
@@ -43,7 +43,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 대학 인재상 -->{{
                   t("eduProcessCreation.typeTalentEdu.title16")
                 }}
@@ -72,12 +72,12 @@
           </colgroup>
           <tbody>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 학과(학부) 비전 -->{{
                   t("eduProcessCreation.typeTalentEdu.title17")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <div
                   v-if="data.deptEduGoal && data.deptEduGoal.length != 0"
                   v-for="(item, index) in data.deptEduGoal.filter(
@@ -86,15 +86,15 @@
                 >
                   {{ item.cont }}
                 </div>
-              </td>
+              </th>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 학과(학부) 교육목표 -->{{
                   t("eduProcessCreation.typeTalentEdu.title18")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <div
                   v-if="data.deptEduGoal && data.deptEduGoal.length != 0"
                   v-for="(item, index) in data.deptEduGoal.filter(
@@ -112,15 +112,15 @@
                   >
                   </CheckboxBase>
                 </div>
-              </td>
+              </th>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 학과(학부) 인재상 -->{{
                   t("eduProcessCreation.typeTalentEdu.title19")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <div
                   v-if="data.deptEduGoal && data.deptEduGoal.length != 0"
                   v-for="(item, index) in data.deptEduGoal.filter(
@@ -138,28 +138,28 @@
                   >
                   </CheckboxBase>
                 </div>
-              </td>
+              </th>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 교육과정 세부 교육목표 -->{{
                   t("eduProcessCreation.typeTalentEdu.title20")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <TextArea
                   :id="'dataTargetDetail'"
                   v-model:modelValue="dataSave.dataTargetDetail"
                   required
                   rows="5"
                 ></TextArea>
-              </td>
+              </th>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="btn_group btn_end mg_t20">
+    <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
         <button
           type="button"
@@ -236,7 +236,7 @@ export default defineComponent({
       CD_DEPT_VISION,
       CD_DEPT_TARGET,
       CD_DEPT_TALENT,
-      isSave
+      isSave,
     };
   },
   data() {

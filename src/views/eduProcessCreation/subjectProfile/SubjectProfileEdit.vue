@@ -48,7 +48,11 @@
                       }}<!-- 이수기간 -->
                     </th>
                     <td scope="row" :colspan="1">
-                      {{ `${dataSubject.termNm?dataSubject.termNm:''}(${dataSubject.gradeNm?dataSubject.gradeNm:''})` }}
+                      {{
+                        `${dataSubject.termNm ? dataSubject.termNm : ""}(${
+                          dataSubject.gradeNm ? dataSubject.gradeNm : ""
+                        })`
+                      }}
                     </td>
                     <th scope="row" :colspan="1">
                       {{ t("eduProcessCreation.subjectProfile.title13")
@@ -549,18 +553,17 @@ export default {
       await getDetailSubjectProfile({
         eduCourseSeq: this.id,
         sbjtCd: this.sbjtCd,
-      })
-        .then((res) => {
-          this.dataSubject = res.data.data as SubjectProfileDetailDTO;
-          this.dataSubject.otherDeptCoursePsblYn = this.dataSubject
-            .otherDeptCoursePsblYn
-            ? this.dataSubject.otherDeptCoursePsblYn
-            : `${this.listLecture[0].cdId}`;
-          this.dataSubject.remoteClassYn = this.dataSubject.remoteClassYn
-            ? this.dataSubject.remoteClassYn
-            : `${this.listClassOnline[0].cdId}`;
-        })
-        this.storeCommon.setLoading(false);
+      }).then((res) => {
+        this.dataSubject = res.data.data as SubjectProfileDetailDTO;
+        this.dataSubject.otherDeptCoursePsblYn = this.dataSubject
+          .otherDeptCoursePsblYn
+          ? this.dataSubject.otherDeptCoursePsblYn
+          : `${this.listLecture[0].cdId}`;
+        this.dataSubject.remoteClassYn = this.dataSubject.remoteClassYn
+          ? this.dataSubject.remoteClassYn
+          : `${this.listClassOnline[0].cdId}`;
+      });
+      this.storeCommon.setLoading(false);
     },
     save() {
       if (this.storeCommon.check) {
@@ -609,7 +612,7 @@ export default {
         state: {
           id: this.id,
           version: this.version,
-          isSave: this.isSave
+          isSave: this.isSave,
         },
       });
     },
