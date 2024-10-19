@@ -72,28 +72,23 @@
                 }}
               </th>
             </tr>
-            <tr>
-              <td scope="row" :colspan="1" class="ta_c">
-                <div class="line_heigth pd_20">인재양성유형A</div>
-              </td>
-              <td scope="row" :colspan="1" class="ta_c">
-                <div class="line_heigth pd_20">인재양성유형A</div>
-              </td>
-              <td scope="row" :colspan="1" class="ta_c">
-                <div class="line_heigth pd_20">인재양성유형A</div>
-              </td>
-            </tr>
-            <tr>
-              <td scope="row" :colspan="1" class="ta_c">
-                <div class="line_heigth pd_20">인재양성유형A</div>
-              </td>
-              <td scope="row" :colspan="1" class="ta_c">
-                <div class="line_heigth pd_20">인재양성유형A</div>
-              </td>
-              <td scope="row" :colspan="1" class="ta_c">
-                <div class="line_heigth pd_20">인재양성유형A</div>
-              </td>
-            </tr>
+            <template
+              v-for="taltNrtg in data.listTaltNrtgSelc"
+              :key="taltNrtg.taltNrtgTypeSeq"
+              ><tr>
+                <td scope="row" :colspan="1" class="ta_c">
+                  <div class="line_heigth pd_20">
+                    {{ taltNrtg.taltNrtgTypeNm }}
+                  </div>
+                </td>
+                <td scope="row" :colspan="1" class="ta_c">
+                  <div class="line_heigth pd_20">{{ taltNrtg.jobCont }}</div>
+                </td>
+                <td scope="row" :colspan="1" class="ta_c">
+                  <div class="line_heigth pd_20">{{ taltNrtg.vision }}</div>
+                </td>
+              </tr></template
+            >
           </thead>
         </table>
         <table>

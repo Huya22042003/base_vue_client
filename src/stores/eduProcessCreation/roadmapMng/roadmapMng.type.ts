@@ -49,6 +49,7 @@ export type SyntheticRoadmapResDTO = {
   graduationRoadmap: GraduationRoadmapResDTO[];
   listCoreAbility: Array<RoadMapAbilityListModel>;
   listJobAbility: Array<RoadMapAbilityListModel>;
+  listTaltNrtgSelc: Array<RoadmapTaltNrtgSelcModel>;
 };
 
 export type TypeTalentJobResDTO = {
@@ -97,4 +98,11 @@ export type RoadMapAbilityListModel = {
   abilitySeq: string;
   abilityNm: string;
   listChild: Array<RoadMapAbilityListModel>;
+};
+
+export type RoadmapTaltNrtgSelcModel = {
+  taltNrtgTypeSeq: string;
+  taltNrtgTypeNm: string;
+  jobCont: string;
+  vision: string;
 };
