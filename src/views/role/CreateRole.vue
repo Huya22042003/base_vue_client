@@ -105,14 +105,14 @@
           <div class="btn_area">
             <button
               type="button"
-              class="button btn_sm btn_blue"
+              class="button btn_xs btn_blue mr-3"
               @click="showAlert"
             >
               {{ t("common.save") }}
             </button>
             <button
               type="button"
-              class="button btn_sm btn_gray"
+              class="button btn_xs btn_white"
               @click="back()"
             >
               {{ t("common.list") }}

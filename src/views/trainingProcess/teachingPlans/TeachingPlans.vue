@@ -159,10 +159,9 @@ export default defineComponent({
           cellStyle: { textAlign: "center" },
           flex: 5,
         },
-        // TODO: phân loại môn học NCS/KCS
         {
           headerName: this.t("04.teachingPlans.table.categorySbjt"),
-          field: "",
+          field: "sbjtType",
           cellStyle: { textAlign: "center" },
           flex: 5,
         },
