@@ -98,45 +98,71 @@
         </table>
         <table>
           <colgroup>
-            <col style="width: 25%" />
-            <col style="width: 25%" />
+            <col style="width: 16.7%" />
             <col style="width: 25%" />
             <col style="width: 25%" />
           </colgroup>
           <thead>
             <tr>
-              <th scope="row" :colspan="1" :rowspan="2">
-                <!-- 핵심역량 -->{{
-                  t("eduProcessCreation.roadmapMng.title18")
-                }}
-              </th>
-              <th scope="row" :colspan="1" class="ta_c">
-                <!-- 인재양성유형 -->{{
-                  t("eduProcessCreation.roadmapMng.title19")
-                }}
-              </th>
-              <th scope="row" :colspan="1" class="ta_c">
-                <!-- 핵심역량 -->{{
-                  t("eduProcessCreation.roadmapMng.title20")
-                }}
-              </th>
-              <th scope="row" :colspan="1" class="ta_c">
-                <!-- 하위역량 -->{{
-                  t("eduProcessCreation.roadmapMng.title21")
-                }}
-              </th>
+              <th scope="row" :colspan="1" :rowspan="rowSpanThead">전공역량</th>
+              <th scope="col" class="ta_c">핵심역량</th>
+              <th scope="col" class="ta_c">하위역량</th>
             </tr>
+
+            <template
+              v-for="coreAbility in data.listCoreAbility"
+              :key="coreAbility.abilitySeq"
+            >
+              <template
+                v-for="(childAbility, indexChild) in coreAbility.listChild"
+              >
+                <tr>
+                  <td
+                    v-if="indexChild === 0"
+                    :rowspan="coreAbility.listChild.length"
+                    class="ta_c"
+                  >
+                    <div class="line_heigth pd_20">
+                      {{ coreAbility.abilityNm }}
+                    </div>
+                  </td>
+                  <td class="ta_c">
+                    <div class="line_heigth pd_20">
+                      {{ childAbility.abilityNm }}
+                    </div>
+                  </td>
+                </tr>
+              </template>
+            </template>
             <tr>
-              <td scope="row" :colspan="1" class="ta_c">
-                <div class="line_heigth pd_20">인재양성유형A</div>
-              </td>
-              <td scope="row" :colspan="1" class="ta_c">
-                <div class="line_heigth pd_20">인재양성유형A</div>
-              </td>
-              <td scope="row" :colspan="1" class="ta_c">
-                <div class="line_heigth pd_20">인재양성유형A</div>
-              </td>
+              <th scope="col" class="ta_c">핵심역량</th>
+              <th scope="col" class="ta_c">하위역량</th>
             </tr>
+            <template
+              v-for="jobAbility in data.listJobAbility"
+              :key="jobAbility.abilitySeq"
+            >
+              <template
+                v-for="(childAbility, indexChild) in jobAbility.listChild"
+              >
+                <tr>
+                  <td
+                    v-if="indexChild === 0"
+                    :rowspan="jobAbility.listChild.length"
+                    class="ta_c"
+                  >
+                    <div class="line_heigth pd_20">
+                      {{ jobAbility.abilityNm }}
+                    </div>
+                  </td>
+                  <td class="ta_c">
+                    <div class="line_heigth pd_20">
+                      {{ childAbility.abilityNm }}
+                    </div>
+                  </td>
+                </tr>
+              </template>
+            </template>
           </thead>
         </table>
         <table v-if="data.relatedCertificate">
@@ -261,6 +287,7 @@ export default defineComponent({
   data() {
     return {
       data: {} as SyntheticRoadmapResDTO,
+      rowSpanThead: 0,
     };
   },
   beforeMount() {
@@ -275,8 +302,17 @@ export default defineComponent({
           this.data.targetNm = this.convertDataNmToString(this.data.targetDept);
           this.data.typeDeptNm = this.convertDataNmToString(this.data.typeDept);
 
+          this.data.listCoreAbility.forEach((core) => {
+            this.rowSpanThead += core.listChild.length;
+          });
+          this.rowSpanThead++;
+
+          this.data.listJobAbility.forEach((job) => {
+            this.rowSpanThead += job.listChild.length;
+          });
+          this.rowSpanThead++;
+
           console.log(this.data);
-          
         })
         .finally(() => {
           this.storeCommon.setLoading(false);

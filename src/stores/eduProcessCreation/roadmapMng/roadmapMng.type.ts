@@ -1,5 +1,5 @@
-import type { CodeMngModel } from '@/stores/common/codeMng/codeMng.type';
-import type { EduCourseSelResDTO } from './../eduCourse/eduProcess.type';
+import type { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
+import type { EduCourseSelResDTO } from "./../eduCourse/eduProcess.type";
 
 export type LinkRoadMapResDTO = {
   sbjtCd: string;
@@ -47,6 +47,8 @@ export type SyntheticRoadmapResDTO = {
   coreCompetency: CoreCompetencyResDTO[];
   relatedCertificate: RelatedCertificateResDTO[];
   graduationRoadmap: GraduationRoadmapResDTO[];
+  listCoreAbility: Array<RoadMapAbilityListModel>;
+  listJobAbility: Array<RoadMapAbilityListModel>;
 };
 
 export type TypeTalentJobResDTO = {
@@ -74,7 +76,7 @@ export type GraduationRoadmapResDTO = {
 export type OverviewRoadMapDTO = {
   listCurriculum: CodeMngModel[];
   listOverview: OverviewSubjectDTO[];
-}
+};
 
 export type OverviewSubjectDTO = {
   sbjtCd: string;
@@ -85,8 +87,14 @@ export type OverviewSubjectDTO = {
   gradeNm: string;
   prflSeq: string;
   select: EduCourseSelResDTO[];
-}
+};
 
 export type OverviewRoadMapFilterDTO = {
   eduCourseSeq: string;
-}
+};
+
+export type RoadMapAbilityListModel = {
+  abilitySeq: string;
+  abilityNm: string;
+  listChild: Array<RoadMapAbilityListModel>;
+};

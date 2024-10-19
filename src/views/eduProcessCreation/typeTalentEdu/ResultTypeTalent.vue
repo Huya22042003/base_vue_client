@@ -311,7 +311,7 @@
         </table>
       </div>
     </div>
-    <div class="btn_group btn_end mg_t25">
+    <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
         <button type="button" class="btn_round btn_md btn_primary">
           <!-- 3.인재양성유형 설정 및 교육목표 수립 인쇄 -->{{

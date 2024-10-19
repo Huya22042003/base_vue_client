@@ -181,7 +181,7 @@
       </div>
     </div>
 
-    <div class="btn_group btn_end mg_t20">
+    <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
         <button type="button" class="btn_round btn_md btn_primary"
         @click="save()"
