@@ -385,12 +385,12 @@
         <table>
           <tbody>
             <tr>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 <!-- 구분 -->{{
                   t("eduProcessCreation.analysisAchievement.title27")
                 }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 <!-- 중점계획 -->{{
                   t("eduProcessCreation.analysisAchievement.title28")
                 }}
@@ -402,17 +402,17 @@
               :key="index"
             >
               <tr>
-                <td scope="row" :colspan="1">
+                <td scope="row" :colspan="1" class="td_custom_color">
                   {{ operation.dataNm }}
                 </td>
-                <td scope="row" :colspan="1">
+                <th scope="row" :colspan="1">
                   <TextArea
                     :id="'operation' + index"
                     required
                     v-model="operation.cont"
                     rows="5"
                   ></TextArea>
-                </td>
+                </th>
               </tr>
             </template>
           </tbody>

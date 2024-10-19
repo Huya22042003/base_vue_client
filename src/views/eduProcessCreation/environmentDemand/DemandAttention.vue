@@ -16,10 +16,10 @@
                 v-for="(item, index) in envDemand.listEnvironDemand"
                 :key="item.dataCd + index"
               >
-                <th scope="row" :colspan="1">
+                <th scope="row" :colspan="1" class="td_custom_color">
                   {{ item.dataNm }}
                 </th>
-                <td scope="row" :colspan="1">
+                <th scope="row" :colspan="1">
                   <TextArea
                     :id="'envDemand' + envDemand.code + item.dataCd + index"
                     :name="'envDemand' + envDemand.code + item.dataCd + index"
@@ -27,7 +27,7 @@
                     rows="5"
                     v-model="item.cont"
                   ></TextArea>
-                </td>
+                </th>
               </tr>
             </tbody>
           </table>

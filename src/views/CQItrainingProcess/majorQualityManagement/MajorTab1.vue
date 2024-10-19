@@ -57,230 +57,388 @@
         <tr>
           <th scope="row">{{ t("majorTab1.table1.text1") }}</th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataStudentMng.inStudySemester1.state" id="inStudySemester1"
-              required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataStudentMng.inStudySemester1.state"
+              id="inStudySemester1"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataStudentMng.outStudySemester1.state" id="outStudySemester1"
-              required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataStudentMng.outStudySemester1.state"
+              id="outStudySemester1"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" :value="totalSumState([
-              dataStudentMng.inStudySemester1.state,
-              dataStudentMng.outStudySemester1.state]
-            )
-              " id="sumStudySemester" readonly />
+            <InputBase
+              :isNumber="true"
+              :value="
+                totalSumState([
+                  dataStudentMng.inStudySemester1.state,
+                  dataStudentMng.outStudySemester1.state,
+                ])
+              "
+              id="sumStudySemester"
+              readonly
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataStudentMng.inLeaveSemester1.state" id="inLeaveSemester1"
-              required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataStudentMng.inLeaveSemester1.state"
+              id="inLeaveSemester1"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataStudentMng.outLeaveSemester1.state" id="outLeaveSemester1"
-              required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataStudentMng.outLeaveSemester1.state"
+              id="outLeaveSemester1"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" :value="totalSumState([
-              dataStudentMng.inLeaveSemester1.state,
-              dataStudentMng.outLeaveSemester1.state]
-            )
-              " id="sumLeaveSemester" readonly />
+            <InputBase
+              :isNumber="true"
+              :value="
+                totalSumState([
+                  dataStudentMng.inLeaveSemester1.state,
+                  dataStudentMng.outLeaveSemester1.state,
+                ])
+              "
+              id="sumLeaveSemester"
+              readonly
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataStudentMng.inRegistSemester1.state" id="inRegistSemester1"
-              required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataStudentMng.inRegistSemester1.state"
+              id="inRegistSemester1"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataStudentMng.outRegistSemester1.state" id="outRegistSemester1"
-              required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataStudentMng.outRegistSemester1.state"
+              id="outRegistSemester1"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" :value="totalSumState([
-              dataStudentMng.inRegistSemester1.state,
-              dataStudentMng.outRegistSemester1.state]
-            )
-              " id="sumRegistSemester" readonly />
+            <InputBase
+              :isNumber="true"
+              :value="
+                totalSumState([
+                  dataStudentMng.inRegistSemester1.state,
+                  dataStudentMng.outRegistSemester1.state,
+                ])
+              "
+              id="sumRegistSemester"
+              readonly
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" :value="percentState(
-              totalSumState([
-                dataStudentMng.inStudySemester1.state,
-                dataStudentMng.outStudySemester1.state]
-              ),
-              totalSumState([
-                dataStudentMng.inRegistSemester1.state,
-                dataStudentMng.outRegistSemester1.state]
-              )
-            )
-              " id="avgSemester1" readonly />
+            <InputBase
+              :isNumber="true"
+              :value="
+                percentState(
+                  totalSumState([
+                    dataStudentMng.inStudySemester1.state,
+                    dataStudentMng.outStudySemester1.state,
+                  ]),
+                  totalSumState([
+                    dataStudentMng.inRegistSemester1.state,
+                    dataStudentMng.outRegistSemester1.state,
+                  ])
+                )
+              "
+              id="avgSemester1"
+              readonly
+            />
           </th>
         </tr>
         <tr>
           <th scope="row">{{ t("majorTab1.table1.text2") }}</th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataStudentMng.inStudySemester2.state" id="inStudySemester2"
-              required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataStudentMng.inStudySemester2.state"
+              id="inStudySemester2"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataStudentMng.outStudySemester2.state" id="outStudySemester2"
-              required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataStudentMng.outStudySemester2.state"
+              id="outStudySemester2"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" :value="totalSumState([
-              dataStudentMng.inStudySemester2.state,
-              dataStudentMng.outStudySemester2.state]
-            )
-              " id="sumStudySemester" readonly />
+            <InputBase
+              :isNumber="true"
+              :value="
+                totalSumState([
+                  dataStudentMng.inStudySemester2.state,
+                  dataStudentMng.outStudySemester2.state,
+                ])
+              "
+              id="sumStudySemester"
+              readonly
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataStudentMng.inLeaveSemester2.state" id="inLeaveSemester2"
-              required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataStudentMng.inLeaveSemester2.state"
+              id="inLeaveSemester2"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataStudentMng.outLeaveSemester2.state" id="outLeaveSemester2"
-              required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataStudentMng.outLeaveSemester2.state"
+              id="outLeaveSemester2"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" :value="totalSumState([
-              dataStudentMng.inLeaveSemester2.state,
-              dataStudentMng.outLeaveSemester2.state]
-            )
-              " id="sumLeaveSemester" readonly />
+            <InputBase
+              :isNumber="true"
+              :value="
+                totalSumState([
+                  dataStudentMng.inLeaveSemester2.state,
+                  dataStudentMng.outLeaveSemester2.state,
+                ])
+              "
+              id="sumLeaveSemester"
+              readonly
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataStudentMng.inRegistSemester2.state" id="inRegistSemester2"
-              required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataStudentMng.inRegistSemester2.state"
+              id="inRegistSemester2"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataStudentMng.outRegistSemester2.state" id="outRegistSemester2"
-              required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataStudentMng.outRegistSemester2.state"
+              id="outRegistSemester2"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" :value="totalSumState([
-              dataStudentMng.inRegistSemester2.state,
-              dataStudentMng.outRegistSemester2.state]
-            )
-              " id="sumRegistSemester" readonly />
+            <InputBase
+              :isNumber="true"
+              :value="
+                totalSumState([
+                  dataStudentMng.inRegistSemester2.state,
+                  dataStudentMng.outRegistSemester2.state,
+                ])
+              "
+              id="sumRegistSemester"
+              readonly
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" :value="percentState(
-              totalSumState([
-                dataStudentMng.inStudySemester2.state,
-                dataStudentMng.outStudySemester2.state]
-              ),
-              totalSumState([
-                dataStudentMng.inRegistSemester2.state,
-                dataStudentMng.outRegistSemester2.state]
-              )
-            )
-              " id="avgSemester2" readonly />
+            <InputBase
+              :isNumber="true"
+              :value="
+                percentState(
+                  totalSumState([
+                    dataStudentMng.inStudySemester2.state,
+                    dataStudentMng.outStudySemester2.state,
+                  ]),
+                  totalSumState([
+                    dataStudentMng.inRegistSemester2.state,
+                    dataStudentMng.outRegistSemester2.state,
+                  ])
+                )
+              "
+              id="avgSemester2"
+              readonly
+            />
           </th>
         </tr>
         <tr>
           <th scope="row">{{ t("majorTab1.table1.text3") }}</th>
           <th scope="row">
-            <InputBase :isNumber="true" :value="avgState(
-              dataStudentMng.inStudySemester1.state,
-              dataStudentMng.inStudySemester2.state
-            )
-              " id="avgInStudySemester" readonly />
+            <InputBase
+              :isNumber="true"
+              :value="
+                avgState(
+                  dataStudentMng.inStudySemester1.state,
+                  dataStudentMng.inStudySemester2.state
+                )
+              "
+              id="avgInStudySemester"
+              readonly
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" :value="avgState(
-              dataStudentMng.outStudySemester1.state,
-              dataStudentMng.outStudySemester2.state
-            )
-              " id="avgOutStudySemester" readonly />
+            <InputBase
+              :isNumber="true"
+              :value="
+                avgState(
+                  dataStudentMng.outStudySemester1.state,
+                  dataStudentMng.outStudySemester2.state
+                )
+              "
+              id="avgOutStudySemester"
+              readonly
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" :value="avgState(
-              totalSumState([
-                dataStudentMng.inStudySemester1.state,
-                dataStudentMng.outStudySemester1.state]
-              ),
-              totalSumState([
-                dataStudentMng.inStudySemester2.state,
-                dataStudentMng.outStudySemester2.state]
-              )
-            )
-              " id="avgTotalStudySemester" readonly />
+            <InputBase
+              :isNumber="true"
+              :value="
+                avgState(
+                  totalSumState([
+                    dataStudentMng.inStudySemester1.state,
+                    dataStudentMng.outStudySemester1.state,
+                  ]),
+                  totalSumState([
+                    dataStudentMng.inStudySemester2.state,
+                    dataStudentMng.outStudySemester2.state,
+                  ])
+                )
+              "
+              id="avgTotalStudySemester"
+              readonly
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" :value="avgState(
-              dataStudentMng.inLeaveSemester1.state,
-              dataStudentMng.inLeaveSemester2.state
-            )
-              " id="avgInLeaveSemester" readonly />
-          </th>
-          <th scope="row">
-            <InputBase :isNumber="true" :value="avgState(
-              dataStudentMng.outLeaveSemester1.state,
-              dataStudentMng.outLeaveSemester2.state
-            )
-              " id="avgOutLeaveSemester" readonly />
-          </th>
-          <th scope="row">
-            <InputBase :isNumber="true" :value="avgState(
-              totalSumState([
-                dataStudentMng.inLeaveSemester1.state,
-                dataStudentMng.outLeaveSemester1.state]
-              ),
-              totalSumState([
-                dataStudentMng.inLeaveSemester2.state,
-                dataStudentMng.outLeaveSemester2.state]
-              )
-            )
-              " id="avgTotalLeaveSemester" readonly />
-          </th>
-          <th scope="row">
-            <InputBase :isNumber="true" :value="avgState(
-              dataStudentMng.inRegistSemester1.state,
-              dataStudentMng.inRegistSemester2.state
-            )
-              " id="avgStudySemester" readonly />
-          </th>
-          <th scope="row">
-            <InputBase :isNumber="true" :value="avgState(
-              dataStudentMng.outRegistSemester1.state,
-              dataStudentMng.outRegistSemester2.state
-            )
-              " id="avgStudySemester" readonly />
-          </th>
-          <th scope="row">
-            <InputBase :isNumber="true" :value="avgState(
-              totalSumState([
-                dataStudentMng.inRegistSemester1.state,
-                dataStudentMng.inRegistSemester2.state]
-              ),
-              totalSumState([
-                dataStudentMng.outRegistSemester1.state,
-                dataStudentMng.outRegistSemester2.state]
-              )
-            )
-              " id="avgTotalLeaveSemester" readonly />
-          </th>
-          <th scope="row">
-            <InputBase :isNumber="true" :value="percentState(
-              avgState(
-                totalSumState([
+            <InputBase
+              :isNumber="true"
+              :value="
+                avgState(
                   dataStudentMng.inLeaveSemester1.state,
-                  dataStudentMng.outLeaveSemester1.state]
-                ),
-                totalSumState([
-                  dataStudentMng.inLeaveSemester2.state,
-                  dataStudentMng.outLeaveSemester2.state]
+                  dataStudentMng.inLeaveSemester2.state
                 )
-              ), avgState(
-                totalSumState([
+              "
+              id="avgInLeaveSemester"
+              readonly
+            />
+          </th>
+          <th scope="row">
+            <InputBase
+              :isNumber="true"
+              :value="
+                avgState(
+                  dataStudentMng.outLeaveSemester1.state,
+                  dataStudentMng.outLeaveSemester2.state
+                )
+              "
+              id="avgOutLeaveSemester"
+              readonly
+            />
+          </th>
+          <th scope="row">
+            <InputBase
+              :isNumber="true"
+              :value="
+                avgState(
+                  totalSumState([
+                    dataStudentMng.inLeaveSemester1.state,
+                    dataStudentMng.outLeaveSemester1.state,
+                  ]),
+                  totalSumState([
+                    dataStudentMng.inLeaveSemester2.state,
+                    dataStudentMng.outLeaveSemester2.state,
+                  ])
+                )
+              "
+              id="avgTotalLeaveSemester"
+              readonly
+            />
+          </th>
+          <th scope="row">
+            <InputBase
+              :isNumber="true"
+              :value="
+                avgState(
                   dataStudentMng.inRegistSemester1.state,
-                  dataStudentMng.inRegistSemester2.state]
-                ),
-                totalSumState([
-                  dataStudentMng.outRegistSemester1.state,
-                  dataStudentMng.outRegistSemester2.state]
+                  dataStudentMng.inRegistSemester2.state
                 )
-              ))
-              " id="avgTotalSemester" readonly />
+              "
+              id="avgStudySemester"
+              readonly
+            />
+          </th>
+          <th scope="row">
+            <InputBase
+              :isNumber="true"
+              :value="
+                avgState(
+                  dataStudentMng.outRegistSemester1.state,
+                  dataStudentMng.outRegistSemester2.state
+                )
+              "
+              id="avgStudySemester"
+              readonly
+            />
+          </th>
+          <th scope="row">
+            <InputBase
+              :isNumber="true"
+              :value="
+                avgState(
+                  totalSumState([
+                    dataStudentMng.inRegistSemester1.state,
+                    dataStudentMng.inRegistSemester2.state,
+                  ]),
+                  totalSumState([
+                    dataStudentMng.outRegistSemester1.state,
+                    dataStudentMng.outRegistSemester2.state,
+                  ])
+                )
+              "
+              id="avgTotalLeaveSemester"
+              readonly
+            />
+          </th>
+          <th scope="row">
+            <InputBase
+              :isNumber="true"
+              :value="
+                percentState(
+                  avgState(
+                    totalSumState([
+                      dataStudentMng.inLeaveSemester1.state,
+                      dataStudentMng.outLeaveSemester1.state,
+                    ]),
+                    totalSumState([
+                      dataStudentMng.inLeaveSemester2.state,
+                      dataStudentMng.outLeaveSemester2.state,
+                    ])
+                  ),
+                  avgState(
+                    totalSumState([
+                      dataStudentMng.inRegistSemester1.state,
+                      dataStudentMng.inRegistSemester2.state,
+                    ]),
+                    totalSumState([
+                      dataStudentMng.outRegistSemester1.state,
+                      dataStudentMng.outRegistSemester2.state,
+                    ])
+                  )
+                )
+              "
+              id="avgTotalSemester"
+              readonly
+            />
           </th>
         </tr>
       </tbody>
@@ -336,49 +494,110 @@
         <tr>
           <th scope="row">{{ deptNm }}</th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataProfMng.totalStudentStudy.state" id="totalStudentStudy" required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataProfMng.totalStudentStudy.state"
+              id="totalStudentStudy"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataProfMng.totalProfStudy.state" id="totalProfStudy" required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataProfMng.totalProfStudy.state"
+              id="totalProfStudy"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataProfMng.totalSpProfStudy.state" id="totalSpProfStudy" required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataProfMng.totalSpProfStudy.state"
+              id="totalSpProfStudy"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataProfMng.totalAssStudy.state" id="totalAssStudy" required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataProfMng.totalAssStudy.state"
+              id="totalAssStudy"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true"
-              :value="totalSumState([dataProfMng.totalProfStudy.state, dataProfMng.totalSpProfStudy.state, dataProfMng.totalAssStudy.state])"
-              id="totalSumStateStudent" readonly />
+            <InputBase
+              :isNumber="true"
+              :value="
+                totalSumState([
+                  dataProfMng.totalProfStudy.state,
+                  dataProfMng.totalSpProfStudy.state,
+                  dataProfMng.totalAssStudy.state,
+                ])
+              "
+              id="totalSumStateStudent"
+              readonly
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataProfMng.totalStudentProf.state" id="totalStudentProf" required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataProfMng.totalStudentProf.state"
+              id="totalStudentProf"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataProfMng.totalStaffNoProf.state" id="totalStaffNoProf" required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataProfMng.totalStaffNoProf.state"
+              id="totalStaffNoProf"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataProfMng.totalProfClient.state" id="totalProfClient" required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataProfMng.totalProfClient.state"
+              id="totalProfClient"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataProfMng.totalHourProf.state" id="totalHourProf" required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataProfMng.totalHourProf.state"
+              id="totalHourProf"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" v-model="dataProfMng.totalOther.state" id="totalOther" required />
+            <InputBase
+              :isNumber="true"
+              v-model="dataProfMng.totalOther.state"
+              id="totalOther"
+              required
+            />
           </th>
           <th scope="row">
-            <InputBase :isNumber="true" :value="totalSumState([
-              dataProfMng.totalStudentStudy.state,
-              dataProfMng.totalProfStudy.state,
-              dataProfMng.totalSpProfStudy.state,
-              dataProfMng.totalAssStudy.state,
-              dataProfMng.totalStudentProf.state,
-              dataProfMng.totalStaffNoProf.state,
-              dataProfMng.totalProfClient.state,
-              dataProfMng.totalHourProf.state,
-              dataProfMng.totalOther.state
-            ])" id="totalSumStateProf" readonly />
+            <InputBase
+              :isNumber="true"
+              :value="
+                totalSumState([
+                  dataProfMng.totalStudentStudy.state,
+                  dataProfMng.totalProfStudy.state,
+                  dataProfMng.totalSpProfStudy.state,
+                  dataProfMng.totalAssStudy.state,
+                  dataProfMng.totalStudentProf.state,
+                  dataProfMng.totalStaffNoProf.state,
+                  dataProfMng.totalProfClient.state,
+                  dataProfMng.totalHourProf.state,
+                  dataProfMng.totalOther.state,
+                ])
+              "
+              id="totalSumStateProf"
+              readonly
+            />
           </th>
         </tr>
       </tbody>
@@ -422,8 +641,13 @@
 
   <div class="box_section">
     <div class="dp_flex between al_center box_title_sm">
-      <p class="section_tit_xxs">{{ t("majorTab1.table4.item1.internalTitle") }}</p>
-      <button class="button btn_primary btn_lg" @click="handleAddTable('Table')">
+      <p class="section_tit_xxs">
+        {{ t("majorTab1.table4.item1.internalTitle") }}
+      </p>
+      <button
+        class="button btn_primary btn_lg"
+        @click="handleAddTable('Table')"
+      >
         {{ t("common.add") }}
       </button>
     </div>
@@ -453,32 +677,61 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-if="table4Internal.length" v-for="(item, index) in table4Internal" :key="item.id">
+          <tr
+            v-if="table4Internal.length"
+            v-for="(item, index) in table4Internal"
+            :key="item.id"
+          >
             <td>
               <div class="dp_flex">
-                <InputBase v-model="item.value1" :id="`table4Internal_1_${item.id}`" readonly />
+                <InputBase
+                  v-model="item.value1"
+                  :id="`table4Internal_1_${item.id}`"
+                  readonly
+                />
                 <div class="wd_150">
-                  <button class="button btn_sm btn_white"
-                    @click="openModal(index)">
+                  <button
+                    class="button btn_sm btn_white"
+                    @click="openModal(index)"
+                  >
                     {{ t("common.delete") }}
                   </button>
                 </div>
               </div>
             </td>
             <td>
-              <InputBase v-model="item.value2" :id="`table4Internal_2_${item.id}`" readonly />
+              <InputBase
+                v-model="item.value2"
+                :id="`table4Internal_2_${item.id}`"
+                readonly
+              />
             </td>
             <td>
-              <InputBase v-model="item.value3" :id="`table4Internal_3_${item.id}`" readonly />
+              <InputBase
+                v-model="item.value3"
+                :id="`table4Internal_3_${item.id}`"
+                readonly
+              />
             </td>
             <td>
-              <InputBase v-model="item.value4" :id="`table4Internal_4_${item.id}`" readonly />
+              <InputBase
+                v-model="item.value4"
+                :id="`table4Internal_4_${item.id}`"
+                readonly
+              />
             </td>
             <td>
-              <InputBase v-model="item.value5" :id="`table4Internal_5_${item.id}`" required />
+              <InputBase
+                v-model="item.value5"
+                :id="`table4Internal_5_${item.id}`"
+                required
+              />
             </td>
             <td>
-              <button class="button btn_sm btn_white" @click="handleDeleteItem('TableInternal', item.id)">
+              <button
+                class="button btn_sm btn_white"
+                @click="handleDeleteItem('TableInternal', item.id)"
+              >
                 {{ t("common.delete") }}
               </button>
             </td>
@@ -493,7 +746,10 @@
       <p class="section_tit_xxs mt_8">
         {{ t("majorTab1.table4.item2.companyTitle") }}
       </p>
-      <button class="button btn_primary btn_lg" @click="handleAddTable('TableCompany')">
+      <button
+        class="button btn_primary btn_lg"
+        @click="handleAddTable('TableCompany')"
+      >
         {{ t("common.add") }}
       </button>
     </div>
@@ -523,24 +779,51 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-if="table4Company.length" v-for="(item, index) in table4Company" :key="item.id">
+          <tr
+            v-if="table4Company.length"
+            v-for="(item, index) in table4Company"
+            :key="item.id"
+          >
             <td>
-              <InputBase v-model="item.value1" :id="`table4Company_1_${item.id}`" required />
+              <InputBase
+                v-model="item.value1"
+                :id="`table4Company_1_${item.id}`"
+                required
+              />
             </td>
             <td>
-              <InputBase v-model="item.value2" :id="`table4Company_2_${item.id}`" required />
+              <InputBase
+                v-model="item.value2"
+                :id="`table4Company_2_${item.id}`"
+                required
+              />
             </td>
             <td>
-              <InputBase v-model="item.value3" :id="`table4Company_3_${item.id}`" required />
+              <InputBase
+                v-model="item.value3"
+                :id="`table4Company_3_${item.id}`"
+                required
+              />
             </td>
             <td>
-              <InputBase v-model="item.value4" :id="`table4Company_4_${item.id}`" required />
+              <InputBase
+                v-model="item.value4"
+                :id="`table4Company_4_${item.id}`"
+                required
+              />
             </td>
             <td>
-              <InputBase v-model="item.value5" :id="`table4Company_5_${item.id}`" required />
+              <InputBase
+                v-model="item.value5"
+                :id="`table4Company_5_${item.id}`"
+                required
+              />
             </td>
             <td>
-              <button class="button btn_md btn_white" @click="handleDeleteItem('TableCompany', item.id)">
+              <button
+                class="button btn_md btn_white"
+                @click="handleDeleteItem('TableCompany', item.id)"
+              >
                 {{ t("common.delete") }}
               </button>
             </td>
@@ -722,7 +1005,10 @@ import InputBase from "@/components/common/input/InputBase.vue";
 import TextArea from "@/components/common/input/TextArea.vue";
 import { useI18n } from "vue-i18n";
 import { ref } from "vue";
-import { EduCourseOverviewDTO, EduCourseOverviewStateDTO } from "@/stores/cqiTrainingProcess/overview/overview.type";
+import {
+  EduCourseOverviewDTO,
+  EduCourseOverviewStateDTO,
+} from "@/stores/cqiTrainingProcess/overview/overview.type";
 import {
   SEMESTER_1_IN_STUDY,
   SEMESTER_2_IN_STUDY,
@@ -802,37 +1088,100 @@ const getDataDetail = () => {
   const dataFilter = {
     deptCd: deptCd,
     type: typeSeq,
-    year: year
-  } as EduCourseCqiFilterDetail
+    year: year,
+  } as EduCourseCqiFilterDetail;
   getMajorOverview(dataFilter).then((res) => {
     console.log(res.data.data);
     const response = res.data.data as EduCourseOverviewDTO;
 
     table7TextArea.value = response.usagePlan;
-    dataStudentMng.value.inStudySemester1 = getStateList(response.majorOverviewState, SEMESTER_1_IN_STUDY);
-    dataStudentMng.value.inStudySemester2 = getStateList(response.majorOverviewState, SEMESTER_2_IN_STUDY);
-    dataStudentMng.value.outStudySemester1 = getStateList(response.majorOverviewState, SEMESTER_1_OUT_STUDY);
-    dataStudentMng.value.outStudySemester2 = getStateList(response.majorOverviewState, SEMESTER_2_OUT_STUDY);
-    dataStudentMng.value.inLeaveSemester1 = getStateList(response.majorOverviewState, SEMESTER_1_IN_LEAVE);
-    dataStudentMng.value.inLeaveSemester2 = getStateList(response.majorOverviewState, SEMESTER_2_IN_LEAVE);
-    dataStudentMng.value.outLeaveSemester1 = getStateList(response.majorOverviewState, SEMESTER_1_OUT_LEAVE);
-    dataStudentMng.value.outLeaveSemester2 = getStateList(response.majorOverviewState, SEMESTER_2_OUT_LEAVE);
-    dataStudentMng.value.inRegistSemester1 = getStateList(response.majorOverviewState, SEMESTER_1_IN_REGIST);
-    dataStudentMng.value.inRegistSemester2 = getStateList(response.majorOverviewState, SEMESTER_2_IN_REGIST);
-    dataStudentMng.value.outRegistSemester1 = getStateList(response.majorOverviewState, SEMESTER_1_OUT_REGIST);
-    dataStudentMng.value.outRegistSemester2 = getStateList(response.majorOverviewState, SEMESTER_2_OUT_REGIST);
+    dataStudentMng.value.inStudySemester1 = getStateList(
+      response.majorOverviewState,
+      SEMESTER_1_IN_STUDY
+    );
+    dataStudentMng.value.inStudySemester2 = getStateList(
+      response.majorOverviewState,
+      SEMESTER_2_IN_STUDY
+    );
+    dataStudentMng.value.outStudySemester1 = getStateList(
+      response.majorOverviewState,
+      SEMESTER_1_OUT_STUDY
+    );
+    dataStudentMng.value.outStudySemester2 = getStateList(
+      response.majorOverviewState,
+      SEMESTER_2_OUT_STUDY
+    );
+    dataStudentMng.value.inLeaveSemester1 = getStateList(
+      response.majorOverviewState,
+      SEMESTER_1_IN_LEAVE
+    );
+    dataStudentMng.value.inLeaveSemester2 = getStateList(
+      response.majorOverviewState,
+      SEMESTER_2_IN_LEAVE
+    );
+    dataStudentMng.value.outLeaveSemester1 = getStateList(
+      response.majorOverviewState,
+      SEMESTER_1_OUT_LEAVE
+    );
+    dataStudentMng.value.outLeaveSemester2 = getStateList(
+      response.majorOverviewState,
+      SEMESTER_2_OUT_LEAVE
+    );
+    dataStudentMng.value.inRegistSemester1 = getStateList(
+      response.majorOverviewState,
+      SEMESTER_1_IN_REGIST
+    );
+    dataStudentMng.value.inRegistSemester2 = getStateList(
+      response.majorOverviewState,
+      SEMESTER_2_IN_REGIST
+    );
+    dataStudentMng.value.outRegistSemester1 = getStateList(
+      response.majorOverviewState,
+      SEMESTER_1_OUT_REGIST
+    );
+    dataStudentMng.value.outRegistSemester2 = getStateList(
+      response.majorOverviewState,
+      SEMESTER_2_OUT_REGIST
+    );
 
-    dataProfMng.value.totalStudentStudy = getStateList(response.majorOverviewState, TOTAL_STUDENT_STUDY);
-    dataProfMng.value.totalProfStudy = getStateList(response.majorOverviewState, TOTAL_PROF_STUDY);
-    dataProfMng.value.totalSpProfStudy = getStateList(response.majorOverviewState, TOTAL_SP_PROF_STUDY);
-    dataProfMng.value.totalAssStudy = getStateList(response.majorOverviewState, TOTAL_ASS_STUDY);
-    dataProfMng.value.totalStudentProf = getStateList(response.majorOverviewState, TOTAL_STUDENT_PROF);
-    dataProfMng.value.totalStaffNoProf = getStateList(response.majorOverviewState, TOTAL_STAFF_NO_PROF);
-    dataProfMng.value.totalProfClient = getStateList(response.majorOverviewState, TOTAL_PROF_CLIENT);
-    dataProfMng.value.totalHourProf = getStateList(response.majorOverviewState, TOTAL_HOUR_PROF);
-    dataProfMng.value.totalOther = getStateList(response.majorOverviewState, TOTAL_OTHER);
-  })
-}
+    dataProfMng.value.totalStudentStudy = getStateList(
+      response.majorOverviewState,
+      TOTAL_STUDENT_STUDY
+    );
+    dataProfMng.value.totalProfStudy = getStateList(
+      response.majorOverviewState,
+      TOTAL_PROF_STUDY
+    );
+    dataProfMng.value.totalSpProfStudy = getStateList(
+      response.majorOverviewState,
+      TOTAL_SP_PROF_STUDY
+    );
+    dataProfMng.value.totalAssStudy = getStateList(
+      response.majorOverviewState,
+      TOTAL_ASS_STUDY
+    );
+    dataProfMng.value.totalStudentProf = getStateList(
+      response.majorOverviewState,
+      TOTAL_STUDENT_PROF
+    );
+    dataProfMng.value.totalStaffNoProf = getStateList(
+      response.majorOverviewState,
+      TOTAL_STAFF_NO_PROF
+    );
+    dataProfMng.value.totalProfClient = getStateList(
+      response.majorOverviewState,
+      TOTAL_PROF_CLIENT
+    );
+    dataProfMng.value.totalHourProf = getStateList(
+      response.majorOverviewState,
+      TOTAL_HOUR_PROF
+    );
+    dataProfMng.value.totalOther = getStateList(
+      response.majorOverviewState,
+      TOTAL_OTHER
+    );
+  });
+};
 
 const handleAddTable = (value: string) => {
   if (value !== "TableCompany")
@@ -854,16 +1203,19 @@ const handleAddTable = (value: string) => {
   });
 };
 
-const getStateList = (listData: EduCourseOverviewStateDTO[], stateDivCd: string): EduCourseOverviewStateDTO => {
+const getStateList = (
+  listData: EduCourseOverviewStateDTO[],
+  stateDivCd: string
+): EduCourseOverviewStateDTO => {
   if (listData.some((state) => state.stateDivCd == stateDivCd)) {
-    return listData.filter((state) => state.stateDivCd == stateDivCd)[0]
+    return listData.filter((state) => state.stateDivCd == stateDivCd)[0];
   }
   return {
     eduCursCqiStateSeq: "",
     stateDivCd: stateDivCd,
     state: 0,
-  }
-}
+  };
+};
 
 const handleDeleteItem = (value: string, index: number | string) => {
   if (value !== "TableCompany") {
@@ -878,7 +1230,10 @@ const handleDeleteItem = (value: string, index: number | string) => {
 };
 
 const totalSumState = (states: any[]) => {
-  return states.reduce((sum, current) => sum + (current ? parseInt(current.toString()) : 0), 0);
+  return states.reduce(
+    (sum, current) => sum + (current ? parseInt(current.toString()) : 0),
+    0
+  );
 };
 const avgState = (state1: number, state2: number) => {
   const value1 = state1 ? parseInt(state1.toString()) : 0;
@@ -892,17 +1247,17 @@ const percentState = (state1: number, state2: number) => {
   return parseFloat(result.toFixed(2));
 };
 
-const openModal = (index:number) => {
+const openModal = (index: number) => {
   modalOpen.value = true;
-}
+};
 
 const closeModal = () => {
   modalOpen.value = false;
-}
+};
 
 const dataSelected = (data: any) => {
   console.log(data);
-}
+};
 
 const getData = () => {
   return dataSave.value;

@@ -29,3 +29,17 @@
   background: var(--dark1);
   color: var(--white-color);
 }
+
+.td_custom_color {
+  background-color: var(--dark1);
+  color: white;
+  border: 1px solid white !important;
+}
+
+.td_custom_color:first-child {
+  border-left: 1px solid var(--dark1) !important;
+}
+
+.td_custom_color:last-child {
+  border-right: 1px solid var(--dark1) !important;
+}

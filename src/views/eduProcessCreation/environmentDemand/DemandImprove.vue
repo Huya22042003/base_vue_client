@@ -5,13 +5,14 @@
         <table>
           <tbody>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 항목 -->{{
                   t("eduProcessCreation.environmentDemand.title10")
                 }}
               </th>
               <th
                 scope="row"
+                class="td_custom_color"
                 :colspan="1"
                 v-for="(item, index) in environmentDemandListModel.slice(0, 2)"
                 :key="index"
@@ -20,13 +21,13 @@
               </th>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 Strength <br />
                 Weakness <br />
                 Opportunity <br />
                 Threat
               </th>
-              <td
+              <th
                 scope="row"
                 :colspan="1"
                 v-for="(item, index) in environmentDemandListModel.slice(0, 2)"
@@ -35,14 +36,15 @@
                 <TextArea
                   :id="item.dataCd + index"
                   required
-                  rows="5"
+                  rows="7"
                   v-model="item.cont"
                 ></TextArea>
-              </td>
+              </th>
             </tr>
             <tr>
               <th
                 scope="row"
+                class="td_custom_color"
                 :colspan="1"
                 v-for="(item, index) in environmentDemandListModel.slice(2, 5)"
                 :key="index"
@@ -51,7 +53,7 @@
               </th>
             </tr>
             <tr>
-              <td
+              <th
                 scope="row"
                 :colspan="1"
                 v-for="(item, index) in environmentDemandListModel.slice(2, 5)"
@@ -60,14 +62,15 @@
                 <TextArea
                   :id="item.dataCd + index"
                   required
-                  rows="5"
+                  rows="7"
                   v-model="item.cont"
                 ></TextArea>
-              </td>
+              </th>
             </tr>
             <tr>
               <th
                 scope="row"
+                class="td_custom_color"
                 :colspan="1"
                 v-for="(item, index) in environmentDemandListModel.slice(5, 8)"
                 :key="index"
@@ -76,7 +79,7 @@
               </th>
             </tr>
             <tr>
-              <td
+              <th
                 scope="row"
                 :colspan="1"
                 v-for="(item, index) in environmentDemandListModel.slice(5, 8)"
@@ -85,10 +88,10 @@
                 <TextArea
                   :id="item.dataCd + index"
                   required
-                  rows="5"
+                  rows="7"
                   v-model="item.cont"
                 ></TextArea>
-              </td>
+              </th>
             </tr>
           </tbody>
         </table>

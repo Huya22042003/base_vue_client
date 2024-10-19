@@ -19,7 +19,7 @@
           </colgroup>
           <tbody>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 직무명 -->{{ t("eduProcessCreation.jobEduMng.title4") }}
               </th>
               <td scope="row" :colspan="6" class="ta_l">
@@ -27,7 +27,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 직무정의 -->{{ t("eduProcessCreation.jobEduMng.title5") }}
               </th>
               <td scope="row" :colspan="6" class="ta_l">
@@ -36,7 +36,7 @@
             </tr>
             <tr>
               <th
-                scope="row"
+                scope="row" class="td_custom_color"
                 :colspan="1"
                 :rowspan="coreJobSelc.listNcsSysClassification.length + 1"
               >
@@ -44,24 +44,24 @@
                   t("eduProcessCreation.jobEduMng.title6")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_c">
+              <td scope="row" :colspan="1" class="ta_c td_custom_color">
                 <!-- NCS/KCS 구분 -->{{
                   t("eduProcessCreation.jobEduMng.title7")
                 }}
               </td>
-              <td scope="row" :colspan="1" class="ta_c">
+              <td scope="row" :colspan="1" class="ta_c td_custom_color">
                 <!-- 대분류 -->{{ t("eduProcessCreation.jobEduMng.title8") }}
               </td>
-              <td scope="row" :colspan="1" class="ta_c">
+              <td scope="row" :colspan="1" class="ta_c td_custom_color">
                 <!-- 중분류 -->{{ t("eduProcessCreation.jobEduMng.title9") }}
               </td>
-              <td scope="row" :colspan="1" class="ta_c">
+              <td scope="row" :colspan="1" class="ta_c td_custom_color">
                 <!-- 소분류 -->{{ t("eduProcessCreation.jobEduMng.title10") }}
               </td>
-              <td scope="row" :colspan="1" class="ta_c">
+              <td scope="row" :colspan="1" class="ta_c td_custom_color">
                 <!-- 세분류 -->{{ t("eduProcessCreation.jobEduMng.title11") }}
               </td>
-              <td scope="row" :colspan="1" class="ta_c">
+              <td scope="row" :colspan="1" class="ta_c td_custom_color">
                 <!-- 관리 -->{{ t("eduProcessCreation.jobEduMng.title12") }}
               </td>
             </tr>

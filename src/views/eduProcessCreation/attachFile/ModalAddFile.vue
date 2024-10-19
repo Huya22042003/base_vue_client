@@ -21,7 +21,7 @@
           </colgroup>
           <tbody>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 {{ t("eduProcessCreation.attachFile.title6")
                 }}<!-- 제목 -->
               </th>
@@ -30,7 +30,7 @@
               </th>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 {{ t("eduProcessCreation.attachFile.title7")
                 }}<!-- 첨부파일 -->
               </th>

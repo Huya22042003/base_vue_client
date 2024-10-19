@@ -9,12 +9,12 @@
           </colgroup>
           <tbody>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 평가일 -->{{
                   t("eduProcessCreation.typeTalentEdu.title45")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <div class="wd_300">
                   <BaseDatePicker
                     id="evalDate"
@@ -22,15 +22,15 @@
                     :isRequired="true"
                   />
                 </div>
-              </td>
+              </th>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 평가 참여자 수 -->{{
                   t("eduProcessCreation.typeTalentEdu.title46")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <InputBase
                   :isNumber="true"
                   id="evalPartiCnt"
@@ -38,21 +38,21 @@
                   v-model:model-value="data.evalPartiCnt"
                   placeholder="숫자만 입력할 수 있습니다."
                 />
-              </td>
+              </th>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 직무 분야 -->{{
                   t("eduProcessCreation.typeTalentEdu.title47")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <InputBase
                   id="jobField"
                   required
                   v-model:model-value="data.jobField"
                 />
-              </td>
+              </th>
             </tr>
           </tbody>
         </table>
