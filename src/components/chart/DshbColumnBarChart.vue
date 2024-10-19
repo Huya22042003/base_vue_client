@@ -5,10 +5,12 @@
     class="bar_chart"
     :options="chartOptions"
     :series="props.dataset"
+    :key="key"
   ></VueApexCharts>
 </template>
 
 <script setup lang="ts">
+import {ref} from "vue"
 import VueApexCharts from "vue3-apexcharts";
 import type { ColumnChartDataset } from "@/types/chart/ChartTypes";
 
@@ -21,7 +23,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   chartHeight: 235,
 });
-const chartOptions = {
+const chartOptions = ref({
   chart: {
     type: "bar",
     toolbar: {
@@ -162,5 +164,13 @@ const chartOptions = {
       },
     },
   ], */
-};
+});
+const key = ref(0)
+
+watch(() => props.labels, (newLabels) => {
+  if (newLabels) {
+    chartOptions.value.xaxis.categories = newLabels;
+    key.value++
+  }
+});
 </script>

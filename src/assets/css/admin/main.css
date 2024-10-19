@@ -179,7 +179,7 @@ div .percent span {
 }
 .develop_state .curri_develop_percent .progress_bar span {
   position: absolute; top: 0; left: 0;
-  width: 76%; height: 100%; 
+  height: 100%; 
   background: var(--primary);
   border-radius: 10px;
 }
