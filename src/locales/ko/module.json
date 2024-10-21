@@ -5423,7 +5423,8 @@
   "createTrainingProcess" : {
     "title" : "교육과정CQI",
     "tab1" : "탭제목 1",
-    "tab2" : "탭제목 2"
+    "tab2" : "탭제목 2",
+    "tab3" : "탭제목 3"
   },
   "generalTab1": {
     "table1": {
