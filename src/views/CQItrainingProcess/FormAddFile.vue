@@ -103,7 +103,9 @@ defineExpose({
   background: var(--dark1);
   color: var(--white-color);
 }
+</style>
+<style>
 .attach_filewrap {
-    padding-left: 0;
+    padding-left: 0 !important;
 }
 </style>

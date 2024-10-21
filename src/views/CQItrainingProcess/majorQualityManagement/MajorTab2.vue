@@ -118,7 +118,7 @@
             {{ t("majorTab2.table1.average") }}
           </th>
           <th scope="row" colspan="4" class="td_custom_color">
-            {{ calculateAverageScore(listData.slice(0, 2)) }}
+            {{ calculateAverageScore(listData?.slice(0, 2)) }}
           </th>
         </tr>
       </tbody>
@@ -243,7 +243,7 @@
             {{ t("majorTab2.table1.average") }}
           </th>
           <th scope="row" colspan="4" class="td_custom_color">
-            {{ calculateAverageScore(listData.slice(2, 3)) }}
+            {{ calculateAverageScore(listData?.slice(2, 3)) }}
           </th>
         </tr>
       </tbody>
@@ -368,7 +368,7 @@
             {{ t("majorTab2.table1.average") }}
           </th>
           <th scope="row" colspan="4" class="td_custom_color">
-            {{ calculateAverageScore(listData.slice(3, 5)) }}
+            {{ calculateAverageScore(listData?.slice(3, 5)) }}
           </th>
         </tr>
       </tbody>
@@ -493,7 +493,7 @@
             {{ t("majorTab2.table1.average") }}
           </th>
           <th scope="row" colspan="4" class="td_custom_color">
-            {{ calculateAverageScore(listData.slice(5, 7)) }}
+            {{ calculateAverageScore(listData?.slice(5, 7)) }}
           </th>
         </tr>
       </tbody>
@@ -665,6 +665,10 @@ const calculateAverageScore = (
 ) => {
   let totalScore = 0;
   let totalCount = 0;
+
+  if (!evalItems) {
+    return 0;
+  }
 
   evalItems.forEach((evalItem) => {
     evalItem.listEvalStnrdCont.forEach((evalStnrd) => {
