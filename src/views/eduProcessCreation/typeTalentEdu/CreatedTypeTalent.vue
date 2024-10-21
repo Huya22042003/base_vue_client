@@ -14,7 +14,7 @@
                   t("eduProcessCreation.typeTalentEdu.title14")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <div
                   v-if="data.schEduGoal && data.schEduGoal.length != 0"
                   v-for="(item, index) in data.schEduGoal.filter(
@@ -23,7 +23,7 @@
                 >
                   {{ item.cont }}
                 </div>
-              </td>
+              </th>
             </tr>
             <tr>
               <th scope="row" :colspan="1" class="td_custom_color">
@@ -31,7 +31,7 @@
                   t("eduProcessCreation.typeTalentEdu.title15")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <div
                   v-if="data.schEduGoal && data.schEduGoal.length != 0"
                   v-for="(item, index) in data.schEduGoal.filter(
@@ -40,7 +40,7 @@
                 >
                   {{ item.cont }}
                 </div>
-              </td>
+              </th>
             </tr>
             <tr>
               <th scope="row" :colspan="1" class="td_custom_color">
@@ -48,7 +48,7 @@
                   t("eduProcessCreation.typeTalentEdu.title16")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <div
                   v-if="data.schEduGoal && data.schEduGoal.length != 0"
                   v-for="(item, index) in data.schEduGoal.filter(
@@ -57,7 +57,7 @@
                 >
                   {{ item.cont }}
                 </div>
-              </td>
+              </th>
             </tr>
           </tbody>
         </table>

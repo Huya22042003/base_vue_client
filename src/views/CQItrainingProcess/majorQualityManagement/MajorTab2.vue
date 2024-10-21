@@ -114,8 +114,12 @@
         </template>
 
         <tr>
-          <th scope="row" colspan="2">{{ t("majorTab2.table1.average") }}</th>
-          <th scope="row" colspan="4">{{ averageTable1 }}</th>
+          <th scope="row" colspan="2" class="td_custom_color">
+            {{ t("majorTab2.table1.average") }}
+          </th>
+          <th scope="row" colspan="4" class="td_custom_color">
+            {{ calculateAverageScore(listData.slice(0, 2)) }}
+          </th>
         </tr>
       </tbody>
     </table>
@@ -235,8 +239,12 @@
           </template>
         </template>
         <tr>
-          <th scope="row" colspan="2">{{ t("majorTab2.table1.average") }}</th>
-          <th scope="row" colspan="4">{{ averageTable1 }}</th>
+          <th scope="row" colspan="2" class="td_custom_color">
+            {{ t("majorTab2.table1.average") }}
+          </th>
+          <th scope="row" colspan="4" class="td_custom_color">
+            {{ calculateAverageScore(listData.slice(2, 3)) }}
+          </th>
         </tr>
       </tbody>
     </table>
@@ -356,8 +364,12 @@
           </template>
         </template>
         <tr>
-          <th scope="row" colspan="2">{{ t("majorTab2.table1.average") }}</th>
-          <th scope="row" colspan="4">{{ averageTable1 }}</th>
+          <th scope="row" colspan="2" class="td_custom_color">
+            {{ t("majorTab2.table1.average") }}
+          </th>
+          <th scope="row" colspan="4" class="td_custom_color">
+            {{ calculateAverageScore(listData.slice(3, 5)) }}
+          </th>
         </tr>
       </tbody>
     </table>
@@ -477,8 +489,12 @@
           </template>
         </template>
         <tr>
-          <th scope="row" colspan="2">{{ t("majorTab2.table1.average") }}</th>
-          <th scope="row" colspan="4">{{ averageTable1 }}</th>
+          <th scope="row" colspan="2" class="td_custom_color">
+            {{ t("majorTab2.table1.average") }}
+          </th>
+          <th scope="row" colspan="4" class="td_custom_color">
+            {{ calculateAverageScore(listData.slice(5, 7)) }}
+          </th>
         </tr>
       </tbody>
     </table>
@@ -644,6 +660,24 @@ const getDataDetail = () => {
   );
 };
 
+const calculateAverageScore = (
+  evalItems: Array<EduCourseCqiEvalStnrdModel>
+) => {
+  let totalScore = 0;
+  let totalCount = 0;
+
+  evalItems.forEach((evalItem) => {
+    evalItem.listEvalStnrdCont.forEach((evalStnrd) => {
+      if (evalStnrd.score !== undefined) {
+        totalScore += Number(evalStnrd.score);
+        totalCount++;
+      }
+    });
+  });
+
+  return totalCount > 0 ? (totalScore / totalCount).toFixed(2) : 0;
+};
+
 onBeforeMount(() => {
   getDataDetail();
 });
@@ -654,7 +688,6 @@ const getData = () => {
 defineExpose({
   getData,
 });
-
 </script>
 
 <style scoped lang="css">
@@ -700,5 +733,19 @@ defineExpose({
   padding: 18px 6px !important;
   background: var(--dark1);
   color: var(--white-color);
+}
+
+.td_custom_color {
+  background-color: var(--dark1);
+  color: white;
+  border: 1px solid white !important;
+}
+
+.td_custom_color:first-child {
+  border-left: 1px solid var(--dark1) !important;
+}
+
+.td_custom_color:last-child {
+  border-right: 1px solid var(--dark1) !important;
 }
 </style>
