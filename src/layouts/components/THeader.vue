@@ -55,11 +55,11 @@
       class-size="medium" @close-modal="closeModal">
     <template #title>로그인 교수 선택</template>
     <template #footer>
-      <button type="button" class="btn_round btn_white btn_xl_2" @click="popupHide(0)">닫기</button>
+      <button type="button" class="btn_round btn_white btn_xl_2" @click="popupHide(0)">{{t('common.close')}}</button>
     </template>
     <div class="sub_section_xs">
       <div class="section_tit_wrap">
-        <div class="section_tit_xs">검색</div>
+        <div class="section_tit_xs">{{t('common.title.search')}}</div>
       </div>
       <div class="tbl tbl_col">
         <table>
@@ -79,75 +79,52 @@
           <tbody>
           <tr>
             <td class="td_input">
-              <input type="text" class="form_style" placeholder="교수명"/>
+              <InputBase
+                  :id="'name'"
+                  :name="'name'"
+                  v-model="searchModel.name"
+              ></InputBase>
             </td>
             <td class="td_input">
-              <input type="text" class="form_style" placeholder="교번"/>
+              <InputBase
+                  :id="'name'"
+                  :name="'name'"
+                  v-model="searchModel.userId"
+              ></InputBase>
             </td>
           </tr>
           </tbody>
         </table>
         <div class="btn_area ta_r mg_t10">
-          <button type="button" class="btn_lg btn_round btn_white">초기화</button>
-          <button type="button" class="btn_lg btn_round btn_primary">검색</button>
+          <button type="button"
+                  class="btn_lg btn_round btn_primary"
+                  @click="searchClick()"
+          >{{ t("common.search") }}</button>
+          <button type="button"
+                  class="btn_lg btn_round btn_white"
+                  @click="reset()"
+          >{{ t("common.reset") }}</button>
         </div>
       </div>
     </div>
     <div class="sub_section_xs">
       <div class="section_tit_wrap">
-        <div class="section_tit_xs">목록</div>
+        <div class="section_tit_xs">{{t('common.list')}}</div>
       </div>
-      <div class="tbl tbl_col">
-        <table>
-          <caption>
-            교과목 검색 목록
-          </caption>
-          <colgroup>
-            <col style="width: auto"/>
-            <col style="width: auto"/>
-            <col style="width: auto"/>
-            <col style="width: auto"/>
-          </colgroup>
-          <thead>
-          <tr>
-            <th>교수명</th>
-            <th>교번</th>
-            <th>학과</th>
-            <th>선택</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td colspan="4">로그인 할 교수자를 검색해주세요.</td>
-          </tr>
-          <tr>
-            <td>홍길동</td>
-            <td>12345678</td>
-            <td>A학과</td>
-            <td>
-              <button type="button" @click="onclickSelect()">[선택]</button>
-            </td>
-          </tr>
-          <tr>
-            <td>심청이</td>
-            <td>12345678</td>
-            <td>A학과</td>
-            <td>
-              <button type="button" @click="onclickSelect()">[선택]</button>
-            </td>
-          </tr>
-          <tr>
-            <td>홍길동</td>
-            <td>12345678</td>
-            <td>A학과</td>
-            <td>
-              <button type="button" @click="onclickSelect()">[선택]</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <PaginationUi></PaginationUi>
+
+      <GridComponentV2
+          :rowData="rowData"
+          :columnDefs="columnDefs"
+          :pagination="true"
+          :paginationPageSize="paginationPageSize"
+          :paginationPageSizeSelector="paginationPageSizeSelector"
+          ref="gridKey"
+          :paginationClientFlag="true"
+          @customPagination="fnPagination"
+          :totalRecord="totalRows"
+          :key="key"
+      >
+      </GridComponentV2>
     </div>
   </TModal>
 </template>
@@ -160,11 +137,18 @@ import {SCREEN} from "@/router/screen";
 import TModal from "@/components/common/modal/TModal.vue";
 import commonService from "@/service/common/CommonService";
 import {commonStore} from "@/stores/common";
-import {onMounted, nextTick, watch} from "vue";
+import {onMounted, nextTick, watch, ref} from "vue";
 import {useRouter} from "vue-router";
 import http from "@/utils/http";
 import {f} from "vitest/dist/types-63abf2e0";
 import {removeUserInfo} from "@/utils/storage";
+import {getListProfs} from "@/stores/userManagement/userManagement.service";
+import {UserManagementSearchModel, UserMngModel} from "@/stores/userManagement/userManagement.type";
+import { useI18n } from "vue-i18n";
+import type {LoginHisResModel} from "@/stores/loginHistory/loginHistory.type";
+import {PAGINATION_PAGE_1, PAGINATION_PAGE_SIZE, PAGINATION_PAGE_SIZE_SELECTOR} from "@/constants/screen.const";
+import {USER_INFO} from "@/constants/common.const";
+import Swal from "sweetalert2";
 
 export default {
   computed: {
@@ -177,11 +161,108 @@ export default {
     PopupView,
     PaginationUi,
   },
+
   setup(props, ctx) {
+    const {t} = useI18n();
     const store = commonStore()
     const menu = ref([])
     const router = useRouter()
     const route = useRoute()
+    const rowData = ref<UserMngModel>([])
+    const paginationPageSize = PAGINATION_PAGE_SIZE;
+    const paginationPageSizeSelector = PAGINATION_PAGE_SIZE_SELECTOR;
+    const totalRows = ref<number>;
+    const key =  1;
+    const searchModel = ref<UserManagementSearchModel>({
+      userId: '',
+      name: '',
+      page: PAGINATION_PAGE_1,
+      size: PAGINATION_PAGE_SIZE,
+      sort: ''
+    });
+
+    async function onclickSelect(prof) {
+      Swal.fire({
+        title: '알림',
+        text: `${prof.name} 교수님을 선택하시겠어요?`,
+        showCancelButton: true,
+        confirmButtonText: t("common.confirm"),
+        cancelButtonText: t("common.cancel"),
+      }).then(async (result) => {
+        store.setLoading(true);
+        if (result.isConfirmed) {
+          try {
+            const userInfoString = localStorage.getItem(USER_INFO);
+            if (!userInfoString) {
+              throw new Error('User info not found');
+            }
+
+            const userInfo = JSON.parse(userInfoString);
+            const userId = userInfo.userId;
+
+            const response = await http.post('/auth/impersonate', {
+              userStaff: prof.userId,
+              currentUser: userId,
+              div: 'profsw'
+            });
+            const token = response.data;
+
+            store.setLoading(false);
+            await Swal.fire('로그인 되었습니다.', '교수사이트로 이동합니다.');
+            store.setLoading(true);
+
+            window.location.href = `${import.meta.env.VITE_PROF_URL}?token=${token}`;
+            // window.open(`${ import.meta.env.VITE_PROF_URL}?token=${token}`, '_blank');
+          } catch (e) {
+            await Swal.fire('로그인에 실패했습니다.', '다시 시도해주세요.');
+            console.error(e);
+          } finally {
+            store.setLoading(false);
+          }
+        } else {
+          store.setLoading(false);
+        }
+      });
+    }
+
+    const columnDefs = [
+      {
+        headerName: "교수명",
+        field: "name",
+        flex: 4,
+      },
+      {
+        headerName: "교번",
+        field: "userId",
+        cellStyle: { textAlign: "center" },
+        flex: 3,
+      },
+      {
+        headerName: "학과",
+        field: "deptNm",
+        cellStyle: { textAlign: "center" },
+        flex: 5,
+      },
+      {
+        headerName: "선택",
+        cellRenderer: (params) => {
+          const button = document.createElement('button');
+          button.innerText = '[선택]';
+          button.addEventListener('click', () => {
+            onclickSelect(params.data);
+          });
+          return button;
+        },
+        cellStyle: {
+          color: "#2704FF",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          cursor: "pointer",
+        },
+        flex: 2,
+      },
+    ]
 
     onMounted(async () => {
       await getDataMenu()
@@ -242,52 +323,81 @@ export default {
           });
     }
 
+    function reset() {
+      this.searchModel.userId = "";
+      this.searchModel.name = "";
+      this.searchModel.page = PAGINATION_PAGE_1;
+      this.searchModel.size = PAGINATION_PAGE_SIZE;
+      this.searchModel.sort = "";
+    }
+
     return {
+      t,
       store,
       menu,
+      columnDefs,
+      paginationPageSize,
+      paginationPageSizeSelector,
+      totalRows,
+      key,
+      rowData,
+      searchModel,
+      reset,
       handleNextScreen,
-      handleLogout
+      handleLogout,
     }
   },
+
   data: () => ({
     isPopups: [false],
   }),
+
   mounted: function () {
     gnbOneDepth();
     siteMap();
   },
+
   methods: {
+    searchClick() {
+      this.searchModel.page = 1;
+      this.key++;
+      this.getDataProfs();
+    },
+
+    async getDataProfs() {
+      this.store.setLoading(true);
+      await getListProfs(this.searchModel)
+          .then(async (response) => {
+            if (response.status == 200) {
+              this.rowData = response.data.data.content;
+              this.totalRows = response.data.data.totalElements;
+            }
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+          .finally(() => {
+            this.store.setLoading(false);
+          });
+    },
+
     popupShow(idx: number) {
       const vm = this;
       vm.isPopups[idx] = true;
     },
+
     popupHide(idx: number) {
       const vm = this;
       vm.isPopups[idx] = false;
     },
-    onclickSelect() {
-      const vm = this;
-      vm.$confirm("홍길동 교수님을 선택하시겠어요?", "알림", async (isConfirm: Boolean) => {
-        if (isConfirm) {
-          vm.$toast("로그인 되었습니다. <br />교수사이트로 이동합니다.");
-          try {
-            const response = await http.post('/auth/impersonate', {
-              userStaff: '33330001',
-              currentUser: 'dainls',
-              div: 'profsw'
-            });
-            const token = response.data;
-            vm.$toast("로그인 되었습니다. <br />교수사이트로 이동합니다.");
 
-            window.location.href = `${import.meta.env.VITE_PROF_URL}?token=${token}`;
-            // window.open(`${ import.meta.env.VITE_PROF_URL}?token=${token}`, '_blank');
-          } catch (e) {
-            vm.$toast("로그인에 실패했습니다. 다시 시도해주세요.");
-            console.error(error);
-          }
-        }
-      });
+    fnPagination(pageNumber: any, pagesSize: any) {
+      this.searchModel.size = pagesSize;
+      this.searchModel.page = pageNumber;
+      this.searchModel.sort = "";
+      this.getDataProfs();
     },
+
     // Modal
     closeModal() {
       this.isPopups[0] = false

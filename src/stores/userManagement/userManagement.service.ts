@@ -7,6 +7,10 @@ export const getListData = (data: UserManagementSearchModel) => {
     return http.post(url + '/list', data)
 }
 
+export const getListProfs = (data: UserManagementSearchModel) => {
+    return http.post(url + '/list/prof', data)
+}
+
 export const getListRole = () => {
     return http.get(url + '/listRole')
 }
