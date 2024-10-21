@@ -571,8 +571,11 @@ const table4 = ref({
 
 const cmn = commonStore();
 
+const state = window.history.state;
+const { eduCourseCqiSeq } = state;
+
 const eduCourseCqiEvalStnrdReqModel = ref<EduCourseCqiEvalStnrdReqModel>({
-  eduCourseCqiSeq: "",
+  eduCourseCqiSeq: eduCourseCqiSeq,
   evalItemCd: UP_CD_ID_121901,
 });
 

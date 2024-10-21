@@ -279,8 +279,8 @@
               :isNumber="true"
               :value="
                 avgState(
-                  dataStudentMng.inStudySemester1.state,
-                  dataStudentMng.inStudySemester2.state
+                  dataStudentMng.inStudySemester1.state as number,
+                  dataStudentMng.inStudySemester2.state as number
                 )
               "
               id="avgInStudySemester"
@@ -292,8 +292,8 @@
               :isNumber="true"
               :value="
                 avgState(
-                  dataStudentMng.outStudySemester1.state,
-                  dataStudentMng.outStudySemester2.state
+                  dataStudentMng.outStudySemester1.state as number,
+                  dataStudentMng.outStudySemester2.state as number
                 )
               "
               id="avgOutStudySemester"
@@ -324,8 +324,8 @@
               :isNumber="true"
               :value="
                 avgState(
-                  dataStudentMng.inLeaveSemester1.state,
-                  dataStudentMng.inLeaveSemester2.state
+                  dataStudentMng.inLeaveSemester1.state as number,
+                  dataStudentMng.inLeaveSemester2.state as number
                 )
               "
               id="avgInLeaveSemester"
@@ -337,8 +337,8 @@
               :isNumber="true"
               :value="
                 avgState(
-                  dataStudentMng.outLeaveSemester1.state,
-                  dataStudentMng.outLeaveSemester2.state
+                  dataStudentMng.outLeaveSemester1.state as number,
+                  dataStudentMng.outLeaveSemester2.state as number
                 )
               "
               id="avgOutLeaveSemester"
@@ -369,8 +369,8 @@
               :isNumber="true"
               :value="
                 avgState(
-                  dataStudentMng.inRegistSemester1.state,
-                  dataStudentMng.inRegistSemester2.state
+                  dataStudentMng.inRegistSemester1.state as number,
+                  dataStudentMng.inRegistSemester2.state as number
                 )
               "
               id="avgStudySemester"
@@ -382,8 +382,8 @@
               :isNumber="true"
               :value="
                 avgState(
-                  dataStudentMng.outRegistSemester1.state,
-                  dataStudentMng.outRegistSemester2.state
+                  dataStudentMng.outRegistSemester1.state as number,
+                  dataStudentMng.outRegistSemester2.state as number
                 )
               "
               id="avgStudySemester"
@@ -678,15 +678,15 @@
         </thead>
         <tbody>
           <tr
-            v-if="table4Internal.length"
-            v-for="(item, index) in table4Internal"
+            v-if="dataInternal.length"
+            v-for="(item, index) in dataInternal"
             :key="item.id"
           >
             <td>
               <div class="dp_flex">
                 <InputBase
-                  v-model="item.value1"
-                  :id="`table4Internal_1_${item.id}`"
+                  v-model="item.nm"
+                  :id="`dataInternal_1_${index}`"
                   readonly
                 />
                 <div class="wd_150">
@@ -701,36 +701,36 @@
             </td>
             <td>
               <InputBase
-                v-model="item.value2"
-                :id="`table4Internal_2_${item.id}`"
+                v-model="item.majField"
+                :id="`dataInternal_2_${index}`"
                 readonly
               />
             </td>
             <td>
               <InputBase
-                v-model="item.value3"
-                :id="`table4Internal_3_${item.id}`"
+                v-model="item.aff"
+                :id="`dataInternal_3_${index}`"
                 readonly
               />
             </td>
             <td>
               <InputBase
-                v-model="item.value4"
-                :id="`table4Internal_4_${item.id}`"
+                v-model="item.posi"
+                :id="`dataInternal_4_${index}`"
                 readonly
               />
             </td>
             <td>
               <InputBase
-                v-model="item.value5"
-                :id="`table4Internal_5_${item.id}`"
+                v-model="item.remark"
+                :id="`dataInternal_5_${index}`"
                 required
               />
             </td>
             <td>
               <button
                 class="button btn_sm btn_white"
-                @click="handleDeleteItem('TableInternal', item.id)"
+                @click="handleDeleteItem('TableInternal', index)"
               >
                 {{ t("common.delete") }}
               </button>
@@ -780,49 +780,49 @@
         </thead>
         <tbody>
           <tr
-            v-if="table4Company.length"
-            v-for="(item, index) in table4Company"
+            v-if="dataCompany.length"
+            v-for="(item, index) in dataCompany"
             :key="item.id"
           >
             <td>
               <InputBase
-                v-model="item.value1"
-                :id="`table4Company_1_${item.id}`"
+                v-model="item.nm"
+                :id="`dataCompany_1_${index}`"
                 required
               />
             </td>
             <td>
               <InputBase
-                v-model="item.value2"
-                :id="`table4Company_2_${item.id}`"
+                v-model="item.majField"
+                :id="`dataCompany_2_${index}`"
                 required
               />
             </td>
             <td>
               <InputBase
-                v-model="item.value3"
-                :id="`table4Company_3_${item.id}`"
+                v-model="item.aff"
+                :id="`dataCompany_3_${index}`"
                 required
               />
             </td>
             <td>
               <InputBase
-                v-model="item.value4"
-                :id="`table4Company_4_${item.id}`"
+                v-model="item.posi"
+                :id="`dataCompany_4_${index}`"
                 required
               />
             </td>
             <td>
               <InputBase
-                v-model="item.value5"
-                :id="`table4Company_5_${item.id}`"
+                v-model="item.remark"
+                :id="`dataCompany_5_${index}`"
                 required
               />
             </td>
             <td>
               <button
                 class="button btn_md btn_white"
-                @click="handleDeleteItem('TableCompany', item.id)"
+                @click="handleDeleteItem('TableCompany', index)"
               >
                 {{ t("common.delete") }}
               </button>
@@ -986,7 +986,7 @@
             <br />
             {{ t("majorTab1.table7.subHeader") }}
           </th>
-          <td><TextArea v-model="table7TextArea" id="majorTab1" required /></td>
+          <td><TextArea v-model="usagePlan" id="majorTab1" required /></td>
         </tr>
       </tbody>
     </table>
@@ -1007,6 +1007,7 @@ import { useI18n } from "vue-i18n";
 import { ref } from "vue";
 import {
   EduCourseOverviewDTO,
+  EduCourseOverviewGroupDTO,
   EduCourseOverviewStateDTO,
 } from "@/stores/cqiTrainingProcess/overview/overview.type";
 import {
@@ -1031,12 +1032,16 @@ import {
   TOTAL_PROF_CLIENT,
   TOTAL_HOUR_PROF,
   TOTAL_OTHER,
+  CQI_DIV_SCHOOL,
+  CQI_DIV_COMPANY,
 } from "@/constants/common.const";
 import { getMajorOverview } from "@/stores/cqiTrainingProcess/overview/overview.service";
 import { EduCourseCqiFilterDetail } from "@/stores/cqiTrainingProcess/cqiTrainingProcess.type";
 import SelectModal from "../SelectModal.vue";
+import { commonStore } from "@/stores/common";
 
 const { t } = useI18n();
+const store = commonStore();
 
 interface ITable {
   [key: string]: string | number;
@@ -1069,32 +1074,37 @@ const dataProfMng = ref({
   totalOther: {} as EduCourseOverviewStateDTO,
 });
 
+const convertToArray = (data: any) => {
+  return Object.values(data);
+};
+
 const state = window.history.state;
 const { deptCd, typeSeq, year, deptNm } = state;
 
 const dataSave = ref({});
 
-const table4Internal = ref<ITable[]>([]);
-const table4Company = ref<ITable[]>([]);
+const dataInternal = ref<ITable[]>([]);
+const dataCompany = ref<ITable[]>([]);
 
-const table7TextArea = ref("");
+const usagePlan = ref("");
 const modalOpen = ref(false);
+const indexSelect = ref<number>(-1);
 
 onBeforeMount(() => {
   getDataDetail();
 });
 
 const getDataDetail = () => {
+  store.setLoading(true);
   const dataFilter = {
     deptCd: deptCd,
     type: typeSeq,
     year: year,
   } as EduCourseCqiFilterDetail;
   getMajorOverview(dataFilter).then((res) => {
-    console.log(res.data.data);
     const response = res.data.data as EduCourseOverviewDTO;
 
-    table7TextArea.value = response.usagePlan;
+    usagePlan.value = response.usagePlan;
     dataStudentMng.value.inStudySemester1 = getStateList(
       response.majorOverviewState,
       SEMESTER_1_IN_STUDY
@@ -1180,26 +1190,32 @@ const getDataDetail = () => {
       response.majorOverviewState,
       TOTAL_OTHER
     );
+
+    dataInternal.value = response.majorOverviewGroup.filter(item => item.divCd == CQI_DIV_SCHOOL)
+    dataCompany.value = response.majorOverviewGroup.filter(item => item.divCd == CQI_DIV_COMPANY)
+  }).finally(() => {
+    store.setLoading(false);
   });
 };
 
 const handleAddTable = (value: string) => {
   if (value !== "TableCompany")
-    return table4Internal.value.push({
-      id: new Date().getTime(),
-      value1: "",
-      value2: "",
-      value3: "",
-      value4: "",
-      value5: "",
+    return dataInternal.value.push({
+      eduCursCqiGroupSeq: "",
+      staffNo: "",
+      nm: "",
+      majField: "",
+      aff: "",
+      posi: "",
+      remark: "",
     });
-  return table4Company.value.push({
-    id: new Date().getTime(),
-    value1: "",
-    value2: "",
-    value3: "",
-    value4: "",
-    value5: "",
+  return dataCompany.value.push({
+    eduCursCqiGroupSeq: "",
+    nm: "",
+    majField: "",
+    aff: "",
+    posi: "",
+    remark: "",
   });
 };
 
@@ -1213,18 +1229,18 @@ const getStateList = (
   return {
     eduCursCqiStateSeq: "",
     stateDivCd: stateDivCd,
-    state: 0,
+    state: "",
   };
 };
 
-const handleDeleteItem = (value: string, index: number | string) => {
+const handleDeleteItem = (value: string, indexSelect: number | string) => {
   if (value !== "TableCompany") {
-    table4Internal.value = [
-      ...table4Internal.value.filter((i) => i.id !== index),
+    dataInternal.value = [
+      ...dataInternal.value.filter((i, index) => index !== indexSelect),
     ];
   } else {
-    table4Company.value = [
-      ...table4Company.value.filter((i) => i.id !== index),
+    dataCompany.value = [
+      ...dataCompany.value.filter((i, index) => index !== indexSelect),
     ];
   }
 };
@@ -1249,17 +1265,65 @@ const percentState = (state1: number, state2: number) => {
 
 const openModal = (index: number) => {
   modalOpen.value = true;
+  indexSelect.value = index;
 };
 
 const closeModal = () => {
   modalOpen.value = false;
+  indexSelect.value = -1;
 };
 
 const dataSelected = (data: any) => {
-  console.log(data);
+  data.eduCursCqiGroupSeq = dataInternal.value[indexSelect.value] = {
+    eduCursCqiGroupSeq: "",
+    aff: data.affli,
+    divCd: CQI_DIV_SCHOOL,
+    nm: data.nm,
+    majField: data.major,
+    posi: data.posi,
+    remark: data.remark,
+    staffNo: data.id,
+  };
 };
 
 const getData = () => {
+  store.setLoading(true);
+  const majorOverviewStateStudent = convertToArray(
+    dataStudentMng.value
+  ) as EduCourseOverviewStateDTO[];
+  const majorOverviewStateProf = convertToArray(
+    dataProfMng.value
+  ) as EduCourseOverviewStateDTO[];
+  const majorOverviewState = [] as EduCourseOverviewStateDTO[];
+
+  majorOverviewStateStudent.forEach((item) => {
+    majorOverviewState.push(item);
+  });
+  majorOverviewStateProf.forEach((item) => {
+    majorOverviewState.push(item);
+  });
+
+  const majorOverviewGroupInternal = convertToArray(
+    dataInternal.value
+  ) as EduCourseOverviewGroupDTO[];
+  const majorOverviewGroupCompany = convertToArray(
+    dataCompany.value
+  ) as EduCourseOverviewGroupDTO[];
+  const majorOverviewGroup = [] as EduCourseOverviewGroupDTO[];
+
+  majorOverviewGroupInternal.forEach((item) => {
+    majorOverviewGroup.push(item);
+  });
+  majorOverviewGroupCompany.forEach((item) => {
+    item.divCd = CQI_DIV_COMPANY;
+    majorOverviewGroup.push(item);
+  });
+  dataSave.value = {
+    usagePlan: usagePlan.value,
+    majorOverviewState: majorOverviewState,
+    majorOverviewGroup: majorOverviewGroup,
+  };
+  store.setLoading(false);
   return dataSave.value;
 };
 

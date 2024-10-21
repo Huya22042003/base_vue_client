@@ -1,3 +1,5 @@
+import type { EduCourseCqiEvalStnrdModel } from "../selfAssessmentResult/selfAssessmentResult.type";
+
 export type EduCourseOverviewDTO = {
   eduCursCqiSeq: string;
   year: string;
@@ -12,7 +14,7 @@ export type EduCourseOverviewDTO = {
 export type EduCourseOverviewStateDTO = {
   eduCursCqiStateSeq: string;
   stateDivCd: string;
-  state: number;
+  state: string | number;
 };
 
 export type EduCourseOverviewGroupDTO = {
@@ -24,4 +26,5 @@ export type EduCourseOverviewGroupDTO = {
   aff: string;
   majField: string;
   remark: string;
+  id?: string;
 };

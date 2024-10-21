@@ -223,7 +223,7 @@ function handleDetailClick(item: EduCourseCqiListModel) {
   router.push({
     name: SCREEN.createTrainingProcess.name,
     params: { mode: item.typeOfRedirect },
-    state: {deptCd: item.deptCd, deptNm: item.deptNm, typeSeq: item.eduCursTypeSeq, year: item.year}
+    state: {deptCd: item.deptCd, deptNm: item.deptNm, typeSeq: item.eduCursTypeSeq, year: item.year, eduCourseCqiSeq: item.eduCourseCqiSeq }
   });
 }
 </script>

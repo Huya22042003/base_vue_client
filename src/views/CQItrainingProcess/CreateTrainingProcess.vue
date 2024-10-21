@@ -45,8 +45,7 @@
             <GeneralTab2 ref="generalTab2Ref" v-else />
           </div>
           <div class="btn_area ta_r">
-            {{ store.arrRequired }}
-            <button class="button btn_md btn_secondary" @click="saveData">
+            <button class="button btn_md btn_secondary" @click="saveTemp">
               {{ t("common.saveTemp") }}
             </button>
             <button
@@ -59,7 +58,7 @@
             <button
               v-else
               class="button btn_md btn_primary ml-4"
-              :disabled="store.check"
+              @click="saveData"
             >
               {{ t("common.save") }}
             </button>
@@ -89,6 +88,8 @@ import { useI18n } from "vue-i18n";
 import { ref } from "vue";
 import { getCurrentInstance } from "vue";
 import { EduCourseCqiReq } from "@/stores/cqiTrainingProcess/cqiTrainingProcess.type";
+import { saveEduCourseCqi } from "@/stores/cqiTrainingProcess/cqiTrainingProcess.service";
+import { STS_EDU_CQI_SUCCESS } from "@/constants/common.const";
 
 const { t } = useI18n();
 const route = useRoute();
@@ -110,51 +111,70 @@ const generalTab2Ref = ref(null);
 const { proxy } = getCurrentInstance();
 
 const dataOverview = ref();
-const eduCourseCqiReq = ref<EduCourseCqiReq>();
+const dataResult = ref();
+
+const state = window.history.state;
+const { deptCd, typeSeq, year } = state;
+
+const saveTemp = () => {
+
+}
 
 const saveData = () => {
+  if (store.check) {
+    proxy.$alert(proxy.$t("common.messageValidateRequired"));
+    return;
+  }
+  store.setLoading(true);
   if (mode.value === "major") {
-    if (majorTab1Ref.value) {
-      console.log(majorTab1Ref.value.getData());
-    }
     if (majorTab2Ref.value) {
-      console.log(majorTab2Ref.value.getData());
+      dataResult.value = majorTab2Ref.value.getData();
     }
   } else {
-    if (generalTab1Ref.value) {
-      console.log(generalTab1Ref.value.getData());
-    }
     if (generalTab2Ref.value) {
-      console.log(generalTab2Ref.value.getData());
+      dataResult.value = generalTab2Ref.value.getData();
     }
+  }
+  if (dataOverview.value && dataResult.value) {
+    const dataSave = {
+      eduCursCqiSeq: "",
+      year: year,
+      deptCd: deptCd,
+      eduCursTypeSeq: typeSeq,
+      stsCd: STS_EDU_CQI_SUCCESS,
+      usagePlan: dataOverview.value.usagePlan,
+      overview: dataOverview.value,
+      evalStnrd: dataResult.value
+    }
+    saveEduCourseCqi(dataSave).then((res) => {
+      handleRedirectMenu();
+      proxy.$alert(proxy.$t("common.message.saveSuccess"));
+    }).finally(() => {
+      store.setLoading(false);
+    })
   }
 };
 
 const handleNext = () => {
-  // if (store.check) {
-  //   proxy.$alert(proxy.$t("common.messageValidateRequired"));
-  //   return;
-  // }
+  if (store.check) {
+    proxy.$alert(proxy.$t("common.messageValidateRequired"));
+    return;
+  }
   if (mode.value === "major") {
     if (majorTab1Ref.value) {
-      console.log(majorTab1Ref.value.getData());
-    }
-    if (majorTab2Ref.value) {
-      console.log(majorTab2Ref.value.getData());
+      dataOverview.value = majorTab1Ref.value.getData()
     }
   } else {
     if (generalTab1Ref.value) {
-      console.log(generalTab1Ref.value.getData());
-    }
-    if (generalTab2Ref.value) {
-      console.log(generalTab2Ref.value.getData());
+      dataOverview.value = generalTab1Ref.value.getData()
     }
   }
   window.scrollTo({ top: 0, behavior: "smooth" });
   picked.value = "Two";
 };
+
 const handleRedirectMenu = () => {
-  router.push({ name: SCREEN.CQITrainingProcess.name });
+  router.push({ path: SCREEN.CQITrainingProcess.path });
 };
 </script>
 
