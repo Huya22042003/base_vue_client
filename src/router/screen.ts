@@ -801,7 +801,7 @@ export const SCREEN = {
   },
   studentPerformanceAssessment: {
     path: "/student-performance-assessment",
-    name: "studentPerformanceAssessment"
+    name: "student-performance-assessment"
   },
   jobCompetencyStudent: {
     path: "/job-competency-student",
