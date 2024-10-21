@@ -87,7 +87,7 @@ export default {
     };
   },
   beforeMount() {
-    this.tabChange7(this.stageChild == 70 ? 71 : this.stageChild);
+    this.tabChange7(this.stageChild == 70 || this.stageChild > 74 ? 71 : this.stageChild);
   },
   methods: {
     nextTab() {

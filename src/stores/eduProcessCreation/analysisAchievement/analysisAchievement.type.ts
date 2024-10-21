@@ -92,3 +92,8 @@ export type OperationDevelopmentPlanSaveModel = {
   eduCourseSeq: string;
   listOperationDevelopmentPlan: Array<OperationDevelopmentPlanListModel>;
 };
+
+export type AnalysisEvalStnrdReqModel = {
+  eduCourseSeq: string;
+  evalItemCd: string;
+};

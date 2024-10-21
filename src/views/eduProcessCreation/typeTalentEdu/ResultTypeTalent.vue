@@ -12,12 +12,12 @@
           </colgroup>
           <tbody>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 교육과정 목록 -->{{
                   t("eduProcessCreation.typeTalentEdu.title22")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <template
                   v-if="
                     data.asisEduCourse && data.asisEduCourse.tobeCoreJobDivCd
@@ -25,15 +25,15 @@
                 >
                   {{ data.asisEduCourse.indexEduCourseNm }}
                 </template>
-              </td>
+              </th>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 인재양성유형 -->{{
                   t("eduProcessCreation.typeTalentEdu.title23")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <template
                   v-if="
                     data.asisEduCourse &&
@@ -60,15 +60,15 @@
                     {{ "" }}
                   </template>
                 </template>
-              </td>
+              </th>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 핵심직무 -->{{
                   t("eduProcessCreation.typeTalentEdu.title24")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <template
                   v-if="
                     data.asisEduCourse && data.asisEduCourse.tobeCoreJobDivCd
@@ -92,22 +92,22 @@
                     {{ "" }}
                   </template>
                 </template>
-              </td>
+              </th>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 한계점 -->{{
                   t("eduProcessCreation.typeTalentEdu.title25")
                 }}
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <TextArea
                   v-if="data.tobeEduCourse"
                   required
                   id="asisLimits"
                   v-model="data.tobeEduCourse.asisLimits"
                 />
-              </td>
+              </th>
             </tr>
           </tbody>
         </table>
@@ -127,7 +127,7 @@
           </colgroup>
           <tbody>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 교육과정 목록 -->{{
                   t("eduProcessCreation.typeTalentEdu.title27")
                 }}
@@ -148,7 +148,7 @@
                 >
                 </SelectBoxBase>
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <template
                   v-if="
                     data.tobeEduCourse && data.tobeEduCourse.tobeCursListDivCd
@@ -185,10 +185,10 @@
                     {{ "" }}
                   </template>
                 </template>
-              </td>
+              </th>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 인재양성유형 -->{{
                   t("eduProcessCreation.typeTalentEdu.title28")
                 }}
@@ -210,7 +210,7 @@
                 >
                 </SelectBoxBase>
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <template
                   v-if="
                     data.tobeEduCourse &&
@@ -241,10 +241,10 @@
                     {{ "" }}
                   </template>
                 </template>
-              </td>
+              </th>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 핵심직무 -->{{
                   t("eduProcessCreation.typeTalentEdu.title29")
                 }}
@@ -261,7 +261,7 @@
                 >
                 </SelectBoxBase>
               </th>
-              <td scope="row" :colspan="1" class="ta_l">
+              <th scope="row" :colspan="1" class="ta_l">
                 <template
                   v-if="
                     data.tobeEduCourse && data.tobeEduCourse.tobeCoreJobDivCd
@@ -290,28 +290,28 @@
                     {{ "" }}
                   </template>
                 </template>
-              </td>
+              </th>
             </tr>
             <tr>
-              <th scope="row" :colspan="1">
+              <th scope="row" :colspan="1" class="td_custom_color">
                 <!-- 변경사유 -->{{
                   t("eduProcessCreation.typeTalentEdu.title30")
                 }}
               </th>
-              <td scope="row" :colspan="2" class="ta_l">
+              <th scope="row" :colspan="2" class="ta_l">
                 <TextArea
                   v-if="data.tobeEduCourse"
                   required
                   id="tobeRsn"
                   v-model="data.tobeEduCourse.tobeRsn"
                 />
-              </td>
+              </th>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="btn_group btn_end mg_t25">
+    <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
         <button type="button" class="btn_round btn_md btn_primary">
           <!-- 3.인재양성유형 설정 및 교육목표 수립 인쇄 -->{{
@@ -392,7 +392,7 @@ export default defineComponent({
     const id = window.history.state.id;
     const TYPE_JOB = ref<string>("TYPE_JOB");
     const TYPE_TALT = ref<string>("TYPE_TALT");
-      const isSave = window.history.state.isSave;
+    const isSave = window.history.state.isSave;
 
     return {
       router,
@@ -404,7 +404,7 @@ export default defineComponent({
       CD_RESULT_SEL_03,
       TYPE_JOB,
       TYPE_TALT,
-      isSave
+      isSave,
     };
   },
   data() {
@@ -474,90 +474,94 @@ export default defineComponent({
         return;
       }
 
-      this.$confirm(this.t("common.message.save"), "", async (isConfirm: Boolean) => {
-        if (isConfirm) {
-          this.storeCommon.setLoading(true);
+      this.$confirm(
+        this.t("common.message.save"),
+        "",
+        async (isConfirm: Boolean) => {
+          if (isConfirm) {
+            this.storeCommon.setLoading(true);
 
-          this.storeCommon.setLoading(true);
-          let dataDesc = [
-            {
-              cont: this.data.tobeEduCourse.eduCourseJobDesc,
-              dataCd: this.TYPE_JOB,
-              dataNm: "",
-              eduCourseSeq: this.id,
-              proStep: CD_STG041,
-              refrSeq: this.id,
-            },
-            {
-              cont: this.data.tobeEduCourse.eduCourseTypeDesc,
-              dataCd: this.TYPE_TALT,
-              dataNm: "",
-              eduCourseSeq: this.id,
-              proStep: CD_STG041,
-              refrSeq: this.id,
-            },
-          ] as EduCourseDescReqDTO[];
+            this.storeCommon.setLoading(true);
+            let dataDesc = [
+              {
+                cont: this.data.tobeEduCourse.eduCourseJobDesc,
+                dataCd: this.TYPE_JOB,
+                dataNm: "",
+                eduCourseSeq: this.id,
+                proStep: CD_STG041,
+                refrSeq: this.id,
+              },
+              {
+                cont: this.data.tobeEduCourse.eduCourseTypeDesc,
+                dataCd: this.TYPE_TALT,
+                dataNm: "",
+                eduCourseSeq: this.id,
+                proStep: CD_STG041,
+                refrSeq: this.id,
+              },
+            ] as EduCourseDescReqDTO[];
 
-          let dataSel = [] as EduCourseSelReqDTO[];
-          this.data.tobeEduCourse.indexEduCourse.forEach((item: string) => {
-            dataSel.push({
-              dataCd: item,
-              dataNm: "",
-              selCd: item,
-              refrSeq: this.id,
-              etc: "",
-              eduCourseSeq: this.id,
+            let dataSel = [] as EduCourseSelReqDTO[];
+            this.data.tobeEduCourse.indexEduCourse.forEach((item: string) => {
+              dataSel.push({
+                dataCd: item,
+                dataNm: "",
+                selCd: item,
+                refrSeq: this.id,
+                etc: "",
+                eduCourseSeq: this.id,
+              });
             });
-          });
 
-          const dataSaveSel = {
-            proStep: CD_STG041,
-            eduCourseSelReqDTOs: dataSel,
-            eduCourseDescSelDTO: {
-              eduCourseSeq: this.id,
-              refrSeq: this.id,
-              upCdId: [],
-            },
-          } as EduCourseSelRegistDTO;
+            const dataSaveSel = {
+              proStep: CD_STG041,
+              eduCourseSelReqDTOs: dataSel,
+              eduCourseDescSelDTO: {
+                eduCourseSeq: this.id,
+                refrSeq: this.id,
+                upCdId: [],
+              },
+            } as EduCourseSelRegistDTO;
 
-          this.storeCommon.setLoading(true);
-          await createEduCourseDesc(dataDesc);
+            this.storeCommon.setLoading(true);
+            await createEduCourseDesc(dataDesc);
 
-          await createEduCourseSel(dataSaveSel).finally(() => {
-            this.storeCommon.setLoading(false);
-          });
-
-          const dataSave = {
-            eduCourseSeq: this.id,
-            asisLimits: this.data.tobeEduCourse.asisLimits,
-            tobeCursListDivCd: this.data.tobeEduCourse.tobeCursListDivCd,
-            tobeTaltNrtgTypeDivCd:
-              this.data.tobeEduCourse.tobeTaltNrtgTypeDivCd,
-            tobeCoreJobDivCd: this.data.tobeEduCourse.tobeCoreJobDivCd,
-            tobeRsn: this.data.tobeEduCourse.tobeRsn,
-          } as ResultEduCourseReqDTO;
-
-          await saveResultEduCourse(dataSave)
-            .then((res: any) => {
-              this.$confirm(
-                this.t("common.messageSuccessNextTab"),
-                "",
-                (isConfirm: Boolean) => {
-                  if (isConfirm) {
-                    this.next();
-                  }
-                  if (this.isDisabled) {
-                    this.$emit("updateStage", 41);
-                  }
-                  this.isDisabled = false;
-                }
-              );
-            })
-            .finally(() => {
+            await createEduCourseSel(dataSaveSel).finally(() => {
               this.storeCommon.setLoading(false);
             });
+
+            const dataSave = {
+              eduCourseSeq: this.id,
+              asisLimits: this.data.tobeEduCourse.asisLimits,
+              tobeCursListDivCd: this.data.tobeEduCourse.tobeCursListDivCd,
+              tobeTaltNrtgTypeDivCd:
+                this.data.tobeEduCourse.tobeTaltNrtgTypeDivCd,
+              tobeCoreJobDivCd: this.data.tobeEduCourse.tobeCoreJobDivCd,
+              tobeRsn: this.data.tobeEduCourse.tobeRsn,
+            } as ResultEduCourseReqDTO;
+
+            await saveResultEduCourse(dataSave)
+              .then((res: any) => {
+                this.$confirm(
+                  this.t("common.messageSuccessNextTab"),
+                  "",
+                  (isConfirm: Boolean) => {
+                    if (isConfirm) {
+                      this.next();
+                    }
+                    if (this.isDisabled) {
+                      this.$emit("updateStage", 41);
+                    }
+                    this.isDisabled = false;
+                  }
+                );
+              })
+              .finally(() => {
+                this.storeCommon.setLoading(false);
+              });
+          }
         }
-      });
+      );
     },
     next() {
       this.$emit("nextTab", 40);

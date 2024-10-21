@@ -644,6 +644,14 @@ const getDataDetail = () => {
 onBeforeMount(() => {
   getDataDetail();
 });
+const getData = () => {
+  return listData.value;
+};
+
+defineExpose({
+  getData,
+});
+
 </script>
 
 <style scoped lang="css">

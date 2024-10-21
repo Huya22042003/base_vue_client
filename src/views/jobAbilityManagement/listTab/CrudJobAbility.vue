@@ -822,6 +822,8 @@ export default {
       }
     },
     async confirmNextTab() {
+      this.verOption =
+        this.verOption.length === 1 ? "0" + this.verOption : this.verOption;
       this.jobAbilityCrudModel.jobAbilSeq = this.jobAbilSeq;
       this.jobAbilityCrudModel.jobAbilCd =
         this.selectedOrders.bigClassCd +
@@ -1259,7 +1261,7 @@ export default {
         this.jobAbilityCrudModel.jobCapaLowLevel === "" ||
         this.jobAbilityCrudModel.jobCapaDetailLevel === "" ||
         !this.jobAbilityCrudModel.jobAbilNm ||
-        this.verOption.length !== 2 ||
+        this.verOption === "" ||
         !this.jobAbilityCrudModel.defn ||
         (this.learnMouleYn === REGISTER_CD &&
           !this.jobAbilityCrudModel.learnModuleNm) ||

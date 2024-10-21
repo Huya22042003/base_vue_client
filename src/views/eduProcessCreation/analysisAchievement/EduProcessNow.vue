@@ -22,13 +22,13 @@
         <table>
           <tbody>
             <tr>
-              <th scope="row" class="ta_c" :colspan="7">
+              <th scope="row" class="ta_c td_custom_color" :colspan="7">
                 {{ analysisAchievementModel && analysisAchievementModel.year
                 }}{{ t("eduProcessCreation.analysisAchievement.title4") }}
               </th>
             </tr>
             <tr>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 <!-- 학과명 -->{{
                   t("eduProcessCreation.analysisAchievement.title5")
                 }}
@@ -40,37 +40,37 @@
               </td>
             </tr>
             <tr>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 <!-- 학기 -->{{
                   t("eduProcessCreation.analysisAchievement.title7")
                 }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 <!-- 교과목명 -->{{
                   t("eduProcessCreation.analysisAchievement.title8")
                 }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 <!-- 학점 -->{{
                   t("eduProcessCreation.analysisAchievement.title9")
                 }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 <!-- 이론 -->{{
                   t("eduProcessCreation.analysisAchievement.title10")
                 }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 <!-- 실습 -->{{
                   t("eduProcessCreation.analysisAchievement.title11")
                 }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 <!-- KCS -->{{
                   t("eduProcessCreation.analysisAchievement.title12")
                 }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 <!-- NCS -->{{
                   t("eduProcessCreation.analysisAchievement.title13")
                 }}
@@ -114,45 +114,49 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row" class="ta_c" :colspan="1"></th>
-                  <th scope="row" class="ta_c" :colspan="1">
+                  <th
+                    scope="row"
+                    class="ta_c td_custom_color"
+                    :colspan="1"
+                  ></th>
+                  <th scope="row" class="ta_c td_custom_color" :colspan="1">
                     {{ t("eduProcessCreation.analysisAchievement.title14") }}
                   </th>
-                  <th scope="row" class="ta_c" :colspan="1">
+                  <th scope="row" class="ta_c td_custom_color" :colspan="1">
                     {{ termTotals[index].totalAcqGpa }}
                   </th>
-                  <th scope="row" class="ta_c" :colspan="1">
+                  <th scope="row" class="ta_c td_custom_color" :colspan="1">
                     {{ termTotals[index].totalThryHrs }}
                   </th>
-                  <th scope="row" class="ta_c" :colspan="1">
+                  <th scope="row" class="ta_c td_custom_color" :colspan="1">
                     {{ termTotals[index].totalPracHrs }}
                   </th>
-                  <th scope="row" class="ta_c" :colspan="1">
+                  <th scope="row" class="ta_c td_custom_color" :colspan="1">
                     {{ termTotals[index].totalKcsCount }}
                   </th>
-                  <th scope="row" class="ta_c" :colspan="1">
+                  <th scope="row" class="ta_c td_custom_color" :colspan="1">
                     {{ termTotals[index].totalNcsCount }}
                   </th>
                 </tr>
               </template>
             </template>
             <tr>
-              <th scope="row" class="ta_c" :colspan="2">
+              <th scope="row" class="ta_c td_custom_color" :colspan="2">
                 {{ t("eduProcessCreation.analysisAchievement.title15") }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 {{ overallTotals.totalAcqGpa }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 {{ overallTotals.totalThryHrs }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 {{ overallTotals.totalPracHrs }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 {{ overallTotals.totalKcsCount }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1">
+              <th scope="row" class="ta_c td_custom_color" :colspan="1">
                 {{ overallTotals.totalNcsCount }}
               </th>
             </tr>
@@ -300,7 +304,7 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-@import url('../eduCourseCustom.css');
+@import url("../eduCourseCustom.css");
 
 .deptnm-style-custom {
   text-align: left;

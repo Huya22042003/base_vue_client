@@ -5543,7 +5543,9 @@
       "subHeader7": "정원내",
       "subHeader8": "정원외",
       "subHeader9": "합계(B)",
-      "text1" : "1학기"
+      "text1" : "1학기",
+      "text2" : "2학기",
+      "text3": "평균"
     },
     "table2": {
       "title": "2.교원현황(단위: 명, %)",
