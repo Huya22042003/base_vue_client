@@ -621,7 +621,7 @@ export const SCREEN = {
   },
   teachingPlans: {
     path: "/teaching-plans",
-    name: "teaching-plans",
+    name: "teachingPlans",
   },
   lookUpCQI: {
     path: "/look-up-cqi",
