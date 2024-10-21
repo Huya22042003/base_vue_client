@@ -65,8 +65,13 @@
             <FormAddFile ref="majorTab3Ref" v-else />
           </div>
           <div v-else>
-            <GeneralTab1 ref="generalTab1Ref" v-if="picked === 'One'" />
-            <GeneralTab2 ref="generalTab2Ref" v-else-if="picked === 'Two'" />
+            <GeneralTab1 
+              :dataDetail="dataOverview"
+              ref="generalTab1Ref" v-if="picked === 'One'" />
+            <GeneralTab2
+              :dataResult="dataResult"
+              :countTab2="countTab2"
+              ref="generalTab2Ref" v-else-if="picked === 'Two'" />
             <FormAddFile v-else />
           </div>
           <div class="btn_area ta_r">
@@ -233,6 +238,7 @@ const saveTemp = () => {
         saveEduCourseCqi(dataSave)
           .then((res) => {
             proxy.$alert(proxy.$t("common.message.successSaveTemp"));
+            handleRedirectMenu();
           })
           .finally(() => {
             store.setLoading(false);

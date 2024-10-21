@@ -1083,8 +1083,6 @@ const convertToArray = (data: any) => {
 
 const state = window.history.state;
 const { deptCd, typeSeq, year, deptNm } = state;
-console.log(deptNm);
-
 
 const dataSave = ref({});
 
@@ -1097,7 +1095,6 @@ const indexSelect = ref<number>(-1);
 
 onBeforeMount(() => {
   if (props.dataDetail) {
-    console.log(props.dataDetail);
     convertToObject(props.dataDetail);
   } else {
     getDataDetail();
@@ -1111,11 +1108,9 @@ const getDataDetail = () => {
     type: typeSeq,
     year: year,
   } as EduCourseCqiFilterDetail;
-  console.log(deptCd, typeSeq, year, deptNm);
   
   getMajorOverview(dataFilter).then((res) => {
     const response = res.data.data as EduCourseOverviewDTO;
-    console.log(response);
     convertToObject(response);
   }).finally(() => {
     store.setLoading(false);

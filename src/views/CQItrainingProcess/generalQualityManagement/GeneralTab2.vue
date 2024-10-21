@@ -532,8 +532,6 @@ const listData = ref<Array<EduCourseCqiEvalStnrdModel>>();
 const props = defineProps<{ dataResult: []; countTab2: number }>();
 
 onBeforeMount(() => {
-  console.log(props.countTab2);
-
   if (props.countTab2 > 1) {
     listData.value = props.dataResult;
   } else {

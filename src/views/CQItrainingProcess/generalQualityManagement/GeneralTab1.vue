@@ -530,9 +530,14 @@ const dataStudent = ref<ITable[]>([
 
 const usagePlan = ref("");
 const store = commonStore();
+const props = defineProps<{ dataDetail: {} }>()
 
 onBeforeMount(() => {
-  getDataDetail();
+  if (props.dataDetail) {
+    convertToObject(props.dataDetail);
+  } else {
+    getDataDetail();
+  }
 });
 
 const state = window.history.state;
@@ -549,24 +554,28 @@ const getDataDetail = () => {
   getMajorOverview(dataFilter)
     .then((res) => {
       const response = res.data.data as EduCourseOverviewDTO;
-
-      usagePlan.value = response.usagePlan;
-      if (response.majorOverviewGroup) {
-        dataInternal.value = response.majorOverviewGroup.filter(
-          (item) => item.divCd == CQI_DIV_SCHOOL
-        );
-        dataCompany.value = response.majorOverviewGroup.filter(
-          (item) => item.divCd == CQI_DIV_COMPANY
-        );
-        dataStudent.value = response.majorOverviewGroup.filter(
-          (item) => item.divCd == CQI_DIV_STUDENT
-        );
-      }
+      convertToObject(response);
     })
     .finally(() => {
       store.setLoading(false);
     });
 };
+
+const convertToObject = (response: any) => {
+  usagePlan.value = response.usagePlan;
+      if (response.majorOverviewGroup) {
+        dataInternal.value = response.majorOverviewGroup.filter(
+          (item:any) => item.divCd == CQI_DIV_SCHOOL
+        );
+        dataCompany.value = response.majorOverviewGroup.filter(
+          (item:any) => item.divCd == CQI_DIV_COMPANY
+        );
+        dataStudent.value = response.majorOverviewGroup.filter(
+          (item:any) => item.divCd == CQI_DIV_STUDENT
+        );
+      }
+}
+
 const handleAddTable = (value: string) => {
   if (value === "TableCompany")
     return dataCompany.value.push({
