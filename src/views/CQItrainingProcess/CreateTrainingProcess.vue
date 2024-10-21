@@ -15,10 +15,8 @@
                   <input
                     type="radio"
                     id="radio_1"
-                    value="One"
-                    name="picked"
-                    v-model="picked"
-                    @change="changeTab"
+                    :checked="picked == 'One'"
+                    @change="changeTab('One')"
                     :disabled="checkTab('One')"
                   />
                   <label for="radio_1">{{
@@ -29,10 +27,8 @@
                   <input
                     type="radio"
                     id="radio_2"
-                    value="Two"
-                    name="picked"
-                    v-model="picked"
-                    @change="changeTab"
+                    :checked="picked == 'Two'"
+                    @change="changeTab('Two')"
                     :disabled="checkTab('Two')"
                   />
                   <label for="radio_2">{{
@@ -43,10 +39,8 @@
                   <input
                     type="radio"
                     id="radio_3"
-                    value="Three"
-                    name="picked"
-                    v-model="picked"
-                    @change="changeTab"
+                    :checked="picked == 'Three'"
+                    @change="changeTab('Three')"
                     :disabled="checkTab('Three')"
                   />
                   <label for="radio_3">{{
@@ -168,7 +162,7 @@ const checkTab = (current:string) => {
   return false;
 }
 
-const changeTab = () => {
+const changeTab = (tab:string) => {
   if (mode.value === "major") {
     if (majorTab1Ref.value) {
       dataOverview.value = majorTab1Ref.value.getData();
@@ -184,6 +178,7 @@ const changeTab = () => {
       dataResult.value = generalTab2Ref.value.getData();
     }
   }
+  picked.value = tab;
 }
 
 const saveTemp = () => {

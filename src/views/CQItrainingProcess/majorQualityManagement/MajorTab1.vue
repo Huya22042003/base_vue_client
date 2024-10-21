@@ -1083,6 +1083,8 @@ const convertToArray = (data: any) => {
 
 const state = window.history.state;
 const { deptCd, typeSeq, year, deptNm } = state;
+console.log(deptNm);
+
 
 const dataSave = ref({});
 
