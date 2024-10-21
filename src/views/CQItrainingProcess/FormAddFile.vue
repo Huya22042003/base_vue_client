@@ -15,14 +15,21 @@
       </colgroup>
       <tbody>
         <tr>
-          <th scope="row">
-            첨부파일
-          </th>
+          <th scope="row">첨부파일</th>
           <td>
-            <InputFileBase :id="'id2'" :name="'id2'" :type="'office'" :referKey="2" :mode="'create'"
-                :multiple="true" :maxFile="100000" ref="childRef" :orgName="'EDU_COURSE_CQI'"
-                :category="'EDU_COURSE_CQI'"
-                :sectionName="'EDU_COURSE_CQI'">
+            <InputFileBase
+              :id="'eduCourseCqiAttachFile'"
+              :name="'eduCourseCqiAttachFile'"
+              :type="'office'"
+              :referKey="eduCourseCqiSeq"
+              :mode="'edit'"
+              :multiple="true"
+              :maxFile="100000"
+              ref="childRefUpLoad"
+              :orgName="'EDU_COURSE_CQI'"
+              :category="'EDU_COURSE_CQI'"
+              :sectionName="'EDU_COURSE_CQI'"
+            >
             </InputFileBase>
           </td>
         </tr>
@@ -32,26 +39,27 @@
 </template>
 
 <script setup lang="ts">
-
 import { useI18n } from "vue-i18n";
 import { ref } from "vue";
 import { commonStore } from "@/stores/common";
+import InputFileBase from "@/components/common/input/InputFileBase.vue";
 
 const { t } = useI18n();
 const store = commonStore();
 
 const state = window.history.state;
-const { deptCd, typeSeq, year, deptNm } = state;
+const { eduCourseCqiSeq } = state;
 
-const dataSave = ref({});
+const childRefUpLoad = ref<InstanceType<typeof InputFileBase> | null>(null);
 
-
-const getData = () => {
-  return dataSave.value;
+const saveDataFile = (eduCourseCqiSeq: string) => {
+  if (childRefUpLoad.value) {
+    childRefUpLoad.value.upLoadFile(eduCourseCqiSeq);
+  }
 };
 
 defineExpose({
-  getData,
+  saveDataFile,
 });
 </script>
 
@@ -106,6 +114,6 @@ defineExpose({
 </style>
 <style>
 .attach_filewrap {
-    padding-left: 0 !important;
+  padding-left: 0 !important;
 }
 </style>

@@ -50,7 +50,7 @@
           <div v-if="mode === 'major'">
             <MajorTab1 ref="majorTab1Ref" v-if="picked === 'One'" />
             <MajorTab2 ref="majorTab2Ref" v-else-if="picked === 'Two'" />
-            <FormAddFile v-else />
+            <FormAddFile ref="majorTab3Ref" v-else />
           </div>
           <div v-else>
             <GeneralTab1 ref="generalTab1Ref" v-if="picked === 'One'" />
@@ -58,8 +58,11 @@
             <FormAddFile v-else />
           </div>
           <div class="btn_area ta_r">
-            <button 
-              v-if="picked !== 'Three'" class="button btn_md btn_secondary" @click="saveTemp">
+            <button
+              v-if="picked !== 'Three'"
+              class="button btn_md btn_secondary"
+              @click="saveTemp"
+            >
               {{ t("common.saveTemp") }}
             </button>
             <button
@@ -110,7 +113,10 @@ import { ref } from "vue";
 import { getCurrentInstance } from "vue";
 import { EduCourseCqiReq } from "@/stores/cqiTrainingProcess/cqiTrainingProcess.type";
 import { saveEduCourseCqi } from "@/stores/cqiTrainingProcess/cqiTrainingProcess.service";
-import { STS_EDU_CQI_CREATE, STS_EDU_CQI_SUCCESS } from "@/constants/common.const";
+import {
+  STS_EDU_CQI_CREATE,
+  STS_EDU_CQI_SUCCESS,
+} from "@/constants/common.const";
 import FormAddFile from "./FormAddFile.vue";
 
 const { t } = useI18n();
@@ -129,6 +135,7 @@ const majorTab1Ref = ref(null);
 const majorTab2Ref = ref(null);
 const generalTab1Ref = ref(null);
 const generalTab2Ref = ref(null);
+const majorTab3Ref = ref(null);
 
 const { proxy } = getCurrentInstance();
 
@@ -139,32 +146,35 @@ const state = window.history.state;
 const { deptCd, typeSeq, year } = state;
 
 const saveTemp = () => {
-  
-  proxy.$confirm(t("common.message.confirmSaveTemp"), "", (isConfirm: Boolean) => {
-    if (isConfirm) {
-      store.setLoading(true);
-      if (dataOverview.value && dataResult.value) {
-        const dataSave = {
-          eduCursCqiSeq: "",
-          year: year,
-          deptCd: deptCd,
-          eduCursTypeSeq: typeSeq,
-          stsCd: STS_EDU_CQI_CREATE,
-          usagePlan: dataOverview.value.usagePlan,
-          overview: dataOverview.value,
-          evalStnrd: dataResult.value,
-        };
-        saveEduCourseCqi(dataSave)
-          .then((res) => {
-            handleRedirectMenu();
-            proxy.$alert(proxy.$t("common.message.successSaveTemp"));
-          })
-          .finally(() => {
-            store.setLoading(false);
-          });
+  proxy.$confirm(
+    t("common.message.confirmSaveTemp"),
+    "",
+    (isConfirm: Boolean) => {
+      if (isConfirm) {
+        store.setLoading(true);
+        if (dataOverview.value && dataResult.value) {
+          const dataSave = {
+            eduCursCqiSeq: "",
+            year: year,
+            deptCd: deptCd,
+            eduCursTypeSeq: typeSeq,
+            stsCd: STS_EDU_CQI_CREATE,
+            usagePlan: dataOverview.value.usagePlan,
+            overview: dataOverview.value,
+            evalStnrd: dataResult.value,
+          };
+          saveEduCourseCqi(dataSave)
+            .then((res) => {
+              handleRedirectMenu();
+              proxy.$alert(proxy.$t("common.message.successSaveTemp"));
+            })
+            .finally(() => {
+              store.setLoading(false);
+            });
+        }
       }
     }
-  });
+  );
 };
 
 const saveData = () => {
@@ -189,8 +199,9 @@ const saveData = () => {
         };
         saveEduCourseCqi(dataSave)
           .then((res) => {
-            handleRedirectMenu();
+            majorTab3Ref.value.saveDataFile(res.data.data);
             proxy.$alert(proxy.$t("common.message.saveSuccess"));
+            handleRedirectMenu();
           })
           .finally(() => {
             store.setLoading(false);
