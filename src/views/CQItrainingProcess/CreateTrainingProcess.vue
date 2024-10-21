@@ -16,7 +16,10 @@
                     type="radio"
                     id="radio_1"
                     value="One"
+                    name="picked"
                     v-model="picked"
+                    @change="changeTab"
+                    :disabled="checkTab('One')"
                   />
                   <label for="radio_1">{{
                     t("createTrainingProcess.tab1")
@@ -27,7 +30,10 @@
                     type="radio"
                     id="radio_2"
                     value="Two"
+                    name="picked"
                     v-model="picked"
+                    @change="changeTab"
+                    :disabled="checkTab('Two')"
                   />
                   <label for="radio_2">{{
                     t("createTrainingProcess.tab2")
@@ -38,9 +44,12 @@
                     type="radio"
                     id="radio_3"
                     value="Three"
+                    name="picked"
                     v-model="picked"
+                    @change="changeTab"
+                    :disabled="checkTab('Three')"
                   />
-                  <label for="radio_2">{{
+                  <label for="radio_3">{{
                     t("createTrainingProcess.tab3")
                   }}</label>
                 </p>
@@ -48,7 +57,7 @@
             </div>
           </div>
           <div v-if="mode === 'major'">
-            <MajorTab1 ref="majorTab1Ref" v-if="picked === 'One'" />
+            <MajorTab1 :dataDetail="dataOverview" ref="majorTab1Ref" v-if="picked === 'One'" />
             <MajorTab2 ref="majorTab2Ref" v-else-if="picked === 'Two'" />
             <FormAddFile ref="majorTab3Ref" v-else />
           </div>
@@ -58,11 +67,8 @@
             <FormAddFile v-else />
           </div>
           <div class="btn_area ta_r">
-            <button
-              v-if="picked !== 'Three'"
-              class="button btn_md btn_secondary"
-              @click="saveTemp"
-            >
+            <button 
+              v-if="picked !== 'Three' && status != STS_EDU_CQI_SUCCESS" class="button btn_md btn_secondary" @click="saveTemp">
               {{ t("common.saveTemp") }}
             </button>
             <button
@@ -80,7 +86,7 @@
               {{ t("common.next") }}
             </button>
             <button
-              v-else
+              v-else-if="status != STS_EDU_CQI_SUCCESS"
               class="button btn_md btn_primary ml-4"
               @click="saveData"
             >
@@ -143,38 +149,82 @@ const dataOverview = ref();
 const dataResult = ref();
 
 const state = window.history.state;
-const { deptCd, typeSeq, year } = state;
+const { deptCd, typeSeq, year, status } = state;
+
+const checkTab = (current:string) => {
+  if (status != STS_EDU_CQI_SUCCESS) {
+    if (!store.check) {
+      if (picked.value == 'One' && current == 'Three') {
+        return true;
+      }
+      return false;
+    } else {
+      if (picked.value == 'Two' && current == 'One') {
+        return false;
+      }
+      return true;
+    }
+  }
+  return false;
+}
+
+const changeTab = () => {
+  if (mode.value === "major") {
+    if (majorTab1Ref.value) {
+      dataOverview.value = majorTab1Ref.value.getData();
+    }
+    if (majorTab2Ref.value) {
+      dataResult.value = majorTab2Ref.value.getData();
+    }
+  } else {
+    if (generalTab1Ref.value) {
+      dataOverview.value = generalTab1Ref.value.getData();
+    }
+    if (generalTab2Ref.value) {
+      dataResult.value = generalTab2Ref.value.getData();
+    }
+  }
+}
 
 const saveTemp = () => {
-  proxy.$confirm(
-    t("common.message.confirmSaveTemp"),
-    "",
-    (isConfirm: Boolean) => {
-      if (isConfirm) {
-        store.setLoading(true);
-        if (dataOverview.value && dataResult.value) {
-          const dataSave = {
-            eduCursCqiSeq: "",
-            year: year,
-            deptCd: deptCd,
-            eduCursTypeSeq: typeSeq,
-            stsCd: STS_EDU_CQI_CREATE,
-            usagePlan: dataOverview.value.usagePlan,
-            overview: dataOverview.value,
-            evalStnrd: dataResult.value,
-          };
-          saveEduCourseCqi(dataSave)
-            .then((res) => {
-              handleRedirectMenu();
-              proxy.$alert(proxy.$t("common.message.successSaveTemp"));
-            })
-            .finally(() => {
-              store.setLoading(false);
-            });
-        }
-      }
+  if (mode.value === "major") {
+    if (majorTab1Ref.value) {
+      dataOverview.value = majorTab1Ref.value.getData();
     }
-  );
+    if (majorTab2Ref.value) {
+      dataResult.value = majorTab2Ref.value.getData();
+    }
+  } else {
+    if (generalTab1Ref.value) {
+      dataOverview.value = generalTab1Ref.value.getData();
+    }
+    if (generalTab2Ref.value) {
+      dataResult.value = generalTab2Ref.value.getData();
+    }
+  }
+
+  proxy.$confirm(t("common.message.confirmSaveTemp"), "", (isConfirm: Boolean) => {
+    if (isConfirm) {
+      store.setLoading(true);
+      const dataSave = {
+        eduCursCqiSeq: "",
+        year: year,
+        deptCd: deptCd,
+        eduCursTypeSeq: typeSeq,
+        stsCd: STS_EDU_CQI_CREATE,
+        usagePlan: dataOverview.value.usagePlan,
+        overview: dataOverview.value,
+        evalStnrd: dataResult.value,
+      };
+      saveEduCourseCqi(dataSave)
+        .then((res) => {
+          proxy.$alert(proxy.$t("common.message.successSaveTemp"));
+        })
+        .finally(() => {
+          store.setLoading(false);
+        });
+    }
+  });
 };
 
 const saveData = () => {
@@ -253,7 +303,4 @@ const handleRedirectMenu = () => {
 </script>
 
 <style scoped>
-.radio_tab_lg {
-  pointer-events: none;
-}
 </style>

@@ -61,6 +61,7 @@
               :isNumber="true"
               v-model="dataStudentMng.inStudySemester1.state"
               id="inStudySemester1"
+              v-if="dataStudentMng.inStudySemester1"
               required
             />
           </th>
@@ -75,7 +76,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 totalSumState([
                   dataStudentMng.inStudySemester1.state,
                   dataStudentMng.outStudySemester1.state,
@@ -104,7 +105,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 totalSumState([
                   dataStudentMng.inLeaveSemester1.state,
                   dataStudentMng.outLeaveSemester1.state,
@@ -133,7 +134,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 totalSumState([
                   dataStudentMng.inRegistSemester1.state,
                   dataStudentMng.outRegistSemester1.state,
@@ -146,7 +147,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 percentState(
                   totalSumState([
                     dataStudentMng.inStudySemester1.state,
@@ -184,7 +185,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 totalSumState([
                   dataStudentMng.inStudySemester2.state,
                   dataStudentMng.outStudySemester2.state,
@@ -213,7 +214,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 totalSumState([
                   dataStudentMng.inLeaveSemester2.state,
                   dataStudentMng.outLeaveSemester2.state,
@@ -242,7 +243,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 totalSumState([
                   dataStudentMng.inRegistSemester2.state,
                   dataStudentMng.outRegistSemester2.state,
@@ -255,7 +256,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 percentState(
                   totalSumState([
                     dataStudentMng.inStudySemester2.state,
@@ -277,7 +278,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 avgState(
                   dataStudentMng.inStudySemester1.state as number,
                   dataStudentMng.inStudySemester2.state as number
@@ -290,7 +291,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 avgState(
                   dataStudentMng.outStudySemester1.state as number,
                   dataStudentMng.outStudySemester2.state as number
@@ -303,7 +304,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 avgState(
                   totalSumState([
                     dataStudentMng.inStudySemester1.state,
@@ -322,7 +323,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 avgState(
                   dataStudentMng.inLeaveSemester1.state as number,
                   dataStudentMng.inLeaveSemester2.state as number
@@ -335,7 +336,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 avgState(
                   dataStudentMng.outLeaveSemester1.state as number,
                   dataStudentMng.outLeaveSemester2.state as number
@@ -348,7 +349,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 avgState(
                   totalSumState([
                     dataStudentMng.inLeaveSemester1.state,
@@ -367,7 +368,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 avgState(
                   dataStudentMng.inRegistSemester1.state as number,
                   dataStudentMng.inRegistSemester2.state as number
@@ -380,7 +381,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 avgState(
                   dataStudentMng.outRegistSemester1.state as number,
                   dataStudentMng.outRegistSemester2.state as number
@@ -393,7 +394,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 avgState(
                   totalSumState([
                     dataStudentMng.inRegistSemester1.state,
@@ -412,7 +413,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 percentState(
                   avgState(
                     totalSumState([
@@ -528,7 +529,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 totalSumState([
                   dataProfMng.totalProfStudy.state,
                   dataProfMng.totalSpProfStudy.state,
@@ -582,7 +583,7 @@
           <th scope="row">
             <InputBase
               :isNumber="true"
-              :value="
+              :modelValue="
                 totalSumState([
                   dataProfMng.totalStudentStudy.state,
                   dataProfMng.totalProfStudy.state,
@@ -995,7 +996,7 @@
     v-if="modalOpen"
     @dataSelect="dataSelected"
     :isOpen="modalOpen"
-    :lstIdSelect="[]"
+    :lstIdSelect="dataInternal.map(item => item.staffNo)"
     :onClose="closeModal"
   />
 </template>
@@ -1042,6 +1043,8 @@ import { commonStore } from "@/stores/common";
 
 const { t } = useI18n();
 const store = commonStore();
+
+const props = defineProps<{ dataDetail: {} }>()
 
 interface ITable {
   [key: string]: string | number;
@@ -1091,7 +1094,12 @@ const modalOpen = ref(false);
 const indexSelect = ref<number>(-1);
 
 onBeforeMount(() => {
-  getDataDetail();
+  if (props.dataDetail) {
+    console.log(props.dataDetail);
+    convertToObject(props.dataDetail);
+  } else {
+    getDataDetail();
+  }
 });
 
 const getDataDetail = () => {
@@ -1101,10 +1109,19 @@ const getDataDetail = () => {
     type: typeSeq,
     year: year,
   } as EduCourseCqiFilterDetail;
+  console.log(deptCd, typeSeq, year, deptNm);
+  
   getMajorOverview(dataFilter).then((res) => {
     const response = res.data.data as EduCourseOverviewDTO;
+    console.log(response);
+    convertToObject(response);
+  }).finally(() => {
+    store.setLoading(false);
+  });
+};
 
-    usagePlan.value = response.usagePlan;
+const convertToObject = (response: any) => {
+  usagePlan.value = response.usagePlan;
     dataStudentMng.value.inStudySemester1 = getStateList(
       response.majorOverviewState,
       SEMESTER_1_IN_STUDY
@@ -1191,12 +1208,11 @@ const getDataDetail = () => {
       TOTAL_OTHER
     );
 
-    dataInternal.value = response.majorOverviewGroup.filter(item => item.divCd == CQI_DIV_SCHOOL)
-    dataCompany.value = response.majorOverviewGroup.filter(item => item.divCd == CQI_DIV_COMPANY)
-  }).finally(() => {
-    store.setLoading(false);
-  });
-};
+    if (response.majorOverviewGroup) {
+      dataInternal.value = response.majorOverviewGroup.filter(item => item.divCd == CQI_DIV_SCHOOL)
+      dataCompany.value = response.majorOverviewGroup.filter(item => item.divCd == CQI_DIV_COMPANY)
+    }
+}
 
 const handleAddTable = (value: string) => {
   if (value !== "TableCompany")
@@ -1229,7 +1245,7 @@ const getStateList = (
   return {
     eduCursCqiStateSeq: "",
     stateDivCd: stateDivCd,
-    state: "",
+    state: 0,
   };
 };
 
@@ -1274,7 +1290,7 @@ const closeModal = () => {
 };
 
 const dataSelected = (data: any) => {
-  data.eduCursCqiGroupSeq = dataInternal.value[indexSelect.value] = {
+  dataInternal.value[indexSelect.value] = {
     eduCursCqiGroupSeq: "",
     aff: data.affli,
     divCd: CQI_DIV_SCHOOL,
@@ -1295,7 +1311,7 @@ const getData = () => {
     dataProfMng.value
   ) as EduCourseOverviewStateDTO[];
   const majorOverviewState = [] as EduCourseOverviewStateDTO[];
-
+  
   majorOverviewStateStudent.forEach((item) => {
     majorOverviewState.push(item);
   });

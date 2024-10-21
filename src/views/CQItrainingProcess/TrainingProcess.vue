@@ -17,7 +17,12 @@
                   <div class="search_daywrap mg_r10">
                     <span class="tag">{{ t("trainingProcess.search1") }}</span>
                     <div class="max_wd100">
-                      <SelectBoxBase :data="listYear" v-if="listYear" v-model="searchParams.year" id="year" />
+                      <SelectBoxBase
+                        :data="listYear"
+                        v-if="listYear"
+                        v-model="searchParams.year"
+                        id="year"
+                      />
                     </div>
                   </div>
                   <div class="search_daywrap mg_r10">
@@ -26,10 +31,18 @@
                       <InputBase v-model="searchParams.deptNm" id="deptNm" />
                     </div>
                   </div>
-                  <button type="button" class="btn_round btn_lg btn_primary mg_l10" @click="getAllData()">
+                  <button
+                    type="button"
+                    class="btn_round btn_lg btn_primary mg_l10"
+                    @click="getAllData()"
+                  >
                     {{ t("trainingProcess.btnSearch") }}
                   </button>
-                  <button @click="resetFormData()" type="button" class="btn_round btn_lg btn_gray mg_l5">
+                  <button
+                    @click="resetFormData()"
+                    type="button"
+                    class="btn_round btn_lg btn_gray mg_l5"
+                  >
                     {{ t("common.reset") }}
                   </button>
                 </div>
@@ -40,8 +53,15 @@
       </div>
       <div class="sub_section">
         <div class="box">
-          <GridComponentV2 :rowData="dataRow" :columnDefs="columnDefs1" :paginationClientFlag="false"
-            :totalRecord="paginationFake" @customPagination="fnPagination" ref="gridKey" :id="'trainingProcess'">
+          <GridComponentV2
+            :rowData="dataRow"
+            :columnDefs="columnDefs1"
+            :paginationClientFlag="false"
+            :totalRecord="paginationFake"
+            @customPagination="fnPagination"
+            ref="gridKey"
+            :id="'trainingProcess'"
+          >
           </GridComponentV2>
         </div>
       </div>
@@ -205,11 +225,14 @@ const getAllData = () => {
   storeCommon.setLoading(true);
   getEduCourseCqiList(searchParams.value)
     .then((res) => {
-      dataRow.value = res.data.data.content.map((item: EduCourseCqiListModel) => {
-        item.typeOfRedirect = item.deptCd == DEPT_TYPE_GENERAL_EDUCATION ? 'general' : 'major'
+      dataRow.value = res.data.data.content.map(
+        (item: EduCourseCqiListModel) => {
+          item.typeOfRedirect =
+            item.deptCd == DEPT_TYPE_GENERAL_EDUCATION ? "general" : "major";
 
-        return item;
-      }) as EduCourseCqiListModel[];
+          return item;
+        }
+      ) as EduCourseCqiListModel[];
       paginationFake.value = res.data.data.totalElements;
     })
     .finally(() => {
@@ -217,13 +240,20 @@ const getAllData = () => {
     });
 };
 
-const printReport = (data: EduCourseCqiListModel) => { };
+const printReport = (data: EduCourseCqiListModel) => {};
 
 function handleDetailClick(item: EduCourseCqiListModel) {
   router.push({
     name: SCREEN.createTrainingProcess.name,
     params: { mode: item.typeOfRedirect },
-    state: {deptCd: item.deptCd, deptNm: item.deptNm, typeSeq: item.eduCursTypeSeq, year: item.year, eduCourseCqiSeq: item.eduCourseCqiSeq }
+    state: {
+      deptCd: item.deptCd,
+      deptNm: item.deptNm,
+      typeSeq: item.eduCursTypeSeq,
+      year: item.year,
+      eduCourseCqiSeq: item.eduCourseCqiSeq,
+      status: item.stsCd
+    },
   });
 }
 </script>
