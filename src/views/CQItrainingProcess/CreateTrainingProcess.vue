@@ -51,8 +51,17 @@
             </div>
           </div>
           <div v-if="mode === 'major'">
-            <MajorTab1 :dataDetail="dataOverview" ref="majorTab1Ref" v-if="picked === 'One'" />
-            <MajorTab2 ref="majorTab2Ref" v-else-if="picked === 'Two'" />
+            <MajorTab1
+              :dataDetail="dataOverview"
+              ref="majorTab1Ref"
+              v-if="picked === 'One'"
+            />
+            <MajorTab2
+              :dataResult="dataResult"
+              :countTab2="countTab2"
+              ref="majorTab2Ref"
+              v-else-if="picked === 'Two'"
+            />
             <FormAddFile ref="majorTab3Ref" v-else />
           </div>
           <div v-else>
@@ -61,8 +70,11 @@
             <FormAddFile v-else />
           </div>
           <div class="btn_area ta_r">
-            <button 
-              v-if="picked !== 'Three' && status != STS_EDU_CQI_SUCCESS" class="button btn_md btn_secondary" @click="saveTemp">
+            <button
+              v-if="picked !== 'Three' && status != STS_EDU_CQI_SUCCESS"
+              class="button btn_md btn_secondary"
+              @click="saveTemp"
+            >
               {{ t("common.saveTemp") }}
             </button>
             <button
@@ -125,6 +137,7 @@ const picked = ref("");
 const mode = ref<string | RouteParamValue[]>("");
 const store = commonStore();
 const router = useRouter();
+const countTab2 = ref(0);
 
 onMounted(() => {
   picked.value = "One";
@@ -145,24 +158,27 @@ const dataResult = ref();
 const state = window.history.state;
 const { deptCd, typeSeq, year, status } = state;
 
-const checkTab = (current:string) => {
+const checkTab = (current: string) => {
   if (status != STS_EDU_CQI_SUCCESS) {
     if (!store.check) {
-      if (picked.value == 'One' && current == 'Three') {
+      if (picked.value == "One" && current == "Three") {
         return true;
       }
       return false;
     } else {
-      if (picked.value == 'Two' && current == 'One') {
+      if (picked.value == "Two" && current == "One") {
         return false;
       }
       return true;
     }
   }
   return false;
-}
+};
 
-const changeTab = (tab:string) => {
+const changeTab = (tab: string) => {
+  if (tab === "Two") {
+    countTab2.value++;
+  }
   if (mode.value === "major") {
     if (majorTab1Ref.value) {
       dataOverview.value = majorTab1Ref.value.getData();
@@ -179,7 +195,7 @@ const changeTab = (tab:string) => {
     }
   }
   picked.value = tab;
-}
+};
 
 const saveTemp = () => {
   if (mode.value === "major") {
@@ -198,28 +214,32 @@ const saveTemp = () => {
     }
   }
 
-  proxy.$confirm(t("common.message.confirmSaveTemp"), "", (isConfirm: Boolean) => {
-    if (isConfirm) {
-      store.setLoading(true);
-      const dataSave = {
-        eduCursCqiSeq: "",
-        year: year,
-        deptCd: deptCd,
-        eduCursTypeSeq: typeSeq,
-        stsCd: STS_EDU_CQI_CREATE,
-        usagePlan: dataOverview.value.usagePlan,
-        overview: dataOverview.value,
-        evalStnrd: dataResult.value,
-      };
-      saveEduCourseCqi(dataSave)
-        .then((res) => {
-          proxy.$alert(proxy.$t("common.message.successSaveTemp"));
-        })
-        .finally(() => {
-          store.setLoading(false);
-        });
+  proxy.$confirm(
+    t("common.message.confirmSaveTemp"),
+    "",
+    (isConfirm: Boolean) => {
+      if (isConfirm) {
+        store.setLoading(true);
+        const dataSave = {
+          eduCursCqiSeq: "",
+          year: year,
+          deptCd: deptCd,
+          eduCursTypeSeq: typeSeq,
+          stsCd: STS_EDU_CQI_CREATE,
+          usagePlan: dataOverview.value.usagePlan,
+          overview: dataOverview.value,
+          evalStnrd: dataResult.value,
+        };
+        saveEduCourseCqi(dataSave)
+          .then((res) => {
+            proxy.$alert(proxy.$t("common.message.successSaveTemp"));
+          })
+          .finally(() => {
+            store.setLoading(false);
+          });
+      }
     }
-  });
+  );
 };
 
 const saveData = () => {
@@ -272,6 +292,7 @@ const handleNext = () => {
   }
   window.scrollTo({ top: 0, behavior: "smooth" });
   picked.value = "Two";
+  countTab2.value++;
 };
 
 const handleNextTwo = () => {
@@ -297,5 +318,4 @@ const handleRedirectMenu = () => {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

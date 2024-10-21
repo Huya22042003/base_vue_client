@@ -516,74 +516,6 @@ import { getListEduCourseCqiEvalStnrd } from "@/stores/cqiTrainingProcess/selfAs
 import { commonStore } from "@/stores/common";
 const { t } = useI18n();
 const rowsText = ref("5");
-const table1 = ref({
-  row1: {
-    input1: "",
-    input2: "",
-    textArea1: "",
-    textArea2: "",
-    textArea3: "",
-    textArea4: "",
-  },
-  row2: {
-    input1: "",
-    input2: "",
-    textArea1: "",
-    textArea2: "",
-    textArea3: "",
-    textArea4: "",
-  },
-});
-const table2 = ref({
-  row1: {
-    input1: "",
-    input2: "",
-    input3: "",
-    textArea1: "",
-    textArea2: "",
-    textArea3: "",
-    textArea4: "",
-    textArea5: "",
-  },
-});
-const table3 = ref({
-  row1: {
-    input1: "",
-    input2: "",
-    textArea1: "",
-    textArea2: "",
-    textArea3: "",
-    textArea4: "",
-  },
-  row2: {
-    input1: "",
-    textArea1: "",
-    textArea2: "",
-    textArea3: "",
-  },
-});
-const table4 = ref({
-  row1: {
-    input1: "",
-    input2: "",
-    input3: "",
-    input4: "",
-    textArea1: "",
-    textArea2: "",
-    textArea3: "",
-    textArea4: "",
-    textArea5: "",
-    textArea6: "",
-  },
-  row2: {
-    input1: "",
-    input2: "",
-    textArea1: "",
-    textArea2: "",
-    textArea3: "",
-    textArea4: "",
-  },
-});
 
 const cmn = commonStore();
 
@@ -597,58 +529,17 @@ const eduCourseCqiEvalStnrdReqModel = ref<EduCourseCqiEvalStnrdReqModel>({
 
 const listData = ref<Array<EduCourseCqiEvalStnrdModel>>();
 
-const averageTable1 = computed(() => {
-  const inputs = [
-    table1.value.row1.input1,
-    table1.value.row1.input2,
-    table1.value.row2.input1,
-    table1.value.row2.input2,
-  ];
+const props = defineProps<{ dataResult: []; countTab2: number }>();
 
-  return calculateAverage(inputs);
+onBeforeMount(() => {
+  console.log(props.countTab2);
+
+  if (props.countTab2 > 1) {
+    listData.value = props.dataResult;
+  } else {
+    getDataDetail();
+  }
 });
-const averageTable2 = computed(() => {
-  const inputs = [
-    table2.value.row1.input1,
-    table2.value.row1.input2,
-    table2.value.row1.input3,
-  ];
-
-  return calculateAverage(inputs);
-});
-const averageTable3 = computed(() => {
-  const inputs = [
-    table3.value.row1.input1,
-    table3.value.row1.input2,
-    table3.value.row1.input1,
-  ];
-
-  return calculateAverage(inputs);
-});
-const averageTable4 = computed(() => {
-  const inputs = [
-    table4.value.row1.input1,
-    table4.value.row1.input2,
-    table4.value.row1.input3,
-    table4.value.row1.input4,
-    table4.value.row2.input1,
-    table4.value.row2.input2,
-  ];
-
-  return calculateAverage(inputs);
-});
-
-const calculateAverage = (inputs: string[]) => {
-  const validInputs = inputs
-    .map((input) => Number(input))
-    .filter((input) => !isNaN(input) && input > 0);
-
-  const total = validInputs.reduce((sum, input) => sum + input, 0);
-
-  return validInputs.length > 0
-    ? (total / validInputs.length).toFixed(1)
-    : "0.0";
-};
 
 const getDataDetail = () => {
   cmn.setLoading(true);
@@ -682,9 +573,6 @@ const calculateAverageScore = (
   return totalCount > 0 ? (totalScore / totalCount).toFixed(2) : 0;
 };
 
-onBeforeMount(() => {
-  getDataDetail();
-});
 const getData = () => {
   return listData.value;
 };
