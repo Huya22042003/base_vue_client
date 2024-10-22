@@ -172,7 +172,7 @@ import {removeUserInfo} from "@/utils/storage";
 import {getListProfs} from "@/stores/userManagement/userManagement.service";
 import {UserManagementSearchModel, UserMngModel} from "@/stores/userManagement/userManagement.type";
 import { useI18n } from "vue-i18n";
-import {PAGINATION_PAGE_1, PAGINATION_PAGE_SIZE, PAGINATION_PAGE_SIZE_SELECTOR} from "@/constants/screen.const";
+import {PAGINATION_PAGE_1, PAGINATION_PAGE_SIZE} from "@/constants/screen.const";
 import {USER_INFO} from "@/constants/common.const";
 import LoadingComponent from "@/components/common/loading/LoaddingComponent.vue";
 
@@ -207,7 +207,7 @@ export default {
     });
 
     const getDataProfs = async () => {
-      store.setLoading(true);
+      isLoad.value = true
       await getListProfs(searchModel.value)
           .then(async (response) => {
             if (response.status == 200) {
@@ -219,7 +219,7 @@ export default {
             console.log(e);
           })
           .finally(() => {
-            store.setLoading(false);
+            isLoad.value = false
           });
     };
 
@@ -276,7 +276,7 @@ export default {
     }
 
     async function handleLogout() {
-      store.setLoading(true);
+      isLoad.value = true
       await commonService
           .logout()
           .then(async (response) => {
@@ -287,7 +287,7 @@ export default {
             console.log(e);
           })
           .finally(() => {
-            store.setLoading(false);
+            isLoad.value = false
           });
     }
 
