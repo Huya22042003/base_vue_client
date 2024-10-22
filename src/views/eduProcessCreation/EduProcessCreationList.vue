@@ -398,7 +398,6 @@ export default defineComponent({
   },
   methods: {
     async getDepartment() {
-      this.storeCommon.setLoading(true);
       this.departmentFilterDTO.deptDivCd = [CODE_SCH, CODE_MAJOR];
       const currentYear = new Date().getFullYear();
       for (let index = START_YEAR_NUMBER; index <= currentYear + 1; index++) {
@@ -441,7 +440,6 @@ export default defineComponent({
           } as any);
         });
       }
-      this.storeCommon.setLoading(false);
     },
     search() {
       this.keyId++;
