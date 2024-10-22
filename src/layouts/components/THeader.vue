@@ -111,20 +111,46 @@
       <div class="section_tit_wrap">
         <div class="section_tit_xs">{{t('common.list')}}</div>
       </div>
-
-      <GridComponentV2
-          :rowData="rowData"
-          :columnDefs="columnDefs"
-          :pagination="true"
-          :paginationPageSize="paginationPageSize"
-          :paginationPageSizeSelector="paginationPageSizeSelector"
-          ref="gridKey"
-          :paginationClientFlag="true"
-          @customPagination="fnPagination"
-          :totalRecord="totalRows"
-          :key="key"
-      >
-      </GridComponentV2>
+      <div class="tbl tbl_col">
+        <table>
+          <caption>
+            교과목 검색 목록
+          </caption>
+          <colgroup>
+            <col style="width: auto"/>
+            <col style="width: auto"/>
+            <col style="width: auto"/>
+            <col style="width: auto"/>
+          </colgroup>
+          <thead>
+          <tr>
+            <th>교수명</th>
+            <th>교번</th>
+            <th>학과</th>
+            <th>선택</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr v-if="rowData.length === 0">
+              <td colspan="4">로그인 할 교수자를 검색해주세요.</td>
+            </tr>
+            <tr v-for="(row, index) in rowData" :key="index">
+              <td>{{ row.name }}</td>
+              <td>{{ row.userId }}</td>
+              <td>{{ row.deptNm }}</td>
+              <td>
+                <button type="button" @click="onclickSelect(row)">[선택]</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <PaginationUi
+          :currentPage="searchModel.page"
+          :totalRows="totalRows"
+          :pageSize="searchModel.size"
+          @changePage="fnPagination"
+      />
     </div>
   </TModal>
 </template>
@@ -145,10 +171,8 @@ import {removeUserInfo} from "@/utils/storage";
 import {getListProfs} from "@/stores/userManagement/userManagement.service";
 import {UserManagementSearchModel, UserMngModel} from "@/stores/userManagement/userManagement.type";
 import { useI18n } from "vue-i18n";
-import type {LoginHisResModel} from "@/stores/loginHistory/loginHistory.type";
 import {PAGINATION_PAGE_1, PAGINATION_PAGE_SIZE, PAGINATION_PAGE_SIZE_SELECTOR} from "@/constants/screen.const";
 import {USER_INFO} from "@/constants/common.const";
-import Swal from "sweetalert2";
 
 export default {
   computed: {
@@ -169,9 +193,7 @@ export default {
     const router = useRouter()
     const route = useRoute()
     const rowData = ref<UserMngModel>([])
-    const paginationPageSize = PAGINATION_PAGE_SIZE;
-    const paginationPageSizeSelector = PAGINATION_PAGE_SIZE_SELECTOR;
-    const totalRows = ref<number>;
+    const totalRows = ref<number>(0);
     const key =  1;
     const searchModel = ref<UserManagementSearchModel>({
       userId: '',
@@ -181,88 +203,30 @@ export default {
       sort: ''
     });
 
-    async function onclickSelect(prof) {
-      Swal.fire({
-        title: '알림',
-        text: `${prof.name} 교수님을 선택하시겠어요?`,
-        showCancelButton: true,
-        confirmButtonText: t("common.confirm"),
-        cancelButtonText: t("common.cancel"),
-      }).then(async (result) => {
-        store.setLoading(true);
-        if (result.isConfirmed) {
-          try {
-            const userInfoString = localStorage.getItem(USER_INFO);
-            if (!userInfoString) {
-              throw new Error('User info not found');
+    const getDataProfs = async () => {
+      store.setLoading(true);
+      await getListProfs(searchModel.value)
+          .then(async (response) => {
+            if (response.status == 200) {
+              rowData.value = response.data.data.content;
+              totalRows.value = response.data.data.totalElements;
             }
-
-            const userInfo = JSON.parse(userInfoString);
-            const userId = userInfo.userId;
-
-            const response = await http.post('/auth/impersonate', {
-              userStaff: prof.userId,
-              currentUser: userId,
-              div: 'profsw'
-            });
-            const token = response.data;
-
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+          .finally(() => {
             store.setLoading(false);
-            await Swal.fire('로그인 되었습니다.', '교수사이트로 이동합니다.');
-            store.setLoading(true);
-
-            window.location.href = `${import.meta.env.VITE_PROF_URL}?token=${token}`;
-            // window.open(`${ import.meta.env.VITE_PROF_URL}?token=${token}`, '_blank');
-          } catch (e) {
-            await Swal.fire('로그인에 실패했습니다.', '다시 시도해주세요.');
-            console.error(e);
-          } finally {
-            store.setLoading(false);
-          }
-        } else {
-          store.setLoading(false);
-        }
-      });
-    }
-
-    const columnDefs = [
-      {
-        headerName: "교수명",
-        field: "name",
-        flex: 4,
-      },
-      {
-        headerName: "교번",
-        field: "userId",
-        cellStyle: { textAlign: "center" },
-        flex: 3,
-      },
-      {
-        headerName: "학과",
-        field: "deptNm",
-        cellStyle: { textAlign: "center" },
-        flex: 5,
-      },
-      {
-        headerName: "선택",
-        cellRenderer: (params) => {
-          const button = document.createElement('button');
-          button.innerText = '[선택]';
-          button.addEventListener('click', () => {
-            onclickSelect(params.data);
           });
-          return button;
-        },
-        cellStyle: {
-          color: "#2704FF",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          cursor: "pointer",
-        },
-        flex: 2,
-      },
-    ]
+    };
+
+    watch(() => searchModel.value.page, (newPage, oldPage) => {
+      getDataProfs();
+    });
+
+    const fnPagination = (pageNumber: number) => {
+      searchModel.value.page = pageNumber;
+    };
 
     onMounted(async () => {
       await getDataMenu()
@@ -335,9 +299,6 @@ export default {
       t,
       store,
       menu,
-      columnDefs,
-      paginationPageSize,
-      paginationPageSizeSelector,
       totalRows,
       key,
       rowData,
@@ -345,6 +306,8 @@ export default {
       reset,
       handleNextScreen,
       handleLogout,
+      getDataProfs,
+      fnPagination
     }
   },
 
@@ -364,26 +327,10 @@ export default {
       this.getDataProfs();
     },
 
-    async getDataProfs() {
-      this.store.setLoading(true);
-      await getListProfs(this.searchModel)
-          .then(async (response) => {
-            if (response.status == 200) {
-              this.rowData = response.data.data.content;
-              this.totalRows = response.data.data.totalElements;
-            }
-          })
-          .catch((e) => {
-            console.log(e);
-          })
-          .finally(() => {
-            this.store.setLoading(false);
-          });
-    },
-
     popupShow(idx: number) {
       const vm = this;
       vm.isPopups[idx] = true;
+      this.getDataProfs()
     },
 
     popupHide(idx: number) {
@@ -391,11 +338,36 @@ export default {
       vm.isPopups[idx] = false;
     },
 
-    fnPagination(pageNumber: any, pagesSize: any) {
-      this.searchModel.size = pagesSize;
-      this.searchModel.page = pageNumber;
-      this.searchModel.sort = "";
-      this.getDataProfs();
+    onclickSelect(prof) {
+      const vm = this;
+      vm.$confirm(`${prof.name} 교수님을 선택하시겠어요?`, "알림", async (isConfirm: Boolean) => {
+        if (isConfirm) {
+          // vm.$toast("로그인 되었습니다. <br />교수사이트로 이동합니다.");
+          try {
+            const userInfoString = localStorage.getItem(USER_INFO);
+            if (!userInfoString) {
+              throw new Error('User info not found');
+            }
+
+            const userInfo = JSON.parse(userInfoString);
+            const userId = userInfo.userId;
+
+            const response = await http.post('/auth/impersonate', {
+              userStaff: prof.userId,
+              currentUser: userId,
+              div: 'profsw'
+            });
+            const token = response.data;
+            vm.$toast("로그인 되었습니다. <br />교수사이트로 이동합니다.");
+
+            window.location.href = `${import.meta.env.VITE_PROF_URL}?token=${token}`;
+            // window.open(`${ import.meta.env.VITE_PROF_URL}?token=${token}`, '_blank');
+          } catch (e) {
+            vm.$toast("로그인에 실패했습니다. 다시 시도해주세요.");
+            console.error(error);
+          }
+        }
+      })
     },
 
     // Modal
