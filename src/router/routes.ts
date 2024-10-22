@@ -1052,12 +1052,18 @@ export const routes = [
       {
         path: SCREEN.eduProcessCreation.path,
         name: SCREEN.eduProcessCreation.name,
-        component: () => import('../views/eduProcessCreation/EduProcessCreationList.vue')
-      },
-      {
-        path: SCREEN.eduProcessCreationMng.path,
-        name: SCREEN.eduProcessCreationMng.name,
-        component: () => import('../views/eduProcessCreation/EduProcessCreationMng.vue')
+        children: [
+          {
+            path: '',
+            name: '',
+            component: () => import('../views/eduProcessCreation/EduProcessCreationList.vue')
+          },
+          {
+            path: SCREEN.eduProcessCreationMng.path,
+            name: SCREEN.eduProcessCreationMng.name,
+            component: () => import('../views/eduProcessCreation/EduProcessCreationMng.vue')
+          }
+        ]
       },
       {
         path: SCREEN.eduProcessApprovement.path,

@@ -165,7 +165,7 @@ export default defineComponent({
     },
     back() {
       this.router.push({
-        name: SCREEN.eduProcessCreation.name,
+        path: SCREEN.eduProcessCreation.path,
       });
     },
   },
