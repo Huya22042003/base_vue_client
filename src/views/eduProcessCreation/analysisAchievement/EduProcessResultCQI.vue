@@ -88,10 +88,12 @@
               </template>
             </template>
             <tr>
-              <th scope="row" colspan="2">
+              <th scope="row" colspan="2" class="td_custom_color">
                 {{ t("majorTab2.table1.average") }}
               </th>
-              <th scope="row" colspan="4">{{  }}</th>
+              <th scope="row" colspan="4" class="td_custom_color">
+                {{ calculateAverageScore(listEvalStnrd.slice(0, 2)) }}
+              </th>
             </tr>
           </tbody>
         </table>
@@ -185,6 +187,14 @@
                 </tr>
               </template>
             </template>
+            <tr>
+              <th scope="row" colspan="2" class="td_custom_color">
+                {{ t("majorTab2.table1.average") }}
+              </th>
+              <th scope="row" colspan="4" class="td_custom_color">
+                {{ calculateAverageScore(listEvalStnrd.slice(2, 3)) }}
+              </th>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -277,6 +287,14 @@
                 </tr>
               </template>
             </template>
+            <tr>
+              <th scope="row" colspan="2" class="td_custom_color">
+                {{ t("majorTab2.table1.average") }}
+              </th>
+              <th scope="row" colspan="4" class="td_custom_color">
+                {{ calculateAverageScore(listEvalStnrd.slice(3, 5)) }}
+              </th>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -369,6 +387,14 @@
                 </tr>
               </template>
             </template>
+            <tr>
+              <th scope="row" colspan="2" class="td_custom_color">
+                {{ t("majorTab2.table1.average") }}
+              </th>
+              <th scope="row" colspan="4" class="td_custom_color">
+                {{ calculateAverageScore(listEvalStnrd.slice(5, 7)) }}
+              </th>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -509,6 +535,21 @@ export default defineComponent({
     this.getDataAnalysisEvalStrnd();
   },
   methods: {
+    calculateAverageScore(evalItems: Array<EduCourseCqiEvalStnrdModel>) {
+      let totalScore = 0;
+      let totalCount = 0;
+
+      evalItems.forEach((evalItem) => {
+        evalItem.listEvalStnrdCont.forEach((evalStnrd) => {
+          if (evalStnrd.score !== undefined) {
+            totalScore += evalStnrd.score;
+            totalCount++;
+          }
+        });
+      });
+
+      return totalCount > 0 ? (totalScore / totalCount).toFixed(2) : 0;
+    },
     getDataOperation() {
       getOperationDevelopmentPlanList(
         this.operationDevelopmentPlanReqModel
@@ -570,7 +611,7 @@ export default defineComponent({
     },
     back() {
       this.router.push({
-        name: SCREEN.eduProcessCreation.name,
+        path: SCREEN.eduProcessCreation.path,
       });
     },
     save() {},

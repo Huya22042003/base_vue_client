@@ -289,3 +289,6 @@ export const TOTAL_STAFF_NO_PROF = "12170206";
 export const TOTAL_PROF_CLIENT = "12170207";
 export const TOTAL_HOUR_PROF = "12170208";
 export const TOTAL_OTHER = "12170209";
+export const CQI_DIV_SCHOOL = "12180001";
+export const CQI_DIV_COMPANY = "12180002";
+export const CQI_DIV_STUDENT = "12180003";

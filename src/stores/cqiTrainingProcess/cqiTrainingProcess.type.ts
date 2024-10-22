@@ -14,6 +14,7 @@ export type EduCourseCqiListModel = {
   regBy: string;
   regDate: string;
   typeOfRedirect: string;
+  eduCourseCqiSeq: string;
 };
 
 export type EduCourseCqiSearchModel = {
