@@ -131,7 +131,7 @@
           </tr>
           </thead>
           <tbody>
-            <tr v-if="rowData.length === 0">
+            <tr v-if="display">
               <td colspan="4">로그인 할 교수자를 검색해주세요.</td>
             </tr>
             <tr v-for="(row, index) in rowData" :key="index">
@@ -145,12 +145,14 @@
           </tbody>
         </table>
       </div>
-      <PaginationUi
-          :currentPage="searchModel.page"
-          :totalRows="totalRows"
-          :pageSize="searchModel.size"
-          @changePage="fnPagination"
-      />
+      <div v-if="!display">
+        <PaginationUi
+            :currentPage="searchModel.page"
+            :totalRows="totalRows"
+            :pageSize="searchModel.size"
+            @changePage="fnPagination"
+        />
+      </div>
     </div>
   </TModal>
   <LoadingComponent v-if="isLoad"></LoadingComponent>
@@ -197,7 +199,7 @@ export default {
     const route = useRoute()
     const rowData = ref<UserMngModel>([])
     const totalRows = ref<number>(0);
-    const key =  1;
+    const display = true;
     const searchModel = ref<UserManagementSearchModel>({
       userId: '',
       name: '',
@@ -304,9 +306,9 @@ export default {
       store,
       menu,
       totalRows,
-      key,
       rowData,
       searchModel,
+      display,
       reset,
       handleNextScreen,
       handleLogout,
@@ -329,14 +331,13 @@ export default {
   methods: {
     searchClick() {
       this.searchModel.page = 1;
-      this.key++;
+      this.display = false;
       this.getDataProfs();
     },
 
     popupShow(idx: number) {
       const vm = this;
       vm.isPopups[idx] = true;
-      this.getDataProfs()
     },
 
     popupHide(idx: number) {
