@@ -205,7 +205,7 @@ export default {
     const menu = ref([])
     const router = useRouter()
     const route = useRoute()
-    const rowData = ref<ProfModel>([])
+    const rowData = ref<Array<ProfModel>>([])
     const totalRows = ref<number>(0)
     const numberPages = ref<number>(0)
     const display = true
