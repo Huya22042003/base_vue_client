@@ -4826,8 +4826,8 @@
           "pageTitle": "대학 정보",
           "pageNote":"※ 교육과정 개발 시 등록된 최신 버전으로 적용됩니다. ",
           "year": "학년도",
-          "regId": "등록자",
-          "regDate":"등록일",
+          "regId": "작성자",
+          "regDate":"작성일",
           "button":{
             "register": "등록"
           },
@@ -4846,7 +4846,7 @@
             "deleteSuccess": "삭제됐습니다.",
             "deleteError": "활용된 항목은 삭제할 수 없습니다.",
             "save": "저장하시겠어요?",
-            "saveSuccess": "정상처리됐습니다. ",
+            "saveSuccess": "저장됐습니다.",
             "saveError": "이미 등록된 학년도입니다.",
             "valid": "필수입력항목을 모두 입력해주세"
           }

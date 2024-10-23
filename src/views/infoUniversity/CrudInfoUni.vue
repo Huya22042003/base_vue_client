@@ -17,7 +17,8 @@
         </div>
         <table class="tbl_row">
           <colgroup>
-            <col style="width: 25%" />
+            <col style="width: 15%" />
+            <col style="width: auto" />
           </colgroup>
           <tbody>
             <tr>
@@ -34,6 +35,8 @@
                     :name="'selectboxYear'"
                     v-model="dataForm.eduYear"
                     :data="listSelectBoxYear"
+                    class="wd_120"
+                    required
                   >
                   </SelectBoxBase>
                 </div>
@@ -83,7 +86,7 @@
                   <div class="add-delete">
                     <button
                       v-if="index == 0"
-                      class="btn_round btn_lg btn_gray mg_l5"
+                      class="btn_round btn_sm btn_primary mg_l5"
                       @click="addObject('targetDept')"
                     >
                       <!-- 추가 -->
@@ -91,7 +94,7 @@
                     </button>
                     <button
                       v-if="index != 0"
-                      class="btn_round btn_lg btn_gray mg_l5"
+                      class="btn_round btn_sm btn_gray mg_l5"
                       @click="eventDeleteObject(index, 'targetDept')"
                     >
                       <!-- 삭제 -->
@@ -123,7 +126,7 @@
                   <div class="add-delete">
                     <button
                       v-if="index == 0"
-                      class="btn_round btn_lg btn_gray mg_l5"
+                      class="btn_round btn_sm btn_primary mg_l5"
                       @click="addObject('modelDept')"
                     >
                       <!-- 추가 -->
@@ -131,7 +134,7 @@
                     </button>
                     <button
                       v-if="index != 0"
-                      class="btn_round btn_lg btn_gray mg_l5"
+                      class="btn_round btn_sm btn_gray mg_l5"
                       @click="eventDeleteObject(index, 'modelDept')"
                     >
                       <!-- 삭제 -->
@@ -149,14 +152,14 @@
           <button
             type="button"
             @click="saveData"
-            class="btn_round btn_lg btn_primary mg_l10"
+            class="btn_round btn_md btn_primary mg_l10"
           >
             <!-- 확인 -->
             {{ t("common.save") }}
           </button>
           <button
             type="button"
-            class="btn_round btn_white btn_lg mg_l5"
+            class="btn_round btn_white btn_md mg_l5"
             @click="back()"
           >
             <!-- 목록 -->
@@ -209,13 +212,20 @@ export default {
   beforeMount() {
     const currentYear = new Date().getFullYear();
 
-    const specificYears = [2021, 2022, 2023, currentYear, currentYear + 1];
+    const specificYears = [];
+
+    for (let i = 2021; i <= currentYear + 1; i++) {
+      specificYears.push(i);
+    }
+
     this.year = window.history.state.year;
-    this.listSelectBoxYear = specificYears.map((year) => ({
-      cdId: year.toString(),
-      cdNm: year.toString(),
-      upCdId: "year",
-    }));
+    specificYears.forEach((year) => {
+      this.listSelectBoxYear.push({
+        cdId: year.toString(),
+        cdNm: year.toString(),
+        upCdId: "year",
+      });
+    });
 
     if (this.year) {
       this.goToDetail();
@@ -224,7 +234,9 @@ export default {
 
   data() {
     return {
-      listSelectBoxYear: [] as CodeMngModel[],
+      listSelectBoxYear: [
+        { cdId: "", cdNm: this.t("common.select") },
+      ] as CodeMngModel[],
 
       dataForm: {
         eduYear: 0,
@@ -349,29 +361,7 @@ export default {
         cancelButtonText: this.t("common.cancel"),
       }).then(async (result: any) => {
         if (result.isConfirmed) {
-          this.store.setLoading(true);
-          let schId = this.dataForm[type][indexDel].id;
-
-          if (schId && schId.trim().length != 0) {
-            await this.inforStore.checkRemoveSch(schId);
-            if (
-              this.inforStore.status &&
-              this.inforStore.status == SUCCSESS_STATUS
-            ) {
-              this.deleteObject(indexDel, type);
-            } else {
-              this.$swal.fire({
-                text: this.t(
-                  "03.basicInfoManagement.infoUniversity.alert.deleteError"
-                ),
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: this.t("common.confirm"),
-              });
-            }
-          } else {
-            this.deleteObject(indexDel, type);
-          }
-          this.store.setLoading(false);
+          this.deleteObject(indexDel, type);
         }
       });
     },
@@ -424,16 +414,27 @@ export default {
       this.store.setLoading(true);
       updateInfoUni(dataSave)
         .then((res) => {
+          let textAlert = "";
+          if (res.data.data) {
+            textAlert = this.t(
+              "03.basicInfoManagement.infoUniversity.alert.saveSuccess"
+            );
+          } else {
+            textAlert = this.t(
+              "03.basicInfoManagement.infoUniversity.alert.saveError"
+            );
+          }
+
           this.$swal
             .fire({
-              text: this.t(
-                "03.basicInfoManagement.infoUniversity.alert.saveSuccess"
-              ),
+              text: textAlert,
               confirmButtonColor: "#DD6B55",
               confirmButtonText: this.t("common.confirm"),
             })
-            .then((res) => {
-              this.back();
+            .then(() => {
+              if (res.data.data) {
+                this.back();
+              }
             });
         })
         .catch((err) => {
@@ -472,8 +473,10 @@ export default {
               confirmButtonColor: "#DD6B55",
               confirmButtonText: this.t("common.confirm"),
             })
-            .then((res) => {
-              this.back();
+            .then(() => {
+              if (res.data.data) {
+                this.back();
+              }
             });
         })
         .catch((err) => {
@@ -498,6 +501,6 @@ export default {
   /* justify-content: space-between; */
 }
 .add-delete {
-  width: 50%;
+  width: 10%;
 }
 </style>
