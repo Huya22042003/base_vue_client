@@ -53,7 +53,7 @@
 
   <TModal :is-open="isPopups[0]" :is-show-header="true" :is-show-footer="true" :modal-id="'Template'"
       class-size="medium" @close-modal="closeModal">
-    <template #title>로그인 교수 선택</template>
+    <template #title>{{t('modalSwitchAccount.title')}}</template>
     <template #footer>
       <button type="button" class="btn_round btn_white btn_xl_2" @click="popupHide(0)">{{t('common.close')}}</button>
     </template>
@@ -64,7 +64,7 @@
       <div class="tbl tbl_col">
         <table>
           <caption>
-            교과목 검색 목록
+            {{t('modalSwitchAccount.caption')}}
           </caption>
           <colgroup>
             <col style="width: 50%"/>
@@ -72,8 +72,8 @@
           </colgroup>
           <thead>
           <tr>
-            <th>교수명</th>
-            <th>교번</th>
+            <th>{{t('modalSwitchAccount.search1')}}</th>
+            <th>{{t('modalSwitchAccount.search2')}}</th>
           </tr>
           </thead>
           <tbody>
@@ -83,6 +83,7 @@
                   :id="'name'"
                   :name="'name'"
                   v-model="searchModel.name"
+                  :placeholder="t('modalSwitchAccount.search1')"
               ></InputBase>
             </td>
             <td class="td_input">
@@ -90,6 +91,7 @@
                   :id="'name'"
                   :name="'name'"
                   v-model="searchModel.userId"
+                  :placeholder="t('modalSwitchAccount.search2')"
               ></InputBase>
             </td>
           </tr>
@@ -114,7 +116,7 @@
       <div class="tbl tbl_col">
         <table>
           <caption>
-            교과목 검색 목록
+            {{t('modalSwitchAccount.table.title')}}
           </caption>
           <colgroup>
             <col style="width: auto"/>
@@ -124,32 +126,36 @@
           </colgroup>
           <thead>
           <tr>
-            <th>교수명</th>
-            <th>교번</th>
-            <th>학과</th>
-            <th>선택</th>
+            <th>{{t('modalSwitchAccount.table.name')}}</th>
+            <th>{{t('modalSwitchAccount.table.userId')}}</th>
+            <th>{{t('modalSwitchAccount.table.deptNm')}}</th>
+            <th>{{t('modalSwitchAccount.table.select')}}</th>
           </tr>
           </thead>
           <tbody>
             <tr v-if="display">
-              <td colspan="4">로그인 할 교수자를 검색해주세요.</td>
+              <td colspan="4">{{t('modalSwitchAccount.table.tutorial')}}</td>
+            </tr>
+            <tr v-if="rowData.length === 0 && !display">
+              <td colspan="4">{{t('modalSwitchAccount.dataNotFound')}}</td>
             </tr>
             <tr v-for="(row, index) in rowData" :key="index">
               <td>{{ row.name }}</td>
               <td>{{ row.userId }}</td>
               <td>{{ row.deptNm }}</td>
               <td>
-                <button type="button" @click="onclickSelect(row)">[선택]</button>
+                <button type="button" @click="onclickSelect(row)">[{{t('modalSwitchAccount.table.select')}}]</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div v-if="!display">
+      <div v-if="rowData.length > 0">
         <PaginationUi
             :currentPage="searchModel.page"
             :totalRows="totalRows"
             :pageSize="searchModel.size"
+            :totalPages="numberPages"
             @changePage="fnPagination"
         />
       </div>
@@ -172,11 +178,12 @@ import http from "@/utils/http";
 import {f} from "vitest/dist/types-63abf2e0";
 import {removeUserInfo} from "@/utils/storage";
 import {getListProfs} from "@/stores/userManagement/userManagement.service";
-import {UserManagementSearchModel, UserMngModel} from "@/stores/userManagement/userManagement.type";
+import {ProfModel, ProfSearchModel, UserMngModel} from "@/stores/userManagement/userManagement.type";
 import { useI18n } from "vue-i18n";
 import {PAGINATION_PAGE_1, PAGINATION_PAGE_SIZE} from "@/constants/screen.const";
 import {USER_INFO} from "@/constants/common.const";
 import LoadingComponent from "@/components/common/loading/LoaddingComponent.vue";
+import InputBase from "@/components/common/input/InputBase.vue";
 
 export default {
   computed: {
@@ -186,6 +193,7 @@ export default {
   },
   components: {
     TModal,
+    InputBase,
     PopupView,
     PaginationUi,
     LoadingComponent
@@ -197,16 +205,19 @@ export default {
     const menu = ref([])
     const router = useRouter()
     const route = useRoute()
-    const rowData = ref<UserMngModel>([])
-    const totalRows = ref<number>(0);
-    const display = true;
-    const searchModel = ref<UserManagementSearchModel>({
+    const rowData = ref<ProfModel>([])
+    const totalRows = ref<number>(0)
+    const numberPages = ref<number>(0)
+    const display = true
+    const searchModel = ref<ProfSearchModel>({
       userId: '',
       name: '',
       page: PAGINATION_PAGE_1,
       size: PAGINATION_PAGE_SIZE,
       sort: ''
     });
+
+    const isLoad = ref(false)
 
     const getDataProfs = async () => {
       isLoad.value = true
@@ -215,24 +226,18 @@ export default {
             if (response.status == 200) {
               rowData.value = response.data.data.content;
               totalRows.value = response.data.data.totalElements;
+              numberPages.value = response.data.data.totalPages;
             }
-          })
-          .catch((e) => {
-            console.log(e);
           })
           .finally(() => {
             isLoad.value = false
           });
     };
 
-    watch(() => searchModel.value.page, (newPage, oldPage) => {
-      getDataProfs();
-    });
-
     const fnPagination = (pageNumber: number) => {
       searchModel.value.page = pageNumber;
+      getDataProfs();
     };
-    const isLoad = ref(false)
 
     onMounted(async () => {
       await getDataMenu()
@@ -249,9 +254,6 @@ export default {
             if (response.status == 200) {
               menu.value = response.data.data;
             }
-          })
-          .catch((e) => {
-            console.log(e);
           })
           .finally(() => {
             isLoad.value = false
@@ -294,11 +296,11 @@ export default {
     }
 
     function reset() {
-      this.searchModel.userId = "";
-      this.searchModel.name = "";
-      this.searchModel.page = PAGINATION_PAGE_1;
-      this.searchModel.size = PAGINATION_PAGE_SIZE;
-      this.searchModel.sort = "";
+      searchModel.value.userId = "";
+      searchModel.value.name = "";
+      searchModel.value.page = PAGINATION_PAGE_1;
+      searchModel.value.size = PAGINATION_PAGE_SIZE;
+      searchModel.value.sort = "";
     }
 
     return {
@@ -307,6 +309,7 @@ export default {
       menu,
       totalRows,
       rowData,
+      numberPages,
       searchModel,
       display,
       reset,
@@ -314,7 +317,6 @@ export default {
       handleLogout,
       getDataProfs,
       fnPagination,
-      handleLogout,
       isLoad
     }
   },
@@ -347,34 +349,32 @@ export default {
 
     onclickSelect(prof) {
       const vm = this;
-      vm.$confirm(`${prof.name} 교수님을 선택하시겠어요?`, "알림", async (isConfirm: Boolean) => {
-        if (isConfirm) {
-          // vm.$toast("로그인 되었습니다. <br />교수사이트로 이동합니다.");
-          try {
-            const userInfoString = localStorage.getItem(USER_INFO);
-            if (!userInfoString) {
-              throw new Error('User info not found');
+      vm.$confirm(
+          `${prof.name} ${this.t('modalSwitchAccount.confirmText')}`,
+          this.t('modalSwitchAccount.confirmTitle'),
+          async (isConfirm: Boolean) => {
+            if (isConfirm) {
+              // vm.$toast(this.t('modalSwitchAccount.toastSuccess'));
+              try {
+                const userInfoString = localStorage.getItem(USER_INFO);
+                const userInfo = JSON.parse(userInfoString);
+                const userId = userInfo.userId;
+
+                const response = await http.post('/auth/impersonate', {
+                  userStaff: prof.userId,
+                  currentUser: userId,
+                  div: 'profsw'
+                });
+                const token = response.data;
+                vm.$toast(this.t('modalSwitchAccount.toastSuccess'));
+
+                window.location.href = `${import.meta.env.VITE_PROF_URL}?token=${token}`;
+                // window.open(`${ import.meta.env.VITE_PROF_URL}?token=${token}`, '_blank');
+              } catch (e) {
+                vm.$toast(this.t('modalSwitchAccount.toastFailed'));
+              }
             }
-
-            const userInfo = JSON.parse(userInfoString);
-            const userId = userInfo.userId;
-
-            const response = await http.post('/auth/impersonate', {
-              userStaff: prof.userId,
-              currentUser: userId,
-              div: 'profsw'
-            });
-            const token = response.data;
-            vm.$toast("로그인 되었습니다. <br />교수사이트로 이동합니다.");
-
-            window.location.href = `${import.meta.env.VITE_PROF_URL}?token=${token}`;
-            // window.open(`${ import.meta.env.VITE_PROF_URL}?token=${token}`, '_blank');
-          } catch (e) {
-            vm.$toast("로그인에 실패했습니다. 다시 시도해주세요.");
-            console.error(error);
-          }
-        }
-      })
+          })
     },
 
     // Modal

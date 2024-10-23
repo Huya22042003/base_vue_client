@@ -5,16 +5,15 @@ const props = defineProps<{
   currentPage: number;
   totalRows: number;
   pageSize: number;
+  totalPages: number;
 }>();
 
 const emit = defineEmits<{
   (e: 'changePage', page: number): void;
 }>();
 
-const totalPages = computed(() => Math.ceil(props.totalRows / props.pageSize));
-
 const changePage = (page: number) => {
-  if (page >= 1 && page <= totalPages.value) {
+  if (page >= 1 && page <= props.totalPages) {
     emit('changePage', page);
   }
 };

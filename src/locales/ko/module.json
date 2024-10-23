@@ -6261,5 +6261,24 @@
     ,"titleSearch":"조회"
     ,"pageTitle":"교육과정개발보고서 조회"
     ,"strRp":"[미리보기 및 인쇄]"
+  },
+  "modalSwitchAccount": {
+    "title" : "로그인 교수 선택",
+    "caption" : "교과목 검색 목록",
+    "search1" : "교수명",
+    "search2" : "교번",
+    "table" : {
+      "title" : "교과목 검색 목록",
+      "name" : "교수명",
+      "userId" : "교번",
+      "deptNm" : "학과",
+      "select" : "선택",
+      "tutorial" : "로그인 할 교수자를 검색해주세요."
+    },
+    "confirmText" : "교수님을 선택하시겠어요?",
+    "confirmTitle" : "알림",
+    "toastSuccess" : "로그인 되었습니다. <br /> 교수사이트로 이동합니다.",
+    "toastFailed" : "로그인에 실패했습니다. 다시 시도해주세요.",
+    "dataNotFound" : "조회된 데이터가 없습니다"
   }
 }
