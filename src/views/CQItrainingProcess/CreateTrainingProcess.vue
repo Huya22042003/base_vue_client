@@ -15,8 +15,9 @@
                   <input
                     type="radio"
                     id="radio_1"
-                    value="One"
-                    v-model="picked"
+                    :checked="picked == 'One'"
+                    @change="changeTab('One')"
+                    :disabled="checkTab('One')"
                   />
                   <label for="radio_1">{{
                     t("createTrainingProcess.tab1")
@@ -26,27 +27,59 @@
                   <input
                     type="radio"
                     id="radio_2"
-                    value="Two"
-                    v-model="picked"
+                    :checked="picked == 'Two'"
+                    @change="changeTab('Two')"
+                    :disabled="checkTab('Two')"
                   />
                   <label for="radio_2">{{
                     t("createTrainingProcess.tab2")
+                  }}</label>
+                </p>
+                <p class="radio_tab_lg">
+                  <input
+                    type="radio"
+                    id="radio_3"
+                    :checked="picked == 'Three'"
+                    @change="changeTab('Three')"
+                    :disabled="checkTab('Three')"
+                  />
+                  <label for="radio_3">{{
+                    t("createTrainingProcess.tab3")
                   }}</label>
                 </p>
               </div>
             </div>
           </div>
           <div v-if="mode === 'major'">
-            <MajorTab1 ref="majorTab1Ref" v-if="picked === 'One'" />
-            <MajorTab2 ref="majorTab2Ref" v-else />
+            <MajorTab1
+              :dataDetail="dataOverview"
+              ref="majorTab1Ref"
+              v-if="picked === 'One'"
+            />
+            <MajorTab2
+              :dataResult="dataResult"
+              :countTab2="countTab2"
+              ref="majorTab2Ref"
+              v-else-if="picked === 'Two'"
+            />
+            <FormAddFile ref="majorTab3Ref" v-else />
           </div>
           <div v-else>
-            <GeneralTab1 ref="generalTab1Ref" v-if="picked === 'One'" />
-            <GeneralTab2 ref="generalTab2Ref" v-else />
+            <GeneralTab1 
+              :dataDetail="dataOverview"
+              ref="generalTab1Ref" v-if="picked === 'One'" />
+            <GeneralTab2
+              :dataResult="dataResult"
+              :countTab2="countTab2"
+              ref="generalTab2Ref" v-else-if="picked === 'Two'" />
+            <FormAddFile v-else />
           </div>
           <div class="btn_area ta_r">
-            {{ store.arrRequired }}
-            <button class="button btn_md btn_secondary" @click="saveData">
+            <button
+              v-if="picked !== 'Three' && status != STS_EDU_CQI_SUCCESS"
+              class="button btn_md btn_secondary"
+              @click="saveTemp"
+            >
               {{ t("common.saveTemp") }}
             </button>
             <button
@@ -57,9 +90,16 @@
               {{ t("common.next") }}
             </button>
             <button
-              v-else
+              v-else-if="picked === 'Two'"
               class="button btn_md btn_primary ml-4"
-              :disabled="store.check"
+              @click="handleNextTwo"
+            >
+              {{ t("common.next") }}
+            </button>
+            <button
+              v-else-if="status != STS_EDU_CQI_SUCCESS"
+              class="button btn_md btn_primary ml-4"
+              @click="saveData"
             >
               {{ t("common.save") }}
             </button>
@@ -89,6 +129,12 @@ import { useI18n } from "vue-i18n";
 import { ref } from "vue";
 import { getCurrentInstance } from "vue";
 import { EduCourseCqiReq } from "@/stores/cqiTrainingProcess/cqiTrainingProcess.type";
+import { saveEduCourseCqi } from "@/stores/cqiTrainingProcess/cqiTrainingProcess.service";
+import {
+  STS_EDU_CQI_CREATE,
+  STS_EDU_CQI_SUCCESS,
+} from "@/constants/common.const";
+import FormAddFile from "./FormAddFile.vue";
 
 const { t } = useI18n();
 const route = useRoute();
@@ -96,6 +142,7 @@ const picked = ref("");
 const mode = ref<string | RouteParamValue[]>("");
 const store = commonStore();
 const router = useRouter();
+const countTab2 = ref(0);
 
 onMounted(() => {
   picked.value = "One";
@@ -106,60 +153,175 @@ const majorTab1Ref = ref(null);
 const majorTab2Ref = ref(null);
 const generalTab1Ref = ref(null);
 const generalTab2Ref = ref(null);
+const majorTab3Ref = ref(null);
 
 const { proxy } = getCurrentInstance();
 
 const dataOverview = ref();
-const eduCourseCqiReq = ref<EduCourseCqiReq>();
+const dataResult = ref();
 
-const saveData = () => {
+const state = window.history.state;
+const { deptCd, typeSeq, year, status } = state;
+
+const checkTab = (current: string) => {
+  if (status != STS_EDU_CQI_SUCCESS) {
+    if (!store.check) {
+      if (picked.value == "One" && current == "Three") {
+        return true;
+      }
+      return false;
+    } else {
+      if (picked.value == "Two" && current == "One") {
+        return false;
+      }
+      return true;
+    }
+  }
+  return false;
+};
+
+const changeTab = (tab: string) => {
+  if (tab === "Two") {
+    countTab2.value++;
+  }
   if (mode.value === "major") {
     if (majorTab1Ref.value) {
-      console.log(majorTab1Ref.value.getData());
+      dataOverview.value = majorTab1Ref.value.getData();
     }
     if (majorTab2Ref.value) {
-      console.log(majorTab2Ref.value.getData());
+      dataResult.value = majorTab2Ref.value.getData();
     }
   } else {
     if (generalTab1Ref.value) {
-      console.log(generalTab1Ref.value.getData());
+      dataOverview.value = generalTab1Ref.value.getData();
     }
     if (generalTab2Ref.value) {
-      console.log(generalTab2Ref.value.getData());
+      dataResult.value = generalTab2Ref.value.getData();
     }
   }
+  picked.value = tab;
+};
+
+const saveTemp = () => {
+  if (mode.value === "major") {
+    if (majorTab1Ref.value) {
+      dataOverview.value = majorTab1Ref.value.getData();
+    }
+    if (majorTab2Ref.value) {
+      dataResult.value = majorTab2Ref.value.getData();
+    }
+  } else {
+    if (generalTab1Ref.value) {
+      dataOverview.value = generalTab1Ref.value.getData();
+    }
+    if (generalTab2Ref.value) {
+      dataResult.value = generalTab2Ref.value.getData();
+    }
+  }
+
+  proxy.$confirm(
+    t("common.message.confirmSaveTemp"),
+    "",
+    (isConfirm: Boolean) => {
+      if (isConfirm) {
+        store.setLoading(true);
+        const dataSave = {
+          eduCursCqiSeq: "",
+          year: year,
+          deptCd: deptCd,
+          eduCursTypeSeq: typeSeq,
+          stsCd: STS_EDU_CQI_CREATE,
+          usagePlan: dataOverview.value.usagePlan,
+          overview: dataOverview.value,
+          evalStnrd: dataResult.value,
+        };
+        saveEduCourseCqi(dataSave)
+          .then((res) => {
+            proxy.$alert(proxy.$t("common.message.successSaveTemp"));
+            handleRedirectMenu();
+          })
+          .finally(() => {
+            store.setLoading(false);
+          });
+      }
+    }
+  );
+};
+
+const saveData = () => {
+  if (store.check) {
+    proxy.$alert(proxy.$t("common.messageValidateRequired"));
+    return;
+  }
+
+  proxy.$confirm(t("common.message.save"), "", (isConfirm: Boolean) => {
+    if (isConfirm) {
+      store.setLoading(true);
+      if (dataOverview.value && dataResult.value) {
+        const dataSave = {
+          eduCursCqiSeq: "",
+          year: year,
+          deptCd: deptCd,
+          eduCursTypeSeq: typeSeq,
+          stsCd: STS_EDU_CQI_SUCCESS,
+          usagePlan: dataOverview.value.usagePlan,
+          overview: dataOverview.value,
+          evalStnrd: dataResult.value,
+        };
+        saveEduCourseCqi(dataSave)
+          .then((res) => {
+            majorTab3Ref.value.saveDataFile(res.data.data);
+            proxy.$alert(proxy.$t("common.message.saveSuccess"));
+            handleRedirectMenu();
+          })
+          .finally(() => {
+            store.setLoading(false);
+          });
+      }
+    }
+  });
 };
 
 const handleNext = () => {
-  // if (store.check) {
-  //   proxy.$alert(proxy.$t("common.messageValidateRequired"));
-  //   return;
-  // }
+  if (store.check) {
+    proxy.$alert(proxy.$t("common.messageValidateRequired"));
+    return;
+  }
   if (mode.value === "major") {
     if (majorTab1Ref.value) {
-      console.log(majorTab1Ref.value.getData());
-    }
-    if (majorTab2Ref.value) {
-      console.log(majorTab2Ref.value.getData());
+      dataOverview.value = majorTab1Ref.value.getData();
     }
   } else {
     if (generalTab1Ref.value) {
-      console.log(generalTab1Ref.value.getData());
-    }
-    if (generalTab2Ref.value) {
-      console.log(generalTab2Ref.value.getData());
+      dataOverview.value = generalTab1Ref.value.getData();
     }
   }
   window.scrollTo({ top: 0, behavior: "smooth" });
   picked.value = "Two";
+  countTab2.value++;
 };
+
+const handleNextTwo = () => {
+  if (store.check) {
+    proxy.$alert(proxy.$t("common.messageValidateRequired"));
+    return;
+  }
+  if (mode.value === "major") {
+    if (majorTab2Ref.value) {
+      dataResult.value = majorTab2Ref.value.getData();
+    }
+  } else {
+    if (generalTab2Ref.value) {
+      dataResult.value = generalTab2Ref.value.getData();
+    }
+  }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  picked.value = "Three";
+};
+
 const handleRedirectMenu = () => {
-  router.push({ name: SCREEN.CQITrainingProcess.name });
+  router.push({ path: SCREEN.CQITrainingProcess.path });
 };
 </script>
 
-<style scoped>
-.radio_tab_lg {
-  pointer-events: none;
-}
-</style>
+<style scoped></style>

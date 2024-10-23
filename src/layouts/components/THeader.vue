@@ -150,6 +150,7 @@
       <PaginationUi></PaginationUi>
     </div>
   </TModal>
+  <LoadingComponent v-if="isLoad"></LoadingComponent>
 </template>
 
 <script lang="ts">
@@ -165,6 +166,7 @@ import {useRouter} from "vue-router";
 import http from "@/utils/http";
 import {f} from "vitest/dist/types-63abf2e0";
 import {removeUserInfo} from "@/utils/storage";
+import LoadingComponent from "@/components/common/loading/LoaddingComponent.vue";
 
 export default {
   computed: {
@@ -176,12 +178,14 @@ export default {
     TModal,
     PopupView,
     PaginationUi,
+    LoadingComponent
   },
   setup(props, ctx) {
     const store = commonStore()
     const menu = ref([])
     const router = useRouter()
     const route = useRoute()
+    const isLoad = ref(false)
 
     onMounted(async () => {
       await getDataMenu()
@@ -191,7 +195,7 @@ export default {
     })
 
     async function getDataMenu() {
-      store.setLoading(true);
+      isLoad.value = true
       await commonService
           .menu()
           .then(async (response) => {
@@ -203,7 +207,7 @@ export default {
             console.log(e);
           })
           .finally(() => {
-            store.setLoading(false);
+            isLoad.value = false
             gnbOneDepth();
             siteMap();
           });
@@ -246,7 +250,8 @@ export default {
       store,
       menu,
       handleNextScreen,
-      handleLogout
+      handleLogout,
+      isLoad
     }
   },
   data: () => ({

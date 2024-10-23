@@ -102,7 +102,7 @@ export default {
       type: Boolean,
     },
     lstIdSelect: {
-      type: Array<String>,
+      type: Array<String|Number>,
     },
   },
   setup: () => {
