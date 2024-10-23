@@ -26,7 +26,7 @@
           <template #button>
             <div>
               <button
-                class="btn_round btn_lg btn_primary mg_l10"
+                class="btn_round btn_md btn_primary mg_l10"
                 @click="goRegter"
               >
                 {{ t("03.basicInfoManagement.infoUniversity.button.register") }}
