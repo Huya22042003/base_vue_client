@@ -39,3 +39,18 @@ export type DetailModel = {
   posiSysCd: string; 
 };
 
+export type ProfSearchModel = {
+  userId: string;
+  name: string;
+  page: number;
+  size: number;
+  sort: string;
+};
+
+export type ProfModel = {
+  rowNumber: number;
+  name: string;
+  userId: string;
+  deptNm: string;
+};
+

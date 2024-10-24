@@ -53,18 +53,18 @@
 
   <TModal :is-open="isPopups[0]" :is-show-header="true" :is-show-footer="true" :modal-id="'Template'"
       class-size="medium" @close-modal="closeModal">
-    <template #title>로그인 교수 선택</template>
+    <template #title>{{t('modalSwitchAccount.title')}}</template>
     <template #footer>
-      <button type="button" class="btn_round btn_white btn_xl_2" @click="popupHide(0)">닫기</button>
+      <button type="button" class="btn_round btn_white btn_xl_2" @click="popupHide(0)">{{t('common.close')}}</button>
     </template>
     <div class="sub_section_xs">
       <div class="section_tit_wrap">
-        <div class="section_tit_xs">검색</div>
+        <div class="section_tit_xs">{{t('common.title.search')}}</div>
       </div>
       <div class="tbl tbl_col">
         <table>
           <caption>
-            교과목 검색 목록
+            {{t('modalSwitchAccount.caption')}}
           </caption>
           <colgroup>
             <col style="width: 50%"/>
@@ -72,35 +72,51 @@
           </colgroup>
           <thead>
           <tr>
-            <th>교수명</th>
-            <th>교번</th>
+            <th>{{t('modalSwitchAccount.search1')}}</th>
+            <th>{{t('modalSwitchAccount.search2')}}</th>
           </tr>
           </thead>
           <tbody>
           <tr>
             <td class="td_input">
-              <input type="text" class="form_style" placeholder="교수명"/>
+              <InputBase
+                  :id="'name'"
+                  :name="'name'"
+                  v-model="searchModel.name"
+                  :placeholder="t('modalSwitchAccount.search1')"
+              ></InputBase>
             </td>
             <td class="td_input">
-              <input type="text" class="form_style" placeholder="교번"/>
+              <InputBase
+                  :id="'name'"
+                  :name="'name'"
+                  v-model="searchModel.userId"
+                  :placeholder="t('modalSwitchAccount.search2')"
+              ></InputBase>
             </td>
           </tr>
           </tbody>
         </table>
         <div class="btn_area ta_r mg_t10">
-          <button type="button" class="btn_lg btn_round btn_white">초기화</button>
-          <button type="button" class="btn_lg btn_round btn_primary">검색</button>
+          <button type="button"
+                  class="btn_lg btn_round btn_primary"
+                  @click="searchClick()"
+          >{{ t("common.search") }}</button>
+          <button type="button"
+                  class="btn_lg btn_round btn_white"
+                  @click="reset()"
+          >{{ t("common.reset") }}</button>
         </div>
       </div>
     </div>
     <div class="sub_section_xs">
       <div class="section_tit_wrap">
-        <div class="section_tit_xs">목록</div>
+        <div class="section_tit_xs">{{t('common.list')}}</div>
       </div>
       <div class="tbl tbl_col">
         <table>
           <caption>
-            교과목 검색 목록
+            {{t('modalSwitchAccount.table.title')}}
           </caption>
           <colgroup>
             <col style="width: auto"/>
@@ -110,44 +126,39 @@
           </colgroup>
           <thead>
           <tr>
-            <th>교수명</th>
-            <th>교번</th>
-            <th>학과</th>
-            <th>선택</th>
+            <th>{{t('modalSwitchAccount.table.name')}}</th>
+            <th>{{t('modalSwitchAccount.table.userId')}}</th>
+            <th>{{t('modalSwitchAccount.table.deptNm')}}</th>
+            <th>{{t('modalSwitchAccount.table.select')}}</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td colspan="4">로그인 할 교수자를 검색해주세요.</td>
-          </tr>
-          <tr>
-            <td>홍길동</td>
-            <td>12345678</td>
-            <td>A학과</td>
-            <td>
-              <button type="button" @click="onclickSelect()">[선택]</button>
-            </td>
-          </tr>
-          <tr>
-            <td>심청이</td>
-            <td>12345678</td>
-            <td>A학과</td>
-            <td>
-              <button type="button" @click="onclickSelect()">[선택]</button>
-            </td>
-          </tr>
-          <tr>
-            <td>홍길동</td>
-            <td>12345678</td>
-            <td>A학과</td>
-            <td>
-              <button type="button" @click="onclickSelect()">[선택]</button>
-            </td>
-          </tr>
+            <tr v-if="display">
+              <td colspan="4">{{t('modalSwitchAccount.table.tutorial')}}</td>
+            </tr>
+            <tr v-if="rowData.length === 0 && !display">
+              <td colspan="4">{{t('modalSwitchAccount.dataNotFound')}}</td>
+            </tr>
+            <tr v-for="(row, index) in rowData" :key="index">
+              <td>{{ row.name }}</td>
+              <td>{{ row.userId }}</td>
+              <td>{{ row.deptNm }}</td>
+              <td>
+                <button type="button" @click="onclickSelect(row)">[{{t('modalSwitchAccount.table.select')}}]</button>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
-      <PaginationUi></PaginationUi>
+      <div v-if="rowData.length > 0">
+        <PaginationUi
+            :currentPage="searchModel.page"
+            :totalRows="totalRows"
+            :pageSize="searchModel.size"
+            :totalPages="numberPages"
+            @changePage="fnPagination"
+        />
+      </div>
     </div>
   </TModal>
   <LoadingComponent v-if="isLoad"></LoadingComponent>
@@ -161,12 +172,18 @@ import {SCREEN} from "@/router/screen";
 import TModal from "@/components/common/modal/TModal.vue";
 import commonService from "@/service/common/CommonService";
 import {commonStore} from "@/stores/common";
-import {onMounted, nextTick, watch} from "vue";
+import {onMounted, nextTick, watch, ref} from "vue";
 import {useRouter} from "vue-router";
 import http from "@/utils/http";
 import {f} from "vitest/dist/types-63abf2e0";
 import {removeUserInfo} from "@/utils/storage";
+import {getListProfs} from "@/stores/userManagement/userManagement.service";
+import {ProfModel, ProfSearchModel, UserMngModel} from "@/stores/userManagement/userManagement.type";
+import { useI18n } from "vue-i18n";
+import {PAGINATION_PAGE_1, PAGINATION_PAGE_SIZE} from "@/constants/screen.const";
+import {USER_INFO} from "@/constants/common.const";
 import LoadingComponent from "@/components/common/loading/LoaddingComponent.vue";
+import InputBase from "@/components/common/input/InputBase.vue";
 
 export default {
   computed: {
@@ -176,16 +193,51 @@ export default {
   },
   components: {
     TModal,
+    InputBase,
     PopupView,
     PaginationUi,
     LoadingComponent
   },
+
   setup(props, ctx) {
+    const {t} = useI18n();
     const store = commonStore()
     const menu = ref([])
     const router = useRouter()
     const route = useRoute()
+    const rowData = ref<Array<ProfModel>>([])
+    const totalRows = ref<number>(0)
+    const numberPages = ref<number>(0)
+    const display = true
+    const searchModel = ref<ProfSearchModel>({
+      userId: '',
+      name: '',
+      page: PAGINATION_PAGE_1,
+      size: PAGINATION_PAGE_SIZE,
+      sort: ''
+    });
+
     const isLoad = ref(false)
+
+    const getDataProfs = async () => {
+      isLoad.value = true
+      await getListProfs(searchModel.value)
+          .then(async (response) => {
+            if (response.status == 200) {
+              rowData.value = response.data.data.content;
+              totalRows.value = response.data.data.totalElements;
+              numberPages.value = response.data.data.totalPages;
+            }
+          })
+          .finally(() => {
+            isLoad.value = false
+          });
+    };
+
+    const fnPagination = (pageNumber: number) => {
+      searchModel.value.page = pageNumber;
+      getDataProfs();
+    };
 
     onMounted(async () => {
       await getDataMenu()
@@ -202,9 +254,6 @@ export default {
             if (response.status == 200) {
               menu.value = response.data.data;
             }
-          })
-          .catch((e) => {
-            console.log(e);
           })
           .finally(() => {
             isLoad.value = false
@@ -231,7 +280,7 @@ export default {
     }
 
     async function handleLogout() {
-      store.setLoading(true);
+      isLoad.value = true
       await commonService
           .logout()
           .then(async (response) => {
@@ -242,57 +291,92 @@ export default {
             console.log(e);
           })
           .finally(() => {
-            store.setLoading(false);
+            isLoad.value = false
           });
     }
 
+    function reset() {
+      searchModel.value.userId = "";
+      searchModel.value.name = "";
+      searchModel.value.page = PAGINATION_PAGE_1;
+      searchModel.value.size = PAGINATION_PAGE_SIZE;
+      searchModel.value.sort = "";
+    }
+
     return {
+      t,
       store,
       menu,
+      totalRows,
+      rowData,
+      numberPages,
+      searchModel,
+      display,
+      reset,
       handleNextScreen,
       handleLogout,
+      getDataProfs,
+      fnPagination,
       isLoad
     }
   },
+
   data: () => ({
     isPopups: [false],
   }),
+
   mounted: function () {
     gnbOneDepth();
     siteMap();
   },
+
   methods: {
+    searchClick() {
+      this.searchModel.page = 1;
+      this.display = false;
+      this.getDataProfs();
+    },
+
     popupShow(idx: number) {
       const vm = this;
       vm.isPopups[idx] = true;
     },
+
     popupHide(idx: number) {
       const vm = this;
       vm.isPopups[idx] = false;
     },
-    onclickSelect() {
-      const vm = this;
-      vm.$confirm("홍길동 교수님을 선택하시겠어요?", "알림", async (isConfirm: Boolean) => {
-        if (isConfirm) {
-          vm.$toast("로그인 되었습니다. <br />교수사이트로 이동합니다.");
-          try {
-            const response = await http.post('/auth/impersonate', {
-              userStaff: '33330001',
-              currentUser: 'dainls',
-              div: 'profsw'
-            });
-            const token = response.data;
-            vm.$toast("로그인 되었습니다. <br />교수사이트로 이동합니다.");
 
-            window.location.href = `${import.meta.env.VITE_PROF_URL}?token=${token}`;
-            // window.open(`${ import.meta.env.VITE_PROF_URL}?token=${token}`, '_blank');
-          } catch (e) {
-            vm.$toast("로그인에 실패했습니다. 다시 시도해주세요.");
-            console.error(error);
-          }
-        }
-      });
+    onclickSelect(prof) {
+      const vm = this;
+      vm.$confirm(
+          `${prof.name} ${this.t('modalSwitchAccount.confirmText')}`,
+          this.t('modalSwitchAccount.confirmTitle'),
+          async (isConfirm: Boolean) => {
+            if (isConfirm) {
+              // vm.$toast(this.t('modalSwitchAccount.toastSuccess'));
+              try {
+                const userInfoString = localStorage.getItem(USER_INFO);
+                const userInfo = JSON.parse(userInfoString);
+                const userId = userInfo.userId;
+
+                const response = await http.post('/auth/impersonate', {
+                  userStaff: prof.userId,
+                  currentUser: userId,
+                  div: 'profsw'
+                });
+                const token = response.data;
+                vm.$toast(this.t('modalSwitchAccount.toastSuccess'));
+
+                window.location.href = `${import.meta.env.VITE_PROF_URL}?token=${token}`;
+                // window.open(`${ import.meta.env.VITE_PROF_URL}?token=${token}`, '_blank');
+              } catch (e) {
+                vm.$toast(this.t('modalSwitchAccount.toastFailed'));
+              }
+            }
+          })
     },
+
     // Modal
     closeModal() {
       this.isPopups[0] = false
