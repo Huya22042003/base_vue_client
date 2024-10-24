@@ -3313,9 +3313,9 @@
           "title": "교육과정개발 일괄 일정 설정",
           "title2": "교육과정개발 학과별 일정 설정",
           "schoolYear": "학년도",
-          "specializedUniversity": "단과대학",
-          "faculty": "학과",
-          "newCreationTime": "개설/개편 기간 설정",
+          "specializedUniversity": "계열",
+          "faculty": "학과/학부",
+          "newCreationTime": "작성 기간",
           "action": {
             "save": "저장",
             "cancel": "닫기"
