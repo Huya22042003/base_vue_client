@@ -1,11 +1,11 @@
-import {defineStore} from "pinia";
-import {ref} from "vue";
+import { defineStore } from "pinia";
+import { ref } from "vue";
 import type {
   LookupEvaluationPlan,
   LookupEvaluationPlanSearch
 } from "@/stores/lookupEvaluationPlan/lookupEvaluationPlan.type";
-import {getList} from "@/stores/lookupEvaluationPlan/lookupEvaluationPlan.service";
-import {MESSAGE_ERROR_API} from "@/constants/common.const";
+import { getList } from "@/stores/lookupEvaluationPlan/lookupEvaluationPlan.service";
+import { MESSAGE_ERROR_API } from "@/constants/common.const";
 
 
 export const lookupEvaluationPlanStore = defineStore("lookupEvaluationPlan", () => {
