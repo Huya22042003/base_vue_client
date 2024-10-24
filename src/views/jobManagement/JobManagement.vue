@@ -11,7 +11,7 @@
             <div class="left"></div>
             <div class="right">
               <div class="search_daywrap mg_r10">
-                <span class="tag">{{ t("jobManagement.dept") }}</span>
+                <span class="tag wd_100">{{ t("jobManagement.dept") }}</span>
                 <InputBase
                   :id="'deptSearch'"
                   :name="'deptSearch'"
@@ -19,7 +19,7 @@
                 />
               </div>
               <div class="search_daywrap mg_r10">
-                <span class="tag">{{ t("jobManagement.talt") }}</span
+                <span class="tag wd_120">{{ t("jobManagement.talt") }}</span
                 ><InputBase
                   :id="'taltNrtgTypeNmSearch'"
                   :name="'taltNrtgTypeNmSearch'"
@@ -27,7 +27,7 @@
                 />
               </div>
               <div class="search_daywrap mg_r10">
-                <span class="tag">{{ t("jobManagement.jobNm") }}</span
+                <span class="tag wd_35">{{ t("jobManagement.jobNm") }}</span
                 ><InputBase
                   :id="'jobNmSearch'"
                   :name="'jobNmSearch'"

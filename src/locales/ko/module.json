@@ -4867,7 +4867,8 @@
     "updateJob": "직무 수정",
     "plan2": "로그인 사용자 소속 학과의 직무를 관리할 수 있습니다.",
     "defn": "직무 정의",
-    "related": "관련 자격증"
+    "related": "관련 자격증",
+    "validateMes": "사용되어 있는 직무입니다. 다시 확인해주세요."
   },
   "talentEduGoalsMng": {
       "title": "학과정보",
