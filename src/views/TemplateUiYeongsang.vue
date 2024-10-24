@@ -179,6 +179,10 @@
                     <SelectBoxBaseSearch v-model="selectSearch" :data="listSelectBox"></SelectBoxBaseSearch>
                   </li>
                   <li>
+                    <p>Select box search chọn all không đóng option và hiển thị full option với giá trị select all khác 전체</p>
+                    <SelectBoxBaseSearch v-model="selectSearch1" :data="listSelectBoxSearch" value-select-all="All"></SelectBoxBaseSearch>
+                  </li>
+                  <li>
                     <p>Select box -- {{ selectBoxValue }}</p>
                     <SelectBoxBase :id="'selectbox'" :name="'selectbox'" v-model="selectBoxValue" :data="listSelectBox"
                         disabled
@@ -2165,16 +2169,24 @@ export default defineComponent({
       selectBoxValueDisable: '11',
       selectBoxValue: '11',
       selectSearch: '12',
+      selectSearch1: '',
       selectSearchDisable: '15',
       selectBoxDisable: '11',
       selectSearchCheckAll: '',
       selectCheckBoxValidate: "",
       listSelectBox: [
-        {cdId: '11', cdNm: '비게', upCdId: '1'},
+        {cdId: '', cdNm: '전체', upCdId: '1'},
         {cdId: '12', cdNm: '비게시', upCdId: '1'},
         {cdId: '13', cdNm: '비게시1', upCdId: '1'},
         {cdId: '14', cdNm: '비게시2', upCdId: '1'},
         {cdId: '15', cdNm: '비게시비게시비게시2', upCdId: '1'}
+      ] as Array<any>,
+      listSelectBoxSearch: [
+        {cdId: '', cdNm: 'All', upCdId: '1'},
+        {cdId: '12', cdNm: 'Base', upCdId: '1'},
+        {cdId: '13', cdNm: 'Base1', upCdId: '1'},
+        {cdId: '14', cdNm: 'Base2', upCdId: '1'},
+        {cdId: '15', cdNm: 'BaseBase1', upCdId: '1'}
       ] as Array<any>,
 
       // check box
