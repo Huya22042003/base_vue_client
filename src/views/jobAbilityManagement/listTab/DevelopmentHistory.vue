@@ -36,13 +36,11 @@
             </th>
             <td class="td_input">{{ currentYear }}</td>
           </tr>
-          <tr>
+          <tr v-for="(item, index) in listJobHistory">
             <th scope="row">
-              <p class="required">
-                {{ t("jobAbilityManagement.tab4.column4") }}
-              </p>
+              <p class="required">개발연도 최초({{ index + 1 }}차)</p>
             </th>
-            <td class="td_input">{{ listJobHistory[1].supportYear }}</td>
+            <td class="td_input">{{ item.supportYear }}</td>
           </tr>
           <tr>
             <th scope="row">
@@ -54,13 +52,11 @@
               <InputBase v-model="authNm" required />
             </td>
           </tr>
-          <tr>
+          <tr v-for="(item, index) in listJobHistory">
             <th scope="row">
-              <p class="required">
-                {{ t("jobAbilityManagement.tab4.column6") }}
-              </p>
+              <p class="required">개발자 최초({{ index + 1 }}차)</p>
             </th>
-            <td class="td_input">{{ listJobHistory[1].authNm }}</td>
+            <td class="td_input">{{ item.authNm }}</td>
           </tr>
           <tr>
             <th scope="row">
@@ -85,7 +81,7 @@
         </button>
         <button
           type="button"
-          class="btn_round btn_md btn_gray"
+          class="btn_round btn_md btn_primary"
           v-if="modeScreen === modeCreate"
           @click="saveData"
         >
@@ -93,11 +89,11 @@
         </button>
         <button
           type="button"
-          class="btn_round btn_md btn_gray"
+          class="btn_round btn_md btn_primary"
           v-if="modeScreen === modeDetail"
           @click="saveData"
         >
-          {{ t("common.edit") }}
+          {{ t("common.save") }}
         </button>
         <button type="button" class="btn_round btn_white btn_md" @click="back">
           {{ t("common.list") }}
@@ -121,7 +117,7 @@ import type { JobHistory } from "@/stores/jobAbilityManagement/jobAbilityManagem
 import {
   saveJobHistory,
   detailHistory,
-  upVerHistory,
+  upVer,
 } from "@/stores/jobAbilityManagement/jobAbilityManagement.service";
 
 export default {
@@ -225,7 +221,7 @@ export default {
         }).then((result) => {
           if (result.isConfirmed) {
             this.cmn.setLoading(true);
-            upVerHistory(this.jobHistory)
+            upVer(this.jobHistory.jobAbilSeq)
               .then((res) => {
                 this.back();
               })

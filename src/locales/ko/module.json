@@ -209,7 +209,7 @@
     "evaluationMethodMng": {
       "title": "평가방법 관리",
       "button": {
-        "register": "교수학습방법 등록",
+        "register": "평가방법 등록",
         "save": "저장",
         "close": "닫기",
         "cancel": "취소",
@@ -233,7 +233,7 @@
       "message": {
         "confirmSave": "저장하시겠어요?",
         "success": "정상처리됐습니다.",
-        "confirmDelete": "저장하시겠어요?",
+        "confirmDelete": "삭제하시겠어요?",
         "notDelete": "교육과정개발에 사용된 유형은 삭제할 수 없습니다.",
         "duplicate": "이미 등록된 교육학습방법입니다."
       }
@@ -4969,6 +4969,7 @@
     "pageTitleCrud": "직무역량 관리",
     "pageHistory": "개발 이력",
     "tab1": {
+      "alertChoice": "대중소세 분류 순서로 선택해주세요.",
       "titleTab": "01.직무역량(능력단위) 등록",
       "pageTitle": "직무역량(능력단위) 등록",
       "column1": "유형",
@@ -4987,7 +4988,7 @@
       "defaultSelect1": "대분류 선택",
       "defaultSelect2": "중분류 선택",
       "defaultSelect3": "소분류 선택",
-      "defaultSelect4": "세분류 선",
+      "defaultSelect4": "세분류 선택",
       "no": "없음",
       "confirmNextTab": "저장 후 다음단계로 이동하시겠어요?",
       "confirmVersionUp": "직무역량 버전을 올리기시겠어요?",
