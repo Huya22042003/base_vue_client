@@ -253,15 +253,16 @@ onBeforeMount(async () => {
     });
   }
   getListCodeMng({
-    upCdIdList: ["1010", "1020", "1088"],
+    upCdIdList: ["1010", "1011", "1088"],
   }).then((res) => {
     if (res.status == SUCCSESS_STATUS) {
       res.data.data.forEach((item) => {
         if (item.upCdId == "1010") {
           listTerm.value.push(item);
         }
+        console.log(listTerm.value);
 
-        if (item.upCdId == "1020") {
+        if (item.upCdId == "1011") {
           listEduYear.value.push(item);
         }
 
