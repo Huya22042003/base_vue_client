@@ -1,59 +1,67 @@
 <template>
-  <div class="content_wrap dashboard">
-    <div class="grid_content">
-      <div class="page_toparea">
-        <h2 class="page_title">{{ t("05.lookupEvaluationPlan.pageTitle") }}</h2>
-      </div>
-
+  <div class="page_wrapper">
+    <section id="content" class="content_wrapper grid_content" tabindex="0">
+      <Breadcrumb
+        :pageTitle="pageTitle"
+        :breadcrumbItems="breadcrumbItems"
+      ></Breadcrumb>
       <div class="box dp_block">
-        <div class="box_section">
+        <div class="search_section">
+          <div class="search_section">
+            <div class="search_toggle sm">
+              <div class="left"></div>
+              <div class="right">
+                <div class="search_daywrap">
+                  <span class="tag">{{
+                    t("05.lookupEvaluationPlan.search.initiationYear")
+                  }}</span>
+                  <div class="wd_200">
+                    <SelectBoxBase
+                      :id="'firstYear'"
+                      :name="'firstYear'"
+                      :data="listYear"
+                      v-model="dataSearch.firstYear"
+                    />
+                  </div>
+                </div>
+
+                <div class="search_daywrap">
+                  <span class="tag">{{
+                    t("05.lookupEvaluationPlan.search.year")
+                  }}</span>
+                  <div class="wd_200">
+                    <SelectBoxBase
+                      :id="'term'"
+                      :name="'term'"
+                      :data="listTerm"
+                      v-model="dataSearch.termEdu"
+                    />
+                  </div>
+                </div>
+                <div class="search_daywrap">
+                  <span class="tag">{{
+                    t("05.lookupEvaluationPlan.search.semester")
+                  }}</span>
+                  <div class="wd_200">
+                    <SelectBoxBase
+                      :id="'yearEdu'"
+                      :name="'yearEdu'"
+                      :data="listEduYear"
+                      v-model="dataSearch.yearEdu"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="search_toggle sm">
             <div class="left"></div>
             <div class="right">
               <div class="search_daywrap">
                 <span class="tag">{{
-                  t("05.lookupEvaluationPlan.search.initiationYear")
-                }}</span>
-                <div class="wd_150">
-                  <SelectBoxBase
-                    :id="'firstYear'"
-                    :name="'firstYear'"
-                    :data="listYear"
-                    v-model="dataSearch.firstYear"
-                  />
-                </div>
-              </div>
-              <div class="search_daywrap">
-                <span class="tag">{{
-                  t("05.lookupEvaluationPlan.search.year")
-                }}</span>
-                <div class="wd_150">
-                  <SelectBoxBase
-                    :id="'term'"
-                    :name="'term'"
-                    :data="listTerm"
-                    v-model="dataSearch.termEdu"
-                  />
-                </div>
-              </div>
-              <div class="search_daywrap">
-                <span class="tag">{{
-                  t("05.lookupEvaluationPlan.search.semester")
-                }}</span>
-                <div class="wd_150">
-                  <SelectBoxBase
-                    :id="'yearEdu'"
-                    :name="'yearEdu'"
-                    :data="listEduYear"
-                    v-model="dataSearch.yearEdu"
-                  />
-                </div>
-              </div>
-              <div class="search_daywrap">
-                <span class="tag">{{
                   t("05.lookupEvaluationPlan.search.subjectName")
                 }}</span>
-                <div class="wd_150">
+                <div class="wd_200">
                   <InputBase v-model="dataSearch.sbjtNm" />
                 </div>
               </div>
@@ -61,7 +69,7 @@
                 <span class="tag">{{
                   t("05.lookupEvaluationPlan.search.lecturer")
                 }}</span>
-                <div class="wd_150">
+                <div class="wd_200">
                   <InputBase v-model="dataSearch.lectChar" />
                 </div>
               </div>
@@ -70,7 +78,7 @@
                 <span class="tag">{{
                   t("05.lookupEvaluationPlan.search.creationStatus")
                 }}</span>
-                <div class="wd_150">
+                <div class="wd_200">
                   <SelectBoxBase
                     :id="'sts'"
                     :name="'sts'"
@@ -79,7 +87,6 @@
                   />
                 </div>
               </div>
-
               <button
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
@@ -97,7 +104,8 @@
             </div>
           </div>
         </div>
-
+      </div>
+      <div class="box dp_block">
         <div class="mt_8">
           <GridComponentV2
             :rowData="rowData"
@@ -112,7 +120,7 @@
           />
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -156,6 +164,8 @@ const listEduYear = ref([{ cdId: "", cdNm: t("common.all") }]);
 const listTerm = ref([{ cdId: "", cdNm: t("common.all") }]);
 const listYear = ref([{ cdId: "", cdNm: t("common.all") }]);
 const listSts = ref([{ cdId: "", cdNm: t("common.all") }]);
+const pageTitle = ref(t("05.lookupEvaluationPlan.pageTitle"));
+const breadcrumbItems = ref([]);
 const columnDefs = ref([
   {
     headerName: t("05.lookupEvaluationPlan.gird.header1"),
