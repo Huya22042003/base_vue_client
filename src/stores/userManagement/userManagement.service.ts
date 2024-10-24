@@ -1,10 +1,14 @@
 import http from "@/utils/http";
 import { SITE_ADMIN } from "@/constants/common.const";
-import type {UserManagementSearchModel, DetailModel} from "./userManagement.type"
+import {UserManagementSearchModel, DetailModel, ProfSearchModel} from "./userManagement.type"
 const url = `${SITE_ADMIN}/userMng`;
 
 export const getListData = (data: UserManagementSearchModel) => {
     return http.post(url + '/list', data)
+}
+
+export const getListProfs = (data: ProfSearchModel) => {
+    return http.post(url + '/list/prof', data)
 }
 
 export const getListRole = () => {
