@@ -846,6 +846,14 @@ export const SCREEN = {
   lookupEvaluationPlan: {
     path: "/lookup-evaluation-plan",
     name: "lookupEvaluationPlan"
-  }
+  },
+  finalArchivement: {
+    path: '/final-archivement',
+    name: 'final-archivement',
+  },
+  finalArchivementAction: {
+    path: '/final-archivement-action',
+    name: 'final-archivement-action',
+  },
 
 }
