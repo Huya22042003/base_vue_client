@@ -9,6 +9,7 @@ export type EduCourseCqiListModel = {
   deptNm: string;
   eduCursTypeSeq: string;
   eduCourseTypeNm: string;
+  eduCourseTypeCd: string;
   stsCd: string;
   stsNm: string;
   regBy: string;

@@ -83,6 +83,7 @@ import {
   EduCourseCqiSearchModel,
 } from "@/stores/cqiTrainingProcess/cqiTrainingProcess.type";
 import {
+  FORMAT_YYY_MM_DD,
   PAGINATION_PAGE_1,
   PAGINATION_PAGE_SIZE,
   START_YEAR_NUMBER,
@@ -97,6 +98,7 @@ import {
   STS_EDU_CQI_SUCCESS,
 } from "@/constants/common.const";
 import ButtonGridComponent from "@/components/common/grid/ButtonGridComponent.vue";
+import { format } from "date-fns";
 
 const { t } = useI18n();
 const router = useRouter();
@@ -159,8 +161,26 @@ const columnDefs1 = ref([
     },
     flex: 0.6,
   },
-  { headerName: t("trainingProcess.column6"), field: "regBy" },
-  { headerName: t("trainingProcess.column7"), field: "regDate" },
+  {
+    headerName: t("trainingProcess.column6"),
+    field: "regBy",
+    flex: 0.6,
+    cellStyle: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
+  {
+    headerName: t("trainingProcess.column7"),
+    field: "regDate",
+    flex: 0.6,
+    cellStyle: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  },
   {
     headerName: t("trainingProcess.column8"),
     cellRenderer: ButtonGridComponent,
@@ -229,6 +249,9 @@ const getAllData = () => {
         (item: EduCourseCqiListModel) => {
           item.typeOfRedirect =
             item.deptCd == DEPT_TYPE_GENERAL_EDUCATION ? "general" : "major";
+          item.regDate = item.regDate
+            ? format(item.regDate, FORMAT_YYY_MM_DD)
+            : "";
 
           return item;
         }
@@ -243,6 +266,8 @@ const getAllData = () => {
 const printReport = (data: EduCourseCqiListModel) => {};
 
 function handleDetailClick(item: EduCourseCqiListModel) {
+  console.log(item);
+  
   router.push({
     name: SCREEN.createTrainingProcess.name,
     params: { mode: item.typeOfRedirect },
@@ -252,7 +277,8 @@ function handleDetailClick(item: EduCourseCqiListModel) {
       typeSeq: item.eduCursTypeSeq,
       year: item.year,
       eduCourseCqiSeq: item.eduCourseCqiSeq,
-      status: item.stsCd
+      status: item.stsCd,
+      eduCourseTypeCd: item.eduCourseTypeCd,
     },
   });
 }

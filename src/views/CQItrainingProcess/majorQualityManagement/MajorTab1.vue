@@ -622,7 +622,7 @@
       </colgroup>
       <tbody>
         <tr>
-          <th scope="row">{{ t("majorTab1.table3.title") }}</th>
+          <th scope="row">{{ t("majorTab1.table3.title1") }}</th>
           <td>
             <ul class="list_ul">
               <li>{{ t("majorTab1.table3.content1") }}</li>
@@ -1206,8 +1206,8 @@ const convertToObject = (response: any) => {
     );
 
     if (response.majorOverviewGroup) {
-      dataInternal.value = response.majorOverviewGroup.filter(item => item.divCd == CQI_DIV_SCHOOL)
-      dataCompany.value = response.majorOverviewGroup.filter(item => item.divCd == CQI_DIV_COMPANY)
+      dataInternal.value = response.majorOverviewGroup.filter((item:any) => item.divCd == CQI_DIV_SCHOOL)
+      dataCompany.value = response.majorOverviewGroup.filter((item:any) => item.divCd == CQI_DIV_COMPANY)
     }
 }
 
