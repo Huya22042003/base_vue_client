@@ -292,3 +292,7 @@ export const TOTAL_OTHER = "12170209";
 export const CQI_DIV_SCHOOL = "12180001";
 export const CQI_DIV_COMPANY = "12180002";
 export const CQI_DIV_STUDENT = "12180003";
+export const CD_TYPE_BACHELOR = "12160001";
+export const CD_TYPE_MAJOR_IN_DEPTH = "12160002";
+export const CD_TYPE_SMALL_UNIT = "12160003";
+export const CD_TYPE_SPECIAL = "12160004";
