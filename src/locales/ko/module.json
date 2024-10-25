@@ -23,6 +23,8 @@
       "list": "목록"
     },
     "message" : {
+      "deleteFile": "첨부파일을 삭제하시겠어요?",
+      "deleteFileOk": "삭제됐습니다.",
       "save" : "저장하시겠어요?",
       "saveSuccess" : "정상처리됐습니다.",
       "deleteSuccess" : "삭제됐습니다",
@@ -1665,7 +1667,8 @@
         "dept": "학과/학부",
         "typeTalent": "인재양성유형",
         "btnSeach": "조회",
-        "btnClear": "초기화"
+        "btnClear": "초기화",
+        "subTitle":"※ 로그인 사용자의 소속 학과의 인재양성유형 목록만 조회됩니다. "
       },
       "list": {
         "title": "인재양성유형 목록",
@@ -1786,9 +1789,9 @@
         "dept": "학과/학부",
         "yearEdu": "학년도",
         "topic": "회의주제",
-        "userRegis": "등록자",
-        "dateGegis": "등록일",
-        "btnCreate": "등록"
+        "userRegis": "작성자",
+        "dateGegis": "작성일",
+        "btnCreate": "회의록 등록"
       },
       "form": {
         "title": "회의록 관리",
@@ -3101,7 +3104,7 @@
         "category": "제목",
         "regBy": "접수자",
         "status": "상태",
-        "regDate": "접수기간",
+        "regDate": "접수일",
         "ansBy": "답변자"
       },
       "table": {
@@ -3122,7 +3125,7 @@
       "regBy": "접수자 성명",
       "regCode": "접수자 교번",
       "regDept": "접수자 소속",
-      "qusCont": "내용",
+      "qusCont": "문의 내용",
       "file": "첨부파일",
       "ansTtl3": "답변 및 답변자 정보",
       "ansCont": "답변 내용",
@@ -3201,17 +3204,18 @@
         "title": "검색",
         "site": "대상사이트",
         "heading": "제목",
-        "regDate": "등록일",
-        "subscribers": "등록자",
+        "regDate": "작성일",
+        "subscribers": "작성자",
         "showOrNot": "게시여부",
-        "btnCreate":"공지사항 등록"
+        "btnCreate":"공지사항 등록",
+        "subTitle":"※ 상단고정은 최대 3개까지 설정할 수 있습니다."
       },
       "table": {
         "title": "목록",
         "rowNum": "번호",
         "heading": "제목",
-        "regName": "등록자",
-        "regDate": "등록일",
+        "regName": "작성자",
+        "regDate": "작성일",
         "views": "조회수",
         "showOrNot": "게시여부",
         "topFixYn": "상단고정",
@@ -3232,7 +3236,7 @@
         "btnEdit":"저장"
       },
       "message":{
-        "warringProf":"최대 3개 가능.",
+        "warringProf":"이미 3개 공지사항이 상단고정으로 설정됐습니다.",
         "saveSuccess":"저장 되었습니다.",
         "quesDel":"삭제 하시겠습니까? ",
         "quesSave":"저장하시겠어요?",
@@ -3313,9 +3317,9 @@
           "title": "교육과정개발 일괄 일정 설정",
           "title2": "교육과정개발 학과별 일정 설정",
           "schoolYear": "학년도",
-          "specializedUniversity": "단과대학",
-          "faculty": "학과",
-          "newCreationTime": "개설/개편 기간 설정",
+          "specializedUniversity": "계열",
+          "faculty": "학과/학부",
+          "newCreationTime": "작성 기간",
           "action": {
             "save": "저장",
             "cancel": "닫기"
@@ -3415,7 +3419,7 @@
       "title": "강의계획서 조회",
       "searchBox": {
         "year": "개설년도",
-        "subject": "과목명",
+        "subject": "교과목명",
         "professor": "담당교수",
         "yearLearn": "교육과정 학년도",
         "status": "작성상태",
@@ -3428,7 +3432,7 @@
         "semester": "개설년도-학기",
         "university": "단과대학",
         "dept": "학과 ",
-        "subject": "과목명",
+        "subject": "교과목명",
         "status": "이수구분",
         "grade": "학년",
         "division": "분반",
@@ -4848,7 +4852,7 @@
             "save": "저장하시겠어요?",
             "saveSuccess": "저장됐습니다.",
             "saveError": "이미 등록된 학년도입니다.",
-            "valid": "필수입력항목을 모두 입력해주세"
+            "valid": "필수입력항목을 모두 입력해주세요."
           }
         }
     }

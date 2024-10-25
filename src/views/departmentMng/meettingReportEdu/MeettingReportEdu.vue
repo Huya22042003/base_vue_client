@@ -11,9 +11,7 @@
           <ul>
             <li>
               <p>
-                {{
-                  t("departmentMng.meettingReportEdu.search.job")
-                }}
+                {{ t("departmentMng.meettingReportEdu.search.job") }}
               </p>
 
               <SelectBoxBase
@@ -49,13 +47,15 @@
         </div>
         <div class="btn_group btn_end" style="gap: 10px">
           <button
-            class="button btn_xl btn_blue btn_responsive"
+            type="button"
+            class="btn_round btn_lg btn_primary mg_l10"
             @click="search()"
           >
             {{ t("departmentMng.typeTalentNurturingMng.search.btnSeach") }}
           </button>
           <button
-            class="button btn_xl btn_lightgray btn_responsive"
+            type="button"
+            class="btn_round btn_lg btn_gray mg_l5"
             @click="reset()"
           >
             {{ t("departmentMng.typeTalentNurturingMng.search.btnClear") }}
@@ -81,7 +81,8 @@
           <template #button>
             <div>
               <button
-                class="button btn_xs btn_blue bo_rd4"
+                type="button"
+                class="btn_round btn_md btn_primary"
                 @click="create"
               >
                 <!-- 등록 -->
@@ -167,9 +168,7 @@ export default {
       data: [],
       columnDefs: ref([
         {
-          headerName: this.t(
-            "departmentMng.meettingReportEdu.list.rowNum"
-          ),
+          headerName: this.t("departmentMng.meettingReportEdu.list.rowNum"),
           field: "rowNumber",
           cellStyle: {
             textAlign: "center",
@@ -177,18 +176,14 @@ export default {
           flex: 0.4,
         },
         {
-          headerName: this.t(
-            "departmentMng.meettingReportEdu.list.job"
-          ),
+          headerName: this.t("departmentMng.meettingReportEdu.list.job"),
           field: "bsinesDivNm",
           cellStyle: {
             textAlign: "center",
           },
         },
         {
-          headerName: this.t(
-            "departmentMng.meettingReportEdu.list.yearEdu"
-          ),
+          headerName: this.t("departmentMng.meettingReportEdu.list.yearEdu"),
           field: "year",
           cellStyle: {
             textAlign: "center",
@@ -196,18 +191,14 @@ export default {
           flex: 0.6,
         },
         {
-          headerName: this.t(
-            "departmentMng.meettingReportEdu.list.dept"
-          ),
+          headerName: this.t("departmentMng.meettingReportEdu.list.dept"),
           field: "deptNm",
           cellStyle: {
             textAlign: "center",
           },
         },
         {
-          headerName: this.t(
-            "departmentMng.meettingReportEdu.list.topic"
-          ),
+          headerName: this.t("departmentMng.meettingReportEdu.list.topic"),
           cellRenderer: LinkGridComponent,
           cellRendererParams: { onCustomEvent: this.handleCustomClick },
           field: "sbjt",
@@ -280,11 +271,8 @@ export default {
     async getCodeBsiness() {
       await this.codeMng.getCodeInfo({ upCdId: UP_CD_ID_BSINES });
       if (this.codeMng && this.codeMng.status == SUCCSESS_STATUS) {
-        this.codeMng.codeInfo.data.forEach((item) => {
-          this.listSelectBox.push(item);
-        });
+        this.listSelectBox = this.codeMng.codeInfo.data;
       }
-
       this.listSelectBox.unshift({
         cdId: "",
         cdNm: this.t("common.all"),

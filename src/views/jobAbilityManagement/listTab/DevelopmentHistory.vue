@@ -38,7 +38,12 @@
           </tr>
           <tr v-for="(item, index) in listJobHistory">
             <th scope="row">
-              <p class="required">개발연도 최초({{ index + 1 }}차)</p>
+              <p v-if="index == 0" class="required">
+                개발연도 최초({{ index + 1 }}차)
+              </p>
+              <p v-if="index != 0" class="required">
+                개발연도 ({{ index + 1 }}차)
+              </p>
             </th>
             <td class="td_input">{{ item.supportYear }}</td>
           </tr>
@@ -54,7 +59,12 @@
           </tr>
           <tr v-for="(item, index) in listJobHistory">
             <th scope="row">
-              <p class="required">개발자 최초({{ index + 1 }}차)</p>
+              <p v-if="index == 0" class="required">
+                개발자 최초({{ index + 1 }}차)
+              </p>
+              <p v-if="index != 0" class="required">
+                개발자 ({{ index + 1 }}차)
+              </p>
             </th>
             <td class="td_input">{{ item.authNm }}</td>
           </tr>
@@ -222,8 +232,14 @@ export default {
           if (result.isConfirmed) {
             this.cmn.setLoading(true);
             upVer(this.jobHistory.jobAbilSeq)
-              .then((res) => {
-                this.back();
+              .then(async (res) => {
+                await this.$swal({
+                  text: "직무역량 버전을 올리기가 되었습니다.",
+                  type: "warning",
+                  showCancelButton: false,
+                  confirmButtonText: this.t("common.confirm"),
+                });
+                await this.back();
               })
               .catch((error) => {
                 if (

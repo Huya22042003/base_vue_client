@@ -588,7 +588,7 @@ export default {
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
-        confirmButtonText: this.t("common.save"),
+        confirmButtonText: this.t("common.delete"),
         cancelButtonText: this.t("common.cancel"),
       }).then((result: any) => {
         if (result.isConfirmed) {
