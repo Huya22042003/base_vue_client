@@ -849,11 +849,11 @@ export const SCREEN = {
   },
   finalArchivement: {
     path: '/final-archivement',
-    name: 'final-archivement',
+    name: 'finalArchivement',
   },
   finalArchivementAction: {
     path: '/final-archivement-action',
-    name: 'final-archivement-action',
+    name: 'finalArchivementAction',
   },
 
 }

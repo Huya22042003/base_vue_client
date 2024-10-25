@@ -3201,17 +3201,18 @@
         "title": "검색",
         "site": "대상사이트",
         "heading": "제목",
-        "regDate": "등록일",
-        "subscribers": "등록자",
+        "regDate": "작성일",
+        "subscribers": "작성자",
         "showOrNot": "게시여부",
-        "btnCreate":"공지사항 등록"
+        "btnCreate":"공지사항 등록",
+        "subTitle":"※ 상단고정은 최대 3개까지 설정할 수 있습니다."
       },
       "table": {
         "title": "목록",
         "rowNum": "번호",
         "heading": "제목",
-        "regName": "등록자",
-        "regDate": "등록일",
+        "regName": "작성자",
+        "regDate": "작성일",
         "views": "조회수",
         "showOrNot": "게시여부",
         "topFixYn": "상단고정",
@@ -3232,7 +3233,7 @@
         "btnEdit":"저장"
       },
       "message":{
-        "warringProf":"최대 3개 가능.",
+        "warringProf":"이미 3개 공지사항이 상단고정으로 설정됐습니다.",
         "saveSuccess":"저장 되었습니다.",
         "quesDel":"삭제 하시겠습니까? ",
         "quesSave":"저장하시겠어요?",
@@ -3313,9 +3314,9 @@
           "title": "교육과정개발 일괄 일정 설정",
           "title2": "교육과정개발 학과별 일정 설정",
           "schoolYear": "학년도",
-          "specializedUniversity": "단과대학",
-          "faculty": "학과",
-          "newCreationTime": "개설/개편 기간 설정",
+          "specializedUniversity": "계열",
+          "faculty": "학과/학부",
+          "newCreationTime": "작성 기간",
           "action": {
             "save": "저장",
             "cancel": "닫기"

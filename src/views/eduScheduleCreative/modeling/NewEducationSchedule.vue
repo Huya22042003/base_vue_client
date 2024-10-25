@@ -44,6 +44,7 @@
                     "
                     :data="listSelectBoxMajor"
                     @update:modelValue="changSch"
+                    value-select-all="전체"
                   >
                   </SelectBoxBaseSearch>
                 </div>
@@ -62,6 +63,7 @@
                     :name="'faculty'"
                     v-model="newEducationScheduleSearchModel.deptNm"
                     :data="listSelectBoxDept"
+                    value-select-all="전체"
                   >
                   </SelectBoxBaseSearch>
                 </div>
@@ -267,10 +269,10 @@ export default defineComponent({
       newEducationScheduleReqModel: {} as NewEducationScheduleReqModel,
       totalRecord: 0,
       listSelectBoxDept: [
-        { id: 0, cdId: "", cdNm: this.t("common.select") },
+        { id: 0, cdId: "", cdNm: this.t("common.all") },
       ] as any,
       listSelectBoxMajor: [
-        { id: 0, cdId: "", cdNm: this.t("common.select") },
+        { id: 0, cdId: "", cdNm: this.t("common.all") },
       ] as any,
       departmentFilterDTO: {} as DepartmentFilterDTO /*  */,
     };
