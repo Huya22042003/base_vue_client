@@ -14,7 +14,6 @@
             :multiple="multiple"
         />
       </button>
-      <p class="file_sub_title" v-if="subTitle">{{ subTitle }}</p>
     </form>
   </div>
   <div class="attach_filewrap" v-if="!previewFlag">
@@ -91,6 +90,7 @@
   <p v-if="showMess && mode != modeDetail" style="color: red">
     * 파일 교체 시 기존 파일 삭제 후 새로운 파일을 업로드 해주세요.
   </p>
+  <p class="file_sub_title" v-if="subTitle">{{ subTitle }}</p>
   <form ref="fileForm" v-if="mode != modeDetail && !defaultFlag">
     <div class="input_file">
       <input
@@ -237,9 +237,9 @@ export default {
       // this.selectedFile = data;
       // this.modalOpenModify = true;
       Swal.fire({
-        text: this.t('common.message.confirmDelete'),
+        text: this.t('common.message.deleteFile'),
         showCancelButton: true,
-        confirmButtonText: this.t('common.confirm'),
+        confirmButtonText: this.t('common.delete'),
         cancelButtonText: this.t('common.cancel'),
       }).then((result) => {
         if (result.isConfirmed) {
@@ -371,7 +371,7 @@ export default {
       this.fileUploadedInfo = this.fileUploadedInfo.filter((item) => item.fileName != fileName)
       await this.store.deleteFileMng(fileName)
       await Swal.fire({
-          text: this.t('common.message.deleteFileSuccess'),
+          text: this.t('common.message.deleteFileOk'),
           showCancelButton: false,
           confirmButtonText: this.t('common.confirm'),
       });
@@ -455,5 +455,8 @@ export default {
   right: 0;
   width: 24px;
   height: 24px;
+}
+.attach_filewrap {
+  padding-left: 0px;
 }
 </style>

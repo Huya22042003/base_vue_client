@@ -179,8 +179,14 @@ export default {
         if (result.isConfirmed) {
           this.cmn.setLoading(true);
           upVer(this.jobData.jobAbilSeq)
-            .then((res) => {
-              this.back();
+            .then(async (res) => {
+              await this.$swal({
+                text: "직무역량 버전을 올리기가 되었습니다.",
+                type: "warning",
+                showCancelButton: false,
+                confirmButtonText: this.t("common.confirm"),
+              });
+              await this.back();
             })
             .catch((error) => {
               if (

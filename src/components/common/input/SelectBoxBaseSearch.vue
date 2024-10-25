@@ -93,13 +93,13 @@ export default {
 
       searchQuery.value = query
       query = query.toLowerCase();
-      if (query === props.valueSelectAll.toLowerCase()) {
+      if (query === props.valueSelectAll) {
         query = ""
       }
 
       return props?.data?.filter(option => {
         const cdNm = (option.cdNm || "").toLowerCase();
-        return cdNm.includes(query) || cdNm.includes(props.valueSelectAll.toLowerCase());
+        return cdNm.includes(query) || cdNm.includes(props.valueSelectAll);
       });
     });
 

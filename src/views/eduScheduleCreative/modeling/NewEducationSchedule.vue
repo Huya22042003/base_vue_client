@@ -164,7 +164,6 @@ import {
   DIV_CD_DEPT_DEPART,
 } from "@/constants/common.const";
 import type { DepartmentFilterDTO } from "@/stores/common/department/department.type";
-import { getDepartmentList } from "@/stores/common/department/department.service";
 import { departmentStore } from "@/stores/common/department";
 
 export default defineComponent({
@@ -292,7 +291,7 @@ export default defineComponent({
       );
       this.newEducationScheduleSearchModel.year = new Date().getFullYear() + "";
       this.listSelectBoxDept = [
-        { id: 0, cdId: "", cdNm: this.t("common.select") },
+        { id: 0, cdId: "", cdNm: this.t("common.all") },
       ];
       this.storeDepartment.deptRes?.forEach((element, index) => {
         if (element.deptDivCd != DIV_CD_DEPT_MAJOR) {
@@ -304,48 +303,12 @@ export default defineComponent({
         }
       });
     },
-    async getListInfo() {
-      await getDepartmentList({
-        deptCd: [],
-        deptDivCd: [DIV_CD_DEPT_DEPART, DIV_CD_DEPT_MAJOR],
-        upDeptCd: [],
-        useYn: "",
-      }).then((res) => {
-        this.listSelectBoxDept = res.data.data
-          .filter((el: any) => el.deptDivCd == DIV_CD_DEPT_DEPART)
-          .map((el: any) => {
-            return {
-              cdId: el.deptCd,
-              cdNm: el.deptNm,
-              upCdId: "dept",
-            };
-          });
-        if (this.listSelectBoxDept.length > 1) {
-          this.newEducationScheduleSearchModel.deptNm =
-            this.listSelectBoxDept[0].cdId;
-        }
-        this.listSelectBoxMajor = res.data.data
-          .filter((el: any) => el.deptDivCd == DIV_CD_DEPT_MAJOR)
-          .map((el: any) => {
-            return {
-              cdId: el.deptCd,
-              cdNm: el.deptNm,
-              upCdId: "major",
-            };
-          });
-        this.listSelectBoxMajor.unshift({
-          cdId: "",
-          cdNm: this.t("common.select"),
-          upCdId: "major",
-        });
-      });
-    },
     async changSch(data: any) {
       this.cmn.setLoading(true);
       this.newEducationScheduleSearchModel.deptNm = "";
       this.listSelectBoxDept = [];
       this.listSelectBoxDept = [
-        { id: 0, cdId: "", cdNm: this.t("common.select") },
+        { id: 0, cdId: "", cdNm: this.t("common.all") },
       ];
       if (data) {
         this.storeDepartment.deptRes?.forEach((element, index) => {

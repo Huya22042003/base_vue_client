@@ -5,49 +5,57 @@
         :pageTitle="pageTitle"
         :breadcrumbItems="breadcrumbItems"
       ></Breadcrumb>
-      <div class="search_box mg_b30">
-        <div class="search_section">
-          <div class="search_toggle sm">
-            <div class="left"></div>
-            <div class="right">
-              <div class="search_daywrap mg_r10">
-                <span class="tag">{{ t("lookupReport.list.year") }}</span>
-                  <InputBase
-                    :id="'deptSearch'"
-                    :name="'deptSearch'"
-                    v-model="searchModel.deptNm"
-                  />
+      <div class="box dp_block">
+        <div class="search_box">
+          <div class="search_section">
+            <div class="search_toggle lg center">
+              <div class="left"></div>
+              <div class="right">
+                <div class="search_daywrap mg_r10">
+                  <span class="tag">{{ t("curriculumManagement.dept") }}</span>
+                  <div class="">
+                    <InputBase
+                      :id="'deptSearch'"
+                      :name="'deptSearch'"
+                      v-model="searchModel.deptNm"
+                    />
+                  </div>
+                </div>
+                <div class="search_daywrap mg_r10">
+                  <span class="tag">{{ t("lookupReport.list.lesson") }}</span>
+                  <div class="">
+                    <InputBase
+                      :id="'taltNrtgTypeNmSearch'"
+                      :name="'taltNrtgTypeNmSearch'"
+                      v-model="searchModel.taltNrtgTypeNm"
+                    />
+                  </div>
+                </div>
+                <div class="search_daywrap mg_r10">
+                  <span class="tag">{{ t("lookupReport.list.regBy") }}</span>
+                  <div class="">
+                    <InputBase
+                      :id="'taltNrtgTypeNmSearch'"
+                      :name="'taltNrtgTypeNmSearch'"
+                      v-model="searchModel.taltNrtgTypeNm"
+                    />
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="btn_round btn_lg btn_primary mg_l10"
+                  @click="search"
+                >
+                  {{ t("lookupReport.list.search") }}
+                </button>
+                <button
+                  type="button"
+                  class="btn_round btn_lg btn_gray mg_l5"
+                  @click="reset"
+                >
+                  {{ t("lookupReport.list.reset") }}
+                </button>
               </div>
-              <div class="search_daywrap mg_r10">
-                <span class="tag">{{ t("lookupReport.list.lesson") }}</span>
-                  <InputBase
-                    :id="'taltNrtgTypeNmSearch'"
-                    :name="'taltNrtgTypeNmSearch'"
-                    v-model="searchModel.taltNrtgTypeNm"
-                  />
-              </div>
-              <div class="search_daywrap mg_r10">
-                <span class="tag">{{ t("lookupReport.list.regBy") }}</span>
-                  <InputBase
-                    :id="'jobNmSearch'"
-                    :name="'jobNmSearch'"
-                    v-model="searchModel.jobNm"
-                  />
-              </div>
-              <button
-                type="button"
-                class="btn_round btn_lg btn_primary mg_l10"
-                @click="search"
-              >
-                {{ t("lookupReport.list.search") }}
-              </button>
-              <button
-                type="button"
-                class="btn_round btn_lg btn_gray mg_l5"
-                @click="reset"
-              >
-                {{ t("lookupReport.list.reset") }}
-              </button>
             </div>
           </div>
         </div>
