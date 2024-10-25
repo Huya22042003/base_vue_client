@@ -102,19 +102,19 @@
           <div class="popup_footer">
             <button
               type="button"
-              class="button btn_xl btn_white popup_close"
-              @click="closeModal(false)"
-            >
-              <!-- 인재양성유형 삭제 -->
-              {{ t("common.close") }}
-            </button>
-            <button
-              type="button"
               class="button btn_xl btn_primary"
               @click="save()"
             >
               <!-- 저장 -->
               {{ t("common.save") }}
+            </button>
+            <button
+              type="button"
+              class="button btn_xl btn_white popup_close"
+              @click="closeModal(false)"
+            >
+              <!-- 인재양성유형 삭제 -->
+              {{ t("common.close") }}
             </button>
           </div>
         </div>
