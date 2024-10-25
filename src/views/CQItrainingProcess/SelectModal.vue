@@ -22,7 +22,7 @@
                   type="search"
                   class="form_style"
                   v-model="dataSearch.name"
-                  placeholder="보고 싶은 비교과 프로그램을 찾아보세요"
+                  placeholder="성명 또는 교번 검색"
                 />
                 <button type="button" class="btn_search btn_icon icon_only">
                   검색

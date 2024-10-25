@@ -18,7 +18,7 @@
             : ""
         }}
       </p>
-      <div class="tbl_col tbl">
+      <div v-if="analysisAchievementModel" class="tbl_col tbl">
         <table>
           <tbody>
             <tr>
@@ -162,6 +162,9 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div v-else class="no_cnt">
+        <p>데이터가 없습니다.</p>
       </div>
     </div>
     <div class="btn_group btn_end mg_t30">
