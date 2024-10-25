@@ -120,7 +120,7 @@ import type { JobScope } from "../../../stores/jobAbilityManagement/jobAbilityMa
 import {
   saveJobScope,
   detailJobScope,
-  upVerJobScope,
+  upVer,
 } from "../../../stores/jobAbilityManagement/jobAbilityManagement.service";
 
 export default {
@@ -178,7 +178,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           this.cmn.setLoading(true);
-          upVerJobScope(this.jobData)
+          upVer(this.jobData.jobAbilSeq)
             .then((res) => {
               this.back();
             })

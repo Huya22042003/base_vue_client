@@ -209,7 +209,7 @@
     "evaluationMethodMng": {
       "title": "평가방법 관리",
       "button": {
-        "register": "교수학습방법 등록",
+        "register": "평가방법 등록",
         "save": "저장",
         "close": "닫기",
         "cancel": "취소",
@@ -233,7 +233,7 @@
       "message": {
         "confirmSave": "저장하시겠어요?",
         "success": "정상처리됐습니다.",
-        "confirmDelete": "저장하시겠어요?",
+        "confirmDelete": "삭제하시겠어요?",
         "notDelete": "교육과정개발에 사용된 유형은 삭제할 수 없습니다.",
         "duplicate": "이미 등록된 교육학습방법입니다."
       }
@@ -4969,6 +4969,7 @@
     "pageTitleCrud": "직무역량 관리",
     "pageHistory": "개발 이력",
     "tab1": {
+      "alertChoice": "대중소세 분류 순서로 선택해주세요.",
       "titleTab": "01.직무역량(능력단위) 등록",
       "pageTitle": "직무역량(능력단위) 등록",
       "column1": "유형",
@@ -4987,7 +4988,7 @@
       "defaultSelect1": "대분류 선택",
       "defaultSelect2": "중분류 선택",
       "defaultSelect3": "소분류 선택",
-      "defaultSelect4": "세분류 선",
+      "defaultSelect4": "세분류 선택",
       "no": "없음",
       "confirmNextTab": "저장 후 다음단계로 이동하시겠어요?",
       "confirmVersionUp": "직무역량 버전을 올리기시겠어요?",
@@ -5423,8 +5424,8 @@
   },
   "createTrainingProcess" : {
     "title" : "교육과정CQI",
-    "tab1" : "탭제목 1",
-    "tab2" : "탭제목 2",
+    "tab1" : "교육과정 자체평가 개요(전공)",
+    "tab2" : "교육과정 자체평가 결과 및 개선계획(전공)",
     "tab3" : "탭제목 3"
   },
   "generalTab1": {
@@ -5570,6 +5571,7 @@
     },
     "table3": {
       "title": "3.교육과정 자체평가 목적",
+      "title1": "교육과정CQI 시행목적",
       "caption": "테이블제목",
       "content1": "대학과 학과의 교육목표에 따라 양질의 교육과정을 제공하기 위한 학과 차원의 지속적인 모니터링 시행",
       "content2": "교육과정의 체계적인 진단과 평가를 통해 학생의 역량(학습성과)을 향상시키고, 수업을 개선하는 등 교육의 선순환 체계 구축",

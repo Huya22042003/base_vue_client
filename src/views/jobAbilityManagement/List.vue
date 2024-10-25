@@ -486,9 +486,7 @@ export default {
     },
     getCodeType() {
       getCodeMngByUpCdId({ upCdId: UP_CD_NCS_KCS }).then((response: any) => {
-        response.data.data.forEach((item: any) => {
-          this.listCategory.push(item);
-        });
+        this.listCategory = response.data.data;
       });
     },
     exportExcel() {

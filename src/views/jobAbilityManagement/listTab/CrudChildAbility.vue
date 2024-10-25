@@ -29,7 +29,7 @@
               <button
                 type="button"
                 class="btn_round btn_gray btn_md"
-                @click="deleteChildAbility(indexChild)"
+                @click="deleteChildAbility(indexChild, childAbility)"
               >
                 {{
                   t("jobAbilityManagement.tab2.deleteChildAbility") +
@@ -119,7 +119,11 @@
                             type="button"
                             class="btn_round btn_sm btn_gray"
                             @click="
-                              deleteConductStandard(childAbility, indexConStant)
+                              deleteConductStandard(
+                                childAbility,
+                                indexConStant,
+                                conStan
+                              )
                             "
                           >
                             {{ t("common.delete") }}
@@ -251,7 +255,9 @@ import type {
 import {
   saveJobUnit,
   listJobUnit,
-  upVerUnit,
+  upVer,
+  checkPerform,
+  checkUnit,
 } from "../../../stores/jobAbilityManagement/jobAbilityManagement.service";
 import {
   STATUS_NO,
@@ -350,7 +356,7 @@ export default {
         }).then((result) => {
           if (result.isConfirmed) {
             this.cmn.setLoading(true);
-            upVerUnit(this.listJobCapaUnit)
+            upVer(this.jobAbilSeq)
               .then((res) => {
                 this.back();
               })
@@ -458,7 +464,36 @@ export default {
 
       this.listJobCapaUnit.push(newChildAbility);
     },
-    deleteChildAbility(indexChild: number): void {
+    async deleteChildAbility(indexChild: number, childAbility: any): void {
+      const result = await this.$swal({
+        text: "하위역량을 삭제하시겠어요?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: this.t("common.delete"),
+        cancelButtonText: this.t("common.cancel"),
+      });
+      if (!result.isConfirmed) return;
+
+      if (childAbility.jobCapaUnitSeq != "") {
+        this.cmn.setLoading(true);
+        const response = await checkUnit(childAbility.jobCapaUnitSeq);
+        this.cmn.setLoading(false);
+        if (response.data.data == true) {
+          this.updateCapaUnit(indexChild, childAbility);
+        } else {
+          this.$swal({
+            text: "활용된 하위역량은 삭제할 수 없습니다.",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonText: this.t("common.confirm"),
+            cancelButtonText: this.t("common.cancel"),
+          });
+        }
+      } else {
+        this.updateCapaUnit(indexChild, childAbility);
+      }
+    },
+    updateCapaUnit(indexChild: number, childAbility: any) {
       const child = this.listJobCapaUnit?.[indexChild];
       if (!child || !child.performList?.length) return;
 
@@ -485,6 +520,13 @@ export default {
           count++;
         }
       });
+      this.$swal({
+        text: "삭제되었습니다.",
+        type: "warning",
+        showCancelButton: false,
+        confirmButtonText: this.t("common.confirm"),
+        cancelButtonText: this.t("common.cancel"),
+      });
     },
     addConductStandard(childAbility: JobCapaUnit): void {
       const activeConductStandardsCount =
@@ -502,10 +544,44 @@ export default {
 
       childAbility.performList.push(newConductStandard);
     },
-    deleteConductStandard(
+    async deleteConductStandard(
       childAbility: JobCapaUnit,
-      indexConStant: number
-    ): void {
+      indexConStant: number,
+      conStan: any
+    ): Promise<void> {
+      const result = await this.$swal({
+        text: "수행준거를 삭제하시겠습니까?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: this.t("common.delete"),
+        cancelButtonText: this.t("common.cancel"),
+      });
+
+      if (!result.isConfirmed) return;
+
+      const conductStandard = childAbility.performList?.[indexConStant];
+      if (!conductStandard) return;
+
+      if (conStan.capaUnitPerformStnrdSeq != "") {
+        this.cmn.setLoading(true);
+        const response = await checkPerform(conStan.capaUnitPerformStnrdSeq);
+        this.cmn.setLoading(false);
+        if (response.data.data == true) {
+          this.updateConductStandard(childAbility, indexConStant);
+        } else {
+          this.$swal({
+            text: "활용된 수행준거를 삭제할 수 없습니다.",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonText: this.t("common.confirm"),
+            cancelButtonText: this.t("common.cancel"),
+          });
+        }
+      } else {
+        this.updateConductStandard(childAbility, indexConStant);
+      }
+    },
+    updateConductStandard(childAbility: JobCapaUnit, indexConStant: number) {
       const conductStandard = childAbility.performList?.[indexConStant];
       if (!conductStandard) return;
 
@@ -521,6 +597,13 @@ export default {
           standard.order = `${childAbility.order}.${count}`;
           count++;
         }
+      });
+      this.$swal({
+        text: "삭제되었습니다.",
+        type: "warning",
+        showCancelButton: false,
+        confirmButtonText: this.t("common.confirm"),
+        cancelButtonText: this.t("common.cancel"),
       });
     },
     getCodeUseYn() {

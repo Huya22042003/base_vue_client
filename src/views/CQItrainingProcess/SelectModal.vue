@@ -75,13 +75,13 @@ import {
 import { commonStore } from "@/stores/common";
 import { MESSAGE_ERROR_API } from "@/constants/common.const";
 import { SUCCSESS_STATUS } from "@/constants/screen.const";
-import { getSelectStaffType } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.service";
 import {
   SelectStaffFilterDTO,
   StaffInfoResDTO,
 } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.type";
 import { EduCourseCommResDTO } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.type";
 import { CD_INTERNAL } from "@/constants/common.const";
+import { getSelectStaffTypeCqi } from "@/stores/cqiTrainingProcess/overview/overview.service";
 
 export default {
   components: {
@@ -189,7 +189,7 @@ export default {
     },
     getAllData() {
       this.storeCommon.setLoading(true);
-      getSelectStaffType(this.dataSearch)
+      getSelectStaffTypeCqi(this.dataSearch)
         .then((res:any) => {
           if (res.status === SUCCSESS_STATUS) {
             this.totalRecord = res.data.data.totalElements;
