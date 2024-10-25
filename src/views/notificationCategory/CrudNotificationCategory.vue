@@ -10,13 +10,11 @@
             <h4 class="section_tit_xs">공지사항 등록</h4>
           </div>
 
-          <div class="tbl tbl_row">
-            <table class="tbl_row">
+          <div class="box_section tbl_row">
+            <table class="">
               <colgroup>
-                <col style="width: 20%" />
-                <col style="width: 40%" />
-                <col style="width: 20%" />
-                <col style="width: 40%" />
+                <col style="width: 15%" />
+                <col style="width: 85%" />
               </colgroup>
               <tbody>
                 <tr>
@@ -39,14 +37,21 @@
                   <th scope="row" class="required">
                     {{ t("09.notificationCategory.form.cont") }}
                   </th>
-                  <td colspan="3">
-                    <TextArea
+                  <td colspan="3" class="word_break">
+                    <QuillEditor
+                      :modules="modules"
+                      toolbar="full"
+                      class="quill-editor-custom"
+                      @editorChange="changeEditorDiagnosticGuide()"
+                      ref="diagnosticGuide"
+                    />
+                    <!-- <TextArea
                       :mode="mode"
                       v-model="notiCategoryDetailModel.cont"
                       :disabled="isDisableRadio"
                       required
                     >
-                    </TextArea>
+                    </TextArea> -->
                   </td>
                 </tr>
                 <tr>
@@ -186,9 +191,7 @@ import {
   countTop,
 } from "@/stores/notificationCategory/notificationCategory.service";
 import {
-  MODE_DETAIL,
   MODE_CREATE,
-  MODE_EDIT,
   MODE_SHOW,
   FILE_TYPE_OFFICE,
 } from "../../constants/screen.const";
@@ -198,6 +201,9 @@ import { commonStore } from "../../stores/common";
 import test from "node:test";
 import { SHOW_Y, SHOW_N, TOP_Y, TOP_N } from "../../constants/common.const";
 import { MESSAGE_ERROR_API } from "@/constants/common.const";
+import { QuillEditor } from "@vueup/vue-quill";
+import { uploadFileEditor } from "@/stores/common/fileMng/fileMng.service";
+import ImageUploader from "quill-image-uploader";
 
 export default defineComponent({
   components: {
@@ -211,6 +217,7 @@ export default defineComponent({
     LoaddingComponent,
     LinkGridComponent,
     InputFileBase,
+    QuillEditor,
   },
   setup() {
     const { t } = useI18n();
@@ -308,7 +315,36 @@ export default defineComponent({
     };
   },
   data() {
-    return {};
+    return {
+      modules: {
+        name: "imageUploader",
+        module: ImageUploader,
+        options: {
+          upload: (file: any) => {
+            return new Promise((resolve, reject) => {
+              if (!file) {
+                reject("Upload failed");
+              } else {
+                this.storeCommon.setLoading(true);
+                const formData = new FormData();
+                formData.append("file", file);
+                formData.append("category", "MEETING_REPORT_EDITER");
+                formData.append("orgName", "MEETING_REPORT_EDITER");
+                formData.append("sectionName", "MEETING_REPORT_EDITER");
+                uploadFileEditor(formData)
+                  .then((res) => {
+                    resolve(res.data.urlFile);
+                    this.storeCommon.setLoading(false);
+                  })
+                  .catch((err) => {
+                    reject("Upload failed");
+                  });
+              }
+            });
+          },
+        },
+      },
+    };
   },
   beforeMount() {
     this.modeScreen = this.$route.params.mode;
@@ -335,6 +371,9 @@ export default defineComponent({
           await findById(this.noticeIdRes)
             .then((res) => {
               this.notiCategoryDetailModel = res.data.data;
+              this.$refs.diagnosticGuide.setHTML(
+                this.notiCategoryDetailModel.cont
+              );
             })
             .catch((error) => {
               throw new Error(MESSAGE_ERROR_API);
@@ -509,6 +548,12 @@ export default defineComponent({
         confirmButtonText: "확인",
       });
     },
+    changeEditorDiagnosticGuide() {
+      this.notiCategoryDetailModel.cont = this.$refs.diagnosticGuide
+        .getHTML()
+        .toString()
+        .replace("<p><br></p>", "");
+    },
   },
   watch: {
     "notiCategoryDetailModel.ttl": {
@@ -543,4 +588,11 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.word_break {
+  word-break: break-word;
+}
+.ql-editor {
+  height: 120px;
+}
+</style>
