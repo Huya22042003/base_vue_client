@@ -8,14 +8,13 @@
   >
     <!-- Modal content goes here -->
     <template #title>
-      <div class="box_section">
-        <p class="box_title_sm" v-if="checkSetup == false">
-          {{ t("04.eduScheduleCreativeMng.newEducationSchedule.modal.title") }}
-        </p>
-        <p class="box_title_sm" v-if="checkSetup == true">
-          {{ t("04.eduScheduleCreativeMng.newEducationSchedule.modal.title2") }}
-        </p>
-      </div>
+      <strong>
+        {{
+          checkSetup
+            ? t("04.eduScheduleCreativeMng.newEducationSchedule.modal.title")
+            : t("04.eduScheduleCreativeMng.newEducationSchedule.modal.title2")
+        }}
+      </strong>
     </template>
     <template #default>
       <div class="box_section">
@@ -118,7 +117,7 @@
       <!-- Footer content goes here -->
       <button
         type="button"
-        class="button btn_xs btn_primary"
+        class="button btn_xl btn_primary"
         @click="confirmAction"
       >
         {{
@@ -127,7 +126,7 @@
       </button>
       <button
         type="button"
-        class="button btn_xs btn_white popup_close"
+        class="button btn_xl btn_white popup_close"
         @click="cancelAction"
       >
         {{

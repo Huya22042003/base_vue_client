@@ -44,6 +44,7 @@
                     "
                     :data="listSelectBoxMajor"
                     @update:modelValue="changSch"
+                    value-select-all="전체"
                   >
                   </SelectBoxBaseSearch>
                 </div>
@@ -62,6 +63,7 @@
                     :name="'faculty'"
                     v-model="newEducationScheduleSearchModel.deptNm"
                     :data="listSelectBoxDept"
+                    value-select-all="전체"
                   >
                   </SelectBoxBaseSearch>
                 </div>

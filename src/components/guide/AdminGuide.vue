@@ -1774,7 +1774,7 @@ export default {
     ] as Array<MultiHeaderData>,
     arrayColor: [{ color: "F15922", name: ["col1", "col2"] }],
     address: "",
-    postcode: ""
+    postcode: "",
   }),
   methods: {
     onclickEx1() {
@@ -1808,9 +1808,9 @@ export default {
           // Sau khi người dùng chọn địa chỉ, thông tin sẽ được trả về.
           this.address = data.address;
           this.postcode = data.zonecode;
-        }
+        },
       }).open();
-    }
+    },
   },
 };
 </script>

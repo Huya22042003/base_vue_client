@@ -18,7 +18,6 @@
                   v-model="notificationCategorySearchModel.ttl"
                   :id="'ctgHeading'"
                   :name="'ctgHeading'"
-                  placeholder="보고 싶은 비교과 프로그램을 찾아보세요"
                 >
                 </InputBase>
               </div>
@@ -47,7 +46,6 @@
                   v-model="notificationCategorySearchModel.regId"
                   :id="'ctgName'"
                   :name="'ctgName'"
-                  placeholder="보고 싶은 비교과 프로그램을 찾아보세요"
                 >
                 </InputBase>
               </div>
@@ -74,6 +72,9 @@
     </div>
 
     <div class="box dp_block">
+      <p class="note_custom mb-4">
+        {{ t("09.notificationCategory.search.subTitle") }}
+      </p>
       <div class="box_section">
         <GridComponentV2
           :rowData="rowData"
