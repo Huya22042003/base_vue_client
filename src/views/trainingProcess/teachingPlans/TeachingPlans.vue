@@ -54,14 +54,14 @@
             <div class="btn_group btn_end">
               <button
                 type="button"
-                class="button btn_xl btn_blue btn_responsive"
+                class="btn_round btn_lg btn_primary mg_l10"
                 @click="searchClick()"
               >
                 {{ t("common.search") }}
               </button>
               <button
                 type="button"
-                class="button btn_xl btn_lightgray btn_responsive"
+                class="btn_round btn_lg btn_gray mg_l5"
                 @click="reset()"
               >
                 {{ t("common.reset") }}
@@ -115,7 +115,10 @@ import {
 } from "@/stores/trainingProcess/teachingPlans/teachingPlans.service";
 import { MESSAGE_ERROR_API } from "@/constants/common.const";
 import { getListCodeMng } from "@/stores/common/codeMng/codeMng.service";
-import { UP_CD_ID_GRADE_LEVEL, UP_CD_ID_SEMESTER } from "@/constants/common.const";
+import {
+  UP_CD_ID_GRADE_LEVEL,
+  UP_CD_ID_SEMESTER,
+} from "@/constants/common.const";
 import { SUCCSESS_STATUS } from "@/constants/screen.const";
 import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 import { UP_CD_ID_WRITE } from "@/constants/common.const";
@@ -149,7 +152,7 @@ export default defineComponent({
         },
         {
           headerName: this.t("04.teachingPlans.table.term"),
-          field: "termCd",
+          field: "termNm",
           cellStyle: { textAlign: "center" },
           flex: 5,
         },
@@ -231,10 +234,10 @@ export default defineComponent({
       ] as OptionObject[],
       optionObject: {} as OptionObject,
       listStatus: [
-      {
+        {
           cdId: "",
           cdNm: this.t("common.all"),
-          upCdId: UP_CD_ID_WRITE
+          upCdId: UP_CD_ID_WRITE,
         },
       ],
       searchModel: {
@@ -253,14 +256,14 @@ export default defineComponent({
         {
           cdId: "",
           cdNm: this.t("common.all"),
-          upCdId: UP_CD_ID_SEMESTER
+          upCdId: UP_CD_ID_SEMESTER,
         },
       ] as Array<CodeMngModel>,
       listGrade: [
-      {
+        {
           cdId: "",
           cdNm: this.t("common.all"),
-          upCdId: UP_CD_ID_GRADE_LEVEL
+          upCdId: UP_CD_ID_GRADE_LEVEL,
         },
       ] as Array<CodeMngModel>,
     };
@@ -309,8 +312,7 @@ export default defineComponent({
         upCdIdList: [UP_CD_ID_SEMESTER, UP_CD_ID_GRADE_LEVEL, UP_CD_ID_WRITE],
       }).then((res) => {
         if (res.status == SUCCSESS_STATUS) {
-          res.data.data.forEach((item: { upCdId: any; cdId: any; }) => {
-          
+          res.data.data.forEach((item: { upCdId: any; cdId: any }) => {
             if (item.upCdId == UP_CD_ID_SEMESTER) {
               this.listTerm.push(item);
             }
@@ -336,7 +338,7 @@ export default defineComponent({
         };
         this.listYear.push(newOption);
       }
-    }
+    },
   },
 });
 </script>

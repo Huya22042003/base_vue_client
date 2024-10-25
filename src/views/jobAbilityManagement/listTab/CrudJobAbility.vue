@@ -344,19 +344,19 @@
       <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
         <button
           type="button"
+          class="btn_round btn_gray btn_md"
+          @click="saveVer"
+          v-if="modeScreen == modeDetail"
+        >
+          {{ t("jobAbilityManagement.tab1.btnVersionUp") }}
+        </button>
+        <button
+          type="button"
           class="btn_round btn_md btn_gray"
           v-if="modeScreen == modeDetail"
           @click="confirmEdit"
         >
           {{ t("jobAbilityManagement.tab1.update") }}
-        </button>
-        <button
-          type="button"
-          class="btn_round btn_primary btn_md"
-          @click="saveVer"
-          v-if="modeScreen == modeDetail"
-        >
-          {{ t("jobAbilityManagement.tab1.btnVersionUp") }}
         </button>
         <button
           type="button"
@@ -727,8 +727,14 @@ export default {
       if (result.isConfirmed) {
         this.cmn.setLoading(true);
         upVer(this.jobAbilSeq)
-          .then((res) => {
-            this.back();
+          .then(async (res) => {
+            await this.$swal({
+              text: "직무역량 버전을 올리기가 되었습니다.",
+              type: "warning",
+              showCancelButton: false,
+              confirmButtonText: this.t("common.confirm"),
+            });
+            await this.back();
           })
           .catch((error) => {
             if (

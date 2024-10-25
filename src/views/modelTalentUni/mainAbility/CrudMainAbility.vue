@@ -309,7 +309,7 @@ export default defineComponent({
       this.dataForm.coreAbilityResDTOList = this.convertToNested(
         this.lowerGradeForm
       );
-      this.dataForm.coreAbilityResDTOList.push({
+      this.dataForm.coreAbilityResDTOList.unshift({
         coreAbilitySeq: "",
         coreAbilityNm: "",
         defn: "",

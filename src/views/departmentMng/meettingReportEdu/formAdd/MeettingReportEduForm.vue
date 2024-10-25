@@ -225,23 +225,25 @@
                     {{ t("departmentMng.meettingReportEdu.form.listTeacher") }}
                   </p>
                 </th>
-                <th>
+                <th class="border_td ta_c">
                   {{ t("departmentMng.meettingReportEdu.form.category") }}
                 </th>
-                <th>{{ t("departmentMng.meettingReportEdu.form.name") }}</th>
-                <th>
+                <th class="border_td ta_c">
+                  {{ t("departmentMng.meettingReportEdu.form.name") }}
+                </th>
+                <th class="border_td ta_c">
                   {{ t("departmentMng.meettingReportEdu.form.position") }}
                 </th>
-                <th>
+                <th class="border_td ta_c">
                   {{ t("departmentMng.meettingReportEdu.form.department") }}
                 </th>
-                <th>
+                <th class="border_td ta_c">
                   {{ t("departmentMng.meettingReportEdu.form.management") }}
                 </th>
               </tr>
               <!-- Tearch -->
               <tr v-for="(teacher, index) in listTeacher" :key="index">
-                <td class="wd_p15">
+                <td class="wd_p15 border_td">
                   <SelectBoxBase
                     :id="`participant_${index}`"
                     :name="`participant_${index}`"
@@ -251,7 +253,7 @@
                   >
                   </SelectBoxBase>
                 </td>
-                <td>
+                <td class="wd_p17 border_td">
                   <div class="dp_flex w-full" v-if="teacher.divCd == teacherCd">
                     <div class="mr-5 flex-[7] wd_p85">
                       <InputBase
@@ -279,7 +281,7 @@
                     />
                   </div>
                 </td>
-                <td v-if="teacher.divCd == teacherCd">
+                <td class="wd_p17 border_td" v-if="teacher.divCd == teacherCd">
                   {{ teacher.position }}
                 </td>
                 <td v-else>
@@ -289,14 +291,14 @@
                     required
                   />
                 </td>
-                <td class="wd_p17">
+                <td class="wd_p17 border_td">
                   <InputBase
                     :id="`teacherDepart_${index}`"
                     v-model="teacher.department"
                     required
                   />
                 </td>
-                <td>
+                <td class="wd_p8 border_td">
                   <button
                     v-if="index == 0"
                     class="button btn_xs btn_medium_gray border_medium_gray bo_rd6 font_base_2"
@@ -332,6 +334,7 @@
                     :sectionName="'meeting_report'"
                     :multiple="true"
                     :maxFile="3"
+                    :subTitle="'※ 10mb 이하의 파일 세 개 등록 가능합니다.'"
                   />
                 </td>
               </tr>
@@ -355,27 +358,35 @@
         </div>
 
         <div class="box_section">
-          <div class="btn_area">
-            <button type="button" class="btn_xs btn_blue">
-              <!-- 인쇄 -->
+          <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
+            <button
+              type="button"
+              v-if="modeScreen == 'detail'"
+              class="btn_round btn_gray btn_md"
+            >
               {{ t("common.print") }}
             </button>
-            <!-- :disabled="storeCommon.check" -->
-            <button type="button" class="btn_xs btn_blue" @click="save()">
-              <!-- 저장 -->
+            <button
+              type="button"
+              class="btn_round btn_primary btn_md"
+              @click="save()"
+            >
               {{ t("common.save") }}
             </button>
             <button
               v-if="modeScreen == 'detail'"
               type="button"
-              class="btn_xs btn_blue"
+              class="btn_round btn_gray btn_md"
               @click="updateDeleteFlag()"
             >
               <!-- 작제 -->
               {{ t("common.delete") }}
             </button>
-            <button type="button" class="btn_xs btn_white" @click="back()">
-              <!-- 목록 -->
+            <button
+              type="button"
+              class="btn_round btn_white btn_md"
+              @click="back()"
+            >
               {{ t("common.list") }}
             </button>
           </div>
@@ -402,7 +413,7 @@ import {
   MODE_SHOW,
   SUCCSESS_STATUS,
   MODE_CREATE,
-  FILE_TYPE_IMAGE,
+  FILE_TYPE_OFFICE,
 } from "@/constants/screen.const";
 import GridComponent from "@/components/common/grid/GridComponent.vue";
 import { SCREEN } from "@/router/screen";
@@ -523,7 +534,7 @@ export default {
       },
       modefile: MODE_CREATE,
       fileImage: [],
-      fileTypeImg: FILE_TYPE_IMAGE,
+      fileTypeImg: FILE_TYPE_OFFICE,
       listSelectBoxDept: [] as Array<any>,
       listSelectBoxJob: [] as Array<any>,
       listSelectBoxParti: [] as Array<any>,
@@ -727,7 +738,7 @@ export default {
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
-        confirmButtonText: this.t("common.save"),
+        confirmButtonText: this.t("common.delete"),
         cancelButtonText: this.t("common.cancel"),
       }).then((result) => {
         if (result.isConfirmed) {
@@ -917,7 +928,9 @@ export default {
       const endMinute = parseInt(this.timeMinuteEnd);
 
       if (startHour && endHour && startHour > endHour) {
-        this.showAlert(this.t("departmentMng.meettingReportEdu.message.validateTime"));
+        this.showAlert(
+          this.t("departmentMng.meettingReportEdu.message.validateTime")
+        );
         this.timeHourEnd = this.timeHourStr;
         return;
       }
@@ -928,7 +941,9 @@ export default {
         endMinute &&
         startMinute > endMinute
       ) {
-        this.showAlert(this.t("departmentMng.meettingReportEdu.message.validateTime"));
+        this.showAlert(
+          this.t("departmentMng.meettingReportEdu.message.validateTime")
+        );
         this.timeMinuteEnd = this.timeMinuteStr;
         return;
       }
@@ -954,5 +969,8 @@ export default {
 <style lang="scss">
 .ql-editor {
   height: 120px;
+}
+.border_td {
+  border: 1px solid var(--light-blue-gray);
 }
 </style>

@@ -23,6 +23,8 @@
       "list": "목록"
     },
     "message" : {
+      "deleteFile": "첨부파일을 삭제하시겠어요?",
+      "deleteFileOk": "삭제됐습니다.",
       "save" : "저장하시겠어요?",
       "saveSuccess" : "정상처리됐습니다.",
       "deleteSuccess" : "삭제됐습니다",
@@ -1786,9 +1788,9 @@
         "dept": "학과/학부",
         "yearEdu": "학년도",
         "topic": "회의주제",
-        "userRegis": "등록자",
-        "dateGegis": "등록일",
-        "btnCreate": "등록"
+        "userRegis": "작성자",
+        "dateGegis": "작성일",
+        "btnCreate": "회의록 등록"
       },
       "form": {
         "title": "회의록 관리",
@@ -3101,7 +3103,7 @@
         "category": "제목",
         "regBy": "접수자",
         "status": "상태",
-        "regDate": "접수기간",
+        "regDate": "접수일",
         "ansBy": "답변자"
       },
       "table": {
@@ -3122,7 +3124,7 @@
       "regBy": "접수자 성명",
       "regCode": "접수자 교번",
       "regDept": "접수자 소속",
-      "qusCont": "내용",
+      "qusCont": "문의 내용",
       "file": "첨부파일",
       "ansTtl3": "답변 및 답변자 정보",
       "ansCont": "답변 내용",
@@ -3415,7 +3417,7 @@
       "title": "강의계획서 조회",
       "searchBox": {
         "year": "개설년도",
-        "subject": "과목명",
+        "subject": "교과목명",
         "professor": "담당교수",
         "yearLearn": "교육과정 학년도",
         "status": "작성상태",
@@ -3428,7 +3430,7 @@
         "semester": "개설년도-학기",
         "university": "단과대학",
         "dept": "학과 ",
-        "subject": "과목명",
+        "subject": "교과목명",
         "status": "이수구분",
         "grade": "학년",
         "division": "분반",

@@ -116,6 +116,7 @@
                     :orgName="ansName"
                     :category="ansName"
                     :sectionName="fileTypeOffice"
+                    :subTitle="'※ 30MB 이하의 파일 하나만 등록이 가능합니다.'"
                   ></InputFileBase>
                 </td>
               </tr>
