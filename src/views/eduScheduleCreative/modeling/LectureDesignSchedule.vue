@@ -7,7 +7,7 @@
           <div class="search_box col_3">
             <ul>
               <li>
-                <p class="ta_c">
+                <p>
                   {{ t("lectureDesignSchedule.list.year") }}
                 </p>
                 <SelectBoxBase
@@ -19,7 +19,7 @@
                 </SelectBoxBase>
               </li>
               <li>
-                <p class="ta_c">
+                <p>
                   {{ t("lectureDesignSchedule.list.term") }}
                 </p>
                 <SelectBoxBase
@@ -31,17 +31,18 @@
                 </SelectBoxBase>
               </li>
               <li>
-                <p class="ta_c">
+                <p>
                   {{ t("lectureDesignSchedule.list.subjectName") }}
                 </p>
                 <InputBase
                   :id="'subjectName'"
                   :name="'subjectName'"
                   v-model="searchData.sbjtNm"
+                  class="form_style"
                 />
               </li>
               <li>
-                <p class="ta_c">
+                <p>
                   {{ t("lectureDesignSchedule.list.planStatus") }}
                 </p>
                 <SelectBoxBase
@@ -53,7 +54,7 @@
                 </SelectBoxBase>
               </li>
               <li>
-                <p class="ta_c">
+                <p>
                   {{ t("lectureDesignSchedule.list.evaluationStatus") }}
                 </p>
                 <SelectBoxBase
@@ -65,7 +66,7 @@
                 </SelectBoxBase>
               </li>
               <li>
-                <p class="ta_c">
+                <p>
                   {{ t("lectureDesignSchedule.list.subjectCqiStatus") }}
                 </p>
                 <SelectBoxBase
@@ -77,7 +78,7 @@
                 </SelectBoxBase>
               </li>
               <li>
-                <p class="ta_c">
+                <p>
                   {{ t("lectureDesignSchedule.list.syllabusStatus") }}
                 </p>
                 <SelectBoxBase
@@ -315,7 +316,12 @@ export default defineComponent({
           headerName: this.t("lectureDesignSchedule.form.syllabusStatus"),
           field: "stsLectNm",
           flex: 1,
-          cellStyle: { textAlign: "center" },
+          cellStyle: (params: any) => {
+            return {
+              textAlign: "center",
+              color: params.value === "작성완료" ? "green" : "inherit",
+            };
+          },
         },
         {
           headerName: this.t("lectureDesignSchedule.form.evalPlanPeriod"),
@@ -337,7 +343,12 @@ export default defineComponent({
           headerName: this.t("lectureDesignSchedule.form.evalPlanStatus"),
           field: "stsEvalNm",
           flex: 1,
-          cellStyle: { textAlign: "center" },
+          cellStyle: (params: any) => {
+            return {
+              textAlign: "center",
+              color: params.value === "작성완료" ? "green" : "inherit",
+            };
+          },
         },
         {
           headerName: this.t("lectureDesignSchedule.form.evalPeriod"),
@@ -357,7 +368,12 @@ export default defineComponent({
           headerName: this.t("lectureDesignSchedule.form.evalStatus"),
           field: "stsJobCapaNm",
           flex: 1,
-          cellStyle: { textAlign: "center" },
+          cellStyle: (params: any) => {
+            return {
+              textAlign: "center",
+              color: params.value === "작성완료" ? "green" : "inherit",
+            };
+          },
         },
         {
           headerName: this.t("lectureDesignSchedule.form.subjectCQI"),
@@ -375,7 +391,12 @@ export default defineComponent({
           headerName: this.t("lectureDesignSchedule.form.cqiStatus"),
           field: "stsCqiNm",
           flex: 1,
-          cellStyle: { textAlign: "center" },
+          cellStyle: (params: any) => {
+            return {
+              textAlign: "center",
+              color: params.value === "작성완료" ? "green" : "inherit",
+            };
+          },
         },
         {
           headerName: this.t("lectureDesignSchedule.form.regId"),
@@ -400,7 +421,7 @@ export default defineComponent({
         page: 1,
         size: 10,
         sort: "",
-        year: this.currentYear,
+        year: "",
         lectSts: "",
         evalSts: "",
         jobSts: "",
@@ -412,6 +433,10 @@ export default defineComponent({
       termAdd: "",
       listSelectBoxSchoolYear: [
         {
+          cdId: "",
+          cdNm: this.t("common.select"),
+        },
+        {
           cdId: this.currentYear.toString(),
           cdNm: this.currentYear.toString(),
         },
@@ -420,7 +445,12 @@ export default defineComponent({
           cdNm: (this.currentYear + 1).toString(),
         },
       ],
-      listSelectBoxSemester: [],
+      listSelectBoxSemester: [
+        {
+          cdId: "",
+          cdNm: this.t("common.select"),
+        },
+      ],
       checkData: false,
       upCdIdList: [],
       listStsLect: [
@@ -549,9 +579,14 @@ export default defineComponent({
       this.openModal("type3");
     },
     search() {
-      this.checkData = true;
-      this.searchData.page = 1;
-      this.key++;
+      if (this.searchData.year == "" || this.searchData.termCd == "") {
+        this.checkData = false;
+        return;
+      } else {
+        this.checkData = true;
+        this.searchData.page = 1;
+        this.key++;
+      }
     },
     formatDate(date: any) {
       const originalDate = new Date(date);
@@ -619,10 +654,14 @@ export default defineComponent({
         });
     },
     reset() {
-      this.searchData.year = this.currentYear;
+      this.searchData.year = "";
       this.searchData.termCd = this.searchData.termCd =
         this.listSelectBoxSemester[0].cdId;
       this.searchData.sbjtNm = "";
+      this.searchData.lectSts = "";
+      this.searchData.evalSts = "";
+      this.searchData.jobSts = "";
+      this.searchData.cqiSts = "";
     },
   },
 });

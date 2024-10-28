@@ -278,6 +278,7 @@
                               v-model="teacher.divCd"
                               :data="listSelectBoxParti"
                               required
+                              @change="changeTypeSelect(index)"
                             >
                             </SelectBoxBase>
                           </td>
@@ -300,7 +301,7 @@
                                   class="button btn_xs btn_medium_gray border_medium_gray bo_rd6 font_base_2"
                                   @click="openModalAddTeach(index)"
                                 >
-                                  {{ t("common.add") }}
+                                  {{ t("common.select") }}
                                 </button>
                               </div>
                             </div>
@@ -754,7 +755,7 @@ export default {
     openModalAddTeach(index: number) {
       this.teacherIndexSelected = index;
       this.lstTeacherId = this.listTeacher
-        .filter((item) => item.id != "")
+        .filter((item) => item.id != "" && item.divCd == CD_ID_MEET_ATTE1)
         .map((item) => item.id);
       this.isOpenModalAddTeacher = true;
     },
@@ -989,6 +990,12 @@ export default {
         return;
       }
     },
+    changeTypeSelect(index: any) {
+      this.listTeacher[index].id = "";
+      this.listTeacher[index].name = "";
+      this.listTeacher[index].position = "";
+      this.listTeacher[index].department = "";
+    },
   },
   watch: {
     "dataForm.bsinesDivCd"(newVal) {
@@ -1007,8 +1014,53 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .ql-editor {
   height: 120px;
+}
+.tbl table tbody td,
+.tbl table tbody th {
+  border-left: 1px solid var(--dark1);
+  border-right: 1px solid var(--dark1);
+  vertical-align: middle;
+}
+
+.tbl table thead th {
+  border-left: 1px solid var(--gray-lavender);
+  border-right: 1px solid var(--gray-lavender);
+  border-bottom: 1px solid var(--gray-lavender);
+}
+
+.tbl table thead tr:last-child th,
+.tbl table thead tr th[rowspan] {
+  border-bottom: none !important;
+}
+
+.tbl table thead th:first-child {
+  border-left: 1px solid var(--dark1);
+}
+
+.tbl table thead th:last-child {
+  border-right: 1px solid var(--dark1);
+}
+
+.tbl_row table tbody th {
+  padding: 18px 6px !important;
+  background: var(--dark1);
+  color: var(--white-color);
+}
+
+.td_custom_color {
+  background-color: var(--dark1);
+  color: white;
+  border: 1px solid white !important;
+}
+
+.td_custom_color:first-child {
+  border-left: 1px solid var(--dark1) !important;
+}
+
+.td_custom_color:last-child {
+  border-right: 1px solid var(--dark1) !important;
 }
 </style>

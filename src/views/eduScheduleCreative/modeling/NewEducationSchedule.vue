@@ -7,7 +7,7 @@
           <div class="search_box col_3">
             <ul>
               <li>
-                <p class="ta_c">
+                <p>
                   {{
                     t(
                       "04.eduScheduleCreativeMng.newEducationSchedule.search.schoolYear"
@@ -23,7 +23,7 @@
                 </SelectBoxBase>
               </li>
               <li>
-                <p class="ta_c">
+                <p>
                   {{
                     t(
                       "04.eduScheduleCreativeMng.newEducationSchedule.search.specializedUniversity"
@@ -43,7 +43,7 @@
                 </SelectBoxBaseSearch>
               </li>
               <li>
-                <p class="ta_c">
+                <p>
                   {{
                     t(
                       "04.eduScheduleCreativeMng.newEducationSchedule.search.faculty"
@@ -276,10 +276,6 @@ export default defineComponent({
       this.newEducationScheduleSearchModel.specializedUniversity = "";
       this.newEducationScheduleSearchModel.deptNm = "";
       this.listSelectBoxDept = "";
-      console.log(
-        this.newEducationScheduleSearchModel.specializedUniversity,
-        this.newEducationScheduleSearchModel.deptNm
-      );
       this.newEducationScheduleSearchModel.year = new Date().getFullYear() + "";
       this.listSelectBoxDept = [
         { id: 0, cdId: "", cdNm: this.t("common.all") },

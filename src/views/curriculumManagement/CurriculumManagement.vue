@@ -7,12 +7,12 @@
           <div class="search_box col_3">
             <ul>
               <li>
-                <p class="ta_c">{{ t("curriculumManagement.dept") }}</p>
-                <InputBase :id="'dept'" v-model="searchData.deptNm" />
+                <p>{{ t("curriculumManagement.dept") }}</p>
+                <InputBase :id="'dept'" v-model="searchData.deptNm" class="form_style"/>
               </li>
               <li>
-                <p class="ta_c">{{ t("curriculumManagement.training") }}</p>
-                <InputBase :id="'training'" v-model="searchData.currNm" />
+                <p>{{ t("curriculumManagement.training") }}</p>
+                <InputBase :id="'training'" v-model="searchData.currNm" class="form_style"/>
               </li>
             </ul>
             <div class="search_btnarea">
