@@ -22,15 +22,19 @@
               :name="'eduCourseCqiAttachFile'"
               :type="'office'"
               :referKey="eduCourseCqiSeq"
-              :mode="mode"
+              :mode="'edit'"
               :multiple="true"
               :maxFile="100000"
               ref="childRefUpLoad"
               :orgName="'EDU_COURSE_CQI'"
               :category="'EDU_COURSE_CQI'"
               :sectionName="'EDU_COURSE_CQI'"
+              :showMess="false"
+              :subTitle="'※ 10mb 이하의 파일만 등록 가능합니다. '"
+              v-model="modelValue"
             >
             </InputFileBase>
+            <span v-if="modelValue && modelValue.length == 0">선택된 파일이 없습니다.</span>
           </td>
         </tr>
       </tbody>
@@ -53,6 +57,7 @@ const state = window.history.state;
 const { eduCourseCqiSeq, status } = state;
 
 const mode = ref<string>();
+const modelValue = ref<[]>([]);
 
 if (status != STS_EDU_CQI_SUCCESS) {
   mode.value = MODE_EDIT;

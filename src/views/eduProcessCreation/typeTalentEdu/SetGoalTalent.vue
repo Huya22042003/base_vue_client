@@ -71,7 +71,7 @@
             <col style="width: auto" />
             <col style="width: 10%" />
             <col style="width: 10%" />
-            <col style="width: 20%" v-if="data.eduCourseType && !data.eduCourseType.includes(EDU_TYPE_OTHER)"/>
+            <col style="width: 20%" v-if="data.eduCourseType && data.eduCourseType.includes(EDU_TYPE_OTHER)"/>
           </colgroup>
           <thead>
             <tr>
@@ -113,7 +113,7 @@
               <th scope="row" class="ta_c" :colspan="1">
                 <!-- 결과 -->{{ t("eduProcessCreation.typeTalentEdu.title56") }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1" v-if="data.eduCourseType && !data.eduCourseType.includes(EDU_TYPE_OTHER)">
+              <th scope="row" class="ta_c" :colspan="1" v-if="data.eduCourseType && data.eduCourseType.includes(EDU_TYPE_OTHER)">
                 <!-- 전공 선택 -->{{
                   t("eduProcessCreation.typeTalentEdu.title57")
                 }}
@@ -201,7 +201,7 @@
                     : t("eduProcessCreation.use")
                 }}
               </td>
-              <td scope="row" :colspan="1" v-if="data.eduCourseType && !data.eduCourseType.includes(EDU_TYPE_OTHER)">
+              <td scope="row" :colspan="1" v-if="data.eduCourseType && data.eduCourseType.includes(EDU_TYPE_OTHER)">
                 <SelectBoxBase
                   :id="`major_${index}`"
                   :name="`major_${index}`"
@@ -297,7 +297,7 @@ export default defineComponent({
         this.listMajorCd.unshift({
           id: 0,
           cdId: "",
-          cdNm: this.t("common.all"),
+          cdNm: this.t("common.select"),
         });
       });
       await getTaltNrtgSel({ eduCourseSeq: this.id })
@@ -339,12 +339,12 @@ export default defineComponent({
         return;
       }
 
-      if (!this.data.eduCourseType.includes(EDU_TYPE_OTHER) && !this.validateTaltNrtgSel()) {
+      if (this.data.eduCourseType.includes(EDU_TYPE_OTHER) && !this.validateTaltNrtgSel()) {
         this.$alert("하나 이상의 인재양성유형이 선정되어야 합니다");
         return;
       }
 
-      if (!this.data.eduCourseType.includes(EDU_TYPE_OTHER) && !this.validateTaltNrtgSelMajor()) {
+      if (this.data.eduCourseType.includes(EDU_TYPE_OTHER) && !this.validateTaltNrtgSelMajor()) {
         this.$alert(this.t("common.messageValidateRequired"));
         return;
       }
