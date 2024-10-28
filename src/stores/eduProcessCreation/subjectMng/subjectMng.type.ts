@@ -75,6 +75,7 @@ export type SubMngRateCoreAbilityModel = {
 export type SubMngCoreAbilityModel = {
   coreAbilitySeq: string;
   coreAbilityNm: string;
+  countChildAbility: number;
 };
 
 export type SubMngChildAbilityModel = {
