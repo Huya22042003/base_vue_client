@@ -2,80 +2,53 @@
   <div class="page_wrapper">
     <section id="content" class="content_wrapper grid_content" tabindex="0">
       <Breadcrumb :pageTitle="pageTitle" :breadcrumbItems="breadcrumbItems" />
-      <div class="search_box mg_b30">
-        <div class="search_section">
-          <div class="search_toggle sm">
-            <div class="left"></div>
-            <div class="right">
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("09.questAndAns.searchBox.category")
-                }}</span>
-                <div>
-                  <InputBase :id="'content'" v-model="searchModel.qusTtl" />
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("09.questAndAns.searchBox.status")
-                }}</span>
-                <div>
-                  <SelectBoxBase
-                    :id="'selectbox'"
-                    :name="'selectbox'"
-                    :data="listSelectBox"
-                    v-model="searchModel.stsCd"
-                  ></SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("09.questAndAns.searchBox.regBy")
-                }}</span>
-                <div>
-                  <InputBase :id="'regBy'" v-model="searchModel.regId" />
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("09.questAndAns.searchBox.ansBy")
-                }}</span>
-                <div>
-                  <InputBase :id="'ansBy'" v-model="searchModel.ansId" />
-                </div>
-              </div>
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("09.questAndAns.searchBox.regDate")
-                }}</span>
-                <div>
-                  <BaseDatePicker :placeholder="'시작일'" v-model="startDate" />
-                </div>
-              </div>
-              <div class="search_daywrap mg_r10 mg_t10">
-                <div>
-                  <BaseDatePicker :placeholder="'종료일'" v-model="endDate" />
-                </div>
-              </div>
-              <div class="search_daywrap mg_r10 mg_t10">
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_primary mg_l10"
-                  @click="searchClick()"
-                >
-                  {{ t("09.questAndAns.button.search") }}
-                </button>
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_gray mg_l5"
-                  @click="reset()"
-                >
-                  {{ t("09.questAndAns.button.reset") }}
-                </button>
-              </div>
+      <div class="box dp_block">
+        <div class="box_section">
+          <div class="search_box col_3">
+            <ul>
+              <li>
+                <p class="ta_c">{{ t("09.questAndAns.searchBox.category") }}</p>
+                <InputBase :id="'content'" v-model="searchModel.qusTtl" />
+              </li>
+              <li>
+                <p class="ta_c">{{ t("09.questAndAns.searchBox.status") }}</p>
+                <SelectBoxBase
+                  :id="'selectbox'"
+                  :name="'selectbox'"
+                  :data="listSelectBox"
+                  v-model="searchModel.stsCd"
+                ></SelectBoxBase>
+              </li>
+              <li>
+                <p class="ta_c">{{ t("09.questAndAns.searchBox.regBy") }}</p>
+                <InputBase :id="'regBy'" v-model="searchModel.regId" />
+              </li>
+              <li>
+                <p class="ta_c">{{ t("09.questAndAns.searchBox.ansBy") }}</p>
+                <InputBase :id="'ansBy'" v-model="searchModel.ansId" />
+              </li>
+              <li>
+                <p class="ta_c">{{ t("09.questAndAns.searchBox.regDate") }}</p>
+                <BaseDatePicker :placeholder="'시작일'" v-model="startDate" />
+                ~
+                <BaseDatePicker :placeholder="'종료일'" v-model="endDate" />
+              </li>
+            </ul>
+            <div class="search_btnarea">
+              <button
+                type="button"
+                class="btn_round btn_lg btn_primary mg_l10"
+                @click="searchClick()"
+              >
+                {{ t("common.search") }}
+              </button>
+              <button
+                type="button"
+                class="btn_round btn_lg btn_gray mg_l5"
+                @click="reset()"
+              >
+                {{ t("common.reset") }}
+              </button>
             </div>
           </div>
         </div>

@@ -2,131 +2,112 @@
   <div class="page_wrapper">
     <section id="content" class="content_wrapper grid_content" tabindex="0">
       <Breadcrumb :pageTitle="pageTitle"></Breadcrumb>
-      <div class="search_box mg_b30">
-        <div class="search_section">
-          <div class="search_toggle sm">
-            <div class="left"></div>
-            <div class="right">
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.year")
-                }}</span>
-                <div class="">
-                  <SelectBoxBase
-                    :id="'year'"
-                    :name="'year'"
-                    :data="listSelectBoxSchoolYear"
-                    v-model="searchData.year"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.term")
-                }}</span>
-                <div class="">
-                  <SelectBoxBase
-                    :id="'term'"
-                    :name="'term'"
-                    :data="listSelectBoxSemester"
-                    v-model="searchData.termCd"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.subjectName")
-                }}</span>
-                <div class="">
-                  <InputBase
-                    :id="'subjectName'"
-                    :name="'subjectName'"
-                    v-model="searchData.sbjtNm"
-                  />
-                </div>
-              </div>
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.planStatus")
-                }}</span>
-                <div class="">
-                  <SelectBoxBase
-                    :id="'planStatus'"
-                    :name="'planStatus'"
-                    :data="listStsLect"
-                    v-model="searchData.lectSts"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.evaluationStatus")
-                }}</span>
-                <div class="">
-                  <SelectBoxBase
-                    :id="'evaluationStatus'"
-                    :name="'evaluationStatus'"
-                    :data="listStsEval"
-                    v-model="searchData.evalSts"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.subjectCqiStatus")
-                }}</span>
-                <div class="">
-                  <SelectBoxBase
-                    :id="'subjectCqiStatus'"
-                    :name="'subjectCqiStatus'"
-                    :data="listStsJob"
-                    v-model="searchData.jobSts"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.syllabusStatus")
-                }}</span>
-                <div class="">
-                  <SelectBoxBase
-                    :id="'syllabusStatus'"
-                    :name="'syllabusStatus'"
-                    :data="listStsCqi"
-                    v-model="searchData.cqiSts"
-                  />
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_primary mg_l10"
-                  @click="search"
+      <div class="box dp_block">
+        <div class="box_section">
+          <div class="search_box col_3">
+            <ul>
+              <li>
+                <p class="ta_c">
+                  {{ t("lectureDesignSchedule.list.year") }}
+                </p>
+                <SelectBoxBase
+                  :id="'year'"
+                  :name="'year'"
+                  :data="listSelectBoxSchoolYear"
+                  v-model="searchData.year"
                 >
-                  {{ t("lectureDesignSchedule.list.search") }}
-                </button>
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_gray mg_l5"
-                  @click="reset"
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p class="ta_c">
+                  {{ t("lectureDesignSchedule.list.term") }}
+                </p>
+                <SelectBoxBase
+                  :id="'term'"
+                  :name="'term'"
+                  :data="listSelectBoxSemester"
+                  v-model="searchData.termCd"
                 >
-                  {{ t("lectureDesignSchedule.list.reset") }}
-                </button>
-              </div>
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p class="ta_c">
+                  {{ t("lectureDesignSchedule.list.subjectName") }}
+                </p>
+                <InputBase
+                  :id="'subjectName'"
+                  :name="'subjectName'"
+                  v-model="searchData.sbjtNm"
+                />
+              </li>
+              <li>
+                <p class="ta_c">
+                  {{ t("lectureDesignSchedule.list.planStatus") }}
+                </p>
+                <SelectBoxBase
+                  :id="'planStatus'"
+                  :name="'planStatus'"
+                  :data="listStsLect"
+                  v-model="searchData.lectSts"
+                >
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p class="ta_c">
+                  {{ t("lectureDesignSchedule.list.evaluationStatus") }}
+                </p>
+                <SelectBoxBase
+                  :id="'evaluationStatus'"
+                  :name="'evaluationStatus'"
+                  :data="listStsEval"
+                  v-model="searchData.evalSts"
+                >
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p class="ta_c">
+                  {{ t("lectureDesignSchedule.list.subjectCqiStatus") }}
+                </p>
+                <SelectBoxBase
+                  :id="'subjectCqiStatus'"
+                  :name="'subjectCqiStatus'"
+                  :data="listStsJob"
+                  v-model="searchData.jobSts"
+                >
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p class="ta_c">
+                  {{ t("lectureDesignSchedule.list.syllabusStatus") }}
+                </p>
+                <SelectBoxBase
+                  :id="'syllabusStatus'"
+                  :name="'syllabusStatus'"
+                  :data="listStsCqi"
+                  v-model="searchData.cqiSts"
+                />
+              </li>
+            </ul>
+            <div class="search_btnarea">
+              <button
+                type="button"
+                class="btn_round btn_lg btn_primary mg_l10"
+                @click="search"
+              >
+                {{ t("common.search") }}
+              </button>
+              <button
+                type="button"
+                class="btn_round btn_lg btn_gray mg_l5"
+                @click="reset"
+              >
+                {{ t("common.reset") }}
+              </button>
             </div>
           </div>
         </div>
       </div>
+
       <div class="box">
         <div class="box_section">
           <p v-if="!checkData" class="box_title_sm center">

@@ -267,9 +267,9 @@ export default {
           this.$swal({
             text: this.t("common.message.saveSuccess"),
             type: "success",
-            showCancelButton: true,
-            showConfirmButton: false,
-            cancelButtonText: this.t("common.confirm"),
+            showCancelButton: false,
+            showConfirmButton: true,
+            confirmButtonText: this.t("common.confirm"),
           }).then(() => {
             this.onClose();
             this.fetchData()
