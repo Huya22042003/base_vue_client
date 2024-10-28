@@ -10,7 +10,7 @@
           <div class="search_box col_3">
             <ul>
               <li>
-                <p class="ta_c">{{ t("jobAbilityManagement.search1") }}</p>
+                <p>{{ t("jobAbilityManagement.search1") }}</p>
                 <SelectBoxBase
                   id="type"
                   name="type"
@@ -21,7 +21,7 @@
                 </SelectBoxBase>
               </li>
               <li>
-                <p class="ta_c">{{ t("jobAbilityManagement.search2") }}</p>
+                <p>{{ t("jobAbilityManagement.search2") }}</p>
                 <SelectBoxBase
                   :id="'bigClassCd'"
                   name="'bigClassCd'"
@@ -34,7 +34,7 @@
                 </SelectBoxBase>
               </li>
               <li>
-                <p class="ta_c">{{ t("jobAbilityManagement.search3") }}</p>
+                <p>{{ t("jobAbilityManagement.search3") }}</p>
                 <SelectBoxBase
                   :id="'medClassCd'"
                   name="'medClassCd'"
@@ -47,7 +47,7 @@
                 </SelectBoxBase>
               </li>
               <li>
-                <p class="ta_c">{{ t("jobAbilityManagement.search4") }}</p>
+                <p>{{ t("jobAbilityManagement.search4") }}</p>
                 <SelectBoxBase
                   :id="'smallClassCd'"
                   name="'smallClassCd'"
@@ -60,7 +60,7 @@
                 </SelectBoxBase>
               </li>
               <li>
-                <p class="ta_c">{{ t("jobAbilityManagement.search5") }}</p>
+                <p>{{ t("jobAbilityManagement.search5") }}</p>
                 <SelectBoxBase
                   :id="'detailClassCd'"
                   name="'detailClassCd'"
@@ -73,8 +73,8 @@
                 </SelectBoxBase>
               </li>
               <li>
-                <p class="ta_c">{{ t("jobAbilityManagement.search6") }}</p>
-                <InputBase v-model="searchModel.jobAbilNm" />
+                <p>{{ t("jobAbilityManagement.search6") }}</p>
+                <InputBase v-model="searchModel.jobAbilNm" class="form_style" />
               </li>
             </ul>
             <div class="search_btnarea">
