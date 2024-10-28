@@ -26,7 +26,9 @@
                     :disabled="checkTab('One')"
                   />
                   <label for="radio_1">{{
-                    t("createTrainingProcess.tab1")
+                    mode === "major"
+                      ? t("createTrainingProcess.tab1")
+                      : t("createTrainingProcess.tab3")
                   }}</label>
                 </p>
                 <p class="radio_tab_lg">
@@ -38,7 +40,9 @@
                     :disabled="checkTab('Two')"
                   />
                   <label for="radio_2">{{
-                    t("createTrainingProcess.tab2")
+                    mode === "major"
+                      ? t("createTrainingProcess.tab2")
+                      : t("createTrainingProcess.tab4")
                   }}</label>
                 </p>
               </div>
@@ -111,7 +115,10 @@
             </template>
             <template v-else>
               <button
-              v-if="status != STS_EDU_CQI_SUCCESS" class="button btn_md btn_primary ml-4" @click="saveData">
+                v-if="status != STS_EDU_CQI_SUCCESS"
+                class="button btn_md btn_primary ml-4"
+                @click="saveData"
+              >
                 {{ t("common.save") }}
               </button>
             </template>
@@ -231,12 +238,19 @@ const saveTemp = () => {
       dataResult.value = generalTab2Ref.value.getData();
     }
   }
-
-  proxy.$confirm(
-    t("common.message.confirmSaveTemp"),
-    "",
-    (isConfirm: Boolean) => {
-      if (isConfirm) {
+  proxy
+    .$swal({
+      title: "",
+      html: t("common.message.confirmSaveTemp"),
+        confirmButtonColor: "#5D87FF",
+        showCancelButton: true,
+        cancelButtonColor: "#fff",
+        reverseButtons: true,
+        confirmButtonText: t("common.confirm"),
+        cancelButtonText: t("common.cancel"),
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
         store.setLoading(true);
         const dataSave = {
           eduCursCqiSeq: "",
@@ -257,12 +271,14 @@ const saveTemp = () => {
             store.setLoading(false);
           });
       }
-    }
-  );
+    });
 };
 
 const saveData = () => {
-  if (eduCourseTypeCd == CD_TYPE_BACHELOR || eduCourseTypeCd == CD_TYPE_SPECIAL) {
+  if (
+    eduCourseTypeCd == CD_TYPE_BACHELOR ||
+    eduCourseTypeCd == CD_TYPE_SPECIAL
+  ) {
     if (store.check) {
       proxy.$alert(proxy.$t("common.messageValidateRequired"));
       return;
@@ -284,7 +300,7 @@ const saveData = () => {
       dataResult.value = generalTab2Ref.value.getData();
     }
   }
-  
+
   proxy.$confirm(t("common.message.save"), "", (isConfirm: Boolean) => {
     if (isConfirm) {
       store.setLoading(true);
@@ -342,4 +358,9 @@ const handleRedirectMenu = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.radio_tab_lg label {
+  white-space: nowrap;
+  max-width: 100%;
+}
+</style>

@@ -13,7 +13,7 @@
       </strong>
     </template>
     <template #default>
-      <div class="tbl_row tbl">
+      <div class="tbl_col">
         <table class="">
           <caption></caption>
           <colgroup>
@@ -290,6 +290,7 @@ export default {
 </script>
 
 <style scoped>
+@import url("../eduCourseCustom.css");
 .note {
   color: red;
 }

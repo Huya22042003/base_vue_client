@@ -9,6 +9,7 @@
               id="radio_round1"
               @change="stageChild < 21 ? '' : tabChange2(21)"
               :checked="tabCheck == 21 ? true : false"
+              :disabled="stageChild < 21"
             />
             <label for="radio_round1">
               <!-- 2-1. 내부환경 분석 -->{{
@@ -22,6 +23,7 @@
               id="radio_round2"
               @change="stageChild < 22 ? '' : tabChange2(22)"
               :checked="tabCheck == 22 ? true : false"
+              :disabled="stageChild < 22"
             />
             <label for="radio_round2">
               <!-- 2-2. 외부환경 분석 -->{{
@@ -35,6 +37,7 @@
               id="radio_round3"
               @change="stageChild < 23 ? '' : tabChange2(23)"
               :checked="tabCheck == 23 ? true : false"
+              :disabled="stageChild < 23"
             />
             <label for="radio_round3">
               <!-- 2-3. 요구분석 및 시사점 도출 -->{{
@@ -48,6 +51,7 @@
               id="radio_round4"
               @change="stageChild < 24 ? '' : tabChange2(24)"
               :checked="tabCheck == 24 ? true : false"
+              :disabled="stageChild < 24"
             />
             <label for="radio_round4">
               <!-- 2-4. 교육과정 개선방향 도출 -->{{
@@ -126,7 +130,7 @@ export default {
     },
     updateStage(stage: number) {
       this.stageChild = stage;
-      if (stage > 25) {
+      if (stage > 24) {
         this.$emit("updateStage", stage)
       }
     },

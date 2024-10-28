@@ -258,9 +258,9 @@
                       </th>
                       <td scope="row" :colspan="1">
                         <RadiobuttonBase
-                          v-for="(item, index) in listClassOnline"
-                          :value="dataSubject.remoteClassYn"
-                          v-model="radiovalue2"
+                          v-for="(item, index) in listLecture"
+                          :value="item.cdId"
+                          v-model="dataSubject.otherDeptCoursePsblYn"
                           :id="`otherDeptCoursePsblYn_${index}`"
                           :name="`otherDeptCoursePsblYn`"
                           :key="`otherDeptCoursePsblYn_${index}`"
@@ -280,8 +280,8 @@
                       <td scope="row" :colspan="1">
                         <RadiobuttonBase
                           v-for="(item, index) in listClassOnline"
-                          :value="dataSubject.remoteClassYn"
-                          v-model="radiovalue2"
+                          :value="item.cdId"
+                          v-model="dataSubject.remoteClassYn"
                           :id="`classOnline_${index}`"
                           :name="`classOnline`"
                           :key="`classOnline_${index}`"

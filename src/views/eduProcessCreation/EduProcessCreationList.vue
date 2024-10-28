@@ -547,7 +547,7 @@ export default defineComponent({
           id: this.dataSel?.eduCursSeq,
           version: this.dataSel?.version,
           first: false,
-          isSave: true,
+          isSave: this.dataSel?.stsCd != STATUS_EDU_COURSE,
         },
       });
     },
@@ -561,7 +561,7 @@ export default defineComponent({
           id: this.dataSel?.eduCursSeq,
           version: this.dataSel?.version,
           first: true,
-          isSave: true,
+          isSave: this.dataSel?.stsCd != STATUS_EDU_COURSE,
         },
       });
     },
@@ -628,14 +628,10 @@ export default defineComponent({
       this.disableButtonUpversion = true;
     },
     handleVersionUp() {
-      const eduCourseSeq = this.listCheckBoxGrid[0];
-      const foundEduProcess = this.eduProcessCreationList.find(
-        (item) => item.eduCursSeq === eduCourseSeq
-      );
-      const versionCd = foundEduProcess?.version;
+      const versionCd = this.dataSelectRadio?.version;
 
       this.$swal({
-        title: "알림",
+        title: "",
         html: `${
           "V" + (Number(versionCd?.charAt(1)) + 1)
         } 버전을 올리시겠어요?`,
@@ -651,7 +647,7 @@ export default defineComponent({
           versionUpEduCourse({ eduCourseSeq: this.dataSelectRadio.eduCursSeq })
             .then((res) => {
               this.$swal({
-                title: "알림",
+                title: "",
                 html: "버전을 올리기가 성공되었습니다.",
                 confirmButtonText: this.t("common.confirm"),
               }).then((result) => {
@@ -686,7 +682,7 @@ export default defineComponent({
     },
     confirmDelete() {
       this.$swal({
-        title: "알림",
+        title: "",
         html: this.t("common.message.confirmDelete"),
         confirmButtonColor: "#5D87FF",
         showCancelButton: true,
@@ -705,7 +701,7 @@ export default defineComponent({
       deleteEduCourse([this.dataSelectRadio.eduCursSeq]).then((res) => {
         this.storeCommon.setLoading(false);
         this.$swal({
-          title: "알림",
+          title: "",
           html: this.t("common.message.deleteSuccess"),
           confirmButtonText: this.t("common.confirm"),
         }).then((result) => {
