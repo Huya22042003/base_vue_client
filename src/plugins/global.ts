@@ -3,7 +3,8 @@ import { App } from "vue";
 
 const alert = (_text: string, _title?: string, callback?: () => void) => {
   Swal.fire({
-    title: (_title ?? "") === "" ? "알림" : _title,
+    // title: (_title ?? "") === "" ? "알림" : _title,
+    title: "",
     html: _text,
     confirmButtonColor: "#5D87FF",
     reverseButtons: true,
@@ -17,7 +18,8 @@ const alert = (_text: string, _title?: string, callback?: () => void) => {
 
 const confirm = (_text: string, _title: string, callback: Function) => {
   Swal.fire({
-    title: (_title ?? "") === "" ? "알림" : _title,
+    // title: (_title ?? "") === "" ? "알림" : _title,
+    title: "",
     html: _text,
     confirmButtonColor: "#5D87FF",
     showCancelButton: true,
