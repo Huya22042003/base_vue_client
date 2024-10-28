@@ -301,7 +301,7 @@
                                   class="button btn_xs btn_medium_gray border_medium_gray bo_rd6 font_base_2"
                                   @click="openModalAddTeach(index)"
                                 >
-                                  {{ t("common.add") }}
+                                  {{ t("common.select") }}
                                 </button>
                               </div>
                             </div>
