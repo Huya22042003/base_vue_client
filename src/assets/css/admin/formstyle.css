@@ -2414,3 +2414,7 @@ input[type="search"]::-webkit-search-decoration {
     min-width: 20px;
   }
 }
+
+.box .search_box  {
+  margin-bottom: 0;
+}
