@@ -5,35 +5,36 @@
         :pageTitle="pageTitle"
         :breadcrumbItems="breadcrumbItems"
       ></Breadcrumb>
-      <div class="search_box mg_b30">
-        <div class="search_section">
-          <div class="search_toggle sm">
-            <div class="left"></div>
-            <div class="right">
-              <div class="search_daywrap mg_r10">
-                <span class="tag wd_100">{{ t("jobManagement.dept") }}</span>
+      <div class="box dp_block">
+        <div class="box_section">
+          <div class="search_box col_3">
+            <ul>
+              <li>
+                <p class="ta_c">{{ t("jobManagement.dept") }}</p>
                 <InputBase
                   :id="'deptSearch'"
                   :name="'deptSearch'"
                   v-model="searchModel.deptNm"
                 />
-              </div>
-              <div class="search_daywrap mg_r10">
-                <span class="tag wd_120">{{ t("jobManagement.talt") }}</span
-                ><InputBase
+              </li>
+              <li>
+                <p class="ta_c">{{ t("jobManagement.talt") }}</p>
+                <InputBase
                   :id="'taltNrtgTypeNmSearch'"
                   :name="'taltNrtgTypeNmSearch'"
                   v-model="searchModel.taltNrtgTypeNm"
                 />
-              </div>
-              <div class="search_daywrap mg_r10">
-                <span class="tag wd_35">{{ t("jobManagement.jobNm") }}</span
-                ><InputBase
+              </li>
+              <li>
+                <p class="ta_c">{{ t("jobManagement.jobNm") }}</p>
+                <InputBase
                   :id="'jobNmSearch'"
                   :name="'jobNmSearch'"
                   v-model="searchModel.jobNm"
                 />
-              </div>
+              </li>
+            </ul>
+            <div class="search_btnarea">
               <button
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"

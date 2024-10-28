@@ -201,12 +201,13 @@ export default {
     },
 
     handleTeacher(data: any) {
+      console.log("===", data)
       this.$swal({
-        text: this.t('departmentMng.meettingReportEdu.message.selectStudent'),
+        text: `${data.userNm} ${data.posi}을/를 선택하시겠습니까?`,
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
-        confirmButtonText: this.t('common.save'),
+        confirmButtonText: this.t('common.select'),
         cancelButtonText: this.t('common.cancel'),
       })
         .then((result) => {

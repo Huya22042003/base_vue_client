@@ -3,41 +3,33 @@
     <section id="content" class="content_wrapper grid_content" tabindex="0">
       <Breadcrumb :pageTitle="pageTitle"></Breadcrumb>
       <div class="box dp_block">
-        <div class="search_box">
-          <div class="search_section">
-            <div class="search_toggle lg center">
-              <div class="left"></div>
-              <div class="right">
-                <div class="search_daywrap mg_r10">
-                  <span class="tag">{{ t("curriculumManagement.dept") }}</span>
-                  <div class="">
-                    <InputBase :id="'dept'" v-model="searchData.deptNm" />
-                  </div>
-                </div>
-                <div class="search_daywrap mg_r10">
-                  <span class="tag">{{
-                    t("curriculumManagement.training")
-                  }}</span>
-                  <div class="">
-                    <InputBase :id="'training'" v-model="searchData.currNm" />
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_primary mg_l10"
-                  @click="searchClick"
-                >
-                  {{ t("common.title.search") }}
-                </button>
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_gray mg_l5"
-                  @click="reset"
-                >
-                  {{ t("common.reset") }}
-                </button>
-              </div>
+        <div class="box_section">
+          <div class="search_box col_3">
+            <ul>
+              <li>
+                <p class="ta_c">{{ t("curriculumManagement.dept") }}</p>
+                <InputBase :id="'dept'" v-model="searchData.deptNm" />
+              </li>
+              <li>
+                <p class="ta_c">{{ t("curriculumManagement.training") }}</p>
+                <InputBase :id="'training'" v-model="searchData.currNm" />
+              </li>
+            </ul>
+            <div class="search_btnarea">
+              <button
+                type="button"
+                class="btn_round btn_lg btn_primary mg_l10"
+                @click="searchClick"
+              >
+                {{ t("common.search") }}
+              </button>
+              <button
+                type="button"
+                class="btn_round btn_lg btn_gray mg_l5"
+                @click="reset"
+              >
+                {{ t("common.reset") }}
+              </button>
             </div>
           </div>
         </div>

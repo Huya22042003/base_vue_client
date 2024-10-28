@@ -87,8 +87,11 @@
       </div>
     </template>
   </div>
-  <p v-if="showMess && mode != modeDetail" style="color: red">
+  <p v-if="showMess && mode != modeDetail && showMessFlag" style="color: red">
     * 파일 교체 시 기존 파일 삭제 후 새로운 파일을 업로드 해주세요.
+  </p>
+  <p v-if="showMess && mode != modeDetail &&  !showMessFlag" style="color: red">
+    * 등록된 파일이 없습니다.
   </p>
   <p class="file_sub_title" v-if="subTitle">{{ subTitle }}</p>
   <form ref="fileForm" v-if="mode != modeDetail && !defaultFlag">
@@ -165,6 +168,10 @@ export default {
     },
     subTitle: String,
     className: String,
+    maxSize : {
+      type: Number,
+      default : 10
+    }
   },
   setup() {
     const {t} = useI18n();
@@ -208,6 +215,7 @@ export default {
       modalIdModify: "modalIdModify",
       modalOpenModify: false,
       isDisable: false,
+      showMessFlag : false
     };
   },
   methods: {
@@ -271,6 +279,12 @@ export default {
             this.isDisable = true;
           }
         }
+        if(this.fileUploadedInfo.length == 0){
+          this.showMessFlag = false
+      }
+      else {
+          this.showMessFlag = true
+      }
         this.$emit("update:modelValue", this.fileUploadedInfo);
       }
     },
@@ -336,10 +350,10 @@ export default {
           fileUpload.name = item.name
           fileUpload.file = item
 
-          if (item.size > 10 * 1024 * 1024) {
-            this.errorMessage = '10mb 이하의 파일 등록가능합니다.'
+          if (item.size > this.maxSize * 1024 * 1024) {
+            this.errorMessage = `${this.maxSize}mb 이하의 파일 등록가능합니다.`
             Swal.fire({
-              text: '10mb 이하의 파일 등록가능합니다.',
+              text: `${this.maxSize}mb 이하의 파일 등록가능합니다.`,
               showCancelButton: false,
               confirmButtonText: this.t('common.confirm'),
             });
@@ -355,6 +369,12 @@ export default {
           this.isDisable = true
         }
       }
+      if(this.fileArray.length == 0){
+          this.showMessFlag = false
+      }
+      else {
+          this.showMessFlag = true
+      }
       this.$emit('update:modelValue', this.fileArray)
     },
     removeFile(fileName) {
@@ -365,6 +385,12 @@ export default {
         this.isShow = false;
       }
       this.isDisable = false;
+      if(this.fileArray.length == 0){
+          this.showMessFlag = false
+      }
+      else {
+          this.showMessFlag = true
+      }
       this.$emit("update:modelValue", this.fileArray);
     },
     async deleteFile(fileName, id) {
@@ -375,6 +401,12 @@ export default {
           showCancelButton: false,
           confirmButtonText: this.t('common.confirm'),
       });
+      if(this.fileUploadedInfo.length == 0){
+          this.showMessFlag = false
+      }
+      else {
+          this.showMessFlag = true
+      }
       this.isDisable = false
     }
   }

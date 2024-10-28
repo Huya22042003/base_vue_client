@@ -1,5 +1,4 @@
 <template>
-
   <div class="page_wrapper">
     <section id="content" class="content_wrapper grid_content" tabindex="0">
       <Breadcrumb
@@ -213,7 +212,7 @@ export default defineComponent({
       dataDeleteCore: [] as Array<any>,
       dataDeleteChild: [] as Array<any>,
       checkRequired: "",
-      statusY: STATUS_YES
+      statusY: STATUS_YES,
     };
   },
   setup() {
@@ -309,7 +308,7 @@ export default defineComponent({
       this.dataForm.coreAbilityResDTOList = this.convertToNested(
         this.lowerGradeForm
       );
-      this.dataForm.coreAbilityResDTOList.unshift({
+      this.dataForm.coreAbilityResDTOList.push({
         coreAbilitySeq: "",
         coreAbilityNm: "",
         defn: "",
@@ -343,6 +342,7 @@ export default defineComponent({
     },
     async onSave() {
       this.store.setLoading(true);
+
       this.dataForm.coreAbilityResDTOList = this.convertToNested(
         this.lowerGradeForm
       );
@@ -360,6 +360,7 @@ export default defineComponent({
       ) {
         createCoreAbility(listDTO).then((res) => {
           if (res.status && res.status == CREATED_STATUS) {
+            this.store.setLoading(false);
             Swal.fire({
               text: this.t("02.coreChildAbility.alert.saveSuccess"),
               type: "warning",
@@ -372,9 +373,12 @@ export default defineComponent({
                 this.getList();
               }
             });
+          } else {
+            this.store.setLoading(false);
           }
         });
       } else {
+        this.store.setLoading(false);
         Swal.fire({
           text: this.t("02.coreChildAbility.alert.checkDuplicate"),
           type: "warning",
@@ -386,7 +390,6 @@ export default defineComponent({
           }
         });
       }
-      this.store.setLoading(false);
     },
     showAlertSave() {
       if (!this.store.check) {
