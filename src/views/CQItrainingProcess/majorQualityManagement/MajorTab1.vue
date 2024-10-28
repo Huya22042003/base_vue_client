@@ -695,7 +695,7 @@
                     class="button btn_sm btn_white"
                     @click="openModal(index)"
                   >
-                    {{ t("common.delete") }}
+                    {{ t("common.select") }}
                   </button>
                 </div>
               </div>
