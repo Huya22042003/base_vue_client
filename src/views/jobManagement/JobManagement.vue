@@ -10,27 +10,30 @@
           <div class="search_box col_3">
             <ul>
               <li>
-                <p class="ta_c">{{ t("jobManagement.dept") }}</p>
+                <p>{{ t("jobManagement.dept") }}</p>
                 <InputBase
                   :id="'deptSearch'"
                   :name="'deptSearch'"
                   v-model="searchModel.deptNm"
+                  class="form_style"
                 />
               </li>
               <li>
-                <p class="ta_c">{{ t("jobManagement.talt") }}</p>
+                <p>{{ t("jobManagement.talt") }}</p>
                 <InputBase
                   :id="'taltNrtgTypeNmSearch'"
                   :name="'taltNrtgTypeNmSearch'"
                   v-model="searchModel.taltNrtgTypeNm"
+                  class="form_style"
                 />
               </li>
               <li>
-                <p class="ta_c">{{ t("jobManagement.jobNm") }}</p>
+                <p>{{ t("jobManagement.jobNm") }}</p>
                 <InputBase
                   :id="'jobNmSearch'"
                   :name="'jobNmSearch'"
                   v-model="searchModel.jobNm"
+                  class="form_style"
                 />
               </li>
             </ul>

@@ -184,7 +184,7 @@ import {PAGINATION_PAGE_1, PAGINATION_PAGE_SIZE} from "@/constants/screen.const"
 import {USER_INFO} from "@/constants/common.const";
 import LoadingComponent from "@/components/common/loading/LoaddingComponent.vue";
 import InputBase from "@/components/common/input/InputBase.vue";
-
+import {checkFlagStore} from "@/stores/common/checkRole"
 export default {
   computed: {
     SCREEN() {
@@ -209,6 +209,7 @@ export default {
     const totalRows = ref<number>(0)
     const numberPages = ref<number>(0)
     const display = true
+    const roleStore = checkFlagStore()
     const searchModel = ref<ProfSearchModel>({
       userId: '',
       name: '',
@@ -262,8 +263,9 @@ export default {
           });
     }
 
-    function handleNextScreen(screenName: string) {
+   async function handleNextScreen(screenName: string) {
       if (screenName && SCREEN[screenName] && SCREEN[screenName].path) {
+        await roleStore.checkRole(screenName)
         router.push({path: SCREEN[screenName].path})
         const bodyTag = document.body
         bodyTag.classList.remove("gnb");
@@ -317,7 +319,8 @@ export default {
       handleLogout,
       getDataProfs,
       fnPagination,
-      isLoad
+      isLoad,
+      roleStore
     }
   },
 

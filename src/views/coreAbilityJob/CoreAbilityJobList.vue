@@ -7,21 +7,23 @@
           <div class="search_box col_3">
             <ul>
               <li>
-                <p class="ta_c">{{ t("coreAbilityJobList.coreAbility") }}</p>
+                <p>{{ t("coreAbilityJobList.coreAbility") }}</p>
                 <InputBase
                   :id="'content'"
                   v-model="searchModel.coreAbilityNm"
+                  class="form_style"
                 />
               </li>
               <li>
-                <p class="ta_c">{{ t("coreAbilityJobList.lowerLever") }}</p>
+                <p>{{ t("coreAbilityJobList.lowerLever") }}</p>
                 <InputBase
                   :id="'content'"
                   v-model="searchModel.chldAbilityNm"
+                  class="form_style"
                 />
               </li>
               <li>
-                <p class="ta_c">{{ t("coreAbilityJobList.status") }}</p>
+                <p>{{ t("coreAbilityJobList.status") }}</p>
                 <SelectBoxBase
                   :id="'selectbox'"
                   :name="'selectbox'"

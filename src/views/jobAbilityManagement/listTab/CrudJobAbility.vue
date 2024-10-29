@@ -833,12 +833,26 @@ export default {
         orderNo: "",
         upCd: "",
       };
+      const defaultItemTow = {
+        cdId: "",
+        cdNm: this.t("jobAbilityManagement.tab1.defaultSelect3"),
+        orderNo: "",
+        upCd: "",
+      };
+      const defaultItemThree = {
+        cdId: "",
+        cdNm: this.t("jobAbilityManagement.tab1.defaultSelect4"),
+        orderNo: "",
+        upCd: "",
+      };
       switch (selectBoxId) {
         case "bigClassCd":
           defaultItemOne.cdNm = this.t(
             "jobAbilityManagement.tab1.defaultSelect2"
           );
           this.listMedClass = [defaultItemOne];
+          this.listSmallClass = [defaultItemTow];
+          this.listDetailClass = [defaultItemThree];
           this.jobAbilityCrudModel.jobCapaMediumLevel = "";
           this.jobAbilityCrudModel.jobCapaLowLevel = "";
           this.jobAbilityCrudModel.jobCapaDetailLevel = "";
@@ -872,6 +886,7 @@ export default {
             "jobAbilityManagement.tab1.defaultSelect3"
           );
           this.listSmallClass = [defaultItemOne];
+          this.listDetailClass = [defaultItemThree];
           this.jobAbilityCrudModel.jobCapaLowLevel = "";
           this.jobAbilityCrudModel.jobCapaDetailLevel = "";
           this.selectedOrders.smallClassCd = "";
