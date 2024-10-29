@@ -215,7 +215,7 @@
       </div>
     </div>
     <div class="btn_group btn_end mg_t30">
-      <button
+      <!-- <button
         v-if="isSave"
         type="button"
         class="btn_round btn_md btn_gray"
@@ -223,15 +223,30 @@
         :disabled="saveType === cdSave"
       >
         {{ t("common.saveTemp") }}
-      </button>
-      <button
+      </button> -->
+      <ButtonBase
+        v-if="isSave"
+        type="button"
+        class="btn_round btn_md btn_gray"
+        :buttonName="t('common.saveTemp')"
+        @click="confirmSaveTemp"
+        :disabled="saveType === cdSave"
+      ></ButtonBase>
+      <!-- <button
         v-if="isSave"
         type="button"
         class="btn_round btn_md btn_primary"
         @click="confirmSave"
       >
         {{ t("common.save") }}
-      </button>
+      </button> -->
+      <ButtonBase
+        v-if="isSave"
+        type="button"
+        class="btn_round btn_md btn_primary"
+        :buttonName="t('common.save')"
+        @click="confirmSave"
+      ></ButtonBase>
       <button
         type="button"
         class="btn_round btn_md btn_primary"
