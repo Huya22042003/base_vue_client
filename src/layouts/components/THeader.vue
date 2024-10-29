@@ -80,6 +80,7 @@
           <tr>
             <td class="td_input">
               <InputBase
+                  class="form_style"
                   :id="'name'"
                   :name="'name'"
                   v-model="searchModel.name"
@@ -88,6 +89,7 @@
             </td>
             <td class="td_input">
               <InputBase
+                  class="form_style"
                   :id="'name'"
                   :name="'name'"
                   v-model="searchModel.userId"
@@ -103,7 +105,7 @@
                   @click="searchClick()"
           >{{ t("common.search") }}</button>
           <button type="button"
-                  class="btn_lg btn_round btn_white"
+                  class="btn_lg btn_round btn_gray"
                   @click="reset()"
           >{{ t("common.reset") }}</button>
         </div>
