@@ -19,26 +19,26 @@
               </li>
               <li>
                 <p>{{ t("10.historyMenuAccess.searchBox.user") }}</p>
-                <InputBase :id="'userId'" v-model="hisMenuAccessRequest.user" />
+                <InputBase class="form_style" :id="'userId'" v-model="hisMenuAccessRequest.user" />
               </li>
               <li>
                 <p>{{ t("10.historyMenuAccess.searchBox.name") }}</p>
-                <InputBase :id="'name'" v-model="hisMenuAccessRequest.name" />
+                <InputBase class="form_style" :id="'name'" v-model="hisMenuAccessRequest.name" />
               </li>
               <li>
                 <p>{{ t("10.historyMenuAccess.searchBox.menuNm") }}</p>
-                <InputBase :id="'menuNm'" v-model="hisMenuAccessRequest.menuNm" />
+                <InputBase class="form_style" :id="'menuNm'" v-model="hisMenuAccessRequest.menuNm" />
               </li>
             </ul>
             <div class="search_btnarea">
               <button
-                  class="button btn_xl btn_blue btn_responsive"
+                  class="button btn_lg btn_blue btn_responsive"
                   @click="searchClick()"
               >
                 {{ t("common.search") }}
               </button>
               <button
-                  class="button btn_xl btn_gray btn_responsive"
+                  class="button btn_lg btn_gray btn_responsive"
                   @click="reset()"
               >
                 {{ t("common.reset") }}
@@ -141,26 +141,22 @@ export default defineComponent({
         {
           headerName: t("10.historyMenuAccess.table.userId"),
           field: "userId",
-          cellStyle: { textAlign: "center" },
-          flex: 4,
+          flex: 3,
         },
         {
           headerName: t("10.historyMenuAccess.table.name"),
           field: "name",
-          cellStyle: { textAlign: "center" },
           flex: 4,
         },
         {
           headerName: t("10.historyMenuAccess.table.menuNm"),
           field: "menuNm",
-          cellStyle: { textAlign: "center" },
           flex: 5,
         },
         {
           headerName: t("10.historyMenuAccess.table.url"),
           field: "url",
-          cellStyle: { textAlign: "center" },
-          flex: 4,
+          flex: 5,
         },
       ],
 
