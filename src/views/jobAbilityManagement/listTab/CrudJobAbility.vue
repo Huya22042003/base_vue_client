@@ -343,22 +343,20 @@
       <!-- up_Ver_Start -->
 
       <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
-        <button
-          type="button"
+        <ButtonBase
           class="btn_round btn_gray btn_md"
+          :buttonName="t('jobAbilityManagement.tab1.btnVersionUp')"
           @click="saveVer"
           v-if="modeScreen == modeDetail"
         >
-          {{ t("jobAbilityManagement.tab1.btnVersionUp") }}
-        </button>
-        <button
-          type="button"
+        </ButtonBase>
+        <ButtonBase
           class="btn_round btn_md btn_gray"
-          v-if="modeScreen == modeDetail"
+          :buttonName="t('jobAbilityManagement.tab1.update')"
           @click="confirmEdit"
+          v-if="modeScreen == modeDetail"
         >
-          {{ t("jobAbilityManagement.tab1.update") }}
-        </button>
+        </ButtonBase>
         <button
           type="button"
           class="btn_round btn_primary btn_md"
@@ -411,10 +409,12 @@ import { SCREEN } from "../../../router/screen";
 import InputFileBase from "@/components/common/input/InputFileBase.vue";
 import { useI18n } from "vue-i18n";
 import { KCS_CD_ID, UP_CD_NCS_KCS } from "@/constants/common.const";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   components: {
     InputFileBase,
+    ButtonBase,
   },
   setup() {
     const cmn = commonStore();

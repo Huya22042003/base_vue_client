@@ -88,13 +88,12 @@
       </table>
     </template>
     <template #footer>
-      <button
-        type="button"
+      <ButtonBase
         class="button btn_md btn_primary"
+        :buttonName="t('02.eduCourseTypeMng.button.save')"
         @click="showAlert()"
       >
-        {{ t("02.eduCourseTypeMng.button.save") }}
-      </button>
+      </ButtonBase>
       <button type="button" class="button btn_md btn_white" @click="closeModal">
         {{ t("02.eduCourseTypeMng.button.close") }}
       </button>
@@ -121,7 +120,12 @@ import type {
   EduIdModel,
 } from "@/stores/eduCourseType/eduCourse.type";
 import Swal from "sweetalert2";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
+
 export default defineComponent({
+  components: {
+    ButtonBase,
+  },
   name: "EduCourseTypeModal",
   props: {
     isOpen: {

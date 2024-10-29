@@ -115,15 +115,14 @@
     </template>
     <template #footer>
       <!-- Footer content goes here -->
-      <button
-        type="button"
+      <ButtonBase
         class="button btn_xl btn_primary"
+        :buttonName="
+          t('04.eduScheduleCreativeMng.newEducationSchedule.modal.action.save')
+        "
         @click="confirmAction"
       >
-        {{
-          t("04.eduScheduleCreativeMng.newEducationSchedule.modal.action.save")
-        }}
-      </button>
+      </ButtonBase>
       <button
         type="button"
         class="button btn_xl btn_white popup_close"
@@ -141,21 +140,22 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import {
+import type {
   NewEducationScheduleModel,
   NewEducationScheduleReqModel,
 } from "../../../../stores/newEducationSchedule/NewEducationSchedule.type";
 import {
-  PAGINATION_PAGE_SIZE,
   SUCCSESS_STATUS,
-  PAGINATION_PAGE_SIZE_SELECTOR,
-  TYPE_EVENT,
   START_YEAR,
-  FORMAT_YYY_MM_DD,
 } from "../../../../constants/screen.const.ts";
 import { commonStore } from "../../../../stores/common.ts";
 import { NewEducationScheduleStore } from "../../../../stores/newEducationSchedule";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
+
 export default defineComponent({
+  components: {
+    ButtonBase,
+  },
   name: "NewEducationScheduleModal",
   props: {
     isOpen: {

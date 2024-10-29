@@ -81,30 +81,19 @@
         </tbody>
       </table>
       <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
-        <button
-          type="button"
-          class="btn_round btn_md btn_gray"
-          v-if="modeScreen === modeDetail"
+        <ButtonBase
+          class="btn_round btn_gray btn_md"
+          :buttonName="t('jobAbilityManagement.tab1.btnVersionUp')"
           @click="saveVer"
+          v-if="modeScreen == modeDetail"
         >
-          {{ t("jobAbilityManagement.tab1.btnVersionUp") }}
-        </button>
-        <button
-          type="button"
+        </ButtonBase>
+        <ButtonBase
           class="btn_round btn_md btn_primary"
-          v-if="modeScreen === modeCreate"
+          :buttonName="t('common.save')"
           @click="saveData"
         >
-          {{ t("common.save") }}
-        </button>
-        <button
-          type="button"
-          class="btn_round btn_md btn_primary"
-          v-if="modeScreen === modeDetail"
-          @click="saveData"
-        >
-          {{ t("common.save") }}
-        </button>
+        </ButtonBase>
         <button type="button" class="btn_round btn_white btn_md" @click="back">
           {{ t("common.list") }}
         </button>
@@ -129,9 +118,10 @@ import {
   detailHistory,
   upVer,
 } from "@/stores/jobAbilityManagement/jobAbilityManagement.service";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
-  components: {},
+  components: { ButtonBase },
   setup() {
     const cmn = commonStore();
     const { t } = useI18n();

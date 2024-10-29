@@ -129,20 +129,18 @@
             :newGridOptions="gridOptions"
           >
             <template #button>
-              <button
-                type="button"
+              <ButtonBase
                 class="btn_round btn_lg btn_primary mg_l10"
+                :buttonName="t('lectureDesignSchedule.form.setOption')"
                 v-on:click="handleSetupOption()"
               >
-                {{ t("lectureDesignSchedule.form.setOption") }}
-              </button>
-              <button
-                type="button"
+              </ButtonBase>
+              <ButtonBase
                 class="btn_round btn_lg btn_primary mg_l10"
+                :buttonName="t('lectureDesignSchedule.form.setAll')"
                 v-on:click="handleSetupAll()"
               >
-                {{ t("lectureDesignSchedule.form.setAll") }}
-              </button>
+              </ButtonBase>
             </template>
           </GridComponentV2>
         </div>
@@ -194,6 +192,7 @@ import {
   CD_ID_NOT_DO,
 } from "@/constants/common.const";
 import Swal from "sweetalert2";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
@@ -203,6 +202,7 @@ export default defineComponent({
     BaseDatePicker,
     GridComponentV2,
     LectureDesignScheduleModal,
+    ButtonBase,
   },
   setup: () => {
     const { t } = useI18n();
@@ -212,7 +212,7 @@ export default defineComponent({
     const gridOptions = {
       defaultColDef: {
         flex: 1,
-        minWidth: 120,
+        minWidth: 150,
         resizable: true,
         suppressMovable: true,
       },
@@ -503,6 +503,7 @@ export default defineComponent({
   },
   methods: {
     fnPagination(pageNumber: any, pageSize: any) {
+      this.listCheckBoxGrid = [];
       this.searchData.size = pageSize;
       this.searchData.page = pageNumber;
       this.searchData.sort = "";
@@ -530,6 +531,11 @@ export default defineComponent({
             dateFields.forEach((field) => {
               this.formatDateIfNotNull(item, field);
             });
+          });
+          this.rowData.forEach((item) => {
+            if (item.regDate) {
+              item.regDate = format(new Date(item.regDate), FORMAT_YYY_MM_DD);
+            }
           });
           this.totalRows = res.data.data.totalElements;
           this.updateSelectAllCheckbox();
@@ -672,5 +678,8 @@ export default defineComponent({
 }
 .center {
   text-align: center;
+}
+.search_box.col_3 > ul > li > p:first-child {
+  width: 150px;
 }
 </style>

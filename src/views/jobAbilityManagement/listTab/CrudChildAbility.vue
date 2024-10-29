@@ -8,13 +8,12 @@
           </p>
         </div>
         <div>
-          <button
-            type="button"
+          <ButtonBase
             class="btn_round btn_primary btn_md"
+            :buttonName="t('jobAbilityManagement.tab2.createChildAbility')"
             @click="addChildAbility"
           >
-            {{ t("jobAbilityManagement.tab2.createChildAbility") }}
-          </button>
+          </ButtonBase>
         </div>
       </div>
       <div
@@ -26,18 +25,14 @@
           ><div class="box_section d-flex-header">
             <div></div>
             <div>
-              <button
-                type="button"
+              <ButtonBase
                 class="btn_round btn_gray btn_md"
+                :buttonName="`${t(
+                  'jobAbilityManagement.tab2.deleteChildAbility'
+                )} ${childAbility.order} ${t('common.deleteItem')}`"
                 @click="deleteChildAbility(indexChild, childAbility)"
               >
-                {{
-                  t("jobAbilityManagement.tab2.deleteChildAbility") +
-                  childAbility.order +
-                  " " +
-                  t("common.deleteItem")
-                }}
-              </button>
+              </ButtonBase>
             </div>
           </div>
           <div class="mt-3">
@@ -106,18 +101,17 @@
                           />
                         </div>
                         <div style="width: 7%">
-                          <button
+                          <ButtonBase
                             v-if="indexConStant === 0"
-                            type="button"
                             class="btn_round btn_sm btn_primary"
+                            :buttonName="t('common.add')"
                             @click="addConductStandard(childAbility)"
                           >
-                            {{ t("common.add") }}
-                          </button>
-                          <button
+                          </ButtonBase>
+                          <ButtonBase
                             v-if="indexConStant > 0"
-                            type="button"
                             class="btn_round btn_sm btn_gray"
+                            :buttonName="t('common.add')"
                             @click="
                               deleteConductStandard(
                                 childAbility,
@@ -126,10 +120,8 @@
                               )
                             "
                           >
-                            {{ t("common.delete") }}
-                          </button>
-                        </div></template
-                      >
+                          </ButtonBase></div
+                      ></template>
                     </div>
                   </td>
                 </tr>
@@ -204,22 +196,20 @@
       </div>
 
       <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
-        <button
-          type="button"
-          class="btn_round btn_md btn_gray"
-          v-if="modeScreen === modeDetail"
+        <ButtonBase
+          class="btn_round btn_gray btn_md"
+          :buttonName="t('jobAbilityManagement.tab1.btnVersionUp')"
           @click="saveVer"
+          v-if="modeScreen == modeDetail"
         >
-          {{ t("jobAbilityManagement.tab1.btnVersionUp") }}
-        </button>
-        <button
-          type="button"
+        </ButtonBase>
+        <ButtonBase
           class="btn_round btn_md btn_gray"
-          v-if="modeScreen === modeDetail"
+          :buttonName="t('jobAbilityManagement.tab1.update')"
           @click="confirmEdit"
+          v-if="modeScreen == modeDetail"
         >
-          {{ t("jobAbilityManagement.tab1.update") }}
-        </button>
+        </ButtonBase>
         <button
           type="button"
           class="btn_round btn_primary btn_md"
@@ -266,6 +256,7 @@ import {
 } from "../../../constants/common.const";
 import { getCodeMngByUpCdId } from "../../../stores/common/codeMng/codeMng.service";
 import { useI18n } from "vue-i18n";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   components: {
@@ -273,6 +264,7 @@ export default {
     THeader,
     Breadcrumb,
     LoaddingComponent,
+    ButtonBase,
   },
   props: {
     id: {

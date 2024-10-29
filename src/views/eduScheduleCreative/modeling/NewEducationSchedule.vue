@@ -95,13 +95,12 @@
             <template #button>
               <div class="flex flex-col items-end">
                 <div class="button-container">
-                  <button
-                    type="button"
+                  <ButtonBase
                     class="button btn_sm btn_blue bo_rd4 font_base_2"
+                    :buttonName="t('04.eduScheduleCreativeMng.massSchedule')"
                     v-on:click="handleSetup()"
                   >
-                    {{ t("04.eduScheduleCreativeMng.massSchedule") }}
-                  </button>
+                  </ButtonBase>
                   <p>
                     {{
                       t(
@@ -156,6 +155,7 @@ import {
 } from "@/constants/common.const";
 import type { DepartmentFilterDTO } from "@/stores/common/department/department.type";
 import { departmentStore } from "@/stores/common/department";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
@@ -165,6 +165,7 @@ export default defineComponent({
     BaseDatePicker,
     NewEducationScheduleModal,
     GridComponentV2,
+    ButtonBase,
   },
   setup: () => {
     const { t } = useI18n();
