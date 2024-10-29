@@ -87,17 +87,6 @@
           :key="keyId"
           :totalRecord="totalRows"
         >
-          <template #button>
-            <div class="search_btnarea">
-              <ExportFileExcel
-                :data="handClickExport()"
-                :fileName="fileNameExport"
-                :btnName="nameOfbtn"
-              >
-                {{ t("finalArchi.list.downloadExcel") }}
-              </ExportFileExcel>
-            </div>
-          </template>
         </GridComponentV2>
       </div>
     </div>
@@ -364,30 +353,6 @@ export default defineComponent({
       this.finalAchiSearchModel.page = pageNumber;
       this.finalAchiSearchModel.sort = "";
       this.getDataAll();
-    },
-    handClickExport() {
-      let rowExcel = [] as Array<Array<any>>;
-      let rowExcelHeader = [] as Array<any>;
-
-      this.columnDefs.forEach((el) => {
-        rowExcelHeader.push(el.headerName);
-      });
-
-      this.rowDataExcel.forEach((el) => {
-        let colExcel = [] as Array<any>;
-        colExcel.push(el.creYear);
-        colExcel.push(el.sbjtNm);
-        colExcel.push(el.deptNm);
-        colExcel.push(el.uniNm);
-        colExcel.push(el.yearEdu);
-        colExcel.push(el.gradeNm);
-        colExcel.push(el.divNm);
-        colExcel.push(el.status);
-        rowExcel.push(colExcel);
-      });
-      return [
-        { sheetName: "sheet1", data: rowExcel, header: rowExcelHeader },
-      ] as Array<ExcelData>;
     },
   },
 });
