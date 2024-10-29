@@ -10,6 +10,7 @@ export type FinalAchiSearchModel = {
 
 export type LectInfoIdModel = {
     lecCd: string
+    userJobPerformEvalSeq: string
 }
 
 export type FinalAchiListModel = {
@@ -79,9 +80,15 @@ export type FinalAchiDetailModel = {
     aveScore: string
     abilArchEvalRlstInfoDTO: FinalAchiRltModel
     achievementMngDTOList: []
+    studentScoreListDTOList: []
 }
 
 export type UserJobModel = {
     userJobPerformEvalSeq: string
     finalGradeConfrmYn: string
 }
+
+export type StdScoreListModel = {
+    stdId: string
+    scoreList: string
+} 

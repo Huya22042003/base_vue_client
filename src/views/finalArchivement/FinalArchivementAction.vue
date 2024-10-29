@@ -6,7 +6,7 @@
     ></Breadcrumb>
     <div class="search_box">
       <div class="search_section">
-        <p class="box_title_sm">{{ t("finalArchi.action.titleSub1") }}</p>
+        <p class="box_title_sm">1.최종성적조회</p>
         <div class="tbl tbl_col tbl_scroll scrollx_tbl_xs">
           <table class="tbl_col">
             <caption>
@@ -48,38 +48,70 @@
             </thead>
             <tbody>
               <tr>
-                <td rowspan="2" class="score-cell">A0/40% B0/90%</td>
-                <!-- check điều kiện  (đang QA)-->
-                <td rowspan="2" class="score-cell">
+                <td
+                  v-if="finalAchiDetailModel.evalType == '122410'"
+                  class="score-cell"
+                >
+                  A0/40% B0/90%
+                </td>
+                <td v-else class="score-cell">A0/30% B0/70%</td>
+                <td class="score-cell">
                   {{ finalAchiRltModel.scoreMedi }}
                 </td>
-                <td rowspan="2" class="score-cell">
+                <td class="score-cell">
                   {{ finalAchiDetailModel.cntStd }}
                 </td>
-                <td>{{ finalAchiRltModel.bigA0 }}</td>
-                <td>{{ finalAchiRltModel.bigB0 }}</td>
-                <td>{{ finalAchiRltModel.apCnt }}</td>
-                <td>{{ finalAchiRltModel.a0Cnt }}</td>
-                <td>{{ finalAchiRltModel.bpCnt }}</td>
-                <td>{{ finalAchiRltModel.b0Cnt }}</td>
-                <td>{{ finalAchiRltModel.cpCnt }}</td>
-                <td>{{ finalAchiRltModel.c0Cnt }}</td>
-                <td>{{ finalAchiRltModel.dpCnt }}</td>
-                <td>{{ finalAchiRltModel.d0Cnt }}</td>
-                <td>{{ finalAchiRltModel.fcnt }}</td>
-              </tr>
-              <tr>
-                <td>{{ finalAchiRltModel.percentBigA0 }}</td>
-                <td>{{ finalAchiRltModel.percentBigB0 }}</td>
-                <td>{{ finalAchiRltModel.apRate }}%</td>
-                <td>{{ finalAchiRltModel.a0Rate }}%</td>
-                <td>{{ finalAchiRltModel.bpRate }}%</td>
-                <td>{{ finalAchiRltModel.b0Rate }}%</td>
-                <td>{{ finalAchiRltModel.cpRate }}%</td>
-                <td>{{ finalAchiRltModel.c0Rate }}%</td>
-                <td>{{ finalAchiRltModel.dpRate }}%</td>
-                <td>{{ finalAchiRltModel.d0Rate }}%</td>
-                <td>{{ finalAchiRltModel.frate }}%</td>
+                <td class="score-cell">
+                  {{ finalAchiRltModel.bigA0 }}<br />
+                  ({{ finalAchiRltModel.percentBigA0 }}%)
+                </td>
+                <td class="score-cell">
+                  {{ finalAchiRltModel.bigB0 }}<br />
+                  ({{ finalAchiRltModel.percentBigB0 }}%)
+                </td>
+                <td class="score-cell">
+                  {{ finalAchiRltModel.apCnt }}<br />
+                  ({{ finalAchiRltModel.apRate }}%)
+                </td>
+                <td class="score-cell">
+                  {{ finalAchiRltModel.a0Cnt }}<br />({{
+                    finalAchiRltModel.a0Rate
+                  }}%)
+                </td>
+                <td class="score-cell">
+                  {{ finalAchiRltModel.bpCnt }}<br />({{
+                    finalAchiRltModel.bpRate
+                  }}%)
+                </td>
+                <td class="score-cell">
+                  {{ finalAchiRltModel.b0Cnt }}<br />({{
+                    finalAchiRltModel.b0Rate
+                  }}%)
+                </td>
+                <td class="score-cell">
+                  {{ finalAchiRltModel.cpCnt }}<br />({{
+                    finalAchiRltModel.cpRate
+                  }}%)
+                </td>
+                <td class="score-cell">
+                  {{ finalAchiRltModel.c0Cnt }}<br />({{
+                    finalAchiRltModel.c0Rate
+                  }}%)
+                </td>
+                <td class="score-cell">
+                  {{ finalAchiRltModel.dpCnt }}<br />({{
+                    finalAchiRltModel.dpRate
+                  }}%)
+                </td>
+                <td class="score-cell">
+                  {{ finalAchiRltModel.d0Cnt }}<br />({{
+                    finalAchiRltModel.d0Rate
+                  }}%)
+                </td>
+                <td class="score-cell">
+                  {{ finalAchiRltModel.fcnt }}<br />
+                  ({{ finalAchiRltModel.frate }}%)
+                </td>
               </tr>
             </tbody>
           </table>
@@ -92,7 +124,26 @@
           2.{{ sbjtNm }}({{ sbjtCd }}) {{ yearEdu }}학년도 {{ gradeNm }}
           {{ termNm }} {{ divNm }}반({{ staffNm }}) 최종성적관리
         </p>
-        <!-- tbl_scroll_body -->
+        <div class="btn_group btn_end score-cell">
+          <button
+            type="button"
+            class="btn_round btn_lg btn_blue"
+            :data="handClickRp()"
+            :btnName="nameOfbtnRp"
+          >
+            {{ t("finalArchi.list.downloadRp") }}
+          </button>
+
+          <div class="search_btnarea">
+            <ExportFileExcel
+              :data="handClickExport()"
+              :fileName="fileNameExport"
+              :btnName="nameOfbtn"
+            >
+              {{ t("finalArchi.list.downloadExcel") }}
+            </ExportFileExcel>
+          </div>
+        </div>
         <div class="tbl tbl_col tbl_scroll scrollx_tbl_xs">
           <table class="tbl_col">
             <caption>
@@ -100,20 +151,19 @@
             </caption>
             <colgroup>
               <col style="width: 5%" />
-              <col style="width: 5%" />
-              <col style="width: 7%" />
-              <col style="width: 7%" />
-              <col style="width: 7%" />
-              <col style="width: 7%" />
-              <col style="width: 7%" />
-              <col style="width: 7%" />
               <col style="width: 7%" />
               <col style="width: 7%" />
               <col style="width: 7%" />
               <col style="width: 5%" />
+              <col style="width: 5%" />
+              <col style="width: 3%" v-for="index in sizeScore" />
+              <col style="width: 5%" />
               <col style="width: 7%" />
               <col style="width: 5%" />
-              <col style="width: 10%" />
+              <col style="width: 5%" />
+              <col style="width: 4%" />
+              <col style="width: 5%" />
+              <col style="width: 7%" />
             </colgroup>
             <thead>
               <tr>
@@ -123,34 +173,37 @@
                 <th scope="col">{{ t("finalArchi.action.col2_4") }}</th>
                 <th scope="col">{{ t("finalArchi.action.col2_5") }}</th>
                 <th scope="col">{{ t("finalArchi.action.col2_6") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col2_7") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col2_8") }}</th>
+                <th scope="col" v-for="index in sizeScore">{{ index }}차</th>
                 <th scope="col">{{ t("finalArchi.action.col2_9") }}</th>
                 <th scope="col">{{ t("finalArchi.action.col2_10") }}</th>
                 <th scope="col">{{ t("finalArchi.action.col2_11") }}</th>
                 <th scope="col">{{ t("finalArchi.action.col2_12") }}</th>
                 <th scope="col">{{ t("finalArchi.action.col2_13") }}</th>
                 <th scope="col">{{ t("finalArchi.action.col2_14") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col2_15") }}</th>
+                <th scope="col">최종성적(점수)</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in arrFinalAchiMngModel">
+              <tr v-for="(item, index) in arrEnd">
                 <td>{{ item.rowNum }}</td>
-                <td>{{ item.divNm }}</td>
+                <td>{{ item.gradeNm }}</td>
                 <td>{{ item.stdId }}</td>
                 <td>{{ item.stdNm }}</td>
-                <td>333</td>
+                <td>{{ item.divNm }}</td>
                 <td>{{ item.shregStsNm }}</td>
-                <td>333</td>
-                <td>333</td>
-                <td>333</td>
-                <!-- chờ QA -->
+                <td
+                  v-for="(itemScore, indexScore) in convertedData[index]
+                    .scoreList"
+                  :key="itemScore.stdId"
+                >
+                  {{ itemScore ? itemScore : "-" }}
+                </td>
+                <td>{{ item.total }}</td>
                 <td>{{ item.level }}</td>
                 <td>{{ item.attendScore }}</td>
                 <td>{{ item.finalScore }}</td>
-                <td>{{ item.ranking }}</td>
-                <td>{{ item.rankRate }}</td>
+                <td>{{ item.rank }}</td>
+                <td>{{ item.rate }}</td>
                 <td>{{ item.finalScore }}</td>
               </tr>
             </tbody>
@@ -178,6 +231,7 @@ import type {
   FinalAchiDetailModel,
   LectInfoIdModel,
   UserJobModel,
+  StdScoreListModel,
 } from "../../stores/finalArchivement/finalArchivement.type";
 import { getDataDetail } from "@/stores/finalArchivement/finalArchivement.service";
 import { commonStore } from "@/stores/common";
@@ -186,6 +240,7 @@ import { defineComponent, ref } from "vue";
 import { MESSAGE_ERROR_API } from "@/constants/common.const";
 import { SCREEN } from "../../router/screen";
 import { STATUS_YES, STATUS_NO } from "../../constants/common.const";
+import type { ExcelData } from "../../stores/common/excel/excelData.type";
 
 export default defineComponent({
   components: {
@@ -198,6 +253,9 @@ export default defineComponent({
     const finalAchiDetailModel = {} as FinalAchiDetailModel;
     const finalAchiMngModel = {} as FinalAchiMngModel;
     const finalAchiRltModel = {} as FinalAchiRltModel;
+    const stdScoreListModel = {} as StdScoreListModel;
+    const arrStdScoreListModel = ref([]);
+    const arrCntScore = ref([]);
     const arrFinalAchiMngModel = ref([]);
     const router = useRouter();
     const userJobModel = {} as UserJobModel;
@@ -217,6 +275,9 @@ export default defineComponent({
       STS_NO,
       pageTitle,
       breadcrumbItems,
+      stdScoreListModel,
+      arrCntScore,
+      arrStdScoreListModel,
     };
   },
   data() {
@@ -233,6 +294,13 @@ export default defineComponent({
       termNm: "",
       gradeNm: "",
       messConfirmSuccess: "",
+      convertedData: [],
+      sizeScore: 0,
+      arrFinalAchiMngCus: [],
+      arrEnd: [],
+      nameOfbtn: this.t("finalArchi.list.downloadExcel"),
+      fileNameExport: "공지사항",
+      nameOfbtnRp: this.t("finalArchi.list.downloadRp"),
     };
   },
   beforeMount() {
@@ -257,14 +325,56 @@ export default defineComponent({
   methods: {
     async getDateDetail() {
       this.cmn.setLoading(true);
+      this.lectInfoIdModel.userJobPerformEvalSeq = this.userJobPerformEvalSeq;
       try {
         await getDataDetail(this.lectInfoIdModel)
           .then((res) => {
             this.finalAchiDetailModel = res.data.data;
+
             this.arrFinalAchiMngModel =
               this.finalAchiDetailModel.achievementMngDTOList;
+
             this.finalAchiRltModel =
               this.finalAchiDetailModel.abilArchEvalRlstInfoDTO;
+
+            this.arrStdScoreListModel =
+              this.finalAchiDetailModel.studentScoreListDTOList;
+
+            const valuesInA = this.arrFinalAchiMngModel.map(
+              (item) => item.stdId
+            );
+
+            this.arrStdScoreListModel.sort((a, b) => {
+              return valuesInA.indexOf(a.stdId) - valuesInA.indexOf(b.stdId);
+            });
+
+            this.convertedData =
+              this.finalAchiDetailModel.studentScoreListDTOList.map((item) => ({
+                ...item,
+                scoreList: item.scoreList.split(";"),
+                total: item.scoreList
+                  .split(";")
+                  .map(Number)
+                  .reduce((acc, current) => acc + current, 0),
+              }));
+
+            this.convertedData.forEach((element) => {
+              this.arrCntScore.push({ total: element.total });
+            });
+            let maxLength = 0;
+            for (const item of this.convertedData) {
+              if (item.scoreList.length > maxLength) {
+                maxLength = item.scoreList.length;
+                this.sizeScore = maxLength;
+              }
+            }
+
+            this.convertedData.forEach((obj) => {
+              while (obj.scoreList.length < this.sizeScore) {
+                obj.scoreList.push("-");
+              }
+            });
+            this.calPoint(this.convertedData);
 
             this.finalAchiRltModel.percentBigA0 = parseFloat(
               this.finalAchiRltModel.percentBigA0
@@ -275,9 +385,6 @@ export default defineComponent({
             this.finalAchiRltModel.scoreMedi = parseFloat(
               this.finalAchiRltModel.scoreMedi
             ).toFixed(2);
-            this.arrFinalAchiMngModel.forEach((element) => {
-              element.rankRate = parseFloat(element.rankRate).toFixed(2);
-            });
           })
           .catch((error) => {
             throw new Error(MESSAGE_ERROR_API);
@@ -294,6 +401,113 @@ export default defineComponent({
         name: SCREEN.finalArchivement.name,
       });
     },
+    calPoint(convertedData: any) {
+      const totalItems = convertedData.length;
+
+      convertedData
+        .sort((a, b) => b.total - a.total)
+        .forEach((item, index, sortedArr) => {
+          if (index > 0 && item.total === sortedArr[index - 1].total) {
+            item.rank = sortedArr[index - 1].rank;
+          } else {
+            item.rank = index + 1;
+          }
+        });
+
+      const rankCounts = convertedData.reduce((acc, item) => {
+        acc[item.rank] = (acc[item.rank] || 0) + 1;
+        return acc;
+      }, {});
+
+      convertedData.forEach((item) => {
+        const rate = ((rankCounts[item.rank] / totalItems) * 100).toFixed(2);
+        item.rate = rate + "%";
+      });
+
+      this.arrEnd = this.arrFinalAchiMngModel.map((itemA, index) => {
+        let itemB = convertedData[index];
+        let finalScore1 = itemB.total + parseInt(itemA.attendScore);
+        let errorCode = "0(충족)";
+        if (finalScore1 > 90) {
+          errorCode = "5(탁월)";
+        } else if (finalScore1 > 80) {
+          errorCode = "4(우수)";
+        } else if (finalScore1 > 70) {
+          errorCode = "3(보통)";
+        } else if (finalScore1 > 60) {
+          errorCode = "2(다소미흡)";
+        } else {
+          errorCode = "1(미흡)";
+        }
+
+        return {
+          rowNum: itemA.rowNum,
+          divNm: itemA.divNm,
+          stdId: itemA.stdId,
+          stdNm: itemA.stdNm,
+          total: itemB.total,
+          level: errorCode,
+          attendScore: itemA.attendScore,
+          rank: itemB.rank,
+          rate: itemB.rate,
+          shregStsNm: itemA.shregStsNm,
+          finalScore: finalScore1,
+          gradeNm: itemA.gradeNm,
+        };
+      });
+    },
+    handClickExport() {
+      let rowExcel = [] as Array<Array<any>>;
+      let rowExcelHeader = [] as Array<any>;
+      let result = [];
+
+      for (let index = 1; index <= this.sizeScore; index++) {
+        result.push(`${index}차`);
+      }
+
+      rowExcelHeader = [
+        "번호",
+        "학년",
+        "학번",
+        "이름",
+        "분반",
+        "학적",
+        ...result,
+        "소계",
+        "성취수준",
+        "출석",
+        "총점",
+        "순위",
+        "백분위",
+        "최종성적(점수)",
+      ];
+
+      this.arrEnd.forEach((el, idx2) => {
+        let colExcel = [] as Array<any>;
+        colExcel.push(el.rowNum);
+        colExcel.push(el.gradeNm);
+        colExcel.push(el.stdId);
+        colExcel.push(el.stdNm);
+        colExcel.push(el.divNm);
+        colExcel.push(el.shregStsNm);
+        for (let index = 0; index < this.sizeScore; index++) {
+          colExcel.push(this.convertedData[idx2].scoreList[index]);
+        }
+        colExcel.push(el.total);
+        colExcel.push(el.level);
+        colExcel.push(el.attendScore);
+        colExcel.push(el.finalScore);
+        colExcel.push(el.rank);
+        colExcel.push(el.rate);
+        colExcel.push(el.finalScore);
+        rowExcel.push(colExcel);
+      });
+
+      return [
+        { sheetName: "sheet1", data: rowExcel, header: rowExcelHeader },
+      ] as Array<ExcelData>;
+    },
+    handClickRp() {},
   },
 });
 </script>

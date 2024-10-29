@@ -4,15 +4,13 @@
       :pageTitle="pageTitle"
       :breadcrumbItems="breadcrumbItems"
     ></Breadcrumb>
-    <div class="search_box">
-      <div class="search_section">
-        <div class="search_toggle lg center">
-          <div class="left">
-            <p class="total_count"></p>
-          </div>
-          <div class="search_daywrap mg_r10">
-            <span class="tag">{{ t("finalArchi.list.col1") }}</span>
-            <div class="wd_150">
+
+    <div class="box dp_block">
+      <div class="box_section">
+        <div class="search_box col_3">
+          <ul>
+            <li>
+              <p>{{ t("finalArchi.list.col1") }}</p>
               <SelectBoxBase
                 :id="'selectboxShow'"
                 :name="'selectboxShow'"
@@ -20,11 +18,9 @@
                 v-model="finalAchiSearchModel.yearEdu"
               >
               </SelectBoxBase>
-            </div>
-          </div>
-          <div class="search_daywrap mg_r10">
-            <span class="tag">{{ t("finalArchi.list.col10") }}</span>
-            <div class="wd_150">
+            </li>
+            <li>
+              <p>{{ t("finalArchi.list.col10") }}</p>
               <SelectBoxBase
                 :id="'selectboxShow'"
                 :name="'selectboxShow'"
@@ -32,52 +28,44 @@
                 v-model="finalAchiSearchModel.termEdu"
               >
               </SelectBoxBase>
-            </div>
-          </div>
-
-          <div class="search_daywrap mg_r10">
-            <span class="tag">{{ t("finalArchi.list.col4") }}</span>
-            <div class="select_row">
+            </li>
+            <li>
+              <p>{{ t("finalArchi.list.col4") }}</p>
               <InputBase
                 :id="'ctgName'"
                 :name="'ctgName'"
-                placeholder="보고 싶은 비교과 프로그램을 찾아보세요"
+                class="form_style"
                 v-model="finalAchiSearchModel.sbjtNm"
               >
               </InputBase>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="search_section">
-        <div class="search_toggle sm">
-          <div class="left"></div>
-          <div class="right">
-            <div class="search_daywrap mg_r10">
-              <span class="tag">{{ t("finalArchi.list.col9") }}</span>
-              <div class="wd_150">
-                <SelectBoxBase
-                  :id="'selectboxShow'"
-                  :name="'selectboxShow'"
-                  :data="listSelectBoxShow2"
-                  v-model="finalAchiSearchModel.status"
-                >
-                </SelectBoxBase>
-              </div>
-            </div>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <p>{{ t("finalArchi.list.col9") }}</p>
+              <SelectBoxBase
+                :id="'selectboxShow'"
+                :name="'selectboxShow'"
+                :data="listSelectBoxShow2"
+                v-model="finalAchiSearchModel.status"
+              >
+              </SelectBoxBase>
+            </li>
+          </ul>
+          <div class="btn_group btn_end">
             <button
               type="button"
-              class="btn_round btn_lg btn_primary mg_l10"
-              @click="searchClick"
+              class="button btn_lg btn_blue btn_responsive"
+              @click="searchClick()"
             >
-              조회하기
+              {{ t("common.search") }}
             </button>
             <button
               type="button"
-              class="btn_round btn_lg btn_gray mg_l5"
-              @click="resetSearch"
+              class="button btn_lg btn_gray btn_responsive"
+              @click="resetSearch()"
             >
-              초기화
+              {{ t("common.reset") }}
             </button>
           </div>
         </div>
@@ -100,11 +88,6 @@
           :totalRecord="totalRows"
         >
           <template #button>
-            <div class="search_btnarea">
-              <ExportFileExcel :data="handClickRp()" :btnName="nameOfbtnRp">
-                {{ t("finalArchi.list.downloadRp") }}
-              </ExportFileExcel>
-            </div>
             <div class="search_btnarea">
               <ExportFileExcel
                 :data="handClickExport()"
@@ -165,7 +148,7 @@ export default defineComponent({
       size: 10,
       sort: "",
     });
-    const pageTitle = t("09.notificationCategory.title");
+    const pageTitle = "최종성적조회";
     const breadcrumbItems = [
       { label: t("09.notificationCategory.scum01"), link: "/" },
       { label: t("09.notificationCategory.scum02"), link: "#" },
@@ -202,20 +185,20 @@ export default defineComponent({
       },
       {
         headerName: t("finalArchi.list.col2"),
-        field: "sbjtNm",
+        field: "deptNm",
         flex: 2,
         cellStyle: { textAlign: "center" },
       },
 
       {
         headerName: t("finalArchi.list.col3"),
-        field: "deptNm",
+        field: "uniNm",
         flex: 2,
         cellStyle: { textAlign: "center" },
       },
       {
         headerName: t("finalArchi.list.col4"),
-        field: "uniNm",
+        field: "sbjtNm",
         cellRenderer: "LinkGridComponent",
         cellRendererParams: { onCustomEvent: handleCustomClick },
         cellStyle: {
@@ -402,7 +385,6 @@ export default defineComponent({
         { sheetName: "sheet1", data: rowExcel, header: rowExcelHeader },
       ] as Array<ExcelData>;
     },
-    handClickRp() {},
   },
 });
 </script>
