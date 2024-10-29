@@ -4,9 +4,11 @@
     <div class="box_section mt-13" v-for="(job, indexJob) in dataView">
       <div class="dp_flex between al_center box_title_sm">
         {{ job.typeNm }} - {{ job.jobNm }}
-        <button class="button btn_primary btn_lg" @click="openModal(indexJob)">
-          <!-- 교과목 추가 -->{{ t("eduProcessCreation.subjectMng.title53") }}
-        </button>
+        <ButtonBase
+          @click="openModal(indexJob)"
+          :buttonName="t('eduProcessCreation.subjectMng.title53')"
+          class="button btn_primary btn_lg"
+        />
       </div>
       <div class="tbl tbl_col">
         <table>
@@ -94,24 +96,20 @@
                       >
                       </SelectBoxBase>
                       <div class="wd_100">
-                        <button
+                        <ButtonBase
                           type="button"
                           v-if="indexAbility == 0"
-                          class="btn_round btn_sm btn_white"
                           @click="addJobAbility(indexJob, indexSbjt)"
-                        >
-                          {{ t("common.add") }}
-                        </button>
-                        <button
+                          :buttonName="t('common.add')"
+                          class="btn_round btn_sm btn_white"
+                        />
+                        <ButtonBase
                           type="button"
                           v-if="indexAbility != 0"
+                          @click="deleteJobAbility(indexJob, indexSbjt, indexAbility)"
+                          :buttonName="t('common.deleteItem')"
                           class="btn_round btn_sm btn_white"
-                          @click="
-                            deleteJobAbility(indexJob, indexSbjt, indexAbility)
-                          "
-                        >
-                          {{ t("common.deleteItem") }}
-                        </button>
+                        />
                       </div>
                     </div>
                   </td>
@@ -181,14 +179,13 @@
                     >
                   </td>
                   <td scope="row" class="ta_c" :colspan="1">
-                    <button
+                    <ButtonBase
                       type="button"
                       v-if="indexAbility == 0"
-                      class="btn_round btn_sm btn_white"
                       @click="deleteSubject(indexJob, indexSbjt)"
-                    >
-                      교과목 삭제
-                    </button>
+                      :buttonName="'교과목 삭제'"
+                      class="btn_round btn_sm btn_white"
+                    />
                   </td>
                 </tr>
               </template>
@@ -200,22 +197,20 @@
 
     <div class="btn_group btn_end mg_t35">
       <div class="btn_group btn_end">
-        <button
+        <ButtonBase
           v-if="checkTemp && isSave"
           type="button"
+          @click="saveTemp"
+          :buttonName="t('common.saveTemp')"
           class="btn_round btn_md btn_primary"
-          @click="saveTemp()"
-        >
-          {{ t("common.saveTemp") }}
-        </button>
-        <button
+        />
+        <ButtonBase
           v-if="isSave"
           type="button"
+          @click="save"
+          :buttonName="t('common.save')"
           class="btn_round btn_md btn_primary"
-          @click="save()"
-        >
-          {{ t("common.save") }}
-        </button>
+        />
         <button
           type="button"
           class="btn_round btn_md btn_primary"
@@ -407,7 +402,7 @@ export default defineComponent({
       });
 
       this.$confirm(
-        this.t("common.message.save"),
+        this.t("eduProcessCreation.jobEduMng.messageConfirmSave"),
         "",
         async (isConfirm: Boolean) => {
           if (isConfirm) {

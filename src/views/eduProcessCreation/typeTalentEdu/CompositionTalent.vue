@@ -4,12 +4,11 @@
     <div class="box_section mt-13">
       <div class="dp_flex between al_center box_title_sm">
         <!-- 내부 -->{{ t("eduProcessCreation.typeTalentEdu.title6") }}
-        <button
-          class="button btn_primary btn_lg"
+        <ButtonBase
           @click="modalOpen = !modalOpen"
-        >
-          {{ t("common.add") }}
-        </button>
+          :buttonName="t('common.add')"
+          class="button btn_primary btn_lg"
+        />
       </div>
       <div class="tbl tbl_col">
         <table>
@@ -67,13 +66,12 @@
                   />
                 </td>
                 <td scope="row" class="ta_c" :colspan="1">
-                  <button
-                    @click="deleteDataInternal(index)"
+                  <ButtonBase
                     type="button"
+                    @click="deleteDataInternal(index)"
+                    :buttonName="t('common.deleteItem')"
                     class="btn_round btn_sm btn_white"
-                  >
-                    {{ t("common.deleteItem") }}
-                  </button>
+                  />
                 </td>
               </tr>
             </template>
@@ -170,13 +168,12 @@
                   />
                 </td>
                 <td scope="row" class="ta_c" :colspan="1">
-                  <button
-                    @click="deleteDataOutside(index)"
+                  <ButtonBase
                     type="button"
+                    @click="deleteDataOutside(index)"
+                    :buttonName="t('common.deleteItem')"
                     class="btn_round btn_sm btn_white"
-                  >
-                    {{ t("common.deleteItem") }}
-                  </button>
+                  />
                 </td>
               </tr>
             </template>
@@ -187,14 +184,13 @@
 
     <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
-        <button
+        <ButtonBase
           type="button"
+          @click="save"
+          :buttonName="t('common.save')"
           class="btn_round btn_md btn_primary"
-          @click="save()"
           v-if="isSave"
-        >
-          {{ t("common.save") }}
-        </button>
+        />
         <button
           type="button"
           class="btn_round btn_md btn_primary"
@@ -235,10 +231,12 @@ import { CD_OUTSIDE, CD_INTERNAL } from "@/constants/common.const";
 import { getAllEduCourseComm } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.service";
 import { saveEduCourseComm } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.service";
 import { EduCourseCommReqDTO } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.type";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
     CompositionSelectModal,
+    ButtonBase
   },
   setup: () => {
     const router = useRouter();

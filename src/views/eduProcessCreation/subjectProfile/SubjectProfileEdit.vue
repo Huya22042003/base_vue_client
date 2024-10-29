@@ -452,14 +452,13 @@
             <button type="button" class="btn_round btn_md btn_primary">
               {{ t("common.print") }}
             </button>
-            <button
+            <ButtonBase
               v-if="isSave"
               type="button"
+              @click="save"
+              :buttonName="t('common.save')"
               class="btn_round btn_md btn_primary"
-              @click="save()"
-            >
-              {{ t("common.save") }}
-            </button>
+            />
             <button
               type="button"
               class="btn_round btn_md btn_white"

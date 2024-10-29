@@ -181,14 +181,13 @@
 
     <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
-        <button
+        <ButtonBase
           v-if="version && isSave"
           type="button"
+          @click="save"
+          :buttonName="t('common.save')"
           class="btn_round btn_md btn_primary"
-          @click="save()"
-        >
-          {{ t("common.save") }}
-        </button>
+        />
         <button
           type="button"
           class="btn_round btn_md btn_primary"
@@ -221,8 +220,12 @@ import {
   saveCoreJobSel,
 } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.service";
 import { CD_SELCT_TALT_NO, CD_SELCT_TALT_YES, VERSION_V1 } from "@/constants/common.const";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
+  components: {
+    ButtonBase
+  },
   setup: () => {
     const router = useRouter();
     const storeCommon = commonStore();
@@ -306,7 +309,7 @@ export default defineComponent({
         return;
       }
 
-      this.$confirm(this.t("common.message.save"), "", (isConfirm: Boolean) => {
+      this.$confirm(this.t("eduProcessCreation.jobEduMng.messageConfirmSave"), "", (isConfirm: Boolean) => {
         if (isConfirm) {
           this.storeCommon.setLoading(true);
           let dataSave = [] as any[];

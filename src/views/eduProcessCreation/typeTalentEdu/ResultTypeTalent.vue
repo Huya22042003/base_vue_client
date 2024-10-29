@@ -318,14 +318,13 @@
             t("eduProcessCreation.typeTalentEdu.title31")
           }}
         </button>
-        <button
+        <ButtonBase
           v-if="isSave"
           type="button"
+          @click="save"
+          :buttonName="t('common.save')"
           class="btn_round btn_md btn_primary"
-          @click="save()"
-        >
-          {{ t("common.save") }}
-        </button>
+        />
         <button
           type="button"
           class="btn_round btn_md btn_primary"
@@ -380,10 +379,12 @@ import {
   createEduCourseDesc,
   createEduCourseSel,
 } from "@/stores/eduProcessCreation/eduCourse/eduProcess.service";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
     TextArea,
+    ButtonBase
   },
   setup: () => {
     const router = useRouter();
