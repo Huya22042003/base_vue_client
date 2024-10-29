@@ -260,13 +260,11 @@ export default defineComponent({
           ncsKcs.listVerifyJobAbility.forEach((jobAbility) => {
             const { eduNeed, jobImpt } = jobAbility;
 
-            const average = ((Number(eduNeed) + Number(jobImpt)) / 2).toFixed(
-              1
-            );
+            const average = (Number(eduNeed) + Number(jobImpt)) / 2;
 
-            jobAbility.average = Number(average);
+            jobAbility.average = average;
 
-            if (Number(average) >= 3.5) {
+            if (average >= 3.5) {
               jobAbility.useYn = this.stateY;
             } else {
               jobAbility.useYn = this.stateN;
