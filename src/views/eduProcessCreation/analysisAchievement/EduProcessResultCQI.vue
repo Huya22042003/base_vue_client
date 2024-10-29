@@ -453,14 +453,21 @@
             t("eduProcessCreation.analysisAchievement.title31")
           }}
         </button>
-        <button
+        <!-- <button
           v-if="isSave"
           type="button"
           class="btn_md btn_round btn_primary"
           @click="confirmSaveData()"
         >
           {{ t("common.save") }}
-        </button>
+        </button> -->
+        <ButtonBase
+          v-if="isSave"
+          type="button"
+          class="btn_md btn_round btn_primary"
+          :buttonName="t('common.save')"
+          @click="confirmSaveData()"
+        ></ButtonBase>
         <button
           type="button"
           class="btn_md btn_round btn_primary"
