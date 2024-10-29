@@ -125,7 +125,11 @@ import { useI18n } from "vue-i18n";
 import type { PageableModel } from "@/stores/eduCourseType/eduCourse.type";
 import { useRouter } from "vue-router";
 import ImageGridComponent from "../../components/common/gridNotice/GridComponentNotice.vue";
-import { MESSAGE_ERROR_API } from "@/constants/common.const";
+import {
+  MESSAGE_ERROR_API,
+  STATUS_YES,
+  STATUS_NO,
+} from "@/constants/common.const";
 import { commonStore } from "@/stores/common";
 import type { ExcelData } from "../../stores/common/excel/excelData.type";
 
@@ -164,13 +168,13 @@ export default defineComponent({
     ]);
     const listSelectBoxShow1 = ref([
       { cdId: "", cdNm: "전체" },
-      { cdId: "1", cdNm: "1" },
-      { cdId: "2", cdNm: "2" },
+      { cdId: "1", cdNm: "1학기" },
+      { cdId: "2", cdNm: "2학기" },
     ]);
     const listSelectBoxShow2 = ref([
       { cdId: "", cdNm: "전체" },
-      { cdId: "Y", cdNm: "완료" },
-      { cdId: "N", cdNm: "미완료" },
+      { cdId: STATUS_YES, cdNm: "완료" },
+      { cdId: STATUS_NO, cdNm: "미완료" },
     ]);
     const router = useRouter();
     const paginationPageSize = PAGINATION_PAGE_SIZE;
