@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import { defineProps, useAttrs, defineExpose } from "vue";
 import Swal from "sweetalert2";
-import { checkFlagStore } from "@/stores/common/checkRoleUrl";
+import { checkFlagStore } from "@/stores/common/checkRole";
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
