@@ -23,7 +23,7 @@
           <template #button>
             <div>
               <button
-                class="btn_round btn_lg btn_primary mg_l10"
+                class="btn_round btn_md btn_primary mg_l10"
                 @click="goActionCreate"
               >
                 <!-- 신규 등록 -->

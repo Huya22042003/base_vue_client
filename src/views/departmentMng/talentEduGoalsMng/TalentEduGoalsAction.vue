@@ -214,14 +214,14 @@
       <div class="btn_group btn_end mg_t30">
         <button
           type="button"
-          class="btn_round btn_sm btn_primary"
+          class="btn_round btn_md btn_primary"
           @click="saveData"
         >
           {{ t("common.save") }}
         </button>
         <button
           type="button"
-          class="btn_round btn_sm btn_white"
+          class="btn_round btn_md btn_white"
           @click="goBack()"
         >
           {{ t("common.list") }}
