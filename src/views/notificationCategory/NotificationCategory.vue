@@ -18,6 +18,7 @@
                   v-model="notificationCategorySearchModel.ttl"
                   :id="'ctgHeading'"
                   :name="'ctgHeading'"
+                  class="form_style"
                 >
                 </InputBase>
               </div>
@@ -46,25 +47,26 @@
                   v-model="notificationCategorySearchModel.regId"
                   :id="'ctgName'"
                   :name="'ctgName'"
+                  class="form_style"
                 >
                 </InputBase>
               </div>
             </div>
             <div>
-              <button
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
+                :buttonName="'조회하기'"
                 @click="searchClick"
               >
-                조회하기
-              </button>
-              <button
-                type="button"
+              </ButtonBase>
+              <ButtonBase
+                type="ButtonBase"
                 class="btn_round btn_lg btn_gray mg_l5"
+                :buttonName="'초기화'"
                 @click="resetSearch()"
               >
-                초기화
-              </button>
+              </ButtonBase>
             </div>
           </div>
         </div>
@@ -91,13 +93,13 @@
         >
           <template #button>
             <div class="search_btnarea">
-              <button
+              <ButtonBase
                 type="button"
                 class="btn_round btn_sm btn_primary"
                 @click="create()"
+                :buttonName="t('09.notificationCategory.search.btnCreate')"
               >
-                {{ t("09.notificationCategory.search.btnCreate") }}
-              </button>
+              </ButtonBase>
             </div>
           </template>
         </GridComponentV2>
@@ -121,7 +123,7 @@ import type {
   CodeSiteModel,
 } from "../../stores/notificationCategory/notificationCategory.type";
 import { fetchData } from "@/stores/notificationCategory/notificationCategory.service";
-import { SHOW_Y, SHOW_N, TOP_N, TOP_Y } from "../../constants/common.const";
+import { SHOW_Y, SHOW_N, TOP_Y } from "../../constants/common.const";
 import {
   PAGINATION_PAGE_SIZE,
   PAGINATION_PAGE_SIZE_SELECTOR,
@@ -139,6 +141,7 @@ import { MESSAGE_ERROR_API } from "@/constants/common.const";
 import { commonStore } from "@/stores/common";
 import { getListCodeMng } from "@/stores/common/codeMng/codeMng.service";
 import type { CodeMngResModel } from "@/stores/common/codeMng/codeMng.type";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
@@ -150,6 +153,7 @@ export default defineComponent({
     LoaddingComponent,
     LinkGridComponent,
     ImageGridComponent,
+    ButtonBase,
   },
   setup() {
     const { t } = useI18n();

@@ -115,26 +115,26 @@
     </template>
     <template #footer>
       <!-- Footer content goes here -->
-      <button
+      <ButtonBase
         type="button"
         class="button btn_xl btn_primary"
         @click="confirmAction"
+        :buttonName="
+          t('04.eduScheduleCreativeMng.newEducationSchedule.modal.action.save')
+        "
       >
-        {{
-          t("04.eduScheduleCreativeMng.newEducationSchedule.modal.action.save")
-        }}
-      </button>
-      <button
+      </ButtonBase>
+      <ButtonBase
         type="button"
         class="button btn_xl btn_white popup_close"
         @click="cancelAction"
-      >
-        {{
+        :buttonName="
           t(
-            "04.eduScheduleCreativeMng.newEducationSchedule.modal.action.cancel"
+            '04.eduScheduleCreativeMng.newEducationSchedule.modal.action.cancel'
           )
-        }}
-      </button>
+        "
+      >
+      </ButtonBase>
     </template>
   </TModal>
 </template>
@@ -146,15 +146,13 @@ import {
   NewEducationScheduleReqModel,
 } from "../../../../stores/newEducationSchedule/NewEducationSchedule.type";
 import {
-  PAGINATION_PAGE_SIZE,
   SUCCSESS_STATUS,
-  PAGINATION_PAGE_SIZE_SELECTOR,
-  TYPE_EVENT,
   START_YEAR,
-  FORMAT_YYY_MM_DD,
 } from "../../../../constants/screen.const.ts";
 import { commonStore } from "../../../../stores/common.ts";
 import { NewEducationScheduleStore } from "../../../../stores/newEducationSchedule";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
+
 export default defineComponent({
   name: "NewEducationScheduleModal",
   props: {

@@ -200,20 +200,20 @@
     </template>
     <template #footer>
       <!-- Footer content goes here -->
-      <button
+      <ButtonBase
         type="button"
         class="btn_round btn_lg btn_primary mg_l10"
         @click="confirmAction"
+        :buttonName="t('lectureDesignSchedule.modal.save')"
       >
-        {{ t("lectureDesignSchedule.modal.save") }}
-      </button>
-      <button
+      </ButtonBase>
+      <ButtonBase
         type="button"
         class="btn_round btn_lg btn_gray mg_l10"
         @click="closeModal"
+        :buttonName="t('lectureDesignSchedule.modal.close')"
       >
-        {{ t("lectureDesignSchedule.modal.close") }}
-      </button>
+      </ButtonBase>
     </template>
   </TModal>
 </template>
@@ -234,6 +234,7 @@ import {
 import { UP_CD_ID_SEMESTER } from "@/constants/common.const";
 import { getCodeMngByUpCdId } from "@/stores/common/codeMng/codeMng.service";
 import Swal from "sweetalert2";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   name: "lectureDesignSchudeModel",

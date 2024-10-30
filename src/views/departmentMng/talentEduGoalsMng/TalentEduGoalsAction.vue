@@ -57,6 +57,7 @@
                   :id="`vision_` + (item.id || index)"
                   required
                   v-model="item.value"
+                  class="form_style"
                 />
               </div>
             </div>
@@ -80,25 +81,26 @@
                   :id="`target_` + (item.id || index)"
                   required
                   v-model="item.value"
+                  class="form_style"
                 />
               </div>
               <div class="flex-[1]">
-                <button
+                <ButtonBase
                   v-if="index == 0"
                   class="btn_round btn_lg btn_gray mg_l5"
                   @click="addObject('targetDept')"
+                  :buttonName="t('common.add')"
                 >
                   <!-- 추가 -->
-                  {{ t("common.add") }}
-                </button>
-                <button
+                </ButtonBase>
+                <ButtonBase
                   v-if="index != 0"
                   class="btn_round btn_lg btn_gray mg_l5"
                   @click="eventDeleteObject(index, 'targetDept')"
+                  :buttonName="t('common.deleteItem')"
                 >
                   <!-- 삭제 -->
-                  {{ t("common.deleteItem") }}
-                </button>
+                </ButtonBase>
               </div>
             </div>
           </td>
@@ -121,25 +123,26 @@
                   :id="`model_` + (item.id || index)"
                   required
                   v-model="item.value"
+                  class="form_style"
                 />
               </div>
               <div class="flex-[1]">
-                <button
+                <ButtonBase
                   v-if="index == 0"
                   class="btn_round btn_lg btn_gray mg_l5"
                   @click="addObject('modelDept')"
+                  :buttonName="t('common.add')"
                 >
                   <!-- 추가 -->
-                  {{ t("common.add") }}
-                </button>
-                <button
+                </ButtonBase>
+                <ButtonBase
                   v-if="index != 0"
                   class="btn_round btn_lg btn_gray mg_l5"
                   @click="eventDeleteObject(index, 'modelDept')"
+                  :buttonName="t('common.deleteItem')"
                 >
                   <!-- 삭제 -->
-                  {{ t("common.deleteItem") }}
-                </button>
+                </ButtonBase>
               </div>
             </div>
           </td>
@@ -198,20 +201,20 @@
       </tbody>
     </table>
     <div class="btn_group btn_end">
-      <button
+      <ButtonBase
         type="button"
         class="btn_round btn_sm btn_primary"
         @click="saveData"
+        :buttonName="t('common.save')"
       >
-        {{ t("common.save") }}
-      </button>
-      <button
+      </ButtonBase>
+      <ButtonBase
         type="button"
         class="btn_round btn_sm btn_white"
         @click="goBack()"
+        :buttonName="t('common.list')"
       >
-        {{ t("common.list") }}
-      </button>
+      </ButtonBase>
     </div>
   </section>
 </template>
@@ -236,14 +239,15 @@ import InputBase from "@/components/common/input/InputBase.vue";
 import { getUserInfo } from "@/utils/storage";
 import { getDepartmentList } from "@/stores/common/department/department.service";
 import TextAreaBase from "@/components/common/input/TextAreaBase.vue";
-import type TextArea from "@/components/common/input/TextArea.vue";
 import { SCREEN } from "@/router/screen";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   name: "ModalForm",
   components: {
     InputBase,
     TextAreaBase,
+    ButtonBase,
   },
   setup() {
     const { t } = useI18n();

@@ -90,20 +90,20 @@
               </li>
             </ul>
             <div class="search_btnarea">
-              <button
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
                 @click="search"
+                :buttonName="t('common.search')"
               >
-                {{ t("common.search") }}
-              </button>
-              <button
+              </ButtonBase>
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_gray mg_l5"
                 @click="reset"
+                :buttonName="t('common.reset')"
               >
-                {{ t("common.reset") }}
-              </button>
+              </ButtonBase>
             </div>
           </div>
         </div>
@@ -129,20 +129,20 @@
             :newGridOptions="gridOptions"
           >
             <template #button>
-              <button
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
                 v-on:click="handleSetupOption()"
+                :buttonName="t('lectureDesignSchedule.form.setOption')"
               >
-                {{ t("lectureDesignSchedule.form.setOption") }}
-              </button>
-              <button
+              </ButtonBase>
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
                 v-on:click="handleSetupAll()"
+                :buttonName="t('lectureDesignSchedule.form.setAll')"
               >
-                {{ t("lectureDesignSchedule.form.setAll") }}
-              </button>
+              </ButtonBase>
             </template>
           </GridComponentV2>
         </div>
@@ -194,6 +194,7 @@ import {
   CD_ID_NOT_DO,
 } from "@/constants/common.const";
 import Swal from "sweetalert2";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
@@ -203,6 +204,7 @@ export default defineComponent({
     BaseDatePicker,
     GridComponentV2,
     LectureDesignScheduleModal,
+    ButtonBase,
   },
   setup: () => {
     const { t } = useI18n();

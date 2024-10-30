@@ -22,13 +22,13 @@
         >
           <template #button>
             <div>
-              <button
+              <ButtonBase
                 class="btn_round btn_lg btn_primary mg_l10"
                 @click="goActionCreate"
+                :buttonName="t('talentEduGoalsMng.list.openModal')"
               >
                 <!-- 신규 등록 -->
-                {{ t("talentEduGoalsMng.list.openModal") }}
-              </button>
+              </ButtonBase>
             </div>
           </template>
         </GridComponentV2>
@@ -58,12 +58,14 @@ import type {
   DeptEduGoalFilterDTO,
   DeptEduGoalResDTO,
 } from "@/stores/departmentService/talentEduGoal/talentEduGoal.type";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   components: {
     Breadcrumb,
     GridComponentV2,
     LinkGridComponent,
+    ButtonBase,
   },
   data() {
     return {

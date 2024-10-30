@@ -61,20 +61,20 @@
               </li>
             </ul>
             <div class="search_btnarea">
-              <button
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
                 @click="search()"
+                :buttonName="t('common.search')"
               >
-                {{ t("common.search") }}
-              </button>
-              <button
+              </ButtonBase>
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_gray mg_l5"
                 @click="resetSearch()"
+                :buttonName="t('common.reset')"
               >
-                {{ t("common.reset") }}
-              </button>
+              </ButtonBase>
             </div>
           </div>
         </div>
@@ -156,6 +156,7 @@ import {
 } from "@/constants/common.const";
 import type { DepartmentFilterDTO } from "@/stores/common/department/department.type";
 import { departmentStore } from "@/stores/common/department";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
@@ -165,6 +166,7 @@ export default defineComponent({
     BaseDatePicker,
     NewEducationScheduleModal,
     GridComponentV2,
+    ButtonBase,
   },
   setup: () => {
     const { t } = useI18n();

@@ -16,34 +16,34 @@
               >
               </SelectBoxBase>
             </div>
-            <button
+            <ButtonBase
               class="button btn_white btn_md"
               :disabled="active === null"
               @click="openRegisterModal = true"
+              :buttonName="t('learningModule.add')"
             >
-              {{ t("learningModule.add") }}
-            </button>
-            <button
+            </ButtonBase>
+            <ButtonBase
               class="button btn_white btn_md"
               :disabled="activeLevel === 0 || active === null"
               @click="openRenameModal = true"
+              :buttonName="t('learningModule.rename')"
             >
-              {{ t("learningModule.rename") }}
-            </button>
-            <button
+            </ButtonBase>
+            <ButtonBase
               class="button btn_white btn_md"
               :disabled="!(active && activeLevel)"
               @click="handleChangeStatus(activeUsed)"
+              :buttonName="t('learningModule.change')"
             >
-              {{ t("learningModule.change") }}
-            </button>
-            <button
+            </ButtonBase>
+            <ButtonBase
               class="button btn_white btn_md"
               :disabled="activeLevel === 0"
               @click="handleDeleteClassification"
+              :buttonName="t('learningModule.delete')"
             >
-              {{ t("learningModule.delete") }}
-            </button>
+            </ButtonBase>
           </div>
         </div>
         <div class="sub_section_sm">
@@ -342,6 +342,7 @@ import type {
   ClassificationSystem,
   ModuleList,
 } from "@/stores/learningModule/learningModule.type";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 const { appContext } = getCurrentInstance();
 const swal = appContext.config.globalProperties;

@@ -29,6 +29,7 @@
                       required
                       :disabled="isDisableRadio"
                       v-model="notiCategoryDetailModel.ttl"
+                      class="form_style"
                     >
                     </InputBase>
                   </td>
@@ -45,13 +46,6 @@
                       @editorChange="changeEditorDiagnosticGuide()"
                       ref="diagnosticGuide"
                     />
-                    <!-- <TextArea
-                      :mode="mode"
-                      v-model="notiCategoryDetailModel.cont"
-                      :disabled="isDisableRadio"
-                      required
-                    >
-                    </TextArea> -->
                   </td>
                 </tr>
                 <tr>
@@ -120,43 +114,43 @@
 
           <div class="btn_group btn_end">
             <div v-if="modeScreen == 'create'" class="btn_area">
-              <button
-                type="button"
+              <ButtonBase
+                type="ButtonBase"
                 class="btn_round btn_sm btn_primary"
                 @click="handleCreate()"
+                :buttonName="t('common.save')"
               >
-                {{ t("common.save") }}
-              </button>
-              <button
-                type="button"
+              </ButtonBase>
+              <ButtonBase
+                type="ButtonBase"
                 class="btn_round btn_sm btn_white"
                 @click="back()"
+                :buttonName="t('common.list')"
               >
-                {{ t("common.list") }}
-              </button>
+              </ButtonBase>
             </div>
             <div v-if="modeScreen != 'create'" class="btn_area">
-              <button
-                type="button"
+              <ButtonBase
+                type="ButtonBase"
                 class="btn_round btn_sm btn_primary"
                 @click="handleDelete()"
+                :buttonName="t('09.notificationCategory.form.btnDelete')"
               >
-                {{ t("09.notificationCategory.form.btnDelete") }}
-              </button>
-              <button
-                type="button"
+              </ButtonBase>
+              <ButtonBase
+                type="ButtonBase"
                 class="btn_round btn_sm btn_primary"
                 @click="handleUpdate()"
+                :buttonName="t('09.notificationCategory.form.btnEdit')"
               >
-                {{ t("09.notificationCategory.form.btnEdit") }}
-              </button>
-              <button
-                type="button"
+              </ButtonBase>
+              <ButtonBase
+                type="ButtonBase"
                 class="btn_round btn_sm btn_white"
                 @click="back()"
+                :buttonName="t('common.list')"
               >
-                {{ t("common.list") }}
-              </button>
+              </ButtonBase>
             </div>
           </div>
         </div>
@@ -204,6 +198,7 @@ import { MESSAGE_ERROR_API } from "@/constants/common.const";
 import { QuillEditor } from "@vueup/vue-quill";
 import { uploadFileEditor } from "@/stores/common/fileMng/fileMng.service";
 import ImageUploader from "quill-image-uploader";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
@@ -218,6 +213,7 @@ export default defineComponent({
     LinkGridComponent,
     InputFileBase,
     QuillEditor,
+    ButtonBase,
   },
   setup() {
     const { t } = useI18n();

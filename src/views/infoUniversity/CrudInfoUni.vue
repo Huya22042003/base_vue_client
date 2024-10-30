@@ -57,7 +57,7 @@
                 >
                   <InputBase
                     :id="`vision_` + (item.id || index)"
-                    class="mr-5"
+                    class="mr-5 form_style"
                     required
                     v-model="item.value"
                   />
@@ -79,27 +79,27 @@
                 >
                   <InputBase
                     :id="`target_` + (item.id || index)"
-                    class="mr-5"
+                    class="mr-5 form_style"
                     required
                     v-model="item.value"
                   />
                   <div class="add-delete">
-                    <button
+                    <ButtonBase
                       v-if="index == 0"
                       class="btn_round btn_sm btn_primary mg_l5"
                       @click="addObject('targetDept')"
+                      :buttonName="t('common.add')"
                     >
                       <!-- 추가 -->
-                      {{ t("common.add") }}
-                    </button>
-                    <button
+                    </ButtonBase>
+                    <ButtonBase
                       v-if="index != 0"
                       class="btn_round btn_sm btn_gray mg_l5"
                       @click="eventDeleteObject(index, 'targetDept')"
+                      :buttonName="t('common.deleteItem')"
                     >
                       <!-- 삭제 -->
-                      {{ t("common.deleteItem") }}
-                    </button>
+                    </ButtonBase>
                   </div>
                 </div>
               </td>
@@ -119,27 +119,27 @@
                 >
                   <InputBase
                     :id="`model_` + (item.id || index)"
-                    class="mr-5"
+                    class="mr-5 form_style"
                     required
                     v-model="item.value"
                   />
                   <div class="add-delete">
-                    <button
+                    <ButtonBase
                       v-if="index == 0"
                       class="btn_round btn_sm btn_primary mg_l5"
                       @click="addObject('modelDept')"
+                      :buttonName="t('common.add')"
                     >
                       <!-- 추가 -->
-                      {{ t("common.add") }}
-                    </button>
-                    <button
+                    </ButtonBase>
+                    <ButtonBase
                       v-if="index != 0"
                       class="btn_round btn_sm btn_gray mg_l5"
                       @click="eventDeleteObject(index, 'modelDept')"
+                      :buttonName="t('common.deleteItem')"
                     >
                       <!-- 삭제 -->
-                      {{ t("common.deleteItem") }}
-                    </button>
+                    </ButtonBase>
                   </div>
                 </div>
               </td>
@@ -149,31 +149,29 @@
       </div>
       <div class="box_section">
         <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
-          <button
+          <ButtonBase
             type="button"
             @click="saveData"
             class="btn_round btn_md btn_primary mg_l10"
+            :buttonName="t('common.save')"
           >
             <!-- 확인 -->
-            {{ t("common.save") }}
-          </button>
-          <button
+          </ButtonBase>
+          <ButtonBase
             type="button"
             class="btn_round btn_white btn_md mg_l5"
             @click="back()"
+            :buttonName="t('common.list')"
           >
             <!-- 목록 -->
-            {{ t("common.list") }}
-          </button>
+          </ButtonBase>
         </div>
       </div>
     </div>
   </section>
 </template>
 <script lang="ts">
-import SelectBoxBase from "@/components/common/input/SelectBoxBase.vue";
 import { MESSAGE_ERROR_API } from "@/constants/common.const";
-import { SUCCSESS_STATUS } from "@/constants/screen.const";
 import { commonStore } from "@/stores/common";
 import type { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 import { infoUniStore } from "@/stores/infoUniversity";
@@ -190,11 +188,13 @@ import { useI18n } from "vue-i18n";
 import InputBase from "@/components/common/input/InputBase.vue";
 import { SCREEN } from "@/router/screen";
 import { useRouter } from "vue-router";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   name: "ModalForm",
   components: {
     InputBase,
+    ButtonBase,
   },
   setup() {
     const { t } = useI18n();
