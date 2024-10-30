@@ -79,10 +79,13 @@
                         required
                         :id="`jobAbility_${indexJob}_${indexSbjt}_${indexAbility}`"
                         :name="`jobAbility_${indexJob}_${indexSbjt}_${indexAbility}`"
-                        :data="dataForm.jobAbility.filter(
-                          (item: any) =>
-                          (item.upCdId.includes(sbjt.jobSeq)) || item.cdId == ''
-                        )"
+                        :data="
+                          dataForm.jobAbility.filter(
+                            (item: any) =>
+                              item.upCdId.includes(sbjt.jobSeq) ||
+                              item.cdId == ''
+                          )
+                        "
                         v-model="ability.cdId"
                         @change="
                           changeJobAbility(
@@ -106,7 +109,9 @@
                         <ButtonBase
                           type="button"
                           v-if="indexAbility != 0"
-                          @click="deleteJobAbility(indexJob, indexSbjt, indexAbility)"
+                          @click="
+                            deleteJobAbility(indexJob, indexSbjt, indexAbility)
+                          "
                           :buttonName="t('common.deleteItem')"
                           class="btn_round btn_sm btn_white"
                         />
@@ -152,7 +157,10 @@
                         dataForm.jobCapaPerform.filter(
                           (item: any) =>
                             ability.jobCapa &&
-                            ability.jobCapa.includes(item.upCdId)
+                            dataForm.jobCapa.filter(
+                            (capa: any) =>
+                              ability.cdId && capa.upCdId.includes(ability.cdId)
+                          ).some(capa => capa.cdId == item.upCdId)
                         )
                       "
                       :mode="'show'"
@@ -165,6 +173,7 @@
                       :key="`${ability.keyJobCapaPerform}`"
                       :requireId="`jobCapaPerform_${indexJob}_${indexSbjt}_${indexAbility}`"
                       :isRequire="true"
+                      @change="checkCapaPefForm(ability)"
                     />
                     <span
                       v-if="
@@ -172,7 +181,10 @@
                         dataForm.jobCapaPerform.filter(
                           (item: any) =>
                             ability.jobCapa &&
-                            ability.jobCapa.includes(item.upCdId)
+                            dataForm.jobCapa.filter(
+                            (capa: any) =>
+                              ability.cdId && capa.upCdId.includes(ability.cdId)
+                          ).some(capa => capa.cdId == item.upCdId)
                         ).length == 0
                       "
                       >※직무역량을 선택해주세요.</span
@@ -289,9 +301,32 @@ export default defineComponent({
     this.goToDetail();
   },
   methods: {
+    checkCapaPefForm(ability:any) {
+      const selectPerForm = this.dataForm.jobCapaPerform
+        .filter(
+          (item: any) =>
+            ability.jobCapaPerform.includes(item.cdId)
+        );
+
+        const selectCapa = this.dataForm.jobCapa
+        .filter(
+          (item: any) =>
+          selectPerForm.some((per) => per.upCdId == item.cdId)
+        );
+
+      ability.jobCapa = selectCapa.map(item => item.cdId);
+      ability.keyJobCapa++;
+    },
     checkCapaChange(ability: any) {
+      ability.jobCapaPerform = this.dataForm.jobCapaPerform
+        .filter(
+          (item: any) =>
+            ability.jobCapa && ability.jobCapa.includes(item.upCdId)
+        )
+        .map((item) => {
+          return item.cdId;
+        });
       ability.keyJobCapaPerform++;
-      ability.jobCapaPerform = [];
     },
     async goToDetail() {
       this.storeCommon.setLoading(true);
@@ -304,7 +339,6 @@ export default defineComponent({
           (job: CreateSubjectResDTO, indexJob: number) => {
             job.subjectNm = job.subjectNm.map(
               (sbjt: CreateListSbjtSelResDTO, indexSbjt: number) => {
-
                 this.checkTemp = sbjt.tempSaveYn == STATUS_YES;
 
                 if (sbjt.jobAbility.length == 0) {
@@ -345,9 +379,12 @@ export default defineComponent({
       value: string,
       ability: any
     ) {
-      ability.jobCapa = [];
-      ability.jobCapaPerform = [];
-      ability.keyJobCapa++;
+      ability.jobCapa = this.dataForm.jobCapa
+        .filter(
+          (item: any) => ability.cdId && item.upCdId.includes(ability.cdId)
+        )
+        .map((item) => item.cdId);
+
       if (
         value &&
         this.dataView[indexJob].subjectNm[indexSbjt].jobAbility.filter(

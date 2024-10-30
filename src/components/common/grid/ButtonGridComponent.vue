@@ -14,7 +14,7 @@
       ></InputFileRegSelection>
     </div>
   </template>
-  <script>
+  <script lang="ts">
   import { TYPE_BUTTON_GO, TYPE_BUTTON_DOWLOAD, ACCEPTTYPE_OFICE } from '../../../constants/screen.const'
   import { checkFlagStore } from "@/stores/common/checkRole"
   import Swal from "sweetalert2"
@@ -66,7 +66,7 @@
       methods: {
           addEvent() {
               if (typeof this.params.onCustomEvent === 'function') {
-                if (roleStore.flag) {
+                if (this.roleStore.flag) {
                     this.params.onCustomEvent(this.params.data)
                 } else {
                     Swal.fire({

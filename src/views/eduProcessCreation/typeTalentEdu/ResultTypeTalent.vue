@@ -19,9 +19,7 @@
               </th>
               <th scope="row" :colspan="1" class="ta_l">
                 <template
-                  v-if="
-                    data.asisEduCourse && data.asisEduCourse.tobeCoreJobDivCd
-                  "
+                  v-if="data.asisEduCourse && data.asisEduCourse.indexEduCourse"
                 >
                   {{ data.asisEduCourse.indexEduCourseNm }}
                 </template>
@@ -40,25 +38,7 @@
                     data.asisEduCourse.tobeTaltNrtgTypeDivCd
                   "
                 >
-                  <template
-                    v-if="
-                      data.asisEduCourse.tobeTaltNrtgTypeDivCd ==
-                      CD_RESULT_SEL_01
-                    "
-                  >
-                    {{ data.asisEduCourse.eduCourseTypeDesc }}
-                  </template>
-                  <template
-                    v-else-if="
-                      data.asisEduCourse.tobeTaltNrtgTypeDivCd ==
-                      CD_RESULT_SEL_03
-                    "
-                  >
-                    {{ data.asisEduCourse.eduCourseType }}
-                  </template>
-                  <template v-else>
-                    {{ "" }}
-                  </template>
+                  {{ data.asisEduCourse.eduCourseType }}
                 </template>
               </th>
             </tr>
@@ -74,23 +54,7 @@
                     data.asisEduCourse && data.asisEduCourse.tobeCoreJobDivCd
                   "
                 >
-                  <template
-                    v-if="
-                      data.asisEduCourse.tobeCoreJobDivCd == CD_RESULT_SEL_01
-                    "
-                  >
-                    {{ data.asisEduCourse.eduCourseJobDesc }}
-                  </template>
-                  <template
-                    v-else-if="
-                      data.asisEduCourse.tobeCoreJobDivCd == CD_RESULT_SEL_03
-                    "
-                  >
-                    {{ data.asisEduCourse.eduCourseJob }}
-                  </template>
-                  <template v-else>
-                    {{ "" }}
-                  </template>
+                  {{ data.asisEduCourse.eduCourseJob }}
                 </template>
               </th>
             </tr>
@@ -134,10 +98,9 @@
               </th>
               <th scope="row" class="ta_l" :colspan="1">
                 <SelectBoxBase
-                  v-if="
-                    data.tobeEduCourse && data.tobeEduCourse.tobeCursListDivCd
-                  "
-                  :id="'selectbox'"
+                  required
+                  v-if="data.tobeEduCourse"
+                  :id="'tobeCursListDivCd'"
                   :name="'selectbox'"
                   :data="
                     listResult.filter(
@@ -151,39 +114,18 @@
               <th scope="row" :colspan="1" class="ta_l">
                 <template
                   v-if="
-                    data.tobeEduCourse && data.tobeEduCourse.tobeCursListDivCd
+                    data.tobeEduCourse && data.tobeEduCourse.indexEduCourse
                   "
                 >
-                  <template
-                    v-if="
-                      data.tobeEduCourse.tobeCursListDivCd == CD_RESULT_SEL_01
-                    "
-                  >
-                    <ListCheckBoxBase
-                      :listData="listReultMajor"
-                      v-model="data.tobeEduCourse.indexEduCourse"
-                      id="indexEduCourse"
-                      name="indexEduCourse"
-                      :useArray="true"
-                    />
-                  </template>
-                  <template
-                    v-else-if="
-                      data.tobeEduCourse.tobeCursListDivCd == CD_RESULT_SEL_03
-                    "
-                  >
-                    <ListCheckBoxBase
-                      :listData="listReultMajor"
-                      v-model="data.asisEduCourse.indexEduCourse"
-                      id="indexEduCourse"
-                      name="indexEduCourse"
-                      :is-disable="true"
-                      :useArray="true"
-                    />
-                  </template>
-                  <template v-else>
-                    {{ "" }}
-                  </template>
+                  <ListCheckBoxBase
+                    :listData="listReultMajor"
+                    v-model="data.tobeEduCourse.indexEduCourse"
+                    id="indexEduCourse"
+                    name="indexEduCourse"
+                    :isRequire="true"
+                    :requireId="'indexEduCourse'"
+                    :useArray="true"
+                  />
                 </template>
               </th>
             </tr>
@@ -195,11 +137,9 @@
               </th>
               <th scope="row" class="ta_l" :colspan="1">
                 <SelectBoxBase
-                  v-if="
-                    data.tobeEduCourse &&
-                    data.tobeEduCourse.tobeTaltNrtgTypeDivCd
-                  "
-                  :id="'selectbox'"
+                  required
+                  v-if="data.tobeEduCourse"
+                  :id="'tobeTaltNrtgTypeDivCd'"
                   :name="'selectbox'"
                   :data="
                     listResult.filter(
@@ -214,32 +154,10 @@
                 <template
                   v-if="
                     data.tobeEduCourse &&
-                    data.tobeEduCourse.tobeTaltNrtgTypeDivCd
+                    data.tobeEduCourse.eduCourseType
                   "
                 >
-                  <template
-                    v-if="
-                      data.tobeEduCourse.tobeTaltNrtgTypeDivCd ==
-                      CD_RESULT_SEL_01
-                    "
-                  >
-                    <InputBase
-                      v-model:model-value="data.tobeEduCourse.eduCourseTypeDesc"
-                      id="eduCourseTypeDesc"
-                      required
-                    />
-                  </template>
-                  <template
-                    v-else-if="
-                      data.tobeEduCourse.tobeTaltNrtgTypeDivCd ==
-                      CD_RESULT_SEL_03
-                    "
-                  >
-                    {{ data.tobeEduCourse.eduCourseType }}
-                  </template>
-                  <template v-else>
-                    {{ "" }}
-                  </template>
+                  {{ data.tobeEduCourse.eduCourseType }}
                 </template>
               </th>
             </tr>
@@ -251,10 +169,9 @@
               </th>
               <th scope="row" class="ta_l" :colspan="1">
                 <SelectBoxBase
-                  v-if="
-                    data.tobeEduCourse && data.tobeEduCourse.tobeCoreJobDivCd
-                  "
-                  :id="'selectbox'"
+                  required
+                  v-if="data.tobeEduCourse"
+                  :id="'tobeCoreJobDivCd'"
                   :name="'selectbox'"
                   :data="listResult"
                   v-model:model-value="data.tobeEduCourse.tobeCoreJobDivCd"
@@ -264,31 +181,10 @@
               <th scope="row" :colspan="1" class="ta_l">
                 <template
                   v-if="
-                    data.tobeEduCourse && data.tobeEduCourse.tobeCoreJobDivCd
+                    data.tobeEduCourse && data.tobeEduCourse.eduCourseJob
                   "
                 >
-                  <template
-                    v-if="
-                      data.tobeEduCourse.tobeCoreJobDivCd == CD_RESULT_SEL_01 ||
-                      data.tobeEduCourse.tobeCoreJobDivCd == CD_RESULT_SEL_02
-                    "
-                  >
-                    <InputBase
-                      v-model:model-value="data.tobeEduCourse.eduCourseJobDesc"
-                      id="eduCourseJobDesc"
-                      required
-                    />
-                  </template>
-                  <template
-                    v-else-if="
-                      data.tobeEduCourse.tobeCoreJobDivCd == CD_RESULT_SEL_03
-                    "
-                  >
-                    {{ data.tobeEduCourse.eduCourseJob }}
-                  </template>
-                  <template v-else>
-                    {{ "" }}
-                  </template>
+                  {{ data.tobeEduCourse.eduCourseJob }}
                 </template>
               </th>
             </tr>
@@ -384,7 +280,7 @@ import ButtonBase from "@/components/common/button/ButtonBase.vue";
 export default defineComponent({
   components: {
     TextArea,
-    ButtonBase
+    ButtonBase,
   },
   setup: () => {
     const router = useRouter();
@@ -428,34 +324,38 @@ export default defineComponent({
         this.listResult = res.data.data.filter(
           (item: any) => item.upCdId == UP_RESULT_SEL
         );
+        this.listResult.unshift({ id: 0, cdId: "", cdNm: this.t("common.select") });
         this.listReultMajor = res.data.data.filter(
           (item: any) => item.upCdId == UP_RESULT_MAJOR
         );
+        this.listReultMajor.unshift({ id: 0, cdId: "", cdNm: this.t("common.select") });
       });
       await getResultEduCourse({ eduCourseSeq: this.id }).then((res: any) => {
         this.data = res.data.data;
         this.data.tobeEduCourse.tobeCursListDivCd = this.data.tobeEduCourse
           .tobeCursListDivCd
           ? this.data.tobeEduCourse.tobeCursListDivCd
-          : CD_RESULT_SEL_03;
+          : "";
         this.data.tobeEduCourse.tobeTaltNrtgTypeDivCd = this.data.tobeEduCourse
           .tobeTaltNrtgTypeDivCd
           ? this.data.tobeEduCourse.tobeTaltNrtgTypeDivCd
-          : CD_RESULT_SEL_03;
+          : "";
         this.data.tobeEduCourse.tobeCoreJobDivCd = this.data.tobeEduCourse
           .tobeCoreJobDivCd
           ? this.data.tobeEduCourse.tobeCoreJobDivCd
-          : CD_RESULT_SEL_03;
+          : "";
 
         this.data.tobeEduCourse.indexEduCourse = this.convertDataCdToString(
           this.data.tobeEduCourse.indexEduCourse
         );
-        this.data.asisEduCourse.indexEduCourseNm = this.convertDataNmToString(
-          this.data.asisEduCourse.indexEduCourse
-        );
-        this.data.asisEduCourse.indexEduCourse = this.convertDataCdToString(
-          this.data.asisEduCourse.indexEduCourse
-        );
+        this.data.asisEduCourse.indexEduCourseNm = this.listReultMajor
+          .filter((item) =>
+            this.data.asisEduCourse.indexEduCourse.some(
+              (asi) => asi.selCd == item.cdId
+            )
+          )
+          .map((item) => item.cdNm)
+          .join(", ");
 
         if (this.data.tobeEduCourse.tobeRsn) {
           this.isDisabled = false;
@@ -464,10 +364,13 @@ export default defineComponent({
       this.storeCommon.setLoading(false);
     },
     convertDataCdToString(data: EduCourseSelResDTO[]): string[] {
-      return data.map((item) => item.dataCd);
+      return data.map((item) => item.selCd);
     },
     convertDataNmToString(data: EduCourseSelResDTO[]): string {
       return data.map((item) => item.dataNm).join(", ");
+    },
+    findCodeNmByCdId(cdId: string[]) {
+      return;
     },
     save() {
       if (this.storeCommon.check) {
@@ -483,29 +386,11 @@ export default defineComponent({
             this.storeCommon.setLoading(true);
 
             this.storeCommon.setLoading(true);
-            let dataDesc = [
-              {
-                cont: this.data.tobeEduCourse.eduCourseJobDesc,
-                dataCd: this.TYPE_JOB,
-                dataNm: "",
-                eduCourseSeq: this.id,
-                proStep: CD_STG041,
-                refrSeq: this.id,
-              },
-              {
-                cont: this.data.tobeEduCourse.eduCourseTypeDesc,
-                dataCd: this.TYPE_TALT,
-                dataNm: "",
-                eduCourseSeq: this.id,
-                proStep: CD_STG041,
-                refrSeq: this.id,
-              },
-            ] as EduCourseDescReqDTO[];
 
             let dataSel = [] as EduCourseSelReqDTO[];
             this.data.tobeEduCourse.indexEduCourse.forEach((item: string) => {
               dataSel.push({
-                dataCd: item,
+                dataCd: UP_RESULT_MAJOR,
                 dataNm: "",
                 selCd: item,
                 refrSeq: this.id,
@@ -525,8 +410,7 @@ export default defineComponent({
             } as EduCourseSelRegistDTO;
 
             this.storeCommon.setLoading(true);
-            await createEduCourseDesc(dataDesc);
-
+            
             await createEduCourseSel(dataSaveSel).finally(() => {
               this.storeCommon.setLoading(false);
             });
