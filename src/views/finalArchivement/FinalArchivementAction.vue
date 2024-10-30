@@ -429,6 +429,7 @@ export default defineComponent({
         item.rate = rate + "%";
       });
 
+      let cntScore = 0;
       this.arrEnd = this.arrFinalAchiMngModel.map((itemA, index) => {
         let itemB = convertedData[index];
         let finalScoreItem = itemB.total + parseInt(itemA.attendScore);
