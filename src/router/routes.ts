@@ -1066,11 +1066,6 @@ export const routes = [
         ]
       },
       {
-        path: SCREEN.eduProcessApprovement.path,
-        name: SCREEN.eduProcessApprovement.name,
-        component: () => import('../views/eduProcessCreation/EduProcessApprovement.vue')
-      },
-      {
         path: SCREEN.eduSubjectProfileDetail.path,
         name: SCREEN.eduSubjectProfileDetail.name,
         component: () => import('@/views/eduProcessCreation/subjectProfile/SubjectProfileEdit.vue')
