@@ -82,29 +82,55 @@
         >
           <template #button>
             <div class="search_btnarea">
-              <button
+              <!-- <button
                 type="button"
                 :disabled="disableButtonDelete"
                 class="btn_round btn_lg btn_black"
                 @click="confirmDelete()"
               >
                 {{ t("05.eduProcessCreation.listAndApprove.button.delete") }}
-              </button>
-              <button
+              </button> -->
+              <ButtonBase
+                type="button"
+                :disabled="disableButtonDelete"
+                @click="handleVersionUp"
+                :buttonName="
+                  t('05.eduProcessCreation.listAndApprove.button.delete')
+                "
+                class="btn_round btn_lg btn_black"
+              />
+              <!-- <button
                 type="button"
                 :disabled="disableButtonUpversion"
                 class="btn_round btn_lg btn_gray"
                 @click="handleVersionUp()"
               >
                 {{ t("eduProcessCreation.btnVersionUp") }}
-              </button>
-              <button
+              </button> -->
+              <ButtonBase
+                type="button"
+                :disabled="disableButtonUpversion"
+                @click="handleVersionUp"
+                :buttonName="
+                  t('eduProcessCreation.btnVersionUp')
+                "
+                class="btn_round btn_lg btn_gray"
+              />
+              <!-- <button
                 type="button"
                 class="btn_round btn_lg btn_primary pointer-events-none"
                 @click="openModalSetting"
               >
                 {{ t("05.eduProcessCreation.listAndApprove.button.create") }}
-              </button>
+              </button> -->
+              <ButtonBase
+                type="button"
+                @click="openModalSetting"
+                :buttonName="
+                  t('05.eduProcessCreation.listAndApprove.button.create')
+                "
+                class="btn_round btn_lg btn_primary pointer-events-none"
+              />
             </div>
           </template>
         </GridComponentV2>
@@ -113,13 +139,6 @@
   </section>
   <SustYearSetting @close-modal="closeModalModify" v-if="isOpenSetting">
   </SustYearSetting>
-  <RejectReasonDetail
-    :title="t('05.eduProcessCreation.listAndApprove.title3')"
-    @close-modal="closeModalModify"
-    v-if="isOpenReason"
-    :data="data"
-  >
-  </RejectReasonDetail>
 </template>
 
 <script lang="ts">
@@ -133,7 +152,6 @@ import InputGridComponent from "@/components/common/grid/InputGridCoponent.vue";
 import CheckboxGrid from "@/components/common/grid/CheckboxGrid.vue";
 import SelectBoxBase from "@/components/common/input/SelectBoxBase.vue";
 import SustYearSetting from "./popup/SustYearSetting.vue";
-import RejectReasonDetail from "./popup/RejectReasonDetail.vue";
 import { defineComponent, ref } from "vue";
 import {
   PAGINATION_PAGE_SIZE,
@@ -144,8 +162,6 @@ import {
   CODE_SCH,
   START_YEAR_NUMBER,
   FORMAT_YYY_MM_DD,
-  CODE_103950,
-  CODE_103980,
   CODE_103920,
   CODE_103960,
   CODE_103970,
@@ -171,14 +187,13 @@ import {
   versionUpEduCourse,
 } from "@/stores/eduProcessCreation/eduCourse/eduProcess.service";
 import {
-  BAD_REQUEST_EDU_COURSE,
   BAD_REQUEST_NO_REGISTER_WRITE_SCHDL,
   BAD_REQUEST_NO_VERIFY_VERSION,
-  BAD_REQUEST_NO_VERSION_MAX,
   STATUS_EDU_COURSE,
   VERSION_V7,
 } from "@/constants/common.const";
 import RadioButtonGrid from "@/components/common/grid/RadioButtonGrid.vue";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
@@ -190,9 +205,9 @@ export default defineComponent({
     InputGridComponent,
     SelectBoxBase,
     SustYearSetting,
-    RejectReasonDetail,
     ButtonGridComponent,
     CheckboxGrid,
+    ButtonBase
   },
   setup: () => {
     const router = useRouter();
@@ -221,7 +236,6 @@ export default defineComponent({
   data() {
     return {
       isOpenSetting: false,
-      isOpenReason: false,
       listCheckBoxGrid: [] as string[],
       keyId: 0,
       pageTitle: this.t("eduProcessCreation.title"),
@@ -381,7 +395,6 @@ export default defineComponent({
       listYear: [] as any,
       listSts: [{ id: 0, cdId: "", cdNm: this.t("common.all") }] as any,
       departmentFilterDTO: {} as DepartmentFilterDTO,
-      data: {} as any,
       dataSelectRadio: {} as EduCourseResModel,
       disableButtonDelete: true,
       disableButtonUpversion: true,
@@ -568,13 +581,8 @@ export default defineComponent({
     openModalSetting() {
       this.isOpenSetting = true;
     },
-    openModalReason(data: any) {
-      this.data = data.eduCourseSeq;
-      this.isOpenReason = true;
-    },
     closeModalModify() {
       this.isOpenSetting = false;
-      this.isOpenReason = false;
     },
     openContinueAlert(data: EduCourseResModel) {
       this.dataSel = data;
@@ -610,12 +618,15 @@ export default defineComponent({
     },
     checkChild(value: EduCourseResModel) {
       this.dataSelectRadio = value;
-      if (this.dataSelectRadio && this.dataSelectRadio.stsCd != STATUS_EDU_COURSE) {
+      if (
+        this.dataSelectRadio &&
+        this.dataSelectRadio.stsCd != STATUS_EDU_COURSE
+      ) {
         this.disableButtonDelete = false;
       } else {
         this.disableButtonDelete = true;
       }
-      
+
       if (this.dataSelectRadio && this.dataSelectRadio.version != VERSION_V7) {
         this.disableButtonUpversion = false;
       } else {
@@ -665,10 +676,8 @@ export default defineComponent({
                   "교과과정 개발 기간이 아닙니다. 다시 확인해주세요."
                 );
               }
-              
-              if (
-                error.response.data.code == BAD_REQUEST_NO_VERIFY_VERSION
-              ) {
+
+              if (error.response.data.code == BAD_REQUEST_NO_VERIFY_VERSION) {
                 this.$alert(
                   "중복된 버전으로 올릴 수 없습니다. 다시 확인해주세요."
                 );

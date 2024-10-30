@@ -152,14 +152,21 @@
       </div>
     </div>
     <div class="btn_group btn_end mg_t35">
-      <button
+      <!-- <button
         v-if="version && isSave"
         type="button"
         class="btn_round btn_md btn_primary"
         @click="confirmSave()"
       >
         {{ t("common.save") }}
-      </button>
+      </button> -->
+      <ButtonBase
+        v-if="version && isSave"
+        type="button"
+        class="btn_round btn_md btn_primary"
+        :buttonName="t('common.save')"
+        @click="confirmSave()"
+      ></ButtonBase>
       <button
         type="button"
         class="btn_round btn_md btn_primary"
@@ -253,13 +260,11 @@ export default defineComponent({
           ncsKcs.listVerifyJobAbility.forEach((jobAbility) => {
             const { eduNeed, jobImpt } = jobAbility;
 
-            const average = ((Number(eduNeed) + Number(jobImpt)) / 2).toFixed(
-              1
-            );
+            const average = (Number(eduNeed) + Number(jobImpt)) / 2;
 
-            jobAbility.average = Number(average);
+            jobAbility.average = average;
 
-            if (Number(average) >= 3.5) {
+            if (average >= 3.5) {
               jobAbility.useYn = this.stateY;
             } else {
               jobAbility.useYn = this.stateN;
