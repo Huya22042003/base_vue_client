@@ -49,14 +49,14 @@
             <tbody>
               <tr>
                 <td
-                  v-if="finalAchiDetailModel.evalType == '122410'"
+                  v-if="finalAchiDetailModel.evalType == EVAL_TYPE_01"
                   class="score-cell"
                 >
                   A0/40% B0/90%
                 </td>
                 <td v-else class="score-cell">A0/30% B0/70%</td>
                 <td class="score-cell">
-                  {{ finalAchiRltModel.scoreMedi }}
+                  {{ mediScore }}
                 </td>
                 <td class="score-cell">
                   {{ finalAchiDetailModel.cntStd }}
@@ -239,7 +239,11 @@ import LoaddingComponent from "@/components/common/loading/LoaddingComponent.vue
 import { defineComponent, ref } from "vue";
 import { MESSAGE_ERROR_API } from "@/constants/common.const";
 import { SCREEN } from "../../router/screen";
-import { STATUS_YES, STATUS_NO } from "../../constants/common.const";
+import {
+  STATUS_YES,
+  STATUS_NO,
+  EVAL_TYPE_01,
+} from "../../constants/common.const";
 import type { ExcelData } from "../../stores/common/excel/excelData.type";
 
 export default defineComponent({
@@ -301,6 +305,7 @@ export default defineComponent({
       nameOfbtn: this.t("finalArchi.list.downloadExcel"),
       fileNameExport: "공지사항",
       nameOfbtnRp: this.t("finalArchi.list.downloadRp"),
+      mediScore: 0,
     };
   },
   beforeMount() {
@@ -426,19 +431,20 @@ export default defineComponent({
 
       this.arrEnd = this.arrFinalAchiMngModel.map((itemA, index) => {
         let itemB = convertedData[index];
-        let finalScore1 = itemB.total + parseInt(itemA.attendScore);
+        let finalScoreItem = itemB.total + parseInt(itemA.attendScore);
         let errorCode = "0(충족)";
-        if (finalScore1 > 90) {
+        if (finalScoreItem > 90) {
           errorCode = "5(탁월)";
-        } else if (finalScore1 > 80) {
+        } else if (finalScoreItem > 80) {
           errorCode = "4(우수)";
-        } else if (finalScore1 > 70) {
+        } else if (finalScoreItem > 70) {
           errorCode = "3(보통)";
-        } else if (finalScore1 > 60) {
+        } else if (finalScoreItem > 60) {
           errorCode = "2(다소미흡)";
         } else {
           errorCode = "1(미흡)";
         }
+        cntScore += finalScoreItem;
 
         return {
           rowNum: itemA.rowNum,
@@ -451,10 +457,14 @@ export default defineComponent({
           rank: itemB.rank,
           rate: itemB.rate,
           shregStsNm: itemA.shregStsNm,
-          finalScore: finalScore1,
+          finalScore: finalScoreItem,
           gradeNm: itemA.gradeNm,
         };
       });
+
+      this.mediScore = this.finalAchiRltModel.percentBigA0 = parseFloat(
+        cntScore / this.arrFinalAchiMngModel.length
+      ).toFixed(2);
     },
     handClickExport() {
       let rowExcel = [] as Array<Array<any>>;
