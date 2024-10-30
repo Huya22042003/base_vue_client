@@ -190,7 +190,7 @@
                       >※직무역량을 선택해주세요.</span
                     >
                   </td>
-                  <td scope="row" class="ta_c" :colspan="1">
+                  <td scope="row" class="ta_c" v-if="indexAbility == 0" :rowspan="sbjt.jobAbility.length" :colspan="1">
                     <ButtonBase
                       type="button"
                       v-if="indexAbility == 0"
@@ -420,10 +420,19 @@ export default defineComponent({
       indexSbjt: number,
       indexAbility: number
     ) {
-      this.dataView[indexJob].subjectNm[indexSbjt].jobAbility = this.dataView[
-        indexJob
-      ].subjectNm[indexSbjt].jobAbility.filter(
-        (item: any, index: number) => index != indexAbility
+      this.$confirm(
+        this.t('common.message.confirmDelete'),
+        "",
+        (isConfirm: Boolean) => {
+          if (isConfirm) {
+            this.dataView[indexJob].subjectNm[indexSbjt].jobAbility = this.dataView[
+              indexJob
+            ].subjectNm[indexSbjt].jobAbility.filter(
+              (item: any, index: number) => index != indexAbility
+            );
+            this.$alert(this.t('common.message.deleteSuccess'));
+          }
+        }
       );
     },
     save() {
@@ -586,9 +595,18 @@ export default defineComponent({
       this.dataView[this.indexSelect].subjectNm.push(dataSbjt);
     },
     deleteSubject(indexJob: number, indexSubject: number) {
-      this.dataView[indexJob].subjectNm = this.dataView[
-        indexJob
-      ].subjectNm.filter((item: any, index: number) => index != indexSubject);
+      this.$confirm(
+        "교과목을 삭제하시겠어요?",
+        "",
+        (isConfirm: Boolean) => {
+          if (isConfirm) {
+            this.dataView[indexJob].subjectNm = this.dataView[
+              indexJob
+            ].subjectNm.filter((item: any, index: number) => index != indexSubject);
+            this.$alert("교과목이 삭제가 되었습니다.");
+          }
+        }
+      );
     },
   },
 });
