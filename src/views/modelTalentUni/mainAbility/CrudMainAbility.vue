@@ -12,15 +12,15 @@
             <p class="box_title_sm mb-0"></p>
             <div class="btn_group btn_end mb-3">
               <ButtonBase
-                class="btn_md btn_blue"
+                class="btn_round btn_md btn_primary"
                 :buttonName="t('02.coreChildAbility.button.addCore')"
                 @click="addMajor()"
               >
               </ButtonBase>
             </div>
           </div>
-          <div class="scrollx_table sm">
-            <table class="tbl_col">
+          <div class="tbl tbl_col">
+            <table>
               <caption>
                 table col scroll
               </caption>
@@ -36,28 +36,28 @@
               </colgroup>
               <thead>
                 <tr>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.core") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.coreDefn") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.useYn") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.manager") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.child") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.childDefn") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.useYn") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.manager") }}
                   </th>
                 </tr>
