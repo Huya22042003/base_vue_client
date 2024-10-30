@@ -34,7 +34,8 @@
       "confirmDelete": "삭제 하시겠습니까?",
       "confirmDeleteV1": "{name}을(를) 삭제 하시겠습니까?",
       "confirmSaveTemp": "임시저장 하시겠어요?",
-      "successSaveTemp": "임시저장됐습니다."
+      "successSaveTemp": "임시저장됐습니다.",
+      "warring": "수정 권한이 없는 메뉴가 입니다."
     },
     "use": "사용",
     "noUse": "미사용",
