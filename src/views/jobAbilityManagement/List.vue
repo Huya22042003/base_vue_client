@@ -5,110 +5,93 @@
         :pageTitle="pageTitle"
         :breadcrumbItems="breadcrumbItems"
       ></Breadcrumb>
-      <div class="search_box mg_b30">
-        <div class="search_section">
-          <div class="search_toggle sm">
-            <div class="left"></div>
-            <div class="right">
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{ t("jobAbilityManagement.search1") }}</span>
-                <div>
-                  <SelectBoxBase
-                    id="type"
-                    name="type"
-                    :data="listCategory"
-                    v-model="searchModel.typeCd"
-                    @change="handleChangeType(searchModel.typeCd)"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{ t("jobAbilityManagement.search2") }}</span>
-                <div>
-                  <SelectBoxBase
-                    :id="'bigClassCd'"
-                    name="'bigClassCd'"
-                    :data="listClassLarge"
-                    v-model="searchModel.hightCd"
-                    @change="
-                      handleSelectChange('bigClassCd', searchModel.hightCd)
-                    "
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{ t("jobAbilityManagement.search3") }}</span>
-                <div>
-                  <SelectBoxBase
-                    :id="'medClassCd'"
-                    name="'medClassCd'"
-                    :data="listClassMedium"
-                    v-model="searchModel.mediumCd"
-                    @change="
-                      handleSelectChange('medClassCd', searchModel.mediumCd)
-                    "
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{ t("jobAbilityManagement.search4") }}</span>
-                <div>
-                  <SelectBoxBase
-                    :id="'smallClassCd'"
-                    name="'smallClassCd'"
-                    :data="listClassSmall"
-                    v-model="searchModel.lowCd"
-                    @change="
-                      handleSelectChange('smallClassCd', searchModel.lowCd)
-                    "
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{ t("jobAbilityManagement.search5") }}</span>
-                <div>
-                  <SelectBoxBase
-                    :id="'detailClassCd'"
-                    name="'detailClassCd'"
-                    :data="listClassDetail"
-                    v-model="searchModel.detailCd"
-                    @change="
-                      handleSelectChange('detailClassCd', searchModel.detailCd)
-                    "
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{ t("jobAbilityManagement.search6") }}</span>
-                <div>
-                  <InputBase v-model="searchModel.jobAbilNm" />
-                </div>
-              </div>
-              <div class="search_daywrap mg_r10 mg_t10">
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_primary mg_l10"
-                  @click="search"
+      <div class="box dp_block">
+        <div class="box_section">
+          <div class="search_box col_3">
+            <ul>
+              <li>
+                <p>{{ t("jobAbilityManagement.search1") }}</p>
+                <SelectBoxBase
+                  id="type"
+                  name="type"
+                  :data="listCategory"
+                  v-model="searchModel.typeCd"
+                  @change="handleChangeType(searchModel.typeCd)"
                 >
-                  {{ t("common.search") }}
-                </button>
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_gray mg_l5"
-                  @click="reset"
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p>{{ t("jobAbilityManagement.search2") }}</p>
+                <SelectBoxBase
+                  :id="'bigClassCd'"
+                  name="'bigClassCd'"
+                  :data="listClassLarge"
+                  v-model="searchModel.hightCd"
+                  @change="
+                    handleSelectChange('bigClassCd', searchModel.hightCd)
+                  "
                 >
-                  {{ t("common.reset") }}
-                </button>
-              </div>
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p>{{ t("jobAbilityManagement.search3") }}</p>
+                <SelectBoxBase
+                  :id="'medClassCd'"
+                  name="'medClassCd'"
+                  :data="listClassMedium"
+                  v-model="searchModel.mediumCd"
+                  @change="
+                    handleSelectChange('medClassCd', searchModel.mediumCd)
+                  "
+                >
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p>{{ t("jobAbilityManagement.search4") }}</p>
+                <SelectBoxBase
+                  :id="'smallClassCd'"
+                  name="'smallClassCd'"
+                  :data="listClassSmall"
+                  v-model="searchModel.lowCd"
+                  @change="
+                    handleSelectChange('smallClassCd', searchModel.lowCd)
+                  "
+                >
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p>{{ t("jobAbilityManagement.search5") }}</p>
+                <SelectBoxBase
+                  :id="'detailClassCd'"
+                  name="'detailClassCd'"
+                  :data="listClassDetail"
+                  v-model="searchModel.detailCd"
+                  @change="
+                    handleSelectChange('detailClassCd', searchModel.detailCd)
+                  "
+                >
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p>{{ t("jobAbilityManagement.search6") }}</p>
+                <InputBase v-model="searchModel.jobAbilNm" class="form_style" />
+              </li>
+            </ul>
+            <div class="search_btnarea">
+              <button
+                type="button"
+                class="btn_round btn_lg btn_primary mg_l10"
+                @click="search"
+              >
+                {{ t("common.search") }}
+              </button>
+              <button
+                type="button"
+                class="btn_round btn_lg btn_gray mg_l5"
+                @click="reset"
+              >
+                {{ t("common.reset") }}
+              </button>
             </div>
           </div>
         </div>

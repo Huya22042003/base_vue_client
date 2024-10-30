@@ -106,7 +106,7 @@
                 {{ t("common.next") }}
               </button>
               <button
-                v-if="status != STS_EDU_CQI_SUCCESS && picked === 'Two'"
+                v-if="picked === 'Two'"
                 class="button btn_md btn_primary ml-4"
                 @click="saveData"
               >
@@ -115,7 +115,6 @@
             </template>
             <template v-else>
               <button
-                v-if="status != STS_EDU_CQI_SUCCESS"
                 class="button btn_md btn_primary ml-4"
                 @click="saveData"
               >

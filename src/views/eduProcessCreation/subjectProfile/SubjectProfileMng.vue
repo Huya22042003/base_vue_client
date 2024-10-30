@@ -234,7 +234,7 @@ export default {
       this.getAllPage();
     },
     convertEduCourseType(columnDefs: any[]) {
-      if (this.dataEduCourse && this.dataEduCourse.typeNm && this.dataEduCourse.typeNm.includes(EDU_TYPE_OTHER)) {
+      if (this.dataEduCourse && this.dataEduCourse.typeNm && !this.dataEduCourse.typeNm.includes(EDU_TYPE_OTHER)) {
         return columnDefs.filter(item => item.field != 'major')
       }
 

@@ -5192,9 +5192,9 @@
           "setAll": "일괄 설정"
         },
         "modal": {
-          "title": "강의설계 일정 일괄설정",
-          "titleChooseDivision": "강의설계 일정 설정(분반을 선택했을 경우)",
-          "titleChooseCheckbox": "강의설계 선택 일정 설정(체크박스 선택했을 경우)",
+          "title": "강의설계 선택 일정 설정",
+          "titleChooseDivision": "강의설계 일정 설정",
+          "titleChooseCheckbox": "강의설계 일정 일괄설정",
           "year":"학년도",
           "term":"학기",
           "lecturePlanWritingPeriod": "강의계획서 작성 기간",
@@ -6083,6 +6083,7 @@
       "title4": "3-4. 핵심직무 선정",
       "title5": "3-5. 인재양성유형 선정 결과",
       "title6": "내부",
+      "title6_1": "외부",
       "title7": "성명",
       "title8": "전공분야",
       "title9": "소속",

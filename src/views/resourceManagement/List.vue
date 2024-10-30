@@ -92,10 +92,6 @@
     <!-- grid table data -->
     <div class="box dp_block">
       <div class="box_section">
-        <div class="page_toparea">
-          <h2 class="title-search">Resource Data</h2>
-        </div>
-
         <GridComponentV2
           ref="grid"
           :rowData="rowData"
@@ -865,5 +861,12 @@ export default defineComponent({
 <style lang="css" scoped>
 .list_select_custom {
   max-height: 200px !important;
+}
+.search_box{
+  padding: 0;
+}
+.search_box.col_3 > ul > li > p:first-child{
+  width: 110px;
+  white-space: nowrap;
 }
 </style>

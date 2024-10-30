@@ -2,92 +2,83 @@
   <div class="page_wrapper">
     <section id="content" class="content_wrapper grid_content" tabindex="0">
       <Breadcrumb :pageTitle="pageTitle"></Breadcrumb>
-
-      <div class="search_box mg_b30">
-        <div class="search_section">
-          <div class="search_toggle sm">
-            <div class="left"></div>
-            <div class="right">
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">
+      <div class="box dp_block">
+        <div class="box_section">
+          <div class="search_box col_3">
+            <ul>
+              <li>
+                <p>
                   {{
                     t(
                       "04.eduScheduleCreativeMng.newEducationSchedule.search.schoolYear"
                     )
-                  }}</span
+                  }}
+                </p>
+                <SelectBoxBase
+                  :id="'schoolYear'"
+                  :name="'schoolYear'"
+                  :data="listSelectBoxSchoolYear"
+                  v-model="newEducationScheduleSearchModel.year"
                 >
-                <div class="">
-                  <SelectBoxBase
-                    :id="'schoolYear'"
-                    :name="'schoolYear'"
-                    :data="listSelectBoxSchoolYear"
-                    v-model="newEducationScheduleSearchModel.year"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p>
                   {{
                     t(
                       "04.eduScheduleCreativeMng.newEducationSchedule.search.specializedUniversity"
                     )
-                  }}</span
+                  }}
+                </p>
+                <SelectBoxBaseSearch
+                  :id="'specializedUniversity'"
+                  :name="'specializedUniversity'"
+                  v-model="
+                    newEducationScheduleSearchModel.specializedUniversity
+                  "
+                  :data="listSelectBoxMajor"
+                  @update:modelValue="changSch"
+                  value-select-all="전체"
                 >
-                <div class="">
-                  <SelectBoxBaseSearch
-                    :id="'specializedUniversity'"
-                    :name="'specializedUniversity'"
-                    v-model="
-                      newEducationScheduleSearchModel.specializedUniversity
-                    "
-                    :data="listSelectBoxMajor"
-                    @update:modelValue="changSch"
-                    value-select-all="전체"
-                  >
-                  </SelectBoxBaseSearch>
-                </div>
-              </div>
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">
+                </SelectBoxBaseSearch>
+              </li>
+              <li>
+                <p>
                   {{
                     t(
                       "04.eduScheduleCreativeMng.newEducationSchedule.search.faculty"
                     )
-                  }}</span
+                  }}
+                </p>
+                <SelectBoxBaseSearch
+                  :id="'faculty'"
+                  :name="'faculty'"
+                  v-model="newEducationScheduleSearchModel.deptNm"
+                  :data="listSelectBoxDept"
+                  value-select-all="전체"
                 >
-                <div class="">
-                  <SelectBoxBaseSearch
-                    :id="'faculty'"
-                    :name="'faculty'"
-                    v-model="newEducationScheduleSearchModel.deptNm"
-                    :data="listSelectBoxDept"
-                    value-select-all="전체"
-                  >
-                  </SelectBoxBaseSearch>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <button
-                  class="btn_round btn_lg btn_primary mg_l10"
-                  @click="search()"
-                >
-                  {{ t("common.search") }}
-                </button>
-                <button
-                  class="btn_round btn_lg btn_gray mg_l5"
-                  @click="resetSearch()"
-                >
-                  {{ t("common.reset") }}
-                </button>
-              </div>
+                </SelectBoxBaseSearch>
+              </li>
+            </ul>
+            <div class="search_btnarea">
+              <button
+                type="button"
+                class="btn_round btn_lg btn_primary mg_l10"
+                @click="search()"
+              >
+                {{ t("common.search") }}
+              </button>
+              <button
+                type="button"
+                class="btn_round btn_lg btn_gray mg_l5"
+                @click="resetSearch()"
+              >
+                {{ t("common.reset") }}
+              </button>
             </div>
           </div>
         </div>
       </div>
-
       <div class="box">
         <div class="box_section">
           <GridComponentV2
@@ -285,10 +276,6 @@ export default defineComponent({
       this.newEducationScheduleSearchModel.specializedUniversity = "";
       this.newEducationScheduleSearchModel.deptNm = "";
       this.listSelectBoxDept = "";
-      console.log(
-        this.newEducationScheduleSearchModel.specializedUniversity,
-        this.newEducationScheduleSearchModel.deptNm
-      );
       this.newEducationScheduleSearchModel.year = new Date().getFullYear() + "";
       this.listSelectBoxDept = [
         { id: 0, cdId: "", cdNm: this.t("common.all") },

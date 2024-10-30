@@ -8,17 +8,15 @@
   >
     <!-- Modal content goes here -->
     <template #title>
-      <div class="box_section">
-        <p class="box_title_sm" v-if="modalType === 'type1'">
-          {{ t("lectureDesignSchedule.modal.title") }}
-        </p>
-        <p class="box_title_sm" v-if="modalType === 'type2'">
-          {{ t("lectureDesignSchedule.modal.titleChooseDivision") }}
-        </p>
-        <p class="box_title_sm" v-if="modalType === 'type3'">
-          {{ t("lectureDesignSchedule.modal.titleChooseCheckbox") }}
-        </p>
-      </div>
+      <strong v-if="modalType === 'type1'">
+        {{ t("lectureDesignSchedule.modal.title") }}
+      </strong>
+      <strong v-if="modalType === 'type2'">
+        {{ t("lectureDesignSchedule.modal.titleChooseDivision") }}
+      </strong>
+      <strong v-if="modalType === 'type3'">
+        {{ t("lectureDesignSchedule.modal.titleChooseCheckbox") }}
+      </strong>
     </template>
     <template #default>
       <div class="box_section">

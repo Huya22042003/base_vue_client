@@ -333,6 +333,7 @@
                 :category="jobAbility"
                 :sectionName="jobAbility"
                 :subTitle="'※ 30MB 이하의 파일 하나만 등록이 가능합니다. '"
+                :maxSize="30"
               >
               </InputFileBase>
             </td>
@@ -494,6 +495,7 @@ export default {
       jobAbility: "JOBABILITY",
       listYear: this.getListYear(),
       jobResultIdUpVer: "",
+      modelType: "",
     };
   },
   async beforeMount() {
@@ -517,10 +519,10 @@ export default {
     if (this.modeScreen == MODE_DETAIL) {
       this.modeFile = MODE_EDIT;
       await this.getDataDetail().then(() => {
-        return this.getListParent();
+        return this.getListParent(this.modelType);
       });
     } else {
-      await this.getListParent();
+      await this.getListParent(KCS_CD_ID);
     }
   },
   methods: {
@@ -568,6 +570,7 @@ export default {
               this.detailData.learnModuleNm;
           }
           this.jobAbilityCrudModel.lvl = this.detailData.lvl;
+          this.modelType = this.jobAbilityCrudModel.typeCd;
         })
         .finally(() => {
           this.cmn.setLoading(false);
@@ -830,12 +833,26 @@ export default {
         orderNo: "",
         upCd: "",
       };
+      const defaultItemTow = {
+        cdId: "",
+        cdNm: this.t("jobAbilityManagement.tab1.defaultSelect3"),
+        orderNo: "",
+        upCd: "",
+      };
+      const defaultItemThree = {
+        cdId: "",
+        cdNm: this.t("jobAbilityManagement.tab1.defaultSelect4"),
+        orderNo: "",
+        upCd: "",
+      };
       switch (selectBoxId) {
         case "bigClassCd":
           defaultItemOne.cdNm = this.t(
             "jobAbilityManagement.tab1.defaultSelect2"
           );
           this.listMedClass = [defaultItemOne];
+          this.listSmallClass = [defaultItemTow];
+          this.listDetailClass = [defaultItemThree];
           this.jobAbilityCrudModel.jobCapaMediumLevel = "";
           this.jobAbilityCrudModel.jobCapaLowLevel = "";
           this.jobAbilityCrudModel.jobCapaDetailLevel = "";
@@ -869,6 +886,7 @@ export default {
             "jobAbilityManagement.tab1.defaultSelect3"
           );
           this.listSmallClass = [defaultItemOne];
+          this.listDetailClass = [defaultItemThree];
           this.jobAbilityCrudModel.jobCapaLowLevel = "";
           this.jobAbilityCrudModel.jobCapaDetailLevel = "";
           this.selectedOrders.smallClassCd = "";
@@ -934,7 +952,7 @@ export default {
           break;
       }
     },
-    async getListParent(type = KCS_CD_ID) {
+    async getListParent(type: string) {
       this.cmn.setLoading(true);
       await parentList(type)
         .then((res) => {

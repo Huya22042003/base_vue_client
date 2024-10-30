@@ -52,7 +52,7 @@
               <template
                 v-for="coreAbility in listCoreAbility"
                 :key="coreAbility.coreAbilitySeq"
-                ><th scope="row" class="ta_c" :colspan="3" :rowspan="1">
+                ><th scope="row" class="ta_c" :colspan="coreAbility.countChildAbility" :rowspan="1">
                   {{ coreAbility.coreAbilityNm }}
                 </th></template
               >

@@ -12,11 +12,11 @@
         <div>
           <div class="btn_group btn_end" style="gap: 10px">
             <InputBase class="flex-[7]" :placeholder="searchPlace" id="search_teacher" v-model="dataSearch.name" />
-            <button class="button btn_sm btn_medium_gray bo_rd6" @click="search()">
+            <button class="button btn_sm btn_primary bo_rd6" @click="search()">
               <!-- 조회 -->
               {{ t("departmentMng.meettingReportEdu.modalAdd.search") }}
             </button>
-            <button class="button btn_sm btn_white bo_rd6" @click="reset()">
+            <button class="button btn_sm btn_gray" @click="reset()">
               <!-- 초기화 -->
               {{ t("departmentMng.meettingReportEdu.modalAdd.clear") }}
             </button>
@@ -202,11 +202,11 @@ export default {
 
     handleTeacher(data: any) {
       this.$swal({
-        text: this.t('departmentMng.meettingReportEdu.message.selectStudent'),
+        text: `${data.userNm} ${data.posi}을/를 선택하시겠습니까?`,
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
-        confirmButtonText: this.t('common.save'),
+        confirmButtonText: this.t('common.select'),
         cancelButtonText: this.t('common.cancel'),
       })
         .then((result) => {

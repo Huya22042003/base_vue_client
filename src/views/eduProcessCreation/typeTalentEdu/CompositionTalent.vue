@@ -67,7 +67,11 @@
                   />
                 </td>
                 <td scope="row" class="ta_c" :colspan="1">
-                  <button @click="deleteDataInternal(index)" type="button" class="btn_round btn_sm btn_white">
+                  <button
+                    @click="deleteDataInternal(index)"
+                    type="button"
+                    class="btn_round btn_sm btn_white"
+                  >
                     {{ t("common.deleteItem") }}
                   </button>
                 </td>
@@ -81,7 +85,7 @@
     <!-- Table 2 -->
     <div class="box_section mt-13">
       <div class="dp_flex between al_center box_title_sm">
-        <!-- 내부 -->{{ t("eduProcessCreation.typeTalentEdu.title6") }}
+        <!-- 외부 -->{{ t("eduProcessCreation.typeTalentEdu.title6_1") }}
         <button
           type="button"
           class="btn_lg btn_blue pointer-events-none"
@@ -183,9 +187,11 @@
 
     <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
-        <button type="button" class="btn_round btn_md btn_primary"
-        @click="save()"
-        v-if="isSave"
+        <button
+          type="button"
+          class="btn_round btn_md btn_primary"
+          @click="save()"
+          v-if="isSave"
         >
           {{ t("common.save") }}
         </button>
@@ -339,7 +345,7 @@ export default defineComponent({
 
           const dataSave = [] as EduCourseCommReqDTO[];
 
-          this.dataInternal.forEach((el:EduCourseCommResDTO) => {
+          this.dataInternal.forEach((el: EduCourseCommResDTO) => {
             dataSave.push({
               commSeq: el.commSeq,
               divCd: CD_INTERNAL,
@@ -353,7 +359,7 @@ export default defineComponent({
             });
           });
 
-          this.dataOutside.forEach((el:EduCourseCommResDTO) => {
+          this.dataOutside.forEach((el: EduCourseCommResDTO) => {
             dataSave.push({
               commSeq: el.commSeq,
               divCd: CD_OUTSIDE,
@@ -367,7 +373,7 @@ export default defineComponent({
             });
           });
 
-          saveEduCourseComm(dataSave).then((res:any) => {
+          saveEduCourseComm(dataSave).then((res: any) => {
             this.storeCommon.setLoading(false);
             this.$confirm(
               this.t("common.messageSuccessNextTab"),
@@ -390,7 +396,13 @@ export default defineComponent({
       this.modalOpen = false;
     },
     dataSelected(data: EduCourseCommResDTO) {
+      if (this.dataInternal.some((item) => item.id == data.id)) {
+        this.$alert("이미 추가된 운영위원입니다. 다시 확인해주세요.");
+        return;
+      }
+
       this.addDataInternal(data);
+      this.$alert("교육과정 운영위원이 추가되었습니다.");
     },
   },
 });
