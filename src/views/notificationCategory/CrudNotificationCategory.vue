@@ -111,6 +111,7 @@
                       :orgName="'NTC'"
                       :category="'NOTICE'"
                       :sectionName="fileTypeOffice"
+                      :subTitle="'※ 10mb 이하의 파일 한 개 등록 가능합니다.'"
                     ></InputFileBase>
                   </td>
                 </tr>

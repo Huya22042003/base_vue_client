@@ -296,3 +296,6 @@ export const CD_TYPE_BACHELOR = "12160001";
 export const CD_TYPE_MAJOR_IN_DEPTH = "12160002";
 export const CD_TYPE_SMALL_UNIT = "12160003";
 export const CD_TYPE_SPECIAL = "12160004";
+
+export const EVAL_TYPE_01 = "122410";
+export const EVAL_TYPE_02 = "122420";

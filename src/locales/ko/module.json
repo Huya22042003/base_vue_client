@@ -3314,8 +3314,8 @@
 
         },
         "modal": {
-          "title": "교육과정개발 일괄 일정 설정",
-          "title2": "교육과정개발 학과별 일정 설정",
+          "title": "교육과정개발 일정 설정",
+          "title2": "교육과정개발 일괄 일정 설정",
           "schoolYear": "학년도",
           "specializedUniversity": "계열",
           "faculty": "학과/학부",
