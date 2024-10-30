@@ -67,13 +67,12 @@
           </table>
         </div>
         <div class="dp_flex btn_group btn_end mt-2">
-          <button
-            type="button"
+          <ButtonBase
             class="btn_round btn_md btn_primary"
+            :buttonName="t('common.save')"
             @click="saveData()"
           >
-            {{ t("common.save") }}
-          </button>
+          </ButtonBase>
           <button
             type="button"
             class="btn_round btn_md btn_white"
@@ -100,10 +99,11 @@ import type {
   BaseJobCapa,
   ChldBaseReg,
 } from "@/stores/coreAbilityJob/coreAbilityJob.type";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   name: "CoreAbilityJobDetail",
-  components: {},
+  components: { ButtonBase },
   setup() {
     const { t } = useI18n();
     const cmn = commonStore();

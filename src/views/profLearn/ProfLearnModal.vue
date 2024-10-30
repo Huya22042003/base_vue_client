@@ -88,13 +88,12 @@
       </table>
     </template>
     <template #footer>
-      <button
-        type="button"
+      <ButtonBase
         class="button btn_md btn_primary"
+        :buttonName="t('02.profLearn.button.save')"
         @click="showAlert()"
       >
-        {{ t("02.profLearn.button.save") }}
-      </button>
+      </ButtonBase>
       <button type="button" class="button btn_md btn_white" @click="closeModal">
         {{ t("02.profLearn.button.close") }}
       </button>
@@ -121,7 +120,12 @@ import type {
   ProfIdModel,
 } from "@/stores/profLearnMethod/profLearn.type";
 import Swal from "sweetalert2";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
+
 export default defineComponent({
+  components: {
+    ButtonBase,
+  },
   name: "ProfLearnModal",
   props: {
     isOpen: {
