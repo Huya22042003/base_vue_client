@@ -11,12 +11,21 @@
             <ul>
               <li>
                 <p>{{ t("jobManagement.dept") }}</p>
-                <InputBase
+                <!-- <InputBase
                   :id="'deptSearch'"
                   :name="'deptSearch'"
                   v-model="searchModel.deptNm"
                   class="form_style"
-                />
+                /> -->
+                <div class="select_row">
+                  <SelectBoxBaseSearch
+                    :id="'selectbox'"
+                     v-model="searchModel.deptNm"
+                    :name="'selectbox'"
+                    :data="listSelectBoxDept"
+                  >
+                  </SelectBoxBaseSearch>
+                </div>
               </li>
               <li>
                 <p>{{ t("jobManagement.talt") }}</p>
@@ -57,11 +66,6 @@
         </div>
       </div>
       <div class="box">
-        <div class="mg_b15">
-          <span class="note_custom">
-            {{ t("jobManagement.plan1") }}
-          </span>
-        </div>
         <div class="box_section">
           <GridComponentV2
             :key="key"
@@ -115,6 +119,11 @@ import {
 import { getPage } from "../../stores/jobManagement/jobManagement.service";
 import { format } from "date-fns";
 import ModalSaveJob from "./ModalSaveJob.vue";
+import {
+  DIV_CD_DEPT_DEPART,
+  MESSAGE_ERROR_API,
+} from "@/constants/common.const";
+import { getDepartmentList } from "@/stores/common/department/department.service";
 
 export default {
   components: {
@@ -145,11 +154,13 @@ export default {
           headerName: this.t("jobManagement.dept"),
           field: "deptNm",
           flex: 1,
+          cellStyle: { textAlign: "center" },
         },
         {
           headerName: this.t("jobManagement.talt"),
           field: "taltNrtgTypeNm",
           flex: 1,
+          cellStyle: { textAlign: "center" },
         },
         {
           headerName: this.t("jobManagement.jobNm"),
@@ -157,7 +168,7 @@ export default {
           cellStyle: {
             color: "#2704FF",
             display: "flex",
-            justifyContent: "left",
+            justifyContent: "center",
             alignItems: "center",
             cursor: "pointer",
           },
@@ -187,9 +198,12 @@ export default {
         },
       ]),
       jobSeq: "" as String | null,
+      listSelectBoxDept: [],
     };
   },
-  beforeMount() {},
+  beforeMount() {
+    this.getDepartment();
+  },
   methods: {
     reset() {
       this.searchModel = {
@@ -224,6 +238,33 @@ export default {
       this.searchModel.page = pageNumber;
       this.searchModel.sort = "";
       this.getDataPage();
+    },
+    getDepartment() {
+      getDepartmentList({
+        deptCd: [],
+        deptDivCd: [DIV_CD_DEPT_DEPART],
+        upDeptCd: [],
+        useYn: "",
+      })
+        .then((res) => {
+          this.listSelectBoxDept = res.data.data
+            .filter((el) => el.deptDivCd == DIV_CD_DEPT_DEPART)
+            .map((el) => {
+              return {
+                cdId: el.deptCd,
+                cdNm: el.deptNm,
+                upCdId: "dept",
+              };
+            });
+          this.listSelectBoxDept.unshift({
+            cdId: "",
+            cdNm: this.t("common.all"),
+            upCdId: "major",
+          });
+        })
+        .catch(() => {
+          throw new Error(MESSAGE_ERROR_API);
+        });
     },
     openModalSave(data: JobListModel | null) {
       this.isOpen = true;
