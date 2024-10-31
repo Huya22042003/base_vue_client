@@ -56,7 +56,7 @@
               <div class="dp_flex btn_group btn_end">
                 <button
                   type="button"
-                  class="btn_round btn_md btn_primary"
+                  class="btn_round btn_lg btn_primary"
                   @click="register"
                 >
                   {{ t("curriculumManagement.register") }}

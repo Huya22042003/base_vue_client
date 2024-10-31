@@ -5201,7 +5201,7 @@
           "term":"학기",
           "lecturePlanWritingPeriod": "강의계획서 작성 기간",
           "evalPlanPeriod": "평가계획서 작성 기간",
-          "studentJobEval":"학생 직무수행능력 평가 기간",
+          "studentJobEval":"평가 기간",
           "subjectCqiWritingPeriod": "교과목CQI 작성 기간",
           "subjectName": "교과목명",
           "classDivision": "분반",

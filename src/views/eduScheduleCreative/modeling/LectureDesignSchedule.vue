@@ -67,42 +67,42 @@
               </li>
               <li>
                 <p>
-                  {{ t("lectureDesignSchedule.list.subjectCqiStatus") }}
-                </p>
-                <SelectBoxBase
-                  :id="'subjectCqiStatus'"
-                  :name="'subjectCqiStatus'"
-                  :data="listStsJob"
-                  v-model="searchData.jobSts"
-                >
-                </SelectBoxBase>
-              </li>
-              <li>
-                <p>
                   {{ t("lectureDesignSchedule.list.syllabusStatus") }}
                 </p>
                 <SelectBoxBase
                   :id="'syllabusStatus'"
                   :name="'syllabusStatus'"
+                  :data="listStsJob"
+                  v-model="searchData.jobSts"
+                />
+              </li>
+              <li>
+                <p>
+                  {{ t("lectureDesignSchedule.list.subjectCqiStatus") }}
+                </p>
+                <SelectBoxBase
+                  :id="'subjectCqiStatus'"
+                  :name="'subjectCqiStatus'"
                   :data="listStsCqi"
                   v-model="searchData.cqiSts"
-                />
+                >
+                </SelectBoxBase>
               </li>
             </ul>
             <div class="search_btnarea">
               <button
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
-                @click="search"                
+                @click="search"
               >
-              {{t("common.search")}}
+                {{ t("common.search") }}
               </button>
               <button
                 type="button"
                 class="btn_round btn_lg btn_gray mg_l5"
                 @click="reset"
               >
-              {{ t("common.reset") }}
+                {{ t("common.reset") }}
               </button>
             </div>
           </div>

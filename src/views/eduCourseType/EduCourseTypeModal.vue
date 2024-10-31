@@ -89,12 +89,12 @@
     </template>
     <template #footer>
       <ButtonBase
-        class="button btn_md btn_primary"
+        class="button btn_lg btn_primary"
         :buttonName="t('02.eduCourseTypeMng.button.save')"
         @click="showAlert()"
       >
       </ButtonBase>
-      <button type="button" class="button btn_md btn_white" @click="closeModal">
+      <button type="button" class="button btn_lg btn_white" @click="closeModal">
         {{ t("02.eduCourseTypeMng.button.close") }}
       </button>
     </template>

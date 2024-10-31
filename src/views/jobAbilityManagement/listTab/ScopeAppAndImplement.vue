@@ -76,14 +76,14 @@
       </table>
       <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
         <ButtonBase
-          class="btn_round btn_gray btn_md"
+          class="btn_round btn_gray btn_lg"
           :buttonName="t('jobAbilityManagement.tab1.btnVersionUp')"
           @click="saveVer"
           v-if="modeScreen == modeDetail"
         >
         </ButtonBase>
         <ButtonBase
-          class="btn_round btn_md btn_gray"
+          class="btn_round btn_lg btn_gray"
           :buttonName="t('jobAbilityManagement.tab1.update')"
           @click="confirmEdit"
           v-if="modeScreen == modeDetail"
@@ -91,12 +91,12 @@
         </ButtonBase>
         <button
           type="button"
-          class="btn_round btn_primary btn_md"
+          class="btn_round btn_primary btn_lg"
           @click="confirmNextTab"
         >
           {{ t("jobAbilityManagement.tab1.btnNext") }}
         </button>
-        <button type="button" class="btn_round btn_white btn_md" @click="back">
+        <button type="button" class="btn_round btn_white btn_lg" @click="back">
           {{ t("common.list") }}
         </button>
       </div>
@@ -124,7 +124,7 @@ import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   components: {
-    ButtonBase
+    ButtonBase,
   },
   setup() {
     const cmn = commonStore();
@@ -140,6 +140,10 @@ export default {
       type: String,
       default: "",
     },
+    verNext: {
+      type: String,
+      default: "",
+    },
   },
   data() {
     return {
@@ -148,10 +152,12 @@ export default {
       modeCreate: MODE_CREATE,
       jobAbilSeq: "",
       jobData: {} as JobScope,
+      verNext: "",
     };
   },
   beforeMount() {
     this.jobAbilSeq = this.$props.id;
+    this.verNext = this.$props.verNext;
     this.modeScreen = this.$route.params.mode;
     if (this.modeScreen == MODE_DETAIL) {
       this.getData();
@@ -196,7 +202,7 @@ export default {
                 error.response.data.code === DUPLICATE_STATUS
               ) {
                 this.$swal({
-                  text: this.t("jobAbilityManagement.tab1.dupliCateCVer"),
+                  text: `${this.verNext}버전이 이미 등록되어 있습니다.`,
                   type: "warning",
                   showCancelButton: false,
                   confirmButtonText: this.t("common.confirm"),

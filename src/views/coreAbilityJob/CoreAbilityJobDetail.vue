@@ -68,14 +68,14 @@
         </div>
         <div class="dp_flex btn_group btn_end mt-2">
           <ButtonBase
-            class="btn_round btn_md btn_primary"
+            class="btn_round btn_lg btn_primary"
             :buttonName="t('common.save')"
             @click="saveData()"
           >
           </ButtonBase>
           <button
             type="button"
-            class="btn_round btn_md btn_white"
+            class="btn_round btn_lg btn_white"
             @click="back()"
           >
             {{ t("common.title.list") }}
