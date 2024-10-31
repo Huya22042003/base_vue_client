@@ -35,6 +35,9 @@
                 }}<!-- 첨부파일 -->
               </th>
               <th scope="row" :colspan="1">
+                <span class="text-red">
+                  {{ t("eduProcessCreation.attachFile.message") }}</span
+                >
                 <InputFileBase
                   :id="'attachfileApdx' + apdxSeq"
                   :name="'attachfileApdx' + apdxSeq"
@@ -47,6 +50,7 @@
                   :orgName="eduCourseApdx"
                   :category="eduCourseApdx"
                   :sectionName="eduCourseApdx"
+                  :maxSize="30"
                 >
                 </InputFileBase>
               </th>
