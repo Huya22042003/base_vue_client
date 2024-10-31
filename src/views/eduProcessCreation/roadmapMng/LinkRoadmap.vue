@@ -28,8 +28,8 @@
                   <td
                     scope="row"
                     class="ta_c"
-                    v-if="indexCapa == 0"
-                    :rowspan="abil.capaUnit.length"
+                    v-if="indexCapa == 0 && indexAbil == 0"
+                    :rowspan="view.rowSpan"
                     :colspan="1"
                   >
                     {{ view.yearSemester }}
@@ -146,6 +146,8 @@ export default defineComponent({
       dataYear.sort((a, b) => a.yearSemester.localeCompare(b.yearSemester));
 
       dataYear = dataYear.map((item) => {
+        let rowSpanYear = 0;
+        
         const listAbil = [] as any[];
         this.dataRes.forEach((res) => {
           if (
@@ -168,6 +170,7 @@ export default defineComponent({
               `${res.gradeNm}-${res.termNm}`.includes(item.yearSemester) &&
               abil.jobAbilSeq == res.jobAbilSeq
             ) {
+              rowSpanYear++;
               capaUnit.push({
                 capaUnitSeq: res.capaUnitSeq,
                 capaUnitNm: res.capaUnitNm,
@@ -184,6 +187,8 @@ export default defineComponent({
         });
 
         item.listAbil = listAbil;
+
+        item.rowSpan = rowSpanYear;
 
         return item;
       });
