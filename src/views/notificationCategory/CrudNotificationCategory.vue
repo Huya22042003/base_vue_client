@@ -98,13 +98,13 @@
                       :mode="'edit'"
                       :id="'idFile'"
                       :name="'idFile'"
-                      :type="fileTypeOffice"
+                      :type="fileTypeImageAll"
                       v-model="fileModel"
                       ref="childRef"
                       :maxFile="1"
                       :orgName="'NTC'"
                       :category="'NOTICE'"
-                      :sectionName="fileTypeOffice"
+                      :sectionName="fileTypeImageAll"
                     ></InputFileBase>
                   </td>
                 </tr>
@@ -187,12 +187,11 @@ import {
 import {
   MODE_CREATE,
   MODE_SHOW,
-  FILE_TYPE_OFFICE,
+  ACCEPTTYPE_All,
 } from "../../constants/screen.const";
 import { SCREEN } from "../../router/screen";
 import { useI18n } from "vue-i18n";
 import { commonStore } from "../../stores/common";
-import test from "node:test";
 import { SHOW_Y, SHOW_N, TOP_Y, TOP_N } from "../../constants/common.const";
 import { MESSAGE_ERROR_API } from "@/constants/common.const";
 import { QuillEditor } from "@vueup/vue-quill";
@@ -271,7 +270,7 @@ export default defineComponent({
 
     const noticeIdRes = {} as NoticeIdRes;
     const noticeUpdateModel = {} as NoticeUpdateModel;
-    const fileTypeOffice = FILE_TYPE_OFFICE;
+    const fileTypeAll = ACCEPTTYPE_All;
     const sectionName = ref("NOTICE");
     const fileModel: any[] = [];
     const siteNotificationCategoryModel = {} as SiteNotificationCategoryModel;
@@ -296,7 +295,7 @@ export default defineComponent({
       noticeIdRes,
       notiCategoryDetailModel,
       noticeUpdateModel,
-      fileTypeOffice,
+      fileTypeAll,
       sectionName,
       fileModel,
       warringEmp,

@@ -32,6 +32,8 @@ export const FORMAT_YYY_MM_DD = 'yyyy-MM-dd'
 export const PAGE_IN_GROUP = 10
 export const ACCEPTTYPE_OFICE_AND_IMG =
   '.hwp, .hwpx, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .pdf, .zip, .jpg, .png'
+export const ACCEPTTYPE_All =
+  '.hwp, .hwpx, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .pdf, .zip, .jpg, .png, .avi, .flv, .mkv, .mov, .mpeg, .mp4, .ogg, .wma, .wmv'
 export const TYPE_BUTTON_DOWLOAD = "TYPE_DOWLOAD";
 export const TYPE_BUTTON_GO = "TYPE_GO_TO_PAGE";
 export const START_YEAR = "2022";

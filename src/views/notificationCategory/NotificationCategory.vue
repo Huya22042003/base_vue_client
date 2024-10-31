@@ -4,70 +4,56 @@
       :pageTitle="pageTitle"
       :breadcrumbItems="breadcrumbItems"
     ></Breadcrumb>
-    <div class="search_box">
-      <div class="search_section">
-        <div class="search_toggle sm">
-          <div class="left"></div>
-          <div class="right">
-            <div class="search_daywrap mg_r10">
-              <span class="tag">{{
-                t("09.notificationCategory.search.heading")
-              }}</span>
-              <div class="select_row">
-                <InputBase
-                  v-model="notificationCategorySearchModel.ttl"
-                  :id="'ctgHeading'"
-                  :name="'ctgHeading'"
-                  class="form_style"
-                >
-                </InputBase>
-              </div>
-            </div>
-
-            <div class="search_daywrap mg_r10">
-              <span class="tag">{{
-                t("09.notificationCategory.search.showOrNot")
-              }}</span>
-              <div class="select_row sm">
-                <SelectBoxBase
-                  :id="'selectboxShow'"
-                  :name="'selectboxShow'"
-                  :data="listSelectBoxShow"
-                  v-model="notificationCategorySearchModel.openYn"
-                >
-                </SelectBoxBase>
-              </div>
-            </div>
-            <div class="search_daywrap mg_r10">
-              <span class="tag">{{
-                t("09.notificationCategory.search.subscribers")
-              }}</span>
-              <div class="select_row">
-                <InputBase
-                  v-model="notificationCategorySearchModel.regId"
-                  :id="'ctgName'"
-                  :name="'ctgName'"
-                  class="form_style"
-                >
-                </InputBase>
-              </div>
-            </div>
-            <div>
-              <ButtonBase
-                type="button"
-                class="btn_round btn_lg btn_primary mg_l10"
-                :buttonName="'조회하기'"
-                @click="searchClick"
+    <div class="box dp_block">
+      <div class="box_section">
+        <div class="search_box col_3">
+          <ul>
+            <li>
+              <p>{{ t("09.notificationCategory.search.heading") }}</p>
+              <InputBase
+                v-model="notificationCategorySearchModel.ttl"
+                :id="'ctgHeading'"
+                :name="'ctgHeading'"
+                class="form_style"
               >
-              </ButtonBase>
-              <ButtonBase
-                type="ButtonBase"
-                class="btn_round btn_lg btn_gray mg_l5"
-                :buttonName="'초기화'"
-                @click="resetSearch()"
+              </InputBase>
+            </li>
+            <li>
+              <p>{{ t("09.notificationCategory.search.showOrNot") }}</p>
+              <SelectBoxBase
+                :id="'selectboxShow'"
+                :name="'selectboxShow'"
+                :data="listSelectBoxShow"
+                v-model="notificationCategorySearchModel.openYn"
               >
-              </ButtonBase>
-            </div>
+              </SelectBoxBase>
+            </li>
+            <li>
+              <p>{{ t("09.notificationCategory.search.subscribers") }}</p>
+              <InputBase
+                v-model="notificationCategorySearchModel.regId"
+                :id="'ctgName'"
+                :name="'ctgName'"
+                class="form_style"
+              >
+              </InputBase>
+            </li>
+          </ul>
+          <div class="btn_group btn_end">
+            <ButtonBase
+              type="button"
+              class="button btn_lg btn_blue btn_responsive"
+              @click="searchClick()"
+              :buttonName="t('common.search')"
+            >
+            </ButtonBase>
+            <ButtonBase
+              type="button"
+              class="button btn_lg btn_gray btn_responsive"
+              @click="resetSearch()"
+              :buttonName="t('common.reset')"
+            >
+            </ButtonBase>
           </div>
         </div>
       </div>

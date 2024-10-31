@@ -102,13 +102,6 @@
                   >
                     {{ t("04.eduScheduleCreativeMng.massSchedule") }}
                   </button>
-                  <p>
-                    {{
-                      t(
-                        "04.eduScheduleCreativeMng.newEducationSchedule.meesageNotice"
-                      )
-                    }}
-                  </p>
                 </div>
               </div>
             </template>

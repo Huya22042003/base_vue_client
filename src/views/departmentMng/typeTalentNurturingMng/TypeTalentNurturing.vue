@@ -43,14 +43,18 @@
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
                 @click="searchFormData"
-                :buttonName="'조회하기'"
+                :buttonName="
+                  t('departmentMng.typeTalentNurturingMng.search.btnSeach')
+                "
               >
               </ButtonBase>
               <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_gray mg_l5"
                 @click="clearFormSearch"
-                :buttonName="'초기화'"
+                :buttonName="
+                  t('departmentMng.typeTalentNurturingMng.search.btnClear')
+                "
               >
               </ButtonBase>
             </div>
@@ -60,9 +64,6 @@
     </div>
 
     <div class="box dp_block">
-      <p class="note_custom mb-4">
-        {{ t("departmentMng.typeTalentNurturingMng.search.subTitle") }}
-      </p>
       <div class="box_section">
         <!-- Table at here -->
         <GridComponentV2

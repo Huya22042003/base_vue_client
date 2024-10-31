@@ -547,10 +547,16 @@ export default {
       this.store.setLoading(true);
       update(dataSave)
         .then((res) => {
+          let textAlert = "";
+          if (res.data.data) {
+            textAlert = this.t("talentEduGoalsMng.message.saveSuccess");
+          } else {
+            textAlert = this.t("talentEduGoalsMng.message.saveError");
+          }
           this.$swal
             .fire({
               /* 정상처리됐습니다. */
-              text: this.t("talentEduGoalsMng.message.saveSuccess"),
+              text: textAlert,
               confirmButtonColor: "#DD6B55",
               confirmButtonText: this.t("common.confirm"),
             })
