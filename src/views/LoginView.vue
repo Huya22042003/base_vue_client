@@ -1,12 +1,12 @@
 <template>
   <div class="login_wrap">
     <div class="login_top">
-      <img src="@/assets/images/login/logo_login.png" alt="계원예술대학교" />
+      <img src="@/assets/images/login/logo_login.png" alt="계원예술대학교"/>
     </div>
     <div class="login_box">
       <div class="login_header">
-        <img src="@/assets/images/login/img_login_play.png" alt="play" />
-        <h3 class="login_logo"><strong>역량기반 교육과정</strong><br />관리시스템</h3>
+        <img src="@/assets/images/login/img_login_play.png" alt="play"/>
+        <h3 class="login_logo"><strong>역량기반 교육과정</strong><br/>관리시스템</h3>
       </div>
       <div class="login_input">
         <strong>아이디</strong>
@@ -21,7 +21,7 @@
       </div>
       <div class="remember_id">
         <div class="check_row">
-          <input type="checkbox" name="join_check" id="join_check1" class="hidden" />
+          <input type="checkbox" name="join_check" id="join_check1" class="hidden"/>
           <label for="join_check1">아이디 저장</label>
         </div>
       </div>
@@ -34,9 +34,9 @@
 import commonService from '@/service/common/CommonService'
 // import { userInfoStore } from '../stores/userInfo'
 import LoaddingComponent from '@/components/common/loading/LoaddingComponent.vue'
-import { setUserInfo } from '@/utils/storage'
+import {setUserInfo} from '@/utils/storage'
 import router from '@/router'
-import { commonStore } from '@/stores/common'
+import {commonStore} from '@/stores/common'
 
 export default {
   components: {
@@ -49,8 +49,8 @@ export default {
       isLoad: false,
       isSubmitted: false,
       openModal: [
-        { id: 'findId', status: false },
-        { id: 'reset', status: false }
+        {id: 'findId', status: false},
+        {id: 'reset', status: false}
       ],
       isRememberId: false,
       modalOpenConfirm: false,
@@ -59,10 +59,10 @@ export default {
       errorMessage: '',
     }
   },
-  setup(){
+  setup() {
     const store = commonStore()
 
-    return{
+    return {
       store
     }
   },
@@ -74,26 +74,28 @@ export default {
       let obj = {
         userId: this.username,
         password: this.password,
-        loginDiv:"admin",
+        loginDiv: "admin",
       }
-      this.store.setLoading(true)
-      this.errorMessage = ''
-      commonService
-        .login(obj)
-        .then((response) => {
-          this.store.setLoading(false)
-          if (response.status == 200 && response.data.data){
-            setUserInfo(response.data.data)
-            router.push({name:"Home"})
-          }
-        })
-        .catch((e) => {
-          console.log(e)
-          this.errorMessage = e.message
-        })
-        .finally(() => {
-          this.store.setLoading(false)
-        })
+      if (obj.userId && obj.password) {
+        this.store.setLoading(true)
+        this.errorMessage = ''
+        commonService
+            .login(obj)
+            .then((response) => {
+              this.store.setLoading(false)
+              if (response.status == 200 && response.data.data) {
+                setUserInfo(response.data.data)
+                router.push({name: "Home"})
+              }
+            })
+            .catch((e) => {
+              console.log(e)
+              this.errorMessage = e.message
+            })
+            .finally(() => {
+              this.store.setLoading(false)
+            })
+      }
     },
   }
 }
