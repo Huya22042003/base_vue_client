@@ -549,3 +549,9 @@ const goToQA = (id: string) => {
   });
 };
 </script>
+
+<style scoped lang="scss">
+.sub_section{
+  display: flex !important;
+}
+</style>
