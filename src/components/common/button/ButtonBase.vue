@@ -1,7 +1,7 @@
 <template>
   <button
     type="button"
-    class="button btn_md btn_blue btn_responsive"
+    class="button btn_lg btn_blue btn_responsive"
     @click="clickFunction"
     v-bind="attrs"
   >

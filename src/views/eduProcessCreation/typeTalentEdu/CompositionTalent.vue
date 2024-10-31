@@ -227,7 +227,7 @@ import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import CompositionSelectModal from "./CompositionSelectModal.vue";
 import { EduCourseCommResDTO } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.type";
-import { CD_OUTSIDE, CD_INTERNAL } from "@/constants/common.const";
+import { CD_OUTSIDE, CD_INTERNAL, STATUS_NO } from "@/constants/common.const";
 import { getAllEduCourseComm } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.service";
 import { saveEduCourseComm } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.service";
 import { EduCourseCommReqDTO } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.type";
@@ -354,6 +354,7 @@ export default defineComponent({
               eduCourseSeq: this.id,
               posi: el.posi,
               remark: el.remark,
+              delYn: STATUS_NO
             });
           });
 
@@ -368,6 +369,7 @@ export default defineComponent({
               eduCourseSeq: this.id,
               posi: el.posi,
               remark: el.remark,
+              delYn: STATUS_NO
             });
           });
 
