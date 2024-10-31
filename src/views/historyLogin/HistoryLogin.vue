@@ -41,13 +41,13 @@
             </ul>
             <div class="search_btnarea">
               <button
-                class="button btn_xl btn_blue btn_responsive"
+                class="button btn_lg btn_blue btn_responsive"
                 @click="searchClick()"
               >
                 {{ t("common.search") }}
               </button>
               <button
-                class="button btn_xl btn_gray btn_responsive"
+                class="button btn_lg btn_gray btn_responsive"
                 @click="reset()"
               >
                 {{ t("common.reset") }}
@@ -95,7 +95,6 @@ import InputBase from "@/components/common/input/InputBase.vue";
 
 import type {
   CodeMngResModel,
-  CodeMngModel,
 } from "@/stores/common/codeMng/codeMng.type";
 
 import type {
@@ -107,10 +106,7 @@ import {
   getListData,
   getListRole,
 } from "@/stores/loginHistory/loginHistory.service";
-import { getListCodeMng } from "@/stores/common/codeMng/codeMng.service";
-import Swal from "sweetalert2";
 import {
-  FORMAT_YYY_MM_DD,
   PAGINATION_PAGE_SIZE,
   PAGINATION_PAGE_SIZE_SELECTOR,
 } from "@/constants/screen.const";
