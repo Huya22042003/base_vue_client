@@ -217,6 +217,14 @@ export default defineComponent({
           field: "statusReg",
           cellStyle: { textAlign: "center" },
           flex: 4,
+          cellRenderer: (params: any) => {
+            const status = params.value;
+            let color = "";
+            if (status == this.t("schoolStaff.cqi.status.created")) {
+              color = "green";
+            }
+            return `<span style="color: ${color}">${status}</span>`;
+          },
         },
       ]),
       listData: [],

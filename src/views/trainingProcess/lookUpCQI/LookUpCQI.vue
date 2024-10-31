@@ -34,7 +34,7 @@
                 ></SelectBoxBase>
               </li>
               <li>
-                <p>{{ t("04.lookUpCQI.searchBox.sbjtCd") }}</p>
+                <p>{{ t("04.lookUpCQI.searchBox.subject") }}</p>
                 <InputBase v-model="searchModel.subjectNm" :id="'subject'" />
               </li>
               <li>
@@ -54,14 +54,14 @@
             <div class="btn_group btn_end">
               <button
                 type="button"
-                class="button btn_xl btn_blue btn_responsive"
+                class="button btn_lg btn_blue btn_responsive"
                 @click="searchClick()"
               >
                 {{ t("common.search") }}
               </button>
               <button
                 type="button"
-                class="button btn_xl btn_lightgray btn_responsive"
+                class="button btn_lg btn_gray btn_responsive"
                 @click="reset()"
               >
                 {{ t("common.reset") }}
@@ -147,7 +147,7 @@ export default defineComponent({
         },
         {
           headerName: this.t("04.lookUpCQI.table.term"),
-          field: "termCd",
+          field: "termNm",
           cellStyle: { textAlign: "center" },
           flex: 1,
         },
@@ -210,6 +210,14 @@ export default defineComponent({
           field: "statusReg",
           cellStyle: { textAlign: "center" },
           flex: 1,
+          cellRenderer: (params: any) => {
+            const status = params.value;
+            let color = "";
+            if (status == this.t("schoolStaff.cqi.status.created")) {
+              color = "green";
+            }
+            return `<span style="color: ${color}">${status}</span>`;
+          },
         },
       ]),
       listData: [],

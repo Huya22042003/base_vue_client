@@ -39,13 +39,13 @@
             </ul>
             <div class="dp_flex btn_group btn_end" style="gap: 10px">
               <button
-                class="button btn_xl btn_blue btn_responsive"
+                class="button btn_lg btn_blue btn_responsive"
                 @click="search"
               >
                 {{ t("common.search") }}
               </button>
               <button
-                class="button btn_xl btn_lightgray btn_responsive"
+                class="button btn_lg btn_gray btn_responsive"
                 @click="reset"
               >
                 {{ t("common.reset") }}

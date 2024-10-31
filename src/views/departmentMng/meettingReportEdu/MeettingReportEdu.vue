@@ -80,14 +80,19 @@
         >
           <template #button>
             <div>
-              <button
+              <!-- <button
                 type="button"
                 class="btn_round btn_md btn_primary"
                 @click="create"
               >
-                <!-- 등록 -->
                 {{ t("departmentMng.meettingReportEdu.list.btnCreate") }}
-              </button>
+              </button> -->
+              <ButtonBase
+              class="btn_round btn_md btn_primary"
+              :buttonName="t('departmentMng.meettingReportEdu.list.btnCreate')"
+              @click="create()"
+              >
+              </ButtonBase>
             </div>
           </template>
         </GridComponentV2>

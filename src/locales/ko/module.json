@@ -3450,7 +3450,7 @@
       }
     },
     "lookUpCQI": {
-      "title": "CQI 조회",
+      "title": "교과목 CQI 조회",
       "searchBox": {
         "year": "개설년도",
         "subject": "과목명",

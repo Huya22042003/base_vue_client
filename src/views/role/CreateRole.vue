@@ -103,16 +103,22 @@
         </table>
         <div class="box_section">
           <div class="btn_area">
-            <button
+            <!-- <button
               type="button"
-              class="button btn_md btn_blue mr-3"
+              class="button btn_lg btn_blue mr-3"
               @click="showAlert"
             >
               {{ t("common.save") }}
-            </button>
+            </button> -->
+            <ButtonBase
+            class="button btn_lg btn_blue mr-3"
+            :buttonName="t('common.save')"
+            @click="showAlert()"
+            >
+            </ButtonBase>
             <button
               type="button"
-              class="button btn_md btn_white"
+              class="button btn_lg btn_white"
               @click="back()"
             >
               {{ t("common.list") }}
