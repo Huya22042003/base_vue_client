@@ -1,6 +1,4 @@
 export type SearchCurr = {
-    deptNm?: string,
-    currNm?: string,
     page?: number,
     size?: number,
     sort?: string
@@ -8,22 +6,17 @@ export type SearchCurr = {
 
 export type CurrInfo = {
     currDivSeq?: string,
-    deptNm?: string,
     currDivNm?: number,
+    trackDiv?: string,
     useYn?: number,
     regNm?: string,
     regDate?: string,
     defn?: string
 }
 
-export type DeptInfo = {
-    deptCd?: string,
-    deptNm?: string,
-}
-
 export type CurrReg = {
     currDivSeq?: string,
-    deptCd?: string,
+    trackDiv?: string,
     currDivNm?: string,
     defn?: string,
     useYn?: string,

@@ -4,42 +4,6 @@
       <Breadcrumb :pageTitle="pageTitle"></Breadcrumb>
       <div class="box dp_block">
         <div class="box_section">
-          <div class="search_box col_3">
-            <ul>
-              <li>
-                <p>{{ t("curriculumManagement.dept") }}</p>
-                <InputBase :id="'dept'" v-model="searchData.deptNm" class="form_style"/>
-              </li>
-              <li>
-                <p>{{ t("curriculumManagement.training") }}</p>
-                <InputBase :id="'training'" v-model="searchData.currNm" class="form_style"/>
-              </li>
-            </ul>
-            <div class="search_btnarea">
-              <button
-                type="button"
-                class="btn_round btn_lg btn_primary mg_l10"
-                @click="searchClick"
-              >
-                {{ t("common.search") }}
-              </button>
-              <button
-                type="button"
-                class="btn_round btn_lg btn_gray mg_l5"
-                @click="reset"
-              >
-                {{ t("common.reset") }}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="box dp_block">
-        <h2>{{ t("curriculumManagement.aletr1") }}</h2>
-        <h2 class="h2_cus">
-          {{ t("curriculumManagement.aletr2") }}
-        </h2>
-        <div class="box_section">
           <GridComponentV2
             :rowData="rowData"
             :columnDefs="columnDefs"
@@ -134,12 +98,6 @@ export default defineComponent({
       totalRows: "",
       columnDefs: [
         {
-          headerName: this.t("curriculumManagement.dept"),
-          field: "deptNm",
-          flex: 2,
-          cellStyle: { textAlign: "center" },
-        },
-        {
           headerName: this.t("curriculumManagement.program"),
           field: "currDivNm",
           cellRenderer: "LinkGridComponent",
@@ -183,10 +141,6 @@ export default defineComponent({
     };
   },
   methods: {
-    searchClick() {
-      this.searchData.page = 1;
-      this.key++;
-    },
     fnPagination(pageNumber: any, pagesSize: any) {
       this.searchData.size = pagesSize;
       this.searchData.page = pageNumber;
@@ -205,10 +159,6 @@ export default defineComponent({
         .finally(() => {
           this.cmn.setLoading(false);
         });
-    },
-    reset() {
-      this.searchData.deptNm = "";
-      this.searchData.currNm = "";
     },
     register() {
       this.modeScreen = MODE_CREATE;

@@ -14,27 +14,11 @@
       }}</strong>
     </template>
     <template #default>
-      <h2 class="mb_10">
-        {{ t("curriculumManagement.alert") }}
-      </h2>
       <table class="tbl_row">
         <colgroup>
           <col style="width: 25%" />
         </colgroup>
         <tbody>
-          <tr>
-            <th scope="row" class="required">
-              {{ t("curriculumManagement.dept") }}
-            </th>
-            <td class="td_input">
-              <SelectBoxBase
-                :id="'deptBox'"
-                :name="'deptBox'"
-                :data="listDeptInfo"
-                v-model="currRegData.deptCd"
-              ></SelectBoxBase>
-            </td>
-          </tr>
           <tr>
             <th scope="row" class="required">
               {{ t("curriculumManagement.program") }}
@@ -57,6 +41,25 @@
                 v-model="currRegData.defn"
                 required
               />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" class="required">
+              {{ t("curriculumManagement.trackDiv") }}
+            </th>
+            <td class="td_input">
+              <RadiobuttonBase
+                v-for="item in listTrack"
+                :mode="'show'"
+                :value="item.cdId"
+                :id="'kcsNcs' + item.cdId"
+                :name="'kcsNcs'"
+                :key="'kcsNcs' + item.cdId"
+                v-model="currRegData.trackDiv"
+                :checked="item.cdId == currRegData.trackDiv"
+                :label="item.cdNm"
+              >
+              </RadiobuttonBase>
             </td>
           </tr>
           <tr>
@@ -109,19 +112,22 @@ import {
   MODE_DETAIL,
   FORMAT_YYY_MM_DD,
 } from "../../constants/screen.const";
-import { STATUS_YES, STATUS_NO } from "../../constants/common.const";
+import {
+  STATUS_YES,
+  STATUS_NO,
+  UP_CD_TRACK,
+  CD_ID_TRACK_01,
+} from "../../constants/common.const";
 import { commonStore } from "@/stores/common";
 
 import Swal from "sweetalert2";
 import {
-  listDeptInfo,
   saveCurr,
   detailCurr,
 } from "@/stores/curriculumMng/curriculumMng.service";
-import type {
-  CurrReg,
-  CurrInfo,
-} from "@/stores/curriculumMng/curriculumMng.type";
+import type { CurrReg } from "@/stores/curriculumMng/curriculumMng.type";
+import { getCodeMngByUpCdId } from "@/stores/common/codeMng/codeMng.service";
+import type { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 
 export default defineComponent({
   name: "CurriculumManagementModal",
@@ -162,8 +168,9 @@ export default defineComponent({
         this.getDetailData();
       }
       if (newVal) {
-        this.getListDept();
+        this.getListTrack();
       }
+
       this.clear();
     },
   },
@@ -183,49 +190,32 @@ export default defineComponent({
           cdNm: this.t("common.noUse"),
         },
       ],
-      listDeptInfo: [
-        {
-          cdId: "",
-          cdNm: this.t("common.select"),
-        },
-      ],
+
       currRegData: {
-        deptCd: "",
         useYn: STATUS_YES,
+        trackDiv: CD_ID_TRACK_01,
       } as CurrReg,
       fomatDate: "",
       regBy: "",
+      listTrack: [] as Array<CodeMngModel>,
     };
   },
   methods: {
-    getListDept() {
-      this.cmn.setLoading(true);
-      listDeptInfo()
-        .then((res) => {
-          res.data.data.forEach((item: any) => {
-            this.listDeptInfo.push({
-              cdId: item.deptCd,
-              cdNm: item.deptNm,
-            });
-          });
-        })
-        .finally(() => {
-          this.cmn.setLoading(false);
-        });
+    getListTrack() {
+      getCodeMngByUpCdId({
+        upCdId: UP_CD_TRACK,
+      }).then((res) => {
+        this.listTrack = res.data.data;
+      });
     },
     clear() {
-      this.currRegData.deptCd = "";
+      this.currRegData.currDivSeq = "";
       this.currRegData.currDivNm = "";
       this.currRegData.defn = "";
       this.currRegData.useYn = STATUS_YES;
+      this.currRegData.trackDiv = CD_ID_TRACK_01;
       this.fomatDate = "";
       this.regBy = "";
-      this.listDeptInfo = [
-        {
-          cdId: "",
-          cdNm: this.t("common.select"),
-        },
-      ];
     },
     async saveData() {
       this.cmn.setLoading(true);
@@ -245,11 +235,7 @@ export default defineComponent({
         });
     },
     showAlert() {
-      if (
-        this.currRegData.deptCd == "" ||
-        this.currRegData.currDivNm == "" ||
-        this.currRegData.defn == ""
-      ) {
+      if (this.currRegData.currDivNm == "" || this.currRegData.defn == "") {
         Swal.fire({
           text: this.t("common.messageValidateRequired"),
           type: "warning",
@@ -275,10 +261,10 @@ export default defineComponent({
       this.cmn.setLoading(true);
       await detailCurr(this.currSeq).then((res) => {
         this.currRegData.currDivSeq = res.data.data.currDivSeq;
-        this.currRegData.deptCd = res.data.data.deptNm;
         this.currRegData.currDivNm = res.data.data.currDivNm;
         this.currRegData.defn = res.data.data.defn;
         this.currRegData.useYn = res.data.data.useYn;
+        this.currRegData.trackDiv = res.data.data.trackDiv;
         this.regBy = res.data.data.regNm;
         this.fomatDate = format(
           new Date(res.data.data.regDate),

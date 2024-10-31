@@ -6251,6 +6251,7 @@
     }
   },
   "curriculumManagement": {
+    "trackDiv": "트랙 구분",
     "pageTitle": "교과 구분 관리",
     "dept": "학과/학부",
     "training": "교육과정",
