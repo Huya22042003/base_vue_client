@@ -44,8 +44,8 @@ export default {
   },
   data() {
     return {
-      username: 'dainls',
-      password: 'dainls123!@#',
+      username: '',
+      password: '',
       isLoad: false,
       isSubmitted: false,
       openModal: [
@@ -75,7 +75,6 @@ export default {
         userId: this.username,
         password: this.password,
         loginDiv:"admin",
-        userRoles:'3'
       }
       this.store.setLoading(true)
       this.errorMessage = ''
