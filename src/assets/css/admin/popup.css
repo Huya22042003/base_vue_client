@@ -71,6 +71,7 @@ body.on .overlay_popup > * {
   background-color: var(--white);
   border-bottom: 0;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .popup_footer {
   display: flex;

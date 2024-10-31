@@ -27,9 +27,51 @@
             <img src="@/assets/images/main/main_banner_play.png" alt="play" />
             <div class="course_schedule">
               <strong>강의설계 일정</strong>
-              <p>1학기 강의계획서 작성 기간입니다(2024/07/31 ~ 2024/08/30).</p>
-              <!-- [pp] 강의설계 일정이 없을 경우 :
-               <p>"강의 설계 일정이 없습니다."</p> -->
+              <p
+                v-if="
+                  planDoc.lectPlanDocWriteStrDate &&
+                  planDoc.lectPlanDocWriteEndDate
+                "
+              >
+                {{ planDoc.term }} 강의계획서 작성 기간입니다({{
+                  planDoc.lectPlanDocWriteStrDate
+                }}
+                ~ {{ planDoc.lectPlanDocWriteEndDate }}).
+              </p>
+              <p
+                v-if="
+                  evalPlan.evalPlanDocWriteStrDate &&
+                  evalPlan.evalPlanDocWriteEndDate
+                "
+              >
+                {{ evalPlan.term }} 강의계획서 작성 기간입니다({{
+                  evalPlan.evalPlanDocWriteStrDate
+                }}
+                ~ {{ evalPlan.evalPlanDocWriteEndDate }}).
+              </p>
+              <p
+                v-if="
+                  jobCapaEval.jobCapaEvalStrDate &&
+                  jobCapaEval.jobCapaEvalEndDate
+                "
+              >
+                {{ jobCapaEval.term }} 강의계획서 작성 기간입니다({{
+                  jobCapaEval.jobCapaEvalStrDate
+                }}
+                ~ {{ jobCapaEval.jobCapaEvalEndDate }}).
+              </p>
+              <p
+                v-if="
+                  sbjtCqi.sbjtCqiWriteStrDate && sbjtCqi.sbjtCqiWriteEndDate
+                "
+              >
+                {{ sbjtCqi.term }} 강의계획서 작성 기간입니다({{
+                  sbjtCqi.sbjtCqiWriteStrDate
+                }}
+                ~ {{ sbjtCqi.sbjtCqiWriteEndDate }}).
+              </p>
+              <!-- [pp] 강의설계 일정이 없을 경우 : -->
+              <p v-else>강의 설계 일정이 없습니다.</p>
             </div>
           </div>
         </div>
@@ -240,37 +282,37 @@
         <div class="link_wrap">
           <ul>
             <li>
-              <router-link to="">
+              <a @click="goToResearch(SCREEN.teachingPlans.path)">
                 <img
                   src="@/assets/images/main/icon_section_link1.png"
                   alt="강의계획서 조회"
                 />강의계획서 조회
-              </router-link>
+              </a>
             </li>
             <li>
-              <router-link to="">
+              <a @click="goToResearch(SCREEN.lookupEvaluationPlan.path)">
                 <img
                   src="@/assets/images/main/icon_section_link2.png"
                   alt="평가계획서 조회"
                 />평가계획서 조회
-              </router-link>
+              </a>
             </li>
             <li>
-              <router-link to="">
+              <a @click="goToResearch(SCREEN.lookUpCQI.path)">
+                <img
+                  src="@/assets/images/main/icon_section_link4.png"
+                  alt="교과목CQI 조회"
+                />교과목CQI 조회
+              </a>
+            </li>
+            <li>
+              <a @click="goToResearch(SCREEN.finalArchivement.path)">
                 <img
                   src="@/assets/images/main/icon_section_link3.png"
                   alt="학생 직무수행능력평가 조회"
                 />
                 학생 직무수행능력평가 조회
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img
-                  src="@/assets/images/main/icon_section_link4.png"
-                  alt="교과목CQI 조회"
-                />교과목CQI 조회
-              </router-link>
+              </a>
             </li>
           </ul>
         </div>
@@ -279,13 +321,15 @@
         <div class="notice_wrap">
           <div>
             <strong class="section_tit_sm">공지사항</strong>
-            <router-link to="">바로가기</router-link>
+            <a @click="goToResearch(SCREEN.notificationCategory.path)"
+              >바로가기</a
+            >
           </div>
           <ul>
             <li v-for="item in qaDashboard">
-              <router-link to="">
+              <a @click="goToNotice(item.id)">
                 {{ item.cont }}
-              </router-link>
+              </a>
               <span class="date">2024/05/01</span>
             </li>
           </ul>
@@ -293,11 +337,11 @@
         <div class="qna_wrap">
           <div>
             <strong class="section_tit_sm">Q&A</strong>
-            <router-link to="">바로가기</router-link>
+            <a @click="goToResearch(SCREEN.questAndAns.path)">바로가기</a>
           </div>
           <ul>
             <li v-for="item in noticeDashboard">
-              <router-link to="">{{ item.cont }}</router-link>
+              <a @click="goToQA(item.id)">{{ item.cont }}</a>
               <span class="date">{{ item.createdDate }}</span>
             </li>
           </ul>
@@ -319,12 +363,19 @@ import {
 import {
   DashboardRateDTO,
   DonutChartResDTO,
+  LecturePlanSchedule,
   ListDonutChartDTO,
   NoticeDashboardDTO,
 } from "@/stores/dashboard/dashboard.type";
-import { START_YEAR_NUMBER, SUCCSESS_STATUS } from "@/constants/screen.const";
+import {
+  MODE_DETAIL,
+  START_YEAR_NUMBER,
+  SUCCSESS_STATUS,
+} from "@/constants/screen.const";
 import { format } from "date-fns";
 import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
+import { SCREEN } from "@/router/screen";
+import router from "@/router";
 
 const store = commonStore();
 const { t } = useI18n();
@@ -370,6 +421,11 @@ const noticeDashboard = ref([] as NoticeDashboardDTO[]);
 const selectUni = ref("");
 const currentYear = ref(new Date().getFullYear());
 
+const planDoc = ref({} as LecturePlanSchedule);
+const evalPlan = ref({} as LecturePlanSchedule);
+const jobCapaEval = ref({} as LecturePlanSchedule);
+const sbjtCqi = ref({} as LecturePlanSchedule);
+
 onBeforeMount(() => {
   getAll();
   getListUni();
@@ -378,7 +434,7 @@ onBeforeMount(() => {
 
 const changeYear = () => {
   getAll();
-}
+};
 
 const getListYear = () => {
   let strYear = START_YEAR_NUMBER;
@@ -459,8 +515,43 @@ const getAll = async () => {
       chartDatasets.value[0].data = res.data.data.sbjtDeptResponse.sbjtCnt;
       selectUni.value = res.data.data.sbjtDeptResponse.upDeptNm;
 
+      planDoc.value = res.data.data.writeSchdlDTO.planDoc;
+      evalPlan.value = res.data.data.writeSchdlDTO.evalPlan;
+      jobCapaEval.value = res.data.data.writeSchdlDTO.jobCapaEval;
+      sbjtCqi.value = res.data.data.writeSchdlDTO.sbjtCqi;
+
       store.setLoading(false);
     }
   });
 };
+
+const goToResearch = (path: string) => {
+  router.push({ path });
+};
+
+const goToNotice = (id: string) => {
+  router.push({
+    name: SCREEN.crudNotificationCategory.name,
+    params: { mode: MODE_DETAIL },
+    state: {
+      id: id,
+    },
+  });
+};
+
+const goToQA = (id: string) => {
+  router.push({
+    name: SCREEN.questAndAns.name,
+    params: { mode: MODE_DETAIL },
+    state: {
+      id: id,
+    },
+  });
+};
 </script>
+
+<style scoped lang="scss">
+.sub_section{
+  display: flex !important;
+}
+</style>

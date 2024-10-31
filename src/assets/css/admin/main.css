@@ -42,11 +42,11 @@
 }
 
 .dashboard .sub_section > div {
-  display: inline-block;
+   display: inline-block;
 }
 .dashboard .sub_section .dshb_banner {
   position: relative; z-index: 2;
-  height: 721px;
+  min-height: 721px;
   margin-right: 26px;
   vertical-align: top;
 }
@@ -100,10 +100,15 @@
 }
 .dashboard .sub_section .develop_state_wrap {
   width: calc(100% - 584px);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap:24px;
+  flex: 1;
 }
 .dashboard .sub_section .develop_state {
   width: 100%; height: auto;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
   padding: 32px 38px;
   background: #2C2C3B;
   border-radius: 32px;
@@ -195,6 +200,7 @@ div .percent span {
   background: var(--white);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
   border-radius: 32px;
+  flex: 2;
 }
 .hakgua_develop_state .section_tit_wrap {
   display: flex;

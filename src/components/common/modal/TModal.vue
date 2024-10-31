@@ -43,6 +43,8 @@
 </template>
 
 <script lang="ts">
+import {onMounted, onUpdated} from "vue";
+
 export default {
   props: {
     isOpen: Boolean,
@@ -62,6 +64,20 @@ export default {
     classSize: {
       type: String,
       default: 'medium'
+    }
+  },
+  setup(props, ctx) {
+    onMounted(() => {
+      calculatorContent()
+    })
+    onUpdated(() => {
+      calculatorContent()
+    })
+    const calculatorContent = () => {
+      const element = document.getElementsByClassName('popup_content')
+      if (element[0] && element[0].scrollHeight && element[0].clientHeight && element[0].scrollHeight > element[0].clientHeight) {
+        element[0].classList.add('has_overflow')
+      }
     }
   },
   methods: {
@@ -132,7 +148,7 @@ export default {
 
 .popup_content {
   max-height: 60dvh;
-  overflow: scroll;
+  //overflow: scroll;
 }
 
 html:has(.overlay_bg.on) .header_wrapper,
