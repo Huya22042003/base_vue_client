@@ -1,232 +1,220 @@
 <template>
   <!-- 학과인재상 및 교육목표 등록 -->
   <section id="content" class="content_wrapper grid_content" tabindex="0">
-    <div class="box dp_block">
-      <div class="section_tit_wrap">
-        <h3 class="section_tit_md">{{ t("talentEduGoalsMng.form.title") }}</h3>
-      </div>
-      <table class="tbl_row">
-        <colgroup>
-          <col style="width: 18%" />
-        </colgroup>
-        <tbody>
-          <tr>
-            <th scope="row">
-              <!-- 학과 -->
-              <p class="required">
-                {{ t("talentEduGoalsMng.form.dept") }}
-              </p>
-            </th>
-            <td class="td_input">
-              {{ deptNmSelect }}
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <p class="required">
-                <!-- 학년도 -->
-                {{ t("talentEduGoalsMng.form.year") }}
-              </p>
-            </th>
-            <td class="td_input">
-              <div class="select_form wd_p100">
-                <SelectBoxBase
-                  :id="'selectbox'"
-                  :name="'selectbox'"
-                  v-model="dataForm.year"
-                  :data="listSelectBoxYear"
-                  :class="'wd_120'"
+    <div class="section_tit_wrap">
+      <h3 class="section_tit_md">{{ t("talentEduGoalsMng.form.title") }}</h3>
+    </div>
+    <table class="tbl_row">
+      <colgroup>
+        <col style="width: 25%" />
+      </colgroup>
+      <tbody>
+        <tr>
+          <th scope="row">
+            <!-- 학과 -->
+            <p class="required">
+              {{ t("talentEduGoalsMng.form.dept") }}
+            </p>
+          </th>
+          <td class="td_input">
+            {{ deptNmSelect }}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <p class="required">
+              <!-- 학년도 -->
+              {{ t("talentEduGoalsMng.form.year") }}
+            </p>
+          </th>
+          <td class="td_input">
+            <div class="select_form wd_p100">
+              <SelectBoxBase
+                :id="'selectbox'"
+                :name="'selectbox'"
+                v-model="dataForm.year"
+                :data="listSelectBoxYear"
+              >
+              </SelectBoxBase>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <p class="required">
+              <!-- 학과 비전 -->
+              {{ t("talentEduGoalsMng.form.vision") }}
+            </p>
+          </th>
+          <td class="td_input">
+            <div
+              class="dp_flex al_center mb-1"
+              v-for="(item, index) in dataForm.visionDept"
+              :key="`vision_${item.id || index}`"
+            >
+              <div class="mr-5 flex-[7]">
+                <InputBase
+                  :id="`vision_` + (item.id || index)"
+                  required
+                  v-model="item.value"
+                  class="form_style"
+                />
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <p class="required">
+              <!-- 학과 교육목표 -->
+              {{ t("talentEduGoalsMng.form.edu") }}
+            </p>
+          </th>
+          <td class="td_input">
+            <div
+              class="dp_flex al_center mb-1"
+              v-for="(item, index) in dataForm.targetDept"
+              :key="`target_${item.id || index}`"
+            >
+              <div class="mr-5 flex-[7]">
+                <InputBase
+                  :id="`target_` + (item.id || index)"
+                  required
+                  v-model="item.value"
+                  class="form_style"
+                />
+              </div>
+              <div class="flex-[1]">
+                <ButtonBase
+                  v-if="index == 0"
+                  class="btn_round btn_lg btn_gray mg_l5"
+                  @click="addObject('targetDept')"
+                  :buttonName="t('common.add')"
                 >
-                </SelectBoxBase>
+                  <!-- 추가 -->
+                </ButtonBase>
+                <ButtonBase
+                  v-if="index != 0"
+                  class="btn_round btn_lg btn_gray mg_l5"
+                  @click="eventDeleteObject(index, 'targetDept')"
+                  :buttonName="t('common.deleteItem')"
+                >
+                  <!-- 삭제 -->
+                </ButtonBase>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <p class="required">
-                <!-- 학과 비전 -->
-                {{ t("talentEduGoalsMng.form.vision") }}
-              </p>
-            </th>
-            <td class="td_input">
-              <div
-                class="dp_flex al_center mb-1"
-                v-for="(item, index) in dataForm.visionDept"
-                :key="`vision_${item.id || index}`"
-              >
-                <div class="mr-5 flex-[7]">
-                  <InputBase
-                    :id="`vision_` + (item.id || index)"
-                    required
-                    v-model="item.value"
-                  />
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <p class="required">
-                <!-- 학과 교육목표 -->
-                {{ t("talentEduGoalsMng.form.edu") }}
-              </p>
-            </th>
-            <td class="td_input">
-              <div
-                class="dp_flex al_center mb-1"
-                v-for="(item, index) in dataForm.targetDept"
-                :key="`target_${item.id || index}`"
-              >
-                <div class="mr-5 flex-[7]">
-                  <InputBase
-                    :id="`target_` + (item.id || index)"
-                    required
-                    v-model="item.value"
-                  />
-                </div>
-                <div class="flex-[1]">
-                  <button
-                    v-if="index == 0"
-                    class="btn_round btn_sm btn_gray mg_l5"
-                    @click="addObject('targetDept')"
-                  >
-                    <!-- 추가 -->
-                    {{ t("common.add") }}
-                  </button>
-                  <button
-                    v-if="index != 0"
-                    class="btn_round btn_sm btn_gray mg_l5"
-                    @click="eventDeleteObject(index, 'targetDept')"
-                  >
-                    <!-- 삭제 -->
-                    {{ t("common.deleteItem") }}
-                  </button>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <p class="required">
-                <!-- 학과 인재상 -->
-                {{ t("talentEduGoalsMng.form.talent") }}
-              </p>
-            </th>
-            <td>
-              <div
-                class="dp_flex al_center mb-1"
-                v-for="(item, index) in dataForm.modelDept"
-                :key="`model_${item.id || index}`"
-              >
-                <div class="mr-5 flex-[7]">
-                  <InputBase
-                    :id="`model_` + (item.id || index)"
-                    required
-                    v-model="item.value"
-                  />
-                </div>
-                <div class="flex-[1]">
-                  <button
-                    v-if="index == 0"
-                    class="btn_round btn_sm btn_gray mg_l5"
-                    @click="addObject('modelDept')"
-                  >
-                    <!-- 추가 -->
-                    {{ t("common.add") }}
-                  </button>
-                  <button
-                    v-if="index != 0"
-                    class="btn_round btn_sm btn_gray mg_l5"
-                    @click="eventDeleteObject(index, 'modelDept')"
-                  >
-                    <!-- 삭제 -->
-                    {{ t("common.deleteItem") }}
-                  </button>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <p class="required">
-                <!-- 학과 발전계획 -->
-                {{ t("talentEduGoalsMng.form.progress") }}
-              </p>
-            </th>
-            <td>
-              <div
-                class="dp_flex al_center mb-1"
-                v-for="(item, index) in dataForm.planDept"
-                :key="index"
-              >
-                <TextArea
-                  :id="`plan1_` + index"
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <p class="required">
+              <!-- 학과 인재상 -->
+              {{ t("talentEduGoalsMng.form.talent") }}
+            </p>
+          </th>
+          <td>
+            <div
+              class="dp_flex al_center mb-1"
+              v-for="(item, index) in dataForm.modelDept"
+              :key="`model_${item.id || index}`"
+            >
+              <div class="mr-5 flex-[7]">
+                <InputBase
+                  :id="`model_` + (item.id || index)"
                   required
                   v-model="item.value"
+                  class="form_style"
                 />
               </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <p class="required">
-                <!-- 졸업 후 진로 -->
-                {{ t("talentEduGoalsMng.form.carrerAfterGraduation") }}
-              </p>
-            </th>
-            <td>
-              <div
-                class="dp_flex al_center mb-1"
-                v-for="(item, index) in dataForm.roadGraduationDept"
-                :key="index"
-              >
-                <TextArea
-                  :id="`plan2_` + index"
-                  required
-                  v-model="item.value"
-                />
+              <div class="flex-[1]">
+                <ButtonBase
+                  v-if="index == 0"
+                  class="btn_round btn_lg btn_gray mg_l5"
+                  @click="addObject('modelDept')"
+                  :buttonName="t('common.add')"
+                >
+                  <!-- 추가 -->
+                </ButtonBase>
+                <ButtonBase
+                  v-if="index != 0"
+                  class="btn_round btn_lg btn_gray mg_l5"
+                  @click="eventDeleteObject(index, 'modelDept')"
+                  :buttonName="t('common.deleteItem')"
+                >
+                  <!-- 삭제 -->
+                </ButtonBase>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <p class="required">
-                <!-- 취득 가능 자격증 -->
-                {{ t("talentEduGoalsMng.form.qualificationsAvailable") }}
-              </p>
-            </th>
-            <td>
-              <div
-                class="dp_flex al_center mb-1"
-                v-for="(item, index) in dataForm.certificateDept"
-                :key="index"
-              >
-                <TextArea
-                  :id="`plan2_` + index"
-                  required
-                  v-model="item.value"
-                />
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="btn_group btn_end mg_t30">
-        <button
-          type="button"
-          class="btn_round btn_md btn_primary"
-          @click="saveData"
-        >
-          {{ t("common.save") }}
-        </button>
-        <button
-          type="button"
-          class="btn_round btn_md btn_white"
-          @click="goBack()"
-        >
-          {{ t("common.list") }}
-        </button>
-      </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <p class="required">
+              <!-- 학과 발전계획 -->
+              {{ t("talentEduGoalsMng.form.progress") }}
+            </p>
+          </th>
+          <td>
+            <div
+              class="dp_flex al_center mb-1"
+              v-for="(item, index) in dataForm.planDept"
+              :key="index"
+            >
+              <TextArea :id="`plan1_` + index" required v-model="item.value" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <p class="required">
+              <!-- 졸업 후 진로 -->
+              {{ t("talentEduGoalsMng.form.carrerAfterGraduation") }}
+            </p>
+          </th>
+          <td>
+            <div
+              class="dp_flex al_center mb-1"
+              v-for="(item, index) in dataForm.roadGraduationDept"
+              :key="index"
+            >
+              <TextArea :id="`plan2_` + index" required v-model="item.value" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <p class="required">
+              <!-- 취득 가능 자격증 -->
+              {{ t("talentEduGoalsMng.form.qualificationsAvailable") }}
+            </p>
+          </th>
+          <td>
+            <div
+              class="dp_flex al_center mb-1"
+              v-for="(item, index) in dataForm.certificateDept"
+              :key="index"
+            >
+              <TextArea :id="`plan2_` + index" required v-model="item.value" />
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="btn_group btn_end">
+      <ButtonBase
+        type="button"
+        class="btn_round btn_sm btn_primary"
+        @click="saveData"
+        :buttonName="t('common.save')"
+      >
+      </ButtonBase>
+      <ButtonBase
+        type="button"
+        class="btn_round btn_sm btn_white"
+        @click="goBack()"
+        :buttonName="t('common.list')"
+      >
+      </ButtonBase>
     </div>
   </section>
 </template>
@@ -251,14 +239,15 @@ import InputBase from "@/components/common/input/InputBase.vue";
 import { getUserInfo } from "@/utils/storage";
 import { getDepartmentList } from "@/stores/common/department/department.service";
 import TextAreaBase from "@/components/common/input/TextAreaBase.vue";
-import type TextArea from "@/components/common/input/TextArea.vue";
 import { SCREEN } from "@/router/screen";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   name: "ModalForm",
   components: {
     InputBase,
     TextAreaBase,
+    ButtonBase,
   },
   setup() {
     const { t } = useI18n();
@@ -558,10 +547,16 @@ export default {
       this.store.setLoading(true);
       update(dataSave)
         .then((res) => {
+          let textAlert = "";
+          if (res.data.data) {
+            textAlert = this.t("talentEduGoalsMng.message.saveSuccess");
+          } else {
+            textAlert = this.t("talentEduGoalsMng.message.saveError");
+          }
           this.$swal
             .fire({
               /* 정상처리됐습니다. */
-              text: this.t("talentEduGoalsMng.message.saveSuccess"),
+              text: textAlert,
               confirmButtonColor: "#DD6B55",
               confirmButtonText: this.t("common.confirm"),
             })

@@ -537,7 +537,7 @@ export const SCREEN = {
   },
   historyLogin: {
     path: "/history-login",
-    name: "history-login",
+    name: "historyLogin",
   },
   historyMenuAccess: {
     path: "/history-menu-access",

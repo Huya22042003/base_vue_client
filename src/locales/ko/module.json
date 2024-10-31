@@ -1820,7 +1820,7 @@
         "titleStudent": "학생대표 선택",
         "titleTeacher": "내부 참석자 선택",
         "subTitle": "※ 회의록 작성자 소속 학과의 교원만 목록 구성됩니다.",
-        "searchPlace": "성명 또는 학번 검색",
+        "searchPlace": "성명 또는 교번 검색",
         "department": "학과",
         "name": "성명",
         "code": "교번",
@@ -1828,7 +1828,8 @@
         "management": "선택",
         "select": "선택",
         "search": "검색",
-        "clear": "초기화"
+        "clear": "초기화",
+        "confirmTeacher": "내부 참석자가 추가가 되었습니다."
       },
       "message": {
         "confirmDelete": "해당 참석자를 삭제하시겠어요? ",
@@ -3284,7 +3285,7 @@
       "menu": "교육과정 일정관리",
       "term": "학기",
       "hour": "시",
-      "massSchedule": "일괄 일정 설정",
+      "massSchedule": "일괄 설정",
       "notSetStatus": "미설정",
       "alert": {
         "save": " 교육과정개발 일정을 설정하시겠어요?",

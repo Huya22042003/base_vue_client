@@ -201,18 +201,19 @@
     <template #footer>
       <!-- Footer content goes here -->
       <ButtonBase
+        type="button"
         class="btn_round btn_lg btn_primary mg_l10"
         :buttonName="t('lectureDesignSchedule.modal.save')"
         @click="confirmAction"
       >
       </ButtonBase>
-      <button
+      <ButtonBase
         type="button"
         class="btn_round btn_lg btn_gray mg_l10"
         @click="closeModal"
+        :buttonName="t('lectureDesignSchedule.modal.close')"
       >
-        {{ t("lectureDesignSchedule.modal.close") }}
-      </button>
+      </ButtonBase>
     </template>
   </TModal>
 </template>

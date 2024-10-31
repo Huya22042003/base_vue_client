@@ -61,20 +61,20 @@
               </li>
             </ul>
             <div class="search_btnarea">
-              <button
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
                 @click="search()"
+                :buttonName="t('common.search')"
               >
-                {{ t("common.search") }}
-              </button>
-              <button
+              </ButtonBase>
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_gray mg_l5"
                 @click="resetSearch()"
+                :buttonName="t('common.reset')"
               >
-                {{ t("common.reset") }}
-              </button>
+              </ButtonBase>
             </div>
           </div>
         </div>
@@ -101,13 +101,6 @@
                     v-on:click="handleSetup()"
                   >
                   </ButtonBase>
-                  <p>
-                    {{
-                      t(
-                        "04.eduScheduleCreativeMng.newEducationSchedule.meesageNotice"
-                      )
-                    }}
-                  </p>
                 </div>
               </div>
             </template>

@@ -23,7 +23,6 @@
               {{ t("eduProcessCreation.attachFile.title1") }}
             </button> -->
             <ButtonBase
-              v-if="isSave"
               type="button"
               class="btn_round btn_md btn_primary"
               :buttonName="t('eduProcessCreation.attachFile.title1')"

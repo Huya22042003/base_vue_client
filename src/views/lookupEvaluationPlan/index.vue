@@ -5,102 +5,71 @@
         :pageTitle="pageTitle"
         :breadcrumbItems="breadcrumbItems"
       ></Breadcrumb>
+
       <div class="box dp_block">
-        <div class="search_section">
-          <div class="search_section">
-            <div class="search_toggle sm">
-              <div class="left"></div>
-              <div class="right">
-                <div class="search_daywrap">
-                  <span class="tag">{{
-                    t("05.lookupEvaluationPlan.search.initiationYear")
-                  }}</span>
-                  <div class="wd_200">
-                    <SelectBoxBase
-                      :id="'firstYear'"
-                      :name="'firstYear'"
-                      :data="listYear"
-                      v-model="dataSearch.firstYear"
-                    />
-                  </div>
-                </div>
-
-                <div class="search_daywrap">
-                  <span class="tag">{{
-                    t("05.lookupEvaluationPlan.search.year")
-                  }}</span>
-                  <div class="wd_200">
-                    <SelectBoxBase
-                      :id="'term'"
-                      :name="'term'"
-                      :data="listTerm"
-                      v-model="dataSearch.termEdu"
-                    />
-                  </div>
-                </div>
-                <div class="search_daywrap">
-                  <span class="tag">{{
-                    t("05.lookupEvaluationPlan.search.semester")
-                  }}</span>
-                  <div class="wd_200">
-                    <SelectBoxBase
-                      :id="'yearEdu'"
-                      :name="'yearEdu'"
-                      :data="listEduYear"
-                      v-model="dataSearch.yearEdu"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="search_toggle sm">
-            <div class="left"></div>
-            <div class="right">
-              <div class="search_daywrap">
-                <span class="tag">{{
-                  t("05.lookupEvaluationPlan.search.subjectName")
-                }}</span>
-                <div class="wd_200">
-                  <InputBase v-model="dataSearch.sbjtNm" />
-                </div>
-              </div>
-              <div class="search_daywrap">
-                <span class="tag">{{
-                  t("05.lookupEvaluationPlan.search.lecturer")
-                }}</span>
-                <div class="wd_200">
-                  <InputBase v-model="dataSearch.lectChar" />
-                </div>
-              </div>
-
-              <div class="search_daywrap">
-                <span class="tag">{{
-                  t("05.lookupEvaluationPlan.search.creationStatus")
-                }}</span>
-                <div class="wd_200">
-                  <SelectBoxBase
-                    :id="'sts'"
-                    :name="'sts'"
-                    :data="listSts"
-                    v-model="dataSearch.stsReg"
-                  />
-                </div>
-              </div>
-              <button
+        <div class="box_section">
+          <div class="search_box col_3">
+            <ul>
+              <li>
+                <p>{{ t("05.lookupEvaluationPlan.search.initiationYear") }}</p>
+                <SelectBoxBase
+                  :id="'firstYear'"
+                  :name="'firstYear'"
+                  :data="listYear"
+                  v-model="dataSearch.firstYear"
+                ></SelectBoxBase>
+              </li>
+              <li>
+                <p>{{ t("05.lookupEvaluationPlan.search.year") }}</p>
+                <SelectBoxBase
+                  :id="'term'"
+                  :name="'term'"
+                  :data="listTerm"
+                  v-model="dataSearch.termEdu"
+                />
+              </li>
+              <li>
+                <p>{{ t("05.lookupEvaluationPlan.search.semester") }}</p>
+                <SelectBoxBase
+                  :id="'yearEdu'"
+                  :name="'yearEdu'"
+                  :data="listEduYear"
+                  v-model="dataSearch.yearEdu"
+                />
+              </li>
+              <li>
+                <p>{{ t("05.lookupEvaluationPlan.search.subjectName") }}</p>
+                <InputBase v-model="dataSearch.sbjtNm" class="form_style" />
+              </li>
+              <li>
+                <p>{{ t("05.lookupEvaluationPlan.search.lecturer") }}</p>
+                <InputBase v-model="dataSearch.lectChar" class="form_style" />
+              </li>
+              <li>
+                <p>{{ t("05.lookupEvaluationPlan.search.creationStatus") }}</p>
+                <SelectBoxBase
+                  :id="'sts'"
+                  :name="'sts'"
+                  :data="listSts"
+                  v-model="dataSearch.stsReg"
+                />
+              </li>
+            </ul>
+            <div class="btn_group btn_end">
+              <ButtonBase
                 type="button"
-                class="btn_round btn_lg btn_primary mg_l10"
+                class="button btn_lg btn_blue btn_responsive"
                 @click="search()"
+                :buttonName="t('common.search')"
               >
-                {{ t("common.title.search") }}
-              </button>
-              <button
+              </ButtonBase>
+              <ButtonBase
                 type="button"
-                class="btn_round btn_lg btn_gray mg_l5"
+                class="button btn_lg btn_gray btn_responsive"
                 @click="reset()"
+                :buttonName="t('common.reset')"
               >
-                {{ t("common.reset") }}
-              </button>
+              </ButtonBase>
             </div>
           </div>
         </div>
@@ -142,6 +111,7 @@ import { useI18n } from "vue-i18n";
 import { lookupEvaluationPlanStore } from "@/stores/lookupEvaluationPlan";
 import type { LookupEvaluationPlanSearch } from "@/stores/lookupEvaluationPlan/lookupEvaluationPlan.type";
 import { getListCodeMng } from "@/stores/common/codeMng/codeMng.service";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 const store = commonStore();
 const storeLEP = lookupEvaluationPlanStore();

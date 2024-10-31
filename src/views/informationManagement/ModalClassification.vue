@@ -1,6 +1,12 @@
 <template>
-  <TModal :is-open="modalOpen" :is-show-header="true" :is-show-footer="true" :modal-id="modalId"
-          @close-modal="closeModal" class-size="small">
+  <TModal
+    :is-open="modalOpen"
+    :is-show-header="true"
+    :is-show-footer="true"
+    :modal-id="modalId"
+    @close-modal="closeModal"
+    class-size="small"
+  >
     <!-- Modal content goes here -->
     <template #title>
       <strong>{{ title }}</strong>
@@ -8,28 +14,35 @@
     <template #default>
       <div class="modal_custom">
         <p>{{ itemName }}</p>
-        <InputBase v-model="iValue" />
+        <InputBase v-model="iValue" class="form_style" />
       </div>
     </template>
     <template #footer>
       <!-- Footer content goes here -->
-      <button type="button" class="button btn_xl btn_blue"
-              :disabled="!iValue?.length"
-              @click="handleConfirmAction">
-        저장
-      </button>
-      <button type="button" class="button btn_xl btn_white popup_close"
-              @click="cancelAction">닫기
-      </button>
+      <ButtonBase
+        type="button"
+        class="button btn_xl btn_blue"
+        :disabled="!iValue?.length"
+        @click="handleConfirmAction"
+        :buttonName="'저장'"
+      >
+      </ButtonBase>
+      <ButtonBase
+        type="button"
+        class="button btn_xl btn_white popup_close"
+        @click="cancelAction"
+        :buttonName="'닫기'"
+      >
+      </ButtonBase>
     </template>
   </TModal>
 </template>
 
 <script setup lang="ts">
-
 import TModal from "@/components/common/modal/TModal.vue";
 import { watch } from "vue";
 import InputBase from "@/components/common/input/InputBase.vue";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 const props = defineProps({
   modelValue: {
@@ -56,7 +69,11 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["update:modelValue", "update:inputValue", "confirmAction"]);
+const emit = defineEmits([
+  "update:modelValue",
+  "update:inputValue",
+  "confirmAction",
+]);
 
 const modalOpen = ref(false);
 const iValue = ref<string>();
@@ -65,14 +82,14 @@ watch(
   () => props.modelValue,
   (newValue) => {
     modalOpen.value = newValue;
-  },
+  }
 );
 
 watch(
   () => props.inputValue,
   (newValue) => {
     iValue.value = props.inputValue;
-  },
+  }
 );
 
 const handleConfirmAction = () => {

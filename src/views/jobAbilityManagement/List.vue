@@ -475,7 +475,6 @@ export default {
     },
     exportExcel() {
       if (this.rowDataAll.length === 0) {
-        this.cmn.setLoading(true);
         downloadExcel()
           .then((res) => {
             this.rowDataAll = res.data.data.map(
@@ -535,9 +534,6 @@ export default {
               { sheetName: "sheet1", data: rowExcel, header: rowExcelHeader },
             ];
           })
-          .finally(() => {
-            this.cmn.setLoading(false);
-          });
       }
     },
   },

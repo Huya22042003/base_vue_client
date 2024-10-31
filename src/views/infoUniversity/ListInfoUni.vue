@@ -25,12 +25,14 @@
         >
           <template #button>
             <div>
-              <button
+              <ButtonBase
                 class="btn_round btn_md btn_primary mg_l10"
                 @click="goRegter"
+                :buttonName="
+                  t('03.basicInfoManagement.infoUniversity.button.register')
+                "
               >
-                {{ t("03.basicInfoManagement.infoUniversity.button.register") }}
-              </button>
+              </ButtonBase>
             </div>
           </template>
         </GridComponentV2>
@@ -61,12 +63,14 @@ import type {
   infoUniSearch,
 } from "@/stores/infoUniversity/infoUniversity.type";
 import { useRouter } from "vue-router";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   components: {
     Breadcrumb,
     GridComponentV2,
     LinkGridComponent,
+    ButtonBase,
   },
   data() {
     return {
