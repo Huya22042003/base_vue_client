@@ -143,7 +143,6 @@
                 v-on:click="handleSetupAll()"
               >
               </ButtonBase>
-              </ButtonBase>
             </template>
           </GridComponentV2>
         </div>
