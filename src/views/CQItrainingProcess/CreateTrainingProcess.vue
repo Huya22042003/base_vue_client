@@ -93,21 +93,21 @@
             >
               <button
                 v-if="status != STS_EDU_CQI_SUCCESS"
-                class="button btn_md btn_secondary"
+                class="button btn_lg btn_secondary"
                 @click="saveTemp"
               >
                 {{ t("common.saveTemp") }}
               </button>
               <button
                 v-if="picked === 'One'"
-                class="button btn_md btn_primary ml-4"
+                class="button btn_lg btn_primary ml-4"
                 @click="handleNext"
               >
                 {{ t("common.next") }}
               </button>
               <button
                 v-if="picked === 'Two'"
-                class="button btn_md btn_primary ml-4"
+                class="button btn_lg btn_primary ml-4"
                 @click="saveData"
               >
                 {{ t("common.save") }}
@@ -115,14 +115,14 @@
             </template>
             <template v-else>
               <button
-                class="button btn_md btn_primary ml-4"
+                class="button btn_lg btn_primary ml-4"
                 @click="saveData"
               >
                 {{ t("common.save") }}
               </button>
             </template>
             <button
-              class="button btn_md btn_white ml-4"
+              class="button btn_lg btn_white ml-4"
               @click="handleRedirectMenu"
             >
               {{ t("common.list") }}
@@ -323,8 +323,9 @@ const saveData = () => {
           ) {
             majorTab3Ref.value.saveDataFile(res.data.data);
           }
-          proxy.$alert(proxy.$t("common.message.saveSuccess"));
-          handleRedirectMenu();
+          proxy.$alert(proxy.$t("common.message.saveSuccess"), "", () => {
+            handleRedirectMenu();
+          });
         })
         .finally(() => {
           store.setLoading(false);

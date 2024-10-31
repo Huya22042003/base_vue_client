@@ -78,7 +78,7 @@
       <!-- Footer content goes here -->
       <button
         type="button"
-        class="button btn_xl btn_white popup_close"
+        class="button btn_lg btn_white popup_close"
         @click="closeModal()"
       >
         {{ t("common.cancel") }}
@@ -87,7 +87,7 @@
         type="button"
         @click="onCreate"
         :buttonName="t('common.save')"
-        class="button btn_xl btn_primary"
+        class="button btn_lg btn_primary"
       />
     </template>
   </TModal>

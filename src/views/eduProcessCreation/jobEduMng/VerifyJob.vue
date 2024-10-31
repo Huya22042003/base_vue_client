@@ -155,7 +155,7 @@
       <!-- <button
         v-if="version && isSave"
         type="button"
-        class="btn_round btn_md btn_primary"
+        class="btn_round btn_lg btn_primary"
         @click="confirmSave()"
       >
         {{ t("common.save") }}
@@ -163,19 +163,19 @@
       <ButtonBase
         v-if="version && isSave"
         type="button"
-        class="btn_round btn_md btn_primary"
+        class="btn_round btn_lg btn_primary"
         :buttonName="t('common.save')"
         @click="confirmSave()"
       ></ButtonBase>
       <button
         type="button"
-        class="btn_round btn_md btn_primary"
+        class="btn_round btn_lg btn_primary"
         :disabled="isDisabled"
         @click="next()"
       >
         {{ t("common.next") }}
       </button>
-      <button type="button" class="btn_round btn_md btn_white" @click="back()">
+      <button type="button" class="btn_round btn_lg btn_white" @click="back()">
         {{ t("common.list") }}
       </button>
     </div>

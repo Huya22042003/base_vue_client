@@ -34,13 +34,13 @@
     </div>
     <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
-        <button type="button" class="btn_md btn_round btn_gray">
+        <button type="button" class="btn_lg btn_round btn_gray">
           {{ t("common.print") }}
         </button>
-        <button type="button" class="btn_md btn_round btn_primary" @click="next()">
+        <button type="button" class="btn_lg btn_round btn_primary" @click="next()">
           {{ t("common.next") }}
         </button>
-        <button type="button" class="btn_md btn_round btn_white" @click="back()">
+        <button type="button" class="btn_lg btn_round btn_white" @click="back()">
           {{ t("common.list") }}
         </button>
       </div>

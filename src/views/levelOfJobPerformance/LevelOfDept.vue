@@ -4,30 +4,20 @@
       <div class="search_box col_3">
         <ul>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search1") }}</p>
+            <p>학년도</p>
             <SelectBoxBase :id="'search1'" :data="listYear" />
           </li>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search2") }}</p>
+            <p>학기</p>
             <SelectBoxBase :id="'search1'" :data="listTerm" />
           </li>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search3") }}</p>
+            <p>학년</p>
             <SelectBoxBase :id="'search1'" :data="listGrade" />
           </li>
-        </ul>
-        <ul>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search4") }}</p>
+            <p>학과</p>
             <SelectBoxBase :id="'search1'" :data="listDept" />
-          </li>
-          <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search5") }}</p>
-            <InputBase :id="'search5'" />
-          </li>
-          <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search6") }}</p>
-            <InputBase :id="'search6'" />
           </li>
         </ul>
         <div class="dp_flex btn_group btn_end" style="gap: 10px">
@@ -58,20 +48,34 @@
           </colgroup>
           <thead>
             <tr>
-              <th scope="row" class="ta_c" rowspan="2">1</th>
-              <th scope="row" class="ta_c" rowspan="2">2</th>
-              <th scope="col" class="ta_c" colspan="3">3</th>
-              <th scope="col" class="ta_c" colspan="3">4</th>
+              <th class="ta_c" rowspan="2">직무</th>
+              <th class="ta_c" colspan="3">능력단위</th>
+              <th class="ta_c" colspan="4">직무능력성취도</th>
+              <th class="ta_c" rowspan="2">연계교과목</th>
             </tr>
             <tr>
-              <th scope="col" class="ta_c">4</th>
-              <th scope="col" class="ta_c">5</th>
-              <th scope="col" class="ta_c">6</th>
-              <th scope="col" class="ta_c">7</th>
-              <th scope="col" class="ta_c">8</th>
-              <th scope="col" class="ta_c">9</th>
+              <th class="ta_c">구분</th>
+              <th class="ta_c">능력돤위명</th>
+              <th class="ta_c">능력단위 요소명</th>
+              <th class="ta_c">능력단위요소</th>
+              <th class="ta_c">능력단위</th>
+              <th class="ta_c">직무</th>
+              <th class="ta_c">학과</th>
             </tr>
           </thead>
+          <tbody>
+            <tr>
+                <td class="ta_c">직무</td>
+                <td class="ta_c">능력단위</td>
+                <td class="ta_c">구분</td>
+                <td class="ta_c">능력돤위명</td>
+                <td class="ta_c">능력단위 요소명</td>
+                <td class="ta_c">능력단위요소</td>
+                <td class="ta_c">능력단위</td>
+                <td class="ta_c">직무</td>
+                <td class="ta_c">학과</td>
+              </tr>
+          </tbody>
         </table>
       </div>
     </div>

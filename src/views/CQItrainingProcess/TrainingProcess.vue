@@ -6,52 +6,45 @@
       </div>
     </div>
     <div class="grid_content">
-      <div class="sub_section">
-        <div class="sub_section_xs">
+      <div class="box dp_block">
+        <div class="box_section">
           <!-- 검색유형 1 -->
-          <div class="search_box">
-            <div class="search_section">
-              <div class="search_toggle sm">
-                <div class="left"></div>
-                <div class="right">
-                  <div class="search_daywrap mg_r10">
-                    <span class="tag">{{ t("trainingProcess.search1") }}</span>
-                    <div class="max_wd100">
-                      <SelectBoxBase
-                        :data="listYear"
-                        v-if="listYear"
-                        v-model="searchParams.year"
-                        id="year"
-                      />
-                    </div>
-                  </div>
-                  <div class="search_daywrap mg_r10">
-                    <span class="tag">{{ t("trainingProcess.search2") }}</span>
-                    <div class="max_wd100">
-                      <InputBase v-model="searchParams.deptNm" id="deptNm" />
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    class="btn_round btn_lg btn_primary mg_l10"
-                    @click="getAllData()"
-                  >
-                    {{ t("trainingProcess.btnSearch") }}
-                  </button>
-                  <button
-                    @click="resetFormData()"
-                    type="button"
-                    class="btn_round btn_lg btn_gray mg_l5"
-                  >
-                    {{ t("common.reset") }}
-                  </button>
-                </div>
-              </div>
+          <div class="search_box col_2">
+            <ul>
+              <li>
+                <p>{{ t("trainingProcess.search1") }}</p>
+                <SelectBoxBase
+                  :data="listYear"
+                  v-if="listYear"
+                  v-model="searchParams.year"
+                  id="year"
+                />
+              </li>
+              <li>
+                <p>{{ t("trainingProcess.search2") }}</p>
+                <InputBase v-model="searchParams.deptNm" id="deptNm" />
+              </li>
+            </ul>
+            <div class="dp_flex btn_group btn_end" style="gap: 10px">
+              <button
+                type="button"
+                class="btn_round btn_lg btn_primary mg_l10"
+                @click="getAllData()"
+              >
+                {{ t("trainingProcess.btnSearch") }}
+              </button>
+              <button
+                @click="resetFormData()"
+                type="button"
+                class="btn_round btn_lg btn_gray mg_l5"
+              >
+                {{ t("common.reset") }}
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <div class="sub_section">
+      <div class="box_section">
         <div class="box">
           <GridComponentV2
             :rowData="dataRow"
@@ -267,7 +260,7 @@ const printReport = (data: EduCourseCqiListModel) => {};
 
 function handleDetailClick(item: EduCourseCqiListModel) {
   console.log(item);
-  
+
   router.push({
     name: SCREEN.createTrainingProcess.name,
     params: { mode: item.typeOfRedirect },

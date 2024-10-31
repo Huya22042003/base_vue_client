@@ -56,7 +56,7 @@
     <template #footer>
       <button
         type="button"
-        class="button btn_xl btn_white popup_close"
+        class="button btn_lg btn_white popup_close"
         @click="onClose()"
       >
         닫기

@@ -62,7 +62,7 @@
     <template #footer>
       <button
         type="button"
-        class="btn_round btn_md btn_primary"
+        class="btn_round btn_lg btn_primary"
         @click="confirmSave"
       >
         {{ t("common.save")
@@ -70,7 +70,7 @@
       </button>
       <button
         type="button"
-        class="btn_round btn_md btn_white"
+        class="btn_round btn_lg btn_white"
         @click="onClose()"
       >
         {{ t("common.cancel")

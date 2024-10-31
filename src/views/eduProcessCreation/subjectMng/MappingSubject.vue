@@ -211,7 +211,7 @@
       <!-- <button
         v-if="isSave"
         type="button"
-        class="btn_round btn_md btn_gray"
+        class="btn_round btn_lg btn_gray"
         @click="confirmSaveTemp"
         :disabled="saveType === cdSave"
       >
@@ -220,7 +220,7 @@
       <ButtonBase
         v-if="isSave"
         type="button"
-        class="btn_round btn_md btn_gray"
+        class="btn_round btn_lg btn_gray"
         :buttonName="t('common.saveTemp')"
         @click="confirmSaveTemp"
         :disabled="saveType === cdSave"
@@ -228,7 +228,7 @@
       <!-- <button
         v-if="isSave"
         type="button"
-        class="btn_round btn_md btn_primary"
+        class="btn_round btn_lg btn_primary"
         @click="confirmSave"
       >
         {{ t("common.save") }}
@@ -236,19 +236,19 @@
       <ButtonBase
         v-if="isSave"
         type="button"
-        class="btn_round btn_md btn_primary"
+        class="btn_round btn_lg btn_primary"
         :buttonName="t('common.save')"
         @click="confirmSave"
       ></ButtonBase>
       <button
         type="button"
-        class="btn_round btn_md btn_primary"
+        class="btn_round btn_lg btn_primary"
         @click="next()"
         :disabled="isDisabled"
       >
         {{ t("common.next") }}
       </button>
-      <button type="button" class="btn_round btn_md btn_white" @click="back()">
+      <button type="button" class="btn_round btn_lg btn_white" @click="back()">
         {{ t("common.list") }}
       </button>
     </div>

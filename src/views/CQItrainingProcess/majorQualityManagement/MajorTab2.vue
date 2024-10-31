@@ -505,7 +505,6 @@
 import InputBase from "@/components/common/input/InputBase.vue";
 import TextArea from "@/components/common/input/TextArea.vue";
 import { useI18n } from "vue-i18n";
-import { computed } from "vue";
 import { ref } from "vue";
 import {
   EduCourseCqiEvalStnrdModel,
