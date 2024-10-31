@@ -90,20 +90,20 @@
               </li>
             </ul>
             <div class="search_btnarea">
-              <button
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
                 @click="search"
+                :buttonName="t('common.search')"
               >
-                {{ t("common.search") }}
-              </button>
-              <button
+              </ButtonBase>
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_gray mg_l5"
                 @click="reset"
+                :buttonName="t('common.reset')"
               >
-                {{ t("common.reset") }}
-              </button>
+              </ButtonBase>
             </div>
           </div>
         </div>
@@ -130,12 +130,14 @@
           >
             <template #button>
               <ButtonBase
+                type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
                 :buttonName="t('lectureDesignSchedule.form.setOption')"
                 v-on:click="handleSetupOption()"
               >
               </ButtonBase>
               <ButtonBase
+                type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
                 :buttonName="t('lectureDesignSchedule.form.setAll')"
                 v-on:click="handleSetupAll()"

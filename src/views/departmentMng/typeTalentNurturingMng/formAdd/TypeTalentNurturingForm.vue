@@ -45,6 +45,7 @@
                   v-model="dataForm.typeNm"
                   id="input_talent"
                   required
+                  class="form_style"
                 />
               </td>
             </tr>
@@ -100,22 +101,22 @@
         </table>
         <div class="box_section">
           <div class="popup_footer">
-            <button
+            <ButtonBase
               type="button"
               class="button btn_xl btn_primary"
               @click="save()"
+              :buttonName="t('common.save')"
             >
               <!-- 저장 -->
-              {{ t("common.save") }}
-            </button>
-            <button
+            </ButtonBase>
+            <ButtonBase
               type="button"
               class="button btn_xl btn_white popup_close"
               @click="closeModal(false)"
+              :buttonName="t('common.close')"
             >
               <!-- 인재양성유형 삭제 -->
-              {{ t("common.close") }}
-            </button>
+            </ButtonBase>
           </div>
         </div>
       </div>
@@ -144,6 +145,7 @@ import { getListCodeMng } from "@/stores/common/codeMng/codeMng.service";
 import type { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 import { getUserInfo } from "@/utils/storage";
 import { getDepartmentList } from "@/stores/common/department/department.service";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   props: {
@@ -160,6 +162,7 @@ export default {
     Breadcrumb,
     GridComponent,
     InputBase,
+    ButtonBase,
   },
   data() {
     return {

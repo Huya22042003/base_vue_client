@@ -35,23 +35,28 @@
                   <InputBase
                     v-model="dataSearch.typeTalent"
                     id="input_typeTalent"
+                    class="form_style"
                   />
                 </div>
               </div>
-              <button
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
                 @click="searchFormData"
+                :buttonName="
+                  t('departmentMng.typeTalentNurturingMng.search.btnSeach')
+                "
               >
-                조회하기
-              </button>
-              <button
+              </ButtonBase>
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_gray mg_l5"
                 @click="clearFormSearch"
+                :buttonName="
+                  t('departmentMng.typeTalentNurturingMng.search.btnClear')
+                "
               >
-                초기화
-              </button>
+              </ButtonBase>
             </div>
           </div>
         </div>
@@ -59,9 +64,6 @@
     </div>
 
     <div class="box dp_block">
-      <p class="note_custom mb-4">
-        {{ t("departmentMng.typeTalentNurturingMng.search.subTitle") }}
-      </p>
       <div class="box_section">
         <!-- Table at here -->
         <GridComponentV2
@@ -76,10 +78,15 @@
         >
           <template #button>
             <div>
-              <button class="btn_round btn_sm btn_primary" @click="create">
+              <ButtonBase
+                class="btn_round btn_sm btn_primary"
+                @click="create"
+                :buttonName="
+                  t('departmentMng.typeTalentNurturingMng.list.btnCreate')
+                "
+              >
                 <!-- 등록 -->
-                {{ t("departmentMng.typeTalentNurturingMng.list.btnCreate") }}
-              </button>
+              </ButtonBase>
             </div>
           </template>
         </GridComponentV2>
@@ -121,6 +128,7 @@ import {
 } from "@/constants/common.const";
 import { getDepartmentList } from "@/stores/common/department/department.service";
 import TypeTalentNurturingForm from "./formAdd/TypeTalentNurturingForm.vue";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   components: {
@@ -128,6 +136,7 @@ export default {
     GridComponentV2,
     LinkGridComponent,
     TypeTalentNurturingForm,
+    ButtonBase,
   },
   data() {
     return {

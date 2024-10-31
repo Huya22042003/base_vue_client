@@ -3285,7 +3285,7 @@
       "menu": "교육과정 일정관리",
       "term": "학기",
       "hour": "시",
-      "massSchedule": "일괄 일정 설정",
+      "massSchedule": "일괄 설정",
       "notSetStatus": "미설정",
       "alert": {
         "save": " 교육과정개발 일정을 설정하시겠어요?",
