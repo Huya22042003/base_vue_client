@@ -221,7 +221,7 @@ export const CD_DEPT_TARGET_DETAIL = "EDU_032_03";
 export const UP_CD_MAJOR = "MAJ00";
 export const CD_SELCT_TALT_NO = "1136N";
 export const CD_SELCT_TALT_YES = "1136Y";
-export const UP_RESULT_MAJOR = "REL_00";
+export const UP_RESULT_MAJOR = "CD_CURRICULUM";
 export const UP_RESULT_SEL = "1209";
 export const CD_RESULT_SEL_01 = "12090001";
 export const CD_RESULT_SEL_02 = "12090002";
@@ -296,3 +296,6 @@ export const CD_TYPE_BACHELOR = "12160001";
 export const CD_TYPE_MAJOR_IN_DEPTH = "12160002";
 export const CD_TYPE_SMALL_UNIT = "12160003";
 export const CD_TYPE_SPECIAL = "12160004";
+
+export const EVAL_TYPE_01 = "122410";
+export const EVAL_TYPE_02 = "122420";

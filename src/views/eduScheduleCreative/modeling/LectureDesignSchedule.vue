@@ -132,16 +132,17 @@
               <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
-                v-on:click="handleSetupOption()"
                 :buttonName="t('lectureDesignSchedule.form.setOption')"
+                v-on:click="handleSetupOption()"
               >
               </ButtonBase>
               <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
-                v-on:click="handleSetupAll()"
                 :buttonName="t('lectureDesignSchedule.form.setAll')"
+                v-on:click="handleSetupAll()"
               >
+              </ButtonBase>
               </ButtonBase>
             </template>
           </GridComponentV2>
@@ -214,7 +215,7 @@ export default defineComponent({
     const gridOptions = {
       defaultColDef: {
         flex: 1,
-        minWidth: 120,
+        minWidth: 150,
         resizable: true,
         suppressMovable: true,
       },
@@ -505,6 +506,7 @@ export default defineComponent({
   },
   methods: {
     fnPagination(pageNumber: any, pageSize: any) {
+      this.listCheckBoxGrid = [];
       this.searchData.size = pageSize;
       this.searchData.page = pageNumber;
       this.searchData.sort = "";
@@ -532,6 +534,11 @@ export default defineComponent({
             dateFields.forEach((field) => {
               this.formatDateIfNotNull(item, field);
             });
+          });
+          this.rowData.forEach((item) => {
+            if (item.regDate) {
+              item.regDate = format(new Date(item.regDate), FORMAT_YYY_MM_DD);
+            }
           });
           this.totalRows = res.data.data.totalElements;
           this.updateSelectAllCheckbox();
@@ -674,5 +681,8 @@ export default defineComponent({
 }
 .center {
   text-align: center;
+}
+.search_box.col_3 > ul > li > p:first-child {
+  width: 150px;
 }
 </style>

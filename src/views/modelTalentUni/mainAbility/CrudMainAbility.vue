@@ -11,13 +11,16 @@
           <div class="flex justify-between items-center mb-[24px]">
             <p class="box_title_sm mb-0"></p>
             <div class="btn_group btn_end mb-3">
-              <button type="button" @click="addMajor()" class="btn_md btn_blue">
-                {{ t("02.coreChildAbility.button.addCore") }}
-              </button>
+              <ButtonBase
+                class="btn_round btn_md btn_primary"
+                :buttonName="t('02.coreChildAbility.button.addCore')"
+                @click="addMajor()"
+              >
+              </ButtonBase>
             </div>
           </div>
-          <div class="scrollx_table sm">
-            <table class="tbl_col">
+          <div class="tbl tbl_col">
+            <table>
               <caption>
                 table col scroll
               </caption>
@@ -33,28 +36,28 @@
               </colgroup>
               <thead>
                 <tr>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.core") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.coreDefn") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.useYn") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.manager") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.child") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.childDefn") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.useYn") }}
                   </th>
-                  <th scope="col">
+                  <th scope="row">
                     {{ t("02.coreChildAbility.manager") }}
                   </th>
                 </tr>
@@ -141,13 +144,12 @@
           </div>
           <div class="box_section">
             <div class="btn_area btn_group btn_end">
-              <button
-                type="button"
+              <ButtonBase
                 class="btn_md btn_blue"
+                :buttonName="t('common.save')"
                 @click="showAlertSave"
               >
-                {{ t("common.save") }}
-              </button>
+              </ButtonBase>
             </div>
           </div>
         </div>
@@ -178,7 +180,8 @@ import { createCoreAbility } from "@/stores/mainAbility/mainAbility.service";
 import { SUCCSESS_STATUS } from "@/constants/screen.const";
 import { STATUS_ADD } from "@/constants/common.const";
 import { STATUS_NO } from "@/constants/common.const";
-import { CoreAbilityRes } from "@/stores/mainAbility/mainAbility.type";
+import type { CoreAbilityRes } from "@/stores/mainAbility/mainAbility.type";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
@@ -188,6 +191,7 @@ export default defineComponent({
     LoaddingComponent,
     GridComponent,
     InputBase,
+    ButtonBase,
   },
   data() {
     return {

@@ -24,6 +24,7 @@ export default {
   methods: {
     addEvent() {
       if (typeof this.params.onCustomEvent === 'function') {
+        
         this.params.onCustomEvent(this.params.data)
       }
     }

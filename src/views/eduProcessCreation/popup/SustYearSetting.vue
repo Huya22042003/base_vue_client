@@ -83,13 +83,12 @@
       >
         {{ t("common.cancel") }}
       </button>
-      <button
+      <ButtonBase
         type="button"
+        @click="onCreate"
+        :buttonName="t('common.save')"
         class="button btn_xl btn_primary"
-        @click="onCreate()"
-      >
-        {{ t("common.save") }}
-      </button>
+      />
     </template>
   </TModal>
 </template>
@@ -98,7 +97,6 @@
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import type {
-  EduCourseDetailDTO,
   EduCourseReqModel,
 } from "../../../stores/eduProcessCreation/eduCourse/eduProcess.type";
 import { EduCourseStore } from "../../../stores/eduProcessCreation";
@@ -116,12 +114,12 @@ import { CODE_MAJOR } from "@/constants/screen.const";
 import {
   getFormAdd,
   createEduCourse,
-  detailEduCourse,
 } from "@/stores/eduProcessCreation/eduCourse/eduProcess.service";
 import { MODE_EDIT } from "@/constants/screen.const";
 import { START_YEAR_NUMBER } from "@/constants/screen.const";
 import { getUserInfo } from "@/utils/storage";
 import { BAD_REQUEST_EDU_COURSE, BAD_REQUEST_NO_REGISTER_WRITE_SCHDL, DEPT_TYPE_SPECIAL, EDU_TYPE_OTHER, VERSION_V1 } from "@/constants/common.const";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   props: {
@@ -130,7 +128,9 @@ export default {
       default: false,
     },
   },
-  components: {},
+  components: {
+    ButtonBase
+  },
   setup() {
     const { t } = useI18n();
     const router = useRouter();

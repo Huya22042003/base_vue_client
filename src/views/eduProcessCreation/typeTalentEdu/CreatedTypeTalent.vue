@@ -161,14 +161,13 @@
     </div>
     <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
-        <button
+        <ButtonBase
           type="button"
+          @click="save"
+          :buttonName="t('common.save')"
           class="btn_round btn_md btn_primary"
-          @click="save()"
           v-if="isSave"
-        >
-          {{ t("common.save") }}
-        </button>
+        />
         <button
           type="button"
           class="btn_round btn_md btn_primary"
@@ -216,8 +215,12 @@ import {
   EduCourseSelReqDTO,
   EduCourseSelRegistDTO,
 } from "@/stores/eduProcessCreation/eduCourse/eduProcess.type";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
+  components:{
+    ButtonBase
+  },
   setup: () => {
     const router = useRouter();
     const storeCommon = commonStore();

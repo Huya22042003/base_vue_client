@@ -120,12 +120,12 @@
                 @click="exportExcel"
               >
               </ExportFileExcel>
-              <button
+              <ButtonBase
                 class="btn_round btn_primary btn_md"
                 @click="gotoRegister"
+                :buttonName="t('jobAbilityManagement.btnRegister')"
               >
-                {{ t("jobAbilityManagement.btnRegister") }}
-              </button>
+              </ButtonBase>
             </template>
           </GridComponentV2>
         </div>
@@ -139,7 +139,7 @@ import Breadcrumb from "@/components/common/Breadcrumb.vue";
 import GridComponentV2 from "../../components/common/grid/GridComponentV2.vue";
 import LinkGridComponent from "../../components/common/grid/LinkGridComponent.vue";
 import { commonStore } from "../../stores/common";
-
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 import {
   MODE_CREATE,
   MODE_DETAIL,
@@ -166,6 +166,7 @@ export default {
     Breadcrumb,
     GridComponentV2,
     LinkGridComponent,
+    ButtonBase,
   },
   setup() {
     const { t } = useI18n();

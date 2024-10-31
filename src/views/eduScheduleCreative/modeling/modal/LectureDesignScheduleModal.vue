@@ -203,8 +203,8 @@
       <ButtonBase
         type="button"
         class="btn_round btn_lg btn_primary mg_l10"
-        @click="confirmAction"
         :buttonName="t('lectureDesignSchedule.modal.save')"
+        @click="confirmAction"
       >
       </ButtonBase>
       <ButtonBase
@@ -238,6 +238,9 @@ import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   name: "lectureDesignSchudeModel",
+  components: {
+    ButtonBase,
+  },
   props: {
     isOpen: {
       type: Boolean,

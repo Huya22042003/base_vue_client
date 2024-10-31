@@ -17,13 +17,12 @@
           >
             <template #button>
               <div class="dp_flex btn_group btn_end">
-                <button
-                  type="button"
+                <ButtonBase
                   class="btn_round btn_sm btn_primary"
+                  :buttonName="t('02.profLearn.button.register')"
                   @click="register"
                 >
-                  {{ t("02.profLearn.button.register") }}
-                </button>
+                </ButtonBase>
               </div>
             </template>
           </GridComponentV2>
@@ -66,6 +65,7 @@ import { format } from "date-fns";
 import GridComponent from "@/components/common/grid/GridComponent.vue";
 import ButtonGridComponent from "../../components/common/grid/ButtonGridComponent.vue";
 import Swal from "sweetalert2";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   name: "ProfLearn",
@@ -75,6 +75,7 @@ export default defineComponent({
     LinkGridComponent,
     GridComponent,
     ButtonGridComponent,
+    ButtonBase,
   },
   setup() {
     const { t } = useI18n();

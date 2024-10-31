@@ -118,10 +118,10 @@
       <ButtonBase
         type="button"
         class="button btn_xl btn_primary"
-        @click="confirmAction"
         :buttonName="
           t('04.eduScheduleCreativeMng.newEducationSchedule.modal.action.save')
         "
+        @click="confirmAction"
       >
       </ButtonBase>
       <ButtonBase
@@ -141,7 +141,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import {
+import type {
   NewEducationScheduleModel,
   NewEducationScheduleReqModel,
 } from "../../../../stores/newEducationSchedule/NewEducationSchedule.type";
@@ -154,6 +154,9 @@ import { NewEducationScheduleStore } from "../../../../stores/newEducationSchedu
 import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
+  components: {
+    ButtonBase,
+  },
   name: "NewEducationScheduleModal",
   props: {
     isOpen: {

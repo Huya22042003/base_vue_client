@@ -95,13 +95,12 @@
             <template #button>
               <div class="flex flex-col items-end">
                 <div class="button-container">
-                  <button
-                    type="button"
+                  <ButtonBase
                     class="button btn_sm btn_blue bo_rd4 font_base_2"
+                    :buttonName="t('04.eduScheduleCreativeMng.massSchedule')"
                     v-on:click="handleSetup()"
                   >
-                    {{ t("04.eduScheduleCreativeMng.massSchedule") }}
-                  </button>
+                  </ButtonBase>
                 </div>
               </div>
             </template>

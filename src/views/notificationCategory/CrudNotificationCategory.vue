@@ -104,6 +104,7 @@
                       :maxFile="1"
                       :orgName="'NTC'"
                       :category="'NOTICE'"
+                      :subTitle="'※ 10mb 이하의 파일 한 개 등록 가능합니다.'"
                       :sectionName="fileTypeImageAll"
                     ></InputFileBase>
                   </td>
