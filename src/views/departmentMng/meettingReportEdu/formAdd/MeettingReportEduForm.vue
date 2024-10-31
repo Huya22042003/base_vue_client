@@ -395,6 +395,7 @@
               toolbar="full"
               @editorChange="changeEditor()"
               ref="myEditor"
+              style="min-height:200px"
             />
           </div>
         </div>
@@ -489,6 +490,7 @@ import {
   CD_ID_MEET_ATTE1,
   CD_ID_MEET_ATTE2,
 } from "@/constants/common.const";
+import { QuillEditor } from "@vueup/vue-quill";
 
 export default {
   components: {
@@ -499,6 +501,7 @@ export default {
     AddStudentModal,
     BaseDatePicker,
     InputFileBase,
+    QuillEditor
   },
   data() {
     return {
@@ -563,7 +566,7 @@ export default {
                 formData.append("sectionName", "MEETING_REPORT_EDITER");
                 uploadFileEditor(formData)
                   .then((res) => {
-                    resolve(res.data.urlFile);
+                    resolve(res.data.data.urlFile);
                     this.storeCommon.setLoading(false);
                   })
                   .catch((err) => {
@@ -1015,9 +1018,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ql-editor {
-  height: 120px;
-}
 .tbl table tbody td,
 .tbl table tbody th {
   border-left: 1px solid var(--dark1);
