@@ -8,7 +8,7 @@
           </router-link>
         </h1>
         <div class="header_function">
-          <p class="login_info">{{userInfo?.userName}}({{userInfo?.userId}})</p>
+          <p class="login_info">{{userInfo?.userName}}({{userInfo?.userId}})님 환영합니다</p>
           <button type="button" class="btn_logout" @click.prevent="handleLogout">로그아웃</button>
           <!-- <button type="button" class="btn_login">로그인</button> -->
           <button type="button" class="btn_prof_site" @click="popupShow(0)">교수사이트 보기</button>
