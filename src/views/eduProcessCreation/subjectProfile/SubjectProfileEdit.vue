@@ -592,7 +592,7 @@ export default {
             } as SubjectProfileReqDTO;
             updateSubjectProfile(dataSave)
               .then((res) => {
-                this.$alert(this.t("common.message.saveSuccess"), "", () => {
+                this.$alert("저장이 되었습니다.", "", () => {
                   this.back();
                 });
               })
