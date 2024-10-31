@@ -319,19 +319,17 @@ export default defineComponent({
     async goToDetail() {
       this.storeCommon.setLoading(true);
       await getListCodeMng({
-        upCdIdList: [UP_RESULT_MAJOR, UP_RESULT_SEL],
+        upCdIdList: [UP_RESULT_SEL],
       }).then((res: any) => {
         this.listResult = res.data.data.filter(
           (item: any) => item.upCdId == UP_RESULT_SEL
         );
         this.listResult.unshift({ id: 0, cdId: "", cdNm: this.t("common.select") });
-        this.listReultMajor = res.data.data.filter(
-          (item: any) => item.upCdId == UP_RESULT_MAJOR
-        );
-        this.listReultMajor.unshift({ id: 0, cdId: "", cdNm: this.t("common.select") });
       });
       await getResultEduCourse({ eduCourseSeq: this.id }).then((res: any) => {
         this.data = res.data.data;
+        this.listReultMajor = res.data.data.listCurriculum;
+        
         this.data.tobeEduCourse.tobeCursListDivCd = this.data.tobeEduCourse
           .tobeCursListDivCd
           ? this.data.tobeEduCourse.tobeCursListDivCd
