@@ -359,7 +359,7 @@ input, textarea {
 }
 
 input {
-    height: 36px;
+    height: 40px;
 }
 input[disabled], input[disabled]::placeholder {
     /*height: 40px !important;*/

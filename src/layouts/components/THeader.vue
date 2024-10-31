@@ -217,7 +217,7 @@ export default {
       size: PAGINATION_PAGE_SIZE,
       sort: ''
     });
-    const userInfo = JSON.parse(getUserInfo() || "");
+    const userInfo = JSON.parse(getUserInfo() || "{}");
 
     const isLoad = ref(false)
 
