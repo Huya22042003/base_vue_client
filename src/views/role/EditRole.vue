@@ -17,6 +17,7 @@
               <th scope="row">{{ t("10.role.roleName") }}</th>
               <td colspan="3">
                 <InputBase
+                  class="form_style"
                   v-model="roleDetail.rlNm"
                   :placeholder="t('10.role.roleName')"
                 ></InputBase>
@@ -26,6 +27,7 @@
               <th scope="row">{{ t("10.role.roleCode") }}</th>
               <td colspan="3">
                 <InputBase
+                  class="form_style"
                   :placeholder="t('10.role.roleCode')"
                   :readonly="true"
                   v-model="roleDetail.rlCd"
@@ -36,6 +38,7 @@
               <th scope="row">{{ t("10.role.roleDefn") }}</th>
               <td colspan="3">
                 <InputBase
+                  class="form_style"
                   :id="'textArea'"
                   :name="'textArea'"
                   v-model="roleDetail.rlDesc"

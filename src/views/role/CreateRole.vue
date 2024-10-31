@@ -18,6 +18,7 @@
               <th scope="row">{{ t("10.role.roleName") }}</th>
               <td colspan="3">
                 <InputBase
+                  class="form_style"
                   :id="'name-role'"
                   v-model="roleName"
                   :placeholder="t('10.role.roleName')"
@@ -29,6 +30,7 @@
               <th scope="row">{{ t("10.role.roleCode") }}</th>
               <td colspan="3">
                 <InputBase
+                  class="form_style"
                   :id="'code-role'"
                   :placeholder="t('10.role.placeHolderDefn')"
                   :readonly="true"
@@ -40,6 +42,7 @@
               <th scope="row">{{ t("10.role.roleDefn") }}</th>
               <td colspan="3">
                 <InputBase
+                  class="form_style"
                   :id="'textArea'"
                   :name="'textArea'"
                   v-model="description"

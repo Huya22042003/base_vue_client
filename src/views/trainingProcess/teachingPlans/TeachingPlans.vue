@@ -35,11 +35,11 @@
               </li>
               <li>
                 <p>{{ t("04.teachingPlans.searchBox.subject") }}</p>
-                <InputBase v-model="searchModel.subjectNm" :id="'subject'" />
+                <InputBase class="form_style" v-model="searchModel.subjectNm" :id="'subject'" />
               </li>
               <li>
                 <p>{{ t("04.teachingPlans.searchBox.professor") }}</p>
-                <InputBase v-model="searchModel.profNm" :id="'professor'" />
+                <InputBase class="form_style" v-model="searchModel.profNm" :id="'professor'" />
               </li>
               <li>
                 <p>{{ t("04.teachingPlans.searchBox.status") }}</p>

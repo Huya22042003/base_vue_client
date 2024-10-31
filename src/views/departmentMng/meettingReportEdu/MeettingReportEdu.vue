@@ -39,6 +39,7 @@
                 {{ t("departmentMng.meettingReportEdu.search.dept") }}
               </p>
               <InputBase
+                 class="form_style"
                 v-model="dataSearch.deptNm"
                 id="input_constitutiveFactor"
               />

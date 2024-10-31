@@ -11,6 +11,7 @@
                   {{ t("userManagement.dept") }}
                 </p>
                 <InputBase
+                  class="form_style"
                   :id="'deptNm'"
                   :name="'deptNm'"
                   v-model="searchModel.deptNm"
@@ -21,6 +22,7 @@
                   {{ t("userManagement.staffNo") }}
                 </p>
                 <InputBase
+                  class="form_style"
                   :id="'staffNo'"
                   :name="'staffNo'"
                   v-model="searchModel.userId"
@@ -31,6 +33,7 @@
                   {{ t("userManagement.name") }}
                 </p>
                 <InputBase
+                  class="form_style"
                   :id="'name'"
                   :name="'name'"
                   v-model="searchModel.name"

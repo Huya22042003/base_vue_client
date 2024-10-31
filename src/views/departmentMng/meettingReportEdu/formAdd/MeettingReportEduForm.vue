@@ -88,7 +88,7 @@
                   </p>
                 </th>
                 <td class="td_input" colspan="6">
-                  <InputBase v-model="dataForm.sbjt" :id="'sbjt'" required />
+                  <InputBase class="form_style" v-model="dataForm.sbjt" :id="'sbjt'" required />
                 </td>
               </tr>
               <!-- meeting day -->
@@ -145,6 +145,7 @@
                 </th>
                 <td class="td_input" colspan="6">
                   <InputBase
+                   class="form_style"
                     maxlength="100"
                     v-model="dataForm.writer"
                     required
@@ -161,6 +162,7 @@
                 </th>
                 <td class="td_input" colspan="6">
                   <InputBase
+                   class="form_style"
                     maxlength="100"
                     v-model="dataForm.loc"
                     required
@@ -177,6 +179,7 @@
                 </th>
                 <td class="td_input" colspan="6">
                   <InputBase
+                   class="form_style"
                     maxlength="100"
                     v-model="dataForm.cost"
                     required
@@ -289,6 +292,7 @@
                             >
                               <div class="mr-5 flex-[7] wd_p85">
                                 <InputBase
+                                   class="form_style"
                                   v-model="teacher.name"
                                   :id="`input_teacher_${index}`"
                                   readonly
@@ -307,6 +311,7 @@
                             </div>
                             <div class="dp_flex w-full" v-else>
                               <InputBase
+                                 class="form_style"
                                 v-model="teacher.name"
                                 :id="`input_teacher_${index}`"
                                 required
@@ -321,6 +326,7 @@
                           </td>
                           <td v-else>
                             <InputBase
+                               class="form_style"
                               :id="`teacherPosi_${index}`"
                               v-model="teacher.position"
                               required
@@ -328,6 +334,7 @@
                           </td>
                           <td class="align_center_cs">
                             <InputBase
+                               class="form_style"
                               :id="`teacherDepart_${index}`"
                               v-model="teacher.department"
                               required
