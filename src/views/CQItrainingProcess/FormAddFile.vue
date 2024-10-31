@@ -29,8 +29,12 @@
               :orgName="'EDU_COURSE_CQI'"
               :category="'EDU_COURSE_CQI'"
               :sectionName="'EDU_COURSE_CQI'"
+              :showMess="false"
+              :subTitle="'※ 10mb 이하의 파일만 등록 가능합니다. '"
+              v-model="modelValue"
             >
             </InputFileBase>
+            <span v-if="modelValue && modelValue.length == 0">선택된 파일이 없습니다.</span>
           </td>
         </tr>
       </tbody>
@@ -43,12 +47,23 @@ import { useI18n } from "vue-i18n";
 import { ref } from "vue";
 import { commonStore } from "@/stores/common";
 import InputFileBase from "@/components/common/input/InputFileBase.vue";
+import { STS_EDU_CQI_SUCCESS } from "@/constants/common.const";
+import { MODE_DETAIL, MODE_EDIT } from "@/constants/screen.const";
 
 const { t } = useI18n();
 const store = commonStore();
 
 const state = window.history.state;
-const { eduCourseCqiSeq } = state;
+const { eduCourseCqiSeq, status } = state;
+
+const mode = ref<string>();
+const modelValue = ref<[]>([]);
+
+if (status != STS_EDU_CQI_SUCCESS) {
+  mode.value = MODE_EDIT;
+} else {
+  mode.value = MODE_DETAIL
+}
 
 const childRefUpLoad = ref<InstanceType<typeof InputFileBase> | null>(null);
 

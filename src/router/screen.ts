@@ -537,7 +537,7 @@ export const SCREEN = {
   },
   historyLogin: {
     path: "/history-login",
-    name: "history-login",
+    name: "historyLogin",
   },
   historyMenuAccess: {
     path: "/history-menu-access",
@@ -846,6 +846,14 @@ export const SCREEN = {
   lookupEvaluationPlan: {
     path: "/lookup-evaluation-plan",
     name: "lookupEvaluationPlan"
-  }
+  },
+  finalArchivement: {
+    path: '/final-archivement',
+    name: 'finalArchivement',
+  },
+  finalArchivementAction: {
+    path: '/final-archivement-action',
+    name: 'finalArchivementAction',
+  },
 
 }

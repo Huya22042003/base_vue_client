@@ -220,100 +220,142 @@
               </tr>
               <!-- participant -->
               <tr>
-                <th scope="row" :rowspan="listTeacher.length + 1">
+                <th scope="row">
                   <p class="required">
                     {{ t("departmentMng.meettingReportEdu.form.listTeacher") }}
                   </p>
                 </th>
-                <th>
-                  {{ t("departmentMng.meettingReportEdu.form.category") }}
-                </th>
-                <th>{{ t("departmentMng.meettingReportEdu.form.name") }}</th>
-                <th>
-                  {{ t("departmentMng.meettingReportEdu.form.position") }}
-                </th>
-                <th>
-                  {{ t("departmentMng.meettingReportEdu.form.department") }}
-                </th>
-                <th>
-                  {{ t("departmentMng.meettingReportEdu.form.management") }}
-                </th>
+                <td class="td_input" colspan="6">
+                  <div class="tbl tbl_col">
+                    <table>
+                      <colgroup>
+                        <col style="width: 25%" />
+                        <col style="width: 25%" />
+                        <col style="width: 20%" />
+                        <col style="width: 20%" />
+                        <col style="width: 10%" />
+                      </colgroup>
+                      <thead>
+                        <tr>
+                          <th scope="row">
+                            {{
+                              t("departmentMng.meettingReportEdu.form.category")
+                            }}
+                          </th>
+                          <th scope="row">
+                            {{ t("departmentMng.meettingReportEdu.form.name") }}
+                          </th>
+                          <th scope="row">
+                            {{
+                              t("departmentMng.meettingReportEdu.form.position")
+                            }}
+                          </th>
+                          <th scope="row">
+                            {{
+                              t(
+                                "departmentMng.meettingReportEdu.form.department"
+                              )
+                            }}
+                          </th>
+                          <th scope="row">
+                            {{
+                              t(
+                                "departmentMng.meettingReportEdu.form.management"
+                              )
+                            }}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          v-for="(teacher, index) in listTeacher"
+                          :key="index"
+                        >
+                          <td scope="row" class="align_center_cs">
+                            <SelectBoxBase
+                              :id="`participant_${index}`"
+                              :name="`participant_${index}`"
+                              v-model="teacher.divCd"
+                              :data="listSelectBoxParti"
+                              required
+                              @change="changeTypeSelect(index)"
+                            >
+                            </SelectBoxBase>
+                          </td>
+                          <td class="align_center_cs">
+                            <div
+                              class="dp_flex w-full"
+                              v-if="teacher.divCd == teacherCd"
+                            >
+                              <div class="mr-5 flex-[7] wd_p85">
+                                <InputBase
+                                  v-model="teacher.name"
+                                  :id="`input_teacher_${index}`"
+                                  readonly
+                                  required
+                                />
+                              </div>
+                              <div class="dp_flex al_center flex-[2] wd_p35">
+                                <button
+                                  v-if="teacher.divCd == teacherCd"
+                                  class="button btn_xs btn_medium_gray border_medium_gray bo_rd6 font_base_2"
+                                  @click="openModalAddTeach(index)"
+                                >
+                                  {{ t("common.select") }}
+                                </button>
+                              </div>
+                            </div>
+                            <div class="dp_flex w-full" v-else>
+                              <InputBase
+                                v-model="teacher.name"
+                                :id="`input_teacher_${index}`"
+                                required
+                              />
+                            </div>
+                          </td>
+                          <td
+                            class="wd_p17 align_center_cs"
+                            v-if="teacher.divCd == teacherCd"
+                          >
+                            {{ teacher.position }}
+                          </td>
+                          <td v-else>
+                            <InputBase
+                              :id="`teacherPosi_${index}`"
+                              v-model="teacher.position"
+                              required
+                            />
+                          </td>
+                          <td class="align_center_cs">
+                            <InputBase
+                              :id="`teacherDepart_${index}`"
+                              v-model="teacher.department"
+                              required
+                            />
+                          </td>
+                          <td class="align_center_cs">
+                            <button
+                              v-if="index == 0"
+                              class="button btn_xs btn_medium_gray border_medium_gray bo_rd6 font_base_2"
+                              @click="addTeacher()"
+                            >
+                              {{ t("common.add") }}
+                            </button>
+                            <button
+                              v-if="index != 0"
+                              class="button btn_xs btn_medium_gray border_medium_gray bo_rd6 font_base_2"
+                              @click="deleteTeacher(index)"
+                            >
+                              {{ t("common.delete") }}
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
               </tr>
               <!-- Tearch -->
-              <tr v-for="(teacher, index) in listTeacher" :key="index">
-                <td class="wd_p15">
-                  <SelectBoxBase
-                    :id="`participant_${index}`"
-                    :name="`participant_${index}`"
-                    v-model="teacher.divCd"
-                    :data="listSelectBoxParti"
-                    required
-                  >
-                  </SelectBoxBase>
-                </td>
-                <td>
-                  <div class="dp_flex w-full" v-if="teacher.divCd == teacherCd">
-                    <div class="mr-5 flex-[7] wd_p85">
-                      <InputBase
-                        v-model="teacher.name"
-                        :id="`input_teacher_${index}`"
-                        readonly
-                        required
-                      />
-                    </div>
-                    <div class="dp_flex al_center flex-[2] wd_p35">
-                      <button
-                        v-if="teacher.divCd == teacherCd"
-                        class="button btn_xs btn_medium_gray border_medium_gray bo_rd6 font_base_2"
-                        @click="openModalAddTeach(index)"
-                      >
-                        {{ t("common.add") }}
-                      </button>
-                    </div>
-                  </div>
-                  <div class="dp_flex w-full" v-else>
-                    <InputBase
-                      v-model="teacher.name"
-                      :id="`input_teacher_${index}`"
-                      required
-                    />
-                  </div>
-                </td>
-                <td v-if="teacher.divCd == teacherCd">
-                  {{ teacher.position }}
-                </td>
-                <td v-else>
-                  <InputBase
-                    :id="`teacherPosi_${index}`"
-                    v-model="teacher.position"
-                    required
-                  />
-                </td>
-                <td class="wd_p17">
-                  <InputBase
-                    :id="`teacherDepart_${index}`"
-                    v-model="teacher.department"
-                    required
-                  />
-                </td>
-                <td>
-                  <button
-                    v-if="index == 0"
-                    class="button btn_xs btn_medium_gray border_medium_gray bo_rd6 font_base_2"
-                    @click="addTeacher()"
-                  >
-                    {{ t("common.add") }}
-                  </button>
-                  <button
-                    v-if="index != 0"
-                    class="button btn_xs btn_medium_gray border_medium_gray bo_rd6 font_base_2"
-                    @click="deleteTeacher(index)"
-                  >
-                    {{ t("common.delete") }}
-                  </button>
-                </td>
-              </tr>
-              <!-- file attack -->
               <tr>
                 <th scope="row">
                   {{ t("departmentMng.meettingReportEdu.form.meettingFile") }}
@@ -332,9 +374,12 @@
                     :sectionName="'meeting_report'"
                     :multiple="true"
                     :maxFile="3"
+                    :subTitle="'※ 10mb 이하의 파일 세 개 등록 가능합니다.'"
+                    :maxSize="10"
                   />
                 </td>
               </tr>
+              <!-- file attack -->
             </tbody>
           </table>
         </div>
@@ -350,32 +395,41 @@
               toolbar="full"
               @editorChange="changeEditor()"
               ref="myEditor"
+              style="min-height:200px"
             />
           </div>
         </div>
 
         <div class="box_section">
-          <div class="btn_area">
-            <button type="button" class="btn_xs btn_blue">
-              <!-- 인쇄 -->
+          <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
+            <button
+              type="button"
+              v-if="modeScreen == 'detail'"
+              class="btn_round btn_gray btn_md"
+            >
               {{ t("common.print") }}
             </button>
-            <!-- :disabled="storeCommon.check" -->
-            <button type="button" class="btn_xs btn_blue" @click="save()">
-              <!-- 저장 -->
+            <button
+              type="button"
+              class="btn_round btn_primary btn_md"
+              @click="save()"
+            >
               {{ t("common.save") }}
             </button>
             <button
               v-if="modeScreen == 'detail'"
               type="button"
-              class="btn_xs btn_blue"
+              class="btn_round btn_gray btn_md"
               @click="updateDeleteFlag()"
             >
               <!-- 작제 -->
               {{ t("common.delete") }}
             </button>
-            <button type="button" class="btn_xs btn_white" @click="back()">
-              <!-- 목록 -->
+            <button
+              type="button"
+              class="btn_round btn_white btn_md"
+              @click="back()"
+            >
               {{ t("common.list") }}
             </button>
           </div>
@@ -402,7 +456,7 @@ import {
   MODE_SHOW,
   SUCCSESS_STATUS,
   MODE_CREATE,
-  FILE_TYPE_IMAGE,
+  FILE_TYPE_OFFICE,
 } from "@/constants/screen.const";
 import GridComponent from "@/components/common/grid/GridComponent.vue";
 import { SCREEN } from "@/router/screen";
@@ -436,6 +490,7 @@ import {
   CD_ID_MEET_ATTE1,
   CD_ID_MEET_ATTE2,
 } from "@/constants/common.const";
+import { QuillEditor } from "@vueup/vue-quill";
 
 export default {
   components: {
@@ -446,6 +501,7 @@ export default {
     AddStudentModal,
     BaseDatePicker,
     InputFileBase,
+    QuillEditor
   },
   data() {
     return {
@@ -510,7 +566,7 @@ export default {
                 formData.append("sectionName", "MEETING_REPORT_EDITER");
                 uploadFileEditor(formData)
                   .then((res) => {
-                    resolve(res.data.urlFile);
+                    resolve(res.data.data.urlFile);
                     this.storeCommon.setLoading(false);
                   })
                   .catch((err) => {
@@ -523,7 +579,7 @@ export default {
       },
       modefile: MODE_CREATE,
       fileImage: [],
-      fileTypeImg: FILE_TYPE_IMAGE,
+      fileTypeImg: FILE_TYPE_OFFICE,
       listSelectBoxDept: [] as Array<any>,
       listSelectBoxJob: [] as Array<any>,
       listSelectBoxParti: [] as Array<any>,
@@ -702,7 +758,7 @@ export default {
     openModalAddTeach(index: number) {
       this.teacherIndexSelected = index;
       this.lstTeacherId = this.listTeacher
-        .filter((item) => item.id != "")
+        .filter((item) => item.id != "" && item.divCd == CD_ID_MEET_ATTE1)
         .map((item) => item.id);
       this.isOpenModalAddTeacher = true;
     },
@@ -727,7 +783,7 @@ export default {
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
-        confirmButtonText: this.t("common.save"),
+        confirmButtonText: this.t("common.delete"),
         cancelButtonText: this.t("common.cancel"),
       }).then((result) => {
         if (result.isConfirmed) {
@@ -854,7 +910,7 @@ export default {
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
-        confirmButtonText: this.t("common.save"),
+        confirmButtonText: this.t("common.delete"),
         cancelButtonText: this.t("common.cancel"),
       }).then(async (result) => {
         if (result.isConfirmed) {
@@ -917,7 +973,9 @@ export default {
       const endMinute = parseInt(this.timeMinuteEnd);
 
       if (startHour && endHour && startHour > endHour) {
-        this.showAlert(this.t("departmentMng.meettingReportEdu.message.validateTime"));
+        this.showAlert(
+          this.t("departmentMng.meettingReportEdu.message.validateTime")
+        );
         this.timeHourEnd = this.timeHourStr;
         return;
       }
@@ -928,10 +986,18 @@ export default {
         endMinute &&
         startMinute > endMinute
       ) {
-        this.showAlert(this.t("departmentMng.meettingReportEdu.message.validateTime"));
+        this.showAlert(
+          this.t("departmentMng.meettingReportEdu.message.validateTime")
+        );
         this.timeMinuteEnd = this.timeMinuteStr;
         return;
       }
+    },
+    changeTypeSelect(index: any) {
+      this.listTeacher[index].id = "";
+      this.listTeacher[index].name = "";
+      this.listTeacher[index].position = "";
+      this.listTeacher[index].department = "";
     },
   },
   watch: {
@@ -951,8 +1017,50 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.ql-editor {
-  height: 120px;
+<style lang="scss" scoped>
+.tbl table tbody td,
+.tbl table tbody th {
+  border-left: 1px solid var(--dark1);
+  border-right: 1px solid var(--dark1);
+  vertical-align: middle;
+}
+
+.tbl table thead th {
+  border-left: 1px solid var(--gray-lavender);
+  border-right: 1px solid var(--gray-lavender);
+  border-bottom: 1px solid var(--gray-lavender);
+}
+
+.tbl table thead tr:last-child th,
+.tbl table thead tr th[rowspan] {
+  border-bottom: none !important;
+}
+
+.tbl table thead th:first-child {
+  border-left: 1px solid var(--dark1);
+}
+
+.tbl table thead th:last-child {
+  border-right: 1px solid var(--dark1);
+}
+
+.tbl_row table tbody th {
+  padding: 18px 6px !important;
+  background: var(--dark1);
+  color: var(--white-color);
+}
+
+.td_custom_color {
+  background-color: var(--dark1);
+  color: white;
+  border: 1px solid white !important;
+}
+
+.td_custom_color:first-child {
+  border-left: 1px solid var(--dark1) !important;
+}
+
+.td_custom_color:last-child {
+  border-right: 1px solid var(--dark1) !important;
 }
 </style>

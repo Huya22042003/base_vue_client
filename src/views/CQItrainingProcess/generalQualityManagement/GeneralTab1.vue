@@ -178,7 +178,7 @@
                   class="button btn_sm btn_white"
                   @click="openModal(index)"
                 >
-                  {{ t("common.delete") }}
+                  {{ t("common.select") }}
                 </button>
               </div>
             </div>
@@ -530,7 +530,7 @@ const dataStudent = ref<ITable[]>([
 
 const usagePlan = ref("");
 const store = commonStore();
-const props = defineProps<{ dataDetail: {} }>()
+const props = defineProps<{ dataDetail: {} }>();
 
 onBeforeMount(() => {
   if (props.dataDetail) {
@@ -563,18 +563,28 @@ const getDataDetail = () => {
 
 const convertToObject = (response: any) => {
   usagePlan.value = response.usagePlan;
-      if (response.majorOverviewGroup) {
-        dataInternal.value = response.majorOverviewGroup.filter(
-          (item:any) => item.divCd == CQI_DIV_SCHOOL
-        );
-        dataCompany.value = response.majorOverviewGroup.filter(
-          (item:any) => item.divCd == CQI_DIV_COMPANY
-        );
-        dataStudent.value = response.majorOverviewGroup.filter(
-          (item:any) => item.divCd == CQI_DIV_STUDENT
-        );
-      }
-}
+  if (response.majorOverviewGroup) {
+    dataInternal.value = response.majorOverviewGroup.filter(
+      (item: any) => item.divCd == CQI_DIV_SCHOOL
+    );
+    dataCompany.value = response.majorOverviewGroup.filter(
+      (item: any) => item.divCd == CQI_DIV_COMPANY
+    );
+    dataStudent.value = response.majorOverviewGroup.filter(
+      (item: any) => item.divCd == CQI_DIV_STUDENT
+    );
+    if (dataStudent.value.length == 0) {
+      dataStudent.value.push({
+        eduCursCqiGroupSeq: "",
+        nm: "",
+        majField: "",
+        aff: "",
+        posi: "",
+        remark: "",
+      });
+    }
+  }
+};
 
 const handleAddTable = (value: string) => {
   if (value === "TableCompany")

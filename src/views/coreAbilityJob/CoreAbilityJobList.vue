@@ -3,60 +3,50 @@
     <section id="content" class="content_wrapper grid_content" tabindex="0">
       <Breadcrumb :pageTitle="pageTitle"></Breadcrumb>
       <div class="box dp_block">
-        <div class="search_box">
-          <div class="search_section">
-            <div class="search_toggle lg center">
-              <div class="left"></div>
-              <div class="right">
-                <div class="search_daywrap mg_r10">
-                  <span class="tag">{{
-                    t("coreAbilityJobList.coreAbility")
-                  }}</span>
-                  <div class="">
-                    <InputBase
-                      :id="'content'"
-                      v-model="searchModel.coreAbilityNm"
-                    />
-                  </div>
-                </div>
-                <div class="search_daywrap mg_r10">
-                  <span class="tag">{{
-                    t("coreAbilityJobList.lowerLever")
-                  }}</span>
-                  <div class="">
-                    <InputBase
-                      :id="'content'"
-                      v-model="searchModel.chldAbilityNm"
-                    />
-                  </div>
-                </div>
-                <div class="search_daywrap mg_r10">
-                  <span class="tag">{{ t("coreAbilityJobList.status") }}</span>
-                  <div class="">
-                    <SelectBoxBase
-                      :id="'selectbox'"
-                      :name="'selectbox'"
-                      :data="listSelectBox"
-                      v-model="searchModel.status"
-                    ></SelectBoxBase>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_primary mg_l10"
-                  @click="searchClick()"
-                >
-                  {{ t("common.search") }}
-                </button>
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_gray mg_l5"
-                  @click="reset()"
-                >
-                  {{ t("common.reset") }}
-                </button>
-              </div>
+        <div class="box_section">
+          <div class="search_box col_3">
+            <ul>
+              <li>
+                <p>{{ t("coreAbilityJobList.coreAbility") }}</p>
+                <InputBase
+                  :id="'content'"
+                  v-model="searchModel.coreAbilityNm"
+                  class="form_style"
+                />
+              </li>
+              <li>
+                <p>{{ t("coreAbilityJobList.lowerLever") }}</p>
+                <InputBase
+                  :id="'content'"
+                  v-model="searchModel.chldAbilityNm"
+                  class="form_style"
+                />
+              </li>
+              <li>
+                <p>{{ t("coreAbilityJobList.status") }}</p>
+                <SelectBoxBase
+                  :id="'selectbox'"
+                  :name="'selectbox'"
+                  :data="listSelectBox"
+                  v-model="searchModel.status"
+                ></SelectBoxBase>
+              </li>
+            </ul>
+            <div class="search_btnarea">
+              <button
+                type="button"
+                class="btn_round btn_lg btn_primary mg_l10"
+                @click="searchClick()"
+              >
+                {{ t("common.search") }}
+              </button>
+              <button
+                type="button"
+                class="btn_round btn_lg btn_gray mg_l5"
+                @click="reset()"
+              >
+                {{ t("common.reset") }}
+              </button>
             </div>
           </div>
         </div>

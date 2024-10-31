@@ -116,6 +116,7 @@
                     :orgName="ansName"
                     :category="ansName"
                     :sectionName="fileTypeOffice"
+                    :subTitle="'※ 30MB 이하의 파일 하나만 등록이 가능합니다.'"
                   ></InputFileBase>
                 </td>
               </tr>
@@ -123,13 +124,12 @@
           </table>
         </div>
         <div class="dp_flex btn_group btn_end mt-2">
-          <button
-            type="button"
+          <ButtonBase
             class="btn_round btn_md btn_primary"
+            :buttonName="t('09.questAndAns.saveAns')"
             @click="saveData()"
           >
-            {{ t("09.questAndAns.saveAns") }}
-          </button>
+          </ButtonBase>
           <button
             type="button"
             class="btn_round btn_md btn_white"
@@ -157,13 +157,13 @@ import type { QnaModelList, AnsModel } from "@/stores/qna/qna.type";
 import { getById, createAns } from "@/stores/qna/qna.service";
 import { commonStore } from "@/stores/common";
 import { format } from "date-fns";
-import TextArea from "@/components/common/input/TextArea.vue";
 import InputFileBase from "@/components/common/input/InputFileBase.vue";
 import Swal from "sweetalert2";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   name: "QnaStaffDetail",
-  components: { InputFileBase },
+  components: { InputFileBase, ButtonBase },
   setup() {
     const { t } = useI18n();
     const cmn = commonStore();

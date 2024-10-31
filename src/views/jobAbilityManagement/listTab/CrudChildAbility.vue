@@ -8,13 +8,12 @@
           </p>
         </div>
         <div>
-          <button
-            type="button"
+          <ButtonBase
             class="btn_round btn_primary btn_md"
+            :buttonName="t('jobAbilityManagement.tab2.createChildAbility')"
             @click="addChildAbility"
           >
-            {{ t("jobAbilityManagement.tab2.createChildAbility") }}
-          </button>
+          </ButtonBase>
         </div>
       </div>
       <div
@@ -26,18 +25,14 @@
           ><div class="box_section d-flex-header">
             <div></div>
             <div>
-              <button
-                type="button"
+              <ButtonBase
                 class="btn_round btn_gray btn_md"
-                @click="deleteChildAbility(indexChild)"
+                :buttonName="`${t(
+                  'jobAbilityManagement.tab2.deleteChildAbility'
+                )} ${childAbility.order} ${t('common.deleteItem')}`"
+                @click="deleteChildAbility(indexChild, childAbility)"
               >
-                {{
-                  t("jobAbilityManagement.tab2.deleteChildAbility") +
-                  childAbility.order +
-                  " " +
-                  t("common.deleteItem")
-                }}
-              </button>
+              </ButtonBase>
             </div>
           </div>
           <div class="mt-3">
@@ -106,26 +101,27 @@
                           />
                         </div>
                         <div style="width: 7%">
-                          <button
+                          <ButtonBase
                             v-if="indexConStant === 0"
-                            type="button"
                             class="btn_round btn_sm btn_primary"
+                            :buttonName="t('common.add')"
                             @click="addConductStandard(childAbility)"
                           >
-                            {{ t("common.add") }}
-                          </button>
-                          <button
+                          </ButtonBase>
+                          <ButtonBase
                             v-if="indexConStant > 0"
-                            type="button"
                             class="btn_round btn_sm btn_gray"
+                            :buttonName="t('common.add')"
                             @click="
-                              deleteConductStandard(childAbility, indexConStant)
+                              deleteConductStandard(
+                                childAbility,
+                                indexConStant,
+                                conStan
+                              )
                             "
                           >
-                            {{ t("common.delete") }}
-                          </button>
-                        </div></template
-                      >
+                          </ButtonBase></div
+                      ></template>
                     </div>
                   </td>
                 </tr>
@@ -200,22 +196,20 @@
       </div>
 
       <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
-        <button
-          type="button"
-          class="btn_round btn_md btn_gray"
-          v-if="modeScreen === modeDetail"
+        <ButtonBase
+          class="btn_round btn_gray btn_md"
+          :buttonName="t('jobAbilityManagement.tab1.btnVersionUp')"
           @click="saveVer"
+          v-if="modeScreen == modeDetail"
         >
-          {{ t("jobAbilityManagement.tab1.btnVersionUp") }}
-        </button>
-        <button
-          type="button"
+        </ButtonBase>
+        <ButtonBase
           class="btn_round btn_md btn_gray"
-          v-if="modeScreen === modeDetail"
+          :buttonName="t('jobAbilityManagement.tab1.update')"
           @click="confirmEdit"
+          v-if="modeScreen == modeDetail"
         >
-          {{ t("jobAbilityManagement.tab1.update") }}
-        </button>
+        </ButtonBase>
         <button
           type="button"
           class="btn_round btn_primary btn_md"
@@ -251,7 +245,9 @@ import type {
 import {
   saveJobUnit,
   listJobUnit,
-  upVerUnit,
+  upVer,
+  checkPerform,
+  checkUnit,
 } from "../../../stores/jobAbilityManagement/jobAbilityManagement.service";
 import {
   STATUS_NO,
@@ -260,6 +256,7 @@ import {
 } from "../../../constants/common.const";
 import { getCodeMngByUpCdId } from "../../../stores/common/codeMng/codeMng.service";
 import { useI18n } from "vue-i18n";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   components: {
@@ -267,6 +264,7 @@ export default {
     THeader,
     Breadcrumb,
     LoaddingComponent,
+    ButtonBase,
   },
   props: {
     id: {
@@ -350,9 +348,15 @@ export default {
         }).then((result) => {
           if (result.isConfirmed) {
             this.cmn.setLoading(true);
-            upVerUnit(this.listJobCapaUnit)
-              .then((res) => {
-                this.back();
+            upVer(this.jobAbilSeq)
+              .then(async (res) => {
+                await this.$swal({
+                  text: "직무역량 버전을 올리기가 되었습니다.",
+                  type: "warning",
+                  showCancelButton: false,
+                  confirmButtonText: this.t("common.confirm"),
+                });
+                await this.back();
               })
               .catch((error) => {
                 if (
@@ -458,7 +462,36 @@ export default {
 
       this.listJobCapaUnit.push(newChildAbility);
     },
-    deleteChildAbility(indexChild: number): void {
+    async deleteChildAbility(indexChild: number, childAbility: any): void {
+      const result = await this.$swal({
+        text: "하위역량을 삭제하시겠어요?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: this.t("common.delete"),
+        cancelButtonText: this.t("common.cancel"),
+      });
+      if (!result.isConfirmed) return;
+
+      if (childAbility.jobCapaUnitSeq != "") {
+        this.cmn.setLoading(true);
+        const response = await checkUnit(childAbility.jobCapaUnitSeq);
+        this.cmn.setLoading(false);
+        if (response.data.data == true) {
+          this.updateCapaUnit(indexChild, childAbility);
+        } else {
+          this.$swal({
+            text: "활용된 하위역량은 삭제할 수 없습니다.",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonText: this.t("common.confirm"),
+            cancelButtonText: this.t("common.cancel"),
+          });
+        }
+      } else {
+        this.updateCapaUnit(indexChild, childAbility);
+      }
+    },
+    updateCapaUnit(indexChild: number, childAbility: any) {
       const child = this.listJobCapaUnit?.[indexChild];
       if (!child || !child.performList?.length) return;
 
@@ -485,6 +518,13 @@ export default {
           count++;
         }
       });
+      this.$swal({
+        text: "삭제되었습니다.",
+        type: "warning",
+        showCancelButton: false,
+        confirmButtonText: this.t("common.confirm"),
+        cancelButtonText: this.t("common.cancel"),
+      });
     },
     addConductStandard(childAbility: JobCapaUnit): void {
       const activeConductStandardsCount =
@@ -502,10 +542,44 @@ export default {
 
       childAbility.performList.push(newConductStandard);
     },
-    deleteConductStandard(
+    async deleteConductStandard(
       childAbility: JobCapaUnit,
-      indexConStant: number
-    ): void {
+      indexConStant: number,
+      conStan: any
+    ): Promise<void> {
+      const result = await this.$swal({
+        text: "수행준거를 삭제하시겠습니까?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: this.t("common.delete"),
+        cancelButtonText: this.t("common.cancel"),
+      });
+
+      if (!result.isConfirmed) return;
+
+      const conductStandard = childAbility.performList?.[indexConStant];
+      if (!conductStandard) return;
+
+      if (conStan.capaUnitPerformStnrdSeq != "") {
+        this.cmn.setLoading(true);
+        const response = await checkPerform(conStan.capaUnitPerformStnrdSeq);
+        this.cmn.setLoading(false);
+        if (response.data.data == true) {
+          this.updateConductStandard(childAbility, indexConStant);
+        } else {
+          this.$swal({
+            text: "활용된 수행준거를 삭제할 수 없습니다.",
+            type: "warning",
+            showCancelButton: false,
+            confirmButtonText: this.t("common.confirm"),
+            cancelButtonText: this.t("common.cancel"),
+          });
+        }
+      } else {
+        this.updateConductStandard(childAbility, indexConStant);
+      }
+    },
+    updateConductStandard(childAbility: JobCapaUnit, indexConStant: number) {
       const conductStandard = childAbility.performList?.[indexConStant];
       if (!conductStandard) return;
 
@@ -521,6 +595,13 @@ export default {
           standard.order = `${childAbility.order}.${count}`;
           count++;
         }
+      });
+      this.$swal({
+        text: "삭제되었습니다.",
+        type: "warning",
+        showCancelButton: false,
+        confirmButtonText: this.t("common.confirm"),
+        cancelButtonText: this.t("common.cancel"),
       });
     },
     getCodeUseYn() {

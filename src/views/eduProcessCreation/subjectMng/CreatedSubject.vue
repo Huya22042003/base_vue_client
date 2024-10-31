@@ -4,9 +4,11 @@
     <div class="box_section mt-13" v-for="(job, indexJob) in dataView">
       <div class="dp_flex between al_center box_title_sm">
         {{ job.typeNm }} - {{ job.jobNm }}
-        <button class="button btn_primary btn_lg" @click="openModal(indexJob)">
-          <!-- 교과목 추가 -->{{ t("eduProcessCreation.subjectMng.title53") }}
-        </button>
+        <ButtonBase
+          @click="openModal(indexJob)"
+          :buttonName="t('eduProcessCreation.subjectMng.title53')"
+          class="button btn_primary btn_lg"
+        />
       </div>
       <div class="tbl tbl_col">
         <table>
@@ -77,10 +79,13 @@
                         required
                         :id="`jobAbility_${indexJob}_${indexSbjt}_${indexAbility}`"
                         :name="`jobAbility_${indexJob}_${indexSbjt}_${indexAbility}`"
-                        :data="dataForm.jobAbility.filter(
-                          (item: any) =>
-                          (item.upCdId.includes(sbjt.jobSeq)) || item.cdId == ''
-                        )"
+                        :data="
+                          dataForm.jobAbility.filter(
+                            (item: any) =>
+                              item.upCdId.includes(sbjt.jobSeq) ||
+                              item.cdId == ''
+                          )
+                        "
                         v-model="ability.cdId"
                         @change="
                           changeJobAbility(
@@ -94,24 +99,22 @@
                       >
                       </SelectBoxBase>
                       <div class="wd_100">
-                        <button
+                        <ButtonBase
                           type="button"
                           v-if="indexAbility == 0"
-                          class="btn_round btn_sm btn_white"
                           @click="addJobAbility(indexJob, indexSbjt)"
-                        >
-                          {{ t("common.add") }}
-                        </button>
-                        <button
+                          :buttonName="t('common.add')"
+                          class="btn_round btn_sm btn_white"
+                        />
+                        <ButtonBase
                           type="button"
                           v-if="indexAbility != 0"
-                          class="btn_round btn_sm btn_white"
                           @click="
                             deleteJobAbility(indexJob, indexSbjt, indexAbility)
                           "
-                        >
-                          {{ t("common.deleteItem") }}
-                        </button>
+                          :buttonName="t('common.deleteItem')"
+                          class="btn_round btn_sm btn_white"
+                        />
                       </div>
                     </div>
                   </td>
@@ -154,7 +157,10 @@
                         dataForm.jobCapaPerform.filter(
                           (item: any) =>
                             ability.jobCapa &&
-                            ability.jobCapa.includes(item.upCdId)
+                            dataForm.jobCapa.filter(
+                            (capa: any) =>
+                              ability.cdId && capa.upCdId.includes(ability.cdId)
+                          ).some(capa => capa.cdId == item.upCdId)
                         )
                       "
                       :mode="'show'"
@@ -167,6 +173,7 @@
                       :key="`${ability.keyJobCapaPerform}`"
                       :requireId="`jobCapaPerform_${indexJob}_${indexSbjt}_${indexAbility}`"
                       :isRequire="true"
+                      @change="checkCapaPefForm(ability)"
                     />
                     <span
                       v-if="
@@ -174,21 +181,23 @@
                         dataForm.jobCapaPerform.filter(
                           (item: any) =>
                             ability.jobCapa &&
-                            ability.jobCapa.includes(item.upCdId)
+                            dataForm.jobCapa.filter(
+                            (capa: any) =>
+                              ability.cdId && capa.upCdId.includes(ability.cdId)
+                          ).some(capa => capa.cdId == item.upCdId)
                         ).length == 0
                       "
                       >※직무역량을 선택해주세요.</span
                     >
                   </td>
-                  <td scope="row" class="ta_c" :colspan="1">
-                    <button
+                  <td scope="row" class="ta_c" v-if="indexAbility == 0" :rowspan="sbjt.jobAbility.length" :colspan="1">
+                    <ButtonBase
                       type="button"
                       v-if="indexAbility == 0"
-                      class="btn_round btn_sm btn_white"
                       @click="deleteSubject(indexJob, indexSbjt)"
-                    >
-                      교과목 삭제
-                    </button>
+                      :buttonName="'교과목 삭제'"
+                      class="btn_round btn_sm btn_white"
+                    />
                   </td>
                 </tr>
               </template>
@@ -200,22 +209,20 @@
 
     <div class="btn_group btn_end mg_t35">
       <div class="btn_group btn_end">
-        <button
+        <ButtonBase
           v-if="checkTemp && isSave"
           type="button"
+          @click="saveTemp"
+          :buttonName="t('common.saveTemp')"
           class="btn_round btn_md btn_primary"
-          @click="saveTemp()"
-        >
-          {{ t("common.saveTemp") }}
-        </button>
-        <button
+        />
+        <ButtonBase
           v-if="isSave"
           type="button"
+          @click="save"
+          :buttonName="t('common.save')"
           class="btn_round btn_md btn_primary"
-          @click="save()"
-        >
-          {{ t("common.save") }}
-        </button>
+        />
         <button
           type="button"
           class="btn_round btn_md btn_primary"
@@ -294,9 +301,32 @@ export default defineComponent({
     this.goToDetail();
   },
   methods: {
+    checkCapaPefForm(ability:any) {
+      const selectPerForm = this.dataForm.jobCapaPerform
+        .filter(
+          (item: any) =>
+            ability.jobCapaPerform.includes(item.cdId)
+        );
+
+        const selectCapa = this.dataForm.jobCapa
+        .filter(
+          (item: any) =>
+          selectPerForm.some((per) => per.upCdId == item.cdId)
+        );
+
+      ability.jobCapa = selectCapa.map(item => item.cdId);
+      ability.keyJobCapa++;
+    },
     checkCapaChange(ability: any) {
+      ability.jobCapaPerform = this.dataForm.jobCapaPerform
+        .filter(
+          (item: any) =>
+            ability.jobCapa && ability.jobCapa.includes(item.upCdId)
+        )
+        .map((item) => {
+          return item.cdId;
+        });
       ability.keyJobCapaPerform++;
-      ability.jobCapaPerform = [];
     },
     async goToDetail() {
       this.storeCommon.setLoading(true);
@@ -309,7 +339,6 @@ export default defineComponent({
           (job: CreateSubjectResDTO, indexJob: number) => {
             job.subjectNm = job.subjectNm.map(
               (sbjt: CreateListSbjtSelResDTO, indexSbjt: number) => {
-
                 this.checkTemp = sbjt.tempSaveYn == STATUS_YES;
 
                 if (sbjt.jobAbility.length == 0) {
@@ -350,9 +379,12 @@ export default defineComponent({
       value: string,
       ability: any
     ) {
-      ability.jobCapa = [];
-      ability.jobCapaPerform = [];
-      ability.keyJobCapa++;
+      ability.jobCapa = this.dataForm.jobCapa
+        .filter(
+          (item: any) => ability.cdId && item.upCdId.includes(ability.cdId)
+        )
+        .map((item) => item.cdId);
+
       if (
         value &&
         this.dataView[indexJob].subjectNm[indexSbjt].jobAbility.filter(
@@ -388,10 +420,19 @@ export default defineComponent({
       indexSbjt: number,
       indexAbility: number
     ) {
-      this.dataView[indexJob].subjectNm[indexSbjt].jobAbility = this.dataView[
-        indexJob
-      ].subjectNm[indexSbjt].jobAbility.filter(
-        (item: any, index: number) => index != indexAbility
+      this.$confirm(
+        this.t('common.message.confirmDelete'),
+        "",
+        (isConfirm: Boolean) => {
+          if (isConfirm) {
+            this.dataView[indexJob].subjectNm[indexSbjt].jobAbility = this.dataView[
+              indexJob
+            ].subjectNm[indexSbjt].jobAbility.filter(
+              (item: any, index: number) => index != indexAbility
+            );
+            this.$alert(this.t('common.message.deleteSuccess'));
+          }
+        }
       );
     },
     save() {
@@ -407,7 +448,7 @@ export default defineComponent({
       });
 
       this.$confirm(
-        this.t("common.message.save"),
+        this.t("eduProcessCreation.jobEduMng.messageConfirmSave"),
         "",
         async (isConfirm: Boolean) => {
           if (isConfirm) {
@@ -554,9 +595,18 @@ export default defineComponent({
       this.dataView[this.indexSelect].subjectNm.push(dataSbjt);
     },
     deleteSubject(indexJob: number, indexSubject: number) {
-      this.dataView[indexJob].subjectNm = this.dataView[
-        indexJob
-      ].subjectNm.filter((item: any, index: number) => index != indexSubject);
+      this.$confirm(
+        "교과목을 삭제하시겠어요?",
+        "",
+        (isConfirm: Boolean) => {
+          if (isConfirm) {
+            this.dataView[indexJob].subjectNm = this.dataView[
+              indexJob
+            ].subjectNm.filter((item: any, index: number) => index != indexSubject);
+            this.$alert("교과목이 삭제가 되었습니다.");
+          }
+        }
+      );
     },
   },
 });

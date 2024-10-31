@@ -17,7 +17,8 @@
         </div>
         <table class="tbl_row">
           <colgroup>
-            <col style="width: 25%" />
+            <col style="width: 15%" />
+            <col style="width: auto" />
           </colgroup>
           <tbody>
             <tr>
@@ -34,6 +35,8 @@
                     :name="'selectboxYear'"
                     v-model="dataForm.eduYear"
                     :data="listSelectBoxYear"
+                    class="wd_120"
+                    required
                   >
                   </SelectBoxBase>
                 </div>
@@ -54,7 +57,7 @@
                 >
                   <InputBase
                     :id="`vision_` + (item.id || index)"
-                    class="mr-5"
+                    class="mr-5 form_style"
                     required
                     v-model="item.value"
                   />
@@ -76,27 +79,27 @@
                 >
                   <InputBase
                     :id="`target_` + (item.id || index)"
-                    class="mr-5"
+                    class="mr-5 form_style"
                     required
                     v-model="item.value"
                   />
                   <div class="add-delete">
-                    <button
+                    <ButtonBase
                       v-if="index == 0"
-                      class="btn_round btn_lg btn_gray mg_l5"
+                      class="btn_round btn_sm btn_primary mg_l5"
                       @click="addObject('targetDept')"
+                      :buttonName="t('common.add')"
                     >
                       <!-- 추가 -->
-                      {{ t("common.add") }}
-                    </button>
-                    <button
+                    </ButtonBase>
+                    <ButtonBase
                       v-if="index != 0"
-                      class="btn_round btn_lg btn_gray mg_l5"
+                      class="btn_round btn_sm btn_gray mg_l5"
                       @click="eventDeleteObject(index, 'targetDept')"
+                      :buttonName="t('common.deleteItem')"
                     >
                       <!-- 삭제 -->
-                      {{ t("common.deleteItem") }}
-                    </button>
+                    </ButtonBase>
                   </div>
                 </div>
               </td>
@@ -116,27 +119,27 @@
                 >
                   <InputBase
                     :id="`model_` + (item.id || index)"
-                    class="mr-5"
+                    class="mr-5 form_style"
                     required
                     v-model="item.value"
                   />
                   <div class="add-delete">
-                    <button
+                    <ButtonBase
                       v-if="index == 0"
-                      class="btn_round btn_lg btn_gray mg_l5"
+                      class="btn_round btn_sm btn_primary mg_l5"
                       @click="addObject('modelDept')"
+                      :buttonName="t('common.add')"
                     >
                       <!-- 추가 -->
-                      {{ t("common.add") }}
-                    </button>
-                    <button
+                    </ButtonBase>
+                    <ButtonBase
                       v-if="index != 0"
-                      class="btn_round btn_lg btn_gray mg_l5"
+                      class="btn_round btn_sm btn_gray mg_l5"
                       @click="eventDeleteObject(index, 'modelDept')"
+                      :buttonName="t('common.deleteItem')"
                     >
                       <!-- 삭제 -->
-                      {{ t("common.deleteItem") }}
-                    </button>
+                    </ButtonBase>
                   </div>
                 </div>
               </td>
@@ -146,31 +149,29 @@
       </div>
       <div class="box_section">
         <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
-          <button
+          <ButtonBase
             type="button"
             @click="saveData"
-            class="btn_round btn_lg btn_primary mg_l10"
+            class="btn_round btn_md btn_primary mg_l10"
+            :buttonName="t('common.save')"
           >
             <!-- 확인 -->
-            {{ t("common.save") }}
-          </button>
-          <button
+          </ButtonBase>
+          <ButtonBase
             type="button"
-            class="btn_round btn_white btn_lg mg_l5"
+            class="btn_round btn_white btn_md mg_l5"
             @click="back()"
+            :buttonName="t('common.list')"
           >
             <!-- 목록 -->
-            {{ t("common.list") }}
-          </button>
+          </ButtonBase>
         </div>
       </div>
     </div>
   </section>
 </template>
 <script lang="ts">
-import SelectBoxBase from "@/components/common/input/SelectBoxBase.vue";
 import { MESSAGE_ERROR_API } from "@/constants/common.const";
-import { SUCCSESS_STATUS } from "@/constants/screen.const";
 import { commonStore } from "@/stores/common";
 import type { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 import { infoUniStore } from "@/stores/infoUniversity";
@@ -187,11 +188,13 @@ import { useI18n } from "vue-i18n";
 import InputBase from "@/components/common/input/InputBase.vue";
 import { SCREEN } from "@/router/screen";
 import { useRouter } from "vue-router";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   name: "ModalForm",
   components: {
     InputBase,
+    ButtonBase,
   },
   setup() {
     const { t } = useI18n();
@@ -209,13 +212,20 @@ export default {
   beforeMount() {
     const currentYear = new Date().getFullYear();
 
-    const specificYears = [2021, 2022, 2023, currentYear, currentYear + 1];
+    const specificYears = [];
+
+    for (let i = 2021; i <= currentYear + 1; i++) {
+      specificYears.push(i);
+    }
+
     this.year = window.history.state.year;
-    this.listSelectBoxYear = specificYears.map((year) => ({
-      cdId: year.toString(),
-      cdNm: year.toString(),
-      upCdId: "year",
-    }));
+    specificYears.forEach((year) => {
+      this.listSelectBoxYear.push({
+        cdId: year.toString(),
+        cdNm: year.toString(),
+        upCdId: "year",
+      });
+    });
 
     if (this.year) {
       this.goToDetail();
@@ -224,7 +234,9 @@ export default {
 
   data() {
     return {
-      listSelectBoxYear: [] as CodeMngModel[],
+      listSelectBoxYear: [
+        { cdId: "", cdNm: this.t("common.select") },
+      ] as CodeMngModel[],
 
       dataForm: {
         eduYear: 0,
@@ -349,29 +361,7 @@ export default {
         cancelButtonText: this.t("common.cancel"),
       }).then(async (result: any) => {
         if (result.isConfirmed) {
-          this.store.setLoading(true);
-          let schId = this.dataForm[type][indexDel].id;
-
-          if (schId && schId.trim().length != 0) {
-            await this.inforStore.checkRemoveSch(schId);
-            if (
-              this.inforStore.status &&
-              this.inforStore.status == SUCCSESS_STATUS
-            ) {
-              this.deleteObject(indexDel, type);
-            } else {
-              this.$swal.fire({
-                text: this.t(
-                  "03.basicInfoManagement.infoUniversity.alert.deleteError"
-                ),
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: this.t("common.confirm"),
-              });
-            }
-          } else {
-            this.deleteObject(indexDel, type);
-          }
-          this.store.setLoading(false);
+          this.deleteObject(indexDel, type);
         }
       });
     },
@@ -424,16 +414,27 @@ export default {
       this.store.setLoading(true);
       updateInfoUni(dataSave)
         .then((res) => {
+          let textAlert = "";
+          if (res.data.data) {
+            textAlert = this.t(
+              "03.basicInfoManagement.infoUniversity.alert.saveSuccess"
+            );
+          } else {
+            textAlert = this.t(
+              "03.basicInfoManagement.infoUniversity.alert.saveError"
+            );
+          }
+
           this.$swal
             .fire({
-              text: this.t(
-                "03.basicInfoManagement.infoUniversity.alert.saveSuccess"
-              ),
+              text: textAlert,
               confirmButtonColor: "#DD6B55",
               confirmButtonText: this.t("common.confirm"),
             })
-            .then((res) => {
-              this.back();
+            .then(() => {
+              if (res.data.data) {
+                this.back();
+              }
             });
         })
         .catch((err) => {
@@ -472,8 +473,10 @@ export default {
               confirmButtonColor: "#DD6B55",
               confirmButtonText: this.t("common.confirm"),
             })
-            .then((res) => {
-              this.back();
+            .then(() => {
+              if (res.data.data) {
+                this.back();
+              }
             });
         })
         .catch((err) => {
@@ -498,6 +501,6 @@ export default {
   /* justify-content: space-between; */
 }
 .add-delete {
-  width: 50%;
+  width: 10%;
 }
 </style>

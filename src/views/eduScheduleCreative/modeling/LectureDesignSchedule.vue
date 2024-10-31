@@ -2,131 +2,113 @@
   <div class="page_wrapper">
     <section id="content" class="content_wrapper grid_content" tabindex="0">
       <Breadcrumb :pageTitle="pageTitle"></Breadcrumb>
-      <div class="search_box mg_b30">
-        <div class="search_section">
-          <div class="search_toggle sm">
-            <div class="left"></div>
-            <div class="right">
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.year")
-                }}</span>
-                <div class="">
-                  <SelectBoxBase
-                    :id="'year'"
-                    :name="'year'"
-                    :data="listSelectBoxSchoolYear"
-                    v-model="searchData.year"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.term")
-                }}</span>
-                <div class="">
-                  <SelectBoxBase
-                    :id="'term'"
-                    :name="'term'"
-                    :data="listSelectBoxSemester"
-                    v-model="searchData.termCd"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.subjectName")
-                }}</span>
-                <div class="">
-                  <InputBase
-                    :id="'subjectName'"
-                    :name="'subjectName'"
-                    v-model="searchData.sbjtNm"
-                  />
-                </div>
-              </div>
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.planStatus")
-                }}</span>
-                <div class="">
-                  <SelectBoxBase
-                    :id="'planStatus'"
-                    :name="'planStatus'"
-                    :data="listStsLect"
-                    v-model="searchData.lectSts"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.evaluationStatus")
-                }}</span>
-                <div class="">
-                  <SelectBoxBase
-                    :id="'evaluationStatus'"
-                    :name="'evaluationStatus'"
-                    :data="listStsEval"
-                    v-model="searchData.evalSts"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.subjectCqiStatus")
-                }}</span>
-                <div class="">
-                  <SelectBoxBase
-                    :id="'subjectCqiStatus'"
-                    :name="'subjectCqiStatus'"
-                    :data="listStsJob"
-                    v-model="searchData.jobSts"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">{{
-                  t("lectureDesignSchedule.list.syllabusStatus")
-                }}</span>
-                <div class="">
-                  <SelectBoxBase
-                    :id="'syllabusStatus'"
-                    :name="'syllabusStatus'"
-                    :data="listStsCqi"
-                    v-model="searchData.cqiSts"
-                  />
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_primary mg_l10"
-                  @click="search"
+      <div class="box dp_block">
+        <div class="box_section">
+          <div class="search_box col_3">
+            <ul>
+              <li>
+                <p>
+                  {{ t("lectureDesignSchedule.list.year") }}
+                </p>
+                <SelectBoxBase
+                  :id="'year'"
+                  :name="'year'"
+                  :data="listSelectBoxSchoolYear"
+                  v-model="searchData.year"
                 >
-                  {{ t("lectureDesignSchedule.list.search") }}
-                </button>
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_gray mg_l5"
-                  @click="reset"
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p>
+                  {{ t("lectureDesignSchedule.list.term") }}
+                </p>
+                <SelectBoxBase
+                  :id="'term'"
+                  :name="'term'"
+                  :data="listSelectBoxSemester"
+                  v-model="searchData.termCd"
                 >
-                  {{ t("lectureDesignSchedule.list.reset") }}
-                </button>
-              </div>
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p>
+                  {{ t("lectureDesignSchedule.list.subjectName") }}
+                </p>
+                <InputBase
+                  :id="'subjectName'"
+                  :name="'subjectName'"
+                  v-model="searchData.sbjtNm"
+                  class="form_style"
+                />
+              </li>
+              <li>
+                <p>
+                  {{ t("lectureDesignSchedule.list.planStatus") }}
+                </p>
+                <SelectBoxBase
+                  :id="'planStatus'"
+                  :name="'planStatus'"
+                  :data="listStsLect"
+                  v-model="searchData.lectSts"
+                >
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p>
+                  {{ t("lectureDesignSchedule.list.evaluationStatus") }}
+                </p>
+                <SelectBoxBase
+                  :id="'evaluationStatus'"
+                  :name="'evaluationStatus'"
+                  :data="listStsEval"
+                  v-model="searchData.evalSts"
+                >
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p>
+                  {{ t("lectureDesignSchedule.list.subjectCqiStatus") }}
+                </p>
+                <SelectBoxBase
+                  :id="'subjectCqiStatus'"
+                  :name="'subjectCqiStatus'"
+                  :data="listStsJob"
+                  v-model="searchData.jobSts"
+                >
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p>
+                  {{ t("lectureDesignSchedule.list.syllabusStatus") }}
+                </p>
+                <SelectBoxBase
+                  :id="'syllabusStatus'"
+                  :name="'syllabusStatus'"
+                  :data="listStsCqi"
+                  v-model="searchData.cqiSts"
+                />
+              </li>
+            </ul>
+            <div class="search_btnarea">
+              <ButtonBase
+                type="button"
+                class="btn_round btn_lg btn_primary mg_l10"
+                @click="search"
+                :buttonName="t('common.search')"
+              >
+              </ButtonBase>
+              <ButtonBase
+                type="button"
+                class="btn_round btn_lg btn_gray mg_l5"
+                @click="reset"
+                :buttonName="t('common.reset')"
+              >
+              </ButtonBase>
             </div>
           </div>
         </div>
       </div>
+
       <div class="box">
         <div class="box_section">
           <p v-if="!checkData" class="box_title_sm center">
@@ -147,20 +129,20 @@
             :newGridOptions="gridOptions"
           >
             <template #button>
-              <button
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
+                :buttonName="t('lectureDesignSchedule.form.setOption')"
                 v-on:click="handleSetupOption()"
               >
-                {{ t("lectureDesignSchedule.form.setOption") }}
-              </button>
-              <button
+              </ButtonBase>
+              <ButtonBase
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
+                :buttonName="t('lectureDesignSchedule.form.setAll')"
                 v-on:click="handleSetupAll()"
               >
-                {{ t("lectureDesignSchedule.form.setAll") }}
-              </button>
+              </ButtonBase>
             </template>
           </GridComponentV2>
         </div>
@@ -212,6 +194,7 @@ import {
   CD_ID_NOT_DO,
 } from "@/constants/common.const";
 import Swal from "sweetalert2";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
@@ -221,6 +204,7 @@ export default defineComponent({
     BaseDatePicker,
     GridComponentV2,
     LectureDesignScheduleModal,
+    ButtonBase,
   },
   setup: () => {
     const { t } = useI18n();
@@ -230,7 +214,7 @@ export default defineComponent({
     const gridOptions = {
       defaultColDef: {
         flex: 1,
-        minWidth: 120,
+        minWidth: 150,
         resizable: true,
         suppressMovable: true,
       },
@@ -334,7 +318,12 @@ export default defineComponent({
           headerName: this.t("lectureDesignSchedule.form.syllabusStatus"),
           field: "stsLectNm",
           flex: 1,
-          cellStyle: { textAlign: "center" },
+          cellStyle: (params: any) => {
+            return {
+              textAlign: "center",
+              color: params.value === "작성완료" ? "green" : "inherit",
+            };
+          },
         },
         {
           headerName: this.t("lectureDesignSchedule.form.evalPlanPeriod"),
@@ -356,7 +345,12 @@ export default defineComponent({
           headerName: this.t("lectureDesignSchedule.form.evalPlanStatus"),
           field: "stsEvalNm",
           flex: 1,
-          cellStyle: { textAlign: "center" },
+          cellStyle: (params: any) => {
+            return {
+              textAlign: "center",
+              color: params.value === "작성완료" ? "green" : "inherit",
+            };
+          },
         },
         {
           headerName: this.t("lectureDesignSchedule.form.evalPeriod"),
@@ -376,7 +370,12 @@ export default defineComponent({
           headerName: this.t("lectureDesignSchedule.form.evalStatus"),
           field: "stsJobCapaNm",
           flex: 1,
-          cellStyle: { textAlign: "center" },
+          cellStyle: (params: any) => {
+            return {
+              textAlign: "center",
+              color: params.value === "작성완료" ? "green" : "inherit",
+            };
+          },
         },
         {
           headerName: this.t("lectureDesignSchedule.form.subjectCQI"),
@@ -394,7 +393,12 @@ export default defineComponent({
           headerName: this.t("lectureDesignSchedule.form.cqiStatus"),
           field: "stsCqiNm",
           flex: 1,
-          cellStyle: { textAlign: "center" },
+          cellStyle: (params: any) => {
+            return {
+              textAlign: "center",
+              color: params.value === "작성완료" ? "green" : "inherit",
+            };
+          },
         },
         {
           headerName: this.t("lectureDesignSchedule.form.regId"),
@@ -419,7 +423,7 @@ export default defineComponent({
         page: 1,
         size: 10,
         sort: "",
-        year: this.currentYear,
+        year: "",
         lectSts: "",
         evalSts: "",
         jobSts: "",
@@ -431,6 +435,10 @@ export default defineComponent({
       termAdd: "",
       listSelectBoxSchoolYear: [
         {
+          cdId: "",
+          cdNm: this.t("common.select"),
+        },
+        {
           cdId: this.currentYear.toString(),
           cdNm: this.currentYear.toString(),
         },
@@ -439,7 +447,12 @@ export default defineComponent({
           cdNm: (this.currentYear + 1).toString(),
         },
       ],
-      listSelectBoxSemester: [],
+      listSelectBoxSemester: [
+        {
+          cdId: "",
+          cdNm: this.t("common.select"),
+        },
+      ],
       checkData: false,
       upCdIdList: [],
       listStsLect: [
@@ -492,6 +505,7 @@ export default defineComponent({
   },
   methods: {
     fnPagination(pageNumber: any, pageSize: any) {
+      this.listCheckBoxGrid = [];
       this.searchData.size = pageSize;
       this.searchData.page = pageNumber;
       this.searchData.sort = "";
@@ -519,6 +533,11 @@ export default defineComponent({
             dateFields.forEach((field) => {
               this.formatDateIfNotNull(item, field);
             });
+          });
+          this.rowData.forEach((item) => {
+            if (item.regDate) {
+              item.regDate = format(new Date(item.regDate), FORMAT_YYY_MM_DD);
+            }
           });
           this.totalRows = res.data.data.totalElements;
           this.updateSelectAllCheckbox();
@@ -568,9 +587,14 @@ export default defineComponent({
       this.openModal("type3");
     },
     search() {
-      this.checkData = true;
-      this.searchData.page = 1;
-      this.key++;
+      if (this.searchData.year == "" || this.searchData.termCd == "") {
+        this.checkData = false;
+        return;
+      } else {
+        this.checkData = true;
+        this.searchData.page = 1;
+        this.key++;
+      }
     },
     formatDate(date: any) {
       const originalDate = new Date(date);
@@ -638,10 +662,14 @@ export default defineComponent({
         });
     },
     reset() {
-      this.searchData.year = this.currentYear;
+      this.searchData.year = "";
       this.searchData.termCd = this.searchData.termCd =
         this.listSelectBoxSemester[0].cdId;
       this.searchData.sbjtNm = "";
+      this.searchData.lectSts = "";
+      this.searchData.evalSts = "";
+      this.searchData.jobSts = "";
+      this.searchData.cqiSts = "";
     },
   },
 });
@@ -652,5 +680,8 @@ export default defineComponent({
 }
 .center {
   text-align: center;
+}
+.search_box.col_3 > ul > li > p:first-child {
+  width: 150px;
 }
 </style>

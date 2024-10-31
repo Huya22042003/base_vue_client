@@ -17,13 +17,12 @@
           >
             <template #button>
               <div class="dp_flex btn_group btn_end">
-                <button
-                  type="button"
+                <ButtonBase
                   class="btn_round btn_sm btn_primary"
+                  :buttonName="t('02.evaluationMethodMng.button.register')"
                   @click="register"
                 >
-                  {{ t("02.evaluationMethodMng.button.register") }}
-                </button>
+                </ButtonBase>
               </div>
             </template>
           </GridComponentV2>
@@ -66,6 +65,8 @@ import { format } from "date-fns";
 import GridComponent from "@/components/common/grid/GridComponent.vue";
 import Swal from "sweetalert2";
 import ButtonGridComponent from "../../components/common/grid/ButtonGridComponent.vue";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
+
 export default defineComponent({
   name: "EvalMethodMng",
   components: {
@@ -74,6 +75,7 @@ export default defineComponent({
     LinkGridComponent,
     GridComponent,
     ButtonGridComponent,
+    ButtonBase,
   },
   setup() {
     const { t } = useI18n();

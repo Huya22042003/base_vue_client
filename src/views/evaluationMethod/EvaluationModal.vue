@@ -90,13 +90,12 @@
       </table>
     </template>
     <template #footer>
-      <button
-        type="button"
+      <ButtonBase
         class="button btn_md btn_primary"
+        :buttonName="t('02.evaluationMethodMng.button.save')"
         @click="showAlert()"
       >
-        {{ t("02.evaluationMethodMng.button.save") }}
-      </button>
+      </ButtonBase>
       <button type="button" class="button btn_md btn_white" @click="closeModal">
         {{ t("02.evaluationMethodMng.button.close") }}
       </button>
@@ -113,7 +112,6 @@ import {
   MODE_DETAIL,
   SUCCSESS_STATUS,
   FORMAT_YYY_MM_DD,
-  CREATED_STATUS,
 } from "../../constants/screen.const";
 import { STATUS_YES, STATUS_NO } from "../../constants/common.const";
 import { evalMethodStore } from "@/stores/evalMethod";
@@ -124,8 +122,13 @@ import type {
   EvalIdModel,
 } from "@/stores/evalMethod/evalMethod.type";
 import Swal from "sweetalert2";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
+
 export default defineComponent({
   name: "EvaluationModal",
+  components: {
+    ButtonBase,
+  },
   props: {
     isOpen: {
       type: Boolean,

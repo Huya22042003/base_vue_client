@@ -149,14 +149,21 @@
     </div>
 
     <div class="btn_group btn_end mg_t25">
-      <button
+      <!-- <button
         v-if="version && isSave"
         type="button"
         class="btn_round btn_md btn_primary"
         @click="confirmSave()"
       >
         {{ t("common.save") }}
-      </button>
+      </button> -->
+      <ButtonBase
+        v-if="version && isSave"
+        type="button"
+        class="btn_round btn_md btn_primary"
+        :buttonName="t('common.save')"
+        @click="confirmSave()"
+      ></ButtonBase>
       <button
         type="button"
         class="btn_round btn_md btn_primary"

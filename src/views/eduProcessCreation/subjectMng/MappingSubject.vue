@@ -52,7 +52,12 @@
               <template
                 v-for="coreAbility in listCoreAbility"
                 :key="coreAbility.coreAbilitySeq"
-                ><th scope="row" class="ta_c" :colspan="3" :rowspan="1">
+                ><th
+                  scope="row"
+                  class="ta_c"
+                  :colspan="coreAbility.countChildAbility"
+                  :rowspan="1"
+                >
                   {{ coreAbility.coreAbilityNm }}
                 </th></template
               >
@@ -72,53 +77,70 @@
               v-for="sbjtMapping in listSbjtMapping"
               :key="sbjtMapping.termCd"
             >
-              <tr>
-                <td scope="row" :rowspan="sbjtMapping.rowSpan">
-                  {{ sbjtMapping.gradeNm + "-" + sbjtMapping.termNm }}
-                </td>
-              </tr>
-              <template v-for="sbjtCand in sbjtMapping.listSbjt">
-                <tr>
-                  <td scope="row" :rowspan="sbjtCand.rowSpan">
-                    <span
-                      :class="{
-                        font_black: !sbjtCand.isCheck,
-                        medium: !sbjtCand.isCheck,
-                        font_red: sbjtCand.isCheck,
-                        bold: sbjtCand.isCheck,
-                      }"
-                      >{{ sbjtCand.sbjtNm }}</span
-                    >
-                  </td>
-                  <td scope="row" :rowspan="sbjtCand.rowSpan">
-                    <span
-                      :class="{
-                        font_black: !sbjtCand.isCheck,
-                        medium: !sbjtCand.isCheck,
-                        font_red: sbjtCand.isCheck,
-                        bold: sbjtCand.isCheck,
-                      }"
-                      >{{ sbjtCand.cateComplete }}</span
-                    >
-                  </td>
-                </tr>
+              <template
+                v-for="(sbjtCand, indexSbjtCand) in sbjtMapping.listSbjt"
+              >
                 <template
                   v-for="(jobAbility, indexJob) in sbjtCand.listJobAbility"
-                  ><tr>
-                    <td scope="row" :rowspan="jobAbility.listChild.length">
-                      <span
-                        :class="{
-                          font_black: !sbjtCand.isCheck,
-                          medium: !sbjtCand.isCheck,
-                          font_red: sbjtCand.isCheck,
-                          bold: sbjtCand.isCheck,
-                        }"
-                        >{{ jobAbility.jobAbilNm }}</span
+                >
+                  <template v-for="(child, indexChild) in jobAbility.listChild"
+                    ><tr>
+                      <td
+                        :rowspan="sbjtMapping.rowSpan"
+                        v-if="
+                          indexSbjtCand === 0 &&
+                          indexJob === 0 &&
+                          indexChild === 0
+                        "
                       >
-                    </td>
-                    <template
-                      v-for="(child, index) in jobAbility.listChild.slice(0, 1)"
-                      ><td scope="row">
+                        {{ sbjtMapping.gradeNm + "-" + sbjtMapping.termNm }}
+                      </td>
+                      <td
+                        scope="row"
+                        :rowspan="sbjtCand.rowSpan"
+                        v-if="indexJob === 0 && indexChild === 0"
+                      >
+                        <span
+                          :class="{
+                            font_black: !sbjtCand.isCheck,
+                            medium: !sbjtCand.isCheck,
+                            font_red: sbjtCand.isCheck,
+                            bold: sbjtCand.isCheck,
+                          }"
+                          >{{ sbjtCand.sbjtNm }}</span
+                        >
+                      </td>
+                      <td
+                        scope="row"
+                        :rowspan="sbjtCand.rowSpan"
+                        v-if="indexJob === 0 && indexChild === 0"
+                      >
+                        <span
+                          :class="{
+                            font_black: !sbjtCand.isCheck,
+                            medium: !sbjtCand.isCheck,
+                            font_red: sbjtCand.isCheck,
+                            bold: sbjtCand.isCheck,
+                          }"
+                          >{{ sbjtCand.cateComplete }}</span
+                        >
+                      </td>
+                      <td
+                        scope="row"
+                        :rowspan="jobAbility.listChild.length"
+                        v-if="indexChild === 0"
+                      >
+                        <span
+                          :class="{
+                            font_black: !sbjtCand.isCheck,
+                            medium: !sbjtCand.isCheck,
+                            font_red: sbjtCand.isCheck,
+                            bold: sbjtCand.isCheck,
+                          }"
+                          >{{ jobAbility.jobAbilNm }}</span
+                        >
+                      </td>
+                      <td scope="row">
                         <span
                           :class="{
                             font_black: !sbjtCand.isCheck,
@@ -152,12 +174,16 @@
                       </td>
                       <template
                         v-for="rateCore in sbjtCand.listRateCoreAbility"
-                        v-if="indexJob === 0"
+                        v-if="
+                          indexSbjtCand === 0 &&
+                          indexJob === 0 &&
+                          indexChild === 0
+                        "
                         ><td
                           scope="row"
-                          :rowspan="jobAbility.listChild.length + 2"
                           style="position: relative"
                           class="td__rate__core"
+                          :rowspan="sbjtCand.rowSpan"
                         >
                           <div
                             style="position: absolute; top: calc(50% - 20px)"
@@ -172,42 +198,9 @@
                             </SelectBoxBase>
                           </div></td
                       ></template>
-                    </template>
-                  </tr>
-                  <tr v-for="child in jobAbility.listChild.slice(1)">
-                    <td scope="row">
-                      <span
-                        :class="{
-                          font_black: !sbjtCand.isCheck,
-                          medium: !sbjtCand.isCheck,
-                          font_red: sbjtCand.isCheck,
-                          bold: sbjtCand.isCheck,
-                        }"
-                      >
-                        {{ child.childNm }}</span
-                      >
-                    </td>
-                    <td scope="row">
-                      <SelectBoxBase
-                        :id="
-                          'rateChild' +
-                          sbjtMapping.termCd +
-                          sbjtCand.sbjtCd +
-                          child.childSeq
-                        "
-                        :name="
-                          'rateChild' +
-                          sbjtMapping.termCd +
-                          sbjtCand.sbjtCd +
-                          child.childSeq
-                        "
-                        :data="listRateCd"
-                        class="wd_75"
-                        v-model="child.rate"
-                      >
-                      </SelectBoxBase>
-                    </td></tr
-                ></template>
+                    </tr>
+                  </template>
+                </template>
               </template>
             </template>
           </tbody>
@@ -215,7 +208,7 @@
       </div>
     </div>
     <div class="btn_group btn_end mg_t30">
-      <button
+      <!-- <button
         v-if="isSave"
         type="button"
         class="btn_round btn_md btn_gray"
@@ -223,15 +216,30 @@
         :disabled="saveType === cdSave"
       >
         {{ t("common.saveTemp") }}
-      </button>
-      <button
+      </button> -->
+      <ButtonBase
+        v-if="isSave"
+        type="button"
+        class="btn_round btn_md btn_gray"
+        :buttonName="t('common.saveTemp')"
+        @click="confirmSaveTemp"
+        :disabled="saveType === cdSave"
+      ></ButtonBase>
+      <!-- <button
         v-if="isSave"
         type="button"
         class="btn_round btn_md btn_primary"
         @click="confirmSave"
       >
         {{ t("common.save") }}
-      </button>
+      </button> -->
+      <ButtonBase
+        v-if="isSave"
+        type="button"
+        class="btn_round btn_md btn_primary"
+        :buttonName="t('common.save')"
+        @click="confirmSave"
+      ></ButtonBase>
       <button
         type="button"
         class="btn_round btn_md btn_primary"
@@ -349,10 +357,10 @@ export default defineComponent({
       item.listSbjt.forEach((sbjt) => {
         sum += this.calculatorRowSpanSbjtCand(sbjt);
       });
-      return sum + 1;
+      return sum;
     },
     calculatorRowSpanSbjtCand(item: SubMngSbjtCandModel) {
-      let sum = 1;
+      let sum = 0;
       item.listJobAbility.forEach((job) => {
         sum += job.listChild.length;
       });

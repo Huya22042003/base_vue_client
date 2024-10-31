@@ -11,32 +11,24 @@
     </template>
     <template #default>
       <div class="search_section">
-        <div class="search_toggle sm">
-          <div class="left"></div>
-          <div class="right">
-            <div class="search_daywrap mg_r10 mg_t10">
-              <span class="tag">{{
+        <div class="search_box col_3">
+          <ul>
+            <li>
+              <p class="ta_c">{{
                 t("eduProcessCreation.subjectMng.modal.title2")
-              }}</span>
-              <div>
-                <InputBase v-model="dataSearch.sbjtNm" />
-              </div>
-            </div>
-
-            <div class="search_daywrap mg_r10 mg_t10">
-              <span class="tag">{{
+              }}</p>
+              <InputBase v-model="dataSearch.sbjtNm" />
+            </li>
+            <li>
+              <p class="ta_c">{{
                 t("eduProcessCreation.subjectMng.modal.title3")
-              }}</span>
-              <div>
+              }}</p>
                 <InputBase v-model="dataSearch.sbjtCd" />
-              </div>
-            </div>
-
-            <div class="search_daywrap mg_r10 mg_t10">
-              <span class="tag">{{
+            </li>
+            <li>
+              <p class="ta_c">{{
                 t("eduProcessCreation.subjectMng.modal.title4")
-              }}</span>
-              <div>
+              }}</p>
                 <SelectBoxBase
                   :id="'selectbox'"
                   :name="'selectbox'"
@@ -44,56 +36,44 @@
                   v-model="dataSearch.sustDivCd"
                 >
                 </SelectBoxBase>
-              </div>
-            </div>
-
-            <div class="search_daywrap mg_r10 mg_t10">
-              <span class="tag">{{
+            </li>
+            <li>
+              <p class="ta_c">{{
                 t("eduProcessCreation.subjectMng.modal.title5")
-              }}</span>
-              <div>
+              }}</p>
                 <InputBase v-model="dataSearch.acqCredit" />
-              </div>
-            </div>
-
-            <div class="search_daywrap mg_r10 mg_t10">
-              <span class="tag">{{
+            </li>
+            <li>
+              <p class="ta_c">{{
                 t("eduProcessCreation.subjectMng.modal.title6")
-              }}</span>
-              <div>
+              }}</p>
                 <InputBase v-model="dataSearch.totalHrs" />
-              </div>
-            </div>
-
-            <div class="search_daywrap mg_r10 mg_t10">
-              <span class="tag">{{
+            </li>
+            <li>
+              <p class="ta_c">{{
                 t("eduProcessCreation.subjectMng.modal.title7")
-              }}</span>
-              <div>
+              }}</p>
                 <InputBase v-model="dataSearch.thryHrs" />
-              </div>
-            </div>
-
-            <div class="search_daywrap mg_r10 mg_t10">
-              <span class="tag">{{
+            </li>
+            <li>
+              <p class="ta_c">{{
                 t("eduProcessCreation.subjectMng.modal.title8")
-              }}</span>
-              <div>
+              }}</p>
                 <InputBase v-model="dataSearch.pracHrs" />
-              </div>
-            </div>
-
+            </li>
+          </ul>
+          <div class="search_btnarea">
             <button
-              @click="search()"
               type="button"
-              class="btn_round btn_lg btn_primary mg_l10 mg_t10"
+              class="btn_round btn_lg btn_primary mg_l10"
+              @click="search"
             >
               {{ t("common.search") }}
             </button>
             <button
-              @click="reset()"
               type="button"
-              class="btn_round btn_lg btn_gray mg_l5 mg_t10"
+              class="btn_round btn_lg btn_gray mg_l5"
+              @click="reset"
             >
               {{ t("common.reset") }}
             </button>
@@ -266,6 +246,7 @@ export default {
     getCodeForm() {
       getListCodeMng({ upCdIdList: [UP_SUST_DIV_CD] }).then((res: any) => {
         this.listSelectBox = res.data.data;
+        this.listSelectBox.unshift({ id: 0, cdId: "", cdNm: this.t("common.all") });
       });
     },
     getAllSubject() {
@@ -321,11 +302,14 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .text_blue {
   color: #0029ff;
 }
 .popup_content {
   overflow: scroll !important;
+}
+.search_box.col_3 > ul > li > p:first-child {
+    width: 60px;
 }
 </style>

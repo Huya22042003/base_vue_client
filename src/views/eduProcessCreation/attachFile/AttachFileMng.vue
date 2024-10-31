@@ -14,14 +14,20 @@
           ref="gridKey"
         >
           <template #button>
-            <button
+            <!-- <button
               type="button"
               v-if="isSave"
               @click="gotoCreate"
               class="btn_round btn_md btn_primary"
             >
-              <!-- 등록 -->{{ t("eduProcessCreation.attachFile.title1") }}
-            </button>
+              {{ t("eduProcessCreation.attachFile.title1") }}
+            </button> -->
+            <ButtonBase
+              type="button"
+              class="btn_round btn_md btn_primary"
+              :buttonName="t('eduProcessCreation.attachFile.title1')"
+              @click="gotoCreate"
+            ></ButtonBase>
           </template>
         </GridComponentV2>
       </div>

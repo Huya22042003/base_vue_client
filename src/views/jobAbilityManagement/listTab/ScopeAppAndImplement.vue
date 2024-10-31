@@ -75,22 +75,20 @@
         </tbody>
       </table>
       <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
-        <button
-          type="button"
-          class="btn_round btn_md btn_gray"
-          v-if="modeScreen === modeDetail"
+        <ButtonBase
+          class="btn_round btn_gray btn_md"
+          :buttonName="t('jobAbilityManagement.tab1.btnVersionUp')"
           @click="saveVer"
+          v-if="modeScreen == modeDetail"
         >
-          {{ t("jobAbilityManagement.tab1.btnVersionUp") }}
-        </button>
-        <button
-          type="button"
+        </ButtonBase>
+        <ButtonBase
           class="btn_round btn_md btn_gray"
-          v-if="modeScreen === modeDetail"
+          :buttonName="t('jobAbilityManagement.tab1.update')"
           @click="confirmEdit"
+          v-if="modeScreen == modeDetail"
         >
-          {{ t("jobAbilityManagement.tab1.update") }}
-        </button>
+        </ButtonBase>
         <button
           type="button"
           class="btn_round btn_primary btn_md"
@@ -120,11 +118,14 @@ import type { JobScope } from "../../../stores/jobAbilityManagement/jobAbilityMa
 import {
   saveJobScope,
   detailJobScope,
-  upVerJobScope,
+  upVer,
 } from "../../../stores/jobAbilityManagement/jobAbilityManagement.service";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
-  components: {},
+  components: {
+    ButtonBase
+  },
   setup() {
     const cmn = commonStore();
     const { t } = useI18n();
@@ -178,9 +179,15 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           this.cmn.setLoading(true);
-          upVerJobScope(this.jobData)
-            .then((res) => {
-              this.back();
+          upVer(this.jobData.jobAbilSeq)
+            .then(async (res) => {
+              await this.$swal({
+                text: "직무역량 버전을 올리기가 되었습니다.",
+                type: "warning",
+                showCancelButton: false,
+                confirmButtonText: this.t("common.confirm"),
+              });
+              await this.back();
             })
             .catch((error) => {
               if (

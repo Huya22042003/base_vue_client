@@ -10,13 +10,11 @@
             <h4 class="section_tit_xs">공지사항 등록</h4>
           </div>
 
-          <div class="tbl tbl_row">
-            <table class="tbl_row">
+          <div class="box_section tbl_row">
+            <table class="">
               <colgroup>
-                <col style="width: 20%" />
-                <col style="width: 40%" />
-                <col style="width: 20%" />
-                <col style="width: 40%" />
+                <col style="width: 15%" />
+                <col style="width: 85%" />
               </colgroup>
               <tbody>
                 <tr>
@@ -31,6 +29,7 @@
                       required
                       :disabled="isDisableRadio"
                       v-model="notiCategoryDetailModel.ttl"
+                      class="form_style"
                     >
                     </InputBase>
                   </td>
@@ -39,14 +38,14 @@
                   <th scope="row" class="required">
                     {{ t("09.notificationCategory.form.cont") }}
                   </th>
-                  <td colspan="3">
-                    <TextArea
-                      :mode="mode"
-                      v-model="notiCategoryDetailModel.cont"
-                      :disabled="isDisableRadio"
-                      required
-                    >
-                    </TextArea>
+                  <td colspan="3" class="word_break">
+                    <QuillEditor
+                      :modules="modules"
+                      toolbar="full"
+                      class="quill-editor-custom"
+                      @editorChange="changeEditorDiagnosticGuide()"
+                      ref="diagnosticGuide"
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -99,13 +98,14 @@
                       :mode="'edit'"
                       :id="'idFile'"
                       :name="'idFile'"
-                      :type="fileTypeOffice"
+                      :type="fileTypeImageAll"
                       v-model="fileModel"
                       ref="childRef"
                       :maxFile="1"
                       :orgName="'NTC'"
                       :category="'NOTICE'"
-                      :sectionName="fileTypeOffice"
+                      :subTitle="'※ 10mb 이하의 파일 한 개 등록 가능합니다.'"
+                      :sectionName="fileTypeImageAll"
                     ></InputFileBase>
                   </td>
                 </tr>
@@ -115,43 +115,43 @@
 
           <div class="btn_group btn_end">
             <div v-if="modeScreen == 'create'" class="btn_area">
-              <button
-                type="button"
+              <ButtonBase
+                type="ButtonBase"
                 class="btn_round btn_sm btn_primary"
                 @click="handleCreate()"
+                :buttonName="t('common.save')"
               >
-                {{ t("common.save") }}
-              </button>
-              <button
-                type="button"
+              </ButtonBase>
+              <ButtonBase
+                type="ButtonBase"
                 class="btn_round btn_sm btn_white"
                 @click="back()"
+                :buttonName="t('common.list')"
               >
-                {{ t("common.list") }}
-              </button>
+              </ButtonBase>
             </div>
             <div v-if="modeScreen != 'create'" class="btn_area">
-              <button
-                type="button"
+              <ButtonBase
+                type="ButtonBase"
                 class="btn_round btn_sm btn_primary"
                 @click="handleDelete()"
+                :buttonName="t('09.notificationCategory.form.btnDelete')"
               >
-                {{ t("09.notificationCategory.form.btnDelete") }}
-              </button>
-              <button
-                type="button"
+              </ButtonBase>
+              <ButtonBase
+                type="ButtonBase"
                 class="btn_round btn_sm btn_primary"
                 @click="handleUpdate()"
+                :buttonName="t('09.notificationCategory.form.btnEdit')"
               >
-                {{ t("09.notificationCategory.form.btnEdit") }}
-              </button>
-              <button
-                type="button"
+              </ButtonBase>
+              <ButtonBase
+                type="ButtonBase"
                 class="btn_round btn_sm btn_white"
                 @click="back()"
+                :buttonName="t('common.list')"
               >
-                {{ t("common.list") }}
-              </button>
+              </ButtonBase>
             </div>
           </div>
         </div>
@@ -186,18 +186,19 @@ import {
   countTop,
 } from "@/stores/notificationCategory/notificationCategory.service";
 import {
-  MODE_DETAIL,
   MODE_CREATE,
-  MODE_EDIT,
   MODE_SHOW,
-  FILE_TYPE_OFFICE,
+  ACCEPTTYPE_All,
 } from "../../constants/screen.const";
 import { SCREEN } from "../../router/screen";
 import { useI18n } from "vue-i18n";
 import { commonStore } from "../../stores/common";
-import test from "node:test";
 import { SHOW_Y, SHOW_N, TOP_Y, TOP_N } from "../../constants/common.const";
 import { MESSAGE_ERROR_API } from "@/constants/common.const";
+import { QuillEditor } from "@vueup/vue-quill";
+import { uploadFileEditor } from "@/stores/common/fileMng/fileMng.service";
+import ImageUploader from "quill-image-uploader";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
@@ -211,6 +212,8 @@ export default defineComponent({
     LoaddingComponent,
     LinkGridComponent,
     InputFileBase,
+    QuillEditor,
+    ButtonBase,
   },
   setup() {
     const { t } = useI18n();
@@ -268,7 +271,7 @@ export default defineComponent({
 
     const noticeIdRes = {} as NoticeIdRes;
     const noticeUpdateModel = {} as NoticeUpdateModel;
-    const fileTypeOffice = FILE_TYPE_OFFICE;
+    const fileTypeAll = ACCEPTTYPE_All;
     const sectionName = ref("NOTICE");
     const fileModel: any[] = [];
     const siteNotificationCategoryModel = {} as SiteNotificationCategoryModel;
@@ -293,7 +296,7 @@ export default defineComponent({
       noticeIdRes,
       notiCategoryDetailModel,
       noticeUpdateModel,
-      fileTypeOffice,
+      fileTypeAll,
       sectionName,
       fileModel,
       warringEmp,
@@ -308,7 +311,36 @@ export default defineComponent({
     };
   },
   data() {
-    return {};
+    return {
+      modules: {
+        name: "imageUploader",
+        module: ImageUploader,
+        options: {
+          upload: (file: any) => {
+            return new Promise((resolve, reject) => {
+              if (!file) {
+                reject("Upload failed");
+              } else {
+                this.storeCommon.setLoading(true);
+                const formData = new FormData();
+                formData.append("file", file);
+                formData.append("category", "MEETING_REPORT_EDITER");
+                formData.append("orgName", "MEETING_REPORT_EDITER");
+                formData.append("sectionName", "MEETING_REPORT_EDITER");
+                uploadFileEditor(formData)
+                  .then((res) => {
+                    resolve(res.data.urlFile);
+                    this.storeCommon.setLoading(false);
+                  })
+                  .catch((err) => {
+                    reject("Upload failed");
+                  });
+              }
+            });
+          },
+        },
+      },
+    };
   },
   beforeMount() {
     this.modeScreen = this.$route.params.mode;
@@ -335,6 +367,9 @@ export default defineComponent({
           await findById(this.noticeIdRes)
             .then((res) => {
               this.notiCategoryDetailModel = res.data.data;
+              this.$refs.diagnosticGuide.setHTML(
+                this.notiCategoryDetailModel.cont
+              );
             })
             .catch((error) => {
               throw new Error(MESSAGE_ERROR_API);
@@ -509,6 +544,12 @@ export default defineComponent({
         confirmButtonText: "확인",
       });
     },
+    changeEditorDiagnosticGuide() {
+      this.notiCategoryDetailModel.cont = this.$refs.diagnosticGuide
+        .getHTML()
+        .toString()
+        .replace("<p><br></p>", "");
+    },
   },
   watch: {
     "notiCategoryDetailModel.ttl": {
@@ -543,4 +584,11 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.word_break {
+  word-break: break-word;
+}
+.ql-editor {
+  height: 120px;
+}
+</style>

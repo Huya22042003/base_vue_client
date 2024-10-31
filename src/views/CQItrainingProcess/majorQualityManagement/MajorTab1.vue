@@ -42,7 +42,7 @@
           </th>
         </tr>
         <tr>
-          <th scope="col">{{ t("majorTab1.table1.subHeader1") }}</th>
+          <th scope="col">{{ t("majorTab1.table1.subHeader4") }}</th>
           <th scope="col">{{ t("majorTab1.table1.subHeader2") }}</th>
           <th scope="col">{{ t("majorTab1.table1.subHeader3") }}</th>
           <th scope="col">{{ t("majorTab1.table1.subHeader4") }}</th>
@@ -622,7 +622,7 @@
       </colgroup>
       <tbody>
         <tr>
-          <th scope="row">{{ t("majorTab1.table3.title") }}</th>
+          <th scope="row">{{ t("majorTab1.table3.title1") }}</th>
           <td>
             <ul class="list_ul">
               <li>{{ t("majorTab1.table3.content1") }}</li>
@@ -669,12 +669,12 @@
         </colgroup>
         <thead>
           <tr>
-            <th scope="row">{{ t("majorTab1.table4.item1.header1") }}</th>
-            <th scope="row">{{ t("majorTab1.table4.item1.header2") }}</th>
-            <th scope="row">{{ t("majorTab1.table4.item1.header3") }}</th>
-            <th scope="row">{{ t("majorTab1.table4.item1.header4") }}</th>
-            <th scope="row">{{ t("majorTab1.table4.item1.header5") }}</th>
-            <th scope="row">{{ t("majorTab1.table4.item1.header6") }}</th>
+            <th scope="row">{{ t("generalTab1.table3.item2.header1") }}</th>
+            <th scope="row">{{ t("generalTab1.table3.item2.header2") }}</th>
+            <th scope="row">{{ t("generalTab1.table3.item2.header3") }}</th>
+            <th scope="row">{{ t("generalTab1.table3.item2.header4") }}</th>
+            <th scope="row">{{ t("generalTab1.table3.item2.header5") }}</th>
+            <th scope="row">{{ t("generalTab1.table3.item2.header6") }}</th>
           </tr>
         </thead>
         <tbody>
@@ -695,7 +695,7 @@
                     class="button btn_sm btn_white"
                     @click="openModal(index)"
                   >
-                    {{ t("common.delete") }}
+                    {{ t("common.select") }}
                   </button>
                 </div>
               </div>
@@ -771,12 +771,12 @@
         </colgroup>
         <thead>
           <tr>
-            <th scope="row">{{ t("majorTab1.table4.item2.header1") }}</th>
-            <th scope="row">{{ t("majorTab1.table4.item2.header2") }}</th>
-            <th scope="row">{{ t("majorTab1.table4.item2.header3") }}</th>
-            <th scope="row">{{ t("majorTab1.table4.item2.header4") }}</th>
-            <th scope="row">{{ t("majorTab1.table4.item2.header5") }}</th>
-            <th scope="row">{{ t("majorTab1.table4.item2.header6") }}</th>
+          <th scope="row">{{ t("generalTab1.table3.item2.header1") }}</th>
+          <th scope="row">{{ t("generalTab1.table3.item2.header2") }}</th>
+          <th scope="row">{{ t("generalTab1.table3.item2.header3") }}</th>
+          <th scope="row">{{ t("generalTab1.table3.item2.header4") }}</th>
+          <th scope="row">{{ t("generalTab1.table3.item2.header5") }}</th>
+          <th scope="row">{{ t("generalTab1.table3.item2.header6") }}</th>
           </tr>
         </thead>
         <tbody>
@@ -1206,8 +1206,8 @@ const convertToObject = (response: any) => {
     );
 
     if (response.majorOverviewGroup) {
-      dataInternal.value = response.majorOverviewGroup.filter(item => item.divCd == CQI_DIV_SCHOOL)
-      dataCompany.value = response.majorOverviewGroup.filter(item => item.divCd == CQI_DIV_COMPANY)
+      dataInternal.value = response.majorOverviewGroup.filter((item:any) => item.divCd == CQI_DIV_SCHOOL)
+      dataCompany.value = response.majorOverviewGroup.filter((item:any) => item.divCd == CQI_DIV_COMPANY)
     }
 }
 

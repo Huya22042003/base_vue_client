@@ -69,20 +69,20 @@
                   >
                     {{ evalItem.evalItemNm }}
                   </th>
-                  <th>{{ evalStnrd.cont }}</th>
-                  <th>{{ evalStnrd.score }}</th>
-                  <th>{{ evalStnrd.rslt }}</th>
+                  <th>{{ evalStnrd.cont ? evalStnrd.cont : dataIsEmpty }}</th>
+                  <th>{{ evalStnrd.score ? evalStnrd.score : dataIsEmpty }}</th>
+                  <th>{{ evalStnrd.rslt ? evalStnrd.rslt : dataIsEmpty }}</th>
                   <th
                     v-if="indexEvalStnrd === 0"
                     :rowspan="evalItem.listEvalStnrdCont.length"
                   >
-                    {{ evalItem.impr }}
+                    {{ evalItem.impr ? evalItem.impr : dataIsEmpty }}
                   </th>
                   <th
                     v-if="indexEvalStnrd === 0"
                     :rowspan="evalItem.listEvalStnrdCont.length"
                   >
-                    {{ evalItem.goal }}
+                    {{ evalItem.goal ? evalItem.goal : dataIsEmpty }}
                   </th>
                 </tr>
               </template>
@@ -169,20 +169,20 @@
                   >
                     {{ evalItem.evalItemNm }}
                   </th>
-                  <th>{{ evalStnrd.cont }}</th>
-                  <th>{{ evalStnrd.score }}</th>
-                  <th>{{ evalStnrd.rslt }}</th>
+                  <th>{{ evalStnrd.cont ? evalStnrd.cont : dataIsEmpty }}</th>
+                  <th>{{ evalStnrd.score ? evalStnrd.score : dataIsEmpty }}</th>
+                  <th>{{ evalStnrd.rslt ? evalStnrd.rslt : dataIsEmpty }}</th>
                   <th
                     v-if="indexEvalStnrd === 0"
                     :rowspan="evalItem.listEvalStnrdCont.length"
                   >
-                    {{ evalItem.impr }}
+                    {{ evalItem.impr ? evalItem.impr : dataIsEmpty }}
                   </th>
                   <th
                     v-if="indexEvalStnrd === 0"
                     :rowspan="evalItem.listEvalStnrdCont.length"
                   >
-                    {{ evalItem.goal }}
+                    {{ evalItem.goal ? evalItem.goal : dataIsEmpty }}
                   </th>
                 </tr>
               </template>
@@ -269,20 +269,20 @@
                   >
                     {{ evalItem.evalItemNm }}
                   </th>
-                  <th>{{ evalStnrd.cont }}</th>
-                  <th>{{ evalStnrd.score }}</th>
-                  <th>{{ evalStnrd.rslt }}</th>
+                  <th>{{ evalStnrd.cont ? evalStnrd.cont : dataIsEmpty }}</th>
+                  <th>{{ evalStnrd.score ? evalStnrd.score : dataIsEmpty }}</th>
+                  <th>{{ evalStnrd.rslt ? evalStnrd.rslt : dataIsEmpty }}</th>
                   <th
                     v-if="indexEvalStnrd === 0"
                     :rowspan="evalItem.listEvalStnrdCont.length"
                   >
-                    {{ evalItem.impr }}
+                    {{ evalItem.impr ? evalItem.impr : dataIsEmpty }}
                   </th>
                   <th
                     v-if="indexEvalStnrd === 0"
                     :rowspan="evalItem.listEvalStnrdCont.length"
                   >
-                    {{ evalItem.goal }}
+                    {{ evalItem.goal ? evalItem.goal : dataIsEmpty }}
                   </th>
                 </tr>
               </template>
@@ -369,20 +369,20 @@
                   >
                     {{ evalItem.evalItemNm }}
                   </th>
-                  <th>{{ evalStnrd.cont }}</th>
-                  <th>{{ evalStnrd.score }}</th>
-                  <th>{{ evalStnrd.rslt }}</th>
+                  <th>{{ evalStnrd.cont ? evalStnrd.cont : dataIsEmpty }}</th>
+                  <th>{{ evalStnrd.score ? evalStnrd.score : dataIsEmpty }}</th>
+                  <th>{{ evalStnrd.rslt ? evalStnrd.rslt : dataIsEmpty }}</th>
                   <th
                     v-if="indexEvalStnrd === 0"
                     :rowspan="evalItem.listEvalStnrdCont.length"
                   >
-                    {{ evalItem.impr }}
+                    {{ evalItem.impr ? evalItem.impr : dataIsEmpty }}
                   </th>
                   <th
                     v-if="indexEvalStnrd === 0"
                     :rowspan="evalItem.listEvalStnrdCont.length"
                   >
-                    {{ evalItem.goal }}
+                    {{ evalItem.goal ? evalItem.goal : dataIsEmpty }}
                   </th>
                 </tr>
               </template>
@@ -453,14 +453,21 @@
             t("eduProcessCreation.analysisAchievement.title31")
           }}
         </button>
-        <button
+        <!-- <button
           v-if="isSave"
           type="button"
           class="btn_md btn_round btn_primary"
           @click="confirmSaveData()"
         >
           {{ t("common.save") }}
-        </button>
+        </button> -->
+        <ButtonBase
+          v-if="isSave"
+          type="button"
+          class="btn_md btn_round btn_primary"
+          :buttonName="t('common.save')"
+          @click="confirmSaveData()"
+        ></ButtonBase>
         <button
           type="button"
           class="btn_md btn_round btn_primary"
@@ -521,6 +528,7 @@ export default defineComponent({
       isDisabled: true,
       analysisEvalStnrdReqModel: {} as AnalysisEvalStnrdReqModel,
       listEvalStnrd: [] as Array<EduCourseCqiEvalStnrdModel>,
+      dataIsEmpty: '데이터가 없습니다.'
     };
   },
   beforeMount() {

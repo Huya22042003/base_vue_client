@@ -105,14 +105,21 @@
             t("eduProcessCreation.environmentDemand.title19")
           }}
         </button>
-        <button
+        <!-- <button
           v-if="isSave"
           type="button"
           class="btn_round btn_md btn_primary"
           @click="confirmSaveData"
         >
           {{ t("common.save") }}
-        </button>
+        </button> -->
+        <ButtonBase
+          v-if="isSave"
+          type="button"
+          class="btn_round btn_md btn_primary"
+          :buttonName="t('common.save')"
+          @click="confirmSaveData"
+        ></ButtonBase>
         <button
           type="button"
           class="btn_round btn_md btn_primary"
@@ -215,9 +222,7 @@ export default defineComponent({
             if (isConfirm) {
               this.next();
             }
-            if (this.isDisabled) {
-              this.$emit("updateStage", 31);
-            }
+            this.$emit("updateStage", 31);
             this.isDisabled = false;
           }
         );

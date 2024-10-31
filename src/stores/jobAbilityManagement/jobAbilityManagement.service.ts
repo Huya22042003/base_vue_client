@@ -32,12 +32,8 @@ export const detailJobScope = (data: String) => {
   return http.post(url + "/detailJobScope", data);
 };
 
-export const upVer = (data: JobAbilityReg) => {
+export const upVer = (data: String) => {
   return http.post(url + "/upVer", data);
-};
-
-export const upVerUnit = (data: Array<JobCapaUnit>) => {
-  return http.post(url + "/upVerUnit", data);
 };
 
 export const parentList = (data: any) => {
@@ -48,17 +44,10 @@ export const itemList = (data?: String) => {
   return http.post(url + "/parentItem", data);
 }
 
-export const upVerJobScope = (data: JobScope) => {
-  return http.post(url + "/upVerScope", data);
-};
-
 export const saveJobHistory = (data: JobHistory) => {
   return http.post(url + "/saveJobHistory", data);
 };
 
-export const upVerHistory = (data: JobHistory) => {
-  return http.post(url + "/upVerHistory", data);
-};
 
 export const detailHistory = (data: String) => {
   return http.post(url + "/detailHistory", data);
@@ -70,4 +59,12 @@ export const checkVer = (data: CheckVer) => {
 
 export const downloadExcel = () => {
   return http.get(url + "/downloadExcel");
+};
+
+export const checkPerform = (data: String) => {
+  return http.post(url + "/checkJobPerform", data);
+};
+
+export const checkUnit = (data: String) => {
+  return http.post(url + "/checkJobUnit", data);
 };

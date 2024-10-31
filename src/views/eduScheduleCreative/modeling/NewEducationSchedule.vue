@@ -2,90 +2,83 @@
   <div class="page_wrapper">
     <section id="content" class="content_wrapper grid_content" tabindex="0">
       <Breadcrumb :pageTitle="pageTitle"></Breadcrumb>
-
-      <div class="search_box mg_b30">
-        <div class="search_section">
-          <div class="search_toggle sm">
-            <div class="left"></div>
-            <div class="right">
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">
+      <div class="box dp_block">
+        <div class="box_section">
+          <div class="search_box col_3">
+            <ul>
+              <li>
+                <p>
                   {{
                     t(
                       "04.eduScheduleCreativeMng.newEducationSchedule.search.schoolYear"
                     )
-                  }}</span
+                  }}
+                </p>
+                <SelectBoxBase
+                  :id="'schoolYear'"
+                  :name="'schoolYear'"
+                  :data="listSelectBoxSchoolYear"
+                  v-model="newEducationScheduleSearchModel.year"
                 >
-                <div class="">
-                  <SelectBoxBase
-                    :id="'schoolYear'"
-                    :name="'schoolYear'"
-                    :data="listSelectBoxSchoolYear"
-                    v-model="newEducationScheduleSearchModel.year"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p>
                   {{
                     t(
                       "04.eduScheduleCreativeMng.newEducationSchedule.search.specializedUniversity"
                     )
-                  }}</span
+                  }}
+                </p>
+                <SelectBoxBaseSearch
+                  :id="'specializedUniversity'"
+                  :name="'specializedUniversity'"
+                  v-model="
+                    newEducationScheduleSearchModel.specializedUniversity
+                  "
+                  :data="listSelectBoxMajor"
+                  @update:modelValue="changSch"
+                  value-select-all="전체"
                 >
-                <div class="">
-                  <SelectBoxBaseSearch
-                    :id="'specializedUniversity'"
-                    :name="'specializedUniversity'"
-                    v-model="
-                      newEducationScheduleSearchModel.specializedUniversity
-                    "
-                    :data="listSelectBoxMajor"
-                    @update:modelValue="changSch"
-                  >
-                  </SelectBoxBaseSearch>
-                </div>
-              </div>
-              <div class="search_daywrap mg_r10 mg_t10">
-                <span class="tag">
+                </SelectBoxBaseSearch>
+              </li>
+              <li>
+                <p>
                   {{
                     t(
                       "04.eduScheduleCreativeMng.newEducationSchedule.search.faculty"
                     )
-                  }}</span
+                  }}
+                </p>
+                <SelectBoxBaseSearch
+                  :id="'faculty'"
+                  :name="'faculty'"
+                  v-model="newEducationScheduleSearchModel.deptNm"
+                  :data="listSelectBoxDept"
+                  value-select-all="전체"
                 >
-                <div class="">
-                  <SelectBoxBaseSearch
-                    :id="'faculty'"
-                    :name="'faculty'"
-                    v-model="newEducationScheduleSearchModel.deptNm"
-                    :data="listSelectBoxDept"
-                  >
-                  </SelectBoxBaseSearch>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10 mg_t10">
-                <button
-                  class="btn_round btn_lg btn_primary mg_l10"
-                  @click="search()"
-                >
-                  {{ t("common.search") }}
-                </button>
-                <button
-                  class="btn_round btn_lg btn_gray mg_l5"
-                  @click="resetSearch()"
-                >
-                  {{ t("common.reset") }}
-                </button>
-              </div>
+                </SelectBoxBaseSearch>
+              </li>
+            </ul>
+            <div class="search_btnarea">
+              <ButtonBase
+                type="button"
+                class="btn_round btn_lg btn_primary mg_l10"
+                @click="search()"
+                :buttonName="t('common.search')"
+              >
+              </ButtonBase>
+              <ButtonBase
+                type="button"
+                class="btn_round btn_lg btn_gray mg_l5"
+                @click="resetSearch()"
+                :buttonName="t('common.reset')"
+              >
+              </ButtonBase>
             </div>
           </div>
         </div>
       </div>
-
       <div class="box">
         <div class="box_section">
           <GridComponentV2
@@ -102,20 +95,12 @@
             <template #button>
               <div class="flex flex-col items-end">
                 <div class="button-container">
-                  <button
-                    type="button"
+                  <ButtonBase
                     class="button btn_sm btn_blue bo_rd4 font_base_2"
+                    :buttonName="t('04.eduScheduleCreativeMng.massSchedule')"
                     v-on:click="handleSetup()"
                   >
-                    {{ t("04.eduScheduleCreativeMng.massSchedule") }}
-                  </button>
-                  <p>
-                    {{
-                      t(
-                        "04.eduScheduleCreativeMng.newEducationSchedule.meesageNotice"
-                      )
-                    }}
-                  </p>
+                  </ButtonBase>
                 </div>
               </div>
             </template>
@@ -162,8 +147,8 @@ import {
   DIV_CD_DEPT_DEPART,
 } from "@/constants/common.const";
 import type { DepartmentFilterDTO } from "@/stores/common/department/department.type";
-import { getDepartmentList } from "@/stores/common/department/department.service";
 import { departmentStore } from "@/stores/common/department";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
@@ -173,6 +158,7 @@ export default defineComponent({
     BaseDatePicker,
     NewEducationScheduleModal,
     GridComponentV2,
+    ButtonBase,
   },
   setup: () => {
     const { t } = useI18n();
@@ -267,10 +253,10 @@ export default defineComponent({
       newEducationScheduleReqModel: {} as NewEducationScheduleReqModel,
       totalRecord: 0,
       listSelectBoxDept: [
-        { id: 0, cdId: "", cdNm: this.t("common.select") },
+        { id: 0, cdId: "", cdNm: this.t("common.all") },
       ] as any,
       listSelectBoxMajor: [
-        { id: 0, cdId: "", cdNm: this.t("common.select") },
+        { id: 0, cdId: "", cdNm: this.t("common.all") },
       ] as any,
       departmentFilterDTO: {} as DepartmentFilterDTO /*  */,
     };
@@ -284,13 +270,9 @@ export default defineComponent({
       this.newEducationScheduleSearchModel.specializedUniversity = "";
       this.newEducationScheduleSearchModel.deptNm = "";
       this.listSelectBoxDept = "";
-      console.log(
-        this.newEducationScheduleSearchModel.specializedUniversity,
-        this.newEducationScheduleSearchModel.deptNm
-      );
       this.newEducationScheduleSearchModel.year = new Date().getFullYear() + "";
       this.listSelectBoxDept = [
-        { id: 0, cdId: "", cdNm: this.t("common.select") },
+        { id: 0, cdId: "", cdNm: this.t("common.all") },
       ];
       this.storeDepartment.deptRes?.forEach((element, index) => {
         if (element.deptDivCd != DIV_CD_DEPT_MAJOR) {
@@ -302,48 +284,12 @@ export default defineComponent({
         }
       });
     },
-    async getListInfo() {
-      await getDepartmentList({
-        deptCd: [],
-        deptDivCd: [DIV_CD_DEPT_DEPART, DIV_CD_DEPT_MAJOR],
-        upDeptCd: [],
-        useYn: "",
-      }).then((res) => {
-        this.listSelectBoxDept = res.data.data
-          .filter((el: any) => el.deptDivCd == DIV_CD_DEPT_DEPART)
-          .map((el: any) => {
-            return {
-              cdId: el.deptCd,
-              cdNm: el.deptNm,
-              upCdId: "dept",
-            };
-          });
-        if (this.listSelectBoxDept.length > 1) {
-          this.newEducationScheduleSearchModel.deptNm =
-            this.listSelectBoxDept[0].cdId;
-        }
-        this.listSelectBoxMajor = res.data.data
-          .filter((el: any) => el.deptDivCd == DIV_CD_DEPT_MAJOR)
-          .map((el: any) => {
-            return {
-              cdId: el.deptCd,
-              cdNm: el.deptNm,
-              upCdId: "major",
-            };
-          });
-        this.listSelectBoxMajor.unshift({
-          cdId: "",
-          cdNm: this.t("common.select"),
-          upCdId: "major",
-        });
-      });
-    },
     async changSch(data: any) {
       this.cmn.setLoading(true);
       this.newEducationScheduleSearchModel.deptNm = "";
       this.listSelectBoxDept = [];
       this.listSelectBoxDept = [
-        { id: 0, cdId: "", cdNm: this.t("common.select") },
+        { id: 0, cdId: "", cdNm: this.t("common.all") },
       ];
       if (data) {
         this.storeDepartment.deptRes?.forEach((element, index) => {

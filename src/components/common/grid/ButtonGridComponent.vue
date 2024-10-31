@@ -14,12 +14,21 @@
       ></InputFileRegSelection>
     </div>
   </template>
-  <script>
+  <script lang="ts">
   import { TYPE_BUTTON_GO, TYPE_BUTTON_DOWLOAD, ACCEPTTYPE_OFICE } from '../../../constants/screen.const'
+  import { checkFlagStore } from "@/stores/common/checkRole"
+  import Swal from "sweetalert2"
   export default {
       props: {
           params: {},
           onCustomEvent: null
+      },
+      setup() {
+        const roleStore = checkFlagStore();
+
+        return {
+            roleStore
+        }
       },
       mounted() {
           if (this.params) {
@@ -57,7 +66,17 @@
       methods: {
           addEvent() {
               if (typeof this.params.onCustomEvent === 'function') {
-                  this.params.onCustomEvent(this.params.data)
+                if (this.roleStore.flag) {
+                    this.params.onCustomEvent(this.params.data)
+                } else {
+                    Swal.fire({
+                    text: t("common.message.warring"),
+                    showCancelButton: false,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "확인",
+                    cancelButtonText: "취소",
+                    });
+                }
               }
               if(this.type == TYPE_BUTTON_DOWLOAD) {
                   const refFile = this.$refs[this.childRef];

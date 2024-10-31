@@ -20,7 +20,7 @@
             </th>
             <td class="td_input">
               <RadiobuttonBase
-                v-if="!upVer && (haveVer == 'N' || haveVer == '')"
+                v-if="haveVer == 'N' || haveVer == ''"
                 v-for="item in listType"
                 :mode="'show'"
                 :value="item.cdId"
@@ -34,7 +34,7 @@
               >
               </RadiobuttonBase>
               <RadiobuttonBase
-                v-if="upVer || haveVer == 'Y'"
+                v-if="haveVer == 'Y'"
                 v-for="item in listType"
                 :mode="'show'"
                 :value="item.cdId"
@@ -60,7 +60,7 @@
               <div style="display: flex; gap: 10px">
                 <div style="width: 18%">
                   <SelectBoxBase
-                    v-if="!upVer && (haveVer == 'N' || haveVer == '')"
+                    v-if="haveVer == 'N' || haveVer == ''"
                     :id="'bigClassCd'"
                     name="'bigClassCd'"
                     :data="listBigClass"
@@ -74,13 +74,13 @@
                     required
                   >
                   </SelectBoxBase>
-                  <div v-if="upVer || haveVer == 'Y'">
+                  <div v-if="haveVer == 'Y'">
                     {{ detailData.hightCapa }}
                   </div>
                 </div>
                 <div style="width: 18%">
                   <SelectBoxBase
-                    v-if="!upVer && (haveVer == 'N' || haveVer == '')"
+                    v-if="haveVer == 'N' || haveVer == ''"
                     :id="'medClassCd'"
                     name="'medClassCd'"
                     :data="listMedClass"
@@ -94,13 +94,13 @@
                     required
                   >
                   </SelectBoxBase>
-                  <div v-if="upVer || haveVer == 'Y'">
+                  <div v-if="haveVer == 'Y'">
                     {{ detailData.mediumCapa }}
                   </div>
                 </div>
                 <div style="width: 18%">
                   <SelectBoxBase
-                    v-if="!upVer && (haveVer == 'N' || haveVer == '')"
+                    v-if="haveVer == 'N' || haveVer == ''"
                     :id="'smallClassCd'"
                     name="'smallClassCd'"
                     :data="listSmallClass"
@@ -114,13 +114,13 @@
                     required
                   >
                   </SelectBoxBase>
-                  <div v-if="upVer || haveVer == 'Y'">
+                  <div v-if="haveVer == 'Y'">
                     {{ detailData.lowCapa }}
                   </div>
                 </div>
                 <div style="width: 18%">
                   <SelectBoxBase
-                    v-if="!upVer && (haveVer == 'N' || haveVer == '')"
+                    v-if="haveVer == 'N' || haveVer == ''"
                     :id="'detailClassCd'"
                     name="'detailClassCd'"
                     :data="listDetailClass"
@@ -134,7 +134,7 @@
                     required
                   >
                   </SelectBoxBase>
-                  <div v-if="upVer || haveVer == 'Y'">
+                  <div v-if="haveVer == 'Y'">
                     {{ detailData.detailCapa }}
                   </div>
                 </div>
@@ -149,14 +149,14 @@
             </th>
             <td class="td_input">
               <InputBase
-                v-if="!upVer && (haveVer == 'N' || haveVer == '')"
+                v-if="haveVer == 'N' || haveVer == ''"
                 :id="'jobAbilityNm'"
                 :name="'jobAbilityNm'"
                 v-model="jobAbilityCrudModel.jobAbilNm"
                 required
               />
               <InputBase
-                v-if="upVer || haveVer == 'Y'"
+                v-if="haveVer == 'Y'"
                 :id="'jobAbilityNm'"
                 :name="'jobAbilityNm'"
                 v-model="jobAbilityCrudModel.jobAbilNm"
@@ -177,7 +177,7 @@
               {{ selectedOrders.smallClassCd }}
               {{ selectedOrders.detailClassCd }}
               <InputBase
-                v-if="!upVer && (haveVer == 'N' || haveVer == '')"
+                v-if="haveVer == 'N' || haveVer == ''"
                 class="width_job"
                 :id="'jobAbilityCd'"
                 :name="'jobAbilityCd'"
@@ -187,7 +187,7 @@
                 required
               />
               <InputBase
-                v-if="upVer || haveVer == 'Y'"
+                v-if="haveVer == 'Y'"
                 class="width_job"
                 :id="'jobAbilityCd'"
                 :name="'jobAbilityCd'"
@@ -209,7 +209,19 @@
             </th>
             <td class="td_input">
               <div style="width: 12%">
-                {{ jobAbilityCrudModel.jobAbilYear }}
+                <SelectBoxBase
+                  v-if="haveVer == 'N' || haveVer == ''"
+                  :id="'listYear'"
+                  name="'listYear'"
+                  :data="listYear"
+                  v-model="jobAbilityCrudModel.jobAbilYear"
+                  @change="handleChangeYear"
+                  required
+                >
+                </SelectBoxBase>
+                <div v-if="haveVer == 'Y'">
+                  {{ jobAbilityCrudModel.jobAbilYear }}
+                </div>
               </div>
             </td>
           </tr>
@@ -222,7 +234,7 @@
             <td class="td_input">
               <div style="width: 12%">
                 <SelectBoxBase
-                  v-if="!upVer"
+                  v-if="haveVer == 'N' || haveVer == ''"
                   :id="'listVersion'"
                   name="'listVersion'"
                   :data="listVersion"
@@ -231,7 +243,9 @@
                   required
                 >
                 </SelectBoxBase>
-                <div v-if="upVer">{{ jobAbilityCrudModel.ver }}</div>
+                <div v-if="haveVer == 'Y'">
+                  {{ jobAbilityCrudModel.jobAbilYear }}
+                </div>
               </div>
             </td>
           </tr>
@@ -243,18 +257,9 @@
             </th>
             <td class="td_input">
               <TextArea
-                v-if="!upVer"
                 :id="'defn'"
                 :name="'defn'"
                 v-model="jobAbilityCrudModel.defn"
-                required
-              />
-              <TextArea
-                v-if="upVer"
-                :id="'defn'"
-                :name="'defn'"
-                v-model="jobAbilityCrudModel.defn"
-                readonly
                 required
               />
             </td>
@@ -269,7 +274,6 @@
               <div class="d-flex">
                 <div style="width: 12%">
                   <SelectBoxBase
-                    v-if="!upVer"
                     :id="'moduleCd'"
                     name="'moduleCd'"
                     :data="listModule"
@@ -277,28 +281,13 @@
                     required
                   >
                   </SelectBoxBase>
-                  <div v-if="upVer">
-                    {{
-                      learnMouleYn == registerCd
-                        ? t("jobAbilityManagement.register")
-                        : t("jobAbilityManagement.notYes")
-                    }}
-                  </div>
                 </div>
                 <div style="width: 40%">
                   <InputBase
-                    v-if="learnMouleYn == registerCd && !upVer"
+                    v-if="learnMouleYn == registerCd"
                     :id="'moduleNm'"
                     :name="'moduleNm'"
                     v-model="jobAbilityCrudModel.learnModuleNm"
-                    required
-                  />
-                  <InputBase
-                    v-if="learnMouleYn == registerCd && upVer"
-                    :id="'moduleNm'"
-                    :name="'moduleNm'"
-                    v-model="jobAbilityCrudModel.learnModuleNm"
-                    readonly
                     required
                   />
                 </div>
@@ -314,7 +303,6 @@
             <td class="td_input">
               <div style="width: 12%">
                 <SelectBoxBase
-                  v-if="!upVer"
                   :id="'listStandard'"
                   name="'listStandard'"
                   :data="listStandard"
@@ -322,7 +310,6 @@
                   required
                 >
                 </SelectBoxBase>
-                <div v-if="upVer">{{ jobAbilityCrudModel.lvl }}</div>
               </div>
             </td>
           </tr>
@@ -345,6 +332,8 @@
                 :orgName="jobAbility"
                 :category="jobAbility"
                 :sectionName="jobAbility"
+                :subTitle="'※ 30MB 이하의 파일 하나만 등록이 가능합니다. '"
+                :maxSize="30"
               >
               </InputFileBase>
             </td>
@@ -352,254 +341,25 @@
         </tbody>
       </table>
       <!-- up_Ver_Start -->
-      <div v-if="upVer" class="mt_50">
-        <table class="tbl_row tbl_border">
-          <colgroup>
-            <col style="width: 15%" />
-            <col style="width: auto" />
-          </colgroup>
-          <tbody>
-            <tr>
-              <th scope="row">
-                <p class="required">
-                  {{ t("jobAbilityManagement.tab1.column1") }}
-                </p>
-              </th>
-              <td class="td_input">
-                <RadiobuttonBase
-                  v-for="item in listType"
-                  :mode="'show'"
-                  :value="item.cdId"
-                  :id="'kcsNcs' + item.cdId"
-                  :name="'kcsNcs'"
-                  :key="'kcsNcs' + item.cdId"
-                  v-model="upVerData.typeCd"
-                  :checked="item.cdId == upVerData.typeCd"
-                  :isDisable="true"
-                  :label="item.cdNm"
-                >
-                </RadiobuttonBase>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <p class="required">
-                  {{ t("jobAbilityManagement.tab1.column2") }}
-                </p>
-              </th>
-              <td class="td_input">
-                <div style="display: flex; gap: 10px">
-                  <div style="width: 18%">
-                    <SelectBoxBase
-                      :id="'bigClassCd'"
-                      name="'bigClassCd'"
-                      :data="listBigClass"
-                      v-model="upVerData.jobCapaHightLevel"
-                      :isDisable="true"
-                    >
-                    </SelectBoxBase>
-                  </div>
-                  <div style="width: 18%">
-                    <SelectBoxBase
-                      :id="'medClassCd'"
-                      name="'medClassCd'"
-                      :data="listMedClass"
-                      v-model="upVerData.jobCapaMediumLevel"
-                      :isDisable="true"
-                    >
-                    </SelectBoxBase>
-                  </div>
-                  <div style="width: 18%">
-                    <SelectBoxBase
-                      :id="'smallClassCd'"
-                      name="'smallClassCd'"
-                      :data="listSmallClass"
-                      v-model="upVerData.jobCapaLowLevel"
-                      :isDisable="true"
-                    >
-                    </SelectBoxBase>
-                  </div>
-                  <div style="width: 18%">
-                    <SelectBoxBase
-                      :id="'detailClassCd'"
-                      name="'detailClassCd'"
-                      :data="listDetailClass"
-                      v-model="upVerData.jobCapaDetailLevel"
-                      :isDisable="true"
-                    >
-                    </SelectBoxBase>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <p class="required">
-                  {{ t("jobAbilityManagement.tab1.column3") }}
-                </p>
-              </th>
-              <td class="td_input">
-                <InputBase
-                  :id="'jobAbilityNm'"
-                  :name="'jobAbilityNm'"
-                  v-model="upVerData.jobAbilNm"
-                  readonly
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <p class="required">
-                  {{ t("jobAbilityManagement.tab1.column4") }}
-                </p>
-              </th>
-              <td class="td_input">
-                {{ upVerData.jobAbilCd }}
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <p class="required">
-                  {{ t("jobAbilityManagement.tab1.column5") }}
-                </p>
-              </th>
-              <td class="td_input">
-                <div style="width: 12%">
-                  {{ upVerData.jobAbilYear }}
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <p class="required">
-                  {{ t("jobAbilityManagement.tab1.column6") }}
-                </p>
-              </th>
-              <td class="td_input">
-                <div style="width: 12%">
-                  {{ upVerData.ver }}
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <p class="required">
-                  {{ t("jobAbilityManagement.tab1.column7") }}
-                </p>
-              </th>
-              <td class="td_input">
-                <TextArea
-                  :id="'defn'"
-                  :name="'defn'"
-                  v-model="upVerData.defn"
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <p class="required">
-                  {{ t("jobAbilityManagement.tab1.column8") }}
-                </p>
-              </th>
-              <td class="td_input">
-                <div class="d-flex">
-                  <div style="width: 12%">
-                    <SelectBoxBase
-                      :id="'moduleCd'"
-                      name="'moduleCd'"
-                      :data="listModule"
-                      v-model="learnMouleVerYn"
-                      required
-                    >
-                    </SelectBoxBase>
-                  </div>
-                  <div style="width: 40%">
-                    <InputBase
-                      v-if="learnMouleVerYn == registerCd"
-                      :id="'moduleNm'"
-                      :name="'moduleNm'"
-                      v-model="upVerData.learnModuleNm"
-                      required
-                    />
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <p class="required">
-                  {{ t("jobAbilityManagement.tab1.column9") }}
-                </p>
-              </th>
-              <td class="td_input">
-                <div style="width: 12%">
-                  <SelectBoxBase
-                    :id="'listStandard'"
-                    name="'listStandard'"
-                    :data="listStandard"
-                    v-model="upVerData.lvl"
-                    required
-                  >
-                  </SelectBoxBase>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <p>
-                  {{ t("jobAbilityManagement.tab1.column10") }}
-                </p>
-              </th>
-              <td class="td_input">
-                <InputFileBase
-                  :id="'jobAbilityFileVer'"
-                  :name="'jobAbilityFileVer'"
-                  :type="typeFile"
-                  :mode="'create'"
-                  :multiple="false"
-                  :maxFile="1"
-                  ref="childRefUpLoad"
-                  :orgName="jobAbility"
-                  :category="jobAbility"
-                  :sectionName="jobAbility"
-                >
-                </InputFileBase>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+
       <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
-        <button
-          type="button"
-          class="btn_round btn_md btn_gray"
-          @click="confirmVersionUp"
-          v-if="modeScreen == modeDetail && !upVer"
-        >
-          {{ t("jobAbilityManagement.tab1.btnVersionUp") }}
-        </button>
-        <button
-          type="button"
-          class="btn_round btn_md btn_gray"
-          v-if="modeScreen == modeDetail && !upVer"
-          @click="confirmEdit"
-        >
-          {{ t("jobAbilityManagement.tab1.update") }}
-        </button>
-        <button
-          type="button"
-          class="btn_round btn_primary btn_md"
+        <ButtonBase
+          class="btn_round btn_gray btn_md"
+          :buttonName="t('jobAbilityManagement.tab1.btnVersionUp')"
           @click="saveVer"
-          v-if="modeScreen == modeDetail && upVer"
+          v-if="modeScreen == modeDetail"
         >
-          {{ t("jobAbilityManagement.tab1.btnVersionUp") }}
-        </button>
+        </ButtonBase>
+        <ButtonBase
+          class="btn_round btn_md btn_gray"
+          :buttonName="t('jobAbilityManagement.tab1.update')"
+          @click="confirmEdit"
+          v-if="modeScreen == modeDetail"
+        >
+        </ButtonBase>
         <button
           type="button"
           class="btn_round btn_primary btn_md"
-          v-if="!upVer"
           @click="confirmNextTab"
         >
           {{ t("jobAbilityManagement.tab1.btnNext") }}
@@ -615,7 +375,9 @@
 <script lang="ts">
 import { commonStore } from "../../../stores/common";
 import {
+  DUPLICATE_STATUS,
   FILE_TYPE_OFFICE,
+  MAXIMUM_STATUS,
   MODE_CREATE,
   MODE_DETAIL,
   MODE_EDIT,
@@ -647,10 +409,12 @@ import { SCREEN } from "../../../router/screen";
 import InputFileBase from "@/components/common/input/InputFileBase.vue";
 import { useI18n } from "vue-i18n";
 import { KCS_CD_ID, UP_CD_NCS_KCS } from "@/constants/common.const";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
   components: {
     InputFileBase,
+    ButtonBase,
   },
   setup() {
     const cmn = commonStore();
@@ -725,20 +489,20 @@ export default {
       detailData: {} as JobAbilityData,
       jobAbilSeq: "",
       jobResultId: "",
-      upVer: false,
-      upVerData: {} as JobAbilityReg,
-      jobResultIdUpVer: "",
       dataVer: {} as CheckVer,
       haveVer: "",
       modeFile: MODE_CREATE,
       jobAbility: "JOBABILITY",
+      listYear: this.getListYear(),
+      jobResultIdUpVer: "",
+      modelType: "",
     };
   },
   async beforeMount() {
     this.modeScreen = this.$route.params.mode;
     this.jobAbilSeq = window.history.state.jobAbilSeq;
     this.getCodeCategoryKcsNcs();
-
+    this.emitId();
     if (this.modeScreen == MODE_CREATE) {
       this.jobAbilityCrudModel.typeCd = KCS_CD_ID;
       this.jobAbilityCrudModel.ver = 1;
@@ -755,10 +519,10 @@ export default {
     if (this.modeScreen == MODE_DETAIL) {
       this.modeFile = MODE_EDIT;
       await this.getDataDetail().then(() => {
-        return this.getListParent();
+        return this.getListParent(this.modelType);
       });
     } else {
-      await this.getListParent();
+      await this.getListParent(KCS_CD_ID);
     }
   },
   methods: {
@@ -806,6 +570,7 @@ export default {
               this.detailData.learnModuleNm;
           }
           this.jobAbilityCrudModel.lvl = this.detailData.lvl;
+          this.modelType = this.jobAbilityCrudModel.typeCd;
         })
         .finally(() => {
           this.cmn.setLoading(false);
@@ -949,61 +714,11 @@ export default {
         this.uploadFile(this.jobResultId);
       });
     },
-    async versionUp() {
-      this.upVerData.jobAbilSeq = this.jobAbilSeq;
-      if (this.learnMouleVerYn == NOT_YET_DELELOPED_CD) {
-        this.upVerData.learnModuleNm = "";
-      }
-      await upVer(this.upVerData).then((res) => {
-        this.jobResultIdUpVer = res.data.data;
-        this.uploadFile(this.jobResultIdUpVer);
-      });
-    },
     nextTab(id: any) {
       this.$emit("change-tab", "tab2", id);
     },
-    async confirmVersionUp() {
-      this.upVer = true;
-      this.modeFile = MODE_DETAIL;
-      await this.getDataDetail();
-      this.upVerData.typeCd = this.jobAbilityCrudModel.typeCd;
-      this.upVerData.jobCapaHightLevel =
-        this.jobAbilityCrudModel.jobCapaHightLevel;
-      this.upVerData.jobCapaMediumLevel =
-        this.jobAbilityCrudModel.jobCapaMediumLevel;
-      this.upVerData.jobCapaLowLevel = this.jobAbilityCrudModel.jobCapaLowLevel;
-      this.upVerData.jobCapaDetailLevel =
-        this.jobAbilityCrudModel.jobCapaDetailLevel;
-      this.upVerData.jobAbilNm = this.jobAbilityCrudModel.jobAbilNm;
-      this.upVerData.jobAbilYear = this.jobAbilityCrudModel.jobAbilYear;
-      const lastTwoDigits = String(this.upVerData.jobAbilYear).slice(-2);
-      this.upVerData.ver = Math.min(
-        Number(this.jobAbilityCrudModel.ver) + 1,
-        9
-      );
-      this.upVerData.jobAbilCd =
-        this.jobAbilityCrudModel.jobAbilCd.slice(0, 10) +
-        lastTwoDigits +
-        this.jobAbilityCrudModel.jobAbilCd.slice(12, -1) +
-        this.upVerData.ver;
-      this.upVerData.defn = this.jobAbilityCrudModel.defn;
-      this.learnMouleVerYn = this.learnMouleYn;
-      this.upVerData.learnModuleNm = this.jobAbilityCrudModel.learnModuleNm;
-      this.upVerData.lvl = this.jobAbilityCrudModel.lvl;
-    },
 
     async saveVer() {
-      if (this.checkValUpVer()) {
-        this.$swal({
-          text: this.t("common.messageValidateRequired"),
-          type: "warning",
-          showCancelButton: false,
-          showConfirmButton: true,
-          confirmButtonText: this.t("common.confirm"),
-        });
-        return;
-      }
-
       const result = await this.$swal({
         text: this.t("jobAbilityManagement.tab1.confirmVersionUp"),
         type: "warning",
@@ -1014,21 +729,41 @@ export default {
 
       if (result.isConfirmed) {
         this.cmn.setLoading(true);
-        this.dataVer.seq = "";
-        this.dataVer.ver = this.upVerData.jobAbilCd;
-        const res = await checkVer(this.dataVer);
-        if (res.data.data === true) {
-          this.$swal({
-            text: this.t("jobAbilityManagement.tab1.dupliCateCVer"),
-            type: "warning",
-            showCancelButton: false,
-            confirmButtonText: this.t("common.confirm"),
+        upVer(this.jobAbilSeq)
+          .then(async (res) => {
+            await this.$swal({
+              text: "직무역량 버전을 올리기가 되었습니다.",
+              type: "warning",
+              showCancelButton: false,
+              confirmButtonText: this.t("common.confirm"),
+            });
+            await this.back();
+          })
+          .catch((error) => {
+            if (
+              error.response &&
+              error.response.data &&
+              error.response.data.code === DUPLICATE_STATUS
+            ) {
+              this.$swal({
+                text: this.t("jobAbilityManagement.tab1.dupliCateCVer"),
+                type: "warning",
+                showCancelButton: false,
+                confirmButtonText: this.t("common.confirm"),
+              });
+            } else if (
+              error.response &&
+              error.response.data &&
+              error.response.data.code === MAXIMUM_STATUS
+            ) {
+              this.$swal({
+                text: this.t("jobAbilityManagement.tab1.maxVer"),
+                type: "warning",
+                showCancelButton: false,
+                confirmButtonText: this.t("common.confirm"),
+              });
+            }
           });
-        } else {
-          await this.versionUp();
-          this.cmn.setLoading(false);
-          this.back();
-        }
         this.cmn.setLoading(false);
       }
     },
@@ -1045,6 +780,12 @@ export default {
     handleVerChange() {
       this.verType = "V" + this.jobAbilityCrudModel.ver;
     },
+    handleChangeYear() {
+      this.lastTwoDigitsOfYear = this.jobAbilityCrudModel.jobAbilYear.slice(
+        2,
+        4
+      );
+    },
     generateVersions() {
       let versions = [];
       for (let i = 1; i <= 9; i++) {
@@ -1055,6 +796,19 @@ export default {
       }
 
       return versions;
+    },
+    emitId() {
+      this.$emit("update-id", this.jobAbilSeq);
+    },
+    getListYear() {
+      let yearData = [];
+      for (let i = 2013; i <= this.currentYear; i++) {
+        yearData.push({
+          cdId: i.toString(),
+          cdNm: i.toString(),
+        });
+      }
+      return yearData;
     },
     generateStandards() {
       let standards = [];
@@ -1079,12 +833,26 @@ export default {
         orderNo: "",
         upCd: "",
       };
+      const defaultItemTow = {
+        cdId: "",
+        cdNm: this.t("jobAbilityManagement.tab1.defaultSelect3"),
+        orderNo: "",
+        upCd: "",
+      };
+      const defaultItemThree = {
+        cdId: "",
+        cdNm: this.t("jobAbilityManagement.tab1.defaultSelect4"),
+        orderNo: "",
+        upCd: "",
+      };
       switch (selectBoxId) {
         case "bigClassCd":
           defaultItemOne.cdNm = this.t(
-            "jobAbilityManagement.tab1.defaultSelect1"
+            "jobAbilityManagement.tab1.defaultSelect2"
           );
           this.listMedClass = [defaultItemOne];
+          this.listSmallClass = [defaultItemTow];
+          this.listDetailClass = [defaultItemThree];
           this.jobAbilityCrudModel.jobCapaMediumLevel = "";
           this.jobAbilityCrudModel.jobCapaLowLevel = "";
           this.jobAbilityCrudModel.jobCapaDetailLevel = "";
@@ -1104,10 +872,21 @@ export default {
           break;
 
         case "medClassCd":
+          if (this.jobAbilityCrudModel.jobCapaHightLevel == "") {
+            this.$swal({
+              text: this.t("jobAbilityManagement.tab1.alertChoice"),
+              type: "warning",
+              showConfirmButton: false,
+              showCancelButton: true,
+              cancelButtonText: this.t("common.confirm"),
+            });
+            return;
+          }
           defaultItemOne.cdNm = this.t(
-            "jobAbilityManagement.tab1.defaultSelect2"
+            "jobAbilityManagement.tab1.defaultSelect3"
           );
           this.listSmallClass = [defaultItemOne];
+          this.listDetailClass = [defaultItemThree];
           this.jobAbilityCrudModel.jobCapaLowLevel = "";
           this.jobAbilityCrudModel.jobCapaDetailLevel = "";
           this.selectedOrders.smallClassCd = "";
@@ -1125,8 +904,18 @@ export default {
           break;
 
         case "smallClassCd":
+          if (this.jobAbilityCrudModel.jobCapaMediumLevel == "") {
+            this.$swal({
+              text: this.t("jobAbilityManagement.tab1.alertChoice"),
+              type: "warning",
+              showConfirmButton: false,
+              showCancelButton: true,
+              cancelButtonText: this.t("common.confirm"),
+            });
+            return;
+          }
           defaultItemOne.cdNm = this.t(
-            "jobAbilityManagement.tab1.defaultSelect3"
+            "jobAbilityManagement.tab1.defaultSelect4"
           );
           this.listDetailClass = [defaultItemOne];
           this.jobAbilityCrudModel.jobCapaDetailLevel = "";
@@ -1144,9 +933,16 @@ export default {
           break;
 
         case "detailClassCd":
-          defaultItemOne.cdNm = this.t(
-            "jobAbilityManagement.tab1.defaultSelect4"
-          );
+          if (this.jobAbilityCrudModel.jobCapaLowLevel == "") {
+            this.$swal({
+              text: this.t("jobAbilityManagement.tab1.alertChoice"),
+              type: "warning",
+              showConfirmButton: false,
+              showCancelButton: true,
+              cancelButtonText: this.t("common.confirm"),
+            });
+            return;
+          }
           selectedItem = this.listDetailClass.find(
             (item) => item.cdId === selectedValue
           );
@@ -1156,7 +952,7 @@ export default {
           break;
       }
     },
-    async getListParent(type = KCS_CD_ID) {
+    async getListParent(type: string) {
       this.cmn.setLoading(true);
       await parentList(type)
         .then((res) => {
@@ -1168,7 +964,6 @@ export default {
               upCd: "",
             },
           ];
-
           res.data.data.forEach((element: any) => {
             this.listBigClass.push({
               cdId: element.jobCapaStndSeq,
@@ -1185,37 +980,39 @@ export default {
             Promise.all([
               itemList(this.detailData?.hightNo).then((res) => {
                 if (res.data?.code === SUCCESS) {
-                  res.data.data.forEach((element: any) => {
-                    this.listMedClass.push({
-                      cdId: element.jobCapaStndSeq,
-                      cdNm: element.jobCapaStndNm,
-                      orderNo: element.jobCapaStndCd,
-                      upId: element.upJobCapaStndSeq,
-                    });
-                  });
+                  let dataResult = res.data.data.map((element: any) => ({
+                    cdId: element.jobCapaStndSeq,
+                    cdNm: element.jobCapaStndNm,
+                    orderNo: element.jobCapaStndCd,
+                    upId: element.upJobCapaStndSeq,
+                  }));
+
+                  this.listMedClass = dataResult;
                 }
               }),
               itemList(this.detailData?.mediumNo).then((res) => {
                 if (res.data?.code === SUCCESS) {
-                  res.data.data.forEach((element: any) => {
-                    this.listSmallClass.push({
-                      cdId: element.jobCapaStndSeq,
-                      cdNm: element.jobCapaStndNm,
-                      orderNo: element.jobCapaStndCd,
-                      upId: element.upJobCapaStndSeq,
-                    });
-                  });
+                  let dataResult = res.data.data.map((element: any) => ({
+                    cdId: element.jobCapaStndSeq,
+                    cdNm: element.jobCapaStndNm,
+                    orderNo: element.jobCapaStndCd,
+                    upId: element.upJobCapaStndSeq,
+                  }));
+
+                  this.listSmallClass = dataResult;
                 }
               }),
               itemList(this.detailData?.lowNo).then((res) => {
                 if (res.data?.code === SUCCESS) {
                   res.data.data.forEach((element: any) => {
-                    this.listDetailClass.push({
+                    let dataResult = res.data.data.map((element: any) => ({
                       cdId: element.jobCapaStndSeq,
                       cdNm: element.jobCapaStndNm,
                       orderNo: element.jobCapaStndCd,
                       upId: element.upJobCapaStndSeq,
-                    });
+                    }));
+
+                    this.listDetailClass = dataResult;
                   });
                 }
               }),
@@ -1266,14 +1063,6 @@ export default {
         (this.learnMouleYn === REGISTER_CD &&
           !this.jobAbilityCrudModel.learnModuleNm) ||
         this.jobAbilityCrudModel.lvl === ""
-      );
-    },
-    checkValUpVer() {
-      return (
-        (this.learnMouleVerYn === REGISTER_CD &&
-          this.upVerData.learnModuleNm === "") ||
-        this.upVerData.defn === "" ||
-        this.upVerData.lvl === ""
       );
     },
   },

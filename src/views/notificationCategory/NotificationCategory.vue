@@ -4,76 +4,65 @@
       :pageTitle="pageTitle"
       :breadcrumbItems="breadcrumbItems"
     ></Breadcrumb>
-    <div class="search_box">
-      <div class="search_section">
-        <div class="search_toggle sm">
-          <div class="left"></div>
-          <div class="right">
-            <div class="search_daywrap mg_r10">
-              <span class="tag">{{
-                t("09.notificationCategory.search.heading")
-              }}</span>
-              <div class="select_row">
-                <InputBase
-                  v-model="notificationCategorySearchModel.ttl"
-                  :id="'ctgHeading'"
-                  :name="'ctgHeading'"
-                  placeholder="보고 싶은 비교과 프로그램을 찾아보세요"
-                >
-                </InputBase>
-              </div>
-            </div>
-
-            <div class="search_daywrap mg_r10">
-              <span class="tag">{{
-                t("09.notificationCategory.search.showOrNot")
-              }}</span>
-              <div class="select_row sm">
-                <SelectBoxBase
-                  :id="'selectboxShow'"
-                  :name="'selectboxShow'"
-                  :data="listSelectBoxShow"
-                  v-model="notificationCategorySearchModel.openYn"
-                >
-                </SelectBoxBase>
-              </div>
-            </div>
-            <div class="search_daywrap mg_r10">
-              <span class="tag">{{
-                t("09.notificationCategory.search.subscribers")
-              }}</span>
-              <div class="select_row">
-                <InputBase
-                  v-model="notificationCategorySearchModel.regId"
-                  :id="'ctgName'"
-                  :name="'ctgName'"
-                  placeholder="보고 싶은 비교과 프로그램을 찾아보세요"
-                >
-                </InputBase>
-              </div>
-            </div>
-            <div>
-              <button
-                type="button"
-                class="btn_round btn_lg btn_primary mg_l10"
-                @click="searchClick"
+    <div class="box dp_block">
+      <div class="box_section">
+        <div class="search_box col_3">
+          <ul>
+            <li>
+              <p>{{ t("09.notificationCategory.search.heading") }}</p>
+              <InputBase
+                v-model="notificationCategorySearchModel.ttl"
+                :id="'ctgHeading'"
+                :name="'ctgHeading'"
+                class="form_style"
               >
-                조회하기
-              </button>
-              <button
-                type="button"
-                class="btn_round btn_lg btn_gray mg_l5"
-                @click="resetSearch()"
+              </InputBase>
+            </li>
+            <li>
+              <p>{{ t("09.notificationCategory.search.showOrNot") }}</p>
+              <SelectBoxBase
+                :id="'selectboxShow'"
+                :name="'selectboxShow'"
+                :data="listSelectBoxShow"
+                v-model="notificationCategorySearchModel.openYn"
               >
-                초기화
-              </button>
-            </div>
+              </SelectBoxBase>
+            </li>
+            <li>
+              <p>{{ t("09.notificationCategory.search.subscribers") }}</p>
+              <InputBase
+                v-model="notificationCategorySearchModel.regId"
+                :id="'ctgName'"
+                :name="'ctgName'"
+                class="form_style"
+              >
+              </InputBase>
+            </li>
+          </ul>
+          <div class="btn_group btn_end">
+            <ButtonBase
+              type="button"
+              class="button btn_lg btn_blue btn_responsive"
+              @click="searchClick()"
+              :buttonName="t('common.search')"
+            >
+            </ButtonBase>
+            <ButtonBase
+              type="button"
+              class="button btn_lg btn_gray btn_responsive"
+              @click="resetSearch()"
+              :buttonName="t('common.reset')"
+            >
+            </ButtonBase>
           </div>
         </div>
       </div>
     </div>
 
     <div class="box dp_block">
+      <p class="note_custom mb-4">
+        {{ t("09.notificationCategory.search.subTitle") }}
+      </p>
       <div class="box_section">
         <GridComponentV2
           :rowData="rowData"
@@ -90,13 +79,13 @@
         >
           <template #button>
             <div class="search_btnarea">
-              <button
+              <ButtonBase
                 type="button"
                 class="btn_round btn_sm btn_primary"
                 @click="create()"
+                :buttonName="t('09.notificationCategory.search.btnCreate')"
               >
-                {{ t("09.notificationCategory.search.btnCreate") }}
-              </button>
+              </ButtonBase>
             </div>
           </template>
         </GridComponentV2>
@@ -120,7 +109,7 @@ import type {
   CodeSiteModel,
 } from "../../stores/notificationCategory/notificationCategory.type";
 import { fetchData } from "@/stores/notificationCategory/notificationCategory.service";
-import { SHOW_Y, SHOW_N, TOP_N, TOP_Y } from "../../constants/common.const";
+import { SHOW_Y, SHOW_N, TOP_Y } from "../../constants/common.const";
 import {
   PAGINATION_PAGE_SIZE,
   PAGINATION_PAGE_SIZE_SELECTOR,
@@ -138,6 +127,7 @@ import { MESSAGE_ERROR_API } from "@/constants/common.const";
 import { commonStore } from "@/stores/common";
 import { getListCodeMng } from "@/stores/common/codeMng/codeMng.service";
 import type { CodeMngResModel } from "@/stores/common/codeMng/codeMng.type";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
@@ -149,6 +139,7 @@ export default defineComponent({
     LoaddingComponent,
     LinkGridComponent,
     ImageGridComponent,
+    ButtonBase,
   },
   setup() {
     const { t } = useI18n();

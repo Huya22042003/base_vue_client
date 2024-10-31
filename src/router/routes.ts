@@ -1066,14 +1066,9 @@ export const routes = [
         ]
       },
       {
-        path: SCREEN.eduProcessApprovement.path,
-        name: SCREEN.eduProcessApprovement.name,
-        component: () => import('../views/eduProcessCreation/EduProcessApprovement.vue')
-      },
-      {
-          path: SCREEN.eduSubjectProfileDetail.path,
-          name: SCREEN.eduSubjectProfileDetail.name,
-          component: () => import('@/views/eduProcessCreation/subjectProfile/SubjectProfileEdit.vue')
+        path: SCREEN.eduSubjectProfileDetail.path,
+        name: SCREEN.eduSubjectProfileDetail.name,
+        component: () => import('@/views/eduProcessCreation/subjectProfile/SubjectProfileEdit.vue')
       },
       {
         path: SCREEN.manageAssessmentReports.path,
@@ -1291,7 +1286,17 @@ export const routes = [
         path: SCREEN.lookupEvaluationPlan.path,
         name: SCREEN.lookupEvaluationPlan.name,
         component: () => import('@/views/lookupEvaluationPlan/index.vue')
-      }
+      },
+      {
+        path: SCREEN.finalArchivement.path,
+        name: SCREEN.finalArchivement.name,
+        component: () => import('@/views/finalArchivement/FinalArchivementList.vue')
+      },
+      {
+        path: SCREEN.finalArchivementAction.path,
+        name: SCREEN.finalArchivementAction.name,
+        component: () => import('@/views/finalArchivement/FinalArchivementAction.vue')
+      },
     ],
   },
   {

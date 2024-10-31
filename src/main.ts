@@ -26,8 +26,10 @@ const app = createApp(App);
 import { i18n } from '@/plugins/i18n'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
-
-app.use(createPinia())
+import { createPersistedState } from 'pinia-plugin-persistedstate';
+const pinia = createPinia();
+pinia.use(createPersistedState());
+app.use(pinia)
 app.use(i18n)
 app.component('QuillEditor', QuillEditor)
 app.use(vuetify);

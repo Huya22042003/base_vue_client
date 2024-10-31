@@ -8,7 +8,13 @@
     <div class="grid_content">
       <div class="sub_section">
         <div class="box">
-          <div class="search_toggle sm">
+          <div
+            class="search_toggle sm"
+            v-if="
+              eduCourseTypeCd == CD_TYPE_BACHELOR ||
+              eduCourseTypeCd == CD_TYPE_SPECIAL
+            "
+          >
             <div class="left">
               <div class="radio_tab_lg_wrap">
                 <p class="radio_tab_lg">
@@ -20,7 +26,9 @@
                     :disabled="checkTab('One')"
                   />
                   <label for="radio_1">{{
-                    t("createTrainingProcess.tab1")
+                    mode === "major"
+                      ? t("createTrainingProcess.tab1")
+                      : t("createTrainingProcess.tab3")
                   }}</label>
                 </p>
                 <p class="radio_tab_lg">
@@ -32,77 +40,87 @@
                     :disabled="checkTab('Two')"
                   />
                   <label for="radio_2">{{
-                    t("createTrainingProcess.tab2")
-                  }}</label>
-                </p>
-                <p class="radio_tab_lg">
-                  <input
-                    type="radio"
-                    id="radio_3"
-                    :checked="picked == 'Three'"
-                    @change="changeTab('Three')"
-                    :disabled="checkTab('Three')"
-                  />
-                  <label for="radio_3">{{
-                    t("createTrainingProcess.tab3")
+                    mode === "major"
+                      ? t("createTrainingProcess.tab2")
+                      : t("createTrainingProcess.tab4")
                   }}</label>
                 </p>
               </div>
             </div>
           </div>
-          <div v-if="mode === 'major'">
-            <MajorTab1
-              :dataDetail="dataOverview"
-              ref="majorTab1Ref"
-              v-if="picked === 'One'"
-            />
-            <MajorTab2
-              :dataResult="dataResult"
-              :countTab2="countTab2"
-              ref="majorTab2Ref"
-              v-else-if="picked === 'Two'"
-            />
-            <FormAddFile ref="majorTab3Ref" v-else />
-          </div>
-          <div v-else>
-            <GeneralTab1 
-              :dataDetail="dataOverview"
-              ref="generalTab1Ref" v-if="picked === 'One'" />
-            <GeneralTab2
-              :dataResult="dataResult"
-              :countTab2="countTab2"
-              ref="generalTab2Ref" v-else-if="picked === 'Two'" />
-            <FormAddFile v-else />
-          </div>
+          <template
+            v-if="
+              eduCourseTypeCd == CD_TYPE_BACHELOR ||
+              eduCourseTypeCd == CD_TYPE_SPECIAL
+            "
+          >
+            <div v-if="mode === 'major'">
+              <MajorTab1
+                :dataDetail="dataOverview"
+                ref="majorTab1Ref"
+                v-if="picked === 'One'"
+              />
+              <MajorTab2
+                :dataResult="dataResult"
+                :countTab2="countTab2"
+                ref="majorTab2Ref"
+                v-else-if="picked === 'Two'"
+              />
+            </div>
+            <div v-else>
+              <GeneralTab1
+                :dataDetail="dataOverview"
+                ref="generalTab1Ref"
+                v-if="picked === 'One'"
+              />
+              <GeneralTab2
+                :dataResult="dataResult"
+                :countTab2="countTab2"
+                ref="generalTab2Ref"
+                v-else-if="picked === 'Two'"
+              />
+            </div>
+          </template>
+          <template v-else>
+            <FormAddFile ref="majorTab3Ref" />
+          </template>
           <div class="btn_area ta_r">
-            <button
-              v-if="picked !== 'Three' && status != STS_EDU_CQI_SUCCESS"
-              class="button btn_md btn_secondary"
-              @click="saveTemp"
+            <template
+              v-if="
+                eduCourseTypeCd == CD_TYPE_BACHELOR ||
+                eduCourseTypeCd == CD_TYPE_SPECIAL
+              "
             >
-              {{ t("common.saveTemp") }}
-            </button>
-            <button
-              v-if="picked === 'One'"
-              class="button btn_md btn_primary ml-4"
-              @click="handleNext"
-            >
-              {{ t("common.next") }}
-            </button>
-            <button
-              v-else-if="picked === 'Two'"
-              class="button btn_md btn_primary ml-4"
-              @click="handleNextTwo"
-            >
-              {{ t("common.next") }}
-            </button>
-            <button
-              v-else-if="status != STS_EDU_CQI_SUCCESS"
-              class="button btn_md btn_primary ml-4"
-              @click="saveData"
-            >
-              {{ t("common.save") }}
-            </button>
+              <button
+                v-if="status != STS_EDU_CQI_SUCCESS"
+                class="button btn_md btn_secondary"
+                @click="saveTemp"
+              >
+                {{ t("common.saveTemp") }}
+              </button>
+              <button
+                v-if="picked === 'One'"
+                class="button btn_md btn_primary ml-4"
+                @click="handleNext"
+              >
+                {{ t("common.next") }}
+              </button>
+              <button
+                v-if="picked === 'Two'"
+                class="button btn_md btn_primary ml-4"
+                @click="saveData"
+              >
+                {{ t("common.save") }}
+              </button>
+            </template>
+            <template v-else>
+              <button
+                class="button btn_md btn_primary ml-4"
+                @click="saveData"
+              >
+                {{ t("common.save") }}
+              </button>
+            </template>
             <button
               class="button btn_md btn_white ml-4"
               @click="handleRedirectMenu"
@@ -128,9 +146,10 @@ import { SCREEN } from "@/router/screen";
 import { useI18n } from "vue-i18n";
 import { ref } from "vue";
 import { getCurrentInstance } from "vue";
-import { EduCourseCqiReq } from "@/stores/cqiTrainingProcess/cqiTrainingProcess.type";
 import { saveEduCourseCqi } from "@/stores/cqiTrainingProcess/cqiTrainingProcess.service";
 import {
+  CD_TYPE_BACHELOR,
+  CD_TYPE_SPECIAL,
   STS_EDU_CQI_CREATE,
   STS_EDU_CQI_SUCCESS,
 } from "@/constants/common.const";
@@ -161,7 +180,7 @@ const dataOverview = ref();
 const dataResult = ref();
 
 const state = window.history.state;
-const { deptCd, typeSeq, year, status } = state;
+const { deptCd, typeSeq, year, status, eduCourseTypeCd } = state;
 
 const checkTab = (current: string) => {
   if (status != STS_EDU_CQI_SUCCESS) {
@@ -218,12 +237,19 @@ const saveTemp = () => {
       dataResult.value = generalTab2Ref.value.getData();
     }
   }
-
-  proxy.$confirm(
-    t("common.message.confirmSaveTemp"),
-    "",
-    (isConfirm: Boolean) => {
-      if (isConfirm) {
+  proxy
+    .$swal({
+      title: "",
+      html: t("common.message.confirmSaveTemp"),
+        confirmButtonColor: "#5D87FF",
+        showCancelButton: true,
+        cancelButtonColor: "#fff",
+        reverseButtons: true,
+        confirmButtonText: t("common.confirm"),
+        cancelButtonText: t("common.cancel"),
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
         store.setLoading(true);
         const dataSave = {
           eduCursCqiSeq: "",
@@ -231,7 +257,7 @@ const saveTemp = () => {
           deptCd: deptCd,
           eduCursTypeSeq: typeSeq,
           stsCd: STS_EDU_CQI_CREATE,
-          usagePlan: dataOverview.value.usagePlan,
+          usagePlan: dataOverview.value?.usagePlan,
           overview: dataOverview.value,
           evalStnrd: dataResult.value,
         };
@@ -244,40 +270,65 @@ const saveTemp = () => {
             store.setLoading(false);
           });
       }
-    }
-  );
+    });
 };
 
 const saveData = () => {
-  if (store.check) {
-    proxy.$alert(proxy.$t("common.messageValidateRequired"));
-    return;
+  if (
+    eduCourseTypeCd == CD_TYPE_BACHELOR ||
+    eduCourseTypeCd == CD_TYPE_SPECIAL
+  ) {
+    if (store.check) {
+      proxy.$alert(proxy.$t("common.messageValidateRequired"));
+      return;
+    }
+  }
+
+  if (mode.value === "major") {
+    if (majorTab1Ref.value) {
+      dataOverview.value = majorTab1Ref.value.getData();
+    }
+    if (majorTab2Ref.value) {
+      dataResult.value = majorTab2Ref.value.getData();
+    }
+  } else {
+    if (generalTab1Ref.value) {
+      dataOverview.value = generalTab1Ref.value.getData();
+    }
+    if (generalTab2Ref.value) {
+      dataResult.value = generalTab2Ref.value.getData();
+    }
   }
 
   proxy.$confirm(t("common.message.save"), "", (isConfirm: Boolean) => {
     if (isConfirm) {
       store.setLoading(true);
-      if (dataOverview.value && dataResult.value) {
-        const dataSave = {
-          eduCursCqiSeq: "",
-          year: year,
-          deptCd: deptCd,
-          eduCursTypeSeq: typeSeq,
-          stsCd: STS_EDU_CQI_SUCCESS,
-          usagePlan: dataOverview.value.usagePlan,
-          overview: dataOverview.value,
-          evalStnrd: dataResult.value,
-        };
-        saveEduCourseCqi(dataSave)
-          .then((res) => {
+      const dataSave = {
+        eduCursCqiSeq: "",
+        year: year,
+        deptCd: deptCd,
+        eduCursTypeSeq: typeSeq,
+        stsCd: STS_EDU_CQI_SUCCESS,
+        usagePlan: dataOverview.value?.usagePlan,
+        overview: dataOverview.value,
+        evalStnrd: dataResult.value,
+      };
+      saveEduCourseCqi(dataSave)
+        .then((res) => {
+          if (
+            !(
+              eduCourseTypeCd == CD_TYPE_BACHELOR ||
+              eduCourseTypeCd == CD_TYPE_SPECIAL
+            )
+          ) {
             majorTab3Ref.value.saveDataFile(res.data.data);
-            proxy.$alert(proxy.$t("common.message.saveSuccess"));
-            handleRedirectMenu();
-          })
-          .finally(() => {
-            store.setLoading(false);
-          });
-      }
+          }
+          proxy.$alert(proxy.$t("common.message.saveSuccess"));
+          handleRedirectMenu();
+        })
+        .finally(() => {
+          store.setLoading(false);
+        });
     }
   });
 };
@@ -301,27 +352,14 @@ const handleNext = () => {
   countTab2.value++;
 };
 
-const handleNextTwo = () => {
-  if (store.check) {
-    proxy.$alert(proxy.$t("common.messageValidateRequired"));
-    return;
-  }
-  if (mode.value === "major") {
-    if (majorTab2Ref.value) {
-      dataResult.value = majorTab2Ref.value.getData();
-    }
-  } else {
-    if (generalTab2Ref.value) {
-      dataResult.value = generalTab2Ref.value.getData();
-    }
-  }
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  picked.value = "Three";
-};
-
 const handleRedirectMenu = () => {
   router.push({ path: SCREEN.CQITrainingProcess.path });
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.radio_tab_lg label {
+  white-space: nowrap;
+  max-width: 100%;
+}
+</style>

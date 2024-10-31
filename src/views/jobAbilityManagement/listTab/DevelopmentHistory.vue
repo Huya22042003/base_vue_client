@@ -36,13 +36,16 @@
             </th>
             <td class="td_input">{{ currentYear }}</td>
           </tr>
-          <tr>
+          <tr v-for="(item, index) in listJobHistory">
             <th scope="row">
-              <p class="required">
-                {{ t("jobAbilityManagement.tab4.column4") }}
+              <p v-if="index == 0" class="required">
+                개발연도 최초({{ index + 1 }}차)
+              </p>
+              <p v-if="index != 0" class="required">
+                개발연도 ({{ index + 1 }}차)
               </p>
             </th>
-            <td class="td_input">{{ listJobHistory[1].supportYear }}</td>
+            <td class="td_input">{{ item.supportYear }}</td>
           </tr>
           <tr>
             <th scope="row">
@@ -54,13 +57,16 @@
               <InputBase v-model="authNm" required />
             </td>
           </tr>
-          <tr>
+          <tr v-for="(item, index) in listJobHistory">
             <th scope="row">
-              <p class="required">
-                {{ t("jobAbilityManagement.tab4.column6") }}
+              <p v-if="index == 0" class="required">
+                개발자 최초({{ index + 1 }}차)
+              </p>
+              <p v-if="index != 0" class="required">
+                개발자 ({{ index + 1 }}차)
               </p>
             </th>
-            <td class="td_input">{{ listJobHistory[1].authNm }}</td>
+            <td class="td_input">{{ item.authNm }}</td>
           </tr>
           <tr>
             <th scope="row">
@@ -75,30 +81,19 @@
         </tbody>
       </table>
       <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
-        <button
-          type="button"
-          class="btn_round btn_md btn_gray"
-          v-if="modeScreen === modeDetail"
+        <ButtonBase
+          class="btn_round btn_gray btn_md"
+          :buttonName="t('jobAbilityManagement.tab1.btnVersionUp')"
           @click="saveVer"
+          v-if="modeScreen == modeDetail"
         >
-          {{ t("jobAbilityManagement.tab1.btnVersionUp") }}
-        </button>
-        <button
-          type="button"
-          class="btn_round btn_md btn_gray"
-          v-if="modeScreen === modeCreate"
+        </ButtonBase>
+        <ButtonBase
+          class="btn_round btn_md btn_primary"
+          :buttonName="t('common.save')"
           @click="saveData"
         >
-          {{ t("common.save") }}
-        </button>
-        <button
-          type="button"
-          class="btn_round btn_md btn_gray"
-          v-if="modeScreen === modeDetail"
-          @click="saveData"
-        >
-          {{ t("common.edit") }}
-        </button>
+        </ButtonBase>
         <button type="button" class="btn_round btn_white btn_md" @click="back">
           {{ t("common.list") }}
         </button>
@@ -121,11 +116,12 @@ import type { JobHistory } from "@/stores/jobAbilityManagement/jobAbilityManagem
 import {
   saveJobHistory,
   detailHistory,
-  upVerHistory,
+  upVer,
 } from "@/stores/jobAbilityManagement/jobAbilityManagement.service";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default {
-  components: {},
+  components: { ButtonBase },
   setup() {
     const cmn = commonStore();
     const { t } = useI18n();
@@ -225,9 +221,15 @@ export default {
         }).then((result) => {
           if (result.isConfirmed) {
             this.cmn.setLoading(true);
-            upVerHistory(this.jobHistory)
-              .then((res) => {
-                this.back();
+            upVer(this.jobHistory.jobAbilSeq)
+              .then(async (res) => {
+                await this.$swal({
+                  text: "직무역량 버전을 올리기가 되었습니다.",
+                  type: "warning",
+                  showCancelButton: false,
+                  confirmButtonText: this.t("common.confirm"),
+                });
+                await this.back();
               })
               .catch((error) => {
                 if (

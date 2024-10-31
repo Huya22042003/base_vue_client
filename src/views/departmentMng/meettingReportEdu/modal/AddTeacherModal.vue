@@ -12,18 +12,15 @@
         <div>
           <div class="btn_group btn_end" style="gap: 10px">
             <InputBase class="flex-[7]" :placeholder="searchPlace" id="search_teacher" v-model="dataSearch.name" />
-            <button class="button btn_sm btn_medium_gray bo_rd6" @click="search()">
+            <button class="button btn_sm btn_primary bo_rd6" @click="search()">
               <!-- 조회 -->
               {{ t("departmentMng.meettingReportEdu.modalAdd.search") }}
             </button>
-            <button class="button btn_sm btn_white bo_rd6" @click="reset()">
+            <button class="button btn_sm btn_gray" @click="reset()">
               <!-- 초기화 -->
               {{ t("departmentMng.meettingReportEdu.modalAdd.clear") }}
             </button>
           </div>
-          <p class="box_title_sm note_custom">
-            {{ t("departmentMng.meettingReportEdu.modalAdd.subTitle") }}
-          </p>
         </div>
         <div>
           <GridComponentV2 :rowData="data" :columnDefs="columnDefs" :paginationClientFlag="false" :key="key"
@@ -199,14 +196,21 @@ export default {
 
       this.storeCommon.setLoading(false)
     },
-
+    showAlert(message: string) {
+      this.$swal({
+        text: message,
+        showConfirmButton: true,
+        confirmButtonColor: "#DD6B55",
+        cancelButtonText: this.t("common.confirm"),
+      });
+    },
     handleTeacher(data: any) {
       this.$swal({
-        text: this.t('departmentMng.meettingReportEdu.message.selectStudent'),
+        text: `${data.userNm}을/를 선택하시겠습니까?`,
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
-        confirmButtonText: this.t('common.save'),
+        confirmButtonText: this.t('common.select'),
         cancelButtonText: this.t('common.cancel'),
       })
         .then((result) => {
@@ -219,7 +223,7 @@ export default {
               department: "",
               divCd: CD_ID_MEET_ATTE1
             }
-
+            this.showAlert(this.t("departmentMng.meettingReportEdu.modalAdd.confirmTeacher"));
             this.$emit('teacher-selected', newData);
             this.onClose();
             this.storeCommon.setLoading(false);

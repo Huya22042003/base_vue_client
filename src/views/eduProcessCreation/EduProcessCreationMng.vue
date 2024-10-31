@@ -58,7 +58,7 @@
             type="radio"
             :key="`radio_round_black4_${checkKey}`"
             id="radio_round_black4"
-            :disabled="stage < 33"
+            :disabled="stage < 36"
             name="radio_tab"
             @click="tabChange(40)"
             :checked="tabCheck == 40"

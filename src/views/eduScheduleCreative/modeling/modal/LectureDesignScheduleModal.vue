@@ -8,17 +8,15 @@
   >
     <!-- Modal content goes here -->
     <template #title>
-      <div class="box_section">
-        <p class="box_title_sm" v-if="modalType === 'type1'">
-          {{ t("lectureDesignSchedule.modal.title") }}
-        </p>
-        <p class="box_title_sm" v-if="modalType === 'type2'">
-          {{ t("lectureDesignSchedule.modal.titleChooseDivision") }}
-        </p>
-        <p class="box_title_sm" v-if="modalType === 'type3'">
-          {{ t("lectureDesignSchedule.modal.titleChooseCheckbox") }}
-        </p>
-      </div>
+      <strong v-if="modalType === 'type1'">
+        {{ t("lectureDesignSchedule.modal.title") }}
+      </strong>
+      <strong v-if="modalType === 'type2'">
+        {{ t("lectureDesignSchedule.modal.titleChooseDivision") }}
+      </strong>
+      <strong v-if="modalType === 'type3'">
+        {{ t("lectureDesignSchedule.modal.titleChooseCheckbox") }}
+      </strong>
     </template>
     <template #default>
       <div class="box_section">
@@ -202,20 +200,20 @@
     </template>
     <template #footer>
       <!-- Footer content goes here -->
-      <button
+      <ButtonBase
         type="button"
         class="btn_round btn_lg btn_primary mg_l10"
+        :buttonName="t('lectureDesignSchedule.modal.save')"
         @click="confirmAction"
       >
-        {{ t("lectureDesignSchedule.modal.save") }}
-      </button>
-      <button
+      </ButtonBase>
+      <ButtonBase
         type="button"
         class="btn_round btn_lg btn_gray mg_l10"
         @click="closeModal"
+        :buttonName="t('lectureDesignSchedule.modal.close')"
       >
-        {{ t("lectureDesignSchedule.modal.close") }}
-      </button>
+      </ButtonBase>
     </template>
   </TModal>
 </template>
@@ -236,9 +234,13 @@ import {
 import { UP_CD_ID_SEMESTER } from "@/constants/common.const";
 import { getCodeMngByUpCdId } from "@/stores/common/codeMng/codeMng.service";
 import Swal from "sweetalert2";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   name: "lectureDesignSchudeModel",
+  components: {
+    ButtonBase,
+  },
   props: {
     isOpen: {
       type: Boolean,

@@ -8,14 +8,13 @@
   >
     <!-- Modal content goes here -->
     <template #title>
-      <div class="box_section">
-        <p class="box_title_sm" v-if="checkSetup == false">
-          {{ t("04.eduScheduleCreativeMng.newEducationSchedule.modal.title") }}
-        </p>
-        <p class="box_title_sm" v-if="checkSetup == true">
-          {{ t("04.eduScheduleCreativeMng.newEducationSchedule.modal.title2") }}
-        </p>
-      </div>
+      <strong>
+        {{
+          checkSetup
+            ? t("04.eduScheduleCreativeMng.newEducationSchedule.modal.title")
+            : t("04.eduScheduleCreativeMng.newEducationSchedule.modal.title2")
+        }}
+      </strong>
     </template>
     <template #default>
       <div class="box_section">
@@ -116,47 +115,48 @@
     </template>
     <template #footer>
       <!-- Footer content goes here -->
-      <button
+      <ButtonBase
         type="button"
-        class="button btn_xs btn_primary"
+        class="button btn_xl btn_primary"
+        :buttonName="
+          t('04.eduScheduleCreativeMng.newEducationSchedule.modal.action.save')
+        "
         @click="confirmAction"
       >
-        {{
-          t("04.eduScheduleCreativeMng.newEducationSchedule.modal.action.save")
-        }}
-      </button>
-      <button
+      </ButtonBase>
+      <ButtonBase
         type="button"
-        class="button btn_xs btn_white popup_close"
+        class="button btn_xl btn_white popup_close"
         @click="cancelAction"
-      >
-        {{
+        :buttonName="
           t(
-            "04.eduScheduleCreativeMng.newEducationSchedule.modal.action.cancel"
+            '04.eduScheduleCreativeMng.newEducationSchedule.modal.action.cancel'
           )
-        }}
-      </button>
+        "
+      >
+      </ButtonBase>
     </template>
   </TModal>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useI18n } from "vue-i18n";
-import {
+import type {
   NewEducationScheduleModel,
   NewEducationScheduleReqModel,
 } from "../../../../stores/newEducationSchedule/NewEducationSchedule.type";
 import {
-  PAGINATION_PAGE_SIZE,
   SUCCSESS_STATUS,
-  PAGINATION_PAGE_SIZE_SELECTOR,
-  TYPE_EVENT,
   START_YEAR,
-  FORMAT_YYY_MM_DD,
 } from "../../../../constants/screen.const.ts";
 import { commonStore } from "../../../../stores/common.ts";
 import { NewEducationScheduleStore } from "../../../../stores/newEducationSchedule";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
+
 export default defineComponent({
+  components: {
+    ButtonBase,
+  },
   name: "NewEducationScheduleModal",
   props: {
     isOpen: {

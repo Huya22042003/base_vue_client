@@ -195,8 +195,8 @@
                       </th>
                       <td scope="row" :colspan="1">
                         <ListCheckBoxBase
-                          v-if="dataSubject.listEvalMethod"
-                          :listData="dataSubject.listEvalMethod"
+                          v-if="dataSubject.listProfLearnMng"
+                          :listData="dataSubject.listProfLearnMng"
                           :mode="'show'"
                           v-model="dataSubject.evalSel"
                           :id="`evalSel`"
@@ -216,8 +216,8 @@
                       </th>
                       <td scope="row" :colspan="1">
                         <ListCheckBoxBase
-                          v-if="dataSubject.listProfLearnMng"
-                          :listData="dataSubject.listProfLearnMng"
+                          v-if="dataSubject.listEvalMethod"
+                          :listData="dataSubject.listEvalMethod"
                           :mode="'show'"
                           v-model="dataSubject.profEvalSel"
                           :id="`profEvalSel`"
@@ -258,9 +258,9 @@
                       </th>
                       <td scope="row" :colspan="1">
                         <RadiobuttonBase
-                          v-for="(item, index) in listClassOnline"
-                          :value="dataSubject.remoteClassYn"
-                          v-model="radiovalue2"
+                          v-for="(item, index) in listLecture"
+                          :value="item.cdId"
+                          v-model="dataSubject.otherDeptCoursePsblYn"
                           :id="`otherDeptCoursePsblYn_${index}`"
                           :name="`otherDeptCoursePsblYn`"
                           :key="`otherDeptCoursePsblYn_${index}`"
@@ -280,8 +280,8 @@
                       <td scope="row" :colspan="1">
                         <RadiobuttonBase
                           v-for="(item, index) in listClassOnline"
-                          :value="dataSubject.remoteClassYn"
-                          v-model="radiovalue2"
+                          :value="item.cdId"
+                          v-model="dataSubject.remoteClassYn"
                           :id="`classOnline_${index}`"
                           :name="`classOnline`"
                           :key="`classOnline_${index}`"
@@ -339,7 +339,7 @@
                         }}<!-- KCS능력단위(자체능력단위) -->
                       </th>
                       <td scope="row" :colspan="1">
-                        <div v-for="item in dataSubject.unitNcs">
+                        <div v-for="item in dataSubject.unitKcs">
                           - {{ item }}
                         </div>
                       </td>
@@ -401,10 +401,10 @@
                           :rowspan="unit.capaPer && unit.capaPer.length"
                           :colspan="1"
                         >
-                          {{ unit.attit }}<br />({{ unit.abilCd }})
+                          {{ unit.capaNm }}<br />({{ unit.abilCd }})
                         </td>
                         <td scope="row" :colspan="1">
-                          {{ `${index + 1}.${indexPer + 1}` }}{{ per }}
+                          {{ per }}
                         </td>
                         <td
                           scope="row"
@@ -414,11 +414,11 @@
                         >
                           <div class="ta_l pd_l30 line_height">
                             <span class="font_weigth">[지식]</span><br />
-                            {{ unit.know }}<br />
+                            <span v-html="unit.know.replace(/\n/g, '<br />')"></span><br />
                             <span class="font_weigth">[기술]</span><br />
-                            {{ unit.skil }}<br />
+                            <span v-html="unit.skil.replace(/\n/g, '<br />')"></span><br />
                             <span class="font_weigth">[태도]</span><br />
-                            {{ unit.attit }}<br />
+                            <span v-html="unit.attit.replace(/\n/g, '<br />')"></span><br />
                           </div>
                         </td>
                       </tr>
@@ -426,17 +426,17 @@
                     <template v-else>
                       <tr>
                         <td scope="row" :colspan="1">
-                          {{ unit.attit }}({{ unit.abilCd }})
+                          {{ unit.capaNm }}({{ unit.abilCd }})
                         </td>
                         <td scope="row" :colspan="1"></td>
                         <td scope="row" :colspan="1">
                           <div class="ta_l pd_l30 line_height">
                             <span class="font_weigth">[지식]</span><br />
-                            {{ unit.know }}<br />
+                            <span v-html="unit.know.replace(/\n/g, '<br />')"></span><br />
                             <span class="font_weigth">[기술]</span><br />
-                            {{ unit.skil }}<br />
+                            <span v-html="unit.skil.replace(/\n/g, '<br />')"></span><br />
                             <span class="font_weigth">[태도]</span><br />
-                            {{ unit.attit }}<br />
+                            <span v-html="unit.attit.replace(/\n/g, '<br />')"></span><br />
                           </div>
                         </td>
                       </tr>
@@ -452,14 +452,13 @@
             <button type="button" class="btn_round btn_md btn_primary">
               {{ t("common.print") }}
             </button>
-            <button
+            <ButtonBase
               v-if="isSave"
               type="button"
+              @click="save"
+              :buttonName="t('common.save')"
               class="btn_round btn_md btn_primary"
-              @click="save()"
-            >
-              {{ t("common.save") }}
-            </button>
+            />
             <button
               type="button"
               class="btn_round btn_md btn_white"
@@ -593,8 +592,9 @@ export default {
             } as SubjectProfileReqDTO;
             updateSubjectProfile(dataSave)
               .then((res) => {
-                this.$alert(this.t("common.message.saveSuccess"));
-                this.back();
+                this.$alert("저장이 되었습니다.", "", () => {
+                  this.back();
+                });
               })
               .finally(() => {
                 this.storeCommon.setLoading(false);
@@ -627,7 +627,9 @@ export default {
 .line_height {
   line-height: 30px;
 }
+</style>
+<style>
 .check_box_custom .check_row {
-  margin-right: 10px !important;
+  margin-right: 20px !important;
 }
 </style>

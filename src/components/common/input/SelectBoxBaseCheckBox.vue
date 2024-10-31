@@ -2,7 +2,7 @@
   <span class="is_disabled" v-if="isDisable">{{ showValue }}</span>
   <div v-else class="group_checkbox">
     <input @click="toggleDropdown" :value="showValue" readonly class="select_component_custom" ref="checkboxInput">
-    <teleport to="#app" v-show="showList">
+    <teleport to="#app" v-if="showList">
       <ul
           class="list_select_custom"
           :class="{on:showList}"

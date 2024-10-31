@@ -23,6 +23,8 @@
       "list": "목록"
     },
     "message" : {
+      "deleteFile": "첨부파일을 삭제하시겠어요?",
+      "deleteFileOk": "삭제됐습니다.",
       "save" : "저장하시겠어요?",
       "saveSuccess" : "정상처리됐습니다.",
       "deleteSuccess" : "삭제됐습니다",
@@ -32,7 +34,8 @@
       "confirmDelete": "삭제 하시겠습니까?",
       "confirmDeleteV1": "{name}을(를) 삭제 하시겠습니까?",
       "confirmSaveTemp": "임시저장 하시겠어요?",
-      "successSaveTemp": "임시저장됐습니다."
+      "successSaveTemp": "임시저장됐습니다.",
+      "warring": "수정 권한이 없는 메뉴가 입니다."
     },
     "use": "사용",
     "noUse": "미사용",
@@ -209,7 +212,7 @@
     "evaluationMethodMng": {
       "title": "평가방법 관리",
       "button": {
-        "register": "교수학습방법 등록",
+        "register": "평가방법 등록",
         "save": "저장",
         "close": "닫기",
         "cancel": "취소",
@@ -233,7 +236,7 @@
       "message": {
         "confirmSave": "저장하시겠어요?",
         "success": "정상처리됐습니다.",
-        "confirmDelete": "저장하시겠어요?",
+        "confirmDelete": "삭제하시겠어요?",
         "notDelete": "교육과정개발에 사용된 유형은 삭제할 수 없습니다.",
         "duplicate": "이미 등록된 교육학습방법입니다."
       }
@@ -1665,7 +1668,8 @@
         "dept": "학과/학부",
         "typeTalent": "인재양성유형",
         "btnSeach": "조회",
-        "btnClear": "초기화"
+        "btnClear": "초기화",
+        "subTitle":"※ 로그인 사용자의 소속 학과의 인재양성유형 목록만 조회됩니다. "
       },
       "list": {
         "title": "인재양성유형 목록",
@@ -1786,9 +1790,9 @@
         "dept": "학과/학부",
         "yearEdu": "학년도",
         "topic": "회의주제",
-        "userRegis": "등록자",
-        "dateGegis": "등록일",
-        "btnCreate": "등록"
+        "userRegis": "작성자",
+        "dateGegis": "작성일",
+        "btnCreate": "회의록 등록"
       },
       "form": {
         "title": "회의록 관리",
@@ -1816,7 +1820,7 @@
         "titleStudent": "학생대표 선택",
         "titleTeacher": "내부 참석자 선택",
         "subTitle": "※ 회의록 작성자 소속 학과의 교원만 목록 구성됩니다.",
-        "searchPlace": "성명 또는 학번 검색",
+        "searchPlace": "성명 또는 교번 검색",
         "department": "학과",
         "name": "성명",
         "code": "교번",
@@ -1824,7 +1828,8 @@
         "management": "선택",
         "select": "선택",
         "search": "검색",
-        "clear": "초기화"
+        "clear": "초기화",
+        "confirmTeacher": "내부 참석자가 추가가 되었습니다."
       },
       "message": {
         "confirmDelete": "해당 참석자를 삭제하시겠어요? ",
@@ -3101,7 +3106,7 @@
         "category": "제목",
         "regBy": "접수자",
         "status": "상태",
-        "regDate": "접수기간",
+        "regDate": "접수일",
         "ansBy": "답변자"
       },
       "table": {
@@ -3122,7 +3127,7 @@
       "regBy": "접수자 성명",
       "regCode": "접수자 교번",
       "regDept": "접수자 소속",
-      "qusCont": "내용",
+      "qusCont": "문의 내용",
       "file": "첨부파일",
       "ansTtl3": "답변 및 답변자 정보",
       "ansCont": "답변 내용",
@@ -3201,17 +3206,18 @@
         "title": "검색",
         "site": "대상사이트",
         "heading": "제목",
-        "regDate": "등록일",
-        "subscribers": "등록자",
+        "regDate": "작성일",
+        "subscribers": "작성자",
         "showOrNot": "게시여부",
-        "btnCreate":"공지사항 등록"
+        "btnCreate":"공지사항 등록",
+        "subTitle":"※ 상단고정은 최대 3개까지 설정할 수 있습니다."
       },
       "table": {
         "title": "목록",
         "rowNum": "번호",
         "heading": "제목",
-        "regName": "등록자",
-        "regDate": "등록일",
+        "regName": "작성자",
+        "regDate": "작성일",
         "views": "조회수",
         "showOrNot": "게시여부",
         "topFixYn": "상단고정",
@@ -3232,7 +3238,7 @@
         "btnEdit":"저장"
       },
       "message":{
-        "warringProf":"최대 3개 가능.",
+        "warringProf":"이미 3개 공지사항이 상단고정으로 설정됐습니다.",
         "saveSuccess":"저장 되었습니다.",
         "quesDel":"삭제 하시겠습니까? ",
         "quesSave":"저장하시겠어요?",
@@ -3279,7 +3285,7 @@
       "menu": "교육과정 일정관리",
       "term": "학기",
       "hour": "시",
-      "massSchedule": "일괄 일정 설정",
+      "massSchedule": "일괄 설정",
       "notSetStatus": "미설정",
       "alert": {
         "save": " 교육과정개발 일정을 설정하시겠어요?",
@@ -3310,12 +3316,12 @@
 
         },
         "modal": {
-          "title": "교육과정개발 일괄 일정 설정",
-          "title2": "교육과정개발 학과별 일정 설정",
+          "title": "교육과정개발 일정 설정",
+          "title2": "교육과정개발 일괄 일정 설정",
           "schoolYear": "학년도",
-          "specializedUniversity": "단과대학",
-          "faculty": "학과",
-          "newCreationTime": "개설/개편 기간 설정",
+          "specializedUniversity": "계열",
+          "faculty": "학과/학부",
+          "newCreationTime": "작성 기간",
           "action": {
             "save": "저장",
             "cancel": "닫기"
@@ -3415,7 +3421,7 @@
       "title": "강의계획서 조회",
       "searchBox": {
         "year": "개설년도",
-        "subject": "과목명",
+        "subject": "교과목명",
         "professor": "담당교수",
         "yearLearn": "교육과정 학년도",
         "status": "작성상태",
@@ -3428,7 +3434,7 @@
         "semester": "개설년도-학기",
         "university": "단과대학",
         "dept": "학과 ",
-        "subject": "과목명",
+        "subject": "교과목명",
         "status": "이수구분",
         "grade": "학년",
         "division": "분반",
@@ -4826,8 +4832,8 @@
           "pageTitle": "대학 정보",
           "pageNote":"※ 교육과정 개발 시 등록된 최신 버전으로 적용됩니다. ",
           "year": "학년도",
-          "regId": "등록자",
-          "regDate":"등록일",
+          "regId": "작성자",
+          "regDate":"작성일",
           "button":{
             "register": "등록"
           },
@@ -4846,9 +4852,9 @@
             "deleteSuccess": "삭제됐습니다.",
             "deleteError": "활용된 항목은 삭제할 수 없습니다.",
             "save": "저장하시겠어요?",
-            "saveSuccess": "정상처리됐습니다. ",
+            "saveSuccess": "저장됐습니다.",
             "saveError": "이미 등록된 학년도입니다.",
-            "valid": "필수입력항목을 모두 입력해주세"
+            "valid": "필수입력항목을 모두 입력해주세요."
           }
         }
     }
@@ -4867,7 +4873,8 @@
     "updateJob": "직무 수정",
     "plan2": "로그인 사용자 소속 학과의 직무를 관리할 수 있습니다.",
     "defn": "직무 정의",
-    "related": "관련 자격증"
+    "related": "관련 자격증",
+    "validateMes": "사용되어 있는 직무입니다. 다시 확인해주세요."
   },
   "talentEduGoalsMng": {
       "title": "학과정보",
@@ -4968,6 +4975,7 @@
     "pageTitleCrud": "직무역량 관리",
     "pageHistory": "개발 이력",
     "tab1": {
+      "alertChoice": "대중소세 분류 순서로 선택해주세요.",
       "titleTab": "01.직무역량(능력단위) 등록",
       "pageTitle": "직무역량(능력단위) 등록",
       "column1": "유형",
@@ -4986,7 +4994,7 @@
       "defaultSelect1": "대분류 선택",
       "defaultSelect2": "중분류 선택",
       "defaultSelect3": "소분류 선택",
-      "defaultSelect4": "세분류 선",
+      "defaultSelect4": "세분류 선택",
       "no": "없음",
       "confirmNextTab": "저장 후 다음단계로 이동하시겠어요?",
       "confirmVersionUp": "직무역량 버전을 올리기시겠어요?",
@@ -5186,9 +5194,9 @@
           "setAll": "일괄 설정"
         },
         "modal": {
-          "title": "강의설계 일정 일괄설정",
-          "titleChooseDivision": "강의설계 일정 설정(분반을 선택했을 경우)",
-          "titleChooseCheckbox": "강의설계 선택 일정 설정(체크박스 선택했을 경우)",
+          "title": "강의설계 선택 일정 설정",
+          "titleChooseDivision": "강의설계 일정 설정",
+          "titleChooseCheckbox": "강의설계 일정 일괄설정",
           "year":"학년도",
           "term":"학기",
           "lecturePlanWritingPeriod": "강의계획서 작성 기간",
@@ -5421,14 +5429,15 @@
     "column8" : "인쇄"
   },
   "createTrainingProcess" : {
-    "title" : "교육과정CQI",
-    "tab1" : "탭제목 1",
-    "tab2" : "탭제목 2",
-    "tab3" : "탭제목 3"
+    "title" : "교육과정CQI 작성",
+    "tab1" : "교육과정 자체평가 개요(전공)",
+    "tab2" : "교육과정 자체평가 결과 및 개선계획(전공)",
+    "tab3" : "교육과정 자체평가 개요(교양)",
+    "tab4" : "교육과정 자체평가 결과 및 개선계획(교양)"
   },
   "generalTab1": {
     "table1": {
-      "title": "1.학생현황(단위: 명, %)",
+      "title": "1.학과(학부)현황(단위: 명, %)",
       "caption": "테이블 제목",
       "header1": "구분",
       "header2": "성명",
@@ -5569,6 +5578,7 @@
     },
     "table3": {
       "title": "3.교육과정 자체평가 목적",
+      "title1": "교육과정CQI 시행목적",
       "caption": "테이블제목",
       "content1": "대학과 학과의 교육목표에 따라 양질의 교육과정을 제공하기 위한 학과 차원의 지속적인 모니터링 시행",
       "content2": "교육과정의 체계적인 진단과 평가를 통해 학생의 역량(학습성과)을 향상시키고, 수업을 개선하는 등 교육의 선순환 체계 구축",
@@ -5648,7 +5658,7 @@
       "evaluationMethod": "평가위원 5점 리커트 척도 및 기술평가"
     },
     "table7": {
-      "title": "7.교육과정 자체평가 목적",
+      "title": "7.교육과정 자체평가 환류 및 활용방안",
       "caption": "테이블제목",
       "header": "환류 및 활용방안",
       "subHeader" : "(자율 기술(상기 내용중심)"
@@ -5850,9 +5860,9 @@
       "title1": "교육과정 유형"
     },
     "analysisAchievement": {
-      "title1": "1-1. 전년도 교육과정표",
+      "title1": "1-1. 현 교육과정표",
       "title2": "1-2. 교육과정CQI 분석 결과",
-      "title3": "전년도 교육과정표",
+      "title3": "현 교육과정표",
       "title4": "학년도 교육과정표",
       "title5": "학과명",
       "title6": "운영기간 :",
@@ -6075,6 +6085,7 @@
       "title4": "3-4. 핵심직무 선정",
       "title5": "3-5. 인재양성유형 선정 결과",
       "title6": "내부",
+      "title6_1": "외부",
       "title7": "성명",
       "title8": "전공분야",
       "title9": "소속",
@@ -6198,7 +6209,7 @@
       "title20": "교육목표",
       "title21": "교육내용",
       "title22": "교육정보",
-      "title23": "교수학습법",
+      "title23": "교수학습방법",
       "title24": "평가방법",
       "title25": "교과 구분",
       "title26": "타학과 수강 가능 여부",
@@ -6261,5 +6272,79 @@
     ,"titleSearch":"조회"
     ,"pageTitle":"교육과정개발보고서 조회"
     ,"strRp":"[미리보기 및 인쇄]"
+  },
+  "modalSwitchAccount": {
+    "title" : "로그인 교수 선택",
+    "caption" : "교과목 검색 목록",
+    "search1" : "교수명",
+    "search2" : "교번",
+    "table" : {
+      "title" : "교과목 검색 목록",
+      "name" : "교수명",
+      "userId" : "교번",
+      "deptNm" : "학과",
+      "select" : "선택",
+      "tutorial" : "로그인 할 교수자를 검색해주세요."
+    },
+    "confirmText" : "교수님을 선택하시겠어요?",
+    "confirmTitle" : "알림",
+    "toastSuccess" : "로그인 되었습니다. <br /> 교수사이트로 이동합니다.",
+    "toastFailed" : "로그인에 실패했습니다. 다시 시도해주세요.",
+    "dataNotFound" : "조회된 데이터가 없습니다"
+  },
+  "finalArchi":{
+    "action":{
+      "titleMain":"최종성적 작성"
+      ,"titleSub1":"1.역량별 성취도 평가 결과"
+      ,"col1_1":"제한"
+      ,"col1_2":"평점"
+      ,"col1_3":"총원"
+      ,"col1_4":"A0이상"
+      ,"col1_5":"B0이상"
+      ,"col1_6":"A+"
+      ,"col1_7":"A0"
+      ,"col1_8":"B+"
+      ,"col1_9":"B0"
+      ,"col1_10":"C+"
+      ,"col1_11":"C0"
+      ,"col1_12":"D+"
+      ,"col1_13":"D0"
+      ,"col1_14":"F"
+
+      ,"col2_1":"번호"
+      ,"col2_2":"학년"
+      ,"col2_3":"학번"
+      ,"col2_4":"이름"
+      ,"col2_5":"분반"
+      ,"col2_6":"학적"
+      ,"col2_7":"1차"
+      ,"col2_8":"2차"
+      ,"col2_9":"소계"
+      ,"col2_10":"성취수준"
+      ,"col2_11":"출석"
+      ,"col2_12":"총점"
+      ,"col2_13":"순위"
+      ,"col2_14":"백분위"
+      ,"col2_15":"백분위(점수)"
+
+      ,"complate":"완료"
+      ,"disComplate":"완료취소"
+      
+    },
+    "list":{
+      "downloadExcel":"엑셀 다운로드"
+      ,"downloadRp":"성적평가표(제출용) 인쇄"
+      ,"col0":"개설학년도-학기"
+      ,"col1":"개설학년도"
+      ,"col2":"게열/학부"
+      ,"col3":"학과/전공"
+      ,"col4":"과목명"
+      ,"col5":"이수구분"
+      ,"col6":"학년"
+      ,"col7":"분반"
+      ,"col8":"교육과정 학년도"
+      ,"col9":"상태"
+      ,"col10":"학기"
+    }
   }
 }
