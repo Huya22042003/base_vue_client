@@ -40,20 +40,20 @@
             </li>
           </ul>
           <div class="btn_group btn_end">
-            <ButtonBase
+            <button
               type="button"
               class="button btn_lg btn_blue btn_responsive"
               @click="searchClick()"
-              :buttonName="t('common.search')"
             >
-            </ButtonBase>
-            <ButtonBase
+            {{ t("common.search") }}
+            </button>
+            <button
               type="button"
               class="button btn_lg btn_gray btn_responsive"
               @click="resetSearch()"
-              :buttonName="t('common.reset')"
             >
-            </ButtonBase>
+            {{ t("common.reset") }}
+            </button>
           </div>
         </div>
       </div>
@@ -79,13 +79,13 @@
         >
           <template #button>
             <div class="search_btnarea">
-              <ButtonBase
+              <button
                 type="button"
                 class="btn_round btn_sm btn_primary"
                 @click="create()"
-                :buttonName="t('09.notificationCategory.search.btnCreate')"
               >
-              </ButtonBase>
+              {{ t("09.notificationCategory.search.btnCreate") }}
+              </button>
             </div>
           </template>
         </GridComponentV2>

@@ -117,24 +117,20 @@
       <!-- Footer content goes here -->
       <ButtonBase
         type="button"
-        class="button btn_xl btn_primary"
+        class="button btn_lg btn_primary"
         :buttonName="
           t('04.eduScheduleCreativeMng.newEducationSchedule.modal.action.save')
         "
         @click="confirmAction"
       >
       </ButtonBase>
-      <ButtonBase
+      <button
         type="button"
-        class="button btn_xl btn_white popup_close"
-        @click="cancelAction"
-        :buttonName="
-          t(
-            '04.eduScheduleCreativeMng.newEducationSchedule.modal.action.cancel'
-          )
-        "
+        class="button btn_lg btn_white popup_close"
+        @click="cancelAction"        
       >
-      </ButtonBase>
+      {{ t("04.eduScheduleCreativeMng.newEducationSchedule.modal.action.cancel")}}
+      </button>
     </template>
   </TModal>
 </template>

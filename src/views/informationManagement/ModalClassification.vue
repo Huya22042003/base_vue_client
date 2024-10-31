@@ -27,13 +27,13 @@
         :buttonName="'저장'"
       >
       </ButtonBase>
-      <ButtonBase
+      <button
         type="button"
         class="button btn_xl btn_white popup_close"
         @click="cancelAction"
-        :buttonName="'닫기'"
       >
-      </ButtonBase>
+      닫기
+      </button>
     </template>
   </TModal>
 </template>

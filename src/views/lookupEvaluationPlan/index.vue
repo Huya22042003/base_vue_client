@@ -56,20 +56,20 @@
               </li>
             </ul>
             <div class="btn_group btn_end">
-              <ButtonBase
+              <button
                 type="button"
                 class="button btn_lg btn_blue btn_responsive"
                 @click="search()"
-                :buttonName="t('common.search')"
               >
-              </ButtonBase>
-              <ButtonBase
+              {{t("common.search")}}
+              </button>
+              <button
                 type="button"
                 class="button btn_lg btn_gray btn_responsive"
                 @click="reset()"
-                :buttonName="t('common.reset')"
               >
-              </ButtonBase>
+              {{ t("common.reset") }}
+              </button>
             </div>
           </div>
         </div>
@@ -111,7 +111,6 @@ import { useI18n } from "vue-i18n";
 import { lookupEvaluationPlanStore } from "@/stores/lookupEvaluationPlan";
 import type { LookupEvaluationPlanSearch } from "@/stores/lookupEvaluationPlan/lookupEvaluationPlan.type";
 import { getListCodeMng } from "@/stores/common/codeMng/codeMng.service";
-import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 const store = commonStore();
 const storeLEP = lookupEvaluationPlanStore();
