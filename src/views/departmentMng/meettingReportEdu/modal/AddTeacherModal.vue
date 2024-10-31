@@ -21,9 +21,6 @@
               {{ t("departmentMng.meettingReportEdu.modalAdd.clear") }}
             </button>
           </div>
-          <p class="box_title_sm note_custom">
-            {{ t("departmentMng.meettingReportEdu.modalAdd.subTitle") }}
-          </p>
         </div>
         <div>
           <GridComponentV2 :rowData="data" :columnDefs="columnDefs" :paginationClientFlag="false" :key="key"
@@ -199,10 +196,17 @@ export default {
 
       this.storeCommon.setLoading(false)
     },
-
+    showAlert(message: string) {
+      this.$swal({
+        text: message,
+        showConfirmButton: true,
+        confirmButtonColor: "#DD6B55",
+        cancelButtonText: this.t("common.confirm"),
+      });
+    },
     handleTeacher(data: any) {
       this.$swal({
-        text: `${data.userNm} ${data.posi}을/를 선택하시겠습니까?`,
+        text: `${data.userNm}을/를 선택하시겠습니까?`,
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
@@ -219,7 +223,7 @@ export default {
               department: "",
               divCd: CD_ID_MEET_ATTE1
             }
-
+            this.showAlert(this.t("departmentMng.meettingReportEdu.modalAdd.confirmTeacher"));
             this.$emit('teacher-selected', newData);
             this.onClose();
             this.storeCommon.setLoading(false);

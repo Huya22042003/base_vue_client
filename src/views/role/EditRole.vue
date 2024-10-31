@@ -100,10 +100,10 @@
         </table>
         <div class="box_section">
           <div class="btn_area">
-            <button type="button" class="btn_xs btn_blue mr-3" @click="showAlert">
+            <button type="button" class="btn_md btn_blue mr-3" @click="showAlert">
               {{ t("common.save") }}
             </button>
-            <button type="button" class="btn_xs btn_white" @click="back()">
+            <button type="button" class="btn_md btn_white" @click="back()">
               {{ t("common.list") }}
             </button>
           </div>
