@@ -4,7 +4,7 @@
     <input :value="showValue" @click="focus" class="select_component_custom" :class="{on:showList}" ref="checkboxInput"
         readonly>
     <!-- <input v-model="searchQuery" @keyup="changData($event)" @click="focus" class="select_component_custom" ref="checkboxInput"> -->
-    <teleport to="#app" v-show="showList">
+    <teleport to="#app" v-if="showList">
       <ul
           class="list_select_custom"
           :class="{on:showList}"
