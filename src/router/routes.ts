@@ -1297,6 +1297,11 @@ export const routes = [
         name: SCREEN.finalArchivementAction.name,
         component: () => import('@/views/finalArchivement/FinalArchivementAction.vue')
       },
+      {
+        path: SCREEN.levelOfJobPerformance.path,
+        name: SCREEN.levelOfJobPerformance.name,
+        component: () => import('@/views/levelOfJobPerformance/LevelOfJobPerformanceMng.vue')
+      },
     ],
   },
   {

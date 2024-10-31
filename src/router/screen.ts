@@ -855,5 +855,8 @@ export const SCREEN = {
     path: '/final-archivement-action',
     name: 'finalArchivementAction',
   },
-
+  levelOfJobPerformance: {
+    path: '/level-job-performance',
+    name: 'levelOfJobPerformance'
+  }
 }
