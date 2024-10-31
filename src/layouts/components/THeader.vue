@@ -8,7 +8,7 @@
           </router-link>
         </h1>
         <div class="header_function">
-          <p class="login_info">박세균(12345678)님 환영합니다</p>
+          <p class="login_info">{{userInfo?.userName}}({{userInfo?.userId}})</p>
           <button type="button" class="btn_logout" @click.prevent="handleLogout">로그아웃</button>
           <!-- <button type="button" class="btn_login">로그인</button> -->
           <button type="button" class="btn_prof_site" @click="popupShow(0)">교수사이트 보기</button>
@@ -176,7 +176,7 @@ import {onMounted, nextTick, watch, ref} from "vue";
 import {useRouter} from "vue-router";
 import http from "@/utils/http";
 import {f} from "vitest/dist/types-63abf2e0";
-import {removeUserInfo} from "@/utils/storage";
+import {getUserInfo, removeUserInfo} from "@/utils/storage";
 import {getListProfs} from "@/stores/userManagement/userManagement.service";
 import {ProfModel, ProfSearchModel, UserMngModel} from "@/stores/userManagement/userManagement.type";
 import { useI18n } from "vue-i18n";
@@ -217,6 +217,7 @@ export default {
       size: PAGINATION_PAGE_SIZE,
       sort: ''
     });
+    const userInfo = JSON.parse(getUserInfo() || "");
 
     const isLoad = ref(false)
 
@@ -320,7 +321,8 @@ export default {
       getDataProfs,
       fnPagination,
       isLoad,
-      roleStore
+      roleStore,
+      userInfo
     }
   },
 
