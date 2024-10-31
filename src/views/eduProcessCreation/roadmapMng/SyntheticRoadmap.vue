@@ -26,7 +26,7 @@
               </th>
               <td scope="row" :colspan="1">
                 <div class="line_heigth pd_20">
-                  {{ data.targetNm }}
+                  <span v-html="data.typeDeptNm"></span>
                 </div>
               </td>
             </tr>
@@ -36,7 +36,7 @@
               </th>
               <td scope="row" :colspan="1">
                 <div class="line_heigth pd_20">
-                  {{ data.typeDeptNm }}
+                  <span v-html="data.targetNm"></span>
                 </div>
               </td>
             </tr>
@@ -50,8 +50,8 @@
             <col style="width: 25%" />
           </colgroup>
           <thead>
-            <tr>
-              <th scope="row" :colspan="1" :rowspan="3">
+            <tr v-if="data.listTaltNrtgSelc">
+              <th scope="row" :colspan="1" :rowspan="data.listTaltNrtgSelc.length + 1">
                 <!-- 인재양성유형 핵심직무 -->{{
                   t("eduProcessCreation.roadmapMng.title14")
                 }}
@@ -314,7 +314,7 @@ export default defineComponent({
         });
     },
     convertDataNmToString(data: EduCourseSelResDTO[]): string {
-      return data.map((item) => item.refrNm).join(", ");
+      return data.map((item) => item.refrNm).join("<br/>");
     },
     next() {
       this.$emit("nextTab", 80);
