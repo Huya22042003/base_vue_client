@@ -152,19 +152,19 @@
           <ButtonBase
             type="button"
             @click="saveData"
-            class="btn_round btn_md btn_primary mg_l10"
+            class="btn_round btn_lg btn_primary mg_l10"
             :buttonName="t('common.save')"
           >
             <!-- 확인 -->
           </ButtonBase>
-          <ButtonBase
+          <button
             type="button"
-            class="btn_round btn_white btn_md mg_l5"
+            class="btn_round btn_white btn_lg mg_l5"
             @click="back()"
-            :buttonName="t('common.list')"
           >
             <!-- 목록 -->
-          </ButtonBase>
+            {{ t("common.list") }}
+          </button>
         </div>
       </div>
     </div>

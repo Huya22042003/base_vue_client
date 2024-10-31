@@ -208,13 +208,13 @@
         :buttonName="t('common.save')"
       >
       </ButtonBase>
-      <ButtonBase
+      <button
         type="button"
         class="btn_round btn_sm btn_white"
         @click="goBack()"
-        :buttonName="t('common.list')"
       >
-      </ButtonBase>
+      {{ t("common.list") }}
+      </button>
     </div>
   </section>
 </template>
