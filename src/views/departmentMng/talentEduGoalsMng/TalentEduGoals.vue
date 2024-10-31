@@ -22,13 +22,14 @@
         >
           <template #button>
             <div>
-              <ButtonBase
+              <button
+                type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
                 @click="goActionCreate"
-                :buttonName="t('talentEduGoalsMng.list.openModal')"
               >
                 <!-- 신규 등록 -->
-              </ButtonBase>
+                 {{ t("talentEduGoalsMng.list.openModal") }}
+              </button>
             </div>
           </template>
         </GridComponentV2>

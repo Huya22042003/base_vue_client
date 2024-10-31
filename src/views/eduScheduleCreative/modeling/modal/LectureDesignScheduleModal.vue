@@ -207,13 +207,13 @@
         @click="confirmAction"
       >
       </ButtonBase>
-      <ButtonBase
+      <button
         type="button"
         class="btn_round btn_lg btn_gray mg_l10"
         @click="closeModal"
-        :buttonName="t('lectureDesignSchedule.modal.close')"
       >
-      </ButtonBase>
+      {{t("lectureDesignSchedule.modal.close")}}
+      </button>
     </template>
   </TModal>
 </template>

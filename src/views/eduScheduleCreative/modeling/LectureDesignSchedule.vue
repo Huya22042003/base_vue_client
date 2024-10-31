@@ -90,20 +90,20 @@
               </li>
             </ul>
             <div class="search_btnarea">
-              <ButtonBase
+              <button
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
-                @click="search"
-                :buttonName="t('common.search')"
+                @click="search"                
               >
-              </ButtonBase>
-              <ButtonBase
+              {{t("common.search")}}
+              </button>
+              <button
                 type="button"
                 class="btn_round btn_lg btn_gray mg_l5"
                 @click="reset"
-                :buttonName="t('common.reset')"
               >
-              </ButtonBase>
+              {{ t("common.reset") }}
+              </button>
             </div>
           </div>
         </div>

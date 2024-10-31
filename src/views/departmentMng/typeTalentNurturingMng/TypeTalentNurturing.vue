@@ -39,24 +39,20 @@
                   />
                 </div>
               </div>
-              <ButtonBase
+              <button
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
                 @click="searchFormData"
-                :buttonName="
-                  t('departmentMng.typeTalentNurturingMng.search.btnSeach')
-                "
               >
-              </ButtonBase>
-              <ButtonBase
+              {{ t("departmentMng.typeTalentNurturingMng.search.btnSeach") }}
+              </button>
+              <button
                 type="button"
                 class="btn_round btn_lg btn_gray mg_l5"
-                @click="clearFormSearch"
-                :buttonName="
-                  t('departmentMng.typeTalentNurturingMng.search.btnClear')
-                "
+                @click="clearFormSearch"                
               >
-              </ButtonBase>
+              {{ t("departmentMng.typeTalentNurturingMng.search.btnClear") }}
+              </button>
             </div>
           </div>
         </div>
