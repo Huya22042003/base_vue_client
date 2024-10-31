@@ -563,6 +563,7 @@ table td .btn_tooltip {
 }
 
 .main_section, .sub_section {
+  display: flex;
   margin-bottom: 70px;
 }
 .sub_section.top, .sub_section_md.top, .sub_section_sm.top, .sub_section_xs.top {

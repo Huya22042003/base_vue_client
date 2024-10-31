@@ -110,3 +110,16 @@ export type SociServeRestDTO = {
   timeRecruitmentStart: string;
   timeRecruitmentEnd: string;
 };
+
+export type LecturePlanSchedule = {
+  lectPlanDocWriteStrDate: string;
+  lectPlanDocWriteEndDate: string;
+  evalPlanDocWriteStrDate: string;
+  evalPlanDocWriteEndDate: string;
+  jobCapaEvalStrDate: string;
+  jobCapaEvalEndDate: string;
+  sbjtCqiWriteStrDate: string;
+  sbjtCqiWriteEndDate: string;
+  term: string;
+  year: string;
+};
