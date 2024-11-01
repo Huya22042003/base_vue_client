@@ -329,7 +329,7 @@ export default defineComponent({
                 formData.append("sectionName", "NOTICE");
                 uploadFileEditor(formData)
                   .then((res) => {
-                    resolve(res.data.urlFile);
+                    resolve(res.data.data.urlFile);
                     this.cmn.setLoading(false);
                   })
                   .catch((err) => {
