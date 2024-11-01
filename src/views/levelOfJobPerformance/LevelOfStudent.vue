@@ -9,17 +9,18 @@
           </li>
           <li>
             <p>{{ t("levelJobPerformance.student.column2") }}</p>
-            <SelectBoxBase :id="'search1'" :data="listTerm" />
+            <SelectBoxBase :id="'search2'" :data="listTerm" />
           </li>
           <li>
             <p>{{ t("levelJobPerformance.student.column3") }}</p>
-            <SelectBoxBase :id="'search1'" :data="listGrade" />
+            <SelectBoxBase :id="'search3'" :data="listGrade" />
           </li>
         </ul>
         <ul>
           <li>
             <p>{{ t("levelJobPerformance.student.column4") }}</p>
-            <SelectBoxBase :id="'search1'" :data="listDept" />
+            <SelectBoxBaseSearch :id="'dept'" :name="'dept'" :data="listDept">
+            </SelectBoxBaseSearch>
           </li>
           <li>
             <p>{{ t("levelJobPerformance.student.column5") }}</p>
@@ -107,8 +108,17 @@
 </template>
 
 <script lang="ts">
+import {
+  DIV_CD_DEPT_DEPART,
+  MESSAGE_ERROR_API,
+  UP_CD_ID_GRADE_LEVEL,
+  UP_CD_ID_SEMESTER,
+} from "@/constants/common.const";
+import { START_YEAR_NUMBER } from "@/constants/screen.const";
 import { commonStore } from "@/stores/common";
+import { getCodeMngByUpCdId } from "@/stores/common/codeMng/codeMng.service";
 import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
+import { getDepartmentList } from "@/stores/common/department/department.service";
 
 export default defineComponent({
   setup() {
@@ -133,8 +143,61 @@ export default defineComponent({
       ] as Array<CodeMngModel>,
     };
   },
-  beforeMount() {},
-  methods: { search() {}, reset() {} },
+  beforeMount() {
+    this.getCodeTermCd();
+    this.getCodeGradeCd();
+    this.getDepartment();
+
+    const currentYear = new Date().getFullYear();
+    for (let index = START_YEAR_NUMBER; index <= currentYear + 1; index++) {
+      this.listYear.push({ cdId: index, cdNm: index, upCdId: "" });
+    }
+  },
+  methods: {
+    getCodeTermCd() {
+      getCodeMngByUpCdId({ upCdId: UP_CD_ID_SEMESTER }).then((response) => {
+        response.data.data.forEach((item: any) => {
+          this.listTerm.push(item);
+        });
+      });
+    },
+    getCodeGradeCd() {
+      getCodeMngByUpCdId({ upCdId: UP_CD_ID_GRADE_LEVEL }).then((response) => {
+        response.data.data.forEach((item: any) => {
+          this.listGrade.push(item);
+        });
+      });
+    },
+    getDepartment() {
+      getDepartmentList({
+        deptCd: [],
+        deptDivCd: [DIV_CD_DEPT_DEPART],
+        upDeptCd: [],
+        useYn: "",
+      })
+        .then((res) => {
+          this.listDept = res.data.data
+            .filter((el) => el.deptDivCd == DIV_CD_DEPT_DEPART)
+            .map((el) => {
+              return {
+                cdId: el.deptCd,
+                cdNm: el.deptNm,
+                upCdId: "dept",
+              };
+            });
+          this.listDept.unshift({
+            cdId: "",
+            cdNm: this.t("common.all"),
+            upCdId: "major",
+          });
+        })
+        .catch(() => {
+          throw new Error(MESSAGE_ERROR_API);
+        });
+    },
+    search() {},
+    reset() {},
+  },
 });
 </script>
 
