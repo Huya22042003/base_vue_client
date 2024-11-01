@@ -215,7 +215,7 @@
       <div class="btn_area">
         <button
           type="button"
-          class="btn_round btn_sm btn_white"
+          class="btn_round btn_lg btn_white"
           @click="back()"
         >
           {{ t("common.list") }}

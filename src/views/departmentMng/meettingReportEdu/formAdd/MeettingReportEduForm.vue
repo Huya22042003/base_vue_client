@@ -88,7 +88,7 @@
                   </p>
                 </th>
                 <td class="td_input" colspan="6">
-                  <InputBase v-model="dataForm.sbjt" :id="'sbjt'" required />
+                  <InputBase class="form_style" v-model="dataForm.sbjt" :id="'sbjt'" required />
                 </td>
               </tr>
               <!-- meeting day -->
@@ -145,6 +145,7 @@
                 </th>
                 <td class="td_input" colspan="6">
                   <InputBase
+                   class="form_style"
                     maxlength="100"
                     v-model="dataForm.writer"
                     required
@@ -161,6 +162,7 @@
                 </th>
                 <td class="td_input" colspan="6">
                   <InputBase
+                   class="form_style"
                     maxlength="100"
                     v-model="dataForm.loc"
                     required
@@ -177,6 +179,7 @@
                 </th>
                 <td class="td_input" colspan="6">
                   <InputBase
+                   class="form_style"
                     maxlength="100"
                     v-model="dataForm.cost"
                     required
@@ -289,6 +292,7 @@
                             >
                               <div class="mr-5 flex-[7] wd_p85">
                                 <InputBase
+                                   class="form_style"
                                   v-model="teacher.name"
                                   :id="`input_teacher_${index}`"
                                   readonly
@@ -307,6 +311,7 @@
                             </div>
                             <div class="dp_flex w-full" v-else>
                               <InputBase
+                                 class="form_style"
                                 v-model="teacher.name"
                                 :id="`input_teacher_${index}`"
                                 required
@@ -321,6 +326,7 @@
                           </td>
                           <td v-else>
                             <InputBase
+                               class="form_style"
                               :id="`teacherPosi_${index}`"
                               v-model="teacher.position"
                               required
@@ -328,6 +334,7 @@
                           </td>
                           <td class="align_center_cs">
                             <InputBase
+                               class="form_style"
                               :id="`teacherDepart_${index}`"
                               v-model="teacher.department"
                               required
@@ -405,29 +412,41 @@
             <button
               type="button"
               v-if="modeScreen == 'detail'"
-              class="btn_round btn_gray btn_md"
+              class="btn_round btn_gray btn_lg"
             >
               {{ t("common.print") }}
             </button>
-            <button
+            <!-- <button
               type="button"
-              class="btn_round btn_primary btn_md"
+              class="btn_round btn_primary btn_lg"
               @click="save()"
             >
               {{ t("common.save") }}
-            </button>
-            <button
+            </button> -->
+            <ButtonBase
+              class="btn_round btn_primary btn_lg"
+              :buttonName="t('common.save')"
+              @click="save()"
+              >
+            </ButtonBase>
+            <!-- <button
               v-if="modeScreen == 'detail'"
               type="button"
-              class="btn_round btn_gray btn_md"
+              class="btn_round btn_gray btn_lg"
               @click="updateDeleteFlag()"
             >
-              <!-- 작제 -->
               {{ t("common.delete") }}
-            </button>
+            </button> -->
+            <ButtonBase
+              v-if="modeScreen == 'detail'"
+              class="btn_round btn_gray btn_lg"
+              :buttonName="t('common.delete')"
+              @click="updateDeleteFlag()"
+              >
+            </ButtonBase>
             <button
               type="button"
-              class="btn_round btn_white btn_md"
+              class="btn_round btn_white btn_lg"
               @click="back()"
             >
               {{ t("common.list") }}
@@ -587,16 +606,16 @@ export default {
       selectOptionHour: {
         value: "0",
         type: Array.from({ length: 24 }, (v, k) => ({
-          cdId: k.toString(),
-          cdNm: k.toString(),
+          cdId: k.toString().padStart(2, '0'),
+          cdNm: k.toString().padStart(2, '0'),
           upCdId: "hour",
         })),
       },
       selectOptionMinute: {
         value: "0",
         type: Array.from({ length: 60 }, (v, k) => ({
-          cdId: k.toString(),
-          cdNm: k.toString(),
+          cdId: k.toString().padStart(2, '0'),
+          cdNm: k.toString().padStart(2, '0'),
           upCdId: "minute",
         })),
       },
@@ -701,10 +720,10 @@ export default {
           const [timeHourStr, timeMinuteStr] = startTime.split(":");
           const [timeHourEnd, timeMinuteEnd] = endTime.split(":");
 
-          this.timeHourStr = parseInt(timeHourStr, 10).toString();
-          this.timeMinuteStr = parseInt(timeMinuteStr, 10).toString();
-          this.timeHourEnd = parseInt(timeHourEnd, 10).toString();
-          this.timeMinuteEnd = parseInt(timeMinuteEnd, 10).toString();
+          this.timeHourStr = timeHourStr;
+          this.timeMinuteStr = timeMinuteStr;
+          this.timeHourEnd = timeHourEnd;
+          this.timeMinuteEnd = timeMinuteEnd;
 
           this.$refs.myEditor.setHTML(this.dataForm.cont);
 

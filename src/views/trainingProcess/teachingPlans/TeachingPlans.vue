@@ -35,11 +35,11 @@
               </li>
               <li>
                 <p>{{ t("04.teachingPlans.searchBox.subject") }}</p>
-                <InputBase v-model="searchModel.subjectNm" :id="'subject'" />
+                <InputBase class="form_style" v-model="searchModel.subjectNm" :id="'subject'" />
               </li>
               <li>
                 <p>{{ t("04.teachingPlans.searchBox.professor") }}</p>
-                <InputBase v-model="searchModel.profNm" :id="'professor'" />
+                <InputBase class="form_style" v-model="searchModel.profNm" :id="'professor'" />
               </li>
               <li>
                 <p>{{ t("04.teachingPlans.searchBox.status") }}</p>
@@ -217,6 +217,14 @@ export default defineComponent({
           field: "statusReg",
           cellStyle: { textAlign: "center" },
           flex: 4,
+          cellRenderer: (params: any) => {
+            const status = params.value;
+            let color = "";
+            if (status == this.t("schoolStaff.cqi.status.created")) {
+              color = "green";
+            }
+            return `<span style="color: ${color}">${status}</span>`;
+          },
         },
       ]),
       listData: [],

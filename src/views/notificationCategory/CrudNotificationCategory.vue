@@ -117,41 +117,41 @@
             <div v-if="modeScreen == 'create'" class="btn_area">
               <ButtonBase
                 type="ButtonBase"
-                class="btn_round btn_sm btn_primary"
+                class="btn_round btn_lg btn_primary"
                 @click="handleCreate()"
                 :buttonName="t('common.save')"
               >
               </ButtonBase>
-              <ButtonBase
-                type="ButtonBase"
-                class="btn_round btn_sm btn_white"
-                @click="back()"
-                :buttonName="t('common.list')"
+              <button
+                type="button"
+                class="btn_round btn_lg btn_white"
+                @click="back()"                
               >
-              </ButtonBase>
+              {{t("common.list")}}
+              </button>
             </div>
             <div v-if="modeScreen != 'create'" class="btn_area">
               <ButtonBase
                 type="ButtonBase"
-                class="btn_round btn_sm btn_primary"
+                class="btn_round btn_lg btn_primary"
                 @click="handleDelete()"
                 :buttonName="t('09.notificationCategory.form.btnDelete')"
               >
               </ButtonBase>
               <ButtonBase
                 type="ButtonBase"
-                class="btn_round btn_sm btn_primary"
+                class="btn_round btn_lg btn_primary"
                 @click="handleUpdate()"
                 :buttonName="t('09.notificationCategory.form.btnEdit')"
               >
               </ButtonBase>
-              <ButtonBase
-                type="ButtonBase"
-                class="btn_round btn_sm btn_white"
-                @click="back()"
-                :buttonName="t('common.list')"
+              <button
+                type="button"
+                class="btn_round btn_lg btn_white"
+                @click="back()"                
               >
-              </ButtonBase>
+              {{t("common.list")}}
+              </button>
             </div>
           </div>
         </div>

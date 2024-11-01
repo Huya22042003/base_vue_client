@@ -109,14 +109,14 @@
             >
               <!-- 저장 -->
             </ButtonBase>
-            <ButtonBase
+            <button
               type="button"
               class="button btn_xl btn_white popup_close"
-              @click="closeModal(false)"
-              :buttonName="t('common.close')"
+              @click="closeModal(false)"              
             >
               <!-- 인재양성유형 삭제 -->
-            </ButtonBase>
+              {{t("common.close")}}
+            </button>
           </div>
         </div>
       </div>

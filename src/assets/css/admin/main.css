@@ -42,7 +42,7 @@
 }
 
 .dashboard .sub_section > div {
-  /* display: inline-block; */
+   display: inline-block;
 }
 .dashboard .sub_section .dshb_banner {
   position: relative; z-index: 2;

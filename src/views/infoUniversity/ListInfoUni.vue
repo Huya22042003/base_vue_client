@@ -25,14 +25,12 @@
         >
           <template #button>
             <div>
-              <ButtonBase
-                class="btn_round btn_md btn_primary mg_l10"
+              <button
+                class="btn_round btn_lg btn_primary mg_l10"
                 @click="goRegter"
-                :buttonName="
-                  t('03.basicInfoManagement.infoUniversity.button.register')
-                "
               >
-              </ButtonBase>
+              {{ t("03.basicInfoManagement.infoUniversity.button.register") }}
+              </button>
             </div>
           </template>
         </GridComponentV2>
