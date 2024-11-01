@@ -1,5 +1,5 @@
 export type LectureDesignSchudeModel = {
-    lectCd: string,
+    sbjtCd: string,
     year: string,
     termNm: string,
     deptNm: string,
@@ -20,7 +20,11 @@ export type LectureDesignSchudeModel = {
     stsCqiNm: string,
     regNm: string,
     regDate: string,
+    writeSchdlSeq: string,
+    termCd: string,
+    deptCd: string,
     divCd: string,
+    gradeCd: string,
 }
 
 export type SearchData = {
@@ -48,5 +52,15 @@ export type LectRegModel = {
     jobCapaEndDate: string,
     cqiStrDate: string,
     cqiEndDate: string,
-    listLectCd: Array<string>
+    listLectCd: Array<LectRegItem>
+}
+
+export type LectRegItem = {
+    writeSchdlSeq: string,
+    year: string,
+    termCd: string,
+    sbjtCd: string,
+    deptCd: string,
+    gradeCd: string,
+    divCd: string,
 }
