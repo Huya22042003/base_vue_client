@@ -82,19 +82,19 @@
       </table>
       <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
         <ButtonBase
-          class="btn_round btn_gray btn_md"
+          class="btn_round btn_gray btn_lg"
           :buttonName="t('jobAbilityManagement.tab1.btnVersionUp')"
           @click="saveVer"
           v-if="modeScreen == modeDetail"
         >
         </ButtonBase>
         <ButtonBase
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           :buttonName="t('common.save')"
           @click="saveData"
         >
         </ButtonBase>
-        <button type="button" class="btn_round btn_white btn_md" @click="back">
+        <button type="button" class="btn_round btn_white btn_lg" @click="back">
           {{ t("common.list") }}
         </button>
       </div>
@@ -137,6 +137,10 @@ export default {
       type: String,
       default: "",
     },
+    verNext: {
+      type: String,
+      default: "",
+    },
   },
   data() {
     return {
@@ -149,11 +153,13 @@ export default {
       jobHistory: {} as JobHistory,
       authNm: "",
       year: "",
+      verNext: "",
     };
   },
   beforeMount() {
     this.modeScreen = this.$route.params.mode;
     this.jobAbilSeq = this.$props.id;
+    this.verNext = this.$props.verNext;
     this.getDetailData();
   },
   methods: {
@@ -238,7 +244,7 @@ export default {
                   error.response.data.code === DUPLICATE_STATUS
                 ) {
                   this.$swal({
-                    text: this.t("jobAbilityManagement.tab1.dupliCateCVer"),
+                    text: `${this.verNext}버전이 이미 등록되어 있습니다.`,
                     type: "warning",
                     showCancelButton: false,
                     confirmButtonText: this.t("common.confirm"),

@@ -12,7 +12,7 @@
             <p class="box_title_sm mb-0"></p>
             <div class="btn_group btn_end mb-3">
               <ButtonBase
-                class="btn_round btn_md btn_primary"
+                class="btn_round btn_lg btn_primary"
                 :buttonName="t('02.coreChildAbility.button.addCore')"
                 @click="addMajor()"
               >
@@ -145,7 +145,7 @@
           <div class="box_section">
             <div class="btn_area btn_group btn_end">
               <ButtonBase
-                class="btn_md btn_blue"
+                class="btn_lg btn_blue"
                 :buttonName="t('common.save')"
                 @click="showAlertSave"
               >

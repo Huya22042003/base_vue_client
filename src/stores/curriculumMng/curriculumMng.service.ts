@@ -7,10 +7,6 @@ export const listData = (data: SearchCurr) => {
   return http.post(`${url}/list`, data);
 };
 
-export const listDeptInfo = () => {
-    return http.get(`${url}/listDept`);
-  };
-
 export const saveCurr = (data: CurrReg) => {
   return http.post(`${url}/`, data);
 };

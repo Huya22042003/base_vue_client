@@ -18,7 +18,7 @@
             <template #button>
               <div class="dp_flex btn_group btn_end">
                 <ButtonBase
-                  class="btn_round btn_sm btn_primary"
+                  class="btn_round btn_lg btn_primary"
                   :buttonName="t('02.evaluationMethodMng.button.register')"
                   @click="register"
                 >

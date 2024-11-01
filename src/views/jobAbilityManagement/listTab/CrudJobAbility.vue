@@ -244,7 +244,7 @@
                 >
                 </SelectBoxBase>
                 <div v-if="haveVer == 'Y'">
-                  {{ jobAbilityCrudModel.jobAbilYear }}
+                  {{ jobAbilityCrudModel.ver }}
                 </div>
               </div>
             </td>
@@ -344,14 +344,14 @@
 
       <div class="dp_flex btn_group btn_end mt_8" style="gap: 10px">
         <ButtonBase
-          class="btn_round btn_gray btn_md"
+          class="btn_round btn_gray btn_lg"
           :buttonName="t('jobAbilityManagement.tab1.btnVersionUp')"
           @click="saveVer"
           v-if="modeScreen == modeDetail"
         >
         </ButtonBase>
         <ButtonBase
-          class="btn_round btn_md btn_gray"
+          class="btn_round btn_lg btn_gray"
           :buttonName="t('jobAbilityManagement.tab1.update')"
           @click="confirmEdit"
           v-if="modeScreen == modeDetail"
@@ -359,12 +359,12 @@
         </ButtonBase>
         <button
           type="button"
-          class="btn_round btn_primary btn_md"
+          class="btn_round btn_primary btn_lg"
           @click="confirmNextTab"
         >
           {{ t("jobAbilityManagement.tab1.btnNext") }}
         </button>
-        <button type="button" class="btn_round btn_white btn_md" @click="back">
+        <button type="button" class="btn_round btn_white btn_lg" @click="back">
           {{ t("common.list") }}
         </button>
       </div>
@@ -496,13 +496,13 @@ export default {
       listYear: this.getListYear(),
       jobResultIdUpVer: "",
       modelType: "",
+      verNext: "",
     };
   },
   async beforeMount() {
     this.modeScreen = this.$route.params.mode;
     this.jobAbilSeq = window.history.state.jobAbilSeq;
     this.getCodeCategoryKcsNcs();
-    this.emitId();
     if (this.modeScreen == MODE_CREATE) {
       this.jobAbilityCrudModel.typeCd = KCS_CD_ID;
       this.jobAbilityCrudModel.ver = 1;
@@ -524,6 +524,7 @@ export default {
     } else {
       await this.getListParent(KCS_CD_ID);
     }
+    this.emitId();
   },
   methods: {
     async handelChangeRadioType(type: string) {
@@ -571,6 +572,7 @@ export default {
           }
           this.jobAbilityCrudModel.lvl = this.detailData.lvl;
           this.modelType = this.jobAbilityCrudModel.typeCd;
+          this.verNext = Number(this.jobAbilityCrudModel.ver) + 1;
         })
         .finally(() => {
           this.cmn.setLoading(false);
@@ -746,7 +748,7 @@ export default {
               error.response.data.code === DUPLICATE_STATUS
             ) {
               this.$swal({
-                text: this.t("jobAbilityManagement.tab1.dupliCateCVer"),
+                text: `${this.verNext}버전이 이미 등록되어 있습니다.`,
                 type: "warning",
                 showCancelButton: false,
                 confirmButtonText: this.t("common.confirm"),
@@ -799,6 +801,7 @@ export default {
     },
     emitId() {
       this.$emit("update-id", this.jobAbilSeq);
+      this.$emit("ver-next", this.verNext);
     },
     getListYear() {
       let yearData = [];
