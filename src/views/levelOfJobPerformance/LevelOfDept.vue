@@ -15,6 +15,8 @@
             <p>학년</p>
             <SelectBoxBase :id="'search1'" :data="listGrade" />
           </li>
+        </ul>
+        <ul>
           <li>
             <p>학과</p>
             <SelectBoxBase :id="'search1'" :data="listDept" />
@@ -65,16 +67,16 @@
           </thead>
           <tbody>
             <tr>
-                <td class="ta_c">직무</td>
-                <td class="ta_c">능력단위</td>
-                <td class="ta_c">구분</td>
-                <td class="ta_c">능력돤위명</td>
-                <td class="ta_c">능력단위 요소명</td>
-                <td class="ta_c">능력단위요소</td>
-                <td class="ta_c">능력단위</td>
-                <td class="ta_c">직무</td>
-                <td class="ta_c">학과</td>
-              </tr>
+              <td class="ta_c">직무</td>
+              <td class="ta_c">능력단위</td>
+              <td class="ta_c">구분</td>
+              <td class="ta_c">능력돤위명</td>
+              <td class="ta_c">능력단위 요소명</td>
+              <td class="ta_c">능력단위요소</td>
+              <td class="ta_c">능력단위</td>
+              <td class="ta_c">직무</td>
+              <td class="ta_c">학과</td>
+            </tr>
           </tbody>
         </table>
       </div>
