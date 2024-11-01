@@ -18,6 +18,7 @@
               <th scope="row">{{ t("10.role.roleName") }}</th>
               <td colspan="3">
                 <InputBase
+                  class="form_style"
                   :id="'name-role'"
                   v-model="roleName"
                   :placeholder="t('10.role.roleName')"
@@ -29,6 +30,7 @@
               <th scope="row">{{ t("10.role.roleCode") }}</th>
               <td colspan="3">
                 <InputBase
+                  class="form_style"
                   :id="'code-role'"
                   :placeholder="t('10.role.placeHolderDefn')"
                   :readonly="true"
@@ -40,6 +42,7 @@
               <th scope="row">{{ t("10.role.roleDefn") }}</th>
               <td colspan="3">
                 <InputBase
+                  class="form_style"
                   :id="'textArea'"
                   :name="'textArea'"
                   v-model="description"
@@ -103,16 +106,22 @@
         </table>
         <div class="box_section">
           <div class="btn_area">
-            <button
+            <!-- <button
               type="button"
-              class="button btn_md btn_blue mr-3"
+              class="button btn_lg btn_blue mr-3"
               @click="showAlert"
             >
               {{ t("common.save") }}
-            </button>
+            </button> -->
+            <ButtonBase
+            class="button btn_lg btn_blue mr-3"
+            :buttonName="t('common.save')"
+            @click="showAlert()"
+            >
+            </ButtonBase>
             <button
               type="button"
-              class="button btn_md btn_white"
+              class="button btn_lg btn_white"
               @click="back()"
             >
               {{ t("common.list") }}

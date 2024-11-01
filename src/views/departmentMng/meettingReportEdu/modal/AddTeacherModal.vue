@@ -11,7 +11,7 @@
       <div>
         <div>
           <div class="btn_group btn_end" style="gap: 10px">
-            <InputBase class="flex-[7]" :placeholder="searchPlace" id="search_teacher" v-model="dataSearch.name" />
+            <InputBase class="flex-[7] form_style" :placeholder="searchPlace" id="search_teacher" v-model="dataSearch.name" />
             <button class="button btn_sm btn_primary bo_rd6" @click="search()">
               <!-- 조회 -->
               {{ t("departmentMng.meettingReportEdu.modalAdd.search") }}

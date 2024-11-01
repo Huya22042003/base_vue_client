@@ -18,10 +18,16 @@
         :key="keyId"
       >
         <template #button>
-          <div class="search_btnarea" v-if="!checkRole">
-            <button type="button" class="btn_md btn_blue" @click="create()">
+          <div class="search_btnarea">
+            <!-- <button type="button" class="btn_md btn_blue" @click="create()">
               {{ t("10.role.button.addRole") }}
-            </button>
+            </button> -->
+            <ButtonBase
+            class="btn_md btn_blue"
+            :buttonName="t('10.role.button.addRole')"
+            @click="create()"
+            >
+            </ButtonBase>
           </div>
         </template>
       </GridComponentV2>
@@ -50,7 +56,6 @@ const { t } = useI18n();
 const storeCommon = commonStore();
 const storeRole = rolesStore();
 const { list, status } = storeToRefs(storeRole);
-const checkRole = ref();
 
 defineComponent(() => {
   LinkGridComponent;
