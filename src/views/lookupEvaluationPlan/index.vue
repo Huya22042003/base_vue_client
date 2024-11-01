@@ -86,6 +86,7 @@
             :paginationClientFlag="false"
             @customPagination="fnPagination"
             :totalRecord="totalRows"
+            :keyId="keyId"
           />
         </div>
       </div>
@@ -218,8 +219,12 @@ const columnDefs = ref([
 const totalRows = ref(0);
 const paginationPageSize = ref(PAGINATION_PAGE_SIZE);
 const paginationPageSizeSelector = ref(PAGINATION_PAGE_SIZE_SELECTOR);
+const keyId =1;
 
 const fnPagination = (pageNumber: any, pagesSize: any) => {
+  dataSearch.size = pagesSize;
+  dataSearch.page = pageNumber;
+  dataSearch.sort = "";
   getDataAll();
 };
 
@@ -232,7 +237,7 @@ onBeforeMount(async () => {
     });
   }
   getListCodeMng({
-    upCdIdList: ["1010", "1011", "1088"],
+    upCdIdList: ["1010", "1011", "1084"],
   }).then((res) => {
     if (res.status == SUCCSESS_STATUS) {
       res.data.data.forEach((item) => {
@@ -245,7 +250,7 @@ onBeforeMount(async () => {
           listEduYear.value.push(item);
         }
 
-        if (item.upCdId == "1088") {
+        if (item.upCdId == "1084") {
           listSts.value.push(item);
         }
       });

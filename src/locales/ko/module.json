@@ -6296,8 +6296,10 @@
   },
   "finalArchi":{
     "action":{
-      "titleMain":"최종성적 작성"
+      "titleMainAdmin":"최종성적조회"
       ,"titleSub1":"1.역량별 성취도 평가 결과"
+      ,"checkTil1":"A0/40% B0/90%"
+      ,"checkTil2":"A0/30% B0/70%"
       ,"col1_1":"제한"
       ,"col1_2":"평점"
       ,"col1_3":"총원"
@@ -6327,7 +6329,7 @@
       ,"col2_12":"총점"
       ,"col2_13":"순위"
       ,"col2_14":"백분위"
-      ,"col2_15":"백분위(점수)"
+      ,"col2_15":"최종성적(점수)"
 
       ,"complate":"완료"
       ,"disComplate":"완료취소"
