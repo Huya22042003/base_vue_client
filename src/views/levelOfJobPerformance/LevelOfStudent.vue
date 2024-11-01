@@ -4,29 +4,29 @@
       <div class="search_box col_3">
         <ul>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search1") }}</p>
+            <p>{{ t("levelJobPerformance.student.column1") }}</p>
             <SelectBoxBase :id="'search1'" :data="listYear" />
           </li>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search2") }}</p>
+            <p>{{ t("levelJobPerformance.student.column2") }}</p>
             <SelectBoxBase :id="'search1'" :data="listTerm" />
           </li>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search3") }}</p>
+            <p>{{ t("levelJobPerformance.student.column3") }}</p>
             <SelectBoxBase :id="'search1'" :data="listGrade" />
           </li>
         </ul>
         <ul>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search4") }}</p>
+            <p>{{ t("levelJobPerformance.student.column4") }}</p>
             <SelectBoxBase :id="'search1'" :data="listDept" />
           </li>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search5") }}</p>
+            <p>{{ t("levelJobPerformance.student.column5") }}</p>
             <InputBase :id="'search5'" />
           </li>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search6") }}</p>
+            <p>{{ t("levelJobPerformance.student.column6") }}</p>
             <InputBase :id="'search6'" />
           </li>
         </ul>
@@ -42,6 +42,11 @@
     </div>
   </div>
   <div class="box dp_block">
+    <div class="dp_flex btn_group btn_end mg_b20" style="gap: 10px">
+      <button class="btn_round btn_lg btn_gray" @click="search">
+        {{ t("levelJobPerformance.student.dowload") }}
+      </button>
+    </div>
     <div class="box_section">
       <div class="tbl tbl_col">
         <table>
@@ -58,18 +63,41 @@
           </colgroup>
           <thead>
             <tr>
-              <th scope="row" class="ta_c" rowspan="2">1</th>
-              <th scope="row" class="ta_c" rowspan="2">2</th>
-              <th scope="col" class="ta_c" colspan="3">3</th>
-              <th scope="col" class="ta_c" colspan="3">4</th>
+              <th scope="row" class="ta_c" rowspan="2">
+                {{ t("levelJobPerformance.student.tbl1") }}
+              </th>
+              <th scope="row" class="ta_c" rowspan="2">
+                {{ t("levelJobPerformance.student.tbl2") }}
+              </th>
+              <th scope="col" class="ta_c" colspan="3">
+                {{ t("levelJobPerformance.student.tbl3") }}
+              </th>
+              <th scope="col" class="ta_c" colspan="4">
+                {{ t("levelJobPerformance.student.tbl4") }}
+              </th>
             </tr>
             <tr>
-              <th scope="col" class="ta_c">4</th>
-              <th scope="col" class="ta_c">5</th>
-              <th scope="col" class="ta_c">6</th>
-              <th scope="col" class="ta_c">7</th>
-              <th scope="col" class="ta_c">8</th>
-              <th scope="col" class="ta_c">9</th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl5") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl6") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl7") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl8") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl9") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl10") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl11") }}
+              </th>
             </tr>
           </thead>
         </table>
@@ -110,4 +138,6 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@import url("../eduProcessCreation/eduCourseCustom.css");
+</style>
