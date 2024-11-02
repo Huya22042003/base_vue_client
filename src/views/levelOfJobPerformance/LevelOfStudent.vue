@@ -169,8 +169,8 @@
                       <td>{{ jobCapaUnit.capaUnitNm }}</td>
                       <td>{{ jobCapaUnit.scoreJobCapa }}</td>
                       <td
-                        :rowspan="job.rowSpan"
-                        v-if="indexJobAbility === 0 && indexJobCapaUnit === 0"
+                        :rowspan="jobAbility.rowSpan"
+                         v-if="indexJobCapaUnit === 0"
                       >
                         {{ jobAbility.scoreJobAbility }}
                       </td>
