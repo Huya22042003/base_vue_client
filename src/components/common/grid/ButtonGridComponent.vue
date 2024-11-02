@@ -25,9 +25,10 @@
       },
       setup() {
         const roleStore = checkFlagStore();
+        const {t} = useI18n()
 
         return {
-            roleStore
+            roleStore,t
         }
       },
       mounted() {
@@ -70,7 +71,7 @@
                     this.params.onCustomEvent(this.params.data)
                 } else {
                     Swal.fire({
-                    text: t("common.message.warring"),
+                    text: this.t("common.message.warring"),
                     showCancelButton: false,
                     confirmButtonColor: "#DD6B55",
                     confirmButtonText: "확인",
