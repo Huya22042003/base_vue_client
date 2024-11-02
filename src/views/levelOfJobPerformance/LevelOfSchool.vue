@@ -4,30 +4,20 @@
       <div class="search_box col_3">
         <ul>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search1") }}</p>
+            <p>학년도</p>
             <SelectBoxBase :id="'search1'" :data="listYear" />
           </li>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search2") }}</p>
+            <p>학기</p>
             <SelectBoxBase :id="'search1'" :data="listTerm" />
           </li>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search3") }}</p>
+            <p>학년</p>
             <SelectBoxBase :id="'search1'" :data="listGrade" />
           </li>
-        </ul>
-        <ul>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search4") }}</p>
+            <p>학과</p>
             <SelectBoxBase :id="'search1'" :data="listDept" />
-          </li>
-          <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search5") }}</p>
-            <InputBase :id="'search5'" />
-          </li>
-          <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search6") }}</p>
-            <InputBase :id="'search6'" />
           </li>
         </ul>
         <div class="dp_flex btn_group btn_end" style="gap: 10px">
@@ -42,6 +32,20 @@
     </div>
   </div>
   <div class="box dp_block">
+    <h1 class="section_tit_lg">
+      대학전체 직무역량 성취도 목록
+    </h1>
+      <div class="dp_flex jc_end al_center box_title_sm">
+        <button
+          class="button btn_primary btn_lg"
+        >엑셀 다운로드</button>
+      </div>
+      <div class="dp_flex between al_center box_title_sm">
+        <p class="section_tit_xs">
+          대학 직무능력성취도: 77.31
+        </p>
+        <p class="section_tit_xs">*NCS 능력단위평가에 0.8, 직업기초능력에 0.2의 가중치 적용</p>
+      </div>
     <div class="box_section">
       <div class="tbl tbl_col">
         <table>
@@ -58,20 +62,35 @@
           </colgroup>
           <thead>
             <tr>
-              <th scope="row" class="ta_c" rowspan="2">1</th>
-              <th scope="row" class="ta_c" rowspan="2">2</th>
-              <th scope="col" class="ta_c" colspan="3">3</th>
-              <th scope="col" class="ta_c" colspan="3">4</th>
+              <th class="ta_c" rowspan="2">학과</th>
+              <th class="ta_c" colspan="3">직무</th>
+              <th class="ta_c" colspan="4">능력단위</th>
+              <th class="ta_c" rowspan="2">직무능력성취도</th>
+              <th class="ta_c">비고</th>
             </tr>
             <tr>
-              <th scope="col" class="ta_c">4</th>
-              <th scope="col" class="ta_c">5</th>
-              <th scope="col" class="ta_c">6</th>
-              <th scope="col" class="ta_c">7</th>
-              <th scope="col" class="ta_c">8</th>
-              <th scope="col" class="ta_c">9</th>
+              <th class="ta_c">구분</th>
+              <th class="ta_c">능력단위명</th>
+              <th class="ta_c">능력단위 요소명</th>
+              <th class="ta_c">능력단위요소</th>
+              <th class="ta_c">능력단위</th>
+              <th class="ta_c">직무</th>
+              <th class="ta_c">학과</th>
             </tr>
           </thead>
+          <tbody>
+            <tr>
+                <td class="ta_c">직무</td>
+                <td class="ta_c">능력단위</td>
+                <td class="ta_c">구분</td>
+                <td class="ta_c">능력돤위명</td>
+                <td class="ta_c">능력단위 요소명</td>
+                <td class="ta_c">능력단위요소</td>
+                <td class="ta_c">능력단위</td>
+                <td class="ta_c">직무</td>
+                <td class="ta_c">학과</td>
+              </tr>
+          </tbody>
         </table>
       </div>
     </div>
@@ -109,4 +128,8 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.between {
+  justify-content: space-between;
+}
+</style>

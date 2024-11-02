@@ -38,7 +38,7 @@
                   :data="listSelectBoxSchoolYear"
                   v-model="schoolYear"
                 ></SelectBoxBase>
-                <div v-if="modalType == 'type2'">{{ dataInfo.year }}</div>
+                <div v-if="modalType == 'type2'">{{ yearDivision }}</div>
                 <div v-if="modalType == 'type1'">{{ yearAdd }}</div>
               </td>
             </tr>
@@ -54,7 +54,7 @@
                   :data="listSelectBoxSemester"
                   v-model="termCd"
                 ></SelectBoxBase>
-                <div v-if="modalType == 'type2'">{{ dataInfo.termNm }}</div>
+                <div v-if="modalType == 'type2'">{{ termDivision }}</div>
                 <div v-if="modalType == 'type1'">{{ termAdd }}</div>
               </td>
             </tr>
@@ -63,7 +63,7 @@
                 {{ t("lectureDesignSchedule.modal.subjectName") }}
               </th>
               <td class="td_input">
-                <p>{{ dataInfo.sbjtNm }}</p>
+                <p>{{ sbjtDivision }}</p>
               </td>
             </tr>
             <tr v-if="modalType == 'type2'">
@@ -71,7 +71,7 @@
                 {{ t("lectureDesignSchedule.modal.classDivision") }}
               </th>
               <td class="td_input">
-                <p>{{ dataInfo.divNm }}</p>
+                <p>{{ division }}</p>
               </td>
             </tr>
             <tr>
@@ -212,7 +212,7 @@
         class="btn_round btn_lg btn_gray mg_l10"
         @click="closeModal"
       >
-      {{t("lectureDesignSchedule.modal.close")}}
+        {{ t("lectureDesignSchedule.modal.close") }}
       </button>
     </template>
   </TModal>
@@ -224,6 +224,7 @@ import { commonStore } from "@/stores/common";
 import type {
   LectureDesignSchudeModel,
   LectRegModel,
+  LectRegItem,
 } from "@/stores/LectureDesignSchedule/LectureDesignSchedule.type";
 import {
   getDetailData,
@@ -250,12 +251,12 @@ export default defineComponent({
       type: String as PropType<"type1" | "type2" | "type3">,
       required: true,
     },
-    lectCd: {
+    writeSchdlSeq: {
       type: String,
       required: false,
     },
-    listLectCd: {
-      type: Array<String>,
+    listSubjectItem: {
+      type: Array<LectRegItem>,
       required: false,
     },
     yearAdd: {
@@ -266,18 +267,36 @@ export default defineComponent({
       type: String,
       required: false,
     },
+    termDivision: {
+      type: String,
+      required: false,
+    },
+    sbjtDivision: {
+      type: String,
+      required: false,
+    },
+    division: {
+      type: String,
+      required: false,
+    },
+    yearDivision: {
+      type: String,
+      required: false,
+    },
+    cdDivision: {
+      type: String,
+      required: false,
+    },
     getDataAll: {
       type: Function,
     },
   },
-  components: {},
   setup: (props) => {
     const { t } = useI18n();
     const cmn = commonStore();
     const currentYear = new Date().getFullYear();
     return { t, cmn, props, currentYear };
   },
-  beforeMount() {},
   data() {
     return {
       schoolYear: this.currentYear,
@@ -300,7 +319,9 @@ export default defineComponent({
   },
   mounted() {
     if (this.modalType == "type2") {
-      this.getLectInfo(this.lectCd);
+      if (this.writeSchdlSeq != null) {
+        this.getLectInfo(this.writeSchdlSeq);
+      }
     } else if (this.modalType == "type3") {
       this.getCodeType();
     }
@@ -325,8 +346,8 @@ export default defineComponent({
         });
     },
     confirmAction() {
-      this.regData.divCd = this.dataInfo.divCd;
-      this.regData.listLectCd = this.listLectCd;
+      this.regData.divCd = this.cdDivision;
+      this.regData.listLectCd = this.listSubjectItem;
       this.regData.lectPlanStrDate = this.dataInfo.lectPlanStrDate;
       this.regData.lectPlanEndDate = this.dataInfo.lectPlanEndDate;
       this.regData.evalPlanStrDate = this.dataInfo.evalPlanStrDate;
@@ -394,9 +415,9 @@ export default defineComponent({
       return `${year}-${month}-${day}`;
     },
 
-    getLectInfo(lectCd: any) {
+    getLectInfo(writeSchdlSeq: any) {
       this.cmn.setLoading(true);
-      getDetailData(lectCd)
+      getDetailData(writeSchdlSeq)
         .then((res) => {
           this.dataInfo = res.data.data;
         })
