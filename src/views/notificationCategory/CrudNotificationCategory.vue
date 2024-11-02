@@ -321,16 +321,16 @@ export default defineComponent({
               if (!file) {
                 reject("Upload failed");
               } else {
-                this.storeCommon.setLoading(true);
+                this.cmn.setLoading(true);
                 const formData = new FormData();
                 formData.append("file", file);
-                formData.append("category", "MEETING_REPORT_EDITER");
-                formData.append("orgName", "MEETING_REPORT_EDITER");
-                formData.append("sectionName", "MEETING_REPORT_EDITER");
+                formData.append("category", "NOTICE");
+                formData.append("orgName", "NOTICE");
+                formData.append("sectionName", "NOTICE");
                 uploadFileEditor(formData)
                   .then((res) => {
-                    resolve(res.data.urlFile);
-                    this.storeCommon.setLoading(false);
+                    resolve(res.data.data.urlFile);
+                    this.cmn.setLoading(false);
                   })
                   .catch((err) => {
                     reject("Upload failed");
@@ -370,6 +370,7 @@ export default defineComponent({
               this.$refs.diagnosticGuide.setHTML(
                 this.notiCategoryDetailModel.cont
               );
+              this.checkData(this.noticeIdRes.id);
             })
             .catch((error) => {
               throw new Error(MESSAGE_ERROR_API);
@@ -382,6 +383,7 @@ export default defineComponent({
       this.cmn.setLoading(false);
     },
     async handleModifyAction() {
+
       this.cmn.setLoading(true);
       var checkValid = 0;
       await countTop()
@@ -404,7 +406,8 @@ export default defineComponent({
           ) {
             await saveData(this.notiCategoryDetailModel)
               .then((res) => {
-                this.checkData(res.data.data);
+                this.checkData(res.data.data);              
+                
                 this.messagAlert = this.saveSuccess;
                 this.showAlert();
               })

@@ -5201,7 +5201,7 @@
           "term":"학기",
           "lecturePlanWritingPeriod": "강의계획서 작성 기간",
           "evalPlanPeriod": "평가계획서 작성 기간",
-          "studentJobEval":"학생 직무수행능력 평가 기간",
+          "studentJobEval":"평가 기간",
           "subjectCqiWritingPeriod": "교과목CQI 작성 기간",
           "subjectName": "교과목명",
           "classDivision": "분반",
@@ -6251,6 +6251,7 @@
     }
   },
   "curriculumManagement": {
+    "trackDiv": "트랙 구분",
     "pageTitle": "교과 구분 관리",
     "dept": "학과/학부",
     "training": "교육과정",
@@ -6295,8 +6296,10 @@
   },
   "finalArchi":{
     "action":{
-      "titleMain":"최종성적 작성"
+      "titleMainAdmin":"최종성적조회"
       ,"titleSub1":"1.역량별 성취도 평가 결과"
+      ,"checkTil1":"A0/40% B0/90%"
+      ,"checkTil2":"A0/30% B0/70%"
       ,"col1_1":"제한"
       ,"col1_2":"평점"
       ,"col1_3":"총원"
@@ -6326,7 +6329,7 @@
       ,"col2_12":"총점"
       ,"col2_13":"순위"
       ,"col2_14":"백분위"
-      ,"col2_15":"백분위(점수)"
+      ,"col2_15":"최종성적(점수)"
 
       ,"complate":"완료"
       ,"disComplate":"완료취소"

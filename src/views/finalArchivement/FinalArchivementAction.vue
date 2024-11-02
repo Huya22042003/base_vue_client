@@ -6,7 +6,7 @@
     ></Breadcrumb>
     <div class="search_box">
       <div class="search_section">
-        <p class="box_title_sm">1.최종성적조회</p>
+        <p class="box_title_sm">{{ t("finalArchi.action.titleSub1") }}</p>
         <div class="tbl tbl_col tbl_scroll scrollx_tbl_xs">
           <table class="tbl_col">
             <caption>
@@ -52,9 +52,11 @@
                   v-if="finalAchiDetailModel.evalType == EVAL_TYPE_01"
                   class="score-cell"
                 >
-                  A0/40% B0/90%
+                {{ t("finalArchi.action.checkTil1") }}
                 </td>
-                <td v-else class="score-cell">A0/30% B0/70%</td>
+                <td v-else class="score-cell">
+                  {{ t("finalArchi.action.checkTil2") }}
+                </td>
                 <td class="score-cell">
                   {{ mediScore }}
                 </td>
@@ -180,7 +182,7 @@
                 <th scope="col">{{ t("finalArchi.action.col2_12") }}</th>
                 <th scope="col">{{ t("finalArchi.action.col2_13") }}</th>
                 <th scope="col">{{ t("finalArchi.action.col2_14") }}</th>
-                <th scope="col">최종성적(점수)</th>
+                <th scope="col">{{ t("finalArchi.action.col2_15") }}</th>
               </tr>
             </thead>
             <tbody>
@@ -264,7 +266,7 @@ export default defineComponent({
     const router = useRouter();
     const userJobModel = {} as UserJobModel;
     const STS_NO = STATUS_NO;
-    const pageTitle = t("finalArchi.action.titleMain");
+    const pageTitle = t("finalArchi.action.titleMainAdmin");
     const breadcrumbItems = [] as any;
     return {
       t,

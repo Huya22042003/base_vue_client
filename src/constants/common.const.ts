@@ -299,3 +299,6 @@ export const CD_TYPE_SPECIAL = "12160004";
 
 export const EVAL_TYPE_01 = "122410";
 export const EVAL_TYPE_02 = "122420";
+export const UP_CD_TRACK = "TRK";
+export const CD_ID_TRACK_01 = "TRK01";
+export const CD_ID_TRACK_02 = "TRK02";
