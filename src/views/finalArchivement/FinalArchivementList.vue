@@ -108,6 +108,7 @@ import {
   PAGINATION_PAGE_SIZE,
   PAGINATION_PAGE_SIZE_SELECTOR,
   MODE_DETAIL,
+  START_YEAR
 } from "../../constants/screen.const";
 import { SCREEN } from "../../router/screen";
 import { useI18n } from "vue-i18n";
@@ -118,9 +119,11 @@ import {
   MESSAGE_ERROR_API,
   STATUS_YES,
   STATUS_NO,
+  UP_CD_ID_SEMESTER
 } from "@/constants/common.const";
 import { commonStore } from "@/stores/common";
-import type { ExcelData } from "../../stores/common/excel/excelData.type";
+import { getListCodeMng } from "@/stores/common/codeMng/codeMng.service";
+import type { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 
 export default defineComponent({
   components: {
@@ -151,14 +154,10 @@ export default defineComponent({
       },
     ];
     const listSelectBoxShow = ref([
-      { cdId: "", cdNm: "전체" },
-      { cdId: "2024", cdNm: "2024" },
-      { cdId: "2025", cdNm: "2025" },
+    { cdId: "", cdNm: "전체" },
     ]);
     const listSelectBoxShow1 = ref([
-      { cdId: "", cdNm: "전체" },
-      { cdId: "1", cdNm: "1학기" },
-      { cdId: "2", cdNm: "2학기" },
+      { cdId: "", cdNm: "전체" },     
     ]);
     const listSelectBoxShow2 = ref([
       { cdId: "", cdNm: "전체" },
@@ -240,7 +239,7 @@ export default defineComponent({
     ]);
     const listSelectBoxSite = ref([]);
     const finalAchiSearchModel = ref({
-      yearEdu: "",
+      yearEdu: new Date().getFullYear(),
       termEdu: "",
       sbjtNm: "",
       status: "",
@@ -250,22 +249,27 @@ export default defineComponent({
     }) as FinalAchiSearchModel;
     const totalRows = ref<number>;
     function handleCustomClick(data: any) {
-      router.push({
-        name: SCREEN.finalArchivementAction.name,
-        params: { mode: MODE_DETAIL },
-        state: {
-          id: data.lectCd,
-          userJobPerformEvalSeq: data.userJobPerformEvalSeq,
-          finalGradeConfrmYn: data.finalGradeConfrmYn,
-          staffNm: data.staffNm,
-          divNm: data.divNm,
-          yearEdu: data.yearEdu,
-          sbjtNm: data.sbjtNm,
-          sbjtCd: data.sbjtCd,
-          termNm: data.termNm,
-          gradeNm: data.gradeNm,
-        },
-      });
+      const currDate = new Date().toISOString().split('T')[0];
+      if(data.jobCapaEvalStrDate <= currDate &&  currDate <= data.jobCapaEvalEndDate ){
+        router.push({
+          name: SCREEN.finalArchivementAction.name,
+          params: { mode: MODE_DETAIL },
+          state: {
+            id: data.lectCd,
+            userJobPerformEvalSeq: data.userJobPerformEvalSeq,
+            finalGradeConfrmYn: data.finalGradeConfrmYn,
+            staffNm: data.staffNm,
+            divNm: data.divNm,
+            yearEdu: data.yearEdu,
+            sbjtNm: data.sbjtNm,
+            sbjtCd: data.sbjtCd,
+            termNm: data.termNm,
+            gradeNm: data.gradeNm,
+          },
+        });
+      }else{
+        alert('đợi QA')
+      }
     }
 
     return {
@@ -354,6 +358,37 @@ export default defineComponent({
       this.finalAchiSearchModel.sort = "";
       this.getDataAll();
     },
+    getListYear(){
+      const currentYear = new Date().getFullYear()+1;
+      for(var i=parseInt(START_YEAR); i<=currentYear; i++){
+        let year = {} as CodeMngModel;
+        year.cdId= i,
+        year.cdNm= i
+
+        this.listSelectBoxShow.push(year)
+        
+      }
+    },
+    getListCode() {
+      this.cmn.setLoading(true);
+      this.getListYear();
+      getListCodeMng({
+        upCdIdList: [UP_CD_ID_SEMESTER],
+      })
+        .then((res) => {
+          this.listSelectBoxShow1 = res.data.data.filter(
+            (el: CodeMngModel) => el.upCdId == UP_CD_ID_SEMESTER
+          );
+
+          this.listSelectBoxShow1.unshift({
+            cdId: "",
+            cdNm: this.t("common.all"),
+          });
+        })
+        .finally(() => {
+          this.cmn.setLoading(false);
+        });
+    }
   },
 });
 </script>
