@@ -165,12 +165,12 @@
           type="button"
           @click="save"
           :buttonName="t('common.save')"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           v-if="isSave"
         />
         <button
           type="button"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           :disabled="isDisabled"
           @click="next()"
         >
@@ -178,7 +178,7 @@
         </button>
         <button
           type="button"
-          class="btn_round btn_md btn_white"
+          class="btn_round btn_lg btn_white"
           @click="back()"
         >
           {{ t("common.list") }}

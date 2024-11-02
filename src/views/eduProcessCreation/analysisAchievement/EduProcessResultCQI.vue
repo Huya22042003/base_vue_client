@@ -448,7 +448,7 @@
 
     <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
-        <button type="button" class="btn_md btn_round btn_gray">
+        <button type="button" class="btn_lg btn_round btn_gray">
           <!-- 1.전년도 교육과정 운영 실적 분석 인쇄 -->{{
             t("eduProcessCreation.analysisAchievement.title31")
           }}
@@ -456,7 +456,7 @@
         <!-- <button
           v-if="isSave"
           type="button"
-          class="btn_md btn_round btn_primary"
+          class="btn_lg btn_round btn_primary"
           @click="confirmSaveData()"
         >
           {{ t("common.save") }}
@@ -464,13 +464,13 @@
         <ButtonBase
           v-if="isSave"
           type="button"
-          class="btn_md btn_round btn_primary"
+          class="btn_lg btn_round btn_primary"
           :buttonName="t('common.save')"
           @click="confirmSaveData()"
         ></ButtonBase>
         <button
           type="button"
-          class="btn_md btn_round btn_primary"
+          class="btn_lg btn_round btn_primary"
           @click="next()"
           :disabled="isDisabled"
         >
@@ -478,7 +478,7 @@
         </button>
         <button
           type="button"
-          class="btn_md btn_round btn_white"
+          class="btn_lg btn_round btn_white"
           @click="back()"
         >
           {{ t("common.list") }}

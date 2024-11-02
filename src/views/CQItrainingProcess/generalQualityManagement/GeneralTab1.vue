@@ -129,7 +129,7 @@
       {{ t("generalTab1.table3.item1.internalTitle") }}
     </p>
     <button
-      class="button btn_white btn_md"
+      class="button btn_white btn_lg"
       @click="handleAddTable('TableInternal')"
     >
       {{ t("common.add") }}

@@ -188,12 +188,12 @@
           type="button"
           @click="save"
           :buttonName="t('common.save')"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           v-if="isSave"
         />
         <button
           type="button"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           :disabled="isDisabled"
           @click="next()"
         >
@@ -201,7 +201,7 @@
         </button>
         <button
           type="button"
-          class="btn_round btn_md btn_white"
+          class="btn_round btn_lg btn_white"
           @click="back()"
         >
           {{ t("common.list") }}
@@ -227,7 +227,7 @@ import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import CompositionSelectModal from "./CompositionSelectModal.vue";
 import { EduCourseCommResDTO } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.type";
-import { CD_OUTSIDE, CD_INTERNAL } from "@/constants/common.const";
+import { CD_OUTSIDE, CD_INTERNAL, STATUS_NO } from "@/constants/common.const";
 import { getAllEduCourseComm } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.service";
 import { saveEduCourseComm } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.service";
 import { EduCourseCommReqDTO } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.type";
@@ -354,6 +354,7 @@ export default defineComponent({
               eduCourseSeq: this.id,
               posi: el.posi,
               remark: el.remark,
+              delYn: STATUS_NO
             });
           });
 
@@ -368,6 +369,7 @@ export default defineComponent({
               eduCourseSeq: this.id,
               posi: el.posi,
               remark: el.remark,
+              delYn: STATUS_NO
             });
           });
 

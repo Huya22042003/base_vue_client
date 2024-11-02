@@ -585,7 +585,6 @@
               :isNumber="true"
               :modelValue="
                 totalSumState([
-                  dataProfMng.totalStudentStudy.state,
                   dataProfMng.totalProfStudy.state,
                   dataProfMng.totalSpProfStudy.state,
                   dataProfMng.totalAssStudy.state,

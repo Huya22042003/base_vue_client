@@ -86,6 +86,7 @@
                               item.cdId == ''
                           )
                         "
+                        :isDisable="!version && ability.isDisable"
                         v-model="ability.cdId"
                         @change="
                           changeJobAbility(
@@ -114,6 +115,7 @@
                           "
                           :buttonName="t('common.deleteItem')"
                           class="btn_round btn_sm btn_white"
+                          :isDisable="!version && ability.isDisable"
                         />
                       </div>
                     </div>
@@ -138,6 +140,7 @@
                       :requireId="`jobCapa_${indexJob}_${indexSbjt}_${indexAbility}`"
                       :isRequire="true"
                       @change="checkCapaChange(ability)"
+                      :isDisable="!version && ability.isDisable"
                     />
                     <span
                       v-if="
@@ -174,6 +177,7 @@
                       :requireId="`jobCapaPerform_${indexJob}_${indexSbjt}_${indexAbility}`"
                       :isRequire="true"
                       @change="checkCapaPefForm(ability)"
+                      :isDisable="!version && ability.isDisable"
                     />
                     <span
                       v-if="
@@ -214,18 +218,18 @@
           type="button"
           @click="saveTemp"
           :buttonName="t('common.saveTemp')"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
         />
         <ButtonBase
           v-if="isSave"
           type="button"
           @click="save"
           :buttonName="t('common.save')"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
         />
         <button
           type="button"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           :disabled="isDisabled"
           @click="next()"
         >
@@ -233,7 +237,7 @@
         </button>
         <button
           type="button"
-          class="btn_round btn_md btn_white"
+          class="btn_round btn_lg btn_white"
           @click="back()"
         >
           {{ t("common.list") }}
@@ -269,7 +273,7 @@ import {
   CreateListSbjtSelResDTO,
   CreateSubjectReqDTO,
 } from "@/stores/eduProcessCreation/subjectMng/subjectMng.type";
-import { STATUS_NO, STATUS_YES } from "@/constants/common.const";
+import { STATUS_NO, STATUS_YES, VERSION_V1 } from "@/constants/common.const";
 import { saveCreateSubjectForm } from "@/stores/eduProcessCreation/subjectMng/subjectMng.service";
 
 export default defineComponent({
@@ -283,8 +287,9 @@ export default defineComponent({
     const { t } = useI18n();
     const id = window.history.state.id;
     const isSave = window.history.state.isSave;
+    const version = window.history.state.version == VERSION_V1;
 
-    return { router, storeCommon, t, id, isSave };
+    return { router, storeCommon, t, id, isSave, version };
   },
   data() {
     return {
@@ -295,6 +300,7 @@ export default defineComponent({
       indexSelect: -1,
       isDisabled: true,
       checkTemp: true,
+      listSbjectDel: [] as CreateListSbjtSelResDTO[]
     };
   },
   beforeMount() {
@@ -347,6 +353,7 @@ export default defineComponent({
                 sbjt.jobAbility = sbjt.jobAbility.map((abi: any) => {
                   this.isDisabled = false;
                   abi.keyJobCapa = 1;
+                  abi.isDisable = true;
                   abi.keyJobCapaPerform = 1;
                   abi.jobCapa = abi.jobCapa.map((capa: any) => capa.cdId);
                   abi.jobCapaPerform = abi.jobCapaPerform.map(
@@ -379,12 +386,13 @@ export default defineComponent({
       value: string,
       ability: any
     ) {
+      ability.keyJobCapa++;
       ability.jobCapa = this.dataForm.jobCapa
         .filter(
           (item: any) => ability.cdId && item.upCdId.includes(ability.cdId)
         )
         .map((item) => item.cdId);
-
+      this.checkCapaChange(ability);
       if (
         value &&
         this.dataView[indexJob].subjectNm[indexSbjt].jobAbility.filter(
@@ -399,6 +407,7 @@ export default defineComponent({
             cdNm: "",
             keyJobCapa: 1,
             keyJobCapaPerform: 1,
+            isDisable: false,
             jobCapa: [],
             jobCapaPerform: [],
           };
@@ -411,6 +420,7 @@ export default defineComponent({
         cdNm: "",
         keyJobCapa: 1,
         keyJobCapaPerform: 1,
+        isDisable: false,
         jobCapa: [],
         jobCapaPerform: [],
       });
@@ -574,18 +584,28 @@ export default defineComponent({
         this.$alert("동일한 교과목을 중복 편성할 수 없습니다");
         return;
       }
+      if (this.listSbjectDel.some((item: CreateListSbjtSelResDTO) => item.sbjtCd == data.sbjtCd)) {
+        const dataSbjt = this.listSbjectDel.filter((item: CreateListSbjtSelResDTO) => item.sbjtCd == data.sbjtCd).map(item => {
+          item.jobSeq = this.dataView[this.indexSelect].jobSeq;
+          return item;
+        })[0];
+        this.dataView[this.indexSelect].subjectNm.push(dataSbjt);
+        return;
+      }
       const dataSbjt = {
         sbjtCandSeq: "",
         jobSeq: this.dataView[this.indexSelect].jobSeq,
         sbjtCd: data.sbjtCd,
         sbjtNm: data.sbjtNm,
         acqGpa: data.acqCredit,
+        tempSaveYn: '',
         jobAbility: [
           {
             cdId: "",
             cdNm: "",
             keyJobCapa: 0,
             keyJobCapaPerform: 0,
+            isDisable: false,
             jobCapa: [],
             jobCapaPerform: [],
           },
@@ -600,9 +620,8 @@ export default defineComponent({
         "",
         (isConfirm: Boolean) => {
           if (isConfirm) {
-            this.dataView[indexJob].subjectNm = this.dataView[
-              indexJob
-            ].subjectNm.filter((item: any, index: number) => index != indexSubject);
+            this.listSbjectDel.push(this.dataView[indexJob].subjectNm[indexSubject]);
+            this.dataView[indexJob].subjectNm = this.dataView[indexJob].subjectNm.filter((item: any, index: number) => index !== indexSubject);
             this.$alert("교과목이 삭제가 되었습니다.");
           }
         }

@@ -162,7 +162,7 @@
 
     <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
-        <button type="button" class="btn_round btn_md btn_gray">
+        <button type="button" class="btn_round btn_lg btn_gray">
           <!-- 4.직무 정의 및 직무모형 설정 인쇄 -->{{
             t("eduProcessCreation.jobEduMng.title26")
           }}
@@ -170,7 +170,7 @@
         <!-- <button
           v-if="version && isSave"
           type="button"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           @click="confirmSave"
         >
           {{ t("common.save") }}
@@ -178,13 +178,13 @@
         <ButtonBase
           v-if="version && isSave"
           type="button"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           :buttonName="t('common.save')"
           @click="confirmSave"
         ></ButtonBase>
         <button
           type="button"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           @click="next()"
           :disabled="isDisabled"
         >
@@ -192,7 +192,7 @@
         </button>
         <button
           type="button"
-          class="btn_round btn_md btn_white"
+          class="btn_round btn_lg btn_white"
           @click="back()"
         >
           {{ t("common.list") }}

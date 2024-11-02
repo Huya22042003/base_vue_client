@@ -449,7 +449,7 @@
         </div>
         <div class="box">
           <div class="btn_group btn_end">
-            <button type="button" class="btn_round btn_md btn_primary">
+            <button type="button" class="btn_round btn_lg btn_primary">
               {{ t("common.print") }}
             </button>
             <ButtonBase
@@ -457,11 +457,11 @@
               type="button"
               @click="save"
               :buttonName="t('common.save')"
-              class="btn_round btn_md btn_primary"
+              class="btn_round btn_lg btn_primary"
             />
             <button
               type="button"
-              class="btn_round btn_md btn_white"
+              class="btn_round btn_lg btn_white"
               @click="back()"
             >
               {{ t("common.list") }}
@@ -491,7 +491,6 @@ import {
 } from "@/stores/eduProcessCreation/subjectProfile/subjectProfile.type";
 import {
   getCodeMngByUpCdId,
-  getListCodeMng,
 } from "@/stores/common/codeMng/codeMng.service";
 import { UP_CLASS_ONLINE_YN, UP_LECTURE_YN } from "@/constants/common.const";
 import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";

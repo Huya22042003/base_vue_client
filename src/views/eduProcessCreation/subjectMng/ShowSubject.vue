@@ -13,13 +13,14 @@
           v-model:model-value="isCheckCreate"
         >
         </CheckboxBase>
-        <button
+          <!-- 교과목 추가 -->
+        <ButtonBase
+          type="button"
           @click="addNewSubject()"
-          v-if="!isCheckCreate"
-          class="button btn_primary btn_lg"
-        >
-          <!-- 교과목 추가 -->{{ t("eduProcessCreation.subjectMng.title86") }}
-        </button>
+          v-if="!isCheckCreate && isSave"
+          :buttonName="t('eduProcessCreation.subjectMng.title86')"
+          class="btn_round btn_lg btn_primary"
+        />
       </div>
       <div v-if="!isCheckCreate" class="tbl tbl_col">
         <table>
@@ -177,11 +178,11 @@
           type="button"
           @click="save"
           :buttonName="t('common.save')"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
         />
         <button
           type="button"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           :disabled="isDisabled"
           @click="next()"
         >
@@ -189,7 +190,7 @@
         </button>
         <button
           type="button"
-          class="btn_round btn_md btn_white"
+          class="btn_round btn_lg btn_white"
           @click="back()"
         >
           {{ t("common.list") }}
