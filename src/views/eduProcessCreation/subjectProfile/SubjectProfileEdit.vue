@@ -491,7 +491,6 @@ import {
 } from "@/stores/eduProcessCreation/subjectProfile/subjectProfile.type";
 import {
   getCodeMngByUpCdId,
-  getListCodeMng,
 } from "@/stores/common/codeMng/codeMng.service";
 import { UP_CLASS_ONLINE_YN, UP_LECTURE_YN } from "@/constants/common.const";
 import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";

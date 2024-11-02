@@ -32,6 +32,20 @@
     </div>
   </div>
   <div class="box dp_block">
+    <h1 class="section_tit_lg">
+      학과별 직무역량 성취도 목록
+    </h1>
+      <div class="dp_flex jc_end al_center box_title_sm">
+        <button
+          class="button btn_primary btn_lg"
+        >엑셀 다운로드</button>
+      </div>
+      <div class="dp_flex between al_center box_title_sm">
+        <p class="section_tit_xs">
+          건축디자인과
+        </p>
+        <p class="section_tit_xs">*NCS 능력단위평가에 0.8, 직업기초능력에 0.2의 가중치 적용</p>
+      </div>
     <div class="box_section">
       <div class="tbl tbl_col">
         <table>
@@ -113,4 +127,8 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.between {
+  justify-content: space-between;
+}
+</style>

@@ -13,7 +13,7 @@
       </strong>
     </template>
     <template #default>
-      <div class="tbl_col">
+      <div class="tbl tbl_col">
         <table class="">
           <caption></caption>
           <colgroup>
@@ -23,52 +23,53 @@
           <tbody>
             <tr>
               <th scope="row" class="required">
-                {{ t("eduProcessCreation.table.deptNm") }}
-              </th>
-              <td>
-                <SelectBoxBase
-                  v-model="eduCourseRequest.deptCd"
-                  required
-                  class="wd_p60"
-                  :id="'selectbox2'"
-                  :name="'selectbox2'"
-                  :data="listDept"
-                  @change="loadDataTypeTalent"
-                >
-                </SelectBoxBase>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row" class="required">
                 {{ t("eduProcessCreation.table.year") }}
               </th>
-              <td>
+              <th>
                 <SelectBoxBase
                   v-model="eduCourseRequest.year"
                   required
-                  class="wd_p60"
+                  class="wd_p70"
                   :id="'selectbox3'"
                   :name="'selectbox3'"
                   :data="listYear"
                 >
                 </SelectBoxBase>
-              </td>
+              </th>
             </tr>
             <tr>
               <th scope="row" class="required">
                 {{ t("eduProcessCreation.modal.title1") }}
               </th>
-              <td>
+              <th>
                 <SelectBoxBase
                   v-model="eduCourseRequest.eduCourseTypeSeq"
                   required
-                  class="wd_p60"
+                  class="wd_p70"
                   :id="'selectbox1'"
                   :name="'selectbox1'"
-                  :data="listEduTypeData"
+                  :data="listEduType"
+                  @change="loadDataTypeTalent"
                 >
                 </SelectBoxBase>
-              </td>
+              </th>
+            </tr>
+            <tr>
+              <th scope="row" class="required">
+                {{ t("eduProcessCreation.table.deptNm") }}
+              </th>
+              <th>
+                <SelectBoxBase
+                  v-model="eduCourseRequest.deptCd"
+                  required
+                  class="wd_p70"
+                  :id="'selectbox2'"
+                  :name="'selectbox2'"
+                  :data="loadDataDept"
+                  @change="changeDeptCheck"
+                >
+                </SelectBoxBase>
+              </th>
             </tr>
           </tbody>
         </table>
@@ -118,8 +119,9 @@ import {
 import { MODE_EDIT } from "@/constants/screen.const";
 import { START_YEAR_NUMBER } from "@/constants/screen.const";
 import { getUserInfo } from "@/utils/storage";
-import { BAD_REQUEST_EDU_COURSE, BAD_REQUEST_NO_REGISTER_WRITE_SCHDL, DEPT_TYPE_SPECIAL, EDU_TYPE_OTHER, VERSION_V1 } from "@/constants/common.const";
+import { BAD_REQUEST_EDU_COURSE, BAD_REQUEST_NO_REGISTER_WRITE_SCHDL, DEPT_TYPE_SPECIAL, EDU_TYPE_OTHER, EDU_TYPE_OTHER_CD, VERSION_V1 } from "@/constants/common.const";
 import ButtonBase from "@/components/common/button/ButtonBase.vue";
+import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 
 export default {
   props: {
@@ -172,7 +174,7 @@ export default {
       listEduType: [{ id: 0, cdId: "", cdNm: this.t("common.select") }] as any,
       listDept: [{ id: 0, cdId: "", cdNm: this.t("common.select") }] as any,
       listYear: [] as any,
-      listEduTypeData: [{ id: 0, cdId: "", cdNm: this.t("common.select") }] as any,
+      loadDataDept: [{ id: 0, cdId: "", cdNm: this.t("common.select") }] as any,
     };
   },
   beforeMount() {
@@ -187,7 +189,7 @@ export default {
       this.$emit("close-modal");
     },
     loadDataTypeTalent() {
-      this.listEduTypeData = this.getListType(this.listEduType);
+      this.loadDataDept = this.getListDept();
     },
     async getDepartment() {
       this.storeCommon.setLoading(true);
@@ -207,7 +209,6 @@ export default {
         this.storeDepartment.deptRes?.forEach(
           (element: DepartmentDTO, index: number) => {
             this.listDept.push({
-              id: index + 1,
               cdId: element.deptCd,
               cdNm: element.deptNm,
             });
@@ -217,25 +218,29 @@ export default {
       getFormAdd().then((res: any) => {
         res.data.data.forEach((item: any, index: number) => {
           this.listEduType.push({
-            id: index,
             cdId: item.eduCursTypeSeq,
             cdNm: item.typeNm,
+            upCdId: item.typeCd
           });
         });
         this.loadDataTypeTalent();
       });
       this.storeCommon.setLoading(false);
     },
-    getListType(listType:any) {
-      if (this.eduCourseRequest && this.eduCourseRequest.deptCd) {
-        if (this.eduCourseRequest.deptCd == DEPT_TYPE_SPECIAL) {
-          this.eduCourseRequest.eduCourseTypeSeq = listType.filter((item:any) => item.cdNm == EDU_TYPE_OTHER)[0].cdId
-          return listType.filter((item:any) => item.cdNm == EDU_TYPE_OTHER);
-        } else {
-          this.eduCourseRequest.eduCourseTypeSeq = "";
-        }
+    getListDept() {
+      if (this.listEduType.filter((item:CodeMngModel) => item.cdId == this.eduCourseRequest.eduCourseTypeSeq)[0].upCdId == EDU_TYPE_OTHER_CD) {
+        this.eduCourseRequest.deptCd = DEPT_TYPE_SPECIAL;
+        return this.listDept.filter((item:CodeMngModel) => item.cdId == DEPT_TYPE_SPECIAL);
       }
-      return listType.filter((item:any) => item.cdNm != EDU_TYPE_OTHER);
+
+      this.eduCourseRequest.deptCd = '';
+      return this.listDept.filter((item:CodeMngModel) => item.cdId != DEPT_TYPE_SPECIAL);
+    },
+    changeDeptCheck() {
+      if (this.eduCourseRequest.deptCd && !this.eduCourseRequest.eduCourseTypeSeq) {
+        this.$alert("교육과정 유형 먼저 설정해주세요.");
+        this.eduCourseRequest.deptCd = '';
+      }
     },
     async onCreate() {
       if (

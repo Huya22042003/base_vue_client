@@ -112,6 +112,7 @@ export type CreateSubjectSelDTO = {
   cdNm: string;
   keyJobCapa: Number;
   keyJobCapaPerform: Number;
+  isDisable: boolean;
   jobCapa: CreateSubjectSelDTO[];
   jobCapaPerform: CreateSubjectSelDTO[];
 };
