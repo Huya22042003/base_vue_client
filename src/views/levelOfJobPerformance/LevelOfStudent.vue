@@ -61,7 +61,7 @@
   </div>
   <div class="box dp_block">
     <div class="dp_flex btn_group btn_end mg_b20" style="gap: 10px">
-      <button class="btn_round btn_lg btn_gray" @click="dowloadExcel">
+      <button class="btn_round btn_lg btn_primary" @click="dowloadExcel">
         {{ t("levelJobPerformance.student.dowload") }}
       </button>
     </div>
