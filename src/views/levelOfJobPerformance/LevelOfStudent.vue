@@ -61,9 +61,19 @@
   </div>
   <div class="box dp_block">
     <div class="dp_flex btn_group btn_end mg_b20" style="gap: 10px">
-      <button class="btn_round btn_lg btn_gray" @click="dowloadExcel">
+      <!-- <button class="btn_round btn_lg btn_gray" @click="dowloadExcel">
         {{ t("levelJobPerformance.student.dowload") }}
-      </button>
+      </button> -->
+      <ExportFileExcel
+            :data="dataExport"
+            :fileName="'fileNameExport'"
+            :btnName="t('levelJobPerformance.student.dowload')"
+            :multiHeaderFlag="true"
+            :callData="true"
+            ref="exportExcelRef"
+            @click="dowloadExcel"
+            >
+        </ExportFileExcel>
     </div>
     <div class="box_section">
       <div class="tbl tbl_col" v-if="listLevelOfStudent.length > 0">
@@ -223,12 +233,15 @@ import {
   LevelOfStudentSearchModel,
   StudentLevelOfStudent,
 } from "@/stores/levelOfJobPerformance/levelOfStudent/levelOfStudent.type";
-
+import ExportFileExcel from "@/components/common/excel/ExportFileExcel.vue";
+import {MultiHeaderData } from "@/stores/common/excel/excelData.type";
+import { hkdf } from "crypto";
 export default defineComponent({
   setup() {
     const { t } = useI18n();
     const cmn = commonStore();
-    return { t, cmn };
+    const exportExcelRef = ref()
+    return { t, cmn ,exportExcelRef};
   },
   data() {
     return {
@@ -253,6 +266,7 @@ export default defineComponent({
       } as LevelOfStudentSearchModel,
       listLevelOfStudent: [] as Array<StudentLevelOfStudent>,
       listLevelOfStudentExcel: [] as LevelOfStudentListModel[],
+      dataExport: [] as Array<MultiHeaderData>
     };
   },
   beforeMount() {
@@ -456,7 +470,38 @@ export default defineComponent({
         stdNm: "",
       };
     },
-    dowloadExcel() {},
+    dowloadExcel() {
+      let dataInput = {} as MultiHeaderData
+      dataInput.sheetName = 'sheet1'
+      dataInput.data = []
+      dataInput.header = []
+      dataInput.indexCheckMerge = 0
+      dataInput.indexNotMerge = [4,5]
+      let header1 = [this.t("levelJobPerformance.student.tbl1"), this.t("levelJobPerformance.student.tbl2"),this.t("levelJobPerformance.student.tbl3"),this.t("levelJobPerformance.student.tbl3"),this.t("levelJobPerformance.student.tbl3"),this.t("levelJobPerformance.student.tbl4"), this.t("levelJobPerformance.student.tbl4"),this.t("levelJobPerformance.student.tbl4"),this.t("levelJobPerformance.student.tbl4")]
+      let header2 = [this.t("levelJobPerformance.student.tbl1"), this.t("levelJobPerformance.student.tbl2"),this.t("levelJobPerformance.student.tbl5"),this.t("levelJobPerformance.student.tbl6"),this.t("levelJobPerformance.student.tbl7"),this.t("levelJobPerformance.student.tbl8"), this.t("levelJobPerformance.student.tbl9"),this.t("levelJobPerformance.student.tbl10"),this.t("levelJobPerformance.student.tbl11")]
+      // let header1 = [this.t("levelJobPerformance.student.tbl1"), this.t("levelJobPerformance.student.tbl2")]
+      // let header2 = [this.t("levelJobPerformance.student.tbl1"), this.t("levelJobPerformance.student.tbl2")]
+      dataInput.header.push(header1)
+      dataInput.header.push(header2)
+      this.listLevelOfStudentExcel.forEach((item :LevelOfStudentListModel)=>{
+        let rowData = []
+        let student = `${item.stdId}-${item.stdNm}`
+        rowData.push(student)
+        rowData.push(item.jobNm)
+        rowData.push(item.typeNm)
+        rowData.push(item.jobAbilNm)
+        rowData.push(item.capaUnitNm)
+        rowData.push(item.scoreJobCapa)
+        rowData.push(item.scoreJobAbility)
+         rowData.push(item.scoreJob)
+        rowData.push(item.scoreStudent)
+        dataInput.data.push(rowData)
+        
+      })
+      this.dataExport.push(dataInput)
+      this.exportExcelRef.downloadExcel()
+      console.log(dataInput)
+    },
   },
 });
 </script>

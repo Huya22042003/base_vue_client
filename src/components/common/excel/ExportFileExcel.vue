@@ -145,7 +145,7 @@ const executeDownloadExcelMultiHeader = () => {
   });
   props.data.forEach((element) => {
     sheet = workbook.addWorksheet(element.sheetName);
-
+    let indexCheck = element.indexCheckMerge
     // Add headers
     element.header.forEach((headerRowData, index) => {
       const headerRow = sheet.addRow(headerRowData);
@@ -234,6 +234,48 @@ const executeDownloadExcelMultiHeader = () => {
     element.data.forEach((dataRow) => {
       sheet.addRow(dataRow);
     });
+    const numRowsData = element.data.length; 
+    const numColsData = element.data[0].length;
+    
+    for (let colIndex = 0; colIndex < numColsData; colIndex++) {
+      let startRow = element.header.length + 1;
+      let checkValue =  element.data[0][colIndex]
+      let mergeEndRow = element.header.length; 
+      let fixedValue = element.data[0][indexCheck]
+      if(element.indexNotMerge.indexOf(colIndex) < 0){
+        for (let rowIndex = 0; rowIndex < numRowsData; rowIndex++) {
+        // Check if the current cell and the next cell in the same column are the same
+        if (
+          element.data[rowIndex][colIndex] == checkValue && element.data[rowIndex][indexCheck] == fixedValue
+        ) {
+          mergeEndRow++
+        } else {
+          if (mergeEndRow - startRow > 0) {
+            sheet.mergeCells(
+              startRow,
+              colIndex + 1,
+              mergeEndRow,
+              colIndex + 1
+            );
+            mergeEndRow++
+          }
+          startRow = mergeEndRow;
+          checkValue = element.data[rowIndex][colIndex]
+          fixedValue = element.data[rowIndex][indexCheck]
+        }
+        if(rowIndex == numRowsData -1 && mergeEndRow - startRow > 0){
+            sheet.mergeCells(
+              startRow,
+              colIndex + 1,
+              mergeEndRow,
+              colIndex + 1
+            );
+            mergeEndRow++
+        }
+      }
+      }
+    }
+
   });
 
   workbook.xlsx.writeBuffer().then((buffer) => {
