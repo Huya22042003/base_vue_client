@@ -7,14 +7,14 @@
             <p>{{ t("levelJobPerformance.student.column1") }}</p>
             <SelectBoxBase
               v-model="searchModel.year"
-              :id="'search1'"
+              :id="'listYear'"
               :data="listYear"
             />
           </li>
           <li>
             <p>{{ t("levelJobPerformance.student.column2") }}</p>
             <SelectBoxBase
-              :id="'search2'"
+              :id="'listTerm'"
               v-model="searchModel.termCd"
               :data="listTerm"
             />
@@ -22,7 +22,7 @@
           <li>
             <p>{{ t("levelJobPerformance.student.column3") }}</p>
             <SelectBoxBase
-              :id="'search3'"
+              :id="'listGrade'"
               v-model="searchModel.gradeCd"
               :data="listGrade"
             />
@@ -32,20 +32,20 @@
           <li>
             <p>{{ t("levelJobPerformance.student.column4") }}</p>
             <SelectBoxBaseSearch
-              :id="'dept'"
+              :id="'listDept'"
               v-model="searchModel.deptCd"
-              :name="'dept'"
+              :name="'listDept'"
               :data="listDept"
             >
             </SelectBoxBaseSearch>
           </li>
           <li>
             <p>{{ t("levelJobPerformance.student.column5") }}</p>
-            <InputBase :id="'search5'" v-model="searchModel.stdNo" />
+            <InputBase :id="'stdNo'" v-model="searchModel.stdNo" />
           </li>
           <li>
             <p>{{ t("levelJobPerformance.student.column6") }}</p>
-            <InputBase :id="'search6'" v-model="searchModel.stdNm" />
+            <InputBase :id="'stdNm'" v-model="searchModel.stdNm" />
           </li>
         </ul>
         <div class="dp_flex btn_group btn_end" style="gap: 10px">
@@ -61,9 +61,6 @@
   </div>
   <div class="box dp_block">
     <div class="dp_flex btn_group btn_end mg_b20" style="gap: 10px">
-      <!-- <button class="btn_round btn_lg btn_gray" @click="dowloadExcel">
-        {{ t("levelJobPerformance.student.dowload") }}
-      </button> -->
       <ExportFileExcel
         :data="dataExport"
         :fileName="t('levelJobPerformance.student.fileName')"
@@ -130,7 +127,7 @@
           </thead>
           <tbody>
             <template
-              v-for="(student, indexStudent) in listLevelOfStudent"
+              v-for="student in listLevelOfStudent"
               :key="student.stdId"
             >
               <template
@@ -235,7 +232,7 @@ import {
 } from "@/stores/levelOfJobPerformance/levelOfStudent/levelOfStudent.type";
 import ExportFileExcel from "@/components/common/excel/ExportFileExcel.vue";
 import { MultiHeaderData } from "@/stores/common/excel/excelData.type";
-import { hkdf } from "crypto";
+
 export default defineComponent({
   setup() {
     const { t } = useI18n();
@@ -473,6 +470,15 @@ export default defineComponent({
       };
     },
     dowloadExcel() {
+      if (
+        !this.searchModel.deptCd ||
+        !this.searchModel.gradeCd ||
+        !this.searchModel.year ||
+        !this.searchModel.termCd
+      ) {
+        this.$alert(this.t("levelJobPerformance.messageWarning"));
+        return;
+      }
       let dataInput = {} as MultiHeaderData;
       dataInput.sheetName = "sheet1";
       dataInput.data = [];
@@ -519,7 +525,6 @@ export default defineComponent({
       });
       this.dataExport.push(dataInput);
       this.exportExcelRef.downloadExcel();
-      console.log(dataInput);
     },
   },
 });
