@@ -5,26 +5,48 @@
         <ul>
           <li>
             <p>{{ t("levelJobPerformance.job.search1") }}</p>
-            <SelectBoxBase :id="'search1'" :data="listYear" />
+            <SelectBoxBase
+              v-model="searchModel.year"
+              :id="'year'"
+              :data="listYear"
+            />
           </li>
           <li>
             <p>{{ t("levelJobPerformance.job.search2") }}</p>
-            <SelectBoxBase :id="'search1'" :data="listTerm" />
+            <SelectBoxBase
+              v-model="searchModel.termCd"
+              :id="'termCd'"
+              :data="listTerm"
+            />
           </li>
           <li>
             <p>{{ t("levelJobPerformance.job.search3") }}</p>
-            <SelectBoxBase :id="'search1'" :data="listGrade" />
+            <SelectBoxBase
+              v-model="searchModel.gradeCd"
+              :id="'gradeCd'"
+              :data="listGrade"
+            />
           </li>
         </ul>
         <ul>
           <li>
             <p>{{ t("levelJobPerformance.job.search4") }}</p>
-            <SelectBoxBaseSearch :id="'dept'" :name="'dept'" :data="listDept">
+            <SelectBoxBaseSearch
+              v-model="searchModel.deptCd"
+              :id="'dept'"
+              :name="'dept'"
+              :data="listDept"
+            >
             </SelectBoxBaseSearch>
           </li>
           <li>
             <p>{{ t("levelJobPerformance.job.search5") }}</p>
-            <SelectBoxBaseSearch :id="'dept'" :name="'dept'" :data="listDept">
+            <SelectBoxBaseSearch
+              v-model="searchModel.jobSeq"
+              :id="'jobSeq'"
+              :name="'jobSeq'"
+              :data="listJob"
+            >
             </SelectBoxBaseSearch>
           </li>
         </ul>
@@ -116,6 +138,8 @@ import { commonStore } from "@/stores/common";
 import { getCodeMngByUpCdId } from "@/stores/common/codeMng/codeMng.service";
 import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 import { getDepartmentList } from "@/stores/common/department/department.service";
+import { getListJob } from "@/stores/levelOfJobPerformance/levelOfJobAbility/levelOfJobAbility.service";
+import { LevelOfJobAbilitySearchModel } from "@/stores/levelOfJobPerformance/levelOfJobAbility/levelOfJobAbility.type";
 
 export default defineComponent({
   setup() {
@@ -137,13 +161,21 @@ export default defineComponent({
       ] as Array<CodeMngModel>,
       listDept: [] as Array<CodeMngModel>,
       listLevelOfJob: [],
+      listJob: [] as Array<CodeMngModel>,
+      searchModel: {
+        year: "",
+        deptCd: "",
+        termCd: "",
+        gradeCd: "",
+        jobSeq: "",
+      } as LevelOfJobAbilitySearchModel,
     };
   },
   beforeMount() {
     this.getCodeTermCd();
     this.getCodeGradeCd();
     this.getDepartment();
-
+    this.getListJob();
     const currentYear = new Date().getFullYear();
     for (let index = START_YEAR_NUMBER; index <= currentYear + 1; index++) {
       this.listYear.push({ cdId: index, cdNm: index, upCdId: "" });
@@ -186,8 +218,29 @@ export default defineComponent({
           throw new Error(MESSAGE_ERROR_API);
         });
     },
+    getListJob() {
+      this.cmn.setLoading(true);
+      getListJob().then((res) => {
+        this.listJob = res.data.data.map((el) => {
+          return {
+            cdId: el.jobSeq,
+            cdNm: el.jobNm,
+            upCdId: "job",
+          };
+        });
+        this.cmn.setLoading(false);
+      });
+    },
     search() {},
-    reset() {},
+    reset() {
+      this.searchModel = {
+        year: "",
+        deptCd: "",
+        termCd: "",
+        gradeCd: "",
+        jobSeq: "",
+      };
+    },
     dowloadExcel() {},
   },
 });

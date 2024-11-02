@@ -65,15 +65,15 @@
         {{ t("levelJobPerformance.student.dowload") }}
       </button> -->
       <ExportFileExcel
-            :data="dataExport"
-            :fileName="'fileNameExport'"
-            :btnName="t('levelJobPerformance.student.dowload')"
-            :multiHeaderFlag="true"
-            :callData="true"
-            ref="exportExcelRef"
-            @click="dowloadExcel"
-            >
-        </ExportFileExcel>
+        :data="dataExport"
+        :fileName="t('levelJobPerformance.student.fileName')"
+        :btnName="t('levelJobPerformance.student.dowload')"
+        :multiHeaderFlag="true"
+        :callData="true"
+        ref="exportExcelRef"
+        @click="dowloadExcel"
+      >
+      </ExportFileExcel>
     </div>
     <div class="box_section">
       <div class="tbl tbl_col" v-if="listLevelOfStudent.length > 0">
@@ -180,7 +180,7 @@
                       <td>{{ jobCapaUnit.scoreJobCapa }}</td>
                       <td
                         :rowspan="jobAbility.rowSpan"
-                         v-if="indexJobCapaUnit === 0"
+                        v-if="indexJobCapaUnit === 0"
                       >
                         {{ jobAbility.scoreJobAbility }}
                       </td>
@@ -234,14 +234,14 @@ import {
   StudentLevelOfStudent,
 } from "@/stores/levelOfJobPerformance/levelOfStudent/levelOfStudent.type";
 import ExportFileExcel from "@/components/common/excel/ExportFileExcel.vue";
-import {MultiHeaderData } from "@/stores/common/excel/excelData.type";
+import { MultiHeaderData } from "@/stores/common/excel/excelData.type";
 import { hkdf } from "crypto";
 export default defineComponent({
   setup() {
     const { t } = useI18n();
     const cmn = commonStore();
-    const exportExcelRef = ref()
-    return { t, cmn ,exportExcelRef};
+    const exportExcelRef = ref();
+    return { t, cmn, exportExcelRef };
   },
   data() {
     return {
@@ -266,7 +266,7 @@ export default defineComponent({
       } as LevelOfStudentSearchModel,
       listLevelOfStudent: [] as Array<StudentLevelOfStudent>,
       listLevelOfStudentExcel: [] as LevelOfStudentListModel[],
-      dataExport: [] as Array<MultiHeaderData>
+      dataExport: [] as Array<MultiHeaderData>,
     };
   },
   beforeMount() {
@@ -439,6 +439,7 @@ export default defineComponent({
       });
     },
     getDepartment() {
+      this.cmn.setLoading(true);
       getDepartmentList({
         deptCd: [],
         deptDivCd: [DIV_CD_DEPT_DEPART],
@@ -455,6 +456,7 @@ export default defineComponent({
                 upCdId: "dept",
               };
             });
+          this.cmn.setLoading(false);
         })
         .catch(() => {
           throw new Error(MESSAGE_ERROR_API);
@@ -471,36 +473,53 @@ export default defineComponent({
       };
     },
     dowloadExcel() {
-      let dataInput = {} as MultiHeaderData
-      dataInput.sheetName = 'sheet1'
-      dataInput.data = []
-      dataInput.header = []
-      dataInput.indexCheckMerge = 0
-      dataInput.indexNotMerge = [4,5]
-      let header1 = [this.t("levelJobPerformance.student.tbl1"), this.t("levelJobPerformance.student.tbl2"),this.t("levelJobPerformance.student.tbl3"),this.t("levelJobPerformance.student.tbl3"),this.t("levelJobPerformance.student.tbl3"),this.t("levelJobPerformance.student.tbl4"), this.t("levelJobPerformance.student.tbl4"),this.t("levelJobPerformance.student.tbl4"),this.t("levelJobPerformance.student.tbl4")]
-      let header2 = [this.t("levelJobPerformance.student.tbl1"), this.t("levelJobPerformance.student.tbl2"),this.t("levelJobPerformance.student.tbl5"),this.t("levelJobPerformance.student.tbl6"),this.t("levelJobPerformance.student.tbl7"),this.t("levelJobPerformance.student.tbl8"), this.t("levelJobPerformance.student.tbl9"),this.t("levelJobPerformance.student.tbl10"),this.t("levelJobPerformance.student.tbl11")]
-      // let header1 = [this.t("levelJobPerformance.student.tbl1"), this.t("levelJobPerformance.student.tbl2")]
-      // let header2 = [this.t("levelJobPerformance.student.tbl1"), this.t("levelJobPerformance.student.tbl2")]
-      dataInput.header.push(header1)
-      dataInput.header.push(header2)
-      this.listLevelOfStudentExcel.forEach((item :LevelOfStudentListModel)=>{
-        let rowData = []
-        let student = `${item.stdId}-${item.stdNm}`
-        rowData.push(student)
-        rowData.push(item.jobNm)
-        rowData.push(item.typeNm)
-        rowData.push(item.jobAbilNm)
-        rowData.push(item.capaUnitNm)
-        rowData.push(item.scoreJobCapa)
-        rowData.push(item.scoreJobAbility)
-         rowData.push(item.scoreJob)
-        rowData.push(item.scoreStudent)
-        dataInput.data.push(rowData)
-        
-      })
-      this.dataExport.push(dataInput)
-      this.exportExcelRef.downloadExcel()
-      console.log(dataInput)
+      let dataInput = {} as MultiHeaderData;
+      dataInput.sheetName = "sheet1";
+      dataInput.data = [];
+      dataInput.header = [];
+      dataInput.indexCheckMerge = 0;
+      dataInput.indexNotMerge = [4, 5];
+      let header1 = [
+        this.t("levelJobPerformance.student.tbl1"),
+        this.t("levelJobPerformance.student.tbl2"),
+        this.t("levelJobPerformance.student.tbl3"),
+        this.t("levelJobPerformance.student.tbl3"),
+        this.t("levelJobPerformance.student.tbl3"),
+        this.t("levelJobPerformance.student.tbl4"),
+        this.t("levelJobPerformance.student.tbl4"),
+        this.t("levelJobPerformance.student.tbl4"),
+        this.t("levelJobPerformance.student.tbl4"),
+      ];
+      let header2 = [
+        this.t("levelJobPerformance.student.tbl1"),
+        this.t("levelJobPerformance.student.tbl2"),
+        this.t("levelJobPerformance.student.tbl5"),
+        this.t("levelJobPerformance.student.tbl6"),
+        this.t("levelJobPerformance.student.tbl7"),
+        this.t("levelJobPerformance.student.tbl8"),
+        this.t("levelJobPerformance.student.tbl9"),
+        this.t("levelJobPerformance.student.tbl10"),
+        this.t("levelJobPerformance.student.tbl11"),
+      ];
+      dataInput.header.push(header1);
+      dataInput.header.push(header2);
+      this.listLevelOfStudentExcel.forEach((item: LevelOfStudentListModel) => {
+        let rowData = [];
+        let student = `${item.stdId}-${item.stdNm}`;
+        rowData.push(student);
+        rowData.push(item.jobNm);
+        rowData.push(item.typeNm);
+        rowData.push(item.jobAbilNm);
+        rowData.push(item.capaUnitNm);
+        rowData.push(item.scoreJobCapa);
+        rowData.push(item.scoreJobAbility);
+        rowData.push(item.scoreJob);
+        rowData.push(item.scoreStudent);
+        dataInput.data.push(rowData);
+      });
+      this.dataExport.push(dataInput);
+      this.exportExcelRef.downloadExcel();
+      console.log(dataInput);
     },
   },
 });

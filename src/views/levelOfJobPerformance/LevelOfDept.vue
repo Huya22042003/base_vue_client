@@ -34,7 +34,6 @@
     </div>
   </div>
   <div class="box dp_block">
-    <h1 class="section_tit_lg">학과별 직무역량 성취도 목록</h1>
     <div class="dp_flex jc_end al_center box_title_sm">
       <button class="button btn_primary btn_lg">엑셀 다운로드</button>
     </div>

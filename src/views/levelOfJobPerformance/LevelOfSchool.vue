@@ -15,6 +15,8 @@
             <p>학년</p>
             <SelectBoxBase :id="'search1'" :data="listGrade" />
           </li>
+        </ul>
+        <ul>
           <li>
             <p>학과</p>
             <SelectBoxBase :id="'search1'" :data="listDept" />
@@ -32,7 +34,6 @@
     </div>
   </div>
   <div class="box dp_block">
-    <h1 class="section_tit_lg">대학전체 직무역량 성취도 목록</h1>
     <div class="dp_flex jc_end al_center box_title_sm">
       <button class="button btn_primary btn_lg">엑셀 다운로드</button>
     </div>
@@ -62,7 +63,6 @@
               <th class="ta_c" colspan="3">직무</th>
               <th class="ta_c" colspan="4">능력단위</th>
               <th class="ta_c" rowspan="2">직무능력성취도</th>
-              <th class="ta_c">비고</th>
             </tr>
             <tr>
               <th class="ta_c">구분</th>
