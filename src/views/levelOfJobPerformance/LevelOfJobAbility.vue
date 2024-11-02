@@ -4,30 +4,28 @@
       <div class="search_box col_3">
         <ul>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search1") }}</p>
+            <p>{{ t("levelJobPerformance.job.search1") }}</p>
             <SelectBoxBase :id="'search1'" :data="listYear" />
           </li>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search2") }}</p>
+            <p>{{ t("levelJobPerformance.job.search2") }}</p>
             <SelectBoxBase :id="'search1'" :data="listTerm" />
           </li>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search3") }}</p>
+            <p>{{ t("levelJobPerformance.job.search3") }}</p>
             <SelectBoxBase :id="'search1'" :data="listGrade" />
           </li>
         </ul>
         <ul>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search4") }}</p>
-            <SelectBoxBase :id="'search1'" :data="listDept" />
+            <p>{{ t("levelJobPerformance.job.search4") }}</p>
+            <SelectBoxBaseSearch :id="'dept'" :name="'dept'" :data="listDept">
+            </SelectBoxBaseSearch>
           </li>
           <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search5") }}</p>
-            <InputBase :id="'search5'" />
-          </li>
-          <li>
-            <p>{{ t("eduCourseCqi.levelAchStudent.search6") }}</p>
-            <InputBase :id="'search6'" />
+            <p>{{ t("levelJobPerformance.job.search5") }}</p>
+            <SelectBoxBaseSearch :id="'dept'" :name="'dept'" :data="listDept">
+            </SelectBoxBaseSearch>
           </li>
         </ul>
         <div class="dp_flex btn_group btn_end" style="gap: 10px">
@@ -42,8 +40,13 @@
     </div>
   </div>
   <div class="box dp_block">
+    <div class="dp_flex btn_group btn_end mg_b20" style="gap: 10px">
+      <button class="btn_round btn_lg btn_primary" @click="dowloadExcel">
+        {{ t("levelJobPerformance.student.dowload") }}
+      </button>
+    </div>
     <div class="box_section">
-      <div class="tbl tbl_col">
+      <div class="tbl tbl_col" v-if="listLevelOfJob.length > 0">
         <table>
           <colgroup>
             <col style="width: auto" />
@@ -58,29 +61,61 @@
           </colgroup>
           <thead>
             <tr>
-              <th scope="row" class="ta_c" rowspan="2">1</th>
-              <th scope="row" class="ta_c" rowspan="2">2</th>
-              <th scope="col" class="ta_c" colspan="3">3</th>
-              <th scope="col" class="ta_c" colspan="3">4</th>
+              <th scope="row" class="ta_c" rowspan="2">
+                {{ t("levelJobPerformance.job.tbl1") }}
+              </th>
+              <th scope="col" class="ta_c" colspan="3">
+                {{ t("levelJobPerformance.job.tbl2") }}
+              </th>
+              <th scope="col" class="ta_c" colspan="2">
+                {{ t("levelJobPerformance.job.tbl3") }}
+              </th>
+              <th scope="col" class="ta_c" rowspan="2">
+                {{ t("levelJobPerformance.job.tbl4") }}
+              </th>
+              <th scope="col" class="ta_c" rowspan="2">
+                {{ t("levelJobPerformance.job.tbl5") }}
+              </th>
             </tr>
             <tr>
-              <th scope="col" class="ta_c">4</th>
-              <th scope="col" class="ta_c">5</th>
-              <th scope="col" class="ta_c">6</th>
-              <th scope="col" class="ta_c">7</th>
-              <th scope="col" class="ta_c">8</th>
-              <th scope="col" class="ta_c">9</th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.job.tbl6") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.job.tbl7") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.job.tbl8") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.job.tbl9") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.job.tbl10") }}
+              </th>
             </tr>
           </thead>
         </table>
+      </div>
+      <div v-else class="no_cnt">
+        <p>{{ t("levelJobPerformance.empty") }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import {
+  DIV_CD_DEPT_DEPART,
+  MESSAGE_ERROR_API,
+  UP_CD_ID_GRADE_LEVEL,
+  UP_CD_ID_SEMESTER,
+} from "@/constants/common.const";
+import { START_YEAR_NUMBER } from "@/constants/screen.const";
 import { commonStore } from "@/stores/common";
+import { getCodeMngByUpCdId } from "@/stores/common/codeMng/codeMng.service";
 import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
+import { getDepartmentList } from "@/stores/common/department/department.service";
 
 export default defineComponent({
   setup() {
@@ -100,14 +135,64 @@ export default defineComponent({
       listGrade: [
         { cdId: "", cdNm: this.t("common.select") },
       ] as Array<CodeMngModel>,
-      listDept: [
-        { cdId: "", cdNm: this.t("common.select") },
-      ] as Array<CodeMngModel>,
+      listDept: [] as Array<CodeMngModel>,
+      listLevelOfJob: [],
     };
   },
-  beforeMount() {},
-  methods: { search() {}, reset() {} },
+  beforeMount() {
+    this.getCodeTermCd();
+    this.getCodeGradeCd();
+    this.getDepartment();
+
+    const currentYear = new Date().getFullYear();
+    for (let index = START_YEAR_NUMBER; index <= currentYear + 1; index++) {
+      this.listYear.push({ cdId: index, cdNm: index, upCdId: "" });
+    }
+  },
+  methods: {
+    getCodeTermCd() {
+      getCodeMngByUpCdId({ upCdId: UP_CD_ID_SEMESTER }).then((response) => {
+        response.data.data.forEach((item: any) => {
+          this.listTerm.push(item);
+        });
+      });
+    },
+    getCodeGradeCd() {
+      getCodeMngByUpCdId({ upCdId: UP_CD_ID_GRADE_LEVEL }).then((response) => {
+        response.data.data.forEach((item: any) => {
+          this.listGrade.push(item);
+        });
+      });
+    },
+    getDepartment() {
+      getDepartmentList({
+        deptCd: [],
+        deptDivCd: [DIV_CD_DEPT_DEPART],
+        upDeptCd: [],
+        useYn: "",
+      })
+        .then((res) => {
+          this.listDept = res.data.data
+            .filter((el) => el.deptDivCd == DIV_CD_DEPT_DEPART)
+            .map((el) => {
+              return {
+                cdId: el.deptCd,
+                cdNm: el.deptNm,
+                upCdId: "dept",
+              };
+            });
+        })
+        .catch(() => {
+          throw new Error(MESSAGE_ERROR_API);
+        });
+    },
+    search() {},
+    reset() {},
+    dowloadExcel() {},
+  },
 });
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@import url("../eduProcessCreation/eduCourseCustom.css");
+</style>
