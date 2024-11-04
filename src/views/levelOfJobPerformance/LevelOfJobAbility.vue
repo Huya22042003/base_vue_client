@@ -213,7 +213,7 @@ import { commonStore } from "@/stores/common";
 import { getCodeMngByUpCdId } from "@/stores/common/codeMng/codeMng.service";
 import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 import { getDepartmentList } from "@/stores/common/department/department.service";
-import { MultiHeaderData } from "@/stores/common/excel/excelData.type";
+import { CheckMerge, MultiHeaderData } from "@/stores/common/excel/excelData.type";
 import {
   getLevelOfJobAbilityList,
   getListJob,
@@ -398,6 +398,15 @@ export default defineComponent({
       dataInput.data = [];
       dataInput.header = [];
       dataInput.indexCheckMerge = 2;
+      dataInput.mutilCheck = [] as Array<CheckMerge>
+      dataInput.mutilCheck.push({
+          indexKey : 0,
+          indexChild : [0,1,2,7]
+        })
+        dataInput.mutilCheck.push({
+          indexKey : 2,
+          indexChild : [6]
+        })
       dataInput.indexNotMerge = [3, 4];
       let header1 = [
         this.t("levelJobPerformance.job.tbl1"),

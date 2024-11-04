@@ -124,6 +124,7 @@ const executeDownloadExcel = () => {
     link.remove();
   });
 };
+const checkMerge = (element, rowInde, colIndex, listKey) => {};
 /**
  * Dowload excel multi header
  */
@@ -145,7 +146,7 @@ const executeDownloadExcelMultiHeader = () => {
   });
   props.data.forEach((element) => {
     sheet = workbook.addWorksheet(element.sheetName);
-    let indexCheck = element.indexCheckMerge
+    let indexCheck = element.indexCheckMerge;
     // Add headers
     element.header.forEach((headerRowData, index) => {
       const headerRow = sheet.addRow(headerRowData);
@@ -166,28 +167,23 @@ const executeDownloadExcelMultiHeader = () => {
           };
         }
       });
-      let startRow = index +1;
-      let tempData = ""
-      headerRowData.forEach((el,idx)=> {
-        if(tempData != el){
-         let startCol = idx + 1
-         let endCol = idx + 1
-        for(let i = idx +1 ; i < headerRowData.length; i++) {
-          if(el === headerRowData[i] && i == endCol){
-            endCol++
+      let startRow = index + 1;
+      let tempData = "";
+      headerRowData.forEach((el, idx) => {
+        if (tempData != el) {
+          let startCol = idx + 1;
+          let endCol = idx + 1;
+          for (let i = idx + 1; i < headerRowData.length; i++) {
+            if (el === headerRowData[i] && i == endCol) {
+              endCol++;
+            }
+          }
+          if (endCol - startCol > 0) {
+            sheet.mergeCells(startRow, startCol, startRow, endCol);
           }
         }
-        if (endCol - startCol > 0) {
-            sheet.mergeCells(
-              startRow,
-              startCol,
-              startRow,
-              endCol
-            );
-          }
-        }
-        tempData = el
-      })
+        tempData = el;
+      });
     });
 
     const numRows = element.header.length; // Number of header rows
@@ -234,48 +230,93 @@ const executeDownloadExcelMultiHeader = () => {
     element.data.forEach((dataRow) => {
       sheet.addRow(dataRow);
     });
-    const numRowsData = element.data.length; 
+    const numRowsData = element.data.length;
     const numColsData = element.data[0].length;
-    
-    for (let colIndex = 0; colIndex < numColsData; colIndex++) {
-      let startRow = element.header.length + 1;
-      let checkValue =  element.data[0][colIndex]
-      let mergeEndRow = element.header.length; 
-      let fixedValue = element.data[0][indexCheck]
-      if(element.indexNotMerge.indexOf(colIndex) < 0){
-        for (let rowIndex = 0; rowIndex < numRowsData; rowIndex++) {
-        // Check if the current cell and the next cell in the same column are the same
-        if (
-          element.data[rowIndex][colIndex] == checkValue && element.data[rowIndex][indexCheck] == fixedValue
-        ) {
-          mergeEndRow++
-        } else {
-          if (mergeEndRow - startRow > 0) {
-            sheet.mergeCells(
-              startRow,
-              colIndex + 1,
-              mergeEndRow,
-              colIndex + 1
-            );
-            mergeEndRow++
-          }
-          startRow = mergeEndRow;
-          checkValue = element.data[rowIndex][colIndex]
-          fixedValue = element.data[rowIndex][indexCheck]
-        }
-        if(rowIndex == numRowsData -1 && mergeEndRow - startRow > 0){
-            sheet.mergeCells(
-              startRow,
-              colIndex + 1,
-              mergeEndRow,
-              colIndex + 1
-            );
-            mergeEndRow++
-        }
-      }
-      }
-    }
 
+    if (!element.mutilCheck) {
+      for (let colIndex = 0; colIndex < numColsData; colIndex++) {
+        let startRow = element.header.length + 1;
+        let checkValue = element.data[0][colIndex];
+        let mergeEndRow = element.header.length;
+        let fixedValue = element.data[0][indexCheck];
+        if (element.indexNotMerge.indexOf(colIndex) < 0) {
+          for (let rowIndex = 0; rowIndex < numRowsData; rowIndex++) {
+            // Check if the current cell and the next cell in the same column are the same
+            if (
+              element.data[rowIndex][colIndex] == checkValue &&
+              element.data[rowIndex][indexCheck] == fixedValue
+            ) {
+              mergeEndRow++;
+            } else {
+              if (mergeEndRow - startRow > 0) {
+                sheet.mergeCells(
+                  startRow,
+                  colIndex + 1,
+                  mergeEndRow,
+                  colIndex + 1
+                );
+                mergeEndRow++;
+              }
+              startRow = mergeEndRow;
+              checkValue = element.data[rowIndex][colIndex];
+              fixedValue = element.data[rowIndex][indexCheck];
+            }
+            if (rowIndex == numRowsData - 1 && mergeEndRow - startRow > 0) {
+              sheet.mergeCells(
+                startRow,
+                colIndex + 1,
+                mergeEndRow,
+                colIndex + 1
+              );
+              mergeEndRow++;
+            }
+          }
+        }
+      }
+    } else {
+      element.mutilCheck.forEach((el) => {
+        for (let colIndex = 0; colIndex < numColsData; colIndex++) {
+        let startRow = element.header.length + 1;
+        let checkValue = element.data[0][colIndex];
+        let mergeEndRow = element.header.length;
+        let indexCheck = el.indexKey
+        let fixedValue = element.data[0][indexCheck];
+        if (element.indexNotMerge.indexOf(colIndex) < 0 && el.indexChild.indexOf(colIndex) > -1) {
+          for (let rowIndex = 0; rowIndex < numRowsData; rowIndex++) {
+            // Check if the current cell and the next cell in the same column are the same
+            if (
+              element.data[rowIndex][colIndex] == checkValue &&
+              element.data[rowIndex][indexCheck] == fixedValue
+            ) {
+              mergeEndRow++;
+            } else {
+              if (mergeEndRow - startRow > 0) {
+                sheet.mergeCells(
+                  startRow,
+                  colIndex + 1,
+                  mergeEndRow,
+                  colIndex + 1
+                );
+                mergeEndRow++;
+              }
+              startRow = mergeEndRow;
+              checkValue = element.data[rowIndex][colIndex];
+              fixedValue = element.data[rowIndex][indexCheck];
+            }
+            if (rowIndex == numRowsData - 1 && mergeEndRow - startRow > 0) {
+              sheet.mergeCells(
+                startRow,
+                colIndex + 1,
+                mergeEndRow,
+                colIndex + 1
+              );
+              mergeEndRow++;
+            }
+          }
+        }
+      }
+      });
+    }
   });
 
   workbook.xlsx.writeBuffer().then((buffer) => {
