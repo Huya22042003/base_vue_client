@@ -584,9 +584,9 @@ export default defineComponent({
         this.$alert("동일한 교과목을 중복 편성할 수 없습니다");
         return;
       }
-      if (this.listSbjectDel.some((item: CreateListSbjtSelResDTO) => item.sbjtCd == data.sbjtCd)) {
-        const dataSbjt = this.listSbjectDel.filter((item: CreateListSbjtSelResDTO) => item.sbjtCd == data.sbjtCd).map(item => {
-          item.jobSeq = this.dataView[this.indexSelect].jobSeq;
+
+      if (this.listSbjectDel.some((item: CreateListSbjtSelResDTO) => item.sbjtCd == data.sbjtCd && item.jobSeq == this.dataView[this.indexSelect].jobSeq)) {
+        const dataSbjt = this.listSbjectDel.filter((item: CreateListSbjtSelResDTO) => item.sbjtCd == data.sbjtCd && item.jobSeq == this.dataView[this.indexSelect].jobSeq).map(item => {
           return item;
         })[0];
         this.dataView[this.indexSelect].subjectNm.push(dataSbjt);
