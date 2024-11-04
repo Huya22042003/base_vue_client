@@ -231,7 +231,10 @@ import {
   StudentLevelOfStudent,
 } from "@/stores/levelOfJobPerformance/levelOfStudent/levelOfStudent.type";
 import ExportFileExcel from "@/components/common/excel/ExportFileExcel.vue";
-import { MultiHeaderData } from "@/stores/common/excel/excelData.type";
+import {
+  CheckMerge,
+  MultiHeaderData,
+} from "@/stores/common/excel/excelData.type";
 
 export default defineComponent({
   setup() {
@@ -484,6 +487,15 @@ export default defineComponent({
       dataInput.data = [];
       dataInput.header = [];
       dataInput.indexCheckMerge = 0;
+      dataInput.mutilCheck = [] as Array<CheckMerge>;
+      dataInput.mutilCheck.push({
+        indexKey: 0,
+        indexChild: [0, 1, 2, 3, 7, 8],
+      });
+      dataInput.mutilCheck.push({
+        indexKey: 3,
+        indexChild: [6],
+      });
       dataInput.indexNotMerge = [4, 5];
       let header1 = [
         this.t("levelJobPerformance.student.tbl1"),

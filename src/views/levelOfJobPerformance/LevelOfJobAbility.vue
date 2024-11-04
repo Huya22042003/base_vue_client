@@ -405,7 +405,7 @@ export default defineComponent({
         })
         dataInput.mutilCheck.push({
           indexKey : 2,
-          indexChild : [6]
+          indexChild : [5, 6]
         })
       dataInput.indexNotMerge = [3, 4];
       let header1 = [
