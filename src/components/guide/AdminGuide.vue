@@ -1763,7 +1763,8 @@ export default {
         sheetName: "sheet1",
         data: [
           [1, 2, 3],
-          [4, 5, 6],
+          [1, 5, 6],
+          [1, 2, 3],
         ],
         header: [
           ["col1", "col2", "col3", "coleR", "coleR", "colC"],

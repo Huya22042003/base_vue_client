@@ -35,9 +35,6 @@
                 }}<!-- 첨부파일 -->
               </th>
               <th scope="row" :colspan="1">
-                <span class="text-red">
-                  {{ t("eduProcessCreation.attachFile.message") }}</span
-                >
                 <InputFileBase
                   :id="'attachfileApdx' + apdxSeq"
                   :name="'attachfileApdx' + apdxSeq"
@@ -53,6 +50,9 @@
                   :maxSize="30"
                 >
                 </InputFileBase>
+                <span class="text-red">
+                  {{ t("eduProcessCreation.attachFile.message") }}</span
+                >
               </th>
             </tr>
           </tbody>
@@ -62,7 +62,7 @@
     <template #footer>
       <button
         type="button"
-        class="btn_round btn_md btn_primary"
+        class="btn_round btn_lg btn_primary"
         @click="confirmSave"
       >
         {{ t("common.save")
@@ -70,7 +70,7 @@
       </button>
       <button
         type="button"
-        class="btn_round btn_md btn_white"
+        class="btn_round btn_lg btn_white"
         @click="onClose()"
       >
         {{ t("common.cancel")
@@ -155,7 +155,6 @@ export default {
       this.storeCommon.setLoading(false);
 
       this.$swal({
-        title: "알림",
         html: this.t("common.message.saveSuccess"),
         confirmButtonText: this.t("common.confirm"),
       }).then((result) => {

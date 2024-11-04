@@ -5201,7 +5201,7 @@
           "term":"학기",
           "lecturePlanWritingPeriod": "강의계획서 작성 기간",
           "evalPlanPeriod": "평가계획서 작성 기간",
-          "studentJobEval":"학생 직무수행능력 평가 기간",
+          "studentJobEval":"평가 기간",
           "subjectCqiWritingPeriod": "교과목CQI 작성 기간",
           "subjectName": "교과목명",
           "classDivision": "분반",
@@ -6251,6 +6251,7 @@
     }
   },
   "curriculumManagement": {
+    "trackDiv": "트랙 구분",
     "pageTitle": "교과 구분 관리",
     "dept": "학과/학부",
     "training": "교육과정",
@@ -6348,6 +6349,71 @@
       ,"col8":"교육과정 학년도"
       ,"col9":"상태"
       ,"col10":"학기"
+    }
+  },
+  "levelJobPerformance": {
+    "pageTitle": "직무능력성취도",
+    "tab1": "학생별 직무능력성취도",
+    "tab2": "직무별 직무능력성취도",
+    "tab3": "학과별 직무능력성취도",
+    "tab4": "대학전체 직무능력성취도",
+    "messageWarning": "학년도, 학기, 학년, 학과를 다 선태해야 데이터를 조회할 수 있습니다. 다시 확인해주세요.",
+    "empty": "데이터가 없습니다.",
+    "student": {
+      "column1": "학년도",
+      "column2": "학기",
+      "column3": "학년",
+      "column4": "학과",
+      "column5": "학번",
+      "column6": "성명",
+      "tbl1": "학생",
+      "tbl2": "직무",
+      "tbl3": "능력단위",
+      "tbl4": "직무능력성취도",
+      "tbl5": "구분",
+      "tbl6": "능력돤위명",
+      "tbl7": "능력단위 요소명",
+      "tbl8": "능력단위요소",
+      "tbl9": "능력단위",
+      "tbl10": "직무",
+      "tbl11": "학생",
+      "dowload": "엑셀 다운로드",
+      "fileName": "학생별 직무역량 성취도"
+    },
+    "job": {
+      "search1": "학년도",
+      "search2": "학기",
+      "search3": "학년",
+      "search4": "학과",
+      "search5": "직무",
+      "tbl1": "직무",
+      "tbl2": "능력단위",
+      "tbl3": "직무능력성취도",
+      "tbl4": "연계교과목",
+      "tbl5": "연계학과",
+      "tbl6": "직무역량",
+      "tbl7": "직무역량명",
+      "tbl8": "하위역량명",
+      "tbl9": "하위역량",
+      "tbl10": "직무역량",
+      "messageWarning": "학년도, 학기, 학년, 학과, 직무를 다 선태해야 데이터를 조회할 수 있습니다. 다시 확인해주세요.",
+      "fileName": "직무별 직무역량 성취도"
+    },
+    "dept": {
+      "search1": "학년도",
+      "search2": "학기",
+      "search3": "학년",
+      "search4": "학과",
+      "messageWarning": "학년도, 학기, 학년, 학과를 다 선태해야 데이터를 조회할 수 있습니다. 다시 확인해주세요.",
+      "fileName": "학과별 직무역량 성취도"
+    },
+    "school": {
+      "search1": "학년도",
+      "search2": "학기",
+      "search3": "학년",
+      "search4": "학과",
+      "messageWarning": "학년도, 학기, 학년, 학과를 다 선태해야 데이터를 조회할 수 있습니다. 다시 확인해주세요.",
+      "fileName": "대학전체 직무역량 성취도"
     }
   }
 }

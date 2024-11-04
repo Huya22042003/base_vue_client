@@ -100,7 +100,7 @@
 
     <div class="btn_group btn_end mg_t25">
       <div class="btn_group btn_end">
-        <button type="button" class="btn_round btn_md btn_primary">
+        <button type="button" class="btn_round btn_lg btn_primary">
           <!-- 2.환경분석 및 요구분석 인쇄 -->{{
             t("eduProcessCreation.environmentDemand.title19")
           }}
@@ -108,7 +108,7 @@
         <!-- <button
           v-if="isSave"
           type="button"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           @click="confirmSaveData"
         >
           {{ t("common.save") }}
@@ -116,13 +116,13 @@
         <ButtonBase
           v-if="isSave"
           type="button"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           :buttonName="t('common.save')"
           @click="confirmSaveData"
         ></ButtonBase>
         <button
           type="button"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           @click="next()"
           :disabled="isDisabled"
         >
@@ -130,7 +130,7 @@
         </button>
         <button
           type="button"
-          class="btn_round btn_md btn_white"
+          class="btn_round btn_lg btn_white"
           @click="back()"
         >
           {{ t("common.list") }}

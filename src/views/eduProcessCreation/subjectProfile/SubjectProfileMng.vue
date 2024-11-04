@@ -22,7 +22,7 @@
       <div class="btn_group btn_end">
         <button
           type="button"
-          class="btn_round btn_md btn_white"
+          class="btn_round btn_lg btn_white"
           @click="back()"
         >
           {{ t("common.list") }}

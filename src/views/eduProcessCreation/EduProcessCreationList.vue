@@ -560,7 +560,7 @@ export default defineComponent({
           id: this.dataSel?.eduCursSeq,
           version: this.dataSel?.version,
           first: false,
-          isSave: this.dataSel?.stsCd != STATUS_EDU_COURSE,
+          isSave: this.dataSel?.isSave,
         },
       });
     },
@@ -574,7 +574,7 @@ export default defineComponent({
           id: this.dataSel?.eduCursSeq,
           version: this.dataSel?.version,
           first: true,
-          isSave: this.dataSel?.stsCd != STATUS_EDU_COURSE,
+          isSave: this.dataSel?.isSave,
         },
       });
     },

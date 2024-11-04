@@ -18,13 +18,13 @@
               type="button"
               v-if="isSave"
               @click="gotoCreate"
-              class="btn_round btn_md btn_primary"
+              class="btn_round btn_lg btn_primary"
             >
               {{ t("eduProcessCreation.attachFile.title1") }}
             </button> -->
             <ButtonBase
               type="button"
-              class="btn_round btn_md btn_primary"
+              class="btn_round btn_lg btn_primary"
               :buttonName="t('eduProcessCreation.attachFile.title1')"
               @click="gotoCreate"
             ></ButtonBase>
@@ -35,7 +35,7 @@
     <div class="btn_group btn_end">
       <button
         type="button"
-        class="btn_round btn_md btn_white"
+        class="btn_round btn_lg btn_white"
         @click="back()"
       >
         {{ t("common.list") }}

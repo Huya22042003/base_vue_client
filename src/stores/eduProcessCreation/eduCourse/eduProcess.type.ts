@@ -13,6 +13,7 @@ export type EduCourseResModel = {
     regDate: string;
     checkedFlag: boolean;
     checkedShow: boolean;
+    isSave: boolean;
 }
 
 export type EduCourseReqModel = {

@@ -145,7 +145,7 @@ export default defineComponent({
         headerName: t("09.questAndAns.table.rowNum"),
         field: "rowNumber",
         cellStyle: { textAlign: "center" },
-        flex: 1,
+        flex: 0.5,
       },
       {
         headerName: t("09.questAndAns.table.category"),
@@ -172,25 +172,25 @@ export default defineComponent({
         headerName: t("09.questAndAns.table.regBy"),
         field: "regId",
         cellStyle: { textAlign: "center" },
-        flex: 1,
+        flex: 1.5,
       },
       {
         headerName: t("09.questAndAns.table.regDate"),
         field: "regDate",
         cellStyle: { textAlign: "center" },
-        flex: 2,
+        flex: 1.5,
       },
       {
         headerName: t("09.questAndAns.table.ansBy"),
         field: "ansId",
         cellStyle: { textAlign: "center" },
-        flex: 1,
+        flex: 1.5,
       },
       {
         headerName: t("09.questAndAns.table.ansDateLast"),
         field: "ansDate",
         cellStyle: { textAlign: "center" },
-        flex: 2,
+        flex: 1.5,
       },
     ];
     function handleCustomClick(data: any) {
@@ -269,7 +269,9 @@ export default defineComponent({
       this.cmn.setLoading(true);
       await this.codeStore.getCodeInfo(this.codeMngRes);
       if (this.codeStore && this.codeStore.status == SUCCSESS_STATUS) {
-        this.listSelectBox = this.codeStore.codeInfo.data;
+        this.listSelectBox = this.codeStore.codeInfo.data.filter(
+          (item: any) => item.cdId !== "103315"
+        );
         this.listSelectBox.unshift({
           cdId: "",
           upCdId: this.t("09.questAndAns.codeMng"),

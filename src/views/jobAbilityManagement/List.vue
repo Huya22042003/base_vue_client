@@ -121,7 +121,7 @@
               >
               </ExportFileExcel>
               <ButtonBase
-                class="btn_round btn_primary btn_md"
+                class="btn_round btn_primary btn_lg"
                 @click="gotoRegister"
                 :buttonName="t('jobAbilityManagement.btnRegister')"
               >

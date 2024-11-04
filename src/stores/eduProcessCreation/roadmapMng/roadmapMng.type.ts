@@ -106,3 +106,32 @@ export type RoadmapTaltNrtgSelcModel = {
   jobCont: string;
   vision: string;
 };
+
+export type RoadMapEduProcessFilter = {
+  eduCourseSeq: string;
+}
+
+export type RoadMapEduProcessDTO = {
+  eduCourseNm: string,
+  taltNrtgType: RoadMapTaltNrtgDTO[]
+}
+
+export type RoadMapTaltNrtgDTO = {
+  taltNrtgTypeSeq: string;
+  name: string;
+  job:RoadMapJobDTO[];
+}
+
+export type RoadMapJobDTO = {
+  jobSeq: string;
+  name: string;
+  subject:RoadMapSubjectDTO[];
+}
+
+export type RoadMapSubjectDTO = {
+  subjectCd: string;
+  subjectNm: string;
+  trackType: string;
+  termCd: string;
+  gradeCd: string;
+}

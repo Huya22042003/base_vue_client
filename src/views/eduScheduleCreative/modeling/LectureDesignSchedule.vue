@@ -67,42 +67,42 @@
               </li>
               <li>
                 <p>
-                  {{ t("lectureDesignSchedule.list.subjectCqiStatus") }}
-                </p>
-                <SelectBoxBase
-                  :id="'subjectCqiStatus'"
-                  :name="'subjectCqiStatus'"
-                  :data="listStsJob"
-                  v-model="searchData.jobSts"
-                >
-                </SelectBoxBase>
-              </li>
-              <li>
-                <p>
                   {{ t("lectureDesignSchedule.list.syllabusStatus") }}
                 </p>
                 <SelectBoxBase
                   :id="'syllabusStatus'"
                   :name="'syllabusStatus'"
+                  :data="listStsJob"
+                  v-model="searchData.jobSts"
+                />
+              </li>
+              <li>
+                <p>
+                  {{ t("lectureDesignSchedule.list.subjectCqiStatus") }}
+                </p>
+                <SelectBoxBase
+                  :id="'subjectCqiStatus'"
+                  :name="'subjectCqiStatus'"
                   :data="listStsCqi"
                   v-model="searchData.cqiSts"
-                />
+                >
+                </SelectBoxBase>
               </li>
             </ul>
             <div class="search_btnarea">
               <button
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
-                @click="search"                
+                @click="search"
               >
-              {{t("common.search")}}
+                {{ t("common.search") }}
               </button>
               <button
                 type="button"
                 class="btn_round btn_lg btn_gray mg_l5"
                 @click="reset"
               >
-              {{ t("common.reset") }}
+                {{ t("common.reset") }}
               </button>
             </div>
           </div>
@@ -152,11 +152,16 @@
         :isOpen="modalOpen"
         @closeModal="closeModal"
         :modalType="modalType"
-        :lectCd="lectCd"
-        :listLectCd="listLectCd"
+        :writeSchdlSeq="writeSchdlSeq"
+        :listSubjectItem="listSubjectItem"
         :yearAdd="yearAdd"
         :termAdd="termAdd"
         :getDataAll="fnPagination"
+        :termDivision="termDivision"
+        :sbjtDivision="sbjtDivision"
+        :division="division"
+        :yearDivision="yearDivision"
+        :cdDivision="cdDivision"
       >
       </LectureDesignScheduleModal>
     </section>
@@ -184,6 +189,7 @@ import {
 import type {
   LectureDesignSchudeModel,
   SearchData,
+  LectRegItem,
 } from "@/stores/LectureDesignSchedule/LectureDesignSchedule.type";
 import { getListData } from "@/stores/LectureDesignSchedule/LectureDesignSchedule.service";
 import { format } from "date-fns";
@@ -429,8 +435,7 @@ export default defineComponent({
         jobSts: "",
         cqiSts: "",
       } as SearchData,
-      lectCd: "",
-      listLectCd: [],
+      writeSchdlSeq: "",
       yearAdd: "",
       termAdd: "",
       listSelectBoxSchoolYear: [
@@ -498,6 +503,13 @@ export default defineComponent({
           cdNm: this.t("common.all"),
         },
       ],
+      subjectItem: {} as LectRegItem,
+      listSubjectItem: [] as Array<LectRegItem>,
+      termDivision: "",
+      sbjtDivision: "",
+      division: "",
+      yearDivision: "",
+      cdDivision: "",
     };
   },
   beforeMount() {
@@ -514,7 +526,13 @@ export default defineComponent({
         .then((res) => {
           this.rowData = res.data.data.content.map((el) => {
             const isChecked = this.listCheckBoxGrid.some(
-              (item) => item.lectCd === el.lectCd
+              (item) =>
+                item.sbjtCd === el.sbjtCd &&
+                item.year === el.year &&
+                item.termCd === el.termCd &&
+                item.deptCd === el.deptCd &&
+                item.gradeCd === el.gradeCd &&
+                item.divCd === el.divCd
             );
             el.checkedFlag = isChecked;
             return el;
@@ -554,15 +572,20 @@ export default defineComponent({
     closeModal() {
       this.searchData.page = 1;
       this.modalOpen = false;
-      this.lectCd = "";
-      this.listLectCd = [];
+      this.writeSchdlSeq = "";
+      this.listSubjectItem = [];
     },
     openModal(type: "type1" | "type2" | "type3") {
       this.modalType = type;
       this.modalOpen = true;
     },
     handleSetupDetail(data: any) {
-      this.lectCd = data.lectCd;
+      this.writeSchdlSeq = data.writeSchdlSeq;
+      this.termDivision = data.termNm;
+      this.sbjtDivision = data.sbjtNm;
+      this.division = data.divNm;
+      this.yearDivision = data.year;
+      this.cdDivision = data.divCd;
       this.openModal("type2");
     },
     handleSetupOption() {
@@ -576,7 +599,15 @@ export default defineComponent({
         });
       } else {
         this.listCheckBoxGrid.forEach((item) => {
-          this.listLectCd.push(item.lectCd);
+          this.listSubjectItem.push({
+            writeSchdlSeq: item.writeSchdlSeq,
+            year: item.year,
+            termCd: item.termCd,
+            sbjtCd: item.sbjtCd,
+            deptCd: item.deptCd,
+            gradeCd: item.gradeCd,
+            divCd: item.divCd,
+          });
         });
         this.yearAdd = this.listCheckBoxGrid[0].year;
         this.termAdd = this.listCheckBoxGrid[0].termNm;
@@ -608,12 +639,28 @@ export default defineComponent({
       this.rowData.forEach((item) => {
         item.checkedFlag = value;
         if (value) {
-          if (!this.listCheckBoxGrid.some((el) => el.lectCd === item.lectCd)) {
+          if (
+            !this.listCheckBoxGrid.some(
+              (el) =>
+                item.sbjtCd === el.sbjtCd &&
+                item.year === el.year &&
+                item.termCd === el.termCd &&
+                item.deptCd === el.deptCd &&
+                item.gradeCd === el.gradeCd &&
+                item.divCd === el.divCd
+            )
+          ) {
             this.listCheckBoxGrid.push(item);
           }
         } else {
           this.listCheckBoxGrid = this.listCheckBoxGrid.filter(
-            (el) => el.lectCd !== item.lectCd
+            (el) =>
+              item.sbjtCd !== el.sbjtCd &&
+              item.year !== el.year &&
+              item.termCd !== el.termCd &&
+              item.deptCd !== el.deptCd &&
+              item.gradeCd !== el.gradeCd &&
+              item.divCd !== el.divCd
           );
         }
       });
@@ -622,13 +669,27 @@ export default defineComponent({
       data.checkedFlag = value;
       if (value) {
         if (
-          !this.listCheckBoxGrid.some((item) => item.lectCd === data.lectCd)
+          !this.listCheckBoxGrid.some(
+            (item) =>
+              item.sbjtCd === data.sbjtCd &&
+              item.year === data.year &&
+              item.termCd === data.termCd &&
+              item.deptCd === data.deptCd &&
+              item.gradeCd === data.gradeCd &&
+              item.divCd === data.divCd
+          )
         ) {
           this.listCheckBoxGrid.push(data);
         }
       } else {
         this.listCheckBoxGrid = this.listCheckBoxGrid.filter(
-          (item) => item.lectCd !== data.lectCd
+          (item) =>
+            item.sbjtCd !== data.sbjtCd &&
+            item.year !== data.year &&
+            item.termCd !== data.termCd &&
+            item.deptCd !== data.deptCd &&
+            item.gradeCd !== data.gradeCd &&
+            item.divCd !== data.divCd
         );
       }
       this.updateSelectAllCheckbox();

@@ -209,7 +209,7 @@
     </div>
     <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
-        <button type="button" class="btn_round btn_md btn_primary">
+        <button type="button" class="btn_round btn_lg btn_primary">
           <!-- 3.인재양성유형 설정 및 교육목표 수립 인쇄 -->{{
             t("eduProcessCreation.typeTalentEdu.title31")
           }}
@@ -219,11 +219,11 @@
           type="button"
           @click="save"
           :buttonName="t('common.save')"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
         />
         <button
           type="button"
-          class="btn_round btn_md btn_primary"
+          class="btn_round btn_lg btn_primary"
           :disabled="isDisabled"
           @click="next()"
         >
@@ -231,7 +231,7 @@
         </button>
         <button
           type="button"
-          class="btn_round btn_md btn_white"
+          class="btn_round btn_lg btn_white"
           @click="back()"
         >
           {{ t("common.list") }}

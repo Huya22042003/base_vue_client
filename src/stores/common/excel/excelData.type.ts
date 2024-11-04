@@ -7,4 +7,6 @@ export type MultiHeaderData = {
     sheetName: string,
     data : Array<Array<any>>,
     header : Array<Array<string>>,
+    indexCheckMerge: number,
+    indexNotMerge : Array<number>
 }

@@ -62,21 +62,25 @@
           v-if="tabSelected === 'tab1'"
           @change-tab="changeTab"
           @update-id="setIdSelected"
+          @ver-next="setverNext"
         />
         <CrudChildAbility
           v-if="tabSelected === 'tab2'"
           :id="idSelected"
           @change-tab="changeTab"
+          :verNext="verNext"
         />
         <ScopeAppAndImplement
           v-if="tabSelected === 'tab3'"
           :id="idSelected"
           @change-tab="changeTab"
+          :verNext="verNext"
         />
         <DevelopmentHistory
           v-if="tabSelected === 'tab4'"
           :id="idSelected"
           @change-tab="changeTab"
+          :verNext="verNext"
         />
       </div>
     </section>
@@ -125,6 +129,7 @@ export default {
       tabSelected: "tab1",
       idSelected: "",
       modeScreen: "",
+      verNext: "",
     };
   },
   beforeMount() {
@@ -143,6 +148,9 @@ export default {
     },
     setIdSelected(id: string) {
       this.idSelected = id;
+    },
+    setverNext(verNext: string) {
+      this.verNext = verNext;
     },
   },
 };
