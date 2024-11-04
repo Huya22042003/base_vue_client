@@ -490,7 +490,15 @@ export default defineComponent({
       dataInput.mutilCheck = [] as Array<CheckMerge>;
       dataInput.mutilCheck.push({
         indexKey: 0,
-        indexChild: [0, 1, 2, 3, 7, 8],
+        indexChild: [0, 1, 8],
+      });
+      dataInput.mutilCheck.push({
+        indexKey: 1,
+        indexChild: [2, 7],
+      });
+      dataInput.mutilCheck.push({
+        indexKey: 2,
+        indexChild: [3],
       });
       dataInput.mutilCheck.push({
         indexKey: 3,

@@ -72,7 +72,7 @@ export default defineComponent({
     return {
       breadcrumbItems: [],
       pageTitle: this.t("levelJobPerformance.pageTitle"),
-      tabSelected: "tab3",
+      tabSelected: "tab1",
     };
   },
   beforeMount() {},

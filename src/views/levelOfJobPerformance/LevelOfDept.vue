@@ -67,7 +67,7 @@
     <div class="dp_flex between al_center box_title_sm">
       <p class="section_tit_xs"></p>
       <p class="section_tit_xs">
-        *NCS 능력단위평가에 0.8, 직업기초능력에 0.2의 가중치 적용
+        {{ t("levelJobPerformance.messalert") }}
       </p>
     </div>
     <div class="box_section">
