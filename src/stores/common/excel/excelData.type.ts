@@ -8,5 +8,10 @@ export type MultiHeaderData = {
     data : Array<Array<any>>,
     header : Array<Array<string>>,
     indexCheckMerge: number,
-    indexNotMerge : Array<number>
+    indexNotMerge : Array<number>,
+    mutilCheck : Array<CheckMerge>
+}
+export type CheckMerge = {
+    indexKey : number
+    indexChild: Array<number>
 }
