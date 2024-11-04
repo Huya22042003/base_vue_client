@@ -63,9 +63,16 @@
   </div>
   <div class="box dp_block">
     <div class="dp_flex btn_group btn_end mg_b20" style="gap: 10px">
-      <button class="btn_round btn_lg btn_primary" @click="dowloadExcel">
-        {{ t("levelJobPerformance.student.dowload") }}
-      </button>
+      <ExportFileExcel
+        :data="dataExport"
+        :fileName="t('levelJobPerformance.job.fileName')"
+        :btnName="t('levelJobPerformance.student.dowload')"
+        :multiHeaderFlag="true"
+        :callData="true"
+        ref="exportExcelRef"
+        @click="dowloadExcel"
+      >
+      </ExportFileExcel>
     </div>
     <div class="box_section">
       <div class="tbl tbl_col" v-if="listLevelOfJob.length > 0">
@@ -117,6 +124,74 @@
               </th>
             </tr>
           </thead>
+          <tbody>
+            <template v-for="job in listLevelOfJob" :key="job.jobSeq">
+              <template
+                v-for="(type, indexType) in job.listTypeNm"
+                :key="type.typeNm"
+              >
+                <template
+                  v-for="(jobAbility, indexJobAbility) in type.listJobAbility"
+                  :key="jobAbility.jobAbilSeq"
+                >
+                  <template
+                    v-for="(jobCapa, indexJobCapa) in jobAbility.listJobCapa"
+                    :key="jobCapa.jobCapaUnitSeq"
+                  >
+                    <tr>
+                      <td
+                        v-if="
+                          indexType === 0 &&
+                          indexJobAbility === 0 &&
+                          indexJobCapa === 0
+                        "
+                        :rowspan="job.rowSpan"
+                      >
+                        {{ job.jobNm }}
+                      </td>
+                      <td
+                        v-if="indexJobAbility === 0 && indexJobCapa === 0"
+                        :rowspan="type.rowSpan"
+                      >
+                        {{ type.typeNm }}
+                      </td>
+                      <td
+                        v-if="indexJobCapa === 0"
+                        :rowspan="jobAbility.rowSpan"
+                      >
+                        <div>{{ jobAbility.jobAbilNm }}</div>
+                        <div>{{ jobAbility.jobAbilCd }}</div>
+                      </td>
+                      <td>{{ jobCapa.capaUnitNm }}</td>
+                      <td>{{ jobCapa.scoreJobCapa }}</td>
+                      <td
+                        v-if="indexJobCapa === 0"
+                        :rowspan="jobAbility.rowSpan"
+                      >
+                        {{ jobAbility.scoreJobAbility }}
+                      </td>
+                      <td
+                        v-if="indexJobCapa === 0"
+                        :rowspan="jobAbility.rowSpan"
+                      >
+                        {{ jobAbility.sbjtNm }}
+                      </td>
+                      <td
+                        v-if="
+                          indexType === 0 &&
+                          indexJobAbility === 0 &&
+                          indexJobCapa === 0
+                        "
+                        :rowspan="job.rowSpan"
+                      >
+                        {{ job.deptNm }}
+                      </td>
+                    </tr>
+                  </template>
+                </template>
+              </template>
+            </template>
+          </tbody>
         </table>
       </div>
       <div v-else class="no_cnt">
@@ -138,14 +213,23 @@ import { commonStore } from "@/stores/common";
 import { getCodeMngByUpCdId } from "@/stores/common/codeMng/codeMng.service";
 import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 import { getDepartmentList } from "@/stores/common/department/department.service";
-import { getListJob } from "@/stores/levelOfJobPerformance/levelOfJobAbility/levelOfJobAbility.service";
-import { LevelOfJobAbilitySearchModel } from "@/stores/levelOfJobPerformance/levelOfJobAbility/levelOfJobAbility.type";
+import { MultiHeaderData } from "@/stores/common/excel/excelData.type";
+import {
+  getLevelOfJobAbilityList,
+  getListJob,
+} from "@/stores/levelOfJobPerformance/levelOfJobAbility/levelOfJobAbility.service";
+import {
+  LevelOfJobAbilityListModel,
+  LevelOfJobAbilitySearchModel,
+  LevelOfJobInfoModel,
+} from "@/stores/levelOfJobPerformance/levelOfJobAbility/levelOfJobAbility.type";
 
 export default defineComponent({
   setup() {
     const { t } = useI18n();
     const cmn = commonStore();
-    return { t, cmn };
+    const exportExcelRef = ref();
+    return { t, cmn, exportExcelRef };
   },
   data() {
     return {
@@ -160,7 +244,8 @@ export default defineComponent({
         { cdId: "", cdNm: this.t("common.select") },
       ] as Array<CodeMngModel>,
       listDept: [] as Array<CodeMngModel>,
-      listLevelOfJob: [],
+      listLevelOfJob: [] as Array<LevelOfJobInfoModel>,
+      listLevelOfJobExcel: [] as Array<LevelOfJobAbilityListModel>,
       listJob: [] as Array<CodeMngModel>,
       searchModel: {
         year: "",
@@ -169,6 +254,7 @@ export default defineComponent({
         gradeCd: "",
         jobSeq: "",
       } as LevelOfJobAbilitySearchModel,
+      dataExport: [] as Array<MultiHeaderData>,
     };
   },
   beforeMount() {
@@ -231,7 +317,62 @@ export default defineComponent({
         this.cmn.setLoading(false);
       });
     },
-    search() {},
+    search() {
+      if (
+        !this.searchModel.deptCd ||
+        !this.searchModel.gradeCd ||
+        !this.searchModel.year ||
+        !this.searchModel.termCd ||
+        !this.searchModel.jobSeq
+      ) {
+        this.$alert(this.t("levelJobPerformance.job.messageWarning"));
+        return;
+      }
+      this.cmn.setLoading(true);
+      getLevelOfJobAbilityList(this.searchModel)
+        .then((res) => {
+          this.listLevelOfJob = this.calculateRowSpan(res.data.data);
+          this.convertListLevelOfJobToExcel();
+          this.cmn.setLoading(false);
+        })
+        .catch((error) => {
+          this.cmn.setLoading(false);
+        });
+    },
+    convertListLevelOfJobToExcel() {
+      this.listLevelOfJobExcel = this.listLevelOfJob.flatMap((jobInfo) =>
+        jobInfo.listTypeNm.flatMap((type) =>
+          type.listJobAbility.flatMap((ability) =>
+            ability.listJobCapa.map((capaUnit) => ({
+              jobSeq: jobInfo.jobSeq,
+              jobNm: jobInfo.jobNm,
+              typeNm: type.typeNm,
+              jobAbilSeq: ability.jobAbilSeq,
+              jobAbilNm: ability.jobAbilNm,
+              jobAbilCd: ability.jobAbilCd,
+              jobCapaUnitSeq: capaUnit.jobCapaUnitSeq,
+              capaUnitNm: capaUnit.capaUnitNm,
+              scoreJobCapa: capaUnit.scoreJobCapa,
+              scoreJobAbil: ability.scoreJobAbility,
+              sbjtNm: ability.sbjtNm,
+              deptNm: jobInfo.deptNm,
+            }))
+          )
+        )
+      );
+    },
+    calculateRowSpan(levels: LevelOfJobInfoModel[]): LevelOfJobInfoModel[] {
+      levels.forEach((jobInfo) => {
+        jobInfo.rowSpan = jobInfo.listTypeNm.reduce((sum, type) => {
+          type.rowSpan = type.listJobAbility.reduce((subSum, ability) => {
+            ability.rowSpan = ability.listJobCapa.length || 1;
+            return subSum + ability.rowSpan;
+          }, 0);
+          return sum + type.rowSpan;
+        }, 0);
+      });
+      return levels;
+    },
     reset() {
       this.searchModel = {
         year: "",
@@ -241,7 +382,60 @@ export default defineComponent({
         jobSeq: "",
       };
     },
-    dowloadExcel() {},
+    dowloadExcel() {
+      if (
+        !this.searchModel.deptCd ||
+        !this.searchModel.gradeCd ||
+        !this.searchModel.year ||
+        !this.searchModel.termCd ||
+        !this.searchModel.jobSeq
+      ) {
+        this.$alert(this.t("levelJobPerformance.job.messageWarning"));
+        return;
+      }
+      let dataInput = {} as MultiHeaderData;
+      dataInput.sheetName = "sheet1";
+      dataInput.data = [];
+      dataInput.header = [];
+      dataInput.indexCheckMerge = 2;
+      dataInput.indexNotMerge = [3, 4];
+      let header1 = [
+        this.t("levelJobPerformance.job.tbl1"),
+        this.t("levelJobPerformance.job.tbl2"),
+        this.t("levelJobPerformance.job.tbl2"),
+        this.t("levelJobPerformance.job.tbl2"),
+        this.t("levelJobPerformance.job.tbl3"),
+        this.t("levelJobPerformance.job.tbl3"),
+        this.t("levelJobPerformance.job.tbl4"),
+        this.t("levelJobPerformance.job.tbl5"),
+      ];
+      let header2 = [
+        this.t("levelJobPerformance.job.tbl1"),
+        this.t("levelJobPerformance.job.tbl6"),
+        this.t("levelJobPerformance.job.tbl7"),
+        this.t("levelJobPerformance.job.tbl8"),
+        this.t("levelJobPerformance.job.tbl9"),
+        this.t("levelJobPerformance.job.tbl10"),
+        this.t("levelJobPerformance.job.tbl4"),
+        this.t("levelJobPerformance.job.tbl5"),
+      ];
+      dataInput.header.push(header1);
+      dataInput.header.push(header2);
+      this.listLevelOfJobExcel.forEach((item: LevelOfJobAbilityListModel) => {
+        let rowData = [];
+        rowData.push(item.jobNm);
+        rowData.push(item.typeNm);
+        rowData.push(item.jobAbilNm + item.jobAbilCd);
+        rowData.push(item.capaUnitNm);
+        rowData.push(item.scoreJobCapa);
+        rowData.push(item.scoreJobAbil);
+        rowData.push(item.sbjtNm);
+        rowData.push(item.deptNm);
+        dataInput.data.push(rowData);
+      });
+      this.dataExport.push(dataInput);
+      this.exportExcelRef.downloadExcel();
+    },
   },
 });
 </script>
