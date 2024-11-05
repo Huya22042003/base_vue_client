@@ -29,6 +29,9 @@ export type FinalAchiListModel = {
     sbjtCd: string
     termNm: string
     sustDivNm: string
+    jobCapaEvalStrDate:string
+    jobCapaEvalEndDate:string
+    
 }
 
 export type FinalAchiRltModel = {
