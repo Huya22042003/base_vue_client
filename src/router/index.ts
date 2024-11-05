@@ -27,6 +27,11 @@ router.beforeEach((to, from, next) => {
   const metaTitle = to.meta.title as string;
   document.title = metaTitle || "영산대학교";
 
+  const arrScreenName = [SCREEN.login.name, SCREEN.home.name, SCREEN.notFound.name, SCREEN.internalError.name, SCREEN.unauthorized.name];
+
+  if (to.name && !arrScreenName.includes(to.name)) {
+    saveNavigationHistory(to, from);
+  }
 
   if (to.meta.middleware) {
     const middleware = Array.isArray(to.meta.middleware)
@@ -37,11 +42,6 @@ router.beforeEach((to, from, next) => {
     return middleware[0]({...context, next: nextMiddleware});
   }
 
-  const arrScreenName = [SCREEN.login.name, SCREEN.home.name, SCREEN.notFound.name, SCREEN.internalError.name, SCREEN.unauthorized.name];
-
-  if (to.name && !arrScreenName.includes(to.name)) {
-    saveNavigationHistory(to, from);
-  }
   return next();
 });
 
