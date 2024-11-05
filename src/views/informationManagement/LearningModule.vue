@@ -532,7 +532,7 @@ const handleRegister = async (value: string) => {
     await getData();
     store.setLoading(false);
     Swal.fire({
-      html: "추가 성공.",
+      html: "분류가 추가되었습니다.",
       showCancelButton: false,
       cancelButtonColor: "#fff",
       cancelButtonText: "취소",
