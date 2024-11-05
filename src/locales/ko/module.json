@@ -11,7 +11,7 @@
     "next": "다음",
     "cancel": "취소",
     "home": "HOME",
-    "search": "조회",
+    "search": "검색",
     "reset": "초기화",
     "close": "닫기",
     "add": "추가",
@@ -280,7 +280,7 @@
           "openSub": "교과목 추가",
           "save": "저장",
           "back": "목록",
-          "search": "조회",
+          "search": "검색",
           "reset": "초기화",
           "choice": "선택",
           "close": "닫기",
@@ -707,7 +707,7 @@
         "corecapacity4": "융합실무"
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "reset": "초기화",
         "downloadExel": "엑셀파일 다운로드"
       }
@@ -1528,7 +1528,7 @@
         "capactityMajor": "전공능력",
         "lowerGrade": "하위능력",
         "status": "상태",
-        "search": "조회",
+        "search": "검색",
         "clear": "초기화"
       },
       "list": {
@@ -1577,7 +1577,7 @@
         "title": "검색",
         "universityMajor": "단과대학",
         "dept": "학과",
-        "search": "조회",
+        "search": "검색",
         "clear": "초기화"
       },
       "list": {
@@ -1667,7 +1667,7 @@
         "title": "검색",
         "dept": "학과/학부",
         "typeTalent": "인재양성유형",
-        "btnSeach": "조회",
+        "btnSeach": "검색",
         "btnClear": "초기화",
         "subTitle":"※ 로그인 사용자의 소속 학과의 인재양성유형 목록만 조회됩니다. "
       },
@@ -1719,7 +1719,7 @@
         "lowerGrade": "하위능력",
         "constitutiveFactor": "구성요소",
         "isAction": "상태",
-        "btnSeach": "조회",
+        "btnSeach": "검색",
         "btnClear": "초기화",
         "isActionFalse": "미작성",
         "isActionTrue": "작성"
@@ -1780,7 +1780,7 @@
         "dept": "학과/학부",
         "yearEdu": "학년도",
         "job": "사업구분",
-        "btnSeach": "조회",
+        "btnSeach": "검색",
         "btnClear": "초기화"
       },
       "list": {
@@ -1855,7 +1855,7 @@
       "languageYn": "다국어 여부",
       "status": "상태",
       "createdDate": "등록일",
-      "search": "조회",
+      "search": "검색",
       "reset": "초기화",
       "register": "진단지등록",
       "total": "전체",
@@ -1897,7 +1897,7 @@
       "multiLanguageYn": "다국어 여부",
       "status": "상태",
       "dateCoreComp": "진단기간",
-      "search": "조회",
+      "search": "검색",
       "reset": "초기화",
       "btnRegister": "진단등록",
       "rowNum": "번호",
@@ -1962,7 +1962,7 @@
           "total": "전체",
           "createdBy": "등록자(학번)",
           "timeRegister": "등록기간",
-          "search": "조회",
+          "search": "검색",
           "reset": "초기화",
           "labelList": "목록",
           "createdDate": "등록일",
@@ -2033,7 +2033,7 @@
         "createdDate": "등록일"
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "reset": "초기화",
         "register": "진단지등록"
       },
@@ -2083,7 +2083,7 @@
         "regDate": "등록일"
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "reset": "초기화",
         "register": "진단등록"
       },
@@ -2126,7 +2126,7 @@
         "time": "진단기간"
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "reset": "초기화"
       },
       "table": {
@@ -2300,7 +2300,7 @@
         }
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "reset": "초기화",
         "register1": "진단지등록",
         "register2": "진단등록",
@@ -2653,7 +2653,7 @@
           "total": "전체",
           "createdBy": "등록자(학번)",
           "timeRegister": "등록기간",
-          "search": "조회",
+          "search": "검색",
           "reset": "초기화",
           "labelList": "목록",
           "createdDate": "등록일",
@@ -2999,7 +2999,7 @@
         "field4": "학년",
         "field5": "이름(학번)",
         "field6": "해당자",
-        "button1": "조회",
+        "button1": "검색",
         "button2": "초기화",
         "button3": "닫기",
         "button4": "확인",
@@ -3020,7 +3020,7 @@
         "field1": "만족도 조사 제목",
         "field2": "등록일",
         "field3": "이름(학번)",
-        "button1": "조회",
+        "button1": "검색",
         "button2": "초기화",
         "button3": "닫기",
         "button4": "확인",
@@ -3119,7 +3119,7 @@
         "ansDateLast": "최종 답변일"
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "reset": "초기화"
       },
       "ansTtl": "Q&A 조회 및 답변",
@@ -3517,7 +3517,7 @@
           }
         },
         "button": {
-          "search": "조회",
+          "search": "검색",
           "reset": "초기화"
         }
       },
@@ -3655,7 +3655,7 @@
         "subjectName": "과목명",
         "applicant": "신청자",
         "approver": "결재자",
-        "searchButton": "조회",
+        "searchButton": "검색",
         "resetButton": "초기화"
       },
       "grid": {
@@ -3921,7 +3921,7 @@
         }
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "refresh": "초기화",
         "back": "목록"
       }
@@ -5055,7 +5055,7 @@
         "year": "학년도",
         "lesson": "학과",
         "regBy": "작성자",
-        "lookup": "조회"
+        "lookup": "검색"
       }
   },
   "lookupTechPlan":{
@@ -6271,7 +6271,7 @@
     "year":"학년도"
     ,"deptNm":"학과"
     ,"regNm":"작성자"
-    ,"titleSearch":"조회"
+    ,"titleSearch":"검색"
     ,"pageTitle":"교육과정개발보고서 조회"
     ,"strRp":"[미리보기 및 인쇄]"
   },
