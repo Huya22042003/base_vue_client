@@ -4,7 +4,7 @@ import type { LevelOfJobAbilitySearchModel } from "./levelOfJobAbility.type";
 
 const url = `${SITE_ADMIN}/level-of-job-ability`;
 
-export const getLevelOfStudentList = (data: LevelOfJobAbilitySearchModel) => {
+export const getLevelOfJobAbilityList = (data: LevelOfJobAbilitySearchModel) => {
   return http.post(`${url}/list`, data);
 };
 
