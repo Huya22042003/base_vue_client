@@ -541,7 +541,7 @@ export const SCREEN = {
   },
   historyMenuAccess: {
     path: "/history-menu-access",
-    name: "history-menu-access",
+    name: "historyMenuAccess",
   },
   manageApprovedSubjects: {
     path: "/manage-approved-subjects",
