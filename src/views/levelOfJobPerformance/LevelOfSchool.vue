@@ -54,7 +54,8 @@
     </div>
     <div class="dp_flex between al_center box_title_sm">
       <p class="section_tit_xs">
-        {{ t("levelJobPerformance.messSchool") }}: {{ averageSchool }}
+        {{ t("levelJobPerformance.messSchool") }}:
+        {{ averageSchool ? averageSchool : "-" }}
       </p>
       <p class="section_tit_xs">
         {{ t("levelJobPerformance.messalert") }}
@@ -263,6 +264,7 @@ export default defineComponent({
         .then((res) => {
           this.listLevelOfSchool = this.calculateRowSpan(res.data.data);
           this.convertListLevelOfSchoolToExcel();
+          this.calculatorAverage();
           this.cmn.setLoading(false);
         })
         .catch((error) => {
@@ -313,6 +315,14 @@ export default defineComponent({
         gradeCd: "",
       };
     },
+    calculatorAverage() {
+      let sum = 0;
+      this.listLevelOfSchool.forEach((dept) => {
+        sum += dept.scoreDept;
+      });
+      this.averageSchool = (sum / this.listLevelOfSchool.length).toFixed(2);
+    },
+
     dowloadExcel() {
       if (
         !this.searchModel.gradeCd ||
