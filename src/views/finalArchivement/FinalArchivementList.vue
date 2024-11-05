@@ -249,8 +249,6 @@ export default defineComponent({
     }) as FinalAchiSearchModel;
     const totalRows = ref<number>;
     function handleCustomClick(data: any) {
-      const currDate = new Date().toISOString().split('T')[0];
-      if(data.jobCapaEvalStrDate <= currDate &&  currDate <= data.jobCapaEvalEndDate ){
         router.push({
           name: SCREEN.finalArchivementAction.name,
           params: { mode: MODE_DETAIL },
@@ -266,10 +264,7 @@ export default defineComponent({
             termNm: data.termNm,
             gradeNm: data.gradeNm,
           },
-        });
-      }else{
-        alert('đợi QA')
-      }
+        });      
     }
 
     return {
@@ -306,7 +301,7 @@ export default defineComponent({
   beforeUnmount() {
     document.removeEventListener("keypress", this.handleKeyPress);
   },
-  beforeMount() {},
+  beforeMount() {this.getListCode();},
   mounted() {
     document.addEventListener("keypress", this.handleKeyPress);
   },
@@ -343,7 +338,7 @@ export default defineComponent({
     },
     resetSearch() {
       this.finalAchiSearchModel = {
-        yearEdu: "",
+        yearEdu: new Date().getFullYear(),
         termEdu: "",
         sbjtNm: "",
         status: "",
@@ -356,7 +351,7 @@ export default defineComponent({
       this.finalAchiSearchModel.size = pagesSize;
       this.finalAchiSearchModel.page = pageNumber;
       this.finalAchiSearchModel.sort = "";
-      this.getDataAll();
+      this.getDataAll();      
     },
     getListYear(){
       const currentYear = new Date().getFullYear()+1;
