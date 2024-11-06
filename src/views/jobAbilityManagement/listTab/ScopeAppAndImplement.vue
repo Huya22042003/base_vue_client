@@ -264,10 +264,13 @@ export default {
     },
     getData() {
       this.cmn.setLoading(true);
-      detailJobScope(this.jobAbilSeq).then((res) => {
-        this.jobData = res.data.data;
-      });
-      this.cmn.setLoading(false);
+      detailJobScope(this.jobAbilSeq)
+        .then((res) => {
+          this.jobData = res.data.data;
+        })
+        .finally(() => {
+          this.cmn.setLoading(false);
+        });
     },
     async confirmEdit() {
       if (this.checkVal()) {
