@@ -451,11 +451,20 @@ export default defineComponent({
         return;
       }
 
+      let check = true;
+      let messageError = '';
       this.dataView.forEach((job: any) => {
         if (job.subjectNm.length == 0) {
-          this.$alert(`${job.subjectNm.sbjtNm}의 교과목을 선택하세요`);
+          check = false;
+          messageError = `${ job.typeNm + '-' + job.jobNm } (은)는 교과목이 선택되지 않았습니다.`;
+          return;
         }
       });
+
+      if (!check) {
+        this.$alert(messageError);
+        return;
+      }
 
       this.$confirm(
         this.t("eduProcessCreation.jobEduMng.messageConfirmSave"),
@@ -548,7 +557,7 @@ export default defineComponent({
           });
         });
       });
-      await saveCreateSubjectForm({ eduCourseSeq: this.id, list: dataSave });
+      // await saveCreateSubjectForm({ eduCourseSeq: this.id, list: dataSave });
       this.storeCommon.setLoading(false);
     },
     next() {
