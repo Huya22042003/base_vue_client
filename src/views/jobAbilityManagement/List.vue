@@ -294,8 +294,11 @@ export default {
     };
   },
   async beforeMount() {
+    await this.cmn.setLoading(true);
     this.getCodeType();
     await this.getListParent(KCS_CD_ID);
+    this.getDownloadExcelData();
+    await this.cmn.setLoading(false);
   },
   methods: {
     async handleSelectChange(selectBoxId: any, selectedValue: any) {
@@ -368,7 +371,6 @@ export default {
     },
 
     async getListParent(type: any) {
-      this.cmn.setLoading(true);
       const res = await parentList(type);
       res.data.data.forEach((element: any) => {
         this.listClassLarge.push({
@@ -376,10 +378,8 @@ export default {
           cdNm: element.jobCapaStndNm,
         });
       });
-      this.cmn.setLoading(false);
     },
     async getListItem(parentId: any, level: any) {
-      this.cmn.setLoading(true);
       let response;
       response = await itemList(parentId);
 
@@ -401,7 +401,6 @@ export default {
           });
         }
       });
-      this.cmn.setLoading(false);
     },
 
     search() {
@@ -439,6 +438,8 @@ export default {
               item.lvl = "없음";
             }
             item.ver = "V" + item.ver;
+            item.jobAbilCd =
+              item.jobAbilCd.slice(0, 10) + "_" + item.jobAbilCd.slice(10);
           });
         })
         .finally(() => {
@@ -473,68 +474,69 @@ export default {
         this.listCategory = response.data.data;
       });
     },
+    async getDownloadExcelData() {
+      await downloadExcel().then((res) => {
+        this.rowDataAll = res.data.data.map(
+          (item: any, index: number, arr: any[]) => {
+            const dataFormatted =
+              item.hightNo +
+              "." +
+              item.hightNm +
+              ">" +
+              item.mediumNo +
+              "." +
+              item.mediumNm +
+              ">" +
+              item.lowNo +
+              "." +
+              item.lowNm +
+              ">" +
+              item.detailNo +
+              "." +
+              item.detailNm;
+
+            if (!item.lvl) {
+              item.lvl = "없음";
+            }
+            const rowNumber = arr.length - index;
+            const jobAbilCdFormat =
+              item.jobAbilCd.slice(0, 10) + "_" + item.jobAbilCd.slice(10);
+            return {
+              ...item,
+              dataFomat: dataFormatted,
+              ver: "V" + item.ver,
+              rowNumber: rowNumber,
+              jobAbilCd: jobAbilCdFormat,
+            };
+          }
+        );
+      });
+    },
     exportExcel() {
-      if (this.rowDataAll.length === 0) {
-        downloadExcel()
-          .then((res) => {
-            this.rowDataAll = res.data.data.map(
-              (item: any, index: number, arr: any[]) => {
-                const dataFormatted =
-                  item.hightNo +
-                  "." +
-                  item.hightNm +
-                  ">" +
-                  item.mediumNo +
-                  "." +
-                  item.mediumNm +
-                  ">" +
-                  item.lowNo +
-                  "." +
-                  item.lowNm +
-                  ">" +
-                  item.detailNo +
-                  "." +
-                  item.detailNm;
+      const rowExcelHeader = this.columnDefs.map((el) => el.headerName);
 
-                if (!item.lvl) {
-                  item.lvl = "없음";
-                }
-                const rowNumber = arr.length - index;
-                return {
-                  ...item,
-                  dataFomat: dataFormatted,
-                  ver: "V" + item.ver,
-                  rowNumber: rowNumber,
-                };
-              }
-            );
+      this.arrayColor = this.columnDefs.map((el) => ({
+        color: "d0d0d0",
+        name: el.headerName,
+      }));
 
-            const rowExcelHeader = this.columnDefs.map((el) => el.headerName);
+      const rowExcel = this.rowDataAll.map((el) => {
+        const colExcel = [
+          el.rowNumber,
+          el.typeCd,
+          el.dataFomat,
+          el.jobAbilCd,
+          el.jobAbilNm,
+          el.lvl,
+          el.ver,
+          el.learnModuleNm,
+        ];
+        return colExcel;
+      });
 
-            this.arrayColor = this.columnDefs.map((el) => ({
-              color: "d0d0d0",
-              name: el.headerName,
-            }));
-
-            const rowExcel = this.rowDataAll.map((el) => {
-              const colExcel = [
-                el.rowNumber,
-                el.typeCd,
-                el.dataFomat,
-                el.jobAbilCd,
-                el.jobAbilNm,
-                el.lvl,
-                el.ver,
-                el.learnModuleNm,
-              ];
-              return colExcel;
-            });
-
-            this.dataOutput = [
-              { sheetName: "sheet1", data: rowExcel, header: rowExcelHeader },
-            ];
-          })
-      }
+      this.dataOutput = [
+        { sheetName: "sheet1", data: rowExcel, header: rowExcelHeader },
+      ];
     },
   },
 };

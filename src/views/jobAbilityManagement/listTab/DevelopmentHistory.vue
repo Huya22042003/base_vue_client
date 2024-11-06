@@ -168,11 +168,19 @@ export default {
       detailHistory(this.jobAbilSeq)
         .then((res) => {
           this.listJobHistory = res.data.data;
+
           this.jobHistory = this.listJobHistory.find(
             (item) => item.jobAbilSeq === this.jobAbilSeq
           );
+          this.listJobHistory = this.listJobHistory.filter(
+            (item) => item.jobAbilSeq !== this.jobAbilSeq
+          );
           this.authNm = this.jobHistory.authNm;
           this.year = this.jobHistory.supportYear;
+          this.jobHistory.jobAbilCd =
+            this.jobHistory.jobAbilCd.slice(0, 10) +
+            "_" +
+            this.jobHistory.jobAbilCd.slice(10);
         })
         .finally(() => {
           this.cmn.setLoading(false);
