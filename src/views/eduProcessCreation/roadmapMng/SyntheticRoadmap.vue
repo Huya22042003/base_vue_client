@@ -2,7 +2,7 @@
   <div class="box_section mt-5">
     <div class="box_section mt-13">
       <div class="tbl tbl_col">
-        <table>
+        <table class="border_bottom_none">
           <colgroup>
             <col style="width: 25%" />
             <col style="width: auto" />
@@ -42,7 +42,7 @@
             </tr>
           </thead>
         </table>
-        <table>
+        <table class="border_top_none border_bottom_none">
           <colgroup>
             <col style="width: 25%" />
             <col style="width: 25%" />
@@ -91,7 +91,7 @@
             >
           </thead>
         </table>
-        <table>
+        <table class="border_top_none border_bottom_none">
           <colgroup>
             <col style="width: 16.7%" />
             <col style="width: 25%" />
@@ -160,7 +160,7 @@
             </template>
           </thead>
         </table>
-        <table v-if="data.relatedCertificate">
+        <table v-if="data.relatedCertificate" class="border_top_none border_bottom_none">
           <colgroup>
             <col style="width: 25%" />
             <col style="width: 25%" />
@@ -196,7 +196,7 @@
             </tr>
           </thead>
         </table>
-        <table v-if="data.graduationRoadmap">
+        <table v-if="data.graduationRoadmap" class="border_top_none">
           <colgroup>
             <col style="width: 25%" />
             <col style="width: 25%" />
@@ -338,6 +338,11 @@ export default defineComponent({
 }
 .tbl table thead th {
   border-right: 1px solid var(--gray-lavender);
+}
+.border_top_none {
+  border-top: 1px solid var(--gray-lavender);
+}
+.border_bottom_none {
   border-bottom: 1px solid var(--gray-lavender);
 }
 </style>

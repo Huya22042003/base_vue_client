@@ -93,7 +93,7 @@
               <ButtonBase
                 type="button"
                 :disabled="disableButtonDelete"
-                @click="handleVersionUp"
+                @click="confirmDelete()"
                 :buttonName="
                   t('05.eduProcessCreation.listAndApprove.button.delete')
                 "
@@ -194,6 +194,7 @@ import {
 } from "@/constants/common.const";
 import RadioButtonGrid from "@/components/common/grid/RadioButtonGrid.vue";
 import ButtonBase from "@/components/common/button/ButtonBase.vue";
+import GirdReportEduProcess from "./GirdReportEduProcess.vue";
 
 export default defineComponent({
   components: {
@@ -207,7 +208,8 @@ export default defineComponent({
     SustYearSetting,
     ButtonGridComponent,
     CheckboxGrid,
-    ButtonBase
+    ButtonBase,
+    GirdReportEduProcess
   },
   setup: () => {
     const router = useRouter();
@@ -346,11 +348,10 @@ export default defineComponent({
             justifyContent: "center",
             display: "flex",
           },
-          cellRenderer: "ButtonGridComponent",
+          cellRenderer: GirdReportEduProcess,
           flex: 0.8,
           cellRendererParams: (data: any) => {
             return {
-              onCustomEvent: this.openApproveAlert,
               value: this.t(
                 "05.eduProcessCreation.listAndApprove.button.print"
               ),
@@ -458,46 +459,35 @@ export default defineComponent({
       this.keyId++;
     },
     async getAllData() {
-      try {
-        this.storeCommon.setLoading(true);
-        await this.eduCourseStore.getAll(this.searhParms);
-        if (
-          this.eduCourseStore &&
-          this.eduCourseStore.status == SUCCSESS_STATUS
-        ) {
-          this.pageable = this.eduCourseStore.EduCourseResListModel;
-          this.eduProcessCreationList =
-            this.eduCourseStore.EduCourseResListModel.content.map(
-              (item: EduCourseResModel) => {
-                item.regDate = item.regDate
-                  ? format(item.regDate, FORMAT_YYY_MM_DD)
-                  : "";
-                item.checkedShow = item.stsCd == CODE_103920;
+      this.storeCommon.setLoading(true);
+      await this.eduCourseStore.getAll(this.searhParms);
+      if (
+        this.eduCourseStore &&
+        this.eduCourseStore.status == SUCCSESS_STATUS
+      ) {
+        this.pageable = this.eduCourseStore.EduCourseResListModel;
+        this.eduProcessCreationList =
+          this.eduCourseStore.EduCourseResListModel.content.map(
+            (item: EduCourseResModel) => {
+              item.regDate = item.regDate
+                ? format(item.regDate, FORMAT_YYY_MM_DD)
+                : "";
+              item.checkedShow = item.stsCd == CODE_103920;
 
-                if (
-                  this.dataSelectRadio &&
-                  this.dataSelectRadio.eduCursSeq &&
-                  this.dataSelectRadio.eduCursSeq == item.eduCursSeq
-                ) {
-                  item.checkedFlag = true;
-                } else {
-                  item.checkedFlag = false;
-                }
-                return item;
+              if (
+                this.dataSelectRadio &&
+                this.dataSelectRadio.eduCursSeq &&
+                this.dataSelectRadio.eduCursSeq == item.eduCursSeq
+              ) {
+                item.checkedFlag = true;
+              } else {
+                item.checkedFlag = false;
               }
-            );
-        }
-      } catch (error: any) {
-        this.confirmMessage = error.message;
-        this.confirmButton = this.t("common.confirm");
-        this.showCancel = false;
-        this.showAlert(
-          () => {},
-          () => {}
-        );
-      } finally {
-        this.storeCommon.setLoading(false);
+              return item;
+            }
+          );
       }
+      this.storeCommon.setLoading(false);
     },
     async changSch(data: any) {
       this.storeCommon.setLoading(true);

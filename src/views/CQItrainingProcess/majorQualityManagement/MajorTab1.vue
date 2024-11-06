@@ -588,7 +588,6 @@
                   dataProfMng.totalProfStudy.state,
                   dataProfMng.totalSpProfStudy.state,
                   dataProfMng.totalAssStudy.state,
-                  dataProfMng.totalStudentProf.state,
                   dataProfMng.totalStaffNoProf.state,
                   dataProfMng.totalProfClient.state,
                   dataProfMng.totalHourProf.state,

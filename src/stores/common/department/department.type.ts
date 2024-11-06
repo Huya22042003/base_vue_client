@@ -3,6 +3,7 @@ export type DepartmentDTO = {
     deptNm: string;
     deptDivCd: string;
     upDeptCd: string;
+    typeCd: string;
 }
 
 export type DepartmentFilterDTO = {

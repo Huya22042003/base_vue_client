@@ -269,7 +269,7 @@ export default defineComponent({
           this.storeCommon.setLoading(false);
         });
     },
-    getSumScore(data: CoreJobSelDTO) {
+    getSumScore(data: any) {
       const sumScore =
         parseFloat(data.visn) +
         parseFloat(data.impt) +
