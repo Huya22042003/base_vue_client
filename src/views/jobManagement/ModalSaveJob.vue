@@ -116,22 +116,21 @@
       </div>
     </template>
     <template #footer
-      ><div class="dp_flex btn_group btn_end" style="gap: 10px">
+      >
+        <ButtonBase
+        class="button btn_lg btn_primary"
+        :buttonName="t('common.save')"
+        @click="confirmSave()"
+      >
+      </ButtonBase>
         <button
           type="button"
-          class="btn_round btn_primary btn_md"
-          @click="confirmSave"
-        >
-          {{ t("common.save") }}
-        </button>
-        <button
-          type="button"
-          class="btn_round btn_md btn_white"
+          class="button btn_lg btn_white"
           @click="onClose()"
         >
           {{ t("common.close") }}
         </button>
-      </div></template
+      </template
     >
   </TModal>
 </template>
@@ -150,6 +149,8 @@ import { CodeMngModel } from "../../stores/common/codeMng/codeMng.type";
 import { getCodeMngByUpCdId } from "../../stores/common/codeMng/codeMng.service";
 import { UP_CD_ID_USE_YN } from "../../constants/common.const";
 import TextArea from "../../components/common/input/TextArea.vue";
+import ButtonBase from "@/components/common/button/ButtonBase.vue";
+import { useI18n } from "vue-i18n";
 
 export default {
   name: "ModalForm",
@@ -157,6 +158,7 @@ export default {
     GridComponentV2,
     ButtonGridComponent,
     TextArea,
+    ButtonBase
   },
   setup() {
     const { t } = useI18n();

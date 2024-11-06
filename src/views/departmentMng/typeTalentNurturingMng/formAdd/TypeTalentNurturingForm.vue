@@ -99,29 +99,26 @@
             </tr>
           </tbody>
         </table>
-        <div class="box_section">
-          <div class="popup_footer">
-            <ButtonBase
-              type="button"
-              class="button btn_xl btn_primary"
-              @click="save()"
-              :buttonName="t('common.save')"
-            >
-              <!-- 저장 -->
-            </ButtonBase>
-            <button
-              type="button"
-              class="button btn_xl btn_white popup_close"
-              @click="closeModal(false)"              
-            >
-              <!-- 인재양성유형 삭제 -->
-              {{t("common.close")}}
-            </button>
-          </div>
-        </div>
       </div>
     </template>
-    <template #footer> </template>
+    <template #footer>
+      <ButtonBase
+        type="button"
+        class="button btn_lg btn_primary"
+        @click="save()"
+        :buttonName="t('common.save')"
+      >
+        <!-- 저장 -->
+      </ButtonBase>
+      <button
+        type="button"
+        class="button btn_lg btn_white popup_close"
+        @click="closeModal(false)"
+      >
+        <!-- 인재양성유형 삭제 -->
+        {{ t("common.close") }}
+      </button>
+    </template>
   </TModal>
 </template>
 
