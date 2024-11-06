@@ -37,6 +37,7 @@
               :name="'dept'"
               :data="listDept"
               v-if="listDept.length != 0"
+              :valueSelectAll="t('common.select')"
             >
             </SelectBoxBaseSearch>
           </li>
@@ -48,6 +49,7 @@
               :name="'jobSeq'"
               :data="listJob"
               v-if="listJob.length != 0"
+              :valueSelectAll="t('common.select')"
             >
             </SelectBoxBaseSearch>
           </li>
@@ -64,23 +66,23 @@
     </div>
   </div>
   <div class="box dp_block">
-    <div class="dp_flex btn_group btn_end mg_b20" style="gap: 10px">
-      <ExportFileExcel
-        :data="dataExport"
-        :fileName="t('levelJobPerformance.job.fileName')"
-        :btnName="t('levelJobPerformance.student.dowload')"
-        :multiHeaderFlag="true"
-        :callData="true"
-        ref="exportExcelRef"
-        @click="dowloadExcel"
-      >
-      </ExportFileExcel>
-    </div>
     <div class="box_section">
       <div v-if="isLoad == 0" class="no_cnt">
         <p>{{ t("levelJobPerformance.empty") }}</p>
       </div>
       <div class="tbl tbl_col" v-else-if="listLevelOfJob.length > 0">
+        <div class="dp_flex btn_group btn_end mg_b20" style="gap: 10px">
+          <ExportFileExcel
+            :data="dataExport"
+            :fileName="t('levelJobPerformance.job.fileName')"
+            :btnName="t('levelJobPerformance.student.dowload')"
+            :multiHeaderFlag="true"
+            :callData="true"
+            ref="exportExcelRef"
+            @click="dowloadExcel"
+          >
+          </ExportFileExcel>
+        </div>
         <table>
           <colgroup>
             <col style="width: auto" />
@@ -99,7 +101,7 @@
                 {{ t("levelJobPerformance.job.tbl1") }}
               </th>
               <th scope="col" class="ta_c" colspan="3">
-                {{ t("levelJobPerformance.job.tbl2") }}
+                직무역량
               </th>
               <th scope="col" class="ta_c" colspan="2">
                 {{ t("levelJobPerformance.job.tbl3") }}
@@ -113,19 +115,19 @@
             </tr>
             <tr>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.job.tbl6") }}
+                직무역량
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.job.tbl7") }}
+                직무역량명
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.job.tbl8") }}
+                하위역량명
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.job.tbl9") }}
+                하위역량
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.job.tbl10") }}
+                직무역량
               </th>
             </tr>
           </thead>

@@ -37,6 +37,7 @@
               :name="'deptCd'"
               :data="listDept"
               v-if="listDept.length != 0"
+              :valueSelectAll="t('common.select')"
             >
             </SelectBoxBaseSearch>
           </li>
@@ -53,29 +54,29 @@
     </div>
   </div>
   <div class="box dp_block">
-    <div class="dp_flex jc_end al_center box_title_sm">
-      <ExportFileExcel
-        :data="dataExport"
-        :fileName="t('levelJobPerformance.dept.fileName')"
-        :btnName="t('levelJobPerformance.student.dowload')"
-        :multiHeaderFlag="true"
-        :callData="true"
-        ref="exportExcelRef"
-        @click="dowloadExcel"
-      >
-      </ExportFileExcel>
-    </div>
-    <div class="dp_flex between al_center box_title_sm">
-      <p class="section_tit_xs"></p>
-      <p class="section_tit_xs">
-        {{ t("levelJobPerformance.messalert") }}
-      </p>
-    </div>
     <div class="box_section">
       <div v-if="isLoad == 0" class="no_cnt">
         <p>{{ t("levelJobPerformance.empty") }}</p>
       </div>
       <div class="tbl tbl_col" v-else-if="listLevelOfDept.length > 0">
+        <div class="dp_flex jc_end al_center box_title_sm">
+          <ExportFileExcel
+            :data="dataExport"
+            :fileName="t('levelJobPerformance.dept.fileName')"
+            :btnName="t('levelJobPerformance.student.dowload')"
+            :multiHeaderFlag="true"
+            :callData="true"
+            ref="exportExcelRef"
+            @click="dowloadExcel"
+          >
+          </ExportFileExcel>
+        </div>
+        <div class="dp_flex between al_center box_title_sm">
+          <p class="section_tit_xs"></p>
+          <p class="section_tit_xs">
+            {{ t("levelJobPerformance.messalert") }}
+          </p>
+        </div>
         <table>
           <colgroup>
             <col style="width: auto" />
@@ -94,7 +95,7 @@
                 {{ t("levelJobPerformance.job.tbl1") }}
               </th>
               <th class="ta_c" colspan="3">
-                {{ t("levelJobPerformance.job.tbl2") }}
+                직무역량
               </th>
               <th class="ta_c" colspan="2">
                 {{ t("levelJobPerformance.job.tbl3") }}
@@ -105,10 +106,10 @@
             </tr>
             <tr>
               <th class="ta_c">{{ t("levelJobPerformance.job.tbl5") }}</th>
-              <th class="ta_c">{{ t("levelJobPerformance.job.tbl6") }}</th>
-              <th class="ta_c">{{ t("levelJobPerformance.job.tbl7") }}</th>
-              <th class="ta_c">{{ t("levelJobPerformance.job.tbl8") }}</th>
-              <th class="ta_c">{{ t("levelJobPerformance.job.tbl9") }}</th>
+              <th class="ta_c">직무역량명</th>
+              <th class="ta_c">하위역량명</th>
+              <th class="ta_c">하위역량</th>
+              <th class="ta_c">직무역량</th>
             </tr>
           </thead>
           <tbody>
@@ -155,7 +156,7 @@
                         v-if="indexJobCapa === 0"
                         :rowspan="jobAbility.rowSpan"
                       >
-                        {{ jobAbility.scoreJobAbility }}
+                        {{ formatToTwoDecimalPlaces(jobAbility.scoreJobAbility) }}
                       </td>
                       <td
                         v-if="indexJobCapa === 0"
@@ -405,6 +406,16 @@ export default defineComponent({
       this.dataExport.push(dataInput);
       this.exportExcelRef.downloadExcel();
     },
+    formatToTwoDecimalPlaces(number:number) {
+      const numberStr = number.toString();
+      const decimalIndex = numberStr.indexOf(".");
+
+      if (decimalIndex === -1 || decimalIndex + 3 >= numberStr.length) {
+          return numberStr;
+      }
+
+      return numberStr.substring(0, decimalIndex + 3);
+    }
   },
 });
 </script>
