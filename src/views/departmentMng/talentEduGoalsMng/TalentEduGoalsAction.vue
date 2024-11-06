@@ -1,6 +1,7 @@
 <template>
   <!-- 학과인재상 및 교육목표 등록 -->
   <section id="content" class="content_wrapper grid_content" tabindex="0">
+    <div class="box dp_block">
     <div class="section_tit_wrap">
       <h3 class="section_tit_md">{{ t("talentEduGoalsMng.form.title") }}</h3>
     </div>
@@ -200,7 +201,7 @@
         </tr>
       </tbody>
     </table>
-    <div class="btn_group btn_end">
+    <div class="btn_group btn_end mt_4">
       <ButtonBase
         type="button"
         class="btn_round btn_sm btn_primary"
@@ -210,11 +211,12 @@
       </ButtonBase>
       <button
         type="button"
-        class="btn_round btn_sm btn_white"
+        class="btn_round btn_lg btn_white"
         @click="goBack()"
       >
       {{ t("common.list") }}
       </button>
+    </div>
     </div>
   </section>
 </template>
