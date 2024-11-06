@@ -36,6 +36,7 @@
               :id="'dept'"
               :name="'dept'"
               :data="listDept"
+              v-if="listDept.length != 0"
             >
             </SelectBoxBaseSearch>
           </li>
@@ -46,6 +47,7 @@
               :id="'jobSeq'"
               :name="'jobSeq'"
               :data="listJob"
+              v-if="listJob.length != 0"
             >
             </SelectBoxBaseSearch>
           </li>
@@ -75,7 +77,10 @@
       </ExportFileExcel>
     </div>
     <div class="box_section">
-      <div class="tbl tbl_col" v-if="listLevelOfJob.length > 0">
+      <div v-if="isLoad == 0" class="no_cnt">
+        <p>{{ t("levelJobPerformance.empty") }}</p>
+      </div>
+      <div class="tbl tbl_col" v-else-if="listLevelOfJob.length > 0">
         <table>
           <colgroup>
             <col style="width: auto" />
@@ -163,12 +168,12 @@
                         <div>{{ jobAbility.jobAbilCd }}</div>
                       </td>
                       <td>{{ jobCapa.capaUnitNm }}</td>
-                      <td>{{ jobCapa.scoreJobCapa }}</td>
+                      <td>{{ formatToTwoDecimalPlaces(jobCapa.scoreJobCapa) }}</td>
                       <td
                         v-if="indexJobCapa === 0"
                         :rowspan="jobAbility.rowSpan"
                       >
-                        {{ jobAbility.scoreJobAbility }}
+                        {{ formatToTwoDecimalPlaces(jobAbility.scoreJobAbility) }}
                       </td>
                       <td
                         v-if="indexJobCapa === 0"
@@ -195,7 +200,7 @@
         </table>
       </div>
       <div v-else class="no_cnt">
-        <p>{{ t("levelJobPerformance.empty") }}</p>
+        <p>{{ t("levelJobPerformance.empty1") }}</p>
       </div>
     </div>
   </div>
@@ -255,6 +260,7 @@ export default defineComponent({
         jobSeq: "",
       } as LevelOfJobAbilitySearchModel,
       dataExport: [] as Array<MultiHeaderData>,
+      isLoad: 0,
     };
   },
   beforeMount() {
@@ -299,6 +305,7 @@ export default defineComponent({
                 upCdId: "dept",
               };
             });
+          this.listDept.unshift({ cdId: "", cdNm: this.t("common.select"), upCdId: "dept" });
         })
         .catch(() => {
           throw new Error(MESSAGE_ERROR_API);
@@ -314,6 +321,7 @@ export default defineComponent({
             upCdId: "job",
           };
         });
+        this.listJob.unshift({ cdId: "", cdNm: this.t("common.select"), upCdId: "job" });
         this.cmn.setLoading(false);
       });
     },
@@ -328,6 +336,7 @@ export default defineComponent({
         this.$alert(this.t("levelJobPerformance.job.messageWarning"));
         return;
       }
+      this.isLoad++;
       this.cmn.setLoading(true);
       getLevelOfJobAbilityList(this.searchModel)
         .then((res) => {
@@ -445,6 +454,16 @@ export default defineComponent({
       this.dataExport.push(dataInput);
       this.exportExcelRef.downloadExcel();
     },
+    formatToTwoDecimalPlaces(number:number) {
+      const numberStr = number.toString();
+      const decimalIndex = numberStr.indexOf(".");
+
+      if (decimalIndex === -1 || decimalIndex + 3 >= numberStr.length) {
+          return numberStr;
+      }
+
+      return numberStr.substring(0, decimalIndex + 3);
+    }
   },
 });
 </script>

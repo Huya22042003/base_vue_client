@@ -5,6 +5,7 @@ export type JobEduCoreJobSelcListModel = {
   eduCursSeq: string;
   jobNm: string;
   defn: string;
+  typeNm: string;
   listNcsSysClassification: Array<JobEduNcsSysClassificationModel>;
 };
 

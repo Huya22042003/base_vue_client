@@ -62,7 +62,10 @@
       </p>
     </div>
     <div class="box_section">
-      <div class="tbl tbl_col" v-if="listLevelOfSchool.length > 0">
+      <div v-if="isLoad == 0" class="no_cnt">
+        <p>{{ t("levelJobPerformance.empty") }}</p>
+      </div>
+      <div class="tbl tbl_col" v-else-if="listLevelOfSchool.length > 0">
         <table>
           <colgroup>
             <col style="width: auto" />
@@ -170,7 +173,7 @@
         </table>
       </div>
       <div v-else class="no_cnt">
-        <p>{{ t("levelJobPerformance.empty") }}</p>
+        <p>{{ t("levelJobPerformance.empty1") }}</p>
       </div>
     </div>
   </div>
@@ -223,6 +226,7 @@ export default defineComponent({
       listLevelOfSchool: [] as Array<LevelOfSchoolDeptModel>,
       listLevelOfSchoolExcel: [] as Array<LevelOfSchoolListDTO>,
       averageSchool: 0,
+      isLoad: 0,
     };
   },
   beforeMount() {
@@ -259,6 +263,7 @@ export default defineComponent({
         this.$alert(this.t("levelJobPerformance.school.messageWarning"));
         return;
       }
+      this.isLoad++;
       this.cmn.setLoading(true);
       getLevelOfSchoolList(this.searchModel)
         .then((res) => {

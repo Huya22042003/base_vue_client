@@ -36,6 +36,7 @@
               v-model="searchModel.deptCd"
               :name="'listDept'"
               :data="listDept"
+              v-if="listDept.length != 0"
             >
             </SelectBoxBaseSearch>
           </li>
@@ -73,7 +74,10 @@
       </ExportFileExcel>
     </div>
     <div class="box_section">
-      <div class="tbl tbl_col" v-if="listLevelOfStudent.length > 0">
+      <div v-if="isLoad == 0" class="no_cnt">
+        <p>{{ t("levelJobPerformance.empty") }}</p>
+      </div>
+      <div class="tbl tbl_col" v-else-if="listLevelOfStudent.length > 0">
         <table>
           <colgroup>
             <col style="width: auto" />
@@ -174,18 +178,18 @@
                         {{ jobAbility.jobAbilNm }}
                       </td>
                       <td>{{ jobCapaUnit.capaUnitNm }}</td>
-                      <td>{{ jobCapaUnit.scoreJobCapa }}</td>
+                      <td>{{ formatToTwoDecimalPlaces(jobCapaUnit.scoreJobCapa) }}</td>
                       <td
                         :rowspan="jobAbility.rowSpan"
                         v-if="indexJobCapaUnit === 0"
                       >
-                        {{ jobAbility.scoreJobAbility }}
+                        {{ formatToTwoDecimalPlaces(jobAbility.scoreJobAbility) }}
                       </td>
                       <td
                         v-if="indexJobAbility === 0 && indexJobCapaUnit === 0"
                         :rowspan="job.rowSpan"
                       >
-                        {{ job.scoreJob }}
+                        {{ formatToTwoDecimalPlaces(job.scoreJob) }}
                       </td>
                       <td
                         v-if="
@@ -195,7 +199,7 @@
                         "
                         :rowspan="student.rowSpan"
                       >
-                        {{ student.scoreStudent }}
+                        {{ formatToTwoDecimalPlaces(student.scoreStudent) }}
                       </td>
                     </tr>
                   </template>
@@ -206,7 +210,7 @@
         </table>
       </div>
       <div v-else class="no_cnt">
-        <p>{{ t("levelJobPerformance.empty") }}</p>
+        <p>{{ t("levelJobPerformance.empty1") }}</p>
       </div>
     </div>
   </div>
@@ -267,6 +271,7 @@ export default defineComponent({
       listLevelOfStudent: [] as Array<StudentLevelOfStudent>,
       listLevelOfStudentExcel: [] as LevelOfStudentListModel[],
       dataExport: [] as Array<MultiHeaderData>,
+      isLoad: 0,
     };
   },
   beforeMount() {
@@ -289,7 +294,8 @@ export default defineComponent({
       ) {
         this.$alert(this.t("levelJobPerformance.messageWarning"));
         return;
-      }
+      }      
+      this.isLoad++;
       this.cmn.setLoading(true);
       getLevelOfStudentList(this.searchModel).then((res) => {
         this.listLevelOfStudent = this.transformToTreeStructure(res.data.data);
@@ -456,6 +462,7 @@ export default defineComponent({
                 upCdId: "dept",
               };
             });
+          this.listDept.unshift({ cdId: "", cdNm: this.t("common.select"), upCdId: "dept" });
           this.cmn.setLoading(false);
         })
         .catch(() => {
@@ -546,6 +553,16 @@ export default defineComponent({
       this.dataExport.push(dataInput);
       this.exportExcelRef.downloadExcel();
     },
+    formatToTwoDecimalPlaces(number:number) {
+      const numberStr = number.toString();
+      const decimalIndex = numberStr.indexOf(".");
+
+      if (decimalIndex === -1 || decimalIndex + 3 >= numberStr.length) {
+          return numberStr;
+      }
+
+      return numberStr.substring(0, decimalIndex + 3);
+    }
   },
 });
 </script>
