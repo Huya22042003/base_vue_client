@@ -64,13 +64,13 @@
   <div class="box dp_block">
     <div class="dp_flex btn_group btn_end mg_b20" style="gap: 10px">
       <ExportFileExcel
-          :data="dataExport"
-          :fileName="t('levelJobPerformance.student.fileName')"
-          :btnName="t('levelJobPerformance.student.dowload')"
-          :multiHeaderFlag="true"
-          :callData="true"
-          ref="exportExcelRef"
-          @click="dowloadExcel"
+        :data="dataExport"
+        :fileName="t('levelJobPerformance.student.fileName')"
+        :btnName="t('levelJobPerformance.student.dowload')"
+        :multiHeaderFlag="true"
+        :callData="true"
+        ref="exportExcelRef"
+        @click="dowloadExcel"
       >
       </ExportFileExcel>
     </div>
@@ -92,43 +92,43 @@
             <col style="width: auto"/>
           </colgroup>
           <thead>
-          <tr>
-            <th scope="row" class="ta_c" rowspan="2">
-              {{ t("levelJobPerformance.student.tbl1") }}
-            </th>
-            <th scope="row" class="ta_c" rowspan="2">
-              {{ t("levelJobPerformance.student.tbl2") }}
-            </th>
-            <th scope="col" class="ta_c" colspan="3">
-              {{ t("levelJobPerformance.student.tbl3") }}
-            </th>
-            <th scope="col" class="ta_c" colspan="4">
-              {{ t("levelJobPerformance.student.tbl4") }}
-            </th>
-          </tr>
-          <tr>
-            <th scope="col" class="ta_c">
-              {{ t("levelJobPerformance.student.tbl5") }}
-            </th>
-            <th scope="col" class="ta_c">
-              {{ t("levelJobPerformance.student.tbl6") }}
-            </th>
-            <th scope="col" class="ta_c">
-              {{ t("levelJobPerformance.student.tbl7") }}
-            </th>
-            <th scope="col" class="ta_c">
-              {{ t("levelJobPerformance.student.tbl8") }}
-            </th>
-            <th scope="col" class="ta_c">
-              {{ t("levelJobPerformance.student.tbl9") }}
-            </th>
-            <th scope="col" class="ta_c">
-              {{ t("levelJobPerformance.student.tbl10") }}
-            </th>
-            <th scope="col" class="ta_c">
-              {{ t("levelJobPerformance.student.tbl11") }}
-            </th>
-          </tr>
+            <tr>
+              <th scope="row" class="ta_c" rowspan="2">
+                {{ t("levelJobPerformance.student.tbl1") }}
+              </th>
+              <th scope="row" class="ta_c" rowspan="2">
+                {{ t("levelJobPerformance.student.tbl2") }}
+              </th>
+              <th scope="col" class="ta_c" colspan="3">
+                {{ t("levelJobPerformance.student.tbl3") }}
+              </th>
+              <th scope="col" class="ta_c" colspan="4">
+                {{ t("levelJobPerformance.student.tbl4") }}
+              </th>
+            </tr>
+            <tr>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl5") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl6") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl7") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl8") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl9") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl10") }}
+              </th>
+              <th scope="col" class="ta_c">
+                {{ t("levelJobPerformance.student.tbl11") }}
+              </th>
+            </tr>
           </thead>
           <tbody>
           <template
