@@ -557,7 +557,7 @@ export default defineComponent({
           });
         });
       });
-      // await saveCreateSubjectForm({ eduCourseSeq: this.id, list: dataSave });
+      await saveCreateSubjectForm({ eduCourseSeq: this.id, list: dataSave });
       this.storeCommon.setLoading(false);
     },
     next() {
