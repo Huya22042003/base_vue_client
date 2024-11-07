@@ -7,7 +7,7 @@
     <!-- Form search -->
     <div class="box dp_block">
       <div class="box_section">
-        <div class="search_box col_3">
+        <div class="search_box col_2">
           <ul>
             <li>
               <p>{{ t("departmentMng.typeTalentNurturingMng.search.dept") }}</p>

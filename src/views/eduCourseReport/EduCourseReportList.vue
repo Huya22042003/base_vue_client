@@ -20,13 +20,13 @@
                 <p>
                   {{ t("eduCourseRp.deptNm") }}
                 </p>
-                <InputBase
+                <SelectBoxBaseSearch
+                  :id="'selectbox'"
+                  :name="'selectbox'"
                   v-model="searchModel.deptNm"
-                  :id="'deptNm'"
-                  :name="'deptNm'"
-                  placeholder=""
+                  :data="listSelectBoxDept"
                 >
-                </InputBase>
+                </SelectBoxBaseSearch>
               </li>
               <li>
                 <p>
@@ -93,7 +93,11 @@ import InputBase from "@/components/common/input/InputBase.vue";
 import type { CodeMngResModel } from "@/stores/common/codeMng/codeMng.type";
 import type { EduCourseRpSearch } from "../../stores/eduCourseRp/eduCourseRp.type";
 import { fetchData } from "@/stores/eduCourseRp/eduCourseRp.service";
-import { MESSAGE_ERROR_API } from "@/constants/common.const";
+import {
+  DIV_CD_DEPT_DEPART,
+  MESSAGE_ERROR_API,
+} from "@/constants/common.const";
+import { getDepartmentList } from "@/stores/common/department/department.service";
 
 export default defineComponent({
   components: {
@@ -107,6 +111,13 @@ export default defineComponent({
   data() {
     return {
       pageTitle: this.t("eduCourseRp.pageTitle"),
+      listSelectBoxDept: [
+        {
+          cdId: "",
+          cdNm: this.t("common.all"),
+          upCdId: "dept",
+        },
+      ] as Array<any>,
       rowData: [{}],
       rowDataExcel: [{}],
       paginationPageSize: PAGINATION_PAGE_SIZE,
@@ -161,6 +172,7 @@ export default defineComponent({
     };
   },
   beforeMount() {
+    this.getDeptByMajor();
     for (let year = parseInt(START_YEAR); year <= this.currentYear; year++) {
       this.listData.push({
         cdId: year,
@@ -170,6 +182,36 @@ export default defineComponent({
   },
 
   methods: {
+    getDeptByMajor() {
+      this.store.setLoading(true);
+      let dataSearch = [] as any[];
+      getDepartmentList({
+        deptCd: [],
+        deptDivCd: [DIV_CD_DEPT_DEPART],
+        upDeptCd: dataSearch,
+        useYn: "",
+      })
+        .then((res) => {
+          this.listSelectBoxDept = res.data.data.map((el) => {
+            return {
+              cdId: el.deptCd,
+              cdNm: el.deptNm,
+              upCdId: "dept",
+            };
+          });
+          this.listSelectBoxDept.unshift({
+            cdId: "",
+            cdNm: this.t("common.all"),
+            upCdId: "dept",
+          });
+        })
+        .catch(() => {
+          throw new Error(MESSAGE_ERROR_API);
+        })
+        .finally(() => {
+          this.store.setLoading(false);
+        });
+    },
     searchClick() {
       this.searchModel.page = 1;
       this.key++;
