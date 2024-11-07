@@ -44,7 +44,7 @@
                   evalPlan.evalPlanDocWriteEndDate
                 "
               >
-                {{ evalPlan.term }} 강의계획서 작성 기간입니다({{
+                {{ evalPlan.term }} 평가 계획서 작성 기간입니다({{
                   evalPlan.evalPlanDocWriteStrDate
                 }}
                 ~ {{ evalPlan.evalPlanDocWriteEndDate }}).
@@ -55,7 +55,7 @@
                   jobCapaEval.jobCapaEvalEndDate
                 "
               >
-                {{ jobCapaEval.term }} 강의계획서 작성 기간입니다({{
+                {{ jobCapaEval.term }} 학생 직무수행능력 평가 기간입니다({{
                   jobCapaEval.jobCapaEvalStrDate
                 }}
                 ~ {{ jobCapaEval.jobCapaEvalEndDate }}).
@@ -65,7 +65,7 @@
                   sbjtCqi.sbjtCqiWriteStrDate && sbjtCqi.sbjtCqiWriteEndDate
                 "
               >
-                {{ sbjtCqi.term }} 강의계획서 작성 기간입니다({{
+                {{ sbjtCqi.term }} 교육과정CQI 작성 기간입니다({{
                   sbjtCqi.sbjtCqiWriteStrDate
                 }}
                 ~ {{ sbjtCqi.sbjtCqiWriteEndDate }}).
@@ -326,7 +326,7 @@
             >
           </div>
           <ul>
-            <li v-for="item in qaDashboard">
+            <li v-for="item in noticeDashboard">
               <a @click="goToNotice(item.id)">
                 {{ item.cont }}
               </a>
@@ -340,7 +340,7 @@
             <a @click="goToResearch(SCREEN.questAndAns.path)">바로가기</a>
           </div>
           <ul>
-            <li v-for="item in noticeDashboard">
+            <li v-for="item in qaDashboard">
               <a @click="goToQA(item.id)">{{ item.cont }}</a>
               <span class="date">{{ item.createdDate }}</span>
             </li>
@@ -541,7 +541,7 @@ const goToNotice = (id: string) => {
 
 const goToQA = (id: string) => {
   router.push({
-    name: SCREEN.questAndAns.name,
+    name: SCREEN.crudAns.name,
     params: { mode: MODE_DETAIL },
     state: {
       id: id,
