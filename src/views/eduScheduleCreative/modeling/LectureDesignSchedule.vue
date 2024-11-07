@@ -43,7 +43,7 @@
               </li>
               <li>
                 <p>
-                  {{ t("lectureDesignSchedule.list.planStatus") }}
+                  {{ t("lectureDesignSchedule.list.syllabusStatus") }}
                 </p>
                 <SelectBoxBase
                   :id="'planStatus'"
@@ -55,7 +55,7 @@
               </li>
               <li>
                 <p>
-                  {{ t("lectureDesignSchedule.list.evaluationStatus") }}
+                  {{ t("lectureDesignSchedule.list.planStatus") }}
                 </p>
                 <SelectBoxBase
                   :id="'evaluationStatus'"
@@ -67,7 +67,7 @@
               </li>
               <li>
                 <p>
-                  {{ t("lectureDesignSchedule.list.syllabusStatus") }}
+                  {{ t("lectureDesignSchedule.list.evaluationStatus") }}
                 </p>
                 <SelectBoxBase
                   :id="'syllabusStatus'"

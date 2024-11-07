@@ -1502,7 +1502,7 @@
         "header1": "개설연도",
         "header2": "학기",
         "header3": "학과",
-        "header4": "개설연도*",
+        "header4": "교과구분*",
         "header5": "교과목명",
         "header6": "교과목코드",
         "header7": "학년",
@@ -6271,7 +6271,7 @@
     "year":"학년도"
     ,"deptNm":"학과"
     ,"regNm":"작성자"
-    ,"titleSearch":"검색"
+    ,"titleSearch":"조회"
     ,"pageTitle":"교육과정개발보고서 조회"
     ,"strRp":"[미리보기 및 인쇄]"
   },
