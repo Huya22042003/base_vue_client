@@ -5,61 +5,53 @@
       :breadcrumbItems="breadcrumbItems"
     ></Breadcrumb>
     <!-- Form search -->
-    <div class="sub_section_xs">
-      <div class="search_box">
-        <div class="search_section">
-          <div class="search_toggle sm">
-            <div class="left"></div>
-            <div class="right">
-              <div class="search_daywrap mg_r10">
-                <span class="tag">
-                  {{ t("departmentMng.typeTalentNurturingMng.search.dept") }}
-                </span>
-                <div class="select_row">
-                  <SelectBoxBaseSearch
-                    :id="'selectbox'"
-                    :name="'selectbox'"
-                    v-model="dataSearch.dept"
-                    :data="listSelectBoxDept"
-                  >
-                  </SelectBoxBaseSearch>
-                </div>
-              </div>
-              <div class="search_daywrap mg_r10">
-                <span class="tag">
-                  {{
-                    t("departmentMng.typeTalentNurturingMng.search.typeTalent")
-                  }}
-                </span>
-                <div class="select_row">
-                  <InputBase
-                    v-model="dataSearch.typeTalent"
-                    id="input_typeTalent"
-                    class="form_style"
-                  />
-                </div>
-              </div>
-              <button
-                type="button"
-                class="btn_round btn_lg btn_primary mg_l10"
-                @click="searchFormData"
+    <div class="box dp_block">
+      <div class="box_section">
+        <div class="search_box col_3">
+          <ul>
+            <li>
+              <p>{{ t("departmentMng.typeTalentNurturingMng.search.dept") }}</p>
+              <SelectBoxBaseSearch
+                :id="'selectbox'"
+                :name="'selectbox'"
+                v-model="dataSearch.dept"
+                :data="listSelectBoxDept"
               >
-              {{ t("departmentMng.typeTalentNurturingMng.search.btnSeach") }}
-              </button>
-              <button
-                type="button"
-                class="btn_round btn_lg btn_gray mg_l5"
-                @click="clearFormSearch"                
-              >
-              {{ t("departmentMng.typeTalentNurturingMng.search.btnClear") }}
-              </button>
-            </div>
+              </SelectBoxBaseSearch>
+            </li>
+            <li>
+              <p>
+                {{
+                  t("departmentMng.typeTalentNurturingMng.search.typeTalent")
+                }}
+              </p>
+              <InputBase
+                v-model="dataSearch.typeTalent"
+                id="input_typeTalent"
+                class="form_style"
+              />
+            </li>
+          </ul>
+          <div class="search_btnarea">
+            <button
+              type="button"
+              class="btn_round btn_lg btn_primary mg_l10"
+              @click="searchFormData"
+            >
+              {{ t("common.search") }}
+            </button>
+            <button
+              type="button"
+              class="btn_round btn_lg btn_gray mg_l5"
+              @click="clearFormSearch"
+            >
+              {{ t("common.reset") }}
+            </button>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="box dp_block">
+    <div class="box">
       <div class="box_section">
         <!-- Table at here -->
         <GridComponentV2

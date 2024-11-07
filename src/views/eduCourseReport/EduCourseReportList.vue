@@ -2,84 +2,78 @@
   <div class="page_wrapper">
     <section id="content" class="content_wrapper grid_content" tabindex="0">
       <Breadcrumb :pageTitle="pageTitle" :breadcrumbItems="''"></Breadcrumb>
-      <div class="search_box">
-        <div class="search_section">
-          <div class="search_toggle sm">
-            <div class="left"></div>
-            <div class="right">
-              <div class="search_daywrap mg_r10">
-                <span class="tag">{{ t("eduCourseRp.year") }}</span>
-                <div class="select_row">
-                  <SelectBoxBase
-                    :id="'selectboxShow'"
-                    :name="'selectboxShow'"
-                    :data="listData"
-                    v-model="searchModel.eduYear"
-                  >
-                  </SelectBoxBase>
-                </div>
-              </div>
-
-              <div class="search_daywrap mg_r10">
-                <span class="tag">{{ t("eduCourseRp.deptNm") }}</span>
-                <div class="select_row sm">
-                  <InputBase
-                    v-model="searchModel.deptNm"
-                    :id="'deptNm'"
-                    :name="'deptNm'"
-                    placeholder=""
-                  >
-                  </InputBase>
-                </div>
-              </div>
-              <div class="search_daywrap mg_r10">
-                <span class="tag">{{ t("eduCourseRp.regNm") }}</span>
-                <div class="select_row">
-                  <InputBase
-                    v-model="searchModel.regNm"
-                    :id="'regNm'"
-                    :name="'regNm'"
-                    placeholder=""
-                  >
-                  </InputBase>
-                </div>
-              </div>
-              <div>
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_primary mg_l10"
-                  @click="searchClick"
+      <div class="box dp_block">
+        <div class="box_section">
+          <div class="search_box col_3">
+            <ul>
+              <li>
+                <p>{{ t("eduCourseRp.year") }}</p>
+                <SelectBoxBase
+                  :id="'selectboxShow'"
+                  :name="'selectboxShow'"
+                  :data="listData"
+                  v-model="searchModel.eduYear"
                 >
-                  {{ t("common.search") }}
-                </button>
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_gray mg_l5"
-                  @click="reset()"
+                </SelectBoxBase>
+              </li>
+              <li>
+                <p>
+                  {{ t("eduCourseRp.deptNm") }}
+                </p>
+                <InputBase
+                  v-model="searchModel.deptNm"
+                  :id="'deptNm'"
+                  :name="'deptNm'"
+                  placeholder=""
                 >
-                  {{ t("common.reset") }}
-                </button>
-              </div>
+                </InputBase>
+              </li>
+              <li>
+                <p>
+                  {{ t("eduCourseRp.regNm") }}
+                </p>
+                <InputBase
+                  v-model="searchModel.regNm"
+                  :id="'regNm'"
+                  :name="'regNm'"
+                  placeholder=""
+                >
+                </InputBase>
+              </li>
+            </ul>
+            <div class="search_btnarea">
+              <button
+                type="button"
+                class="btn_round btn_lg btn_primary mg_l10"
+                @click="searchClick"
+              >
+                {{ t("common.search") }}
+              </button>
+              <button
+                type="button"
+                class="btn_round btn_lg btn_gray mg_l5"
+                @click="reset()"
+              >
+                {{ t("common.reset") }}
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <div class="box dp_block">
-        <div class="box_section">
-          <GridComponentV2
-            :rowData="rowData"
-            :columnDefs="columnDefs"
-            :pagination="true"
-            :paginationPageSize="paginationPageSize"
-            :paginationPageSizeSelector="paginationPageSizeSelector"
-            ref="gridKey"
-            :paginationClientFlag="false"
-            @customPagination="fnPagination"
-            :totalRecord="totalRows"
-            :key="key"
-          >
-          </GridComponentV2>
-        </div>
+      <div class="box_section">
+        <GridComponentV2
+          :rowData="rowData"
+          :columnDefs="columnDefs"
+          :pagination="true"
+          :paginationPageSize="paginationPageSize"
+          :paginationPageSizeSelector="paginationPageSizeSelector"
+          ref="gridKey"
+          :paginationClientFlag="false"
+          @customPagination="fnPagination"
+          :totalRecord="totalRows"
+          :key="key"
+        >
+        </GridComponentV2>
       </div>
     </section>
   </div>
@@ -173,7 +167,6 @@ export default defineComponent({
         cdNm: year.toString(),
       });
     }
-    this.getData();
   },
 
   methods: {

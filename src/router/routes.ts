@@ -1290,7 +1290,7 @@ export const routes = [
         meta: {
           parentRoute: SCREEN.lookupReport.name,
         },
-        component: () => import(`@/views/lookupTrainingResult/LookupReport.vue`)
+        component: () => import(`@/views/eduCourseReport/EduCourseReportList.vue`)
       },
       {
         path: SCREEN.lookupTechPlan.path,

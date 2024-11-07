@@ -111,9 +111,9 @@
 
       <div class="box">
         <div class="box_section">
-          <p v-if="!checkData" class="box_title_sm center">
-            {{ t("lectureDesignSchedule.alertPage") }}
-          </p>
+          <div v-if="!checkData" class="no_cnt">
+            <p>{{ t("lectureDesignSchedule.alertPage") }}</p>
+          </div>
           <GridComponentV2
             v-if="checkData"
             :rowData="rowData"
@@ -738,9 +738,6 @@ export default defineComponent({
 <style scoped>
 .search_data {
   display: flex;
-}
-.center {
-  text-align: center;
 }
 .search_box.col_3 > ul > li > p:first-child {
   width: 150px;
