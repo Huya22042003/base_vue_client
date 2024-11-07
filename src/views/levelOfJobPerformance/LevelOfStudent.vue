@@ -100,7 +100,7 @@
                 {{ t("levelJobPerformance.student.tbl2") }}
               </th>
               <th scope="col" class="ta_c" colspan="3">
-                {{ t("levelJobPerformance.student.tbl3") }}
+                직무역량
               </th>
               <th scope="col" class="ta_c" colspan="4">
                 {{ t("levelJobPerformance.student.tbl4") }}
@@ -111,16 +111,16 @@
                 {{ t("levelJobPerformance.student.tbl5") }}
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.student.tbl6") }}
+                직무역량명
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.student.tbl7") }}
+                하위역량명
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.student.tbl8") }}
+                직무역량
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.student.tbl9") }}
+                하위역량
               </th>
               <th scope="col" class="ta_c">
                 {{ t("levelJobPerformance.student.tbl10") }}
