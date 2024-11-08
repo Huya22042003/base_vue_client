@@ -27,7 +27,7 @@ function nextFactory(context, middleware, index) {
 
 router.beforeEach((to, from, next) => {
   const metaTitle = to.meta.title as string;
-  document.title = metaTitle || "영산대학교";
+  document.title = metaTitle || "계원예술대학교`";
 
   const arrScreenName = [SCREEN.login.name, SCREEN.home.name, SCREEN.notFound.name, SCREEN.internalError.name, SCREEN.unauthorized.name];
 
