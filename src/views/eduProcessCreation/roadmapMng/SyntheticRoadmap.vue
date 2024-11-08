@@ -100,7 +100,7 @@
           <thead>
             <tr>
               <th scope="row" :colspan="1" :rowspan="rowSpanThead">전공역량</th>
-              <th scope="col" class="ta_c">직무역량</th>
+              <th scope="col" class="ta_c">핵심역량</th>
               <th scope="col" class="ta_c">하위역량</th>
             </tr>
 
