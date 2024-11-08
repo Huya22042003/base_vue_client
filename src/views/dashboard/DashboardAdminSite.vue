@@ -78,7 +78,7 @@
         <div class="develop_state_wrap">
           <div class="develop_state">
             <div class="section_tit_wrap">
-              <strong class="section_tit_sm">1학기 교육과정개발 현황</strong>
+              <strong class="section_tit_sm">교육과정개발 현황</strong>
               <div class="state_division">
                 <span>작성중</span>
                 <span>작성완료</span>
@@ -330,7 +330,7 @@
               <a @click="goToNotice(item.id)">
                 {{ item.cont }}
               </a>
-              <span class="date">2024/05/01</span>
+              <span class="date">{{ item.createdDate }}</span>
             </li>
           </ul>
         </div>
