@@ -62,6 +62,11 @@
     </div>
   </div>
   <div class="box dp_block">
+    <div class="box_section">
+      <div v-if="isLoad == 0" class="no_cnt">
+        <p>{{ t("levelJobPerformance.empty") }}</p>
+      </div>
+      <div class="tbl tbl_col" v-else-if="listLevelOfStudent.length > 0">
     <div class="dp_flex btn_group btn_end mg_b20" style="gap: 10px">
       <ExportFileExcel
         :data="dataExport"
@@ -74,11 +79,6 @@
       >
       </ExportFileExcel>
     </div>
-    <div class="box_section">
-      <div v-if="isLoad == 0" class="no_cnt">
-        <p>{{ t("levelJobPerformance.empty") }}</p>
-      </div>
-      <div class="tbl tbl_col" v-else-if="listLevelOfStudent.length > 0">
         <table>
           <colgroup>
             <col style="width: auto"/>

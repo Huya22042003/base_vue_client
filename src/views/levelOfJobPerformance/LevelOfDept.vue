@@ -105,7 +105,7 @@
               </th>
             </tr>
             <tr>
-              <th class="ta_c">{{ t("levelJobPerformance.job.tbl5") }}</th>
+              <th class="ta_c">구분</th>
               <th class="ta_c">직무역량명</th>
               <th class="ta_c">하위역량명</th>
               <th class="ta_c">하위역량</th>
