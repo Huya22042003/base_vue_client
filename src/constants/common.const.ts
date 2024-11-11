@@ -302,3 +302,5 @@ export const EVAL_TYPE_02 = "122420";
 export const UP_CD_TRACK = "TRK";
 export const CD_ID_TRACK_01 = "TRK01";
 export const CD_ID_TRACK_02 = "TRK02";
+
+export const SITE_02 = "SITE_02";

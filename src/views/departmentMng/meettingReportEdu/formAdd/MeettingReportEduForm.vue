@@ -56,7 +56,7 @@
                     </SelectBoxBase>
                   </div>
                   <div class="mt-5" v-if="displayTextInput">
-                    <InputBase v-model="dataForm.bsinesDivEtc" />
+                    <InputBase :id="'bsinesDivEtc'" required v-model="dataForm.bsinesDivEtc" />
                   </div>
                 </td>
               </tr>
@@ -102,34 +102,47 @@
                   <div class="search_daywrap flex_fit wd_p100">
                     <div class="wd_p50 mr-5">
                       <BaseDatePicker
+                        :id="'report-date'"
                         v-model="dataForm.meetDate"
                         required
                       ></BaseDatePicker>
                     </div>
-                    <div class="search_daywrap flex_fit wd_p100">
+                    <div class="search_daywrap flex_fit wd_p100" v-if="dataForm.meetDate">
                       <div class="wd_100">
                         <SelectBoxBase
+                          :id="'timeHourStr'"
+                          :name="'timeHourStr'"
                           v-model="timeHourStr"
-                          :data="selectOptionHour.type"
+                          :data="selectOptionHour"
+                          required
                         />
                       </div>
                       <div class="wd_100">
                         <SelectBoxBase
+                          :id="'timeMinuteStr'"
+                          :name="'timeMinuteStr'"
                           v-model="timeMinuteStr"
-                          :data="selectOptionMinute.type"
+                          :data="selectOptionMinute"
+                          required
                         />
                       </div>
                       <p class="input_tilde">~</p>
                       <div class="wd_100">
                         <SelectBoxBase
+                          :id="'timeHourEnd'"
+                          :name="'timeHourEnd'"
                           v-model="timeHourEnd"
-                          :data="selectOptionHour.type"
+                          :data="selectOptionHour"
+                          required
                         />
                       </div>
                       <div class="wd_100">
                         <SelectBoxBase
+                          :id="'timeMinuteEnd'"
+                          :name="'timeMinuteEnd'"
                           v-model="timeMinuteEnd"
-                          :data="selectOptionMinute.type"
+                          :data="selectOptionMinute"
+                          required
                         />
                       </div>
                     </div>
@@ -603,22 +616,16 @@ export default {
       listSelectBoxJob: [] as Array<any>,
       listSelectBoxParti: [] as Array<any>,
       displayYear: false,
-      selectOptionHour: {
-        value: "0",
-        type: Array.from({ length: 24 }, (v, k) => ({
+      selectOptionHour: Array.from({ length: 24 }, (v, k) => ({
           cdId: k.toString().padStart(2, '0'),
           cdNm: k.toString().padStart(2, '0'),
           upCdId: "hour",
         })),
-      },
-      selectOptionMinute: {
-        value: "0",
-        type: Array.from({ length: 60 }, (v, k) => ({
+      selectOptionMinute: Array.from({ length: 60 }, (v, k) => ({
           cdId: k.toString().padStart(2, '0'),
           cdNm: k.toString().padStart(2, '0'),
           upCdId: "minute",
         })),
-      },
       displayTextInput: false,
       displaySme: false,
       timeHourStr: "",
@@ -986,28 +993,32 @@ export default {
         });
     },
     validateTimeRange() {
-      const startHour = parseInt(this.timeHourStr);
-      const endHour = parseInt(this.timeHourEnd);
-      const startMinute = parseInt(this.timeMinuteStr);
-      const endMinute = parseInt(this.timeMinuteEnd);
+      const startHour = parseInt(this.timeHourStr, 10);
+      const endHour = parseInt(this.timeHourEnd, 10);
+      const startMinute = parseInt(this.timeMinuteStr, 10);
+      const endMinute = parseInt(this.timeMinuteEnd, 10);
 
-      if (startHour && endHour && startHour > endHour) {
-        this.showAlert(
-          this.t("departmentMng.meettingReportEdu.message.validateTime")
-        );
+      if (
+        startHour !== null &&
+        endHour !== null &&
+        !isNaN(startHour) &&
+        !isNaN(endHour) &&
+        startHour > endHour
+      ) {
+        this.showAlert(this.t("departmentMng.meettingReportEdu.message.validateTime"));
         this.timeHourEnd = this.timeHourStr;
         return;
       }
 
       if (
         startHour === endHour &&
-        startMinute &&
-        endMinute &&
+        startMinute !== null &&
+        endMinute !== null &&
+        !isNaN(startMinute) &&
+        !isNaN(endMinute) &&
         startMinute > endMinute
       ) {
-        this.showAlert(
-          this.t("departmentMng.meettingReportEdu.message.validateTime")
-        );
+        this.showAlert(this.t("departmentMng.meettingReportEdu.message.validateTime"));
         this.timeMinuteEnd = this.timeMinuteStr;
         return;
       }
