@@ -31,12 +31,14 @@
           <td class="td_input">
             <div class="select_form wd_p100">
               <SelectBoxBase
+                v-if="modeScreen != 'detail'"
                 :id="'selectbox'"
                 :name="'selectbox'"
                 v-model="dataForm.year"
                 :data="listSelectBoxYear"
               >
               </SelectBoxBase>
+              <p v-if="modeScreen == 'detail'">{{ dataForm.year }}</p>
             </div>
           </td>
         </tr>
@@ -264,6 +266,7 @@ export default {
   },
   data() {
     return {
+      modeScreen: "",
       listSelectBoxYear: [] as CodeMngModel[],
       deptNmSelect: "" as String,
       majorNmSelect: "" as String,
@@ -327,6 +330,7 @@ export default {
     this.majorNmSelect = window.history.state.major;
     this.dept = window.history.state.deptSelect;
     this.year = window.history.state.yearSelect;
+    this.modeScreen = window.history.state.modeScreen;
     for (
       let year = this.dataForm.year;
       year <= this.dataForm.year + 1;

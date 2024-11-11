@@ -47,6 +47,7 @@ import {
   PAGINATION_PAGE_SIZE,
   SUCCSESS_STATUS,
   FORMAT_YYY_MM_DD,
+  MODE_DETAIL,
 } from "@/constants/screen.const";
 import GridComponentV2 from "@/components/common/grid/GridComponentV2.vue";
 import { SCREEN } from "@/router/screen";
@@ -193,6 +194,7 @@ export default {
           deptSelect: data.deptCd,
           deptNm: data.deptNm,
           major: data.major,
+          modeScreen: MODE_DETAIL
         },
       });
     },
