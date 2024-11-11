@@ -227,7 +227,6 @@ export default {
         {
           headerName: this.t("jobAbilityManagement.column4"),
           field: "jobAbilCd",
-          cellStyle: { textAlign: "center" },
           flex: 1.5,
         },
         {
@@ -236,7 +235,6 @@ export default {
           cellStyle: {
             color: "#2704FF",
             display: "flex",
-            justifyContent: "center",
             alignItems: "center",
           },
           cellRenderer: "LinkGridComponent",
@@ -311,6 +309,8 @@ export default {
         case "bigClassCd":
           defaultItemOne.cdNm = this.t("common.select");
           this.listClassMedium = [defaultItemOne];
+          this.listClassSmall = [defaultItemOne];
+          this.listClassDetail = [defaultItemOne];
           this.searchModel.mediumCd = "";
           this.searchModel.lowCd = "";
           this.searchModel.detailCd = "";
@@ -326,6 +326,7 @@ export default {
         case "medClassCd":
           defaultItemOne.cdNm = this.t("common.select");
           this.listClassSmall = [defaultItemOne];
+          this.listClassDetail = [defaultItemOne];
           this.searchModel.lowCd = "";
           this.searchModel.detailCd = "";
           selectedItem = this.listClassMedium.find(
@@ -380,6 +381,8 @@ export default {
       });
     },
     async getListItem(parentId: any, level: any) {
+      this.cmn.setLoading(true);
+
       let response;
       response = await itemList(parentId);
 
@@ -401,6 +404,7 @@ export default {
           });
         }
       });
+      this.cmn.setLoading(false);
     },
 
     search() {
@@ -453,6 +457,14 @@ export default {
       this.searchModel.mediumCd = "";
       this.searchModel.lowCd = "";
       this.searchModel.detailCd = "";
+      const defaultItemOne = {
+        cdId: "",
+        cdNm: "",
+      };
+      defaultItemOne.cdNm = this.t("common.select");
+      this.listClassMedium = [defaultItemOne];
+      this.listClassSmall = [defaultItemOne];
+      this.listClassDetail = [defaultItemOne];
     },
     gotoRegister() {
       this.$router.push({

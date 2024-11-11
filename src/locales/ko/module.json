@@ -4914,7 +4914,7 @@
         "confirmSave": "저장하시겠어요?",
         "saveSuccess": "저장됐습니다.",
         "saveError": "이미 등록된 학년도 입니다.",
-        "valid": "필수입력항목을 모두 입력해주세"
+        "valid": "필수입력 항목을 모두 입력해주세요."
       }
     },
   "learningModule": {
