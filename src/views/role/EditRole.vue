@@ -138,7 +138,7 @@ import Swal from "sweetalert2";
 import { SITE_TYPE } from "@/constants/screen.const";
 import { CREATED_STATUS } from "@/constants/screen.const";
 import { getListCodeMng } from "@/stores/common/codeMng/codeMng.service";
-import { UP_CD_ID_ON_OFF } from "@/constants/common.const";
+import { SITE_01, SITE_02, UP_CD_ID_ON_OFF } from "@/constants/common.const";
 import MenuItem from "./MenuItem.vue";
 import { SITE_03 } from "@/constants/common.const";
 import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
@@ -224,18 +224,56 @@ const back = () => {
   });
 };
 
-const changeData = async (type: any) => {
-  storeCommon.setLoading(true);
+
+const changeData = async (type: string) => {
+  if ((typeMenu.value == SITE_01 && type == SITE_02)) {
+    Swal.fire({
+      text: t("10.role.alert.adminToProf"),
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonText: t("common.save"),
+      cancelButtonText: t("common.cancel"),
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        fetchChangeMenus(type)
+      } else {
+        selectSiteType.value = typeMenu.value;
+      }
+    });
+  }
+
+  if ((typeMenu.value == SITE_02 && type == SITE_01)) {
+    Swal.fire({
+      text: t("10.role.alert.profToAdmin"),
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonText: t("common.save"),
+      cancelButtonText: t("common.cancel"),
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        fetchChangeMenus(type)
+      } else {
+        selectSiteType.value = typeMenu.value;
+      }
+    });
+  }
+};
+
+const fetchChangeMenus = async (type: string) => {
   typeMenu.value = type;
+  storeCommon.setLoading(true);
+  selectSiteType.value = type;
+
   if (type) {
     await storeMenu.fetchMenus({ siteType: type, roleId: codeIdFromParam });
   } else {
     list.value = [];
   }
+  
   listMenu.value = list.value;
   selectMenu.value = [];
   storeCommon.setLoading(false);
-};
+}
 
 const findStatusById = (menus: Array<any>, id: number): string | null => {
   for (let menu of menus) {
@@ -262,7 +300,13 @@ const saveData = async () => {
 
   selectMenuId.value.forEach((item) => {
     let status = findStatusById(listMenu.value, item);
-    listRadio.value.push({ id: item, status: status });
+
+    if (status) {
+      listRadio.value.push({ id: item, status: status });
+    } else {
+      updatedList.push(item);
+    }
+    
   });
 
   const formData = {
