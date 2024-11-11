@@ -434,6 +434,7 @@ const handleClickActive = async (
   activeUse: string,
   status = "notLastChild"
 ) => {
+  listUnitCapacity.value = []
   active.value = index;
   activeLevel.value = level;
   activeUsed.value = activeUse;
@@ -441,7 +442,6 @@ const handleClickActive = async (
   if (status === "lastChild" && active.value) {
     await getModuleList();
   }
-
   // listUnitCapacity.value = listUnitCapacityData.filter(item => item.idClassificationSystem === index)[0]?.unitCapacity || [];
   //
 
