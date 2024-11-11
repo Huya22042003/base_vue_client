@@ -26,6 +26,7 @@
             <div></div>
             <div>
               <ButtonBase
+                v-if="indexChild > 0"
                 class="btn_round btn_gray btn_lg"
                 :buttonName="`${t(
                   'jobAbilityManagement.tab2.deleteChildAbility'
@@ -111,7 +112,7 @@
                           <ButtonBase
                             v-if="indexConStant > 0"
                             class="btn_round btn_sm btn_gray"
-                            :buttonName="t('common.add')"
+                            :buttonName="t('common.delete')"
                             @click="
                               deleteConductStandard(
                                 childAbility,
@@ -482,9 +483,7 @@ export default {
         this.cmn.setLoading(true);
         const response = await checkUnit(childAbility.jobCapaUnitSeq);
         this.cmn.setLoading(false);
-        if (response.data.data == true) {
-          this.updateCapaUnit(indexChild, childAbility);
-        } else {
+        if (response.data.data == false) {
           this.$swal({
             text: "활용된 하위역량은 삭제할 수 없습니다.",
             type: "warning",
@@ -493,8 +492,6 @@ export default {
             cancelButtonText: this.t("common.cancel"),
           });
         }
-      } else {
-        this.updateCapaUnit(indexChild, childAbility);
       }
     },
     updateCapaUnit(indexChild: number, childAbility: any) {
