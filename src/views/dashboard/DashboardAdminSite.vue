@@ -554,4 +554,8 @@ const goToQA = (id: string) => {
 .sub_section{
   display: flex !important;
 }
+table::before{
+  content: none;
+  background: none;
+}
 </style>
