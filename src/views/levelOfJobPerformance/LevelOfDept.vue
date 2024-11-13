@@ -238,7 +238,7 @@ export default defineComponent({
     this.getCodeGradeCd();
     this.getDepartment();
     const currentYear = new Date().getFullYear();
-    for (let index = START_YEAR_NUMBER; index <= currentYear + 1; index++) {
+    for (let index = 2025; index <= currentYear + 1; index++) {
       this.listYear.push({ cdId: index, cdNm: index, upCdId: "" });
     }
   },
