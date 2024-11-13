@@ -483,15 +483,17 @@ export default {
         this.cmn.setLoading(true);
         const response = await checkUnit(childAbility.jobCapaUnitSeq);
         this.cmn.setLoading(false);
-        if (response.data.data == false) {
+        if (response.data.data == true) {
+          this.updateCapaUnit(indexChild, childAbility);
+        } else {
           this.$swal({
             text: "활용된 하위역량은 삭제할 수 없습니다.",
             type: "warning",
-            showCancelButton: false,
-            confirmButtonText: this.t("common.confirm"),
             cancelButtonText: this.t("common.cancel"),
           });
         }
+      } else {
+        this.updateCapaUnit(indexChild, childAbility);
       }
     },
     updateCapaUnit(indexChild: number, childAbility: any) {
@@ -641,8 +643,13 @@ export default {
 
       if (result.isConfirmed) {
         this.cmn.setLoading(true);
+
         await this.saveData();
-        this.cmn.setLoading(false);
+
+        setTimeout(() => {
+          this.cmn.setLoading(false);
+        }, 2000);
+
         const resultNext = await this.$swal({
           text: this.t("jobAbilityManagement.tab1.nextTab"),
           type: "warning",
@@ -650,6 +657,7 @@ export default {
           confirmButtonText: this.t("common.save"),
           cancelButtonText: this.t("common.cancel"),
         });
+
         if (resultNext.isConfirmed) {
           this.nextTab(this.jobAbilSeq);
         } else {
