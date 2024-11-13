@@ -81,6 +81,7 @@ export type SubMngCoreAbilityModel = {
 export type SubMngChildAbilityModel = {
   childAbilitySeq: string;
   childAbilityNm: string;
+  coreAbilitySeq: string;
 };
 
 export type SubMngSaveSbjtCandModel = {

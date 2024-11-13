@@ -71,7 +71,13 @@
             <col style="width: auto" />
             <col style="width: 10%" />
             <col style="width: 10%" />
-            <col style="width: 20%" v-if="data.eduCourseType && data.eduCourseType.includes(EDU_TYPE_OTHER)"/>
+            <col
+              style="width: 20%"
+              v-if="
+                data.eduCourseType &&
+                data.eduCourseType.includes(EDU_TYPE_OTHER)
+              "
+            />
           </colgroup>
           <thead>
             <tr>
@@ -113,7 +119,15 @@
               <th scope="row" class="ta_c" :colspan="1">
                 <!-- 결과 -->{{ t("eduProcessCreation.typeTalentEdu.title56") }}
               </th>
-              <th scope="row" class="ta_c" :colspan="1" v-if="data.eduCourseType && data.eduCourseType.includes(EDU_TYPE_OTHER)">
+              <th
+                scope="row"
+                class="ta_c"
+                :colspan="1"
+                v-if="
+                  data.eduCourseType &&
+                  data.eduCourseType.includes(EDU_TYPE_OTHER)
+                "
+              >
                 <!-- 전공 선택 -->{{
                   t("eduProcessCreation.typeTalentEdu.title57")
                 }}
@@ -201,7 +215,14 @@
                     : t("eduProcessCreation.use")
                 }}
               </td>
-              <td scope="row" :colspan="1" v-if="data.eduCourseType && data.eduCourseType.includes(EDU_TYPE_OTHER)">
+              <td
+                scope="row"
+                :colspan="1"
+                v-if="
+                  data.eduCourseType &&
+                  data.eduCourseType.includes(EDU_TYPE_OTHER)
+                "
+              >
                 <SelectBoxBase
                   :id="`major_${index}`"
                   :name="`major_${index}`"
@@ -263,14 +284,14 @@ import {
   CD_SELCT_TALT_NO,
   CD_SELCT_TALT_YES,
   EDU_TYPE_OTHER,
-  VERSION_V1
+  VERSION_V1,
 } from "@/constants/common.const";
 import { TaltNrtgSelResDTO } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.type";
 import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
-    ButtonBase
+    ButtonBase,
   },
   setup: () => {
     const router = useRouter();
@@ -342,17 +363,25 @@ export default defineComponent({
         return;
       }
 
-      if (this.data.eduCourseType.includes(EDU_TYPE_OTHER) && !this.validateTaltNrtgSel()) {
+      if (
+        this.data.eduCourseType.includes(EDU_TYPE_OTHER) &&
+        !this.validateTaltNrtgSel()
+      ) {
         this.$alert("하나 이상의 인재양성유형이 선정되어야 합니다");
         return;
       }
 
-      if (this.data.eduCourseType.includes(EDU_TYPE_OTHER) && !this.validateTaltNrtgSelMajor()) {
+      if (
+        this.data.eduCourseType.includes(EDU_TYPE_OTHER) &&
+        !this.validateTaltNrtgSelMajor()
+      ) {
         this.$alert(this.t("common.messageValidateRequired"));
         return;
       }
-
-      this.$confirm(this.t("eduProcessCreation.jobEduMng.messageConfirmSave"), "", (isConfirm: Boolean) => {
+      const message = this.isDisabled
+        ? this.t("common.message.save")
+        : this.t("eduProcessCreation.jobEduMng.messageConfirmSave");
+      this.$confirm(message, "", (isConfirm: Boolean) => {
         if (isConfirm) {
           this.storeCommon.setLoading(true);
 
@@ -417,7 +446,7 @@ export default defineComponent({
       return true;
     },
     getValueForm() {
-      let dataResult = {...this.data}
+      let dataResult = { ...this.data };
       dataResult.taltNrtgSel = dataResult.taltNrtgSel
         .filter((item: TaltNrtgSelResDTO) => item.check)
         .map((item: TaltNrtgSelResDTO) => {
@@ -425,7 +454,7 @@ export default defineComponent({
           return item;
         });
 
-        return dataResult;
+      return dataResult;
     },
     next() {
       this.$emit("tabChange3", 34);

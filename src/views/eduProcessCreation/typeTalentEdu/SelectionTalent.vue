@@ -219,12 +219,16 @@ import {
   getCoreJobSel,
   saveCoreJobSel,
 } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.service";
-import { CD_SELCT_TALT_NO, CD_SELCT_TALT_YES, VERSION_V1 } from "@/constants/common.const";
+import {
+  CD_SELCT_TALT_NO,
+  CD_SELCT_TALT_YES,
+  VERSION_V1,
+} from "@/constants/common.const";
 import ButtonBase from "@/components/common/button/ButtonBase.vue";
 
 export default defineComponent({
   components: {
-    ButtonBase
+    ButtonBase,
   },
   setup: () => {
     const router = useRouter();
@@ -309,7 +313,10 @@ export default defineComponent({
         return;
       }
 
-      this.$confirm(this.t("eduProcessCreation.jobEduMng.messageConfirmSave"), "", (isConfirm: Boolean) => {
+      const message = this.isDisabled
+        ? this.t("common.message.save")
+        : this.t("eduProcessCreation.jobEduMng.messageConfirmSave");
+      this.$confirm(message, "", (isConfirm: Boolean) => {
         if (isConfirm) {
           this.storeCommon.setLoading(true);
           let dataSave = [] as any[];
