@@ -242,7 +242,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .text_blue {
   color: #0029ff;
 }

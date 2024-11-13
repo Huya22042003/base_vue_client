@@ -282,6 +282,11 @@ const saveData = () => {
       proxy.$alert(proxy.$t("common.messageValidateRequired"));
       return;
     }
+  } else {
+    if (majorTab3Ref.value.modelValue.length == 0) {
+      proxy.$alert(proxy.$t("common.messageValidateRequired"));
+      return;
+    }
   }
 
   if (mode.value === "major") {

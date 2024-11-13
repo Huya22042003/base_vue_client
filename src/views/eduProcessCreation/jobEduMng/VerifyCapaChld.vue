@@ -108,8 +108,8 @@
                             jobAbility.jobAbilSeq +
                             jobCapaUnit.jobCapaUnitSeq
                           "
+                          :is-disable="true"
                           :label="jobCapaUnit.capaUnitNm"
-                          @change="handleChangeCheckboxJobCapaUnit(jobCapaUnit)"
                         >
                         </CheckboxBase>
                       </td>
@@ -118,7 +118,6 @@
                         <CheckboxBase
                           :mode="'show'"
                           v-model="capaUnitPerform.isCheck"
-                          :is-disable="!jobCapaUnit.isCheck"
                           :id="
                             'capaUnitPerform' +
                             coreJobSelc.coreJobSelcSeq +
@@ -126,6 +125,7 @@
                             jobCapaUnit.jobCapaUnitSeq +
                             capaUnitPerform.capaUnitPerformStnrdSeq
                           "
+                          @change="handleChangeCheckboxJobCapaUnit(jobCapaUnit)"
                           :name="
                             'capaUnitPerform' +
                             coreJobSelc.coreJobSelcSeq +
@@ -138,7 +138,7 @@
                       </td>
                       <td>
                         <InputBase
-                          v-if="!capaUnitPerform.isCheck && jobCapaUnit.isCheck"
+                          v-if="!capaUnitPerform.isCheck"
                           :id="
                             'unuseRsn' +
                             coreJobSelc.coreJobSelcSeq +
@@ -213,6 +213,7 @@ import {
   JobEduVerifyChildNcsKcsModel,
   JobEduVerifyCmmnJobAbilityModel,
   JobEduVerifyJobCapaUnitModel,
+  JobEduVerifyJobCapaUnitPerformModel,
 } from "../../../stores/eduProcessCreation/jobEduMng/jobEduMng.type";
 import { EduCourseDetailReqDTO } from "../../../stores/eduProcessCreation/eduCourse/eduProcess.type";
 import {
@@ -298,12 +299,9 @@ export default defineComponent({
       return capaUnit.listJobCapaUnitPerform.length;
     },
     handleChangeCheckboxJobCapaUnit(item: JobEduVerifyJobCapaUnitModel) {
-      if (!item.isCheck) {
-        item.listJobCapaUnitPerform.forEach((capaUnitPerform) => {
-          capaUnitPerform.isCheck = false;
-          capaUnitPerform.unuseRsn = "";
-        });
-      }
+      item.isCheck = item.listJobCapaUnitPerform.some(
+        (perform) => perform.isCheck
+      );
     },
     confirmSave() {
       let isValid = true;
@@ -342,15 +340,14 @@ export default defineComponent({
           return;
         }
 
-        this.$confirm(
-          this.t("eduProcessCreation.jobEduMng.messageConfirmSave"),
-          "",
-          (isConfirm: Boolean) => {
-            if (isConfirm) {
-              this.saveData();
-            }
+        const message = this.isDisabled
+          ? this.t("common.message.save")
+          : this.t("eduProcessCreation.jobEduMng.messageConfirmSave");
+        this.$confirm(message, "", (isConfirm: Boolean) => {
+          if (isConfirm) {
+            this.saveData();
           }
-        );
+        });
       }
     },
     saveData() {

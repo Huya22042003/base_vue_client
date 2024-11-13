@@ -315,15 +315,14 @@ export default defineComponent({
           return;
         }
 
-        this.$confirm(
-          this.t("eduProcessCreation.jobEduMng.messageConfirmSave"),
-          "",
-          (isConfirm: Boolean) => {
-            if (isConfirm) {
-              this.saveData();
-            }
+        const message = this.isDisabled
+          ? this.t("common.message.save")
+          : this.t("eduProcessCreation.jobEduMng.messageConfirmSave");
+        this.$confirm(message, "", (isConfirm: Boolean) => {
+          if (isConfirm) {
+            this.saveData();
           }
-        );
+        });
       }
     },
     saveData() {
