@@ -152,7 +152,7 @@ export default defineComponent({
           headerName: this.t("coreAbilityJobList.coreAbility"),
           field: "coreAbilNm",
           cellStyle: { textAlign: "center" },
-          flex: 3,
+          flex: 2,
         },
         {
           headerName: this.t("coreAbilityJobList.lowerLever"),
@@ -180,13 +180,13 @@ export default defineComponent({
           headerName: this.t("coreAbilityJobList.regBy"),
           field: "regId",
           cellStyle: { textAlign: "center" },
-          flex: 1,
+          flex: 2,
         },
         {
           headerName: this.t("coreAbilityJobList.regDate"),
           field: "regDate",
           cellStyle: { textAlign: "center" },
-          flex: 2,
+          flex: 1.5,
         },
       ],
     };

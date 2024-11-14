@@ -44,7 +44,7 @@
                   evalPlan.evalPlanDocWriteEndDate
                 "
               >
-                {{ evalPlan.term }} 강의계획서 작성 기간입니다({{
+                {{ evalPlan.term }} 평가 계획서 작성 기간입니다({{
                   evalPlan.evalPlanDocWriteStrDate
                 }}
                 ~ {{ evalPlan.evalPlanDocWriteEndDate }}).
@@ -55,7 +55,7 @@
                   jobCapaEval.jobCapaEvalEndDate
                 "
               >
-                {{ jobCapaEval.term }} 강의계획서 작성 기간입니다({{
+                {{ jobCapaEval.term }} 학생 직무수행능력 평가 기간입니다({{
                   jobCapaEval.jobCapaEvalStrDate
                 }}
                 ~ {{ jobCapaEval.jobCapaEvalEndDate }}).
@@ -65,7 +65,7 @@
                   sbjtCqi.sbjtCqiWriteStrDate && sbjtCqi.sbjtCqiWriteEndDate
                 "
               >
-                {{ sbjtCqi.term }} 강의계획서 작성 기간입니다({{
+                {{ sbjtCqi.term }} 교육과정CQI 작성 기간입니다({{
                   sbjtCqi.sbjtCqiWriteStrDate
                 }}
                 ~ {{ sbjtCqi.sbjtCqiWriteEndDate }}).
@@ -78,7 +78,7 @@
         <div class="develop_state_wrap">
           <div class="develop_state">
             <div class="section_tit_wrap">
-              <strong class="section_tit_sm">1학기 교육과정개발 현황</strong>
+              <strong class="section_tit_sm">교육과정개발 현황</strong>
               <div class="state_division">
                 <span>작성중</span>
                 <span>작성완료</span>
@@ -326,11 +326,11 @@
             >
           </div>
           <ul>
-            <li v-for="item in qaDashboard">
+            <li v-for="item in noticeDashboard">
               <a @click="goToNotice(item.id)">
                 {{ item.cont }}
               </a>
-              <span class="date">2024/05/01</span>
+              <span class="date">{{ item.createdDate }}</span>
             </li>
           </ul>
         </div>
@@ -340,7 +340,7 @@
             <a @click="goToResearch(SCREEN.questAndAns.path)">바로가기</a>
           </div>
           <ul>
-            <li v-for="item in noticeDashboard">
+            <li v-for="item in qaDashboard">
               <a @click="goToQA(item.id)">{{ item.cont }}</a>
               <span class="date">{{ item.createdDate }}</span>
             </li>
@@ -399,7 +399,7 @@ const selectOption2 = ref({
 });
 
 const processbar = ref("15%");
-const year = ref(START_YEAR_NUMBER);
+const year = ref(new Date().getFullYear());
 const donutChart = ref({} as ListDonutChartDTO);
 const dashboardRate = ref({} as DashboardRateDTO);
 
@@ -541,7 +541,7 @@ const goToNotice = (id: string) => {
 
 const goToQA = (id: string) => {
   router.push({
-    name: SCREEN.questAndAns.name,
+    name: SCREEN.crudAns.name,
     params: { mode: MODE_DETAIL },
     state: {
       id: id,
@@ -553,5 +553,9 @@ const goToQA = (id: string) => {
 <style scoped lang="scss">
 .sub_section{
   display: flex !important;
+}
+table::before{
+  content: none;
+  background: none;
 }
 </style>

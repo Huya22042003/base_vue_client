@@ -6,56 +6,53 @@
         :breadcrumbItems="breadcrumbItems"
       ></Breadcrumb>
       <div class="box dp_block">
-        <div class="search_box">
-          <div class="search_section">
-            <div class="search_toggle lg center">
-              <div class="left"></div>
-              <div class="right">
-                <div class="search_daywrap mg_r10">
-                  <span class="tag">{{ t("curriculumManagement.dept") }}</span>
-                  <div class="">
-                    <InputBase
-                      :id="'deptSearch'"
-                      :name="'deptSearch'"
-                      v-model="searchModel.deptNm"
-                    />
-                  </div>
-                </div>
-                <div class="search_daywrap mg_r10">
-                  <span class="tag">{{ t("lookupReport.list.lesson") }}</span>
-                  <div class="">
-                    <InputBase
-                      :id="'taltNrtgTypeNmSearch'"
-                      :name="'taltNrtgTypeNmSearch'"
-                      v-model="searchModel.taltNrtgTypeNm"
-                    />
-                  </div>
-                </div>
-                <div class="search_daywrap mg_r10">
-                  <span class="tag">{{ t("lookupReport.list.regBy") }}</span>
-                  <div class="">
-                    <InputBase
-                      :id="'taltNrtgTypeNmSearch'"
-                      :name="'taltNrtgTypeNmSearch'"
-                      v-model="searchModel.taltNrtgTypeNm"
-                    />
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_primary mg_l10"
-                  @click="search"
-                >
-                  {{ t("lookupReport.list.search") }}
-                </button>
-                <button
-                  type="button"
-                  class="btn_round btn_lg btn_gray mg_l5"
-                  @click="reset"
-                >
-                  {{ t("lookupReport.list.reset") }}
-                </button>
-              </div>
+        <div class="box_section">
+          <div class="search_box col_3">
+            <ul>
+              <li>
+                <p>{{ t("curriculumManagement.dept") }}</p>
+                <InputBase
+                  :id="'deptSearch'"
+                  :name="'deptSearch'"
+                  v-model="searchModel.deptNm"
+                />
+              </li>
+              <li>
+                <p>
+                  {{ t("lookupReport.list.lesson") }}
+                </p>
+                <InputBase
+                  :id="'taltNrtgTypeNmSearch'"
+                  :name="'taltNrtgTypeNmSearch'"
+                  v-model="searchModel.taltNrtgTypeNm"
+                />
+              </li>
+              <li>
+                <p>
+                  {{ t("lookupReport.list.regBy") }}
+                </p>
+                <InputBase
+                  :id="'taltNrtgTypeNmSearch'"
+                  :name="'taltNrtgTypeNmSearch'"
+                  v-model="searchModel.taltNrtgTypeNm"
+                />
+              </li>
+            </ul>
+            <div class="search_btnarea">
+              <button
+                type="button"
+                class="btn_round btn_lg btn_primary mg_l10"
+                @click="search"
+              >
+                {{ t("common.search") }}
+              </button>
+              <button
+                type="button"
+                class="btn_round btn_lg btn_gray mg_l5"
+                @click="reset"
+              >
+                {{ t("common.reset") }}
+              </button>
             </div>
           </div>
         </div>

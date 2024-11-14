@@ -25,13 +25,13 @@
                 <InputBase v-model="searchParams.deptNm" id="deptNm" />
               </li>
             </ul>
-            <div class="dp_flex btn_group btn_end" style="gap: 10px">
+            <div class="search_btnarea">
               <button
                 type="button"
                 class="btn_round btn_lg btn_primary mg_l10"
                 @click="getAllData()"
               >
-                {{ t("trainingProcess.btnSearch") }}
+                {{ t("common.search") }}
               </button>
               <button
                 @click="resetFormData()"

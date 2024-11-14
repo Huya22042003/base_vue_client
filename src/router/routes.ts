@@ -1,4 +1,4 @@
-import { SCREEN } from './screen';
+import {SCREEN} from './screen';
 import authMiddleware from '@/middleware/auth';
 import logMiddleware from '@/middleware/log'
 
@@ -54,17 +54,23 @@ export const routes = [
             name: SCREEN.detailNotification.name,
             component: () => import('@/views/schoolStaff/notification/DetailNoti.vue'),
           },
-          {
-            path: SCREEN.questAndAns.path,
-            name: SCREEN.questAndAns.name,
-            component: () => import('../views/qna/QuestionList.vue')
-          },
-          {
-            path: SCREEN.crudAns.path,
-            name: SCREEN.crudAns.name,
-            component: () => import('../views/qna/CreateAns.vue')
-          },
         ]
+      },
+      {
+        path: SCREEN.questAndAns.path,
+        name: SCREEN.questAndAns.name,
+        meta: {
+          parentRoute: SCREEN.questAndAns.name,
+        },
+        component: () => import('../views/qna/QuestionList.vue')
+      },
+      {
+        path: SCREEN.crudAns.path,
+        name: SCREEN.crudAns.name,
+        meta: {
+          parentRoute: SCREEN.questAndAns.name,
+        },
+        component: () => import('../views/qna/CreateAns.vue')
       },
       {
         path: SCREEN.teachPlan.path,
@@ -171,16 +177,25 @@ export const routes = [
       {
         path: SCREEN.talentEduGoalsMngDept.path,
         name: SCREEN.talentEduGoalsMngDept.name,
+        meta: {
+          parentRoute: SCREEN.talentEduGoalsMngDept.name,
+        },
         component: () => import('@/views/departmentMng/talentEduGoalsMng/TalentEduGoals.vue')
       },
       {
         path: SCREEN.talentEduGoalsDeptAction.path,
         name: SCREEN.talentEduGoalsDeptAction.name,
+        meta: {
+          parentRoute: SCREEN.talentEduGoalsMngDept.name,
+        },
         component: () => import('@/views/departmentMng/talentEduGoalsMng/TalentEduGoalsAction.vue')
       },
       {
         path: SCREEN.typeTalentNurturingMngDept.path,
         name: SCREEN.typeTalentNurturingMngDept.name,
+        meta: {
+          parentRoute: SCREEN.typeTalentNurturingMngDept.name,
+        },
         component: () => import('@/views/departmentMng/typeTalentNurturingMng/TypeTalentNurturing.vue')
       },
       {
@@ -201,16 +216,25 @@ export const routes = [
       {
         path: SCREEN.eduCourseType.path,
         name: SCREEN.eduCourseType.name,
+        meta: {
+          parentRoute: SCREEN.eduCourseType.name,
+        },
         component: () => import('../views/eduCourseType/EduCourseTypeMngList.vue')
       },
       {
         path: SCREEN.profLearn.path,
         name: SCREEN.profLearn.name,
+        meta: {
+          parentRoute: SCREEN.profLearn.name,
+        },
         component: () => import('../views/profLearn/ProfLearnMngList.vue')
       },
       {
         path: SCREEN.evaluationMethod.path,
         name: SCREEN.evaluationMethod.name,
+        meta: {
+          parentRoute: SCREEN.evaluationMethod.name,
+        },
         component: () => import('../views/evaluationMethod/EvaluationMethodList.vue')
       },
       {
@@ -266,11 +290,17 @@ export const routes = [
       {
         path: SCREEN.meettingReportEdu.path,
         name: SCREEN.meettingReportEdu.name,
+        meta: {
+          parentRoute: SCREEN.meettingReportEdu.name,
+        },
         component: () => import('@/views/departmentMng/meettingReportEdu/MeettingReportEdu.vue')
       },
       {
         path: SCREEN.meettingReportEduForm.path,
         name: SCREEN.meettingReportEduForm.name,
+        meta: {
+          parentRoute: SCREEN.meettingReportEdu.name,
+        },
         component: () => import('@/views/departmentMng/meettingReportEdu/formAdd/MeettingReportEduForm.vue')
       },
       {
@@ -281,11 +311,17 @@ export const routes = [
       {
         path: SCREEN.teachingPlans.path,
         name: SCREEN.teachingPlans.name,
+        meta: {
+          parentRoute: SCREEN.teachingPlans.name,
+        },
         component: () => import('@/views/trainingProcess/teachingPlans/TeachingPlans.vue')
       },
       {
         path: SCREEN.lookUpCQI.path,
         name: SCREEN.lookUpCQI.name,
+        meta: {
+          parentRoute: SCREEN.lookUpCQI.name,
+        },
         component: () => import('@/views/trainingProcess/lookUpCQI/LookUpCQI.vue')
       },
       {
@@ -296,11 +332,17 @@ export const routes = [
       {
         path: SCREEN.historyLogin.path,
         name: SCREEN.historyLogin.name,
+        meta: {
+          parentRoute: SCREEN.historyLogin.name,
+        },
         component: () => import('@/views/historyLogin/HistoryLogin.vue')
       },
       {
         path: SCREEN.historyMenuAccess.path,
         name: SCREEN.historyMenuAccess.name,
+        meta: {
+          parentRoute: SCREEN.historyMenuAccess.name,
+        },
         component: () => import('@/views/historyMenuAccess/historyMenuAccess.vue')
       },
       {
@@ -432,16 +474,25 @@ export const routes = [
       {
         path: SCREEN.roleList.path,
         name: SCREEN.roleList.name,
+        meta: {
+          parentRoute: SCREEN.roleList.name,
+        },
         component: () => import('../views/role/ListRole.vue')
       },
       {
         path: SCREEN.roleEdit.path,
         name: SCREEN.roleEdit.name,
+        meta: {
+          parentRoute: SCREEN.roleList.name,
+        },
         component: () => import('../views/role/EditRole.vue')
       },
       {
         path: SCREEN.roleDetail.path,
         name: SCREEN.roleDetail.name,
+        meta: {
+          parentRoute: SCREEN.roleList.name,
+        },
         component: () => import('../views/role/DetailRole.vue')
       },
       /* Management role  end*/
@@ -457,6 +508,9 @@ export const routes = [
       {
         path: SCREEN.mainAbility.path,
         name: SCREEN.mainAbility.name,
+        meta: {
+          parentRoute: SCREEN.mainAbility.name,
+        },
         component: () => import('../views/modelTalentUni/mainAbility/CrudMainAbility.vue')
 
       },
@@ -489,6 +543,9 @@ export const routes = [
       {
         path: SCREEN.eduScheduleCreative.path,
         name: SCREEN.eduScheduleCreative.name,
+        meta: {
+          parentRoute: SCREEN.eduScheduleCreative.name,
+        },
         component: () => import('@/views/eduScheduleCreative/modeling/NewEducationSchedule.vue')
       },
       {
@@ -497,7 +554,7 @@ export const routes = [
         component: () =>
           import(
             '../views/coreCompetencyDiagnosis/coreCompetencyDiagnosticSheet/CoreComDiagSheetList.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.coreCompetencyDiagnosticSheetCrud.path,
@@ -505,7 +562,7 @@ export const routes = [
         component: () =>
           import(
             '../views/coreCompetencyDiagnosis/coreCompetencyDiagnosticSheet/CoreComDiagSheetCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.coreCompetencyDiagnosis.path,
@@ -513,7 +570,7 @@ export const routes = [
         component: () =>
           import(
             '../views/coreCompetencyDiagnosis/coreCompetencyDiagnosis/CoreComDiagList.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.coreCompetencyDiagnosisCrud.path,
@@ -521,7 +578,7 @@ export const routes = [
         component: () =>
           import(
             '../views/coreCompetencyDiagnosis/coreCompetencyDiagnosis/CoreComDiagCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.coreCompetencyDiagnosisResultList.path,
@@ -529,7 +586,7 @@ export const routes = [
         component: () =>
           import(
             '../views/coreCompetencyDiagnosis/coreCompetencyDiagnosisResults/CoreComDiagResultsList.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.coreCompetencyDiagnosisResult.path,
@@ -537,7 +594,7 @@ export const routes = [
         component: () =>
           import(
             '../views/coreCompetencyDiagnosis/coreCompetencyDiagnosisResults/CoreComDiagResultsDetail.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.coreMajorCompDiagnosisSheet.path,
@@ -545,7 +602,7 @@ export const routes = [
         component: () =>
           import(
             '../views/coreMajorCompDiagnosis/coreMajorCompDiagnosisSheet/CoreMajDiagSheetList.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.coreMajorCompDiagnosisSheetCrud.path,
@@ -553,7 +610,7 @@ export const routes = [
         component: () =>
           import(
             '../views/coreMajorCompDiagnosis/coreMajorCompDiagnosisSheet/CoreMajDiagSheetCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.coreMajorCompDiagnosis.path,
@@ -561,7 +618,7 @@ export const routes = [
         component: () =>
           import(
             '../views/coreMajorCompDiagnosis/coreMajorCompDiagnosis/CoreMajorCompDiagnosisList.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.coreMajorCompDiagnosisCrud.path,
@@ -569,7 +626,7 @@ export const routes = [
         component: () =>
           import(
             '../views/coreMajorCompDiagnosis/coreMajorCompDiagnosis/CoreMajorCompDiagnosisCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.coreMajorCompDiagnosisResultList.path,
@@ -577,7 +634,7 @@ export const routes = [
         component: () =>
           import(
             '../views/coreMajorCompDiagnosis/coreMajorCompDiagnosisResults/CoreMajorCompDiagnosisResultsList.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.coreMajorCompDiagnosisResult.path,
@@ -585,7 +642,7 @@ export const routes = [
         component: () =>
           import(
             '../views/coreMajorCompDiagnosis/coreMajorCompDiagnosisResults/CoreMajorCompDiagnosisResults.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosisLearningAbilitySheet.path,
@@ -593,7 +650,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosisLearningAbility/diagnosisSheet/DiagnosisSheet.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosisLearningAbilitySheetCrud.path,
@@ -601,7 +658,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosisLearningAbility/diagnosisSheet/DisgnosisSheetCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosisLearningAbility.path,
@@ -609,7 +666,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosisLearningAbility/diagnosis/Diagnosis.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosisLearningAbilityCrud.path,
@@ -617,7 +674,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosisLearningAbility/diagnosis/DiagnosisCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosisLearningAbilityResults.path,
@@ -625,7 +682,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosisLearningAbility/diagnosisResults/DiagnosisResults.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosisLearningAbilityResultsCrud.path,
@@ -633,7 +690,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosisLearningAbility/diagnosisResults/DiagnosisResultsCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingLecturerSheet.path,
@@ -641,7 +698,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosingLecturer/diagnosisLecturerSheet/DiagnosingLecturerSheet.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingLecturerSheetCrud.path,
@@ -649,7 +706,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosingLecturer/diagnosisLecturerSheet/DiagnosingLecturerSheetCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingLecturer.path,
@@ -657,7 +714,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosingLecturer/diagnosisLecturer/DiagnosingLecturer.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingLecturerCrud.path,
@@ -665,7 +722,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosingLecturer/diagnosisLecturer/DiagnosingLecturerCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingLecturerResults.path,
@@ -673,7 +730,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosingLecturer/diagnosisLecturerResults/DiagnosingLecturerResults.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingLecturerResultsCrud.path,
@@ -681,7 +738,7 @@ export const routes = [
         component: () =>
           import(
             "../views/diagnosingLecturer/diagnosisLecturerResults/DiagnosingLecturerResultsCrud.vue"
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingLecturerResultsProfCrud.path,
@@ -689,7 +746,7 @@ export const routes = [
         component: () =>
           import(
             "../views/diagnosingLecturer/diagnosisLecturerResults/DiagnosingLecturerProfDetail.vue"
-          ),
+            ),
       },
       {
         path: SCREEN.basicAcademicDiagnosisSheet.path,
@@ -697,7 +754,7 @@ export const routes = [
         component: () =>
           import(
             '../views/basicAcademicDiagnosis/basicAcademicDiagnosisSheet/BasicAcademicDiagSheetList.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.basicAcademicDiagnosisSheetCrud.path,
@@ -705,7 +762,7 @@ export const routes = [
         component: () =>
           import(
             '../views/basicAcademicDiagnosis/basicAcademicDiagnosisSheet/BasicAcademicDiagSheetCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.basicAcademicDiagnosis.path,
@@ -713,7 +770,7 @@ export const routes = [
         component: () =>
           import(
             '../views/basicAcademicDiagnosis/basicAcademicDiagnosis/BasicAcademicDiagList.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.basicAcademicDiagnosisCrud.path,
@@ -721,7 +778,7 @@ export const routes = [
         component: () =>
           import(
             '../views/basicAcademicDiagnosis/basicAcademicDiagnosis/BasicAcademicDiagCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.basicAcademicDiagnosisResult.path,
@@ -729,7 +786,7 @@ export const routes = [
         component: () =>
           import(
             '../views/basicAcademicDiagnosis/basicAcademicDiagnosisResult/BasicAcademicDiagResultList.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.basicAcademicDiagnosisResultCrud.path,
@@ -737,7 +794,7 @@ export const routes = [
         component: () =>
           import(
             '../views/basicAcademicDiagnosis/basicAcademicDiagnosisResult/BasicAcademicDiagResultCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingEmployeeSheet.path,
@@ -745,7 +802,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosingEmployee/diagnosisEmployeeSheet/DiagnosingEmployeeSheet.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingEmployeeSheetCrud.path,
@@ -753,7 +810,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosingEmployee/diagnosisEmployeeSheet/DiagnosingEmployeeSheetCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingEmployee.path,
@@ -761,7 +818,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosingEmployee/diagnosisEmployee/DiagnosingEmployee.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingEmployeeCrud.path,
@@ -769,7 +826,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosingEmployee/diagnosisEmployee/DiagnosingEmployeeCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingEmployeeResults.path,
@@ -777,7 +834,7 @@ export const routes = [
         component: () =>
           import(
             '../views/diagnosingEmployee/diagnosisEmployeeResults/DiagnosingEmployeeResults.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingEmployeeResultsCrud.path,
@@ -785,7 +842,7 @@ export const routes = [
         component: () =>
           import(
             "../views/diagnosingEmployee/diagnosisEmployeeResults/DiagnosingEmployeeResultsCrud.vue"
-          ),
+            ),
       },
       {
         path: SCREEN.diagnosingEmployeeResultsEmpCrud.path,
@@ -793,7 +850,7 @@ export const routes = [
         component: () =>
           import(
             "../views/diagnosingEmployee/diagnosisEmployeeResults/DiagnosingLecturerEmpDetail.vue"
-          ),
+            ),
       },
       {
         path: SCREEN.searchLevelCapacity.path,
@@ -801,7 +858,7 @@ export const routes = [
         component: () =>
           import(
             '../views/searchLevelCoreCapacity/SearchLevelCoreCapacity.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.searchLevelCapacityDetail.path,
@@ -809,7 +866,7 @@ export const routes = [
         component: () =>
           import(
             '../views/searchLevelCoreCapacity/SearchLevelCoreCapacityDetail.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.searchLevelCapacityDetailResults.path,
@@ -817,7 +874,7 @@ export const routes = [
         component: () =>
           import(
             '../views/searchLevelCoreCapacity/SearchLevelCoreCapacityResults.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.searchLevelSpecialized.path,
@@ -825,7 +882,7 @@ export const routes = [
         component: () =>
           import(
             '../views/searchLevelSpecialized/SearchLevelSpecialized.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.searchLevelSpecializedDetail.path,
@@ -833,7 +890,7 @@ export const routes = [
         component: () =>
           import(
             '../views/searchLevelSpecialized/SearchLevelSpecializedDetail.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.searchLevelSpecializedResults.path,
@@ -841,7 +898,7 @@ export const routes = [
         component: () =>
           import(
             '../views/searchLevelSpecialized/SearchLevelCoreSpecializedResults.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.searchLevelAbilityStudy.path,
@@ -849,7 +906,7 @@ export const routes = [
         component: () =>
           import(
             '../views/searchLevelAbilityStudy/SearchLevelAbilityStudy.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.searchLevelAbilityStudyDetail.path,
@@ -857,7 +914,7 @@ export const routes = [
         component: () =>
           import(
             '../views/searchLevelAbilityStudy/SearchLevelAbilityStudyDetail.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.searchLevelAbilityStudyResults.path,
@@ -865,7 +922,7 @@ export const routes = [
         component: () =>
           import(
             '../views/searchLevelAbilityStudy/SearchLevelAbilityStudyResults.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.searchLevelAcademicSpe.path,
@@ -873,7 +930,7 @@ export const routes = [
         component: () =>
           import(
             '../views/searchLevelAcademicSpe/SearchLevelAcademicSpe.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.searchLevelAcademicSpeDetail.path,
@@ -881,7 +938,7 @@ export const routes = [
         component: () =>
           import(
             '../views/searchLevelAcademicSpe/SearchLevelAcademicSpeDetail.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.searchLevelOutlineSpe.path,
@@ -889,7 +946,7 @@ export const routes = [
         component: () =>
           import(
             '../views/searchLevelOutlineSpe/SearchLevelOutlineSpe.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.searchLevelOutlineSpeDetail.path,
@@ -897,7 +954,7 @@ export const routes = [
         component: () =>
           import(
             '../views/searchLevelOutlineSpe/SearchLevelOutlineDetail.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.surveySatisfiedList.path,
@@ -905,7 +962,7 @@ export const routes = [
         component: () =>
           import(
             '../views/surveySatisfied/SurveySatisfiedList.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.surveySatisfiedFom.path,
@@ -913,7 +970,7 @@ export const routes = [
         component: () =>
           import(
             '../views/surveySatisfied/formAdd/SurveySatisfiedForm.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.surveySatisfiedResult.path,
@@ -921,7 +978,7 @@ export const routes = [
         component: () =>
           import(
             '../views/surveySatisfied/SurveyStatisFieldResult.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.surveySatisfactionOffCampus.path,
@@ -929,7 +986,7 @@ export const routes = [
         component: () =>
           import(
             '../views/surveySatisfactionOffCampus/SurveyOffCampusList.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.surveySatisfactionOffCampusCrud.path,
@@ -937,7 +994,7 @@ export const routes = [
         component: () =>
           import(
             '../views/surveySatisfactionOffCampus/SurveyOffCampusCrud.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.surveySatisfactionOffCampusResult.path,
@@ -945,7 +1002,7 @@ export const routes = [
         component: () =>
           import(
             '../views/surveySatisfactionOffCampus/SurveyOffCampusResult.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.manageApprovedSubjects.path,
@@ -1016,18 +1073,24 @@ export const routes = [
       {
         path: SCREEN.notificationCategory.path,
         name: SCREEN.notificationCategory.name,
+        meta: {
+          parentRoute: SCREEN.notificationCategory.name,
+        },
         component: () =>
           import(
             '../views/notificationCategory/NotificationCategory.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.crudNotificationCategory.path,
         name: SCREEN.crudNotificationCategory.name,
+        meta: {
+          parentRoute: SCREEN.notificationCategory.name,
+        },
         component: () =>
           import(
             '../views/notificationCategory/CrudNotificationCategory.vue'
-          ),
+            ),
       },
       {
         path: SCREEN.notificationMessage.path,
@@ -1052,18 +1115,18 @@ export const routes = [
       {
         path: SCREEN.eduProcessCreation.path,
         name: SCREEN.eduProcessCreation.name,
-        children: [
-          {
-            path: '',
-            name: '',
-            component: () => import('../views/eduProcessCreation/EduProcessCreationList.vue')
-          },
-          {
-            path: SCREEN.eduProcessCreationMng.path,
-            name: SCREEN.eduProcessCreationMng.name,
-            component: () => import('../views/eduProcessCreation/EduProcessCreationMng.vue')
-          }
-        ]
+        meta: {
+          parentRoute: SCREEN.eduProcessCreation.name,
+        },
+        component: () => import('../views/eduProcessCreation/EduProcessCreationList.vue')
+      },
+      {
+        path: SCREEN.eduProcessCreationMng.path,
+        name: SCREEN.eduProcessCreationMng.name,
+        meta: {
+          parentRoute: SCREEN.eduProcessCreation.name,
+        },
+        component: () => import('../views/eduProcessCreation/EduProcessCreationMng.vue')
       },
       {
         path: SCREEN.eduSubjectProfileDetail.path,
@@ -1108,11 +1171,17 @@ export const routes = [
       {
         path: SCREEN.userManagement.path,
         name: SCREEN.userManagement.name,
+        meta: {
+          parentRoute: SCREEN.userManagement.name,
+        },
         component: () => import(`@/views/userManagement/UserManagementList.vue`),
       },
       {
         path: SCREEN.userManagementCrud.path,
         name: SCREEN.userManagementCrud.name,
+        meta: {
+          parentRoute: SCREEN.userManagement.name,
+        },
         component: () => import(`@/views/userManagement/UserManagementCrud.vue`),
       },
       {
@@ -1128,47 +1197,65 @@ export const routes = [
       {
         path: SCREEN.infoUniversity.path,
         name: SCREEN.infoUniversity.name,
+        meta: {
+          parentRoute: SCREEN.infoUniversity.name,
+        },
         component: () => import(`@/views/infoUniversity/ListInfoUni.vue`),
       },
       {
         path: SCREEN.infoUniversityAction.path,
         name: SCREEN.infoUniversityAction.name,
+        meta: {
+          parentRoute: SCREEN.infoUniversity.name,
+        },
         component: () => import(`@/views/infoUniversity/CrudInfoUni.vue`),
       },
       {
         path: SCREEN.jobManagement.path,
         name: SCREEN.jobManagement.name,
+        meta: {
+          parentRoute: SCREEN.jobManagement.name,
+        },
         component: () => import(`@/views/jobManagement/JobManagement.vue`),
       },
       {
         path: SCREEN.learningModule.path,
         name: SCREEN.learningModule.name,
+        meta: {
+          parentRoute: SCREEN.learningModule.name,
+        },
         component: () => import(`@/views/informationManagement/LearningModule.vue`),
       },
       {
         path: SCREEN.CQITrainingProcess.path,
         name: SCREEN.CQITrainingProcess.name,
-        children: [
-          {
-            path: '',
-            name: '',
-            component: () => import(`@/views/CQItrainingProcess/TrainingProcess.vue`),
-          },
-          {
-            path: SCREEN.createTrainingProcess.path,
-            name: SCREEN.createTrainingProcess.name,
-            component: () => import(`@/views/CQItrainingProcess/CreateTrainingProcess.vue`),
-          }
-        ]
+        meta: {
+          parentRoute: SCREEN.CQITrainingProcess.name,
+        },
+        component: () => import(`@/views/CQItrainingProcess/TrainingProcess.vue`),
+      },
+      {
+        path: SCREEN.createTrainingProcess.path,
+        name: SCREEN.createTrainingProcess.name,
+        meta: {
+          parentRoute: SCREEN.CQITrainingProcess.name,
+        },
+        component: () => import(`@/views/CQItrainingProcess/CreateTrainingProcess.vue`),
       },
       {
         path: SCREEN.coreAbilityJob.path,
         name: SCREEN.coreAbilityJob.name,
+        meta: {
+          parentRoute: SCREEN.coreAbilityJob.name,
+        },
         component: () => import(`@/views/coreAbilityJob/CoreAbilityJobList.vue`),
       },
       {
         path: SCREEN.coreAbilityJobDetail.path,
         name: SCREEN.coreAbilityJobDetail.name,
+        meta: {
+          parentRoute: SCREEN.coreAbilityJob.name,
+        },
         component: () => import(`@/views/coreAbilityJob/CoreAbilityJobDetail.vue`),
       },
       {
@@ -1184,17 +1271,26 @@ export const routes = [
       {
         path: SCREEN.jobAbilityManagement.path,
         name: SCREEN.jobAbilityManagement.name,
+        meta: {
+          parentRoute: SCREEN.jobAbilityManagement.name,
+        },
         component: () => import(`@/views/jobAbilityManagement/List.vue`),
       },
       {
         path: SCREEN.jobAbilityManagementCrud.path,
         name: SCREEN.jobAbilityManagementCrud.name,
+        meta: {
+          parentRoute: SCREEN.jobAbilityManagement.name,
+        },
         component: () => import(`@/views/jobAbilityManagement/Crud.vue`),
       },
       {
         path: SCREEN.lookupReport.path,
         name: SCREEN.lookupReport.name,
-        component: () => import(`@/views/lookupTrainingResult/LookupReport.vue`)
+        meta: {
+          parentRoute: SCREEN.lookupReport.name,
+        },
+        component: () => import(`@/views/eduCourseReport/EduCourseReportList.vue`)
       },
       {
         path: SCREEN.lookupTechPlan.path,
@@ -1219,6 +1315,9 @@ export const routes = [
       {
         path: SCREEN.lectureDesignSchedule.path,
         name: SCREEN.lectureDesignSchedule.name,
+        meta: {
+          parentRoute: SCREEN.lectureDesignSchedule.name,
+        },
         component: () => import('@/views/eduScheduleCreative/modeling/LectureDesignSchedule.vue')
 
       },
@@ -1260,6 +1359,9 @@ export const routes = [
       {
         path: SCREEN.curriculumManagement.path,
         name: SCREEN.curriculumManagement.name,
+        meta: {
+          parentRoute: SCREEN.curriculumManagement.name,
+        },
         component: () => import(`@/views/curriculumManagement/CurriculumManagement.vue`),
       },
       {
@@ -1285,21 +1387,33 @@ export const routes = [
       {
         path: SCREEN.lookupEvaluationPlan.path,
         name: SCREEN.lookupEvaluationPlan.name,
+        meta: {
+          parentRoute: SCREEN.lookupEvaluationPlan.name,
+        },
         component: () => import('@/views/lookupEvaluationPlan/index.vue')
       },
       {
         path: SCREEN.finalArchivement.path,
         name: SCREEN.finalArchivement.name,
+        meta: {
+          parentRoute: SCREEN.finalArchivement.name,
+        },
         component: () => import('@/views/finalArchivement/FinalArchivementList.vue')
       },
       {
         path: SCREEN.finalArchivementAction.path,
         name: SCREEN.finalArchivementAction.name,
+        meta: {
+          parentRoute: SCREEN.finalArchivement.name,
+        },
         component: () => import('@/views/finalArchivement/FinalArchivementAction.vue')
       },
       {
         path: SCREEN.levelOfJobPerformance.path,
         name: SCREEN.levelOfJobPerformance.name,
+        meta: {
+          parentRoute: SCREEN.levelOfJobPerformance.name,
+        },
         component: () => import('@/views/levelOfJobPerformance/LevelOfJobPerformanceMng.vue')
       },
     ],
@@ -1307,7 +1421,7 @@ export const routes = [
   {
     path: '/template',
     name: 'template',
-    meta: { title: 'TemplateUi Yeongsang' },
+    meta: {title: 'TemplateUi Yeongsang'},
     component: getView('TemplateUiYeongsang'),
   },
   {
@@ -1326,7 +1440,7 @@ export const routes = [
   {
     path: SCREEN.notFound.path,
     name: SCREEN.notFound.name,
-    meta: { title: 'Not Found' },
+    meta: {title: 'Not Found'},
     component: getView('NotFound'),
   },
   {

@@ -36,7 +36,8 @@
             </tr>
             <tr>
               <th
-                scope="row" class="td_custom_color"
+                scope="row"
+                class="td_custom_color"
                 :colspan="1"
                 :rowspan="coreJobSelc.listNcsSysClassification.length + 1"
               >
@@ -382,15 +383,15 @@ export default defineComponent({
         );
         return;
       }
-      this.$confirm(
-        this.t("eduProcessCreation.jobEduMng.messageConfirmSave"),
-        "",
-        (isConfirm: Boolean) => {
-          if (isConfirm) {
-            this.saveData();
-          }
+
+      const message = this.isDisabled
+        ? this.t("common.message.save")
+        : this.t("eduProcessCreation.jobEduMng.messageConfirmSave");
+      this.$confirm(message, "", (isConfirm: Boolean) => {
+        if (isConfirm) {
+          this.saveData();
         }
-      );
+      });
     },
     saveData() {
       this.storeCommon.setLoading(true);

@@ -206,11 +206,13 @@ export default {
         this.storeDepartment &&
         this.storeDepartment.status == SUCCSESS_STATUS
       ) {
+        
         this.storeDepartment.deptRes?.forEach(
           (element: DepartmentDTO, index: number) => {
             this.listDept.push({
               cdId: element.deptCd,
               cdNm: element.deptNm,
+              upCdId: element.typeCd
             });
           }
         );
@@ -228,13 +230,17 @@ export default {
       this.storeCommon.setLoading(false);
     },
     getListDept() {
+      if (!this.eduCourseRequest.eduCourseTypeSeq) {
+        this.eduCourseRequest.deptCd = '';
+        return this.listDept;
+      }
+      
       if (this.listEduType.filter((item:CodeMngModel) => item.cdId == this.eduCourseRequest.eduCourseTypeSeq)[0].upCdId == EDU_TYPE_OTHER_CD) {
-        this.eduCourseRequest.deptCd = DEPT_TYPE_SPECIAL;
-        return this.listDept.filter((item:CodeMngModel) => item.cdId == DEPT_TYPE_SPECIAL);
+        // this.eduCourseRequest.deptCd = DEPT_TYPE_SPECIAL;
+        return this.listDept.filter((item:CodeMngModel) => item.upCdId == EDU_TYPE_OTHER_CD || item.cdId == '');
       }
 
-      this.eduCourseRequest.deptCd = '';
-      return this.listDept.filter((item:CodeMngModel) => item.cdId != DEPT_TYPE_SPECIAL);
+      return this.listDept.filter((item:CodeMngModel) => item.upCdId == this.listEduType.filter((item:CodeMngModel) => item.cdId == this.eduCourseRequest.eduCourseTypeSeq)[0].upCdId || item.cdId == '');
     },
     changeDeptCheck() {
       if (this.eduCourseRequest.deptCd && !this.eduCourseRequest.eduCourseTypeSeq) {

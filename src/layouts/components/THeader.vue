@@ -146,7 +146,7 @@
               <td>{{ row.userId }}</td>
               <td>{{ row.deptNm }}</td>
               <td>
-                <button type="button" @click="onclickSelect(row)">[{{t('modalSwitchAccount.table.select')}}]</button>
+                <button type="button" class="btn_sm btn_round btn_primary" @click="onclickSelect(row)">{{t('modalSwitchAccount.table.select')}}</button>
               </td>
             </tr>
           </tbody>
@@ -399,3 +399,50 @@ export default {
   },
 };
 </script>
+<style scoped>
+.tbl table tbody td,
+.tbl table tbody th {
+  border-left: 1px solid var(--dark1);
+  border-right: 1px solid var(--dark1);
+  vertical-align: middle;
+}
+
+.tbl table thead th {
+  border-left: 1px solid var(--gray-lavender);
+  border-right: 1px solid var(--gray-lavender);
+  border-bottom: 1px solid var(--gray-lavender);
+}
+
+.tbl table thead tr:last-child th,
+.tbl table thead tr th[rowspan] {
+  border-bottom: none !important;
+}
+
+.tbl table thead th:first-child {
+  border-left: 1px solid var(--dark1);
+}
+
+.tbl table thead th:last-child {
+  border-right: 1px solid var(--dark1);
+}
+
+.tbl_row table tbody th {
+  padding: 18px 6px !important;
+  background: var(--dark1);
+  color: var(--white-color);
+}
+
+.td_custom_color {
+  background-color: var(--dark1);
+  color: white;
+  border: 1px solid white !important;
+}
+
+.td_custom_color:first-child {
+  border-left: 1px solid var(--dark1) !important;
+}
+
+.td_custom_color:last-child {
+  border-right: 1px solid var(--dark1) !important;
+}
+</style>

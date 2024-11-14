@@ -36,6 +36,8 @@
               :id="'dept'"
               :name="'dept'"
               :data="listDept"
+              v-if="listDept.length != 0"
+              :valueSelectAll="t('common.select')"
             >
             </SelectBoxBaseSearch>
           </li>
@@ -46,6 +48,8 @@
               :id="'jobSeq'"
               :name="'jobSeq'"
               :data="listJob"
+              v-if="listJob.length != 0"
+              :valueSelectAll="t('common.select')"
             >
             </SelectBoxBaseSearch>
           </li>
@@ -62,20 +66,23 @@
     </div>
   </div>
   <div class="box dp_block">
-    <div class="dp_flex btn_group btn_end mg_b20" style="gap: 10px">
-      <ExportFileExcel
-        :data="dataExport"
-        :fileName="t('levelJobPerformance.job.fileName')"
-        :btnName="t('levelJobPerformance.student.dowload')"
-        :multiHeaderFlag="true"
-        :callData="true"
-        ref="exportExcelRef"
-        @click="dowloadExcel"
-      >
-      </ExportFileExcel>
-    </div>
     <div class="box_section">
-      <div class="tbl tbl_col" v-if="listLevelOfJob.length > 0">
+      <div v-if="isLoad == 0" class="no_cnt">
+        <p>{{ t("levelJobPerformance.empty") }}</p>
+      </div>
+      <div class="tbl tbl_col" v-else-if="listLevelOfJob.length > 0">
+        <div class="dp_flex btn_group btn_end mg_b20" style="gap: 10px">
+          <ExportFileExcel
+            :data="dataExport"
+            :fileName="t('levelJobPerformance.job.fileName')"
+            :btnName="t('levelJobPerformance.student.dowload')"
+            :multiHeaderFlag="true"
+            :callData="true"
+            ref="exportExcelRef"
+            @click="dowloadExcel"
+          >
+          </ExportFileExcel>
+        </div>
         <table>
           <colgroup>
             <col style="width: auto" />
@@ -94,7 +101,7 @@
                 {{ t("levelJobPerformance.job.tbl1") }}
               </th>
               <th scope="col" class="ta_c" colspan="3">
-                {{ t("levelJobPerformance.job.tbl2") }}
+                직무역량
               </th>
               <th scope="col" class="ta_c" colspan="2">
                 {{ t("levelJobPerformance.job.tbl3") }}
@@ -108,19 +115,19 @@
             </tr>
             <tr>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.job.tbl6") }}
+                직무역량
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.job.tbl7") }}
+                직무역량명
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.job.tbl8") }}
+                하위역량명
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.job.tbl9") }}
+                하위역량
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.job.tbl10") }}
+                직무역량
               </th>
             </tr>
           </thead>
@@ -163,12 +170,12 @@
                         <div>{{ jobAbility.jobAbilCd }}</div>
                       </td>
                       <td>{{ jobCapa.capaUnitNm }}</td>
-                      <td>{{ jobCapa.scoreJobCapa }}</td>
+                      <td>{{ formatToTwoDecimalPlaces(jobCapa.scoreJobCapa) }}</td>
                       <td
                         v-if="indexJobCapa === 0"
                         :rowspan="jobAbility.rowSpan"
                       >
-                        {{ jobAbility.scoreJobAbility }}
+                        {{ formatToTwoDecimalPlaces(jobAbility.scoreJobAbility) }}
                       </td>
                       <td
                         v-if="indexJobCapa === 0"
@@ -195,7 +202,7 @@
         </table>
       </div>
       <div v-else class="no_cnt">
-        <p>{{ t("levelJobPerformance.empty") }}</p>
+        <p>{{ t("levelJobPerformance.empty1") }}</p>
       </div>
     </div>
   </div>
@@ -255,6 +262,7 @@ export default defineComponent({
         jobSeq: "",
       } as LevelOfJobAbilitySearchModel,
       dataExport: [] as Array<MultiHeaderData>,
+      isLoad: 0,
     };
   },
   beforeMount() {
@@ -263,7 +271,7 @@ export default defineComponent({
     this.getDepartment();
     this.getListJob();
     const currentYear = new Date().getFullYear();
-    for (let index = START_YEAR_NUMBER; index <= currentYear + 1; index++) {
+    for (let index = 2025; index <= currentYear + 1; index++) {
       this.listYear.push({ cdId: index, cdNm: index, upCdId: "" });
     }
   },
@@ -299,6 +307,7 @@ export default defineComponent({
                 upCdId: "dept",
               };
             });
+          this.listDept.unshift({ cdId: "", cdNm: this.t("common.select"), upCdId: "dept" });
         })
         .catch(() => {
           throw new Error(MESSAGE_ERROR_API);
@@ -314,6 +323,7 @@ export default defineComponent({
             upCdId: "job",
           };
         });
+        this.listJob.unshift({ cdId: "", cdNm: this.t("common.select"), upCdId: "job" });
         this.cmn.setLoading(false);
       });
     },
@@ -328,6 +338,7 @@ export default defineComponent({
         this.$alert(this.t("levelJobPerformance.job.messageWarning"));
         return;
       }
+      this.isLoad++;
       this.cmn.setLoading(true);
       getLevelOfJobAbilityList(this.searchModel)
         .then((res) => {
@@ -445,6 +456,16 @@ export default defineComponent({
       this.dataExport.push(dataInput);
       this.exportExcelRef.downloadExcel();
     },
+    formatToTwoDecimalPlaces(number:number) {
+      const numberStr = number.toString();
+      const decimalIndex = numberStr.indexOf(".");
+
+      if (decimalIndex === -1 || decimalIndex + 3 >= numberStr.length) {
+          return numberStr;
+      }
+
+      return numberStr.substring(0, decimalIndex + 3);
+    }
   },
 });
 </script>

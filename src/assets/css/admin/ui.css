@@ -102,6 +102,13 @@
 .login_header h3 {
   color: var(--white); font-size: 2.8rem; font-weight: 200; line-height: 3.3rem; font-family: 'Pretendard'; font-weight: 200; letter-spacing: 0.02em;
 }
+.login_header h3 .color_txt {
+  margin-left: 8px;
+  height: 100%;
+  color: var(--primary);
+  font-family: 'Pretendard'; font-weight: 200;
+  vertical-align: 0;
+}
 .login_header h3 strong {
   font-family: 'Pretendard'; font-weight: 600;
 }

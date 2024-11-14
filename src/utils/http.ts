@@ -4,6 +4,7 @@ import router from "@/router";
 import {removeUserInfo} from "@/utils/storage";
 import {decode} from "html-entities";
 import {SCREEN} from "@/router/screen";
+import commonService from "@/service/common/CommonService";
 
 class Http {
     instance: AxiosInstance
@@ -61,6 +62,7 @@ class Http {
                     return router.push({name:SCREEN.unauthorized.name})
                 }
                 if (error.response.status === 403) {
+                    await commonService.logout()
                     await removeUserInfo()
                     return router.push({path:'/login'})
                 }

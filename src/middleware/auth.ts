@@ -27,7 +27,7 @@ export default async function authMiddleware({ to, from, next }) {
     return next()
   }
   // If userInfo is undefined and the target route is not 'Login', redirect to 'Login'
-  if (!userInfo && to.name !== SCREEN.login.name) {
+  if (!userInfo && to.name !== SCREEN.login.name && to.name !== SCREEN.unauthorized.name) {
     await commonService.logout()
     return next({ name: SCREEN.login.name });
   }

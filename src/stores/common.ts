@@ -6,6 +6,7 @@ export const commonStore = defineStore('common', () => {
   const loading = ref<boolean>(false)
   const check = ref<boolean>(true)
   const arrRequired = ref<[string]>([])
+  const baseMysuitURL = import.meta.env.VITE_API_MYSUIT;
 
   const setLoading = (isLoading: boolean) => {
     loading.value = isLoading
@@ -52,6 +53,42 @@ export const commonStore = defineStore('common', () => {
     // }
   }
 
+  const fn_viewer_open = (formName: any, _datasetList: any, _paramList: any) =>{
+    var _params = {
+      "projectName": "kaywon"
+      ,"formName": formName
+    };
+    for (var datasetValue in _datasetList) {
+      _params[datasetValue] = encodeURIComponent(_datasetList[datasetValue]);
+    }
+    for (var paramValue in _paramList) {
+      _params[paramValue] = _paramList[paramValue];
+    }
+    var _url = baseMysuitURL + "/UView5/index.jsp"; // MySuit Viewer URL
+    var d = new Date();
+    var n = d.getTime();
+    var name = "UBF_" + n;
+    //팝업 오픈 Option 해당 설정은 window.open 설정을 참조
+    var windowoption = 'width=1280px,height=650px';
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", _url);
+    for (var i in _params) {
+      if (_params.hasOwnProperty(i)) {
+        var param = document.createElement('input');
+        param.type = 'hidden';
+        param.name = i;
+        param.value = encodeURIComponent (_params[i]);
+        form.appendChild(param);
+      }
+    }
+    document.body.appendChild(form);
+    form.setAttribute("target", name);
+    window.open("", name, windowoption);
+    form.submit();
+    document.body.removeChild(form);
+  }
+
   return {
     loading,
     setLoading,
@@ -59,6 +96,7 @@ export const commonStore = defineStore('common', () => {
     checkRequired,
     setRequired,
     removeRequired,
-    arrRequired
+    arrRequired,
+    fn_viewer_open
   }
 })

@@ -541,7 +541,7 @@ export const SCREEN = {
   },
   historyMenuAccess: {
     path: "/history-menu-access",
-    name: "history-menu-access",
+    name: "historyMenuAccess",
   },
   manageApprovedSubjects: {
     path: "/manage-approved-subjects",
@@ -625,7 +625,7 @@ export const SCREEN = {
   },
   lookUpCQI: {
     path: "/look-up-cqi",
-    name: "look-up-cqi",
+    name: "lookUpCQI",
   },
   talentTrainingReport: {
     path: "/talent-training-report",
@@ -633,7 +633,7 @@ export const SCREEN = {
   },
   notificationCategory: {
     path: '/notification-category',
-    name: 'notification-category',
+    name: 'notificationCategory',
   },
   crudNotificationCategory: {
     path: '/notification-category/:mode',
@@ -744,7 +744,7 @@ export const SCREEN = {
     name: "CQITrainingProcess"
   },
   createTrainingProcess: {
-    path: "create/:mode(major|general)",
+    path: "training-process/create/:mode(major|general)",
     name: "createTrainingProcess"
   },
   coreAbilityJob: {

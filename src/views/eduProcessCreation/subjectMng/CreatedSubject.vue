@@ -160,10 +160,13 @@
                         dataForm.jobCapaPerform.filter(
                           (item: any) =>
                             ability.jobCapa &&
-                            dataForm.jobCapa.filter(
-                            (capa: any) =>
-                              ability.cdId && capa.upCdId.includes(ability.cdId)
-                          ).some(capa => capa.cdId == item.upCdId)
+                            dataForm.jobCapa
+                              .filter(
+                                (capa: any) =>
+                                  ability.cdId &&
+                                  capa.upCdId.includes(ability.cdId)
+                              )
+                              .some((capa) => capa.cdId == item.upCdId)
                         )
                       "
                       :mode="'show'"
@@ -185,16 +188,25 @@
                         dataForm.jobCapaPerform.filter(
                           (item: any) =>
                             ability.jobCapa &&
-                            dataForm.jobCapa.filter(
-                            (capa: any) =>
-                              ability.cdId && capa.upCdId.includes(ability.cdId)
-                          ).some(capa => capa.cdId == item.upCdId)
+                            dataForm.jobCapa
+                              .filter(
+                                (capa: any) =>
+                                  ability.cdId &&
+                                  capa.upCdId.includes(ability.cdId)
+                              )
+                              .some((capa) => capa.cdId == item.upCdId)
                         ).length == 0
                       "
                       >※직무역량을 선택해주세요.</span
                     >
                   </td>
-                  <td scope="row" class="ta_c" v-if="indexAbility == 0" :rowspan="sbjt.jobAbility.length" :colspan="1">
+                  <td
+                    scope="row"
+                    class="ta_c"
+                    v-if="indexAbility == 0"
+                    :rowspan="sbjt.jobAbility.length"
+                    :colspan="1"
+                  >
                     <ButtonBase
                       type="button"
                       v-if="indexAbility == 0"
@@ -300,27 +312,23 @@ export default defineComponent({
       indexSelect: -1,
       isDisabled: true,
       checkTemp: true,
-      listSbjectDel: [] as CreateListSbjtSelResDTO[]
+      listSbjectDel: [] as CreateListSbjtSelResDTO[],
     };
   },
   beforeMount() {
     this.goToDetail();
   },
   methods: {
-    checkCapaPefForm(ability:any) {
-      const selectPerForm = this.dataForm.jobCapaPerform
-        .filter(
-          (item: any) =>
-            ability.jobCapaPerform.includes(item.cdId)
-        );
+    checkCapaPefForm(ability: any) {
+      const selectPerForm = this.dataForm.jobCapaPerform.filter((item: any) =>
+        ability.jobCapaPerform.includes(item.cdId)
+      );
 
-        const selectCapa = this.dataForm.jobCapa
-        .filter(
-          (item: any) =>
-          selectPerForm.some((per) => per.upCdId == item.cdId)
-        );
+      const selectCapa = this.dataForm.jobCapa.filter((item: any) =>
+        selectPerForm.some((per) => per.upCdId == item.cdId)
+      );
 
-      ability.jobCapa = selectCapa.map(item => item.cdId);
+      ability.jobCapa = selectCapa.map((item) => item.cdId);
       ability.keyJobCapa++;
     },
     checkCapaChange(ability: any) {
@@ -431,16 +439,15 @@ export default defineComponent({
       indexAbility: number
     ) {
       this.$confirm(
-        this.t('common.message.confirmDelete'),
+        this.t("common.message.confirmDelete"),
         "",
         (isConfirm: Boolean) => {
           if (isConfirm) {
-            this.dataView[indexJob].subjectNm[indexSbjt].jobAbility = this.dataView[
-              indexJob
-            ].subjectNm[indexSbjt].jobAbility.filter(
-              (item: any, index: number) => index != indexAbility
-            );
-            this.$alert(this.t('common.message.deleteSuccess'));
+            this.dataView[indexJob].subjectNm[indexSbjt].jobAbility =
+              this.dataView[indexJob].subjectNm[indexSbjt].jobAbility.filter(
+                (item: any, index: number) => index != indexAbility
+              );
+            this.$alert(this.t("common.message.deleteSuccess"));
           }
         }
       );
@@ -451,33 +458,43 @@ export default defineComponent({
         return;
       }
 
+      let check = true;
+      let messageError = "";
       this.dataView.forEach((job: any) => {
         if (job.subjectNm.length == 0) {
-          this.$alert(`${job.subjectNm.sbjtNm}의 교과목을 선택하세요`);
+          check = false;
+          messageError = `${
+            job.typeNm + "-" + job.jobNm
+          } (은)는 교과목이 선택되지 않았습니다.`;
+          return;
         }
       });
 
-      this.$confirm(
-        this.t("eduProcessCreation.jobEduMng.messageConfirmSave"),
-        "",
-        async (isConfirm: Boolean) => {
-          if (isConfirm) {
-            await this.saveData(STATUS_NO);
+      if (!check) {
+        this.$alert(messageError);
+        return;
+      }
 
-            this.$confirm(
-              this.t("common.messageSuccessNextTab"),
-              "",
-              (isConfirm: Boolean) => {
-                if (isConfirm) {
-                  this.next();
-                }
-                this.$emit("updateStage", 53);
-                this.isDisabled = false;
+      const message = this.isDisabled
+        ? this.t("common.message.save")
+        : this.t("eduProcessCreation.jobEduMng.messageConfirmSave");
+      this.$confirm(message, "", async (isConfirm: Boolean) => {
+        if (isConfirm) {
+          await this.saveData(STATUS_NO);
+
+          this.$confirm(
+            this.t("common.messageSuccessNextTab"),
+            "",
+            (isConfirm: Boolean) => {
+              if (isConfirm) {
+                this.next();
               }
-            );
-          }
+              this.$emit("updateStage", 53);
+              this.isDisabled = false;
+            }
+          );
         }
-      );
+      });
     },
     saveTemp() {
       this.$confirm(
@@ -585,10 +602,22 @@ export default defineComponent({
         return;
       }
 
-      if (this.listSbjectDel.some((item: CreateListSbjtSelResDTO) => item.sbjtCd == data.sbjtCd && item.jobSeq == this.dataView[this.indexSelect].jobSeq)) {
-        const dataSbjt = this.listSbjectDel.filter((item: CreateListSbjtSelResDTO) => item.sbjtCd == data.sbjtCd && item.jobSeq == this.dataView[this.indexSelect].jobSeq).map(item => {
-          return item;
-        })[0];
+      if (
+        this.listSbjectDel.some(
+          (item: CreateListSbjtSelResDTO) =>
+            item.sbjtCd == data.sbjtCd &&
+            item.jobSeq == this.dataView[this.indexSelect].jobSeq
+        )
+      ) {
+        const dataSbjt = this.listSbjectDel
+          .filter(
+            (item: CreateListSbjtSelResDTO) =>
+              item.sbjtCd == data.sbjtCd &&
+              item.jobSeq == this.dataView[this.indexSelect].jobSeq
+          )
+          .map((item) => {
+            return item;
+          })[0];
         this.dataView[this.indexSelect].subjectNm.push(dataSbjt);
         return;
       }
@@ -598,7 +627,7 @@ export default defineComponent({
         sbjtCd: data.sbjtCd,
         sbjtNm: data.sbjtNm,
         acqGpa: data.acqCredit,
-        tempSaveYn: '',
+        tempSaveYn: "",
         jobAbility: [
           {
             cdId: "",
@@ -615,17 +644,19 @@ export default defineComponent({
       this.dataView[this.indexSelect].subjectNm.push(dataSbjt);
     },
     deleteSubject(indexJob: number, indexSubject: number) {
-      this.$confirm(
-        "교과목을 삭제하시겠어요?",
-        "",
-        (isConfirm: Boolean) => {
-          if (isConfirm) {
-            this.listSbjectDel.push(this.dataView[indexJob].subjectNm[indexSubject]);
-            this.dataView[indexJob].subjectNm = this.dataView[indexJob].subjectNm.filter((item: any, index: number) => index !== indexSubject);
-            this.$alert("교과목이 삭제가 되었습니다.");
-          }
+      this.$confirm("교과목을 삭제하시겠어요?", "", (isConfirm: Boolean) => {
+        if (isConfirm) {
+          this.listSbjectDel.push(
+            this.dataView[indexJob].subjectNm[indexSubject]
+          );
+          this.dataView[indexJob].subjectNm = this.dataView[
+            indexJob
+          ].subjectNm.filter(
+            (item: any, index: number) => index !== indexSubject
+          );
+          this.$alert("교과목이 삭제가 되었습니다.");
         }
-      );
+      });
     },
   },
 });

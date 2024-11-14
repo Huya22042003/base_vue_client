@@ -243,7 +243,7 @@ export default defineComponent({
       this.listSubjectType.unshift({
         id: 0,
         cdId: "",
-        cdNm: this.t("common.all"),
+        cdNm: this.t("common.select"),
       });
     });
     this.getDataDetail();
@@ -292,9 +292,20 @@ export default defineComponent({
         (item: any, index: number) => index != indexSel
       );
     },
+    checkValidate() {
+      if (this.data.some(item => item.estbGradeCd == 0) || this.data.some(item => item.estbTermCd == 0)) {
+        return false;
+      }
+      return true;
+    },
     save() {
       if (this.storeCommon.check) {
         this.$alert(this.t("common.messageValidateRequired"));
+        return;
+      }
+      
+      if (!this.checkValidate()) {
+        this.$alert('학년/학기는 0보다 큰 숫자를 입력해주세요.');
         return;
       }
 

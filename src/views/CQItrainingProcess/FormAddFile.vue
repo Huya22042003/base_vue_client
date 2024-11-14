@@ -75,6 +75,7 @@ const saveDataFile = (eduCourseCqiSeq: string) => {
 
 defineExpose({
   saveDataFile,
+  modelValue
 });
 </script>
 

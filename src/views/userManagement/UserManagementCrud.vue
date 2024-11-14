@@ -70,12 +70,12 @@
         <div class="dp_flex btn_group btn_end mt-7" style="gap: 10px">
           <button
             type="button"
-            class="btn_round btn_xs btn_primary"
+            class="btn_round btn_lg btn_primary"
             @click="confirmSave"
           >
             {{ t("common.save") }}
           </button>
-          <button class="btn_round btn_xs btn_white" @click="back">
+          <button class="btn_round btn_lg btn_white" @click="back">
             {{ t("common.list") }}
           </button>
         </div>

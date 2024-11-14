@@ -11,7 +11,7 @@
     "next": "다음",
     "cancel": "취소",
     "home": "HOME",
-    "search": "조회",
+    "search": "검색",
     "reset": "초기화",
     "close": "닫기",
     "add": "추가",
@@ -280,7 +280,7 @@
           "openSub": "교과목 추가",
           "save": "저장",
           "back": "목록",
-          "search": "조회",
+          "search": "검색",
           "reset": "초기화",
           "choice": "선택",
           "close": "닫기",
@@ -707,7 +707,7 @@
         "corecapacity4": "융합실무"
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "reset": "초기화",
         "downloadExel": "엑셀파일 다운로드"
       }
@@ -765,7 +765,9 @@
         "addRole": "권한 등록"
       },
       "alert": {
-        "save": "저장하시겠어요?"
+        "save": "저장하시겠어요?",
+        "adminToProf": "교수 사이트 메뉴를 체크하시면 관리자 사이트를 접속 안 될 것입니다. 설정하시겠습니까?",
+        "profToAdmin": "관리자 사이트 메뉴를 체크하시면 교수 사이트를 접속 안 될 것입니다. 설정하시겠습니까?"
       }
     },
     "historyLogin": {
@@ -1502,7 +1504,7 @@
         "header1": "개설연도",
         "header2": "학기",
         "header3": "학과",
-        "header4": "개설연도*",
+        "header4": "교과구분*",
         "header5": "교과목명",
         "header6": "교과목코드",
         "header7": "학년",
@@ -1528,7 +1530,7 @@
         "capactityMajor": "전공능력",
         "lowerGrade": "하위능력",
         "status": "상태",
-        "search": "조회",
+        "search": "검색",
         "clear": "초기화"
       },
       "list": {
@@ -1577,7 +1579,7 @@
         "title": "검색",
         "universityMajor": "단과대학",
         "dept": "학과",
-        "search": "조회",
+        "search": "검색",
         "clear": "초기화"
       },
       "list": {
@@ -1667,7 +1669,7 @@
         "title": "검색",
         "dept": "학과/학부",
         "typeTalent": "인재양성유형",
-        "btnSeach": "조회",
+        "btnSeach": "검색",
         "btnClear": "초기화",
         "subTitle":"※ 로그인 사용자의 소속 학과의 인재양성유형 목록만 조회됩니다. "
       },
@@ -1719,7 +1721,7 @@
         "lowerGrade": "하위능력",
         "constitutiveFactor": "구성요소",
         "isAction": "상태",
-        "btnSeach": "조회",
+        "btnSeach": "검색",
         "btnClear": "초기화",
         "isActionFalse": "미작성",
         "isActionTrue": "작성"
@@ -1780,7 +1782,7 @@
         "dept": "학과/학부",
         "yearEdu": "학년도",
         "job": "사업구분",
-        "btnSeach": "조회",
+        "btnSeach": "검색",
         "btnClear": "초기화"
       },
       "list": {
@@ -1840,7 +1842,7 @@
         "selectStudent": "홍길동 학생을(를) 선택하시겠어요?",
         "deleteReport": "교육과정 회의록을 삭제하시겠어요?",
         "deleteReportSuccess": "삭제됐습니다. ",
-        "validateTime": "종료일은 시작일보다 빠를 수 없습니다."
+        "validateTime": "종료시간은 시작시간보다 빠를 수 없습니다."
       }
     }
   },
@@ -1855,7 +1857,7 @@
       "languageYn": "다국어 여부",
       "status": "상태",
       "createdDate": "등록일",
-      "search": "조회",
+      "search": "검색",
       "reset": "초기화",
       "register": "진단지등록",
       "total": "전체",
@@ -1897,7 +1899,7 @@
       "multiLanguageYn": "다국어 여부",
       "status": "상태",
       "dateCoreComp": "진단기간",
-      "search": "조회",
+      "search": "검색",
       "reset": "초기화",
       "btnRegister": "진단등록",
       "rowNum": "번호",
@@ -1962,7 +1964,7 @@
           "total": "전체",
           "createdBy": "등록자(학번)",
           "timeRegister": "등록기간",
-          "search": "조회",
+          "search": "검색",
           "reset": "초기화",
           "labelList": "목록",
           "createdDate": "등록일",
@@ -2033,7 +2035,7 @@
         "createdDate": "등록일"
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "reset": "초기화",
         "register": "진단지등록"
       },
@@ -2083,7 +2085,7 @@
         "regDate": "등록일"
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "reset": "초기화",
         "register": "진단등록"
       },
@@ -2126,7 +2128,7 @@
         "time": "진단기간"
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "reset": "초기화"
       },
       "table": {
@@ -2300,7 +2302,7 @@
         }
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "reset": "초기화",
         "register1": "진단지등록",
         "register2": "진단등록",
@@ -2653,7 +2655,7 @@
           "total": "전체",
           "createdBy": "등록자(학번)",
           "timeRegister": "등록기간",
-          "search": "조회",
+          "search": "검색",
           "reset": "초기화",
           "labelList": "목록",
           "createdDate": "등록일",
@@ -2999,7 +3001,7 @@
         "field4": "학년",
         "field5": "이름(학번)",
         "field6": "해당자",
-        "button1": "조회",
+        "button1": "검색",
         "button2": "초기화",
         "button3": "닫기",
         "button4": "확인",
@@ -3020,7 +3022,7 @@
         "field1": "만족도 조사 제목",
         "field2": "등록일",
         "field3": "이름(학번)",
-        "button1": "조회",
+        "button1": "검색",
         "button2": "초기화",
         "button3": "닫기",
         "button4": "확인",
@@ -3119,7 +3121,7 @@
         "ansDateLast": "최종 답변일"
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "reset": "초기화"
       },
       "ansTtl": "Q&A 조회 및 답변",
@@ -3517,7 +3519,7 @@
           }
         },
         "button": {
-          "search": "조회",
+          "search": "검색",
           "reset": "초기화"
         }
       },
@@ -3655,7 +3657,7 @@
         "subjectName": "과목명",
         "applicant": "신청자",
         "approver": "결재자",
-        "searchButton": "조회",
+        "searchButton": "검색",
         "resetButton": "초기화"
       },
       "grid": {
@@ -3921,7 +3923,7 @@
         }
       },
       "button": {
-        "search": "조회",
+        "search": "검색",
         "refresh": "초기화",
         "back": "목록"
       }
@@ -4914,7 +4916,7 @@
         "confirmSave": "저장하시겠어요?",
         "saveSuccess": "저장됐습니다.",
         "saveError": "이미 등록된 학년도 입니다.",
-        "valid": "필수입력항목을 모두 입력해주세"
+        "valid": "필수입력 항목을 모두 입력해주세요."
       }
     },
   "learningModule": {
@@ -5055,7 +5057,7 @@
         "year": "학년도",
         "lesson": "학과",
         "regBy": "작성자",
-        "lookup": "조회"
+        "lookup": "검색"
       }
   },
   "lookupTechPlan":{
@@ -6052,7 +6054,7 @@
       "title93": "학기",
       "title94": "신설내용",
       "title95": "관리",
-      "title96": "(*) 입력된  동일•대체교과목이 있는 경우 동일대체교곽목 없음을 선택할 수 없습니다.",
+      "title96": "(*) 입력된 동일•대체교과목이 있는 경우 동일대체교과목 없음을 선택할 수 없습니다.",
       "modal": {
         "title1": "교과목 추가",
         "title2": "교과목명",
@@ -6340,7 +6342,7 @@
       ,"downloadRp":"성적평가표(제출용) 인쇄"
       ,"col0":"개설학년도-학기"
       ,"col1":"개설학년도"
-      ,"col2":"게열/학부"
+      ,"col2":"계열/학부"
       ,"col3":"학과/전공"
       ,"col4":"과목명"
       ,"col5":"이수구분"
@@ -6359,6 +6361,7 @@
     "tab4": "대학전체 직무능력성취도",
     "messageWarning": "학년도, 학기, 학년, 학과를 다 선태해야 데이터를 조회할 수 있습니다. 다시 확인해주세요.",
     "empty": "검색 조건을 선택하여 조회해주세요.",
+    "empty1": "데이터가 없습니다.",
     "messalert": "*NCS 능력단위평가에 0.8, 직업기초능력에 0.2의 가중치 적용",
     "messSchool": "대학 직무능력성취도",
     "student": {

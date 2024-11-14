@@ -323,7 +323,8 @@ export default {
         } else {
           this.showMessFlag = true;
         }
-        this.$emit("update:modelValue", this.fileUploadedInfo);
+        this.fileArray = [...this.fileArray,...this.fileUploadedInfo];
+        this.$emit("update:modelValue", this.fileArray);
       }
     },
     async upLoadFile(referKeyId) {
@@ -434,6 +435,17 @@ export default {
       this.fileUploadedInfo = this.fileUploadedInfo.filter(
         (item) => item.fileName != fileName
       );
+      this.fileArray = this.fileArray.filter(
+        (item) => {
+          if (item.fileName) {
+            if (item.fileName != fileName) {
+              return true;
+            }
+            return false;
+          } 
+          return true;
+        }
+      );
       await this.store.deleteFileMng(fileName);
       await Swal.fire({
         text: this.t("common.message.deleteFileOk"),
@@ -446,6 +458,7 @@ export default {
         this.showMessFlag = true;
       }
       this.isDisable = false;
+      this.$emit("update:modelValue", this.fileArray);
     },
   },
 };

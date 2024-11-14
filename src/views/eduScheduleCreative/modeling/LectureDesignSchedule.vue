@@ -43,7 +43,7 @@
               </li>
               <li>
                 <p>
-                  {{ t("lectureDesignSchedule.list.planStatus") }}
+                  {{ t("lectureDesignSchedule.list.syllabusStatus") }}
                 </p>
                 <SelectBoxBase
                   :id="'planStatus'"
@@ -55,7 +55,7 @@
               </li>
               <li>
                 <p>
-                  {{ t("lectureDesignSchedule.list.evaluationStatus") }}
+                  {{ t("lectureDesignSchedule.list.planStatus") }}
                 </p>
                 <SelectBoxBase
                   :id="'evaluationStatus'"
@@ -67,7 +67,7 @@
               </li>
               <li>
                 <p>
-                  {{ t("lectureDesignSchedule.list.syllabusStatus") }}
+                  {{ t("lectureDesignSchedule.list.evaluationStatus") }}
                 </p>
                 <SelectBoxBase
                   :id="'syllabusStatus'"
@@ -111,9 +111,9 @@
 
       <div class="box">
         <div class="box_section">
-          <p v-if="!checkData" class="box_title_sm center">
-            {{ t("lectureDesignSchedule.alertPage") }}
-          </p>
+          <div v-if="!checkData" class="no_cnt">
+            <p>{{ t("lectureDesignSchedule.alertPage") }}</p>
+          </div>
           <GridComponentV2
             v-if="checkData"
             :rowData="rowData"
@@ -738,9 +738,6 @@ export default defineComponent({
 <style scoped>
 .search_data {
   display: flex;
-}
-.center {
-  text-align: center;
 }
 .search_box.col_3 > ul > li > p:first-child {
   width: 150px;

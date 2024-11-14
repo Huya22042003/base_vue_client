@@ -209,7 +209,7 @@
     </div>
     <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
-        <button type="button" class="btn_round btn_lg btn_primary">
+        <button type="button" class="btn_lg btn_round btn_gray">
           <!-- 3.인재양성유형 설정 및 교육목표 수립 인쇄 -->{{
             t("eduProcessCreation.typeTalentEdu.title31")
           }}

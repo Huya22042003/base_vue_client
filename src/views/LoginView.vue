@@ -6,7 +6,14 @@
     <div class="login_box">
       <div class="login_header">
         <img src="@/assets/images/login/img_login_play.png" alt="play"/>
-        <h3 class="login_logo"><strong>역량기반 교육과정</strong><br/>관리시스템</h3>
+<!--        <h3 class="login_logo"><strong>역량기반 교육과정</strong><br/>관리시스템</h3>-->
+        <h3 class="login_logo">
+          <strong>역량기반 교육과정</strong><br />관리시스템<span class="color_txt">관리자 사이트</span>
+          <!--
+          <span class="color_txt">관리자 사이트</span>
+           <span class="color_txt">교수 사이트</span>
+           -->
+        </h3>
       </div>
       <div class="login_input">
         <strong>아이디</strong>

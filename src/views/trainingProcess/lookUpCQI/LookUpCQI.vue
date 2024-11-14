@@ -213,7 +213,7 @@ export default defineComponent({
           cellRenderer: (params: any) => {
             const status = params.value;
             let color = "";
-            if (status == this.t("schoolStaff.cqi.status.created")) {
+            if (status == "작성완료") {
               color = "green";
             }
             return `<span style="color: ${color}">${status}</span>`;

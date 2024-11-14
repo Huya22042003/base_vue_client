@@ -104,6 +104,7 @@ export type CoreJobSelDTO = {
     eduCurseSeq: string;
     jobNm: string;
     typeNm: string;
+    defn: string;
     visn: number;
     impt: number;
     psbl: number;

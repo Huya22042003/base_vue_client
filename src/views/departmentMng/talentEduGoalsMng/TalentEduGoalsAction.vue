@@ -1,6 +1,7 @@
 <template>
   <!-- 학과인재상 및 교육목표 등록 -->
   <section id="content" class="content_wrapper grid_content" tabindex="0">
+    <div class="box dp_block">
     <div class="section_tit_wrap">
       <h3 class="section_tit_md">{{ t("talentEduGoalsMng.form.title") }}</h3>
     </div>
@@ -30,12 +31,14 @@
           <td class="td_input">
             <div class="select_form wd_p100">
               <SelectBoxBase
+                v-if="modeScreen != 'detail'"
                 :id="'selectbox'"
                 :name="'selectbox'"
                 v-model="dataForm.year"
                 :data="listSelectBoxYear"
               >
               </SelectBoxBase>
+              <p v-if="modeScreen == 'detail'">{{ dataForm.year }}</p>
             </div>
           </td>
         </tr>
@@ -200,7 +203,7 @@
         </tr>
       </tbody>
     </table>
-    <div class="btn_group btn_end">
+    <div class="btn_group btn_end mt_4">
       <ButtonBase
         type="button"
         class="btn_round btn_sm btn_primary"
@@ -210,11 +213,12 @@
       </ButtonBase>
       <button
         type="button"
-        class="btn_round btn_sm btn_white"
+        class="btn_round btn_lg btn_white"
         @click="goBack()"
       >
       {{ t("common.list") }}
       </button>
+    </div>
     </div>
   </section>
 </template>
@@ -262,6 +266,7 @@ export default {
   },
   data() {
     return {
+      modeScreen: "",
       listSelectBoxYear: [] as CodeMngModel[],
       deptNmSelect: "" as String,
       majorNmSelect: "" as String,
@@ -325,6 +330,7 @@ export default {
     this.majorNmSelect = window.history.state.major;
     this.dept = window.history.state.deptSelect;
     this.year = window.history.state.yearSelect;
+    this.modeScreen = window.history.state.modeScreen;
     for (
       let year = this.dataForm.year;
       year <= this.dataForm.year + 1;

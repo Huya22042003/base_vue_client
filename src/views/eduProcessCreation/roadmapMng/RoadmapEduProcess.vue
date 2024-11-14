@@ -13,7 +13,7 @@
         <tbody>
           <tr>
             <th scope="row" class="ta_c" :colspan="2">
-              교육과정 {{ getRowSpanEduCourse() }}
+              교육과정
             </th>
             <td scope="row" class="ta_c" :colspan="getRowSpanEduCourse()">
               {{ dataView.eduCourseNm }}

@@ -40,28 +40,32 @@
     </div>
   </div>
   <div class="box dp_block">
-    <div class="dp_flex jc_end al_center box_title_sm">
-      <ExportFileExcel
-        :data="dataExport"
-        :fileName="t('levelJobPerformance.school.fileName')"
-        :btnName="t('levelJobPerformance.student.dowload')"
-        :multiHeaderFlag="true"
-        :callData="true"
-        ref="exportExcelRef"
-        @click="dowloadExcel"
-      >
-      </ExportFileExcel>
-    </div>
-    <div class="dp_flex between al_center box_title_sm">
-      <p class="section_tit_xs">
-        {{ t("levelJobPerformance.messSchool") }}: {{ averageSchool }}
-      </p>
-      <p class="section_tit_xs">
-        {{ t("levelJobPerformance.messalert") }}
-      </p>
-    </div>
     <div class="box_section">
-      <div class="tbl tbl_col" v-if="listLevelOfSchool.length > 0">
+      <div v-if="isLoad == 0" class="no_cnt">
+        <p>{{ t("levelJobPerformance.empty") }}</p>
+      </div>
+      <div class="tbl tbl_col" v-else-if="listLevelOfSchool.length > 0">
+        <div class="dp_flex jc_end al_center box_title_sm">
+          <ExportFileExcel
+            :data="dataExport"
+            :fileName="t('levelJobPerformance.school.fileName')"
+            :btnName="t('levelJobPerformance.student.dowload')"
+            :multiHeaderFlag="true"
+            :callData="true"
+            ref="exportExcelRef"
+            @click="dowloadExcel"
+          >
+          </ExportFileExcel>
+        </div>
+        <div class="dp_flex between al_center box_title_sm">
+          <p class="section_tit_xs">
+            {{ t("levelJobPerformance.messSchool") }}:
+            {{ averageSchool ? averageSchool : "-" }}
+          </p>
+          <p class="section_tit_xs">
+            {{ t("levelJobPerformance.messalert") }}
+          </p>
+        </div>
         <table>
           <colgroup>
             <col style="width: auto" />
@@ -83,17 +87,17 @@
                 {{ t("levelJobPerformance.school.tbl2") }}
               </th>
               <th class="ta_c" colspan="2">
-                {{ t("levelJobPerformance.school.tbl3") }}
+                직무역량
               </th>
               <th class="ta_c" colspan="4">
                 {{ t("levelJobPerformance.school.tbl4") }}
               </th>
             </tr>
             <tr>
-              <th class="ta_c">{{ t("levelJobPerformance.school.tbl5") }}</th>
-              <th class="ta_c">{{ t("levelJobPerformance.school.tbl6") }}</th>
-              <th class="ta_c">{{ t("levelJobPerformance.school.tbl7") }}</th>
-              <th class="ta_c">{{ t("levelJobPerformance.school.tbl8") }}</th>
+              <th class="ta_c">직무역량명</th>
+              <th class="ta_c">하위역량명</th>
+              <th class="ta_c">하위역량</th>
+              <th class="ta_c">직무역량</th>
               <th class="ta_c">{{ t("levelJobPerformance.school.tbl9") }}</th>
               <th class="ta_c">{{ t("levelJobPerformance.school.tbl10") }}</th>
             </tr>
@@ -137,18 +141,18 @@
                         <div>{{ jobAbility.jobAbilCd }}</div>
                       </td>
                       <td>{{ jobCapa.capaUnitNm }}</td>
-                      <td>{{ jobCapa.scoreJobCapa }}</td>
+                      <td>{{ formatToTwoDecimalPlaces(jobCapa.scoreJobCapa) }}</td>
                       <td
                         v-if="indexJobCapa === 0"
                         :rowspan="jobAbility.rowSpan"
                       >
-                        {{ jobAbility.scoreJobAbility }}
+                        {{ formatToTwoDecimalPlaces(jobAbility.scoreJobAbility) }}
                       </td>
                       <td
                         v-if="indexJobAbility === 0 && indexJobCapa === 0"
                         :rowspan="job.rowSpan"
                       >
-                        {{ job.scoreJob }}
+                        {{ formatToTwoDecimalPlaces(job.scoreJob) }}
                       </td>
                       <td
                         v-if="
@@ -158,7 +162,7 @@
                         "
                         :rowspan="dept.rowSpan"
                       >
-                        {{ dept.scoreDept }}
+                        {{ formatToTwoDecimalPlaces(dept.scoreDept) }}
                       </td>
                     </tr>
                   </template>
@@ -169,7 +173,7 @@
         </table>
       </div>
       <div v-else class="no_cnt">
-        <p>{{ t("levelJobPerformance.empty") }}</p>
+        <p>{{ t("levelJobPerformance.empty1") }}</p>
       </div>
     </div>
   </div>
@@ -222,13 +226,14 @@ export default defineComponent({
       listLevelOfSchool: [] as Array<LevelOfSchoolDeptModel>,
       listLevelOfSchoolExcel: [] as Array<LevelOfSchoolListDTO>,
       averageSchool: 0,
+      isLoad: 0,
     };
   },
   beforeMount() {
     this.getCodeTermCd();
     this.getCodeGradeCd();
     const currentYear = new Date().getFullYear();
-    for (let index = START_YEAR_NUMBER; index <= currentYear + 1; index++) {
+    for (let index = 2025; index <= currentYear + 1; index++) {
       this.listYear.push({ cdId: index, cdNm: index, upCdId: "" });
     }
   },
@@ -258,11 +263,13 @@ export default defineComponent({
         this.$alert(this.t("levelJobPerformance.school.messageWarning"));
         return;
       }
+      this.isLoad++;
       this.cmn.setLoading(true);
       getLevelOfSchoolList(this.searchModel)
         .then((res) => {
           this.listLevelOfSchool = this.calculateRowSpan(res.data.data);
           this.convertListLevelOfSchoolToExcel();
+          this.calculatorAverage();
           this.cmn.setLoading(false);
         })
         .catch((error) => {
@@ -313,6 +320,14 @@ export default defineComponent({
         gradeCd: "",
       };
     },
+    calculatorAverage() {
+      let sum = 0;
+      this.listLevelOfSchool.forEach((dept) => {
+        sum += dept.scoreDept;
+      });
+      this.averageSchool = (sum / this.listLevelOfSchool.length).toFixed(2);
+    },
+
     dowloadExcel() {
       if (
         !this.searchModel.gradeCd ||
@@ -378,6 +393,16 @@ export default defineComponent({
       this.dataExport.push(dataInput);
       this.exportExcelRef.downloadExcel();
     },
+    formatToTwoDecimalPlaces(number:number) {
+      const numberStr = number.toString();
+      const decimalIndex = numberStr.indexOf(".");
+
+      if (decimalIndex === -1 || decimalIndex + 3 >= numberStr.length) {
+          return numberStr;
+      }
+
+      return numberStr.substring(0, decimalIndex + 3);
+    }
   },
 });
 </script>

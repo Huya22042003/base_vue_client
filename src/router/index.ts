@@ -4,6 +4,8 @@ import routesPub from '@/router/routesPub'
 import commonService from "@/service/common/CommonService";
 import {SCREEN} from "@/router/screen";
 
+let tempScreenName = null;
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [...routes, ...routesPub],
@@ -25,8 +27,16 @@ function nextFactory(context, middleware, index) {
 
 router.beforeEach((to, from, next) => {
   const metaTitle = to.meta.title as string;
-  document.title = metaTitle || "영산대학교";
+  document.title = metaTitle || "계원예술대학교";
 
+  const arrScreenName = [SCREEN.login.name, SCREEN.home.name, SCREEN.notFound.name, SCREEN.internalError.name, SCREEN.unauthorized.name];
+
+  if (to.name && to.meta.parentRoute && !arrScreenName.includes(to.name)) {
+    if (to.meta.parentRoute && to.meta.parentRoute !== tempScreenName) {
+      saveNavigationHistory(to, from);
+      tempScreenName = to.meta.parentRoute;
+    }
+  }
 
   if (to.meta.middleware) {
     const middleware = Array.isArray(to.meta.middleware)
@@ -37,17 +47,12 @@ router.beforeEach((to, from, next) => {
     return middleware[0]({...context, next: nextMiddleware});
   }
 
-  const arrScreenName = [SCREEN.login.name, SCREEN.home.name, SCREEN.notFound.name, SCREEN.internalError.name, SCREEN.unauthorized.name];
-
-  if (to.name && !arrScreenName.includes(to.name)) {
-    saveNavigationHistory(to, from);
-  }
   return next();
 });
 
 function saveNavigationHistory(to, from) {
   commonService
-    .history(to.name)
+    .history(to.meta.parentRoute)
     .then((response: any) => {
     })
     .catch((e: any) => {

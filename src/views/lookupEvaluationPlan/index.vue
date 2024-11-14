@@ -20,7 +20,7 @@
                 ></SelectBoxBase>
               </li>
               <li>
-                <p>{{ t("05.lookupEvaluationPlan.search.year") }}</p>
+                <p>{{ t("05.lookupEvaluationPlan.search.semester") }}</p>
                 <SelectBoxBase
                   :id="'term'"
                   :name="'term'"
@@ -29,7 +29,7 @@
                 />
               </li>
               <li>
-                <p>{{ t("05.lookupEvaluationPlan.search.semester") }}</p>
+                <p>{{ t("05.lookupEvaluationPlan.search.year") }}</p>
                 <SelectBoxBase
                   :id="'yearEdu'"
                   :name="'yearEdu'"

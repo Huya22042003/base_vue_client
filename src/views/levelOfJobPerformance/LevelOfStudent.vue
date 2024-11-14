@@ -6,25 +6,25 @@
           <li>
             <p>{{ t("levelJobPerformance.student.column1") }}</p>
             <SelectBoxBase
-              v-model="searchModel.year"
-              :id="'listYear'"
-              :data="listYear"
+                v-model="searchModel.year"
+                :id="'listYear'"
+                :data="listYear"
             />
           </li>
           <li>
             <p>{{ t("levelJobPerformance.student.column2") }}</p>
             <SelectBoxBase
-              :id="'listTerm'"
-              v-model="searchModel.termCd"
-              :data="listTerm"
+                :id="'listTerm'"
+                v-model="searchModel.termCd"
+                :data="listTerm"
             />
           </li>
           <li>
             <p>{{ t("levelJobPerformance.student.column3") }}</p>
             <SelectBoxBase
-              :id="'listGrade'"
-              v-model="searchModel.gradeCd"
-              :data="listGrade"
+                :id="'listGrade'"
+                v-model="searchModel.gradeCd"
+                :data="listGrade"
             />
           </li>
         </ul>
@@ -32,20 +32,22 @@
           <li>
             <p>{{ t("levelJobPerformance.student.column4") }}</p>
             <SelectBoxBaseSearch
-              :id="'listDept'"
-              v-model="searchModel.deptCd"
-              :name="'listDept'"
-              :data="listDept"
+                :id="'listDept'"
+                v-model="searchModel.deptCd"
+                :name="'listDept'"
+                :data="listDept"
+                v-if="listDept.length != 0"
+                :valueSelectAll="t('common.select')"
             >
             </SelectBoxBaseSearch>
           </li>
           <li>
             <p>{{ t("levelJobPerformance.student.column5") }}</p>
-            <InputBase :id="'stdNo'" v-model="searchModel.stdNo" />
+            <InputBase :id="'stdNo'" v-model="searchModel.stdNo"/>
           </li>
           <li>
             <p>{{ t("levelJobPerformance.student.column6") }}</p>
-            <InputBase :id="'stdNm'" v-model="searchModel.stdNm" />
+            <InputBase :id="'stdNm'" v-model="searchModel.stdNm"/>
           </li>
         </ul>
         <div class="dp_flex btn_group btn_end" style="gap: 10px">
@@ -60,6 +62,11 @@
     </div>
   </div>
   <div class="box dp_block">
+    <div class="box_section">
+      <div v-if="isLoad == 0" class="no_cnt">
+        <p>{{ t("levelJobPerformance.empty") }}</p>
+      </div>
+      <div class="tbl tbl_col" v-else-if="listLevelOfStudent.length > 0">
     <div class="dp_flex btn_group btn_end mg_b20" style="gap: 10px">
       <ExportFileExcel
         :data="dataExport"
@@ -72,19 +79,17 @@
       >
       </ExportFileExcel>
     </div>
-    <div class="box_section">
-      <div class="tbl tbl_col" v-if="listLevelOfStudent.length > 0">
         <table>
           <colgroup>
-            <col style="width: auto" />
-            <col style="width: auto" />
-            <col style="width: auto" />
-            <col style="width: auto" />
-            <col style="width: auto" />
-            <col style="width: auto" />
-            <col style="width: auto" />
-            <col style="width: auto" />
-            <col style="width: auto" />
+            <col style="width: auto"/>
+            <col style="width: auto"/>
+            <col style="width: auto"/>
+            <col style="width: auto"/>
+            <col style="width: auto"/>
+            <col style="width: auto"/>
+            <col style="width: auto"/>
+            <col style="width: auto"/>
+            <col style="width: auto"/>
           </colgroup>
           <thead>
             <tr>
@@ -95,7 +100,7 @@
                 {{ t("levelJobPerformance.student.tbl2") }}
               </th>
               <th scope="col" class="ta_c" colspan="3">
-                {{ t("levelJobPerformance.student.tbl3") }}
+                직무역량
               </th>
               <th scope="col" class="ta_c" colspan="4">
                 {{ t("levelJobPerformance.student.tbl4") }}
@@ -106,16 +111,16 @@
                 {{ t("levelJobPerformance.student.tbl5") }}
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.student.tbl6") }}
+                직무역량명
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.student.tbl7") }}
+                하위역량명
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.student.tbl8") }}
+                직무역량
               </th>
               <th scope="col" class="ta_c">
-                {{ t("levelJobPerformance.student.tbl9") }}
+                하위역량
               </th>
               <th scope="col" class="ta_c">
                 {{ t("levelJobPerformance.student.tbl10") }}
@@ -126,87 +131,87 @@
             </tr>
           </thead>
           <tbody>
-            <template
+          <template
               v-for="student in listLevelOfStudent"
               :key="student.stdId"
-            >
-              <template
+          >
+            <template
                 v-for="(job, indexJob) in student.jobs"
                 :key="job.jobSeq"
-              >
-                <template
+            >
+              <template
                   v-for="(jobAbility, indexJobAbility) in job.jobAbilities"
                   :key="jobAbility.jobAbilSeq"
-                >
-                  <template
+              >
+                <template
                     v-for="(
                       jobCapaUnit, indexJobCapaUnit
                     ) in jobAbility.jobCapaUnits"
                     :key="jobCapaUnit.jobCapaUnitSeq"
-                  >
-                    <tr>
-                      <td
+                >
+                  <tr>
+                    <td
                         v-if="
                           indexJob === 0 &&
                           indexJobAbility === 0 &&
                           indexJobCapaUnit === 0
                         "
                         :rowspan="student.rowSpan"
-                      >
-                        {{ student.stdId + " - " + student.stdNm }}
-                      </td>
-                      <td
+                    >
+                      {{ student.stdId + " - " + student.stdNm }}
+                    </td>
+                    <td
                         v-if="indexJobAbility === 0 && indexJobCapaUnit === 0"
                         :rowspan="job.rowSpan"
-                      >
-                        {{ job.jobNm }}
-                      </td>
-                      <td
+                    >
+                      {{ job.jobNm }}
+                    </td>
+                    <td
                         :rowspan="job.rowSpan"
                         v-if="indexJobAbility === 0 && indexJobCapaUnit === 0"
-                      >
-                        {{ job.typeNm }}
-                      </td>
-                      <td
+                    >
+                      {{ job.typeNm }}
+                    </td>
+                    <td
                         v-if="indexJobCapaUnit === 0"
                         :rowspan="jobAbility.rowSpan"
-                      >
-                        {{ jobAbility.jobAbilNm }}
-                      </td>
-                      <td>{{ jobCapaUnit.capaUnitNm }}</td>
-                      <td>{{ jobCapaUnit.scoreJobCapa }}</td>
-                      <td
+                    >
+                      {{ jobAbility.jobAbilNm }}
+                    </td>
+                    <td>{{ jobCapaUnit.capaUnitNm }}</td>
+                    <td>{{ formatToTwoDecimalPlaces(jobCapaUnit.scoreJobCapa) }}</td>
+                    <td
                         :rowspan="jobAbility.rowSpan"
                         v-if="indexJobCapaUnit === 0"
-                      >
-                        {{ jobAbility.scoreJobAbility }}
-                      </td>
-                      <td
+                    >
+                      {{ formatToTwoDecimalPlaces(jobAbility.scoreJobAbility) }}
+                    </td>
+                    <td
                         v-if="indexJobAbility === 0 && indexJobCapaUnit === 0"
                         :rowspan="job.rowSpan"
-                      >
-                        {{ job.scoreJob }}
-                      </td>
-                      <td
+                    >
+                      {{ formatToTwoDecimalPlaces(job.scoreJob) }}
+                    </td>
+                    <td
                         v-if="
                           indexJob === 0 &&
                           indexJobAbility === 0 &&
                           indexJobCapaUnit === 0
                         "
                         :rowspan="student.rowSpan"
-                      >
-                        {{ student.scoreStudent }}
-                      </td>
-                    </tr>
-                  </template>
+                    >
+                      {{ formatToTwoDecimalPlaces(student.scoreStudent) }}
+                    </td>
+                  </tr>
                 </template>
               </template>
             </template>
+          </template>
           </tbody>
         </table>
       </div>
       <div v-else class="no_cnt">
-        <p>{{ t("levelJobPerformance.empty") }}</p>
+        <p>{{ t("levelJobPerformance.empty1") }}</p>
       </div>
     </div>
   </div>
@@ -219,12 +224,12 @@ import {
   UP_CD_ID_GRADE_LEVEL,
   UP_CD_ID_SEMESTER,
 } from "@/constants/common.const";
-import { START_YEAR_NUMBER } from "@/constants/screen.const";
-import { commonStore } from "@/stores/common";
-import { getCodeMngByUpCdId } from "@/stores/common/codeMng/codeMng.service";
-import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
-import { getDepartmentList } from "@/stores/common/department/department.service";
-import { getLevelOfStudentList } from "@/stores/levelOfJobPerformance/levelOfStudent/levelOfStudent.service";
+import {START_YEAR_NUMBER} from "@/constants/screen.const";
+import {commonStore} from "@/stores/common";
+import {getCodeMngByUpCdId} from "@/stores/common/codeMng/codeMng.service";
+import {CodeMngModel} from "@/stores/common/codeMng/codeMng.type";
+import {getDepartmentList} from "@/stores/common/department/department.service";
+import {getLevelOfStudentList} from "@/stores/levelOfJobPerformance/levelOfStudent/levelOfStudent.service";
 import {
   LevelOfStudentListModel,
   LevelOfStudentSearchModel,
@@ -238,22 +243,22 @@ import {
 
 export default defineComponent({
   setup() {
-    const { t } = useI18n();
+    const {t} = useI18n();
     const cmn = commonStore();
     const exportExcelRef = ref();
-    return { t, cmn, exportExcelRef };
+    return {t, cmn, exportExcelRef};
   },
   data() {
     return {
       breadcrumbItems: [],
       listYear: [
-        { cdId: "", cdNm: this.t("common.select") },
+        {cdId: "", cdNm: this.t("common.select")},
       ] as Array<CodeMngModel>,
       listTerm: [
-        { cdId: "", cdNm: this.t("common.select") },
+        {cdId: "", cdNm: this.t("common.select")},
       ] as Array<CodeMngModel>,
       listGrade: [
-        { cdId: "", cdNm: this.t("common.select") },
+        {cdId: "", cdNm: this.t("common.select")},
       ] as Array<CodeMngModel>,
       listDept: [] as Array<CodeMngModel>,
       searchModel: {
@@ -267,6 +272,7 @@ export default defineComponent({
       listLevelOfStudent: [] as Array<StudentLevelOfStudent>,
       listLevelOfStudentExcel: [] as LevelOfStudentListModel[],
       dataExport: [] as Array<MultiHeaderData>,
+      isLoad: 0,
     };
   },
   beforeMount() {
@@ -275,21 +281,22 @@ export default defineComponent({
     this.getDepartment();
 
     const currentYear = new Date().getFullYear();
-    for (let index = START_YEAR_NUMBER; index <= currentYear + 1; index++) {
-      this.listYear.push({ cdId: index, cdNm: index, upCdId: "" });
+    for (let index = 2025; index <= currentYear + 1; index++) {
+      this.listYear.push({cdId: index, cdNm: index, upCdId: ""});
     }
   },
   methods: {
     search() {
       if (
-        !this.searchModel.deptCd ||
-        !this.searchModel.gradeCd ||
-        !this.searchModel.year ||
-        !this.searchModel.termCd
+          !this.searchModel.deptCd ||
+          !this.searchModel.gradeCd ||
+          !this.searchModel.year ||
+          !this.searchModel.termCd
       ) {
         this.$alert(this.t("levelJobPerformance.messageWarning"));
         return;
       }
+      this.isLoad++;
       this.cmn.setLoading(true);
       getLevelOfStudentList(this.searchModel).then((res) => {
         this.listLevelOfStudent = this.transformToTreeStructure(res.data.data);
@@ -297,7 +304,7 @@ export default defineComponent({
       });
     },
     transformToTreeStructure(
-      data: LevelOfStudentListModel[]
+        data: LevelOfStudentListModel[]
     ): StudentLevelOfStudent[] {
       const studentMap = new Map<string, StudentLevelOfStudent>();
 
@@ -328,7 +335,7 @@ export default defineComponent({
         }
 
         let jobAbility = job.jobAbilities.find(
-          (ja) => ja.jobAbilSeq === item.jobAbilSeq
+            (ja) => ja.jobAbilSeq === item.jobAbilSeq
         );
         if (!jobAbility) {
           jobAbility = {
@@ -342,7 +349,7 @@ export default defineComponent({
           job.jobAbilities.push(jobAbility);
         } else {
           const existingTypes = new Set<string>(
-            jobAbility.typeNm.split(",").map((type) => type.trim())
+              jobAbility.typeNm.split(",").map((type) => type.trim())
           );
           existingTypes.add(item.typeNm);
           jobAbility.typeNm = Array.from(existingTypes).join(", ");
@@ -363,35 +370,35 @@ export default defineComponent({
             jobAbility.rowSpan = jobAbility.jobCapaUnits.length;
 
             const totalJobCapaScore = jobAbility.jobCapaUnits.reduce(
-              (sum, unit) => sum + unit.scoreJobCapa,
-              0
+                (sum, unit) => sum + unit.scoreJobCapa,
+                0
             );
             jobAbility.scoreJobAbility =
-              jobAbility.jobCapaUnits.length > 0
-                ? totalJobCapaScore / jobAbility.jobCapaUnits.length
-                : 0;
+                jobAbility.jobCapaUnits.length > 0
+                    ? totalJobCapaScore / jobAbility.jobCapaUnits.length
+                    : 0;
             totalScoreJobAbility += jobAbility.scoreJobAbility;
           });
 
           job.rowSpan = job.jobAbilities.reduce(
-            (sum, jobAbility) => sum + jobAbility.rowSpan,
-            0
+              (sum, jobAbility) => sum + jobAbility.rowSpan,
+              0
           );
           job.scoreJob =
-            job.jobAbilities.length > 0
-              ? totalScoreJobAbility / job.jobAbilities.length
-              : 0;
+              job.jobAbilities.length > 0
+                  ? totalScoreJobAbility / job.jobAbilities.length
+                  : 0;
         });
 
         student.rowSpan = student.jobs.reduce(
-          (sum, job) => sum + job.rowSpan,
-          0
+            (sum, job) => sum + job.rowSpan,
+            0
         );
         student.scoreStudent =
-          student.jobs.length > 0
-            ? student.jobs.reduce((sum, job) => sum + job.scoreJob, 0) /
-              student.jobs.length
-            : 0;
+            student.jobs.length > 0
+                ? student.jobs.reduce((sum, job) => sum + job.scoreJob, 0) /
+                student.jobs.length
+                : 0;
       });
 
       const listLevelOfStudentExcel: LevelOfStudentListModel[] = [];
@@ -425,14 +432,14 @@ export default defineComponent({
       return Array.from(studentMap.values());
     },
     getCodeTermCd() {
-      getCodeMngByUpCdId({ upCdId: UP_CD_ID_SEMESTER }).then((response) => {
+      getCodeMngByUpCdId({upCdId: UP_CD_ID_SEMESTER}).then((response) => {
         response.data.data.forEach((item: any) => {
           this.listTerm.push(item);
         });
       });
     },
     getCodeGradeCd() {
-      getCodeMngByUpCdId({ upCdId: UP_CD_ID_GRADE_LEVEL }).then((response) => {
+      getCodeMngByUpCdId({upCdId: UP_CD_ID_GRADE_LEVEL}).then((response) => {
         response.data.data.forEach((item: any) => {
           this.listGrade.push(item);
         });
@@ -446,21 +453,22 @@ export default defineComponent({
         upDeptCd: [],
         useYn: "",
       })
-        .then((res) => {
-          this.listDept = res.data.data
-            .filter((el) => el.deptDivCd == DIV_CD_DEPT_DEPART)
-            .map((el) => {
-              return {
-                cdId: el.deptCd,
-                cdNm: el.deptNm,
-                upCdId: "dept",
-              };
-            });
-          this.cmn.setLoading(false);
-        })
-        .catch(() => {
-          throw new Error(MESSAGE_ERROR_API);
-        });
+          .then((res) => {
+            this.listDept = res.data.data
+                .filter((el) => el.deptDivCd == DIV_CD_DEPT_DEPART)
+                .map((el) => {
+                  return {
+                    cdId: el.deptCd,
+                    cdNm: el.deptNm,
+                    upCdId: "dept",
+                  };
+                });
+            this.listDept.unshift({cdId: "", cdNm: this.t("common.select"), upCdId: "dept"});
+            this.cmn.setLoading(false);
+          })
+          .catch(() => {
+            throw new Error(MESSAGE_ERROR_API);
+          });
     },
     reset() {
       this.searchModel = {
@@ -474,10 +482,10 @@ export default defineComponent({
     },
     dowloadExcel() {
       if (
-        !this.searchModel.deptCd ||
-        !this.searchModel.gradeCd ||
-        !this.searchModel.year ||
-        !this.searchModel.termCd
+          !this.searchModel.deptCd ||
+          !this.searchModel.gradeCd ||
+          !this.searchModel.year ||
+          !this.searchModel.termCd
       ) {
         this.$alert(this.t("levelJobPerformance.messageWarning"));
         return;
@@ -546,6 +554,16 @@ export default defineComponent({
       this.dataExport.push(dataInput);
       this.exportExcelRef.downloadExcel();
     },
+    formatToTwoDecimalPlaces(number: number) {
+      const numberStr = number.toString();
+      const decimalIndex = numberStr.indexOf(".");
+
+      if (decimalIndex === -1 || decimalIndex + 3 >= numberStr.length) {
+        return numberStr;
+      }
+
+      return numberStr.substring(0, decimalIndex + 3);
+    }
   },
 });
 </script>
