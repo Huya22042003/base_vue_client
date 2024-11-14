@@ -33,17 +33,9 @@
                 <th scope="col">{{ t("finalArchi.action.col1_1") }}</th>
                 <th scope="col">{{ t("finalArchi.action.col1_2") }}</th>
                 <th scope="col">{{ t("finalArchi.action.col1_3") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col1_4") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col1_5") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col1_6") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col1_7") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col1_8") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col1_9") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col1_10") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col1_11") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col1_12") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col1_13") }}</th>
-                <th scope="col">{{ t("finalArchi.action.col1_14") }}</th>
+                <th scope="col" v-for="(item,index) in gradeCounts" :key="item.grade" >
+                  {{ item.grade}}
+                </th>                 
               </tr>
             </thead>
             <tbody>
@@ -63,57 +55,10 @@
                 <td class="score-cell">
                   {{ finalAchiDetailModel.cntStd }}
                 </td>
-                <td class="score-cell">
-                  {{ finalAchiRltModel.bigA0 }}<br />
-                  ({{ finalAchiRltModel.percentBigA0 }}%)
-                </td>
-                <td class="score-cell">
-                  {{ finalAchiRltModel.bigB0 }}<br />
-                  ({{ finalAchiRltModel.percentBigB0 }}%)
-                </td>
-                <td class="score-cell">
-                  {{ finalAchiRltModel.apCnt }}<br />
-                  ({{ finalAchiRltModel.apRate }}%)
-                </td>
-                <td class="score-cell">
-                  {{ finalAchiRltModel.a0Cnt }}<br />({{
-                    finalAchiRltModel.a0Rate
-                  }}%)
-                </td>
-                <td class="score-cell">
-                  {{ finalAchiRltModel.bpCnt }}<br />({{
-                    finalAchiRltModel.bpRate
-                  }}%)
-                </td>
-                <td class="score-cell">
-                  {{ finalAchiRltModel.b0Cnt }}<br />({{
-                    finalAchiRltModel.b0Rate
-                  }}%)
-                </td>
-                <td class="score-cell">
-                  {{ finalAchiRltModel.cpCnt }}<br />({{
-                    finalAchiRltModel.cpRate
-                  }}%)
-                </td>
-                <td class="score-cell">
-                  {{ finalAchiRltModel.c0Cnt }}<br />({{
-                    finalAchiRltModel.c0Rate
-                  }}%)
-                </td>
-                <td class="score-cell">
-                  {{ finalAchiRltModel.dpCnt }}<br />({{
-                    finalAchiRltModel.dpRate
-                  }}%)
-                </td>
-                <td class="score-cell">
-                  {{ finalAchiRltModel.d0Cnt }}<br />({{
-                    finalAchiRltModel.d0Rate
-                  }}%)
-                </td>
-                <td class="score-cell">
-                  {{ finalAchiRltModel.fcnt }}<br />
-                  ({{ finalAchiRltModel.frate }}%)
-                </td>
+                <td class="score-cell" v-for="(item,index) in gradeCounts" :key="item.grade" >
+                  {{ item.count }}<br />
+                  {{ item.percentage }}
+                </td>  
               </tr>
             </tbody>
           </table>
@@ -308,6 +253,17 @@ export default defineComponent({
       fileNameExport: "공지사항",
       nameOfbtnRp: this.t("finalArchi.list.downloadRp"),
       mediScore: 0,
+      gradeCounts : [
+        { grade: "A+", count: 0, percentage: 0 },
+        { grade: "A0", count: 0, percentage: 0 },
+        { grade: "B+", count: 0, percentage: 0 },
+        { grade: "B0", count: 0, percentage: 0 },
+        { grade: "C+", count: 0, percentage: 0 },
+        { grade: "C0", count: 0, percentage: 0 },
+        { grade: "D+", count: 0, percentage: 0 },
+        { grade: "D0", count: 0, percentage: 0 },
+        { grade: "F", count: 0, percentage: 0 }
+      ],
     };
   },
   beforeMount() {
@@ -383,15 +339,6 @@ export default defineComponent({
             });
             this.calPoint(this.convertedData);
 
-            this.finalAchiRltModel.percentBigA0 = parseFloat(
-              this.finalAchiRltModel.percentBigA0
-            ).toFixed(2);
-            this.finalAchiRltModel.percentBigB0 = parseFloat(
-              this.finalAchiRltModel.percentBigB0
-            ).toFixed(2);
-            this.finalAchiRltModel.scoreMedi = parseFloat(
-              this.finalAchiRltModel.scoreMedi
-            ).toFixed(2);
           })
           .catch((error) => {
             throw new Error(MESSAGE_ERROR_API);
@@ -465,9 +412,44 @@ export default defineComponent({
         };
       });
 
-      this.mediScore = this.finalAchiRltModel.percentBigA0 = parseFloat(
-        cntScore / this.arrFinalAchiMngModel.length
-      ).toFixed(2);
+      // Classification of scores for item 1
+      let sumScore = 0;
+      this.arrEnd.forEach(student => {
+        const grade = this.getGrade(student.finalScore);
+        sumScore += student.finalScore
+
+        const gradeObj = this.gradeCounts.find(g => g.grade === grade);
+          if (gradeObj) gradeObj.count++;
+        });
+
+        const totalStudents = this.arrEnd.length;
+        
+        this.gradeCounts.forEach(gradeObj => {
+          gradeObj.percentage = '(' +((gradeObj.count / totalStudents) * 100).toFixed(2) + '%)';                  
+      });
+      this.mediScore = (sumScore/totalStudents).toFixed(2)
+
+      const countAorHigher = this.gradeCounts
+        .filter(g => ["A+", "A"].includes(g.grade))
+        .reduce((sum, g) => sum + g.count, 0);
+
+      const countBorHigher = this.gradeCounts
+        .filter(g => ["A+", "A", "B+", "B"].includes(g.grade))
+        .reduce((sum, g) => sum + g.count, 0);
+
+      this.gradeCounts.unshift(
+        {
+          grade: "A0이상",
+          count: countAorHigher,
+          percentage: '(' +((countAorHigher / totalStudents) * 100).toFixed(2) + '%)'
+        },
+        {
+          grade: "B0이상",
+          count: countBorHigher,
+          percentage: '(' +((countBorHigher / totalStudents) * 100).toFixed(2) + '%)'
+        }
+      );
+      
     },
     handClickExport() {
       let rowExcel = [] as Array<Array<any>>;
@@ -521,6 +503,17 @@ export default defineComponent({
       ] as Array<ExcelData>;
     },
     handClickRp() {},
+    getGrade(score: any) {
+      if (score >= 95) return "A+";
+      else if (score >= 90) return "A";
+      else if (score >= 85) return "B+";
+      else if (score >= 80) return "B";
+      else if (score >= 75) return "C+";
+      else if (score >= 70) return "C";
+      else if (score >= 65) return "D+";
+      else if (score >= 60) return "D";
+      else return "F";
+    }
   },
 });
 </script>
