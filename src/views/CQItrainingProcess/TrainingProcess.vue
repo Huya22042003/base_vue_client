@@ -232,7 +232,7 @@ const dataRow = ref<EduCourseCqiListModel[]>([]);
 const listYear = ref<Array<CodeMngModel>>([]);
 
 const currentYear = new Date().getFullYear();
-for (let index = START_YEAR_NUMBER; index <= currentYear + 1; index++) {
+for (let index =  currentYear + 1; index >= START_YEAR_NUMBER; index--) {
   listYear.value.push({
     cdId: `${index}`,
     cdNm: `${index}`,

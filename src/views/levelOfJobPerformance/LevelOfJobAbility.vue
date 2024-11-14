@@ -271,8 +271,8 @@ export default defineComponent({
     this.getDepartment();
     this.getListJob();
     const currentYear = new Date().getFullYear();
-    for (let index = 2025; index <= currentYear + 1; index++) {
-      this.listYear.push({ cdId: index, cdNm: index, upCdId: "" });
+    for (let index = currentYear + 1; index >= START_YEAR_NUMBER; index--) {
+      this.listYear.push({cdId: index, cdNm: index, upCdId: ""});
     }
   },
   methods: {

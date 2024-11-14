@@ -414,7 +414,7 @@ export default defineComponent({
     async getDepartment() {
       this.departmentFilterDTO.deptDivCd = [CODE_SCH, CODE_MAJOR];
       const currentYear = new Date().getFullYear();
-      for (let index = START_YEAR_NUMBER; index <= currentYear + 1; index++) {
+      for (let index = currentYear + 1; index >= START_YEAR_NUMBER; index--) {
         this.listYear.push({ id: index, cdId: index, cdNm: index });
       }
       await this.storeDepartment.getDepartment(this.departmentFilterDTO);

@@ -230,7 +230,7 @@ const fnPagination = (pageNumber: any, pagesSize: any) => {
 
 onBeforeMount(async () => {
   let currentYear = new Date().getFullYear();
-  for (let year = parseInt(START_YEAR); year <= currentYear + 1; year++) {
+  for (let year = currentYear + 1; year >= parseInt(START_YEAR); year--) {
     listYear.value.push({
       cdId: year.toString(),
       cdNm: year.toString(),
