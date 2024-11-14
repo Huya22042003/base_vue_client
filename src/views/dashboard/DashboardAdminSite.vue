@@ -399,7 +399,7 @@ const selectOption2 = ref({
 });
 
 const processbar = ref("15%");
-const year = ref(START_YEAR_NUMBER);
+const year = ref(new Date().getFullYear());
 const donutChart = ref({} as ListDonutChartDTO);
 const dashboardRate = ref({} as DashboardRateDTO);
 
