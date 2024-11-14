@@ -34,36 +34,6 @@ export type FinalAchiListModel = {
     
 }
 
-export type FinalAchiRltModel = {
-    apCnt: string
-    bpCnt: string
-    cpCnt: string
-    dpCnt: string
-    fCnt: string
-    apRate: string
-    bpRate: string
-    cpRate: string
-    dpRate: string
-
-    fRate: string
-    a0Cnt: string
-    b0Cnt: string
-    c0Cnt: string
-    d0Cnt: string
-    a0Rate: string
-    b0Rate: string
-    c0Rate: string
-    d0Rate: string
-
-    bigB0: string
-    percentBigB0: string
-    scoreMedi: string
-    evalType: string
-    bigA0: string
-    percentBigA0: string
-    cntStd: string
-
-}
 
 export type FinalAchiMngModel = {
     rowNum: string
@@ -81,7 +51,6 @@ export type FinalAchiMngModel = {
 export type FinalAchiDetailModel = {
     cntStd: number
     aveScore: string
-    abilArchEvalRlstInfoDTO: FinalAchiRltModel
     achievementMngDTOList: []
     studentScoreListDTOList: []
 }
