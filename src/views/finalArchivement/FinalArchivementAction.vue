@@ -173,7 +173,6 @@
 </template>
 <script lang="ts">
 import type {
-  FinalAchiRltModel,
   FinalAchiMngModel,
   FinalAchiDetailModel,
   LectInfoIdModel,
@@ -203,7 +202,6 @@ export default defineComponent({
     const lectInfoIdModel = {} as LectInfoIdModel;
     const finalAchiDetailModel = {} as FinalAchiDetailModel;
     const finalAchiMngModel = {} as FinalAchiMngModel;
-    const finalAchiRltModel = {} as FinalAchiRltModel;
     const stdScoreListModel = {} as StdScoreListModel;
     const arrStdScoreListModel = ref([]);
     const arrCntScore = ref([]);
@@ -219,7 +217,6 @@ export default defineComponent({
       lectInfoIdModel,
       finalAchiDetailModel,
       finalAchiMngModel,
-      finalAchiRltModel,
       arrFinalAchiMngModel,
       router,
       userJobModel,
@@ -296,9 +293,6 @@ export default defineComponent({
 
             this.arrFinalAchiMngModel =
               this.finalAchiDetailModel.achievementMngDTOList;
-
-            this.finalAchiRltModel =
-              this.finalAchiDetailModel.abilArchEvalRlstInfoDTO;
 
             this.arrStdScoreListModel =
               this.finalAchiDetailModel.studentScoreListDTOList;
