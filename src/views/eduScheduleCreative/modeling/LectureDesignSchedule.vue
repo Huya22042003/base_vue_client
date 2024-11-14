@@ -185,6 +185,7 @@ import {
   FORMAT_YYY_MM_DD,
   PAGINATION_PAGE_SIZE,
   PAGINATION_PAGE_SIZE_SELECTOR,
+  START_YEAR_NUMBER,
 } from "@/constants/screen.const";
 import type {
   LectureDesignSchudeModel,
@@ -443,14 +444,6 @@ export default defineComponent({
           cdId: "",
           cdNm: this.t("common.select"),
         },
-        {
-          cdId: this.currentYear.toString(),
-          cdNm: this.currentYear.toString(),
-        },
-        {
-          cdId: (this.currentYear + 1).toString(),
-          cdNm: (this.currentYear + 1).toString(),
-        },
       ],
       listSelectBoxSemester: [
         {
@@ -514,6 +507,7 @@ export default defineComponent({
   },
   beforeMount() {
     Promise.all([this.getCodeType()]);
+    this.getListYear();
   },
   methods: {
     fnPagination(pageNumber: any, pageSize: any) {
@@ -731,6 +725,12 @@ export default defineComponent({
       this.searchData.evalSts = "";
       this.searchData.jobSts = "";
       this.searchData.cqiSts = "";
+    },
+    getListYear() {
+      const currentYear = new Date().getFullYear();
+      for (let index = currentYear + 1; index >= START_YEAR_NUMBER; index--) {
+        this.listSelectBoxSchoolYear.push({ id: index, cdId: index, cdNm: index });
+      }
     },
   },
 });

@@ -140,6 +140,7 @@ import {
   SUCCSESS_STATUS,
   PAGINATION_PAGE_SIZE_SELECTOR,
   FORMAT_YYY_MM_DD,
+  START_YEAR_NUMBER,
 } from "@/constants/screen.const";
 import { format } from "date-fns";
 import {
@@ -238,10 +239,7 @@ export default defineComponent({
       rowData: [] as Array<NewEducationScheduleModel>,
       paginationPageSize: PAGINATION_PAGE_SIZE,
       paginationPageSizeSelector: PAGINATION_PAGE_SIZE_SELECTOR,
-      listSelectBoxSchoolYear: [
-        { cdId: this.currentYear, cdNm: this.currentYear },
-        { cdId: this.currentYear + 1, cdNm: this.currentYear + 1 },
-      ],
+      listSelectBoxSchoolYear: [] as Array<any>,
       modalOpen: false,
       checkSetup: false,
       newEducationScheduleSearchModel: {
@@ -264,6 +262,7 @@ export default defineComponent({
 
   beforeMount() {
     Promise.all([this.getDepartment()]);
+    this.getListSelectEduYear();
   },
   methods: {
     resetSearch() {
@@ -393,6 +392,12 @@ export default defineComponent({
         });
       }
       this.cmn.setLoading(false);
+    },
+    getListSelectEduYear() {
+      const currentYear = new Date().getFullYear();
+      for (let index = currentYear + 1; index >= START_YEAR_NUMBER; index--) {
+        this.listSelectBoxSchoolYear.push({ id: index, cdId: index, cdNm: index });
+      }
     },
   },
 });

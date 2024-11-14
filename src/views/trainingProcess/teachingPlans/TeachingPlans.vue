@@ -339,10 +339,10 @@ export default defineComponent({
     },
     async getYearList() {
       let strYear = parseInt(START_YEAR);
-      for (let i = 0; i <= this.currentYear + 1 - strYear; i++) {
+      for (let i = this.currentYear + 1; i >= strYear; i--) {
         let newOption: OptionObject = {
-          cdId: strYear + i,
-          cdNm: strYear + i,
+          cdId: i,
+          cdNm: i,
         };
         this.listYear.push(newOption);
       }

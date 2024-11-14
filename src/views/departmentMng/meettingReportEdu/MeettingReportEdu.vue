@@ -112,6 +112,7 @@ import {
   FORMAT_YYY_MM_DD,
   MODE_DETAIL,
   MODE_CREATE,
+  START_YEAR_NUMBER,
 } from "../../../constants/screen.const";
 import GridComponentV2 from "@/components/common/grid/GridComponentV2.vue";
 import LinkGridComponent from "@/components/common/grid/LinkGridComponent.vue";
@@ -266,12 +267,9 @@ export default {
   methods: {
     getListSelectEduYear() {
       const currentYear = new Date().getFullYear();
-      this.listSelectBoxEduYear = [
-        ...this.listSelectBoxEduYear,
-        { cdId: currentYear - 1, cdNm: currentYear - 1, upCdId: "" },
-        { cdId: currentYear, cdNm: currentYear, upCdId: "1" },
-        { cdId: currentYear + 1, cdNm: currentYear + 1, upCdId: "1" },
-      ];
+      for (let index = currentYear + 1; index >=  START_YEAR_NUMBER; index--) {
+        this.listSelectBoxEduYear.push({ id: index, cdId: index, cdNm: index });
+      }
     },
 
     async getCodeBsiness() {

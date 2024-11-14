@@ -6276,6 +6276,7 @@
     ,"titleSearch":"조회"
     ,"pageTitle":"교육과정개발보고서 조회"
     ,"strRp":"[미리보기 및 인쇄]"
+    ,"typeNm": "(교육과정)유형"
   },
   "modalSwitchAccount": {
     "title" : "로그인 교수 선택",

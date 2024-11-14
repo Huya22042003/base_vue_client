@@ -354,8 +354,8 @@ export default defineComponent({
       this.getDataAll();      
     },
     getListYear(){
-      const currentYear = new Date().getFullYear()+1;
-      for(var i=parseInt(START_YEAR); i<=currentYear; i++){
+      const currentYear = new Date().getFullYear();
+      for(var i = currentYear + 1; i >= parseInt(START_YEAR); i--){
         let year = {} as CodeMngModel;
         year.cdId= i,
         year.cdNm= i

@@ -149,6 +149,12 @@ export default defineComponent({
           flex: 1,
         },
         {
+          headerName: this.t("eduCourseRp.typeNm"),
+          field: "typeNm",
+          cellStyle: { textAlign: "center" },
+          flex: 1,
+        },
+        {
           headerName: this.t("eduCourseRp.regNm"),
           field: "regNm",
           cellStyle: { textAlign: "center" },
@@ -173,7 +179,7 @@ export default defineComponent({
   },
   beforeMount() {
     this.getDeptByMajor();
-    for (let year = parseInt(START_YEAR); year <= this.currentYear; year++) {
+    for (let year = this.currentYear + 1; year >= parseInt(START_YEAR); year--) {
       this.listData.push({
         cdId: year,
         cdNm: year.toString(),
