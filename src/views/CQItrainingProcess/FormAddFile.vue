@@ -34,7 +34,9 @@
               v-model="modelValue"
             >
             </InputFileBase>
-            <span v-if="modelValue && modelValue.length == 0">선택된 파일이 없습니다.</span>
+            <span v-if="modelValue && modelValue.length == 0"
+              >선택된 파일이 없습니다.</span
+            >
           </td>
         </tr>
       </tbody>
@@ -47,22 +49,36 @@ import { useI18n } from "vue-i18n";
 import { ref } from "vue";
 import { commonStore } from "@/stores/common";
 import InputFileBase from "@/components/common/input/InputFileBase.vue";
-import { STS_EDU_CQI_SUCCESS } from "@/constants/common.const";
+import {
+  STS_EDU_CQI_CREATE,
+  STS_EDU_CQI_SUCCESS,
+} from "@/constants/common.const";
 import { MODE_DETAIL, MODE_EDIT } from "@/constants/screen.const";
+import { saveEduCourseCqi } from "@/stores/cqiTrainingProcess/cqiTrainingProcess.service";
+
+interface Props {
+  year: string;
+  deptCd: string;
+  typeSeq: string;
+}
 
 const { t } = useI18n();
 const store = commonStore();
 
+const dataOverview = ref();
+const dataResult = ref();
+
 const state = window.history.state;
 const { eduCourseCqiSeq, status } = state;
 
+const props = defineProps<Props>();
 const mode = ref<string>();
 const modelValue = ref<[]>([]);
 
 if (status != STS_EDU_CQI_SUCCESS) {
   mode.value = MODE_EDIT;
 } else {
-  mode.value = MODE_DETAIL
+  mode.value = MODE_DETAIL;
 }
 
 const childRefUpLoad = ref<InstanceType<typeof InputFileBase> | null>(null);
@@ -73,9 +89,28 @@ const saveDataFile = (eduCourseCqiSeq: string) => {
   }
 };
 
+watch(modelValue, (newValue, oldValue) => {
+  if (newValue.length == 0) {
+    store.setLoading(true);
+    const dataSave = {
+      eduCursCqiSeq: "",
+      year: props.year,
+      deptCd: props.deptCd,
+      eduCursTypeSeq: props.typeSeq,
+      stsCd: STS_EDU_CQI_CREATE,
+      usagePlan: dataOverview.value?.usagePlan,
+      overview: dataOverview.value,
+      evalStnrd: dataResult.value,
+    };
+    saveEduCourseCqi(dataSave).finally(() => {
+      store.setLoading(false);
+    });
+  }
+});
+
 defineExpose({
   saveDataFile,
-  modelValue
+  modelValue,
 });
 </script>
 

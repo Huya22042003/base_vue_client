@@ -82,7 +82,7 @@
             </div>
           </template>
           <template v-else>
-            <FormAddFile ref="majorTab3Ref" />
+            <FormAddFile :year="year" :deptCd="deptCd" :typeSeq="typeSeq" ref="majorTab3Ref" />
           </template>
           <div class="btn_area ta_r">
             <template

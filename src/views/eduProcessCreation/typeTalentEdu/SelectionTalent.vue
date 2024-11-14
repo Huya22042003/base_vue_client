@@ -361,7 +361,7 @@ export default defineComponent({
       let checkIndex = 0;
       this.dataRes.forEach((item: any) => {
         item.listJob.forEach((job: any) => {
-          if (job.check) {
+          if (job.check && this.getSumScore(job) > 70) {
             checkIndex += 1;
           }
         });
