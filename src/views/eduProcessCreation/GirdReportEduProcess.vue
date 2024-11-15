@@ -43,6 +43,7 @@ import { detailEduCourse } from "@/stores/eduProcessCreation/eduCourse/eduProces
 import {
   EduCourseDetailDTO,
   EduCourseResModel,
+  EduCourseSelResDTO,
 } from "@/stores/eduProcessCreation/eduCourse/eduProcess.type";
 import {
   detailAnalysisEnvDemand,
@@ -62,10 +63,31 @@ import {
   JobEduVerifyChildCoreJobListModel,
   JobEduVerifyCoreJobListModel,
 } from "@/stores/eduProcessCreation/jobEduMng/jobEduMng.type";
-import { getLinkRoadMap, getOverviewRoadMap, getRoadMapEduProcess } from "@/stores/eduProcessCreation/roadmapMng/roadmapMng.service";
-import { LinkRoadMapResDTO, OverviewSubjectDTO, RoadMapEduProcessDTO } from "@/stores/eduProcessCreation/roadmapMng/roadmapMng.type";
-import { getCreateSubject, getSubMngMappingSubject, getSubMngSameReplaceMapping } from "@/stores/eduProcessCreation/subjectMng/subjectMng.service";
-import { CreateSubjectResDTO, SubMngCoreAndMappingModel, SubMngSameReplaceMappingModel } from "@/stores/eduProcessCreation/subjectMng/subjectMng.type";
+import {
+  getLinkRoadMap,
+  getOverviewRoadMap,
+  getRoadMapEduProcess,
+  getSyntheticRoadMap,
+} from "@/stores/eduProcessCreation/roadmapMng/roadmapMng.service";
+import {
+  GraduationRoadmapResDTO,
+  LinkRoadMapResDTO,
+  OverviewSubjectDTO,
+  RelatedCertificateResDTO,
+  RoadMapAbilityListModel,
+  RoadMapEduProcessDTO,
+  RoadmapTaltNrtgSelcModel,
+} from "@/stores/eduProcessCreation/roadmapMng/roadmapMng.type";
+import {
+  getCreateSubject,
+  getSubMngMappingSubject,
+  getSubMngSameReplaceMapping,
+} from "@/stores/eduProcessCreation/subjectMng/subjectMng.service";
+import {
+  CreateSubjectResDTO,
+  SubMngCoreAndMappingModel,
+  SubMngSameReplaceMappingModel,
+} from "@/stores/eduProcessCreation/subjectMng/subjectMng.type";
 import { getPageSubjectProfile } from "@/stores/eduProcessCreation/subjectProfile/subjectProfile.service";
 import { SubjectProfileResDTO } from "@/stores/eduProcessCreation/subjectProfile/subjectProfile.type";
 import {
@@ -131,7 +153,15 @@ export default {
   methods: {
     async getListCodeEduCourse() {
       await getListCodeMng({
-        upCdIdList: [UP_RESULT_SEL, UP_CD_ID_SAME_REPLACE_DIV_CD, UP_CD_ID_RSN_FST_CD, UP_CD_ID_RSN_SEC_CD, UP_CD_ID_SEMESTER, UP_CD_ID_GRADE_LEVEL, UP_CD_TRACK],
+        upCdIdList: [
+          UP_RESULT_SEL,
+          UP_CD_ID_SAME_REPLACE_DIV_CD,
+          UP_CD_ID_RSN_FST_CD,
+          UP_CD_ID_RSN_SEC_CD,
+          UP_CD_ID_SEMESTER,
+          UP_CD_ID_GRADE_LEVEL,
+          UP_CD_TRACK,
+        ],
       }).then((res: any) => {
         this.listCodeResponse = res.data.data;
       });
@@ -180,7 +210,10 @@ export default {
                 dataFooter.ncsYn + (sbjt.ncsYn === STATUS_YES ? 1 : 0);
 
               this.datasetListRp.analysisAchievementContent.push({
-                term: `${term.gradeNm.replace("학년", "")} - ${term.termNm.replace("학기", "")}`,
+                term: `${term.gradeNm.replace(
+                  "학년",
+                  ""
+                )} - ${term.termNm.replace("학기", "")}`,
                 sbjtNm: sbjt.sbjtNm,
                 acqGpa: sbjt.acqGpa,
                 thryHrs: sbjt.thryHrs,
@@ -190,7 +223,10 @@ export default {
               });
             });
             this.datasetListRp.analysisAchievementContent.push({
-              term: `${term.gradeNm.replace("학년", "")} - ${term.termNm.replace("학기", "")}`,
+              term: `${term.gradeNm.replace(
+                "학년",
+                ""
+              )} - ${term.termNm.replace("학기", "")}`,
               sbjtNm: "학점 소계",
               acqGpa: this.totalScoreAnalysis(
                 term.listSbjt.map((sbjt) => sbjt.acqGpa)
@@ -352,15 +388,16 @@ export default {
       });
     },
     async getEduCompositionTalent() {
-      await getAllEduCourseComm({ eduCourseSeq: this.data.eduCursSeq })
-        .then((res: any) => {
+      await getAllEduCourseComm({ eduCourseSeq: this.data.eduCursSeq }).then(
+        (res: any) => {
           const response = res.data.data as EduCourseCommResDTO[];
 
           this.datasetListRp.compositionTalent = response.map((item) => {
             item.divCd = item.divCd == CD_INTERNAL ? "내부" : "외부";
             return item;
           });
-        })
+        }
+      );
     },
     async getCreatedTypeTalent() {
       await getEduGoal({ eduCourseSeq: this.data.eduCursSeq }).then(
@@ -417,7 +454,7 @@ export default {
               evalDate: response.evalDate
                 ? format(response.evalDate, FORMAT_YYY_MM_DD)
                 : "",
-              evalPartiCnt: response.evalPartiCnt + '명',
+              evalPartiCnt: response.evalPartiCnt + "명",
               jobField: response.jobField,
             },
           ];
@@ -468,133 +505,145 @@ export default {
     },
     async getSelectionTalent() {
       type SelectionTalentType = {
-        col1: string,
-        col2: string,
-        colLeft1: string,
-        colLeft2: string,
-        row: number,
-        value: string,
-        taltTypeSeq: string
+        col1: string;
+        col2: string;
+        colLeft1: string;
+        colLeft2: string;
+        row: number;
+        value: string;
+        taltTypeSeq: string;
       };
       let dataConvert = [] as SelectionTalentType[];
 
-      await getCoreJobSel({ eduCourseSeq: this.data.eduCursSeq })
-        .then((res: any) => {
-          const response = res.data.data.filter((item: any) => item.coreJobSelcSeq) as any[];
+      await getCoreJobSel({ eduCourseSeq: this.data.eduCursSeq }).then(
+        (res: any) => {
+          const response = res.data.data.filter(
+            (item: any) => item.coreJobSelcSeq
+          ) as any[];
           response.forEach((item) => {
             /* row 1 */
             dataConvert.push({
-              col1: item.typeNm + ' 디자이너',
-              col2: item.jobNm + ' 디자인',
-              colLeft1: '(1) 산업체, 지역사회 인력수요도',
-              colLeft2: '40점',
+              col1: item.typeNm + " 디자이너",
+              col2: item.jobNm + " 디자인",
+              colLeft1: "(1) 산업체, 지역사회 인력수요도",
+              colLeft2: "40점",
               row: 1,
-              value: '',
-              taltTypeSeq: item.taltNrtgTypeSeq
+              value: "",
+              taltTypeSeq: item.taltNrtgTypeSeq,
             });
             /* row 2 */
             dataConvert.push({
-              col1: item.typeNm + ' 디자이너',
-              col2: item.jobNm + ' 디자인',
-              colLeft1: '\t• 해당산업의 인력수요의 미래전망과 비전',
-              colLeft2: '20',
+              col1: item.typeNm + " 디자이너",
+              col2: item.jobNm + " 디자인",
+              colLeft1: "\t• 해당산업의 인력수요의 미래전망과 비전",
+              colLeft2: "20",
               row: 2,
               value: `${item.visn}`,
-              taltTypeSeq: item.taltNrtgTypeSeq
-            })
+              taltTypeSeq: item.taltNrtgTypeSeq,
+            });
             /* row 3 */
             dataConvert.push({
-              col1: item.typeNm + ' 디자이너',
-              col2: item.jobNm + ' 디자인',
-              colLeft1: '\t• 신입사원 채용 시 전공 일치도에 대한 중요도',
-              colLeft2: '10',
+              col1: item.typeNm + " 디자이너",
+              col2: item.jobNm + " 디자인",
+              colLeft1: "\t• 신입사원 채용 시 전공 일치도에 대한 중요도",
+              colLeft2: "10",
               row: 3,
               value: `${item.impt}`,
-              taltTypeSeq: item.taltNrtgTypeSeq
-            })
+              taltTypeSeq: item.taltNrtgTypeSeq,
+            });
             /* row 4 */
             dataConvert.push({
-              col1: item.typeNm + ' 디자이너',
-              col2: item.jobNm + ' 디자인',
-              colLeft1: '\t• 향후 해당직무에 대한 채용 가능성',
-              colLeft2: '10',
+              col1: item.typeNm + " 디자이너",
+              col2: item.jobNm + " 디자인",
+              colLeft1: "\t• 향후 해당직무에 대한 채용 가능성",
+              colLeft2: "10",
               row: 4,
               value: `${item.psbl}`,
-              taltTypeSeq: item.taltNrtgTypeSeq
-            })
+              taltTypeSeq: item.taltNrtgTypeSeq,
+            });
             /* row 5 */
             dataConvert.push({
-              col1: item.typeNm + ' 디자이너',
-              col2: item.jobNm + ' 디자인',
-              colLeft1: '(2) 본교 교육여건과의 연계성 ',
-              colLeft2: '30점',
+              col1: item.typeNm + " 디자이너",
+              col2: item.jobNm + " 디자인",
+              colLeft1: "(2) 본교 교육여건과의 연계성 ",
+              colLeft2: "30점",
               row: 5,
-              value: '',
-              taltTypeSeq: item.taltNrtgTypeSeq
+              value: "",
+              taltTypeSeq: item.taltNrtgTypeSeq,
             });
             /* row 6 */
             dataConvert.push({
-              col1: item.typeNm + ' 디자이너',
-              col2: item.jobNm + ' 디자인',
-              colLeft1: '\t• 강의 실습실의 공간 면적 및 시설은 해당 직무능력 성취를 위한 수업에 적합한가?',
-              colLeft2: '15',
+              col1: item.typeNm + " 디자이너",
+              col2: item.jobNm + " 디자인",
+              colLeft1:
+                "\t• 강의 실습실의 공간 면적 및 시설은 해당 직무능력 성취를 위한 수업에 적합한가?",
+              colLeft2: "15",
               row: 6,
               value: `${item.factSutb}`,
-              taltTypeSeq: item.taltNrtgTypeSeq
-            })
+              taltTypeSeq: item.taltNrtgTypeSeq,
+            });
             /* row 7 */
             dataConvert.push({
-              col1: item.typeNm + ' 디자이너',
-              col2: item.jobNm + ' 디자인',
-              colLeft1: '\t• 강의 실습실의 기자재 구비 및 활용은 해당 직무능력 성취를 위한 수업에 적합한가?',
-              colLeft2: '15',
+              col1: item.typeNm + " 디자이너",
+              col2: item.jobNm + " 디자인",
+              colLeft1:
+                "\t• 강의 실습실의 기자재 구비 및 활용은 해당 직무능력 성취를 위한 수업에 적합한가?",
+              colLeft2: "15",
               row: 7,
               value: `${item.matlSutb}`,
-              taltTypeSeq: item.taltNrtgTypeSeq
-            })
+              taltTypeSeq: item.taltNrtgTypeSeq,
+            });
             /* row 8 */
             dataConvert.push({
-              col1: item.typeNm + ' 디자이너',
-              col2: item.jobNm + ' 디자인',
-              colLeft1: '(3) 학생 선호도',
-              colLeft2: '15',
+              col1: item.typeNm + " 디자이너",
+              col2: item.jobNm + " 디자인",
+              colLeft1: "(3) 학생 선호도",
+              colLeft2: "15",
               row: 8,
               value: ``,
-              taltTypeSeq: item.taltNrtgTypeSeq
-            })
+              taltTypeSeq: item.taltNrtgTypeSeq,
+            });
             /* row 9 */
             dataConvert.push({
-              col1: item.typeNm + ' 디자이너',
-              col2: item.jobNm + ' 디자인',
-              colLeft1: '\t• 재학생의 해당직무 선호도 (재학생 설문조사)',
-              colLeft2: '30',
+              col1: item.typeNm + " 디자이너",
+              col2: item.jobNm + " 디자인",
+              colLeft1: "\t• 재학생의 해당직무 선호도 (재학생 설문조사)",
+              colLeft2: "30",
               row: 9,
               value: `${item.prfr}`,
-              taltTypeSeq: item.taltNrtgTypeSeq
-            })
+              taltTypeSeq: item.taltNrtgTypeSeq,
+            });
             /* row 10 */
             dataConvert.push({
-              col1: item.typeNm + ' 디자이너',
-              col2: item.jobNm + ' 디자인',
-              colLeft1: '\t\t\t합계',
-              colLeft2: '100',
+              col1: item.typeNm + " 디자이너",
+              col2: item.jobNm + " 디자인",
+              colLeft1: "\t\t\t합계",
+              colLeft2: "100",
               row: 10,
-              value: `${this.totalScoreAnalysis([item.visn, item.impt, item.psbl, item.factSutb, item.matlSutb, item.prfr])}`,
-              taltTypeSeq: item.taltNrtgTypeSeq
-            })
+              value: `${this.totalScoreAnalysis([
+                item.visn,
+                item.impt,
+                item.psbl,
+                item.factSutb,
+                item.matlSutb,
+                item.prfr,
+              ])}`,
+              taltTypeSeq: item.taltNrtgTypeSeq,
+            });
             /* row 11 */
             dataConvert.push({
-              col1: item.typeNm + ' 디자이너',
-              col2: item.jobNm + ' 디자인',
-              colLeft1: '\t\t\t판정',
-              colLeft2: '',
+              col1: item.typeNm + " 디자이너",
+              col2: item.jobNm + " 디자인",
+              colLeft1: "\t\t\t판정",
+              colLeft2: "",
               row: 11,
               value: `${item.selcNm}`,
-              taltTypeSeq: item.taltNrtgTypeSeq
-            })
-          })
+              taltTypeSeq: item.taltNrtgTypeSeq,
+            });
+          });
           this.datasetListRp.getSelectionTalent = dataConvert;
-        })
+        }
+      );
     },
     async getResultTypeTalent() {
       await getResultEduCourse({ eduCourseSeq: this.data.eduCursSeq }).then(
@@ -667,18 +716,20 @@ export default {
         response.forEach((job) => {
           job.listNcsKcs.forEach((item) => {
             item.listVerifyJobAbility.forEach((jobAbili) => {
-              this.datasetListRp.verifyJob.push({
-                jobNm: job.jobNm,
-                jobAbilCd: jobAbili.jobAbilCd,
-                jobAbilNm: jobAbili.jobAbilNm,
-                eduNeed: jobAbili.eduNeed,
-                jobImpt: jobAbili.jobImpt,
-                average: this.getAvgScore([
-                  jobAbili.eduNeed.toString(),
-                  jobAbili.jobImpt.toString(),
-                ]),
-                useYn: jobAbili.useYn,
-              });
+              if (jobAbili.isCheck) {
+                this.datasetListRp.verifyJob.push({
+                  jobNm: job.jobNm,
+                  jobAbilCd: jobAbili.jobAbilCd,
+                  jobAbilNm: jobAbili.jobAbilNm,
+                  eduNeed: jobAbili.eduNeed,
+                  jobImpt: jobAbili.jobImpt,
+                  average: this.getAvgScore([
+                    jobAbili.eduNeed.toString(),
+                    jobAbili.jobImpt.toString(),
+                  ]),
+                  useYn: jobAbili.useYn,
+                });
+              }
             });
           });
         });
@@ -725,49 +776,53 @@ export default {
       );
     },
     async getCreatedSubject() {
-      await getCreateSubject({ eduCourseSeq: this.data.eduCursSeq }).then((res: any) => {
-        const response = res.data.data as CreateSubjectResDTO[];
-        this.datasetListRp.createSubject = [];
-        response.forEach((job) => {
-          job.subjectNm.forEach((sbjt) => {
-            sbjt.jobAbility.forEach((jobAbi) => {
-              jobAbi.jobCapa.forEach((jobCapa) => {
-                this.datasetListRp.createSubject.push({
-                  jobNm: job.jobNm,
-                  sbjtNm: sbjt.sbjtNm,
-                  acqGpa: sbjt.acqGpa,
-                  jobAbiNm: jobAbi.cdNm,
-                  jobCapaNm: jobCapa.cdNm
-                })
-              })
-            })
-          })
-        })
-      });
+      await getCreateSubject({ eduCourseSeq: this.data.eduCursSeq }).then(
+        (res: any) => {
+          const response = res.data.data as CreateSubjectResDTO[];
+          this.datasetListRp.createSubject = [];
+          response.forEach((job) => {
+            job.subjectNm.forEach((sbjt) => {
+              sbjt.jobAbility.forEach((jobAbi) => {
+                jobAbi.jobCapa.forEach((jobCapa) => {
+                  this.datasetListRp.createSubject.push({
+                    jobNm: job.jobNm,
+                    sbjtNm: sbjt.sbjtNm,
+                    acqGpa: sbjt.acqGpa,
+                    jobAbiNm: jobAbi.cdNm,
+                    jobCapaNm: jobCapa.cdNm,
+                  });
+                });
+              });
+            });
+          });
+        }
+      );
     },
     async getMappingSubject() {
       type AbilityType = {
-        type: 'JOB' | 'CORE',
-        abilitySeq: string,
-        abilityNm: string,
-        childSeq: string,
-        childNm: string
+        type: "JOB" | "CORE";
+        abilitySeq: string;
+        abilityNm: string;
+        childSeq: string;
+        childNm: string;
       };
 
       type MappingSubjectType = {
-        colLeft1: string,
-        colLeft2: string,
-        colLeft3: string,
-        col1: string,
-        col2: string,
-        col3: string,
-        row: string,
-        value: string
+        colLeft1: string;
+        colLeft2: string;
+        colLeft3: string;
+        col1: string;
+        col2: string;
+        col3: string;
+        row: string;
+        value: string;
       };
 
       let listAbilityType = [] as AbilityType[];
 
-      await getSubMngMappingSubject({ eduCourseSeq: this.data.eduCursSeq }).then((res) => {
+      await getSubMngMappingSubject({
+        eduCourseSeq: this.data.eduCursSeq,
+      }).then((res) => {
         const {
           listCoreAbility,
           listChildAbility,
@@ -776,14 +831,16 @@ export default {
         } = res.data.data as SubMngCoreAndMappingModel;
 
         listChildAbility.forEach((item) => {
-          const coreAbil = listCoreAbility.filter(core => core.coreAbilitySeq == item.coreAbilitySeq)[0];
+          const coreAbil = listCoreAbility.filter(
+            (core) => core.coreAbilitySeq == item.coreAbilitySeq
+          )[0];
           listAbilityType.push({
             type: "CORE",
             abilitySeq: coreAbil.coreAbilitySeq,
             abilityNm: coreAbil.coreAbilityNm,
             childSeq: item.childAbilitySeq,
-            childNm: item.childAbilityNm
-          })
+            childNm: item.childAbilityNm,
+          });
         });
 
         listMappingSubject.forEach((mapping) => {
@@ -795,12 +852,12 @@ export default {
                   abilitySeq: job.jobAbilSeq,
                   abilityNm: job.jobAbilNm,
                   childSeq: child.childSeq,
-                  childNm: child.childNm
-                })
-              })
-            })
-          })
-        })
+                  childNm: child.childNm,
+                });
+              });
+            });
+          });
+        });
         let listResponse = [] as MappingSubjectType[];
         listMappingSubject.forEach((mapping, indexMapping) => {
           mapping.listSbjt.forEach((sbjt, index) => {
@@ -813,70 +870,100 @@ export default {
 
                 sbjt.listJobAbility.forEach((sbjtJob) => {
                   sbjtJob.listChild.forEach((child) => {
-                    if (sbjtJob.jobAbilSeq == ability.abilitySeq && child.childSeq == ability.childSeq) {
+                    if (
+                      sbjtJob.jobAbilSeq == ability.abilitySeq &&
+                      child.childSeq == ability.childSeq
+                    ) {
                       value = child.rate;
                     }
-                  })
-                })
+                  });
+                });
               } else {
-                col1 = "핵심역량"
+                col1 = "핵심역량";
                 sbjt.listRateCoreAbility.forEach((core) => {
-                  if (core.coreAbilitySeq == ability.abilitySeq && core.coreChildAbilitySeq == ability.childSeq) {
-                    value = core.rate
+                  if (
+                    core.coreAbilitySeq == ability.abilitySeq &&
+                    core.coreChildAbilitySeq == ability.childSeq
+                  ) {
+                    value = core.rate;
                   }
-                })
+                });
               }
 
               listResponse.push({
-                colLeft1: `${mapping.gradeNm?.replace("학년", "")} - ${mapping.termNm?.replace("학기", "")}`,
+                colLeft1: `${mapping.gradeNm?.replace(
+                  "학년",
+                  ""
+                )} - ${mapping.termNm?.replace("학기", "")}`,
                 colLeft2: sbjt.sbjtNm,
                 colLeft3: sbjt.cateComplete,
                 col1: col1,
                 col2: ability.abilityNm,
                 col3: ability.childNm,
                 row: `${indexMapping}_${index}`,
-                value: value
+                value: value,
               });
-            })
-          })
-        })
+            });
+          });
+        });
 
         this.datasetListRp.getMappingSubject = listResponse;
       });
     },
     async getAssignSubject() {
-      await getSubMngSameReplaceMapping({ eduCourseSeq: this.data.eduCursSeq }).then((res) => {
+      await getSubMngSameReplaceMapping({
+        eduCourseSeq: this.data.eduCursSeq,
+      }).then((res) => {
         const { listSameReplaceMapping } = res.data.data;
 
-        const listSameReplaceDivCd = this.listCodeResponse.filter(item => item.upCdId == UP_CD_ID_SAME_REPLACE_DIV_CD);
-        const listRsnFstCd = this.listCodeResponse.filter(item => item.upCdId == UP_CD_ID_RSN_FST_CD);
-        const listRsnSecCd = this.listCodeResponse.filter(item => item.upCdId == UP_CD_ID_RSN_SEC_CD);
+        const listSameReplaceDivCd = this.listCodeResponse.filter(
+          (item) => item.upCdId == UP_CD_ID_SAME_REPLACE_DIV_CD
+        );
+        const listRsnFstCd = this.listCodeResponse.filter(
+          (item) => item.upCdId == UP_CD_ID_RSN_FST_CD
+        );
+        const listRsnSecCd = this.listCodeResponse.filter(
+          (item) => item.upCdId == UP_CD_ID_RSN_SEC_CD
+        );
 
-
-        this.datasetListRp.assignSubject = listSameReplaceMapping.map((item: SubMngSameReplaceMappingModel) => {
-          return {
-            rowNum: item.rowNum,
-            sbjtBeforeCd: item.sbjtBeforeCd,
-            yearBefore: `${item.gradeBeforeNm?.replace("학년", "")} - ${item.termBeforeNm?.replace("학기", "")}`,
-            sustDivBeforeNm: item.sustDivBeforeNm,
-            sbjtBeforeNm: item.sbjtBeforeNm,
-            sbjtBeforeNmEng: item.sbjtBeforeNmEng,
-            acqGpaBefore: item.acqGpaBefore,
-            thryHrsBefore: item.thryHrsBefore,
-            pracHrsBefore: item.pracHrsBefore,
-            sbjtAfterCd: item.sbjtAfterCd,
-            yearAfter: `${item.gradeAfterNm?.replace("학년", "")} - ${item.termAfterNm?.replace("학기", "")}`,
-            sustDivAfterNm: item.sustDivAfterNm,
-            sbjtAfterNm: item.sbjtAfterNm,
-            sbjtAfterNmEng: item.sbjtAfterNmEng,
-            acqGpaAfter: item.acqGpaAfter,
-            thryHrsAfter: item.thryHrsAfter,
-            pracHrsAfter: item.pracHrsAfter,
-            sameReplaceDivCd: listSameReplaceDivCd.filter((code) => code.cdId == item.sameReplaceDivCd)[0].cdNm,
-            rsnFstCd: listRsnFstCd.filter((code) => code.cdId == item.rsnFstCd)[0].cdNm,
-            rsnSecCd: listRsnSecCd.filter((code) => code.cdId == item.rsnSecCd)[0].cdNm
+        this.datasetListRp.assignSubject = listSameReplaceMapping.map(
+          (item: SubMngSameReplaceMappingModel) => {
+            return {
+              rowNum: item.rowNum,
+              sbjtBeforeCd: item.sbjtBeforeCd,
+              yearBefore: `${item.gradeBeforeNm?.replace(
+                "학년",
+                ""
+              )} - ${item.termBeforeNm?.replace("학기", "")}`,
+              sustDivBeforeNm: item.sustDivBeforeNm,
+              sbjtBeforeNm: item.sbjtBeforeNm,
+              sbjtBeforeNmEng: item.sbjtBeforeNmEng,
+              acqGpaBefore: item.acqGpaBefore,
+              thryHrsBefore: item.thryHrsBefore,
+              pracHrsBefore: item.pracHrsBefore,
+              sbjtAfterCd: item.sbjtAfterCd,
+              yearAfter: `${item.gradeAfterNm?.replace(
+                "학년",
+                ""
+              )} - ${item.termAfterNm?.replace("학기", "")}`,
+              sustDivAfterNm: item.sustDivAfterNm,
+              sbjtAfterNm: item.sbjtAfterNm,
+              sbjtAfterNmEng: item.sbjtAfterNmEng,
+              acqGpaAfter: item.acqGpaAfter,
+              thryHrsAfter: item.thryHrsAfter,
+              pracHrsAfter: item.pracHrsAfter,
+              sameReplaceDivCd: listSameReplaceDivCd.filter(
+                (code) => code.cdId == item.sameReplaceDivCd
+              )[0].cdNm,
+              rsnFstCd: listRsnFstCd.filter(
+                (code) => code.cdId == item.rsnFstCd
+              )[0].cdNm,
+              rsnSecCd: listRsnSecCd.filter(
+                (code) => code.cdId == item.rsnSecCd
+              )[0].cdNm,
+            };
           }
-        });
+        );
       });
     },
     async getSubjectProfille() {
@@ -886,140 +973,295 @@ export default {
         page: 1,
         size: 10000000,
         sort: "",
-      }
-      await getPageSubjectProfile(dataSearch)
-        .then((res: any) => {
-          this.datasetListRp.subjectProfile = res.data.data.content.map(
-            (item: SubjectProfileResDTO) => {
-              item.totalHrs = `${item.totalHrs ? item.totalHrs : 0}(${item.thryHrs ? item.thryHrs : 0
-                }/${item.pracHrs ? item.pracHrs : 0})`;
+      };
+      await getPageSubjectProfile(dataSearch).then((res: any) => {
+        this.datasetListRp.subjectProfile = res.data.data.content.map(
+          (item: SubjectProfileResDTO) => {
+            item.totalHrs = `${item.totalHrs ? item.totalHrs : 0}(${
+              item.thryHrs ? item.thryHrs : 0
+            }/${item.pracHrs ? item.pracHrs : 0})`;
 
-              item.statusNm = item.status == "0" ? "미작성" : "작성완료";
+            item.statusNm = this.datasetListRp.assignSubject.some(
+              (assSbjt: any) =>
+                assSbjt.sbjtBeforeCd == item.sbjtCd ||
+                assSbjt.sbjtAfterCd == item.sbjtCd
+            )
+              ? "신설"
+              : "유지";
 
-              return item;
-            }
-          ) as SubjectProfileResDTO[];
-        })
+            return item;
+          }
+        ) as SubjectProfileResDTO[];
+      });
     },
     async getLinkRoadMap() {
-      await getLinkRoadMap({ eduCourseSeq: this.data.eduCursSeq })
-        .then((res) => {
+      await getLinkRoadMap({ eduCourseSeq: this.data.eduCursSeq }).then(
+        (res) => {
           this.datasetListRp.linkRoadMap = res.data.data.map((item: any) => {
             item.isNcs = item.typeCd == KCS_CD_ID ? "" : "🔴";
             item.isKcs = item.typeCd == KCS_CD_ID ? "🔴" : "";
-            item.year = `${item.gradeNm?.replace("학년", "")} - ${item.termNm?.replace("학기", "")}`;
+            item.year = `${item.gradeNm?.replace(
+              "학년",
+              ""
+            )} - ${item.termNm?.replace("학기", "")}`;
 
             return item;
           });
-        })
+        }
+      );
     },
     async getOverviewRoadMap() {
       type OverviewRoadMapType = {
-        colLeft: string,
-        col1: string,
-        col2: string,
-        row: string,
-        value: string
+        colLeft: string;
+        col1: string;
+        col2: string;
+        row: string;
+        value: string;
       };
 
-      const listSemester = this.listCodeResponse.filter((item: CodeMngModel) => item.upCdId == UP_CD_ID_SEMESTER);
-      const listGrade = this.listCodeResponse.filter((item: CodeMngModel) => item.upCdId == UP_CD_ID_GRADE_LEVEL);
+      const listSemester = this.listCodeResponse.filter(
+        (item: CodeMngModel) => item.upCdId == UP_CD_ID_SEMESTER
+      );
+      const listGrade = this.listCodeResponse.filter(
+        (item: CodeMngModel) => item.upCdId == UP_CD_ID_GRADE_LEVEL
+      );
       let dataYear = [] as CodeMngModel[];
       listSemester.forEach((semester: CodeMngModel) => {
         listGrade.forEach((grade: CodeMngModel) => {
-          dataYear.push({ cdId: `${semester.cdId} - ${grade.cdId}`, cdNm: `${semester.cdNm} - ${grade.cdNm}`, upCdId: `semester - grade` });
-        })
+          dataYear.push({
+            cdId: `${semester.cdId} - ${grade.cdId}`,
+            cdNm: `${semester.cdNm} - ${grade.cdNm}`,
+            upCdId: `semester - grade`,
+          });
+        });
       });
       dataYear.sort((a, b) => {
         return `${a.cdId}`.localeCompare(`${b.cdId}`);
       });
 
-      await getOverviewRoadMap({ eduCourseSeq: this.data.eduCursSeq }).then((res) => {
-        const dataCurriculum = res.data.data.listCurriculum as CodeMngModel[];
-        const dataOverview = res.data.data.listOverview as OverviewSubjectDTO[];
+      await getOverviewRoadMap({ eduCourseSeq: this.data.eduCursSeq }).then(
+        (res) => {
+          const dataCurriculum = res.data.data.listCurriculum as CodeMngModel[];
+          const dataOverview = res.data.data
+            .listOverview as OverviewSubjectDTO[];
 
-        let dataResponse = [] as OverviewRoadMapType[];
-        dataOverview.forEach((overview, index) => {
-          dataYear.forEach((year) => {
-            dataResponse.push({
-              colLeft: overview.sbjtNm,
-              col1: "  학년-학기  ",
-              col2: `${year.cdNm}`,
-              row: `${index}`,
-              value: `${overview.termCd} - ${overview.gradeCd}` == year.cdId ? '●' : ''
-            })
-          })
-          dataCurriculum.forEach((item) => {
-            dataResponse.push({
-              colLeft: overview.sbjtNm,
-              col1: `${item.cdNm}`,
-              col2: `${item.cdNm}`,
-              row: `${index}`,
-              value: overview.select.some(sel => sel.selCd == item.cdId) ? '●' : ''
-            })
-          })
-        })
+          let dataResponse = [] as OverviewRoadMapType[];
+          dataOverview.forEach((overview, index) => {
+            dataYear.forEach((year) => {
+              dataResponse.push({
+                colLeft: overview.sbjtNm,
+                col1: "  학년-학기  ",
+                col2: `${year.cdNm}`,
+                row: `${index}`,
+                value:
+                  `${overview.termCd} - ${overview.gradeCd}` == year.cdId
+                    ? "●"
+                    : "",
+              });
+            });
+            dataCurriculum.forEach((item) => {
+              dataResponse.push({
+                colLeft: overview.sbjtNm,
+                col1: `${item.cdNm}`,
+                col2: `${item.cdNm}`,
+                row: `${index}`,
+                value: overview.select.some((sel) => sel.selCd == item.cdId)
+                  ? "●"
+                  : "",
+              });
+            });
+          });
 
-        this.datasetListRp.overviewRoadMap1 = dataResponse;
-      })
+          this.datasetListRp.overviewRoadMap1 = dataResponse;
+        }
+      );
     },
     async getRoadmapEduProcess() {
       type RoadmapEduProcessHeader = {
-        col: string,
-        row: string,
-        value: string,
+        col: string;
+        row: string;
+        value: string;
       };
       type RoadmapEduProcess = {
-        col: string,
-        row: string,
-        row1: string,
-        value: string,
+        col: string;
+        row: string;
+        row1: string;
+        value: string;
       };
-      await getRoadMapEduProcess({ eduCourseSeq: this.data.eduCursSeq }).then((res) => {
-        const response = res.data.data as RoadMapEduProcessDTO;
-        let dataHeader = [] as RoadmapEduProcessHeader[];
-        let dataContent = [] as RoadmapEduProcess[];
-        response.taltNrtgType.forEach((talt, indexTalt) => {
-          talt.job.forEach((job, indexJob) => {
-            dataHeader.push({
-              col: `${indexTalt}_${indexJob}`,
-              row: '교육과정',
-              value: response.eduCourseNm
-            })
-            dataHeader.push({
-              col: `${indexTalt}_${indexJob}`,
-              row: '인재양성유형',
-              value: talt.name
-            })
-            dataHeader.push({
-              col: `${indexTalt}_${indexJob}`,
-              row: '핵심직무',
-              value: job.name
-            })
-          })
-        })
-        const listTypeSbjt = this.listCodeResponse.filter((item) => item.upCdId == UP_CD_TRACK);
-        const listGrade = this.listCodeResponse.filter((item) => item.upCdId == UP_CD_ID_GRADE_LEVEL);
-        const listTerm = this.listCodeResponse.filter((item) => item.upCdId == UP_CD_ID_SEMESTER);
-        listTypeSbjt.forEach((typeSbjt) => {
-          listGrade.forEach((grade) => {
-            listTerm.forEach((term) => {
-              response.taltNrtgType.forEach((talt, indexTalt) => {
-                talt.job.forEach((job, indexJob) => {
-                  dataContent.push({
-                    col: `${indexTalt}_${indexJob}`,
-                    row: `${(grade.cdNm as string).replace("학년", "")} - ${(term.cdNm as string).replace("학기", "")}`,
-                    row1: `${typeSbjt.cdNm}`,
-                    value: this.filterSubject(job, typeSbjt.cdId, term.cdId, grade.cdId)
-                  })
-                })
-              })
-            })
-          })
-        })
-        this.datasetListRp.roadmapEduProcessHeader = dataHeader;
-        this.datasetListRp.roadmapEduProcess = dataContent;
-      })
+      await getRoadMapEduProcess({ eduCourseSeq: this.data.eduCursSeq }).then(
+        (res) => {
+          const response = res.data.data as RoadMapEduProcessDTO;
+          let dataHeader = [] as RoadmapEduProcessHeader[];
+          let dataContent = [] as RoadmapEduProcess[];
+          response.taltNrtgType.forEach((talt, indexTalt) => {
+            talt.job.forEach((job, indexJob) => {
+              dataHeader.push({
+                col: `${indexTalt}_${indexJob}`,
+                row: "교육과정",
+                value: response.eduCourseNm,
+              });
+              dataHeader.push({
+                col: `${indexTalt}_${indexJob}`,
+                row: "인재양성유형",
+                value: talt.name,
+              });
+              dataHeader.push({
+                col: `${indexTalt}_${indexJob}`,
+                row: "핵심직무",
+                value: job.name,
+              });
+            });
+          });
+          const listTypeSbjt = this.listCodeResponse.filter(
+            (item) => item.upCdId == UP_CD_TRACK
+          );
+          const listGrade = this.listCodeResponse.filter(
+            (item) => item.upCdId == UP_CD_ID_GRADE_LEVEL
+          );
+          const listTerm = this.listCodeResponse.filter(
+            (item) => item.upCdId == UP_CD_ID_SEMESTER
+          );
+          listTypeSbjt.forEach((typeSbjt) => {
+            listGrade.forEach((grade) => {
+              listTerm.forEach((term) => {
+                response.taltNrtgType.forEach((talt, indexTalt) => {
+                  talt.job.forEach((job, indexJob) => {
+                    dataContent.push({
+                      col: `${indexTalt}_${indexJob}`,
+                      row: `${(grade.cdNm as string).replace("학년", "")} - ${(
+                        term.cdNm as string
+                      ).replace("학기", "")}`,
+                      row1: `${typeSbjt.cdNm}`,
+                      value: this.filterSubject(
+                        job,
+                        typeSbjt.cdId,
+                        term.cdId,
+                        grade.cdId
+                      ),
+                    });
+                  });
+                });
+              });
+            });
+          });
+          this.datasetListRp.roadmapEduProcessHeader = dataHeader;
+          this.datasetListRp.roadmapEduProcess = dataContent;
+        }
+      );
+    },
+    async getSyntheticRoadMapExport() {
+      await getSyntheticRoadMap({ eduCourseSeq: this.data.eduCursSeq }).then(
+        (res) => {
+          let response = res.data.data;
+
+          response.targetNm = this.convertDataNmToString(response.targetDept);
+          response.typeDeptNm = this.convertDataNmToString(response.typeDept);
+          // TABLE 1
+          this.datasetListRp.syntheticRoadMap1 = [
+            {
+              deptNm: response.deptNm,
+              typeDeptNm: response.typeDeptNm,
+              targetNm: response.targetNm,
+            },
+          ];
+
+          // TABLE 2
+          this.datasetListRp.syntheticRoadMap2 = [
+            {
+              taltNrtgTypeNm: "인재양성유형",
+              jobCont: "주요직무내용",
+              vision: "관련 분야 비전",
+              type: "HEADER",
+            },
+          ];
+          response.listTaltNrtgSelc.forEach(
+            (taltNrtg: RoadmapTaltNrtgSelcModel) => {
+              this.datasetListRp.syntheticRoadMap2.push({
+                taltNrtgTypeNm: taltNrtg.taltNrtgTypeNm,
+                jobCont: taltNrtg.jobCont,
+                vision: taltNrtg.vision,
+                type: "ITEM",
+              });
+            }
+          );
+
+          // TABLE 3
+          this.datasetListRp.syntheticRoadMap3 = [
+            {
+              coreAbility: "핵심역량",
+              childAbility: "하위역량",
+              type: "HEADER",
+            },
+          ];
+          response.listCoreAbility.forEach(
+            (coreAbility: RoadMapAbilityListModel) => {
+              coreAbility.listChild.forEach(
+                (childAbility: RoadMapAbilityListModel) => {
+                  this.datasetListRp.syntheticRoadMap3.push({
+                    coreAbility: coreAbility.abilityNm,
+                    childAbility: childAbility.abilityNm,
+                    type: "ITEM",
+                  });
+                }
+              );
+            }
+          );
+          this.datasetListRp.syntheticRoadMap3.push({
+            coreAbility: "직무역량",
+            childAbility: "하위역량",
+            type: "HEADER",
+          });
+          response.listJobAbility.forEach(
+            (jobAbility: RoadMapAbilityListModel) => {
+              jobAbility.listChild.forEach(
+                (childAbility: RoadMapAbilityListModel) => {
+                  this.datasetListRp.syntheticRoadMap3.push({
+                    coreAbility: jobAbility.abilityNm,
+                    childAbility: childAbility.abilityNm,
+                    type: "ITEM",
+                  });
+                }
+              );
+            }
+          );
+
+          // TABLE 4
+          this.datasetListRp.syntheticRoadMap4 = [
+            {
+              jobNm: "직무",
+              cert: "관련 자격증",
+              type: "HEADER",
+            },
+          ];
+          response.relatedCertificate.forEach(
+            (item: RelatedCertificateResDTO) => {
+              this.datasetListRp.syntheticRoadMap4.push({
+                jobNm: item.jobNm,
+                cert: item.cert,
+                type: "ITEM",
+              });
+            }
+          );
+
+          // TABLE 5
+          this.datasetListRp.syntheticRoadMap5 = [
+            {
+              typeNm: "인재양성유형",
+              career: "졸업 후 진로",
+              type: "HEADER",
+            },
+          ];
+          response.graduationRoadmap.forEach(
+            (item: GraduationRoadmapResDTO) => {
+              this.datasetListRp.syntheticRoadMap5.push({
+                typeNm: item.typeNm,
+                career: item.career,
+                type: "ITEM",
+              });
+            }
+          );
+        }
+      );
     },
 
     async cloneData() {
@@ -1046,6 +1288,7 @@ export default {
       await this.getLinkRoadMap();
       await this.getOverviewRoadMap();
       await this.getRoadmapEduProcess();
+      await this.getSyntheticRoadMapExport();
     },
     convertData() {
       this.datasetListRp.eduCourseDetail = JSON.stringify(
@@ -1135,12 +1378,26 @@ export default {
       this.datasetListRp.roadmapEduProcess = JSON.stringify(
         this.datasetListRp.roadmapEduProcess
       );
+      this.datasetListRp.syntheticRoadMap1 = JSON.stringify(
+        this.datasetListRp.syntheticRoadMap1
+      );
+      this.datasetListRp.syntheticRoadMap2 = JSON.stringify(
+        this.datasetListRp.syntheticRoadMap2
+      );
+      this.datasetListRp.syntheticRoadMap3 = JSON.stringify(
+        this.datasetListRp.syntheticRoadMap3
+      );
+      this.datasetListRp.syntheticRoadMap4 = JSON.stringify(
+        this.datasetListRp.syntheticRoadMap4
+      );
+      this.datasetListRp.syntheticRoadMap5 = JSON.stringify(
+        this.datasetListRp.syntheticRoadMap5
+      );
     },
     async print() {
       this.storeCommon.setLoading(true);
 
       await this.cloneData();
-      console.log(this.datasetListRp);
 
       await this.convertData();
 
@@ -1181,6 +1438,9 @@ export default {
         )
         .map((item: any) => item.subjectNm)
         .join(", ");
+    },
+    convertDataNmToString(data: EduCourseSelResDTO[]): string {
+      return data.map((item) => item.refrNm).join("\n");
     },
   },
 };

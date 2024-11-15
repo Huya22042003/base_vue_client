@@ -48,6 +48,7 @@
                   :category="eduCourseApdx"
                   :sectionName="eduCourseApdx"
                   :maxSize="30"
+                  v-model="modelValue"
                 >
                 </InputFileBase>
                 <span class="text-red">
@@ -125,6 +126,7 @@ export default {
       typeFile: FILE_TYPE_OFFICE,
       modeFile: MODE_EDIT,
       eduCourseApdx: "EDU_COURSE_APDX",
+      modelValue: []
     };
   },
   beforeMount() {
@@ -136,7 +138,7 @@ export default {
   },
   methods: {
     confirmSave() {
-      if (this.storeCommon.check) {
+      if (this.storeCommon.check || this.modelValue.length == 0) {
         this.$alert(this.t("common.messageValidateRequired"));
         return;
       }

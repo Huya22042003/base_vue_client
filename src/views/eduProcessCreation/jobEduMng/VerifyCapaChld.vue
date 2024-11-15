@@ -162,7 +162,7 @@
 
     <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
-        <button type="button" class="btn_round btn_lg btn_gray">
+        <button type="button" class="btn_round btn_lg btn_gray" @click="print()">
           <!-- 4.직무 정의 및 직무모형 설정 인쇄 -->{{
             t("eduProcessCreation.jobEduMng.title26")
           }}
@@ -209,18 +209,23 @@ import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import {
+  JobEduCoreJobSelcListModel,
   JobEduVerifyChildCoreJobListModel,
   JobEduVerifyChildNcsKcsModel,
   JobEduVerifyCmmnJobAbilityModel,
+  JobEduVerifyCoreJobListModel,
   JobEduVerifyJobCapaUnitModel,
   JobEduVerifyJobCapaUnitPerformModel,
 } from "../../../stores/eduProcessCreation/jobEduMng/jobEduMng.type";
 import { EduCourseDetailReqDTO } from "../../../stores/eduProcessCreation/eduCourse/eduProcess.type";
 import {
+  getJobEduCoreJobSelcList,
   getListVerifyChildCoreJob,
+  getListVerifyJobAbility,
   saveListVerifyChildCoreJob,
 } from "../../../stores/eduProcessCreation/jobEduMng/jobEduMng.service";
 import { VERSION_V1 } from "@/constants/common.const";
+import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
 
 export default defineComponent({
   setup: () => {
@@ -238,6 +243,10 @@ export default defineComponent({
       listCoreJobSelc: [] as Array<JobEduVerifyChildCoreJobListModel>,
       eduCourseDetailReqDTO: {} as EduCourseDetailReqDTO,
       isDisabled: true,
+      nameFormRp: "07_04_job_edu",
+      datasetListRp: {} as any,
+      paramListRp: {} as any,
+      listCodeResponse: [] as CodeMngModel[],
     };
   },
   beforeMount() {
@@ -375,6 +384,125 @@ export default defineComponent({
         path: SCREEN.eduProcessCreation.path,
       });
     },
+
+    async getTechniqueEdu() {
+      await getJobEduCoreJobSelcList({
+        eduCourseSeq: this.id,
+      }).then((res) => {
+        const response = res.data.data as JobEduCoreJobSelcListModel[];
+        this.datasetListRp.techniqueEdu = response.map((item) => {
+          return {
+            typeNm: item.typeNm,
+            jobNm: item.jobNm,
+            defn: item.defn,
+          };
+        });
+      });
+    },
+    async getVerifyJob() {
+      await getListVerifyJobAbility({
+        eduCourseSeq: this.id,
+      }).then((res) => {
+        const response = res.data.data as JobEduVerifyCoreJobListModel[];
+        this.datasetListRp.verifyJob = [];
+        response.forEach((job) => {
+          job.listNcsKcs.forEach((item) => {
+            item.listVerifyJobAbility.forEach((jobAbili) => {
+              if (jobAbili.isCheck) {
+                this.datasetListRp.verifyJob.push({
+                  jobNm: job.jobNm,
+                  jobAbilCd: jobAbili.jobAbilCd,
+                  jobAbilNm: jobAbili.jobAbilNm,
+                  eduNeed: jobAbili.eduNeed,
+                  jobImpt: jobAbili.jobImpt,
+                  average: this.getAvgScore([
+                    jobAbili.eduNeed.toString(),
+                    jobAbili.jobImpt.toString(),
+                  ]),
+                  useYn: jobAbili.useYn,
+                });
+              }
+            });
+          });
+        });
+      });
+    },
+    async getVerifyCapaChld() {
+      getListVerifyChildCoreJob({ eduCourseSeq: this.id }).then((res) => {
+        const response = res.data.data as JobEduVerifyChildCoreJobListModel[];
+
+        this.datasetListRp.verifyJob2 = [];
+        this.datasetListRp.verifyCapaChld = [];
+
+        response.forEach((job) => {
+          job.listNcsKcs.forEach((ncs) => {
+            ncs.listJobAbility.forEach((jobAbi) => {
+              jobAbi.listJobCapaUnit.forEach((jobCapa) => {
+                if (jobCapa.isCheck) {
+                  jobCapa.listJobCapaUnitPerform.forEach((perform) => {
+                    this.datasetListRp.verifyJob2.push({
+                      jobNm: job.jobNm,
+                      jobAbiNm: jobAbi.jobAbilNm,
+                      jobCapaNm: jobCapa.capaUnitNm,
+                      performNm: perform.cont,
+                      isUse: perform.isCheck ? "Y" : "N",
+                      notUseCont: perform.unuseRsn ? perform.unuseRsn : "",
+                    });
+
+                    if (perform.isCheck) {
+                      this.datasetListRp.verifyCapaChld.push({
+                        jobNm: job.jobNm,
+                        jobAbiNm: jobAbi.jobAbilNm,
+                        jobCapaNm: jobCapa.capaUnitNm,
+                        performNm: perform.cont,
+                      });
+                    }
+                  });
+                }
+              });
+            });
+          });
+        });
+      });
+    },
+    async cloneData() {
+      await this.getTechniqueEdu();
+      await this.getVerifyJob();
+      await this.getVerifyCapaChld();
+    },
+    getAvgScore(scores: string[]) {
+      const sum = scores.reduce((acc, score) => acc + parseFloat(score), 0);
+      const avgScore = sum / scores.length;
+      return parseFloat(avgScore ? avgScore.toFixed(3) : "0");
+    },
+    convertData() {
+      this.datasetListRp.techniqueEdu = JSON.stringify(
+        this.datasetListRp.techniqueEdu
+      );
+      this.datasetListRp.verifyJob = JSON.stringify(
+        this.datasetListRp.verifyJob
+      );
+      this.datasetListRp.verifyJob2 = JSON.stringify(
+        this.datasetListRp.verifyJob2
+      );
+      this.datasetListRp.verifyCapaChld = JSON.stringify(
+        this.datasetListRp.verifyCapaChld
+      );
+    },
+    async print() {
+      this.storeCommon.setLoading(true);
+
+      await this.cloneData();
+
+      await this.convertData();
+
+      await this.storeCommon.fn_viewer_open(
+        this.nameFormRp,
+        this.datasetListRp,
+        this.paramListRp
+      );
+      this.storeCommon.setLoading(false);
+    },
   },
 });
 </script>
@@ -382,4 +510,7 @@ export default defineComponent({
 .check_row > label {
   min-height: 20px !important;
 }
+</style>
+<style scoped>
+@import url("../eduCourseCustom.css");
 </style>

@@ -306,8 +306,6 @@ export default defineComponent({
             this.rowSpanThead += job.listChild.length;
           });
           this.rowSpanThead++;
-
-          console.log(this.data);
         })
         .finally(() => {
           this.storeCommon.setLoading(false);
