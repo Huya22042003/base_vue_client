@@ -209,7 +209,7 @@
     </div>
     <div class="btn_group btn_end mg_t30">
       <div class="btn_group btn_end">
-        <button type="button" class="btn_lg btn_round btn_gray">
+        <button type="button" class="btn_lg btn_round btn_gray" @click="print()">
           <!-- 3.인재양성유형 설정 및 교육목표 수립 인쇄 -->{{
             t("eduProcessCreation.typeTalentEdu.title31")
           }}
@@ -256,14 +256,23 @@ import {
   CD_RESULT_SEL_02,
   CD_RESULT_SEL_03,
   CD_STG041,
+  CD_SELCT_TALT_YES,
+  CD_INTERNAL,
 } from "@/constants/common.const";
 import {
+  getAllEduCourseComm,
+  getCoreJobSel,
+  getEduGoal,
   getResultEduCourse,
+  getTaltNrtgSel,
   saveResultEduCourse,
 } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.service";
 import {
   ResultEduCourseResDTO,
   ResultEduCourseReqDTO,
+  CoreJobSelDTO,
+  TaltNrtgResDTO,
+  EduCourseCommResDTO,
 } from "@/stores/eduProcessCreation/typeTalentEdu/typeTalentEdu.type";
 import {
   EduCourseDescReqDTO,
@@ -276,6 +285,9 @@ import {
   createEduCourseSel,
 } from "@/stores/eduProcessCreation/eduCourse/eduProcess.service";
 import ButtonBase from "@/components/common/button/ButtonBase.vue";
+import { CodeMngModel } from "@/stores/common/codeMng/codeMng.type";
+import { format } from "date-fns";
+import { FORMAT_YYY_MM_DD } from "@/constants/screen.const";
 
 export default defineComponent({
   components: {
@@ -310,6 +322,10 @@ export default defineComponent({
       listReultMajor: [] as Array<any>,
       data: {} as ResultEduCourseResDTO,
       isDisabled: true,
+      nameFormRp: "07_03_type_talent_edu",
+      datasetListRp: {} as any,
+      paramListRp: {} as any,
+      listCodeResponse: [] as CodeMngModel[],
     };
   },
   beforeMount() {
@@ -453,6 +469,359 @@ export default defineComponent({
       this.router.push({
         path: SCREEN.eduProcessCreation.path,
       });
+    },
+    async getListCodeEduCourse() {
+      await getListCodeMng({
+        upCdIdList: [UP_RESULT_SEL],
+      }).then((res: any) => {
+        this.listCodeResponse = res.data.data;
+      });
+    },
+    async getEduCompositionTalent() {
+      await getAllEduCourseComm({ eduCourseSeq: this.id })
+        .then((res: any) => {
+          const response = res.data.data as EduCourseCommResDTO[];
+
+          this.datasetListRp.compositionTalent = response.map((item) => {
+            item.divCd = item.divCd == CD_INTERNAL ? "내부" : "외부";
+            return item;
+          });
+        })
+    },
+    async getCreatedTypeTalent() {
+      await getEduGoal({ eduCourseSeq: this.id }).then(
+        (res: any) => {
+          const response = res.data.data;
+
+          this.datasetListRp.createdTypeTalent = [
+            {
+              schVision: response.schEduGoal
+                .filter((item: any) => item.divCd == "103720")
+                .map((item: any) => item.cont)
+                .join("\n"),
+              schTalent: response.schEduGoal
+                .filter((item: any) => item.divCd == "103730")
+                .map((item: any) => item.cont)
+                .join("\n"),
+              schTarget: response.schEduGoal
+                .filter((item: any) => item.divCd == "103740")
+                .map((item: any) => item.cont)
+                .join("\n"),
+              deptVision: response.deptEduGoal
+                .filter((item: any) => item.divCd == "103810")
+                .map((item: any) => item.cont)
+                .join("\n"),
+              deptTalent: response.eduSel
+                .filter((item: any) => item.dataCd == "103820")
+                .map((item: any) => item.refrNm)
+                .join("\n"),
+              deptTarget: response.eduSel
+                .filter((item: any) => item.dataCd == "103830")
+                .map((item: any) => item.refrNm)
+                .join("\n"),
+              deptDesc: response.eduDesc
+                .filter((item: any) => item.dataCd == "EDU_032_03")
+                .map((item: any) => item.cont)
+                .join("\n"),
+            },
+          ];
+        }
+      );
+    },
+    async getSetGoalTalent() {
+      await getTaltNrtgSel({ eduCourseSeq: this.id }).then(
+        (res: any) => {
+          const response = res.data.data as TaltNrtgResDTO;
+
+          response.taltNrtgSel = response.taltNrtgSel.filter(
+            (item) => item.taltNrtgSelcSeq
+          );
+
+          this.datasetListRp.setGoalTalentTable1 = [
+            {
+              eduCourseType: response.eduCourseType,
+              evalDate: response.evalDate
+                ? format(response.evalDate, FORMAT_YYY_MM_DD)
+                : "",
+              evalPartiCnt: response.evalPartiCnt + '명',
+              jobField: response.jobField,
+            },
+          ];
+          this.datasetListRp.setGoalTalentTable2 = response.taltNrtgSel
+            .filter((item) => item.taltNrtgSelcSeq)
+            .map((item: any) => {
+              item.avgScore = this.getAvgScore([
+                item.jobImpt,
+                item.jobOl,
+                item.employFruitage,
+                item.deptVisn,
+                item.eduEfft,
+              ]);
+              return item;
+            });
+        }
+      );
+      await getCoreJobSel({ eduCourseSeq: this.id }).then(
+        (res) => {
+          const response = res.data.data.map((item: any) => {
+            if (item.coreJobSelcSeq) {
+              item.check = true;
+            } else {
+              item.check = false;
+            }
+            return item;
+          }) as CoreJobSelDTO[];
+
+          this.datasetListRp.setGoalTalentTable3 =
+            this.datasetListRp.setGoalTalentTable2
+              .filter((item: any) => item.selCd == CD_SELCT_TALT_YES)
+              .map((item: any) => {
+                return {
+                  typeNm: item.typeNm,
+                  defn: response.filter(
+                    (res) => res.taltNrtgTypeSeq == item.taltNrtgTypeSeq
+                  )[0].defn,
+                  job: response
+                    .filter(
+                      (res) => res.taltNrtgTypeSeq == item.taltNrtgTypeSeq
+                    )
+                    .map((res) => res.jobNm)
+                    .join(", "),
+                };
+              });
+        }
+      );
+    },
+    async getSelectionTalent() {
+      type SelectionTalentType = {
+        col1: string,
+        col2: string,
+        colLeft1: string,
+        colLeft2: string,
+        row: number,
+        value: string,
+        taltTypeSeq: string
+      };
+      let dataConvert = [] as SelectionTalentType[];
+
+      await getCoreJobSel({ eduCourseSeq: this.id })
+        .then((res: any) => {
+          const response = res.data.data.filter((item: any) => item.coreJobSelcSeq) as any[];
+          response.forEach((item) => {
+            /* row 1 */
+            dataConvert.push({
+              col1: item.typeNm + ' 디자이너',
+              col2: item.jobNm + ' 디자인',
+              colLeft1: '(1) 산업체, 지역사회 인력수요도',
+              colLeft2: '40점',
+              row: 1,
+              value: '',
+              taltTypeSeq: item.taltNrtgTypeSeq
+            });
+            /* row 2 */
+            dataConvert.push({
+              col1: item.typeNm + ' 디자이너',
+              col2: item.jobNm + ' 디자인',
+              colLeft1: '\t• 해당산업의 인력수요의 미래전망과 비전',
+              colLeft2: '20',
+              row: 2,
+              value: `${item.visn}`,
+              taltTypeSeq: item.taltNrtgTypeSeq
+            })
+            /* row 3 */
+            dataConvert.push({
+              col1: item.typeNm + ' 디자이너',
+              col2: item.jobNm + ' 디자인',
+              colLeft1: '\t• 신입사원 채용 시 전공 일치도에 대한 중요도',
+              colLeft2: '10',
+              row: 3,
+              value: `${item.impt}`,
+              taltTypeSeq: item.taltNrtgTypeSeq
+            })
+            /* row 4 */
+            dataConvert.push({
+              col1: item.typeNm + ' 디자이너',
+              col2: item.jobNm + ' 디자인',
+              colLeft1: '\t• 향후 해당직무에 대한 채용 가능성',
+              colLeft2: '10',
+              row: 4,
+              value: `${item.psbl}`,
+              taltTypeSeq: item.taltNrtgTypeSeq
+            })
+            /* row 5 */
+            dataConvert.push({
+              col1: item.typeNm + ' 디자이너',
+              col2: item.jobNm + ' 디자인',
+              colLeft1: '(2) 본교 교육여건과의 연계성 ',
+              colLeft2: '30점',
+              row: 5,
+              value: '',
+              taltTypeSeq: item.taltNrtgTypeSeq
+            });
+            /* row 6 */
+            dataConvert.push({
+              col1: item.typeNm + ' 디자이너',
+              col2: item.jobNm + ' 디자인',
+              colLeft1: '\t• 강의 실습실의 공간 면적 및 시설은 해당 직무능력 성취를 위한 수업에 적합한가?',
+              colLeft2: '15',
+              row: 6,
+              value: `${item.factSutb}`,
+              taltTypeSeq: item.taltNrtgTypeSeq
+            })
+            /* row 7 */
+            dataConvert.push({
+              col1: item.typeNm + ' 디자이너',
+              col2: item.jobNm + ' 디자인',
+              colLeft1: '\t• 강의 실습실의 기자재 구비 및 활용은 해당 직무능력 성취를 위한 수업에 적합한가?',
+              colLeft2: '15',
+              row: 7,
+              value: `${item.matlSutb}`,
+              taltTypeSeq: item.taltNrtgTypeSeq
+            })
+            /* row 8 */
+            dataConvert.push({
+              col1: item.typeNm + ' 디자이너',
+              col2: item.jobNm + ' 디자인',
+              colLeft1: '(3) 학생 선호도',
+              colLeft2: '15',
+              row: 8,
+              value: ``,
+              taltTypeSeq: item.taltNrtgTypeSeq
+            })
+            /* row 9 */
+            dataConvert.push({
+              col1: item.typeNm + ' 디자이너',
+              col2: item.jobNm + ' 디자인',
+              colLeft1: '\t• 재학생의 해당직무 선호도 (재학생 설문조사)',
+              colLeft2: '30',
+              row: 9,
+              value: `${item.prfr}`,
+              taltTypeSeq: item.taltNrtgTypeSeq
+            })
+            /* row 10 */
+            dataConvert.push({
+              col1: item.typeNm + ' 디자이너',
+              col2: item.jobNm + ' 디자인',
+              colLeft1: '\t\t\t합계',
+              colLeft2: '100',
+              row: 10,
+              value: `${this.totalScoreAnalysis([item.visn, item.impt, item.psbl, item.factSutb, item.matlSutb, item.prfr])}`,
+              taltTypeSeq: item.taltNrtgTypeSeq
+            })
+            /* row 11 */
+            dataConvert.push({
+              col1: item.typeNm + ' 디자이너',
+              col2: item.jobNm + ' 디자인',
+              colLeft1: '\t\t\t판정',
+              colLeft2: '',
+              row: 11,
+              value: `${item.selcNm}`,
+              taltTypeSeq: item.taltNrtgTypeSeq
+            })
+          })
+          this.datasetListRp.getSelectionTalent = dataConvert;
+        })
+    },
+    async getResultTypeTalent() {
+      await getResultEduCourse({ eduCourseSeq: this.id }).then(
+        (res: any) => {
+          const response = res.data.data;
+          const responseCode = this.listCodeResponse.filter(
+            (item) => item.upCdId == UP_RESULT_SEL
+          );
+          this.datasetListRp.resultTypeTalent = [
+            {
+              asisIndex: response.asisEduCourse.indexEduCourse
+                .map(
+                  (item: any) =>
+                    response.listCurriculum.filter(
+                      (curri: any) => curri.cdId == item.selCd
+                    )[0].cdNm
+                )
+                .join(", "),
+              asisJob: response.asisEduCourse.eduCourseJob,
+              asisType: response.asisEduCourse.eduCourseType,
+              asisLimit: response.tobeEduCourse.asisLimits,
+              tobeIndex: response.tobeEduCourse.indexEduCourse
+                .map(
+                  (item: any) =>
+                    response.listCurriculum.filter(
+                      (curri: any) => curri.cdId == item.selCd
+                    )[0].cdNm
+                )
+                .join(", "),
+              tobeJob: response.tobeEduCourse.eduCourseJob,
+              tobeType: response.tobeEduCourse.eduCourseType,
+              tobeRsn: response.tobeEduCourse.tobeRsn,
+              tobeCoreJobDivCd: responseCode.filter(
+                (item: CodeMngModel) =>
+                  item.cdId == response.tobeEduCourse.tobeCoreJobDivCd
+              )[0].cdNm,
+              tobeTaltNrtgTypeDivCd: responseCode.filter(
+                (item: CodeMngModel) =>
+                  item.cdId == response.tobeEduCourse.tobeTaltNrtgTypeDivCd
+              )[0].cdNm,
+              tobeCursListDivCd: responseCode.filter(
+                (item: CodeMngModel) =>
+                  item.cdId == response.tobeEduCourse.tobeCursListDivCd
+              )[0].cdNm,
+            },
+          ];
+        }
+      );
+    },
+    async cloneData() {
+      await this.getListCodeEduCourse();
+      await this.getEduCompositionTalent();
+      await this.getCreatedTypeTalent();
+      await this.getSetGoalTalent();
+      await this.getSelectionTalent();
+      await this.getResultTypeTalent();
+    },
+    convertData() {
+      this.datasetListRp.compositionTalent = JSON.stringify(
+        this.datasetListRp.compositionTalent
+      );
+      this.datasetListRp.createdTypeTalent = JSON.stringify(
+        this.datasetListRp.createdTypeTalent
+      );
+      this.datasetListRp.setGoalTalentTable1 = JSON.stringify(
+        this.datasetListRp.setGoalTalentTable1
+      );
+      this.datasetListRp.setGoalTalentTable2 = JSON.stringify(
+        this.datasetListRp.setGoalTalentTable2
+      );
+      this.datasetListRp.setGoalTalentTable3 = JSON.stringify(
+        this.datasetListRp.setGoalTalentTable3
+      );
+      this.datasetListRp.getSelectionTalent = JSON.stringify(
+        this.datasetListRp.getSelectionTalent
+      );
+      this.datasetListRp.resultTypeTalent = JSON.stringify(
+        this.datasetListRp.resultTypeTalent
+      );
+    },
+    async print() {
+      this.storeCommon.setLoading(true);
+
+      await this.cloneData();
+
+      await this.convertData();
+
+      await this.storeCommon.fn_viewer_open(
+        this.nameFormRp,
+        this.datasetListRp,
+        this.paramListRp
+      );
+      this.storeCommon.setLoading(false);
+    },
+    totalScoreAnalysis(listSbjt: number[]) {
+      return listSbjt.reduce((sum, sbjt) => sum + sbjt, 0);
+    },
+    getAvgScore(scores: string[]) {
+      const sum = scores.reduce((acc, score) => acc + parseFloat(score), 0);
+      const avgScore = sum / scores.length;
+      return parseFloat(avgScore ? avgScore.toFixed(3) : "0");
     },
   },
 });
