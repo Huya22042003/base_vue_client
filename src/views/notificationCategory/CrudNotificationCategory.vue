@@ -98,14 +98,14 @@
                       :mode="'edit'"
                       :id="'idFile'"
                       :name="'idFile'"
-                      :type="fileTypeImageAll"
+                      :type="fileTypeAll"
                       v-model="fileModel"
                       ref="childRef"
                       :maxFile="1"
                       :orgName="'NTC'"
                       :category="'NOTICE'"
                       :subTitle="'※ 10mb 이하의 파일 한 개 등록 가능합니다.'"
-                      :sectionName="fileTypeImageAll"
+                      :sectionName="fileTypeAll"
                     ></InputFileBase>
                   </td>
                 </tr>
@@ -370,7 +370,6 @@ export default defineComponent({
               this.$refs.diagnosticGuide.setHTML(
                 this.notiCategoryDetailModel.cont
               );
-              this.checkData(this.noticeIdRes.id);
             })
             .catch((error) => {
               throw new Error(MESSAGE_ERROR_API);
