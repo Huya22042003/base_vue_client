@@ -144,9 +144,6 @@
   .main_calendar > .write2 {
     top: 28px; right: 16px;
   }
-  .main_calendar .fc-direction-ltr {
-    /* margin-bottom: 16px; */
-  }
 }
 
 @media screen and (max-width: 480px) {

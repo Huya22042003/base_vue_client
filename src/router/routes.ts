@@ -15,14 +15,20 @@ export const routes = [
       middleware: [authMiddleware],
     },
     children: [
+      {
+        path: '/template',
+        name: 'template',
+        meta: {title: 'TemplateUi'},
+        component: getView('TemplateUiYeongsang'),
+      },
     ],
   },
-  {
-    path: '/template',
-    name: 'template',
-    meta: {title: 'TemplateUi'},
-    component: getView('TemplateUiYeongsang'),
-  },
+  // {
+  //   path: '/template',
+  //   name: 'template',
+  //   meta: {title: 'TemplateUi'},
+  //   component: getView('TemplateUiYeongsang'),
+  // },
   {
     path: SCREEN.login.path,
     name: SCREEN.login.name,
