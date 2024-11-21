@@ -86,10 +86,10 @@
   box-shadow: none !important;
 }
 .main_calendar .fc-prev-button {
-  background-image: url(@/assets/images/common/icon_left.svg);
+  background-image: url(../../../images/common/icon_left.svg);
 }
 .main_calendar .fc-next-button {
-  background-image: url(@/assets/images/common/icon_right.svg);
+  background-image: url(../../../images/common/icon_right.svg);
 }
 .main_calendar .fc .fc-button .fc-icon {
   display: none;

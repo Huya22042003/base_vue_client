@@ -108,7 +108,7 @@ button[disabled] {
 }
 /* Button hover, active */
 .btn_blue:hover, .btn_blue:active {
-    /*background-color: #cf4c1c;*/
+    background-color: #cf4c1c;
 }
 
 .btn_medium_gray:hover, .btn_medium_gray:active {
@@ -153,26 +153,26 @@ button[disabled] {
 .btn_gray[disabled],
 .btn_black[disabled] {
     background-color: var(--dusky-slate) !important;
-    /*border: none !important;*/
+    border: none !important;
     color: var(--black-color) !important;
 }
 
 /* other*/
-/*.btn_area {*/
-/*    display: flex;*/
-/*    margin-top: 30px;*/
-/*    justify-content: center;*/
-/*}*/
+.btn_area {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+}
 
-/*.btn_area > * {*/
-/*    margin: 0 5px;*/
-/*    !*padding: 0 20px;*!*/
-/*    min-width: 80px;*/
-/*}*/
+.btn_area > * {
+    margin: 0 5px;
+    /*padding: 0 20px;*/
+    min-width: 80px;
+}
 
-/*.box + .btn_area, .box_section + .btn_area {*/
-/*    margin-bottom: 60px;*/
-/*}*/
+.box + .btn_area, .box_section + .btn_area {
+    margin-bottom: 60px;
+}
 
 .btn_flex {
     display: flex;
@@ -362,22 +362,23 @@ input {
     height: 40px;
 }
 input[disabled], input[disabled]::placeholder {
-    /*height: 40px !important;*/
-    /*padding: 0 30px 0 12px !important;*/
-    background: var(--light1);
-    border-color: transparent;
 }
-input[disabled], textarea[disabled], input[disabled]::placeholder, textarea[disabled]::placeholder {
+
+input[disabled], textarea[disabled] {
     color: #ACAEAFFF !important;
     background-color: transparent !important;
     border-color: var(--light-blue-gray) !important;
-    /*padding: 6px;*/
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.2em;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    white-space: pre-wrap;
+    white-space: nowrap; /* Prevents line breaks */
+    text-overflow: ellipsis; /* Adds ellipsis when content overflows */
+}
+
+input[disabled]::placeholder, textarea[disabled]::placeholder {
+    color: #ACAEAFFF !important;
+    white-space: nowrap; /* Prevents line breaks */
+    overflow: hidden; /* Hides overflow */
+    text-overflow: ellipsis; /* Adds ellipsis when content overflows */
 }
 
 input::placeholder, textarea::placeholder {
@@ -594,6 +595,36 @@ textarea.resize {
 .check_row > input[disabled] + label, .check_row > input:checked[disabled] + label {
     cursor: default;
 }
+
+.check_only {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.check_only > input {
+    display: none;
+}
+
+.check_only label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: top;
+    background-color: var(--white-color);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid var(--gray-lavender);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.check_only > input:checked + label {
+    background-color: var(--primary-color2);
+    background-image: url(../images/icon_check.png);
+    border: none;
+}
 /* endregion */
 
 /* region Start of radio */
@@ -623,18 +654,23 @@ textarea.resize {
     content: "";
     display: inline-block;
     width: 20px;
-    /* height: 20px; */
+    height: 20px;
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: left 4px;
     background-size: 16px;
-    /*background-image: url(@/assets/images/formstyle/icon_radio_off.svg);*/
+    background-image: url(@/assets/images/formstyle/icon_radio_off.svg);
     cursor: pointer;
 }
 
 .radio_row > input:checked + label::before {
-    /*background-image: url(@/assets/images/formstyle/icon_radio_on.svg);*/
+    background-image: url(@/assets/images/formstyle/icon_radio_on.svg);
     border: none;
+}
+
+.radio_row > input[disabled] + label::before {
+    background-image: url(@/assets/images/formstyle/icon_radio_disabled.svg);
+    cursor: default;
 }
 
 .radio_row > input:checked[disabled] + label::before {
@@ -657,27 +693,27 @@ textarea.resize {
 .pagination_wrap > a {
     position: relative;
     display: inline-flex;
-    margin: 0 2px;
-    width: 28px;
-    height: 28px;
+    margin: 0 5px;
+    width: 20px;
+    height: 20px;
     align-items: center;
     justify-content: center;
     color: #585D72;
     transition: 0.2s;
 }
 .pagination_wrap > a > p {
+    font-size: 16px;
     font-weight: 500;
-    font-size: 1.4rem;
-    line-height: 2.7rem;
 }
 
-.pagination_wrap > a:not(.active):hover {
+.pagination_wrap > a:hover {
     color: var(--black-color);
+
     /*background-color: var(--primary-color2);*/
 }
 
 .pagination_wrap .func {
-    /*margin: 0 10px;*/
+    margin: 0 10px;
     font-size: 0;
     line-height: 0;
     /*border: 1px solid #bfbfbf;*/
@@ -701,7 +737,7 @@ textarea.resize {
 }
 
 .pagination_wrap .func.back {
-    /*margin-right: 20px;*/
+    margin-right: 20px;
 }
 
 .pagination_wrap .func.back::after {
@@ -709,7 +745,7 @@ textarea.resize {
 }
 
 .pagination_wrap .func.next {
-    /*margin-left: 20px;*/
+    margin-left: 20px;
 }
 
 .pagination_wrap .func.next::after {
@@ -720,13 +756,10 @@ textarea.resize {
     background-image: url(../images/icon_page_last.png);
 }
 
-.pagination_wrap .active{
-    background: var(--primary);
+.pagination_wrap .active > p{
+    color: var(--primary);
     font-weight: 600;
-    border-radius: 50%;
-    color: var(--white-color);
-    text-align: center;
-    vertical-align: middle;
+    border-bottom: 1px solid var(--primary);
 }
 
 .pagination_wrap .func.active, .pagination_wrap .func:hover {
@@ -1122,7 +1155,7 @@ body > .loading_box {
     font-weight: 400 !important;
     color: var(--steel-blue) !important;
     background: url('../images/icon_arrow_down.png') no-repeat right 10px center !important;
-    border: 1px solid var(--black-color);
+    border: 1px solid var(--light-blue-gray);
     border-radius: 4px !important;
     -webkit-appearance: none !important;
     appearance: none !important;
@@ -1132,6 +1165,7 @@ body > .loading_box {
 
 }
 
+.select_component_custom.on,
 .select_component_custom:focus{
     border: 1px solid var(--black-color) !important;
     border-bottom-left-radius: 0 !important;
@@ -1149,7 +1183,7 @@ body > .loading_box {
     border: 1px solid var(--black-color);
     width: 100%;
     background: var(--white-color) !important;
-    z-index: 10;
+    z-index: 1;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     opacity: 0;
@@ -1169,7 +1203,7 @@ body > .loading_box {
     padding-top:4px;
     padding-bottom: 4px;
     border-top:0 !important;
-    z-index: 10;
+    z-index: 9990 !important;
 }
 .list_select_custom > li:hover {
     background: #EDEFF2;

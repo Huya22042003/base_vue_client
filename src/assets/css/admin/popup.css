@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .overlay_popup {
-  position: fixed; top: 0; left: 0; z-index: 1000;
+  position: fixed; top: 0; left: 0; z-index: 999;
   display: flex;
   width: 100%; height: 100%;
   align-items: center; justify-content: center;
@@ -9,6 +9,31 @@
 body.on .overlay_popup > * {
   opacity: 1;
 }
+.overlay_popup {
+  position: fixed; top: 0; left: 0; z-index: 999;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  pointer-events: visible;
+}
+.overlay_popup:empty {
+  display: none;
+}
+.overlay_bg {
+  position: absolute; top: 0; left: 0; z-index: 997;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: 0.3s;
+}
+.overlay_bg.on {
+  opacity: 1;
+}
+
+.overlay_bg.on + .popup_wrap {
+  top: 45%;
+  opacity: 1;
+}
+
 .bg_overlay {
   position: fixed; top: 0; left: 0;
   width: inherit; height: inherit;
@@ -23,7 +48,7 @@ body.on .overlay_popup > * {
   transition: 0.4s;
   transition-delay: 0.2s;
   box-shadow: var(--shadow);
-  /*opacity: 0;*/
+  opacity: 0;
 }
 .overlay_popup.mini .popup_container {
   width: 450px;
@@ -40,6 +65,20 @@ body.on .overlay_popup > * {
 .overlay_popup.xlarge .popup_container {
   width: 1278px;
 }
+.popup_wrap {
+  position: absolute; top: 25%; left: 50%; z-index: 997;
+  border-radius: 16px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--gray);
+  transition: 0.3s;
+  /*width: 100%;*/
+  width: 740px;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 40px 0px #00000059;
+  background: var(--white-color);
+}
 .popup_title {
   position: relative;
   display: flex;
@@ -49,8 +88,7 @@ body.on .overlay_popup > * {
   background-color: var(--white);
   border-radius: 14px 14px 0 0;
 }
-.popup_title h3,
-.popup_title h3 > *{
+.popup_title h3 {
   padding: 24px 16px 16px 0;
   width: 100%;
   color: var(--dark1); font-weight: 600; font-size: 2rem;
@@ -60,10 +98,10 @@ body.on .overlay_popup > * {
   overflow: hidden;
 }
 .popup_title .popup_close {
-  position: absolute; right: 24px; top: 55%;
+  position: absolute; right: 24px; top: 50%;
   width: 32px; height: 32px;
   font-size: 0;
-  background: url(@/assets/images/common/icon_popup_delete.svg) no-repeat center;
+  background: url(../../images/common/icon_popup_delete.svg) no-repeat center;
   transform: translateY(-50%);
 }
 .popup_content {
@@ -71,7 +109,7 @@ body.on .overlay_popup > * {
   background-color: var(--white);
   border-bottom: 0;
   overflow-y: auto;
-  overflow-x: hidden;
+  max-height: 65dvh;
 }
 .popup_footer {
   display: flex;

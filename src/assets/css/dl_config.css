@@ -107,6 +107,34 @@
 /*}*/
 
 /*custom scroll*/
+*,*:before,*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+    width: 10px !important;  /* 스크롤바의 너비 */
+    height: 10px !important;  /* 스크롤바의 높이 */
+}
+body::-webkit-scrollbar {
+    width: 10px !important;  /* 스크롤바의 너비 */
+    height: 10px !important;  /* 스크롤바의 높이 */
+}
+
+*::-webkit-scrollbar-thumb {
+    background: rgba(88,93,114, 0.3); /* 스크롤바의 색상 */
+    background-clip : padding-box;
+    border: 2px solid transparent;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+*::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);  /*스크롤바 뒷 배경 색상*/
+}
 
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,

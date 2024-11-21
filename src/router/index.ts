@@ -1,6 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import {routes} from '@/router/routes'
-import routesPub from '@/router/routesPub'
 import commonService from "@/service/common/CommonService";
 import {SCREEN} from "@/router/screen";
 
@@ -8,7 +7,7 @@ let tempScreenName = null;
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...routes, ...routesPub],
+  routes: [...routes],
   scrollBehavior(to, from, savedPosition) {
     return {top: 0, behavior: 'smooth',}
   }

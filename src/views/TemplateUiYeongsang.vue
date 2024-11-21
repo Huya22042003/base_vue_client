@@ -2580,7 +2580,9 @@ export default defineComponent({
 
       this.fakeData(pageNumber, pagesSize)
     },
-    fnPagination(pageNumber: any, pagesSize: any) {
+    fnPagination(pageNumber: any, pagesSize: any, sortField: string, sortType: string) {
+      console.log(pageNumber, pagesSize, sortField, sortType);
+      
       const resetSelect = document.getElementById('selectAllGridId01')
       //resetSelect.checked = false
       let params = {page: pageNumber, size: pagesSize, sort: "", name: ""}

@@ -42,6 +42,7 @@
     @rowClicked="rowClick"
     overlayNoRowsTemplate="조회된 데이터가 없습니다"
     :rowClassRules="rowClassRules"
+    @sortChanged="onSortChanged"
   >
   </AgGridVue>
   <div class="pagination_wrap" v-if="pagesSize.length < 11">
@@ -232,10 +233,23 @@ export default {
       totalPageGroup: 0,
       rowClassRules: {
         'error-row': (params) => params.data.hasError === true
-      }
+      },
+      sortField: "",
+      sortType: ""
     }
   },
   methods: {
+    async onSortChanged(event) {
+      const sortModel = event.columns;
+      
+      if (sortModel.length != 0) {
+        const { colId, sort } = sortModel.length == 1 ? sortModel[0] : sortModel[1];
+        this.sortType = sort == undefined ? "" : sort.toUpperCase();
+        
+        this.sortField = colId;
+      }
+      await this.customPagination(this.targetPage, this.paginationPageSizeSelect)
+    },
      countRowOfPage() {
            const gridApi = this.$refs.agGrid.api;
             this.firstDisplayedRow = gridApi.getFirstDisplayedRow() + 1;
@@ -280,7 +294,7 @@ export default {
              },0)
         },
    async customPagination(pageNumber, paginationPageSizeSelect) {
-     await this.$emit('customPagination', pageNumber, paginationPageSizeSelect)
+     await this.$emit('customPagination', pageNumber, paginationPageSizeSelect, this.sortField, this.sortType)
     },
     rowClick(params) {
       this.$emit('rowClick', params.data)

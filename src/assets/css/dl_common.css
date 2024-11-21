@@ -24,11 +24,10 @@ table::before {
 }
 .tbl_col thead th {
 	padding: 8px 12px;
-	text-align: center;
-	color: var(--tb-text--color);
+	text-align: center; color: var(--tb-text--color);
 	font-weight: 500;
-	/*background-color: var(--tb-bg--color);*/
-	/*border-right: 1px solid var(--tb-boder--color1);*/
+	background-color: var(--tb-bg--color);
+	border-right: 1px solid var(--tb-boder--color1);
 	border-bottom: 1px solid var(--tb-boder--color2);
 }
 .tbl_col thead th:last-child {
@@ -37,7 +36,7 @@ table::before {
 .tbl_col tbody tr > * {
 	padding: 8px 12px;
 	text-align: center; font-weight: 500;
-	/*border-right: 1px solid var(--tb-boder--color1);*/
+	border-right: 1px solid var(--tb-boder--color1);
 	border-bottom: 1px solid var(--tb-boder--color1);
 }
 .tbl_col tbody tr > *:last-child {
@@ -56,7 +55,7 @@ table::before {
 	content: "";
 	display: inline-block;
 	width: 100%; height: 1px;
-	/*background-color: var(--tb-bg--color1);*/
+	background-color: var(--tb-bg--color1);
 }
 .tbl_col tfoot *:last-child {
 	border-right: none;
@@ -73,7 +72,7 @@ table tr.disabled, table tr[disabled] {
 .tbl_row tbody th {
 	padding: 8px 24px;
 	font-weight: 500; color: var(--tb-text--color);
-	/*background-color: var(--tb-bg--color);*/
+	background-color: var(--tb-bg--color);
 	border-bottom: 1px solid  var(--light-blue-gray);
 }
 .tbl_row tbody td {
@@ -114,6 +113,29 @@ table tr.disabled, table tr[disabled] {
 	min-width: 480px !important;
 }
 
+/* 이미지 & 테이블 */
+.img_table {
+	display: flex;
+	align-items: flex-start;
+}
+.img_table .mypage_img {
+	margin-bottom: 0 !important;
+}
+.img_table > div:nth-child(2) {
+	margin-left: 50px;
+	width: 100%;
+}
+
+/*custom*/
+tr > td.active {
+	color: var(--primary);
+	cursor: pointer;
+}
+.tbl_col tbody tr > * {
+	text-align: left;
+}
+/* endregion */
+
 /* region Start of datePicker styling */
 .datepicker_container {
 	position: relative;
@@ -122,7 +144,7 @@ table tr.disabled, table tr[disabled] {
 .datepicker-wrapper {
 	margin-top: 4px;
 	position: absolute;
-	z-index: 10;
+	z-index: 998;
 	opacity: 1;
 	overflow-y: auto;
 	max-height: 80vh;

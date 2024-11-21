@@ -54,11 +54,11 @@
     position: relative;
     padding: 0 12px;
     min-width: 70px; width: auto; 
-    height: 38px;
+    height: 32px;
 
     font-family: inherit;
     background-color: var(--white);
-    border: 1px solid var(--dark1);
+    border: 1px solid var(--light2);
     border-radius: 4px;
   }
   .v-select,
@@ -140,8 +140,8 @@
     position: relative;
   }
   .vs__actions {
-    width: 16px;
-    background: url(@/assets/images/formstyle/icon_dropdown.png) no-repeat center;
+    width: 10px;
+    background: transparent url(../../../images/formstyle/icon_select.svg) center top 48% no-repeat;
   }
   
   .vs--open {
@@ -268,7 +268,7 @@
     background-color: transparent;
     border-color: transparent;
     display: -webkit-box;
-    line-height: 3.4rem; 
+    line-height: 32px; 
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
     text-overflow: ellipsis;
@@ -276,7 +276,7 @@
   }
   .vs--single.vs--open .vs__selected,
   .vs--single.vs--loading .vs__selected {
-    position: absolute;
+    position: absolute; 
     /* opacity: 0.4; */
   }
   .vs--single.vs--searching .vs__selected {
@@ -383,7 +383,7 @@
     .box .vs__dropdown-toggle {
       height: 24px;
     }
-    /* .box .vs__selected {
+    .box .vs__selected {
       line-height: 2.4rem;
-    } */
+    }
   }

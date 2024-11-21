@@ -12,7 +12,6 @@
     --primary-color5: #53CEC7;
     --point-color: #FF8991;
     --error-color: #EE4B3C;
-    --red: #EE4B3C;
     --gray-lavender: #CCCED4;
     --light-gray: #B3B3B3;
     --drank-gray: #222;
@@ -51,26 +50,17 @@ body.overflow {
 #app {
     position: relative;
 }
-
 html:has(.overlay_bg.on){
     overflow: hidden;
 }
-html:has(.overlay_bg.on) .list_select_custom,
 html:has(.overlay_bg.on) .datepicker-wrapper{
-    z-index: 9999;
+    z-index: 999;
 }
 
-html:has(.list_select_custom) .popup_content,
-html:has(.datepicker-wrapper) .popup_content{
-    overflow: hidden;
+body:has(.datepicker-wrapper){
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
-
-html:has(.list_select_custom) .popup_content.has_overflow,
-html:has(.datepicker-wrapper) .popup_content.has_overflow{
-    overflow: hidden;
-    padding-right: 40px;
-}
-
 .page_wrapper {
     min-height: 100vh;
 }
@@ -121,13 +111,13 @@ h6 {
 
 /* region Start of box layout */
 .box {
-    /*position: relative;*/
-    /*display: flex;*/
+    position: relative;
+    display: flex;
     margin-bottom: 32px;
-    /*padding: 42px;*/
-    /*border-radius: 10px;*/
-    /*background: var(--white-color);*/
-    /*box-shadow: 0 4px 6px 0 rgba(34, 34, 34, 0.04);*/
+    padding: 42px;
+    border-radius: 10px;
+    background: var(--white-color);
+    box-shadow: 0 4px 6px 0 rgba(34, 34, 34, 0.04);
 }
 
 .box:last-child {
@@ -341,9 +331,9 @@ h6 {
 .search_box > ul > li > span:first-child {
     flex-shrink: 0;
     padding-right: 10px;
-    font-size: 1.4rem;
+    font-size: 16px;
     font-weight: 600;
-    line-height: 2.4em;
+    line-height: 1.2em;
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: pre-wrap;
