@@ -9,7 +9,7 @@ type MessageSchema = typeof VI
 
 export const i18n = createI18n<[MessageSchema], 'en' | 'vi'>({
   legacy: false,
-  locale: 'ko',
+  locale: 'vi',
   messages: {
     vi: VI,
     ko: KO
