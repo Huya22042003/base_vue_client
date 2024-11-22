@@ -868,6 +868,8 @@
                 <div class="box_section">
                   <p class="box_title_sm">Tmodal</p>
                   <!-- 2열 일때 -->
+                  {{modalOpen}}
+
                   <button class="button btn_md btn_blue" @click="modalOpen=!modalOpen">Show modal</button>
                   <TModal :is-open="modalOpen" :is-show-header="true" :is-show-footer="true" :modal-id="modalId"
                       @close-modal="closeModal">

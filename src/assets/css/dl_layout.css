@@ -53,13 +53,20 @@ body.overflow {
 html:has(.overlay_bg.on){
     overflow: hidden;
 }
+html:has(.overlay_bg.on) .list_select_custom,
 html:has(.overlay_bg.on) .datepicker-wrapper{
-    z-index: 999;
+    z-index: 9999;
 }
 
-body:has(.datepicker-wrapper){
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+html:has(.list_select_custom) .popup_content,
+html:has(.datepicker-wrapper) .popup_content{
+    overflow: hidden;
+}
+
+html:has(.list_select_custom) .popup_content.has_overflow,
+html:has(.datepicker-wrapper) .popup_content.has_overflow{
+    overflow: hidden;
+    padding-right: 40px;
 }
 .page_wrapper {
     min-height: 100vh;

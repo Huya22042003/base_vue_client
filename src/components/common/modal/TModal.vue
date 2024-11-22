@@ -7,7 +7,7 @@
       leave-from-class="opacity-100"
       leave-to-class="opacity-0"
   >
-    <div class="overlay_popup" v-if="isOpen" :class="classSize">
+    <div class="overlay_popup" v-if="isOpen" >
       <div class="overlay_bg" :class="isOpen ? 'on' : ''" @click="closeModal"></div>
       <Transition
           enter-active-class="transition ease-out duration-200 transform"
@@ -17,7 +17,7 @@
           leave-from-class="opacity-100"
           leave-to-class="opacity-0"
       >
-        <div class="popup_container" v-show="isOpen" :style="isQr ? 'max-width:300px;' :''" ref="modalContentRef">
+        <div class="popup_wrap" v-if="isOpen" :style="isQr ? 'max-width:600px;' :''" ref="modalContentRef">
           <div class="popup_title" v-if="isShowHeader">
             <button type="button" class="popup_close" @click="closeModal">닫기</button>
             <h3>
@@ -33,7 +33,7 @@
           </div>
 
           <div class="popup_footer" v-if="isShowFooter">
-            <slot name="footer"></slot>
+            <slot name="footer" ></slot>
             <!-- template v-slot:content -->
           </div>
         </div>
@@ -57,13 +57,9 @@ export default {
       default: true
     },
     modalId: String,
-    isQr: {
-      type: Boolean,
-      default: false
-    },
-    classSize: {
-      type: String,
-      default: 'medium'
+    isQr : {
+      type : Boolean,
+      default : false
     }
   },
   setup(props, ctx) {
