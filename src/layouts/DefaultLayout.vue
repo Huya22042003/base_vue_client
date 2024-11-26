@@ -20,7 +20,7 @@
     </main>
 
     <!-- footer -->
-    <!-- <TFooter /> -->
+    <TFooter />
   </div>
   <LoadingComponent v-if="store.loading"></LoadingComponent>
 </template>
