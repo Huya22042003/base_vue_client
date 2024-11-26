@@ -108,7 +108,7 @@ button[disabled] {
 }
 /* Button hover, active */
 .btn_blue:hover, .btn_blue:active {
-    background-color: #cf4c1c;
+    background-color: #dd3223;
 }
 
 .btn_medium_gray:hover, .btn_medium_gray:active {
