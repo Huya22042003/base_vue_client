@@ -1,5 +1,44 @@
 <template>
   <div class="header_wrap">
+    <div
+      id="joinCouponBanner"
+      style="
+        background: var(--primary);
+        text-align: center;
+        letter-spacing: -0.05em;
+        height: 38px;
+      "
+    >
+      <div style="max-width: 1200px; margin: 0 auto; position: relative">
+        <a
+          href="https://shop.10000recipe.com/mypage/coupon_event.php"
+          style="
+            color: #fff;
+            display: inline-block;
+            padding: 11px 20px;
+            font-size: 15px;
+            line-height: 1;
+            vertical-align: middle;
+          "
+        >
+          지금 가입하고, <b style="color: #ffe400">최대 2만원</b> 할인혜택을
+          받아보세요!</a
+        >
+        <a
+          href="javascript:joinCouponBannerClose();"
+          style="
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+            top: 6px;
+          "
+          ><img
+            src="//recipe1.ezmember.co.kr/img/mobile/btn_close.png"
+            alt="닫기"
+            width="18"
+        /></a>
+      </div>
+    </div>
     <div class="header_top">
       <div class="grid_content">
         <button type="button" class="btn_menu">메뉴보기</button>
@@ -50,23 +89,23 @@
 
 <script lang="ts" setup>
 // import {headerStyle, mobileGnb, gnbOneDepth} from "@/assets/js/common";
-import {onMounted} from "vue";
+import { onMounted } from "vue";
 import commonService from "@/service/common/CommonService";
-import {commonStore} from "@/stores/common";
-import {useRoute, useRouter} from "vue-router";
-import {getUserInfo, removeUserInfo} from "@/utils/storage";
+import { commonStore } from "@/stores/common";
+import { useRoute, useRouter } from "vue-router";
+import { getUserInfo, removeUserInfo } from "@/utils/storage";
 import LoadingComponent from "@/components/common/loading/LoaddingComponent.vue";
 
-const store = commonStore()
+const store = commonStore();
 // const roleStore = checkFlagStore()
-const init = ref([])
-const route = useRoute()
-const router = useRouter()
+const init = ref([]);
+const route = useRoute();
+const router = useRouter();
 
-const menus = ref()
-const subMenus = ref([])
-const isLoading = ref(false)
-const userInfo = ref<Object | null>(null)
+const menus = ref();
+const subMenus = ref([]);
+const isLoading = ref(false);
+const userInfo = ref<Object | null>(null);
 
 // onMounted(async () => {
 //   await getMenu()
@@ -78,42 +117,42 @@ const userInfo = ref<Object | null>(null)
 // })
 
 const getMenu = async () => {
-  isLoading.value = true
+  isLoading.value = true;
 
   await commonService
-      .menu()
-      .then(async (response) => {
-        if (response.status == 200) {
-          subMenus.value = response.data.data
-        }
-        isLoading.value = false
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-      .finally(() => {
-        isLoading.value = false
-      })
-}
+    .menu()
+    .then(async (response) => {
+      if (response.status == 200) {
+        subMenus.value = response.data.data;
+      }
+      isLoading.value = false;
+    })
+    .catch((e) => {
+      console.log(e);
+    })
+    .finally(() => {
+      isLoading.value = false;
+    });
+};
 
 const logout = () => {
-  isLoading.value = true
+  isLoading.value = true;
   commonService
-      .logout()
-      .then(async (response) => {
-        if (response.status == 200) {
-          await removeUserInfo()
-          // await router.push({name: "Login"})
-          window.open(import.meta.env.VITE_CLIENT_INTRO_URL,"_self")
-        }
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-      .finally(() => {
-        isLoading.value = false
-      })
-}
+    .logout()
+    .then(async (response) => {
+      if (response.status == 200) {
+        await removeUserInfo();
+        // await router.push({name: "Login"})
+        window.open(import.meta.env.VITE_CLIENT_INTRO_URL, "_self");
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+    })
+    .finally(() => {
+      isLoading.value = false;
+    });
+};
 
 // const handleOpenScreen = async (screenName) => {
 //   await roleStore.checkRole(screenName)

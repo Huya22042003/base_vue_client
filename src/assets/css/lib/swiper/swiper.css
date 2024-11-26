@@ -225,4 +225,7 @@
     transform: rotate(360deg);
   }
 }
+.swiper-button-prev, .swiper-button-next {
+  color: var(--primary) !important;
+}
 /* Slide styles end */

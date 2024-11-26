@@ -1,10 +1,7 @@
 <template>
   <!-- :slides-per-view="2" :space-between="12" :pagination="true" :modules="modules" -->
   <swiper v-bind="swiperOptions" :modules="modules">
-    <swiper-slide>Slide 1</swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
-    <swiper-slide>Slide 4</swiper-slide>
+    <swiper-slide v-for="item in 50">Slide {{ item }}</swiper-slide>
   </swiper>
 </template>
 
@@ -27,13 +24,14 @@ export default {
       swiperOptions: {
         breakpoints: {
           768: {
-            slidesPerView: 2,
+            slidesPerView: 6,
+            slidesPerGroup: 6,
           },
         },
-        slidesPerView: 1,
-        spaceBetween: 12,
         Pagination: true,
         navigation: true,
+        loop: true,
+        autoplay: true
       },
     };
   },

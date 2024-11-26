@@ -612,7 +612,7 @@
 .font_red{color: var(--red) !important;}
 .font_navy{color: var(--navy) !important;}
 .font_blue{color: var(--blue) !important;}
-.font_orange{color: var(--primary) !important;}
+.font_primary{color: var(--primary) !important;}
 
 /* font-size */
 .font_12{ font-size: 12px !important; }
