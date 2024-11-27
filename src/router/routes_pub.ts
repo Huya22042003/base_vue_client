@@ -18,6 +18,12 @@ export const routes_pub = [
         meta: {title: 'TemplateUi'},
         component: () => import('@/views/publish/HomePublish.vue'),
       },
+      {
+        path: '/search',
+        name: 'search',
+        meta: {title: 'TemplateUi'},
+        component: () => import('@/views/publish/SearchBlogPublish.vue'),
+      },
     ],
   },
 ];
