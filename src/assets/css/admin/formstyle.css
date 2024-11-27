@@ -572,9 +572,9 @@ body.swal2-toast-shown .swal2-container:has(.custom_toast) {
   transition : 0.2s;
 }
 .radio_tab input:checked + label {
-  color: var(--white);
-  background-color: var(--primary);
-  border-color: var(--primary);
+  /* color: var(--white); */
+  /* background-color: var(--primary);
+  border-color: var(--primary); */
 }
 .radio_tab:hover label {
   border-color: var(--light3);
@@ -590,9 +590,9 @@ body.swal2-toast-shown .swal2-container:has(.custom_toast) {
 }
 
 .radio_tab_wrap.black .radio_tab input:checked + label {
-  color: var(--white);
-  background-color: var(--black);
-  border-color: var(--black);
+  /* color: var(--white); */
+  /* background-color: var(--black); */
+  /* border-color: var(--black); */
 }
 
 .radio_tab_lg_wrap {
