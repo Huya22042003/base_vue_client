@@ -24,6 +24,12 @@ export const routes_pub = [
         meta: {title: 'TemplateUi'},
         component: () => import('@/views/publish/SearchBlogPublish.vue'),
       },
+      {
+        path: '/menu-detail',
+        name: 'menu-detail',
+        meta: {title: 'TemplateUi'},
+        component: () => import('@/views/publish/MenuDetail.vue'),
+      },
     ],
   },
 ];

@@ -1216,14 +1216,11 @@ input[type="text"].form_style, input[type="search"].form_style, input[type="numb
 .search_row .form_style {
   padding: 0 32px 0 11px;
 }
-.btn_icon.btn_search {
-  position: absolute; right: 12px; top: 50%;
-  transform: translateY(-50%);
-}
 .btn_icon.btn_search::before {
   width: 24px; height: 24px;
   background: url(../../images/formstyle/icon_search.svg) no-repeat center;
   transform: rotate(-0.03deg);
+  margin: 0px !important;
 }
 .btn_icon.btn_delete {
   display: none;
