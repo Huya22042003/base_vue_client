@@ -510,6 +510,12 @@ html:has(body.on) .header_wrap {
 .move_top.on {
   bottom: 40px;
 }
+.ribbon {
+  background: transparent url(../../images/blog_footer.png) no-repeat right / cover;
+  transform: rotate(90deg);
+  padding: 8px;
+  padding-right: 60px;
+}
 
 
 @media screen and (max-width: 1440px) {

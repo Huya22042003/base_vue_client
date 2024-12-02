@@ -2,7 +2,14 @@
   <div class="content_wrapper grid_content">
     <!-- Start Header Blog -->
     <div class="box dp_block">
-      <div class="box_section">
+      <div class="box_section position_r">
+        <div class="view2_qr ribbon">
+          <img
+            id="img_qrcode"
+            src="https://recipe1.ezmember.co.kr/cache/recipe/2024/05/08/qr_6893285.png"
+            class="wd_p100"
+          />
+        </div>
         <div
           class="dp_flex jc_center flex_column position_r container_menu_detail pd_b50"
         >
@@ -214,9 +221,9 @@
             </div>
           </div>
         </div>
-        <div>
-
-        </div>
+        <span class="ribbon">
+          ấdfsdfd
+        </span>
       </div>
     </div>
     <!-- End Content Bolg -->
@@ -252,6 +259,16 @@ const selectedRating = ref(0);
 .container_menu_detail {
   width: 700px;
   margin: auto;
+}
+.view2_qr {
+  position: absolute;
+  right: 24px;
+  top: -5.81px;
+  text-align: center;
+  width: 150px;
+}
+.view2_qr img {
+  transform: rotate(-90deg);
 }
 .share_link_url {
   width: 80px;
