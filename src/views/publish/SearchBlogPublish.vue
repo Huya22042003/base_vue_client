@@ -189,7 +189,7 @@ const selectedRating = ref(0);
 }
 .form_search {
   display: grid;
-  grid-template-columns: 2fr 5fr 1fr; /* Phần giữa sẽ lớn gấp đôi các phần còn lại */
+  grid-template-columns: 2fr 5fr 1fr;
   gap: 10px;
 }
 </style>

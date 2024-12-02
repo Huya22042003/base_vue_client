@@ -27,6 +27,7 @@ import { i18n } from '@/plugins/i18n'
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { createPersistedState } from 'pinia-plugin-persistedstate';
+import { VTooltip } from "v-tooltip";
 const pinia = createPinia();
 pinia.use(createPersistedState());
 app.use(pinia)
@@ -36,5 +37,6 @@ app.use(vuetify);
 app.use(router);
 app.use(global);
 app.use(VueSweetalert2)
+app.use(VTooltip)
 app.component("VueSelect", VueSelect);
 app.mount("#app");

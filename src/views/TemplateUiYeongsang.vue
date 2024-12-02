@@ -358,6 +358,7 @@
                 <button type="button" class="btn_round btn_sm btn_bo_primary">Print</button>
                 <button type="button" class="btn_round btn_sm btn_lightgray">Thực hiện 1 action</button>
                 <button type="button" class="btn_round btn_sm btn_white">List/Back</button>
+                <button type="button" class="btn_table">Table</button>
                 <hr/>
               </div>
             </div>

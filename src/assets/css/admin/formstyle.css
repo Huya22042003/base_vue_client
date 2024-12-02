@@ -233,6 +233,22 @@ body.swal2-toast-shown .swal2-container:has(.custom_toast) {
   color: var(--primary); font-size: 1.6rem; font-weight: 500; line-height: 2.4rem;
   transition: 0.2s;
 }
+.btn_table {
+  display: flex;
+  padding: 0 15px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: normal;
+  background-color: var(--white);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+  margin: 20px 10px;
+  align-items: center;
+  border: 1px solid #d7d7d7;
+}
 
 .btn_text:hover{
   color: #cf4c1c;
