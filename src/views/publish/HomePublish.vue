@@ -6,18 +6,18 @@
         <img
           class=""
           style="width: 800px; padding-right: 5px"
-          src="https://cf.shopee.vn/file/sg-11134258-7reo9-m2w3m7pquhh5f4_xxhdpi"
+          src="../../assets/images/banner/Banner 1.png"
         />
       </div>
       <div class="banner_content_right">
         <div class="dp_flex flex_column">
           <img
             style="width: 390px; padding-bottom: 5px"
-            src="https://cf.shopee.vn/file/sg-11134258-7rfgd-m30b9ivpfj0bc2_xhdpi"
+            src="../../assets/images/banner/Banner 2.png"
           />
           <img
             style="width: 390px"
-            src="https://cf.shopee.vn/file/sg-11134258-7rfgd-m30b9ivpfj0bc2_xhdpi"
+            src="../../assets/images/banner/Banner 3.png"
           />
         </div>
       </div>
@@ -303,7 +303,7 @@
     <div class="mb_8">
       <img
         class="wd_p100"
-        src="https://cf.shopee.vn/file/sg-11134252-7rfgh-m31m3bt2qd660e"
+        src="../../assets/images/banner/Thêm tiêu đề phụ.png"
       />
     </div>
     <!-- End Banner Food -->
@@ -358,7 +358,7 @@
     <div class="mb_8">
       <img
         class="wd_p100"
-        src="https://cf.shopee.vn/file/vn-11134258-7r98o-lylx97r9vezl4e"
+        src="../../assets/images/banner/banner 4.png"
       />
     </div>
     <!-- End Banner sales -->

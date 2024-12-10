@@ -517,6 +517,10 @@ html:has(body.on) .header_wrap {
   padding-right: 60px;
 }
 
+.btn_hashtag {
+  border-radius: 0;
+}
+
 
 @media screen and (max-width: 1440px) {
   .gnb_1depth > li {

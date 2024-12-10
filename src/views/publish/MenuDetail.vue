@@ -27,20 +27,10 @@
               </button>
             </div>
             <div class="dp_flex flex_column al_center">
-              <a
-                style="
-                  width: 100px;
-                  border-radius: 50%;
-                  overflow: hidden;
-                  border: 5px solid rgb(204 204 204 / 80%);
-                "
-                href="javascript:void(0)"
-              >
-                <img
-                  class="wd_p100"
-                  src="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/076956f7-2972-485e-b6ce-2dff9d0e0410/8727b7ec-a53c-4f23-9832-ef445981e0b4.png"
-                />
-              </a>
+              <AvatarCommon
+                :width="100"
+                imageUrl="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/076956f7-2972-485e-b6ce-2dff9d0e0410/8727b7ec-a53c-4f23-9832-ef445981e0b4.png"
+              />
               <div>
                 <span class="font_gray">Nguyễn Quốc Huy</span>
               </div>
@@ -221,12 +211,210 @@
             </div>
           </div>
         </div>
-        <span class="ribbon">
-          ấdfsdfd
-        </span>
       </div>
     </div>
     <!-- End Content Bolg -->
+
+    <!-- Start Product -->
+    <div class="box dp_block">
+      <div class="box_inner">
+        <h3 class="box_title_sm">
+          <text class="font_primary">Các sản phẩm liên quan</text>
+        </h3>
+      </div>
+      <div class="cart_list product_grid">
+        <template v-for="item in 19">
+          <div class="cart_item">
+            <div class="image">
+              <img
+                src="https://recipe1.ezmember.co.kr/cache/data/goods/24/10/41/1000047271/1000047271_list_036.jpg"
+                alt="default"
+              />
+            </div>
+            <div
+              class="cart_item_content"
+              data-status="1"
+              data-show-button="true"
+            >
+              <p class="box_title mg_0">Text Title {{ item }}</p>
+              <p>Text Description</p>
+              <p class="dp_flex">
+                <span>10.000.000VNĐ</span>
+              </p>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+    <!-- End Product -->
+
+    <!-- Start Writer -->
+    <div class="box dp_block">
+      <div class="box_inner">
+        <h3 class="box_title_sm">
+          <text class="font_primary">Tác Giả Công Thức</text>
+          <span>About the writer</span>
+        </h3>
+      </div>
+      <div>
+        <div class="dp_flex al_center">
+          <AvatarCommon
+            :width="80"
+            imageUrl="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/076956f7-2972-485e-b6ce-2dff9d0e0410/8727b7ec-a53c-4f23-9832-ef445981e0b4.png"
+          />
+          <div class="mg_l30">
+            <span class="box_title_xs">Nguyễn Quốc Huy</span>
+            <p class="box_title font_primary">Theo dõi: 30</p>
+            <p class="box_title font_gray">fsadklfsldak</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Writer -->
+
+    <!-- Start Comment -->
+    <div class="box dp_block">
+      <div class="box_inner">
+        <h3 class="box_title_sm">
+          <text
+            >Bình luận bài viết <span class="font_red mg_l10">50</span></text
+          >
+        </h3>
+      </div>
+      <div>
+        <template v-for="(item, index) in 5">
+          <div class="dp_flex mg_b20 mg_l30">
+            <div>
+              <AvatarCommon
+                imageUrl="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/076956f7-2972-485e-b6ce-2dff9d0e0410/8727b7ec-a53c-4f23-9832-ef445981e0b4.png"
+              />
+            </div>
+
+            <div class="mg_l20 wd_p100">
+              <a class="dp_flex al_center" href="javascript:void(0);"
+                ><span class="box_title font_red">Nguyễn Quốc Huy</span>
+                <span class="mg_l10 font_gray">04/12/2024 12:00</span>
+              </a>
+              <p class="font_gray">Bài viết rất ngon nha {{ item }}</p>
+              <a
+                class="comment_btn font_primary mg_r5"
+                href="javascript:void(0);"
+                >Bình luận(2)</a
+              >
+              <a class="comment_btn font_primary" href="javascript:void(0);"
+                >Xóa</a
+              >
+
+              <template v-if="index == 0" v-for="(item, index) in 3">
+                <div class="dp_flex mg_b10 mg_t10">
+                  <div>
+                    <AvatarCommon
+                      imageUrl="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/076956f7-2972-485e-b6ce-2dff9d0e0410/8727b7ec-a53c-4f23-9832-ef445981e0b4.png"
+                    />
+                  </div>
+
+                  <div class="mg_l20">
+                    <a class="dp_flex al_center" href="javascript:void(0);"
+                      ><span class="box_title font_red">Nguyễn Quốc Huy</span>
+                      <span class="mg_l10 font_gray">04/12/2024 12:00</span>
+                    </a>
+                    <p class="font_gray">Bài viết rất ngon nha {{ item }}</p>
+                    <a
+                      class="comment_btn font_primary mg_r5"
+                      href="javascript:void(0);"
+                      >Bình luận(2)</a
+                    >
+                    <a
+                      class="comment_btn font_primary"
+                      href="javascript:void(0);"
+                      >Xóa</a
+                    >
+                  </div>
+                </div>
+              </template>
+
+              <div v-if="index == 0" class="mg_t10 wd_p100">
+                <div class="dp_flex">
+                  <div>
+                    <AvatarCommon
+                      imageUrl="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/076956f7-2972-485e-b6ce-2dff9d0e0410/8727b7ec-a53c-4f23-9832-ef445981e0b4.png"
+                    />
+                  </div>
+
+                  <div class="mg_l20 wd_p100">
+                    <span class="dp_flex al_center"
+                      ><span class="box_title font_red"
+                        >Nguyễn Quốc Huy</span
+                      ></span
+                    >
+                    <TextArea />
+                  </div>
+                </div>
+                <div class="btn_group btn_end mg_t10">
+                  <button class="button btn_sm btn_primary btn_responsive">
+                    Bình luận
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+        <div class="dp_flex jc_center mg_t25">
+          <div style="position: relative" class="box_title_funtion">
+            <a href="javascript:void(0);" class="font_primary"
+              >Xem thêm bình luận</a
+            >
+          </div>
+        </div>
+        <div class="mg_t25">
+          <div class="dp_flex">
+            <div>
+              <AvatarCommon
+                imageUrl="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/076956f7-2972-485e-b6ce-2dff9d0e0410/8727b7ec-a53c-4f23-9832-ef445981e0b4.png"
+              />
+            </div>
+
+            <div class="mg_l20 wd_p100">
+              <span class="dp_flex al_center"
+                ><span class="box_title font_red">Nguyễn Quốc Huy</span></span
+              >
+              <TextArea />
+            </div>
+          </div>
+          <div class="btn_group btn_end mg_t10">
+            <button class="button btn_sm btn_primary btn_responsive">
+              Bình luận
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Comment -->
+
+    <!-- Start Other -->
+    <div class="box dp_block">
+      <div class="box_section">
+        <div class="box_inner">
+          <span class="box_title_sm font_primary mg_r10"> # </span>
+          <button
+            class="btn_hashtag btn_sm btn_secondary mg_r10"
+            v-for="item in 5"
+          >
+            #Hashtag{{ item }}
+          </button>
+        </div>
+      </div>
+      <div class="box_section">
+        <div class="box_inner">
+        <h3 class="box_title_sm">
+          <text
+            >Bình luận bài viết <span class="font_red mg_l10">50</span></text
+          >
+        </h3>
+      </div>
+      </div>
+    </div>
+    <!-- End Other -->
   </div>
 </template>
 
@@ -238,6 +426,7 @@ import "swiper/css/navigation";
 import { ref } from "vue";
 import eyeIcon from "@/assets/images/eye-svgrepo-com.svg";
 import shoppingCard from "@/assets/images/shopping-card.svg";
+import AvatarCommon from "@/components/common/avatar/AvatarCommon.vue";
 
 const modules = [Pagination, Navigation, Autoplay];
 const swiperOptions = {
@@ -256,6 +445,16 @@ const selectedRating = ref(0);
 </script>
 
 <style scoped>
+.comment_btn {
+  text-decoration: underline;
+  font-size: 1.2rem;
+}
+.product_grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+  width: 100%;
+}
 .container_menu_detail {
   width: 700px;
   margin: auto;
