@@ -105,8 +105,8 @@
     <!-- End Category -->
 
     <!-- Start Blogs -->
-    <div class="dp_flex blogs">
-      <div class="flex_5 mr_7">
+    <div class="dp_flex blogs" style="gap: 25px;">
+      <div class="flex_5">
         <!-- Start Top Blogs -->
         <div class="box dp_block">
           <div class="box_section">

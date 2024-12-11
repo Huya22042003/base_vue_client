@@ -17,7 +17,7 @@
             src="https://recipe1.ezmember.co.kr/cache/recipe/2018/07/29/52046ea43391de69233f594b0b52bb311.JPG"
             style="width: 700px"
           />
-          <div class="dp_flex jc_between position_a wd_p100" style="bottom: 0">
+          <div class="dp_flex jc_between position_a wd_p100" style="bottom: -5px">
             <div class="wd_p30 dp_flex jc_start">
               <button
                 class="btn_table bg_black font_white"
@@ -31,8 +31,8 @@
                 :width="100"
                 imageUrl="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/076956f7-2972-485e-b6ce-2dff9d0e0410/8727b7ec-a53c-4f23-9832-ef445981e0b4.png"
               />
-              <div>
-                <span class="font_gray">Nguyễn Quốc Huy</span>
+              <div class="mg_t5">
+                <span class="font_gray" style="font-size: 1.8rem;">Nguyễn Quốc Huy</span>
               </div>
             </div>
             <div class="wd_p30 dp_flex jc_end">
@@ -47,7 +47,7 @@
           </div>
         </div>
         <div
-          class="dp_flex jc_center flex_column container_menu_detail mg_t30 pd_b30"
+          class="dp_flex jc_center flex_column container_menu_detail mg_t35 pd_b30"
         >
           <p class="box_title_custom mg_b10">
             무생채 만드는 법, 절이지 않고 10분 만에 휘리릭 ~
@@ -273,122 +273,7 @@
     <!-- End Writer -->
 
     <!-- Start Comment -->
-    <div class="box dp_block">
-      <div class="box_inner">
-        <h3 class="box_title_sm">
-          <text
-            >Bình luận bài viết <span class="font_red mg_l10">50</span></text
-          >
-        </h3>
-      </div>
-      <div>
-        <template v-for="(item, index) in 5">
-          <div class="dp_flex mg_b20 mg_l30">
-            <div>
-              <AvatarCommon
-                imageUrl="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/076956f7-2972-485e-b6ce-2dff9d0e0410/8727b7ec-a53c-4f23-9832-ef445981e0b4.png"
-              />
-            </div>
-
-            <div class="mg_l20 wd_p100">
-              <a class="dp_flex al_center" href="javascript:void(0);"
-                ><span class="box_title font_red">Nguyễn Quốc Huy</span>
-                <span class="mg_l10 font_gray">04/12/2024 12:00</span>
-              </a>
-              <p class="font_gray">Bài viết rất ngon nha {{ item }}</p>
-              <a
-                class="comment_btn font_primary mg_r5"
-                href="javascript:void(0);"
-                >Bình luận(2)</a
-              >
-              <a class="comment_btn font_primary" href="javascript:void(0);"
-                >Xóa</a
-              >
-
-              <template v-if="index == 0" v-for="(item, index) in 3">
-                <div class="dp_flex mg_b10 mg_t10">
-                  <div>
-                    <AvatarCommon
-                      imageUrl="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/076956f7-2972-485e-b6ce-2dff9d0e0410/8727b7ec-a53c-4f23-9832-ef445981e0b4.png"
-                    />
-                  </div>
-
-                  <div class="mg_l20">
-                    <a class="dp_flex al_center" href="javascript:void(0);"
-                      ><span class="box_title font_red">Nguyễn Quốc Huy</span>
-                      <span class="mg_l10 font_gray">04/12/2024 12:00</span>
-                    </a>
-                    <p class="font_gray">Bài viết rất ngon nha {{ item }}</p>
-                    <a
-                      class="comment_btn font_primary mg_r5"
-                      href="javascript:void(0);"
-                      >Bình luận(2)</a
-                    >
-                    <a
-                      class="comment_btn font_primary"
-                      href="javascript:void(0);"
-                      >Xóa</a
-                    >
-                  </div>
-                </div>
-              </template>
-
-              <div v-if="index == 0" class="mg_t10 wd_p100">
-                <div class="dp_flex">
-                  <div>
-                    <AvatarCommon
-                      imageUrl="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/076956f7-2972-485e-b6ce-2dff9d0e0410/8727b7ec-a53c-4f23-9832-ef445981e0b4.png"
-                    />
-                  </div>
-
-                  <div class="mg_l20 wd_p100">
-                    <span class="dp_flex al_center"
-                      ><span class="box_title font_red"
-                        >Nguyễn Quốc Huy</span
-                      ></span
-                    >
-                    <TextArea />
-                  </div>
-                </div>
-                <div class="btn_group btn_end mg_t10">
-                  <button class="button btn_sm btn_primary btn_responsive">
-                    Bình luận
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </template>
-        <div class="dp_flex jc_center mg_t25">
-          <div style="position: relative" class="box_title_funtion">
-            <a href="javascript:void(0);" class="font_primary"
-              >Xem thêm bình luận</a
-            >
-          </div>
-        </div>
-        <div class="mg_t25">
-          <div class="dp_flex">
-            <div>
-              <AvatarCommon
-                imageUrl="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/076956f7-2972-485e-b6ce-2dff9d0e0410/8727b7ec-a53c-4f23-9832-ef445981e0b4.png"
-              />
-            </div>
-
-            <div class="mg_l20 wd_p100">
-              <span class="dp_flex al_center"
-                ><span class="box_title font_red">Nguyễn Quốc Huy</span></span
-              >
-              <TextArea />
-            </div>
-          </div>
-          <div class="btn_group btn_end mg_t10">
-            <button class="button btn_sm btn_primary btn_responsive">
-              Bình luận
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <CommentCommon />
     <!-- End Comment -->
 
     <!-- Start Other -->
@@ -404,14 +289,42 @@
           </button>
         </div>
       </div>
-      <div class="box_section">
+      <div class="box_section mg_t35" v-for="cat in 6">
         <div class="box_inner">
-        <h3 class="box_title_sm">
-          <text
-            >Bình luận bài viết <span class="font_red mg_l10">50</span></text
-          >
-        </h3>
-      </div>
+          <h3 class="box_title_sm">
+            <text
+              >Công Thức <span class="font_red box_title_sm">Nấu mì</span></text
+            >
+          </h3>
+          <div class="box_title_funtion">
+            <a href="javascript:void(0);" class="font_primary">Xem tất cả</a>
+          </div>
+        </div>
+        <div>
+          <div>
+            <div class="top_blogs cart_list dp_flex">
+              <template v-for="item in 6">
+                <div class="cart_item" style="max-width: 180px">
+                  <div class="image">
+                    <img
+                      src="https://recipe1.ezmember.co.kr/cache/data/goods/24/10/41/1000047271/1000047271_list_036.jpg"
+                      alt="default"
+                    />
+                  </div>
+                  <div
+                    class="cart_item_content"
+                    data-status="1"
+                    data-show-button="true"
+                  >
+                    <p class="box_title mg_0">Text Title {{ item }}</p>
+                    <span>status</span>
+                    <p>Text Descriptionfdsfdsafddddddddddddddddddddđ</p>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- End Other -->
@@ -427,6 +340,7 @@ import { ref } from "vue";
 import eyeIcon from "@/assets/images/eye-svgrepo-com.svg";
 import shoppingCard from "@/assets/images/shopping-card.svg";
 import AvatarCommon from "@/components/common/avatar/AvatarCommon.vue";
+import CommentCommon from "@/components/common/comments/CommentCommon.vue";
 
 const modules = [Pagination, Navigation, Autoplay];
 const swiperOptions = {

@@ -253,6 +253,13 @@ button[disabled] {
     background-image: url(../images/icon_download.svg);
 } */
 
+.btn_icon.remove::before {
+    width: 20px;
+    height: 20px;
+    margin-top: 40px;
+    background-image: url(../images/delete-svgrepo-com.svg);
+}
+
 .btn_icon.close::before {
     width: 20px;
     height: 20px;

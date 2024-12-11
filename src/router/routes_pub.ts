@@ -30,6 +30,12 @@ export const routes_pub = [
         meta: {title: 'TemplateUi'},
         component: () => import('@/views/publish/MenuDetail.vue'),
       },
+      {
+        path: '/profile-user',
+        name: 'profile-user',
+        meta: {title: 'TemplateUi'},
+        component: () => import('@/views/publish/ProfileUser.vue'),
+      },
     ],
   },
 ];
