@@ -4,7 +4,7 @@
   </div>
   <div style="display: flex; gap: 15px">
     <!-- Start Category -->
-    <div class="flex_1">
+    <div class="flex_2">
       <div class="box dp_block">
         <div class="box_section mg_b10">
           <div class="box_inner">
@@ -29,7 +29,7 @@
     <!-- End Category -->
 
     <!-- Start Product -->
-    <div class="flex_3">
+    <div class="flex_5">
       <div class="box dp_block">
         <div class="search-container mg_b25">
           <span class="search-icon">&#128269;</span>
@@ -73,7 +73,7 @@
     <!-- End Product -->
 
     <!-- Start Order -->
-    <div class="flex_2">
+    <div class="flex_3">
       <div class="box dp_block">
         <!-- <div class="box_section mg_b10">
                         <div class="box_inner">
