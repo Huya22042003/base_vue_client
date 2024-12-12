@@ -259,6 +259,19 @@ button[disabled] {
     margin-top: 40px;
     background-image: url(../images/delete-svgrepo-com.svg);
 }
+.btn_icon.tick_good::before {
+    width: 25px;
+    height: 25px;
+    padding: 0 20px;
+    background-image: url(../images/icon_event/logo.png);
+}
+
+.btn_icon.tick_good {
+    width: 25px;
+    height: 25px;
+    padding: 0 20px;
+    background-image: url(../images/icon_event/giphy.gif);
+}
 
 .btn_icon.close::before {
     width: 20px;

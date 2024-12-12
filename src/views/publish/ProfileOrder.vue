@@ -2,7 +2,7 @@
   <div class="box_section">
     <h3 class="box_title_custom">Thực Đơn Hôm Nay</h3>
   </div>
-  <div style="display: flex; gap: 15px">
+  <div style="display: flex; gap: 30px">
     <!-- Start Category -->
     <div class="flex_2">
       <div class="box dp_block">
@@ -154,7 +154,7 @@
 
 .link-item {
   display: block;
-  font-size: 15px;
+  font-size: 13px;
   color: gray;
   text-decoration: none;
   position: relative;

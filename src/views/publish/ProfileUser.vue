@@ -16,7 +16,7 @@
                             <AvatarCommon :width="100"
                                 imageUrl="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/076956f7-2972-485e-b6ce-2dff9d0e0410/8727b7ec-a53c-4f23-9832-ef445981e0b4.png" />
                             <div class="mg_t5">
-                                <span class="font_gray" style="font-size: 1.8rem">Nguyễn Quốc Huy</span>
+                                <span class="font_gray" style="font-size: 1.8rem">Nguyễn Quốc Huy <button class="btn_icon icon_only tick_good"></button></span>
                             </div>
                         </div>
                         <div class="wd_p30 dp_flex jc_end">

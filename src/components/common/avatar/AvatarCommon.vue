@@ -1,5 +1,5 @@
 <template>
-  <a :style="{ width: `${width}px` }" href="javascript:void(0)">
+  <a :style="{ width: `${width}px`, position: 'relative' }" href="javascript:void(0)">
     <img class="wd_p100" :src="imageUrl" alt="Avatar" />
   </a>
 </template>
@@ -21,9 +21,13 @@ defineProps({
 
 <style scoped>
 a {
-  border-radius: 50%;
-  overflow: hidden;
-  border: 4px solid rgb(204 204 204 / 80%);
   display: block;
+}
+img {
+  overflow: hidden;
+  border-radius: 50%;
+  border: 4px solid rgb(204 204 204 / 80%);
+  z-index: 2;
+  position: inherit;
 }
 </style>
