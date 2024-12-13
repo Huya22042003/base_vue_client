@@ -129,6 +129,12 @@
 
         <hr />
         <div class="dp_flex al_center jc_between mg_b35">
+          <div class="bold">Mã Giảm Giá</div>
+          <div><InputBase class="wd_100" /></div>
+        </div>
+
+        <hr />
+        <div class="dp_flex al_center jc_between mg_b35">
           <div class="bold">Thành Tiền</div>
           <div class="product-price">100.000.000₫</div>
         </div>
@@ -278,7 +284,6 @@
 .search-input {
   width: 100%;
   padding: 10px 15px 10px 40px;
-  /* Chừa khoảng trống cho icon */
   border: 1px solid #ccc;
   border-radius: 20px;
   font-size: 14px;

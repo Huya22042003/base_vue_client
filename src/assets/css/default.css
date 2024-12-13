@@ -1,6 +1,3 @@
-/** CSS 파일 집합소 */
-
-/* Dain css 파일 */
 @import url('@/assets/css/dl_config.css');
 @import url('@/assets/css/dl_global.css');
 @import url('@/assets/css/dl_layout.css');
@@ -21,4 +18,6 @@
 @import url("./admin/majorderive.css");
 @import url("./admin/certisys.css");
 @import url("./lib/swiper/swiper.css");
-/* @import url('./'); */
+
+@import url("./client/vourcher.css");
+@import url("./client/cardV1.css");

@@ -3,22 +3,12 @@
     <!-- Start Banner Content -->
     <div class="mb_8 dp_flex">
       <div class="banner_content_left">
-        <img
-          class=""
-          style="width: 800px; padding-right: 5px"
-          src="../../assets/images/banner/Banner 1.png"
-        />
+        <img class="" style="width: 800px; padding-right: 5px" src="../../assets/images/banner/Banner 1.png" />
       </div>
       <div class="banner_content_right">
         <div class="dp_flex flex_column">
-          <img
-            style="width: 390px; padding-bottom: 5px"
-            src="../../assets/images/banner/Banner 2.png"
-          />
-          <img
-            style="width: 390px"
-            src="../../assets/images/banner/Banner 3.png"
-          />
+          <img style="width: 390px; padding-bottom: 5px" src="../../assets/images/banner/Banner 2.png" />
+          <img style="width: 390px" src="../../assets/images/banner/Banner 3.png" />
         </div>
       </div>
     </div>
@@ -34,66 +24,58 @@
         </div>
         <div>
           <div class="category_list">
-            <div class="category_item">
+            <div class="category_item transition_light">
               <img
-                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp"
-              />
+                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp" />
               <div>
                 <p>Hôm nay ăn gì?</p>
               </div>
             </div>
-            <div class="category_item">
+            <div class="category_item transition_light">
               <img
-                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp"
-              />
+                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp" />
               <div>
                 <p>Hôm nay ăn gì?</p>
               </div>
             </div>
-            <div class="category_item">
+            <div class="category_item transition_light">
               <img
-                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp"
-              />
+                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp" />
               <div>
                 <p>Hôm nay ăn gì?</p>
               </div>
             </div>
-            <div class="category_item">
+            <div class="category_item transition_light">
               <img
-                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp"
-              />
+                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp" />
               <div>
                 <p>Hôm nay ăn gì?</p>
               </div>
             </div>
-            <div class="category_item">
+            <div class="category_item transition_light">
               <img
-                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp"
-              />
+                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp" />
               <div>
                 <p>Hôm nay ăn gì?</p>
               </div>
             </div>
-            <div class="category_item">
+            <div class="category_item transition_light">
               <img
-                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp"
-              />
+                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp" />
               <div>
                 <p>Hôm nay ăn gì?</p>
               </div>
             </div>
-            <div class="category_item">
+            <div class="category_item transition_light">
               <img
-                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp"
-              />
+                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp" />
               <div>
                 <p>Hôm nay ăn gì?</p>
               </div>
             </div>
-            <div class="category_item">
+            <div class="category_item transition_light">
               <img
-                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp"
-              />
+                src="https://down-vn.img.susercontent.com/file/687f3967b7c2fe6a134a2c11894eea4b@resize_w320_nl.webp" />
               <div>
                 <p>Hôm nay ăn gì?</p>
               </div>
@@ -104,8 +86,45 @@
     </div>
     <!-- End Category -->
 
+    <div class="box dp_block">
+      <div class="box_section">
+        <div>
+
+          <swiper key="store" v-bind="{
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+            spaceBetween: 0,
+            Pagination: true,
+            navigation: true,
+            loop: true,
+            autoplay: {
+              delay: 6000,
+            },
+          }" :modules="modules" class="dp_flex jc_center" style="gap: 20px;">
+            <swiper-slide v-for="(item, index) in 10">
+              <div class="voucher-card code-discount mg_r20" :key="index">
+                <div class="left transition_light">
+                  <h3>{{ "50%" }}</h3>
+                  <span>{{ "Giảm giá" }}</span>
+                </div>
+                <div class="right">
+                  <div class="details">{{ "Áp dụng cho đơn hàng trên 200K" }}</div>
+                  <div class="quantity">Số lượng còn lại: {{ 50 }}</div>
+                  <div class="expiry">HSD: {{ "31/12/2024" }}</div>
+                  <div class="button_vourcher">
+                    <button>{{ "Lưu" }}</button>
+                  </div>
+                </div>
+              </div>
+            </swiper-slide>
+          </swiper>
+        </div>
+        <!-- End Code Discount -->
+      </div>
+    </div>
+
     <!-- Start Blogs -->
-    <div class="dp_flex blogs" style="gap: 25px;">
+    <div class="dp_flex blogs" style="gap: 30px;">
       <div class="flex_5">
         <!-- Start Top Blogs -->
         <div class="box dp_block">
@@ -116,29 +135,25 @@
               </h3>
 
               <div class="box_title_funtion">
-                <a href="javascript:void(0);" class="font_primary"
-                  >Xem tất cả</a
-                >
+                <a href="javascript:void(0);" class="font_primary">Xem tất cả</a>
               </div>
             </div>
             <div>
-              <div class="top_blogs cart_list dp_flex">
-                <template v-for="item in 4">
-                  <div class="cart_item" style="max-width: 180px">
-                    <div class="image">
-                      <img
-                        src="https://recipe1.ezmember.co.kr/cache/data/goods/24/10/41/1000047271/1000047271_list_036.jpg"
-                        alt="default"
-                      />
+              <div class="top_blogs dp_flex">
+                <template v-for="item in 3">
+                  <div class="card-v1">
+                    <div class="card-v1-image" :style="{
+                      height: `160px`,
+                      backgroundImage: `url(https://recipe1.ezmember.co.kr/cache/data/goods/24/10/41/1000047271/1000047271_list_036.jpg)`,
+                    }">
                     </div>
-                    <div
-                      class="cart_item_content"
-                      data-status="1"
-                      data-show-button="true"
-                    >
-                      <p class="box_title mg_0">Text Title {{ item }}</p>
-                      <span>status</span>
-                      <p>Text Descriptionfdsfdsafddddddddddddddddddddđ</p>
+                    <div class="category">Đang diễn ra</div>
+                    <div class="heading">
+                      A heading that must span over two lines
+                      <div class="description">A heading that must span over two lines</div>
+                      <div class="author">
+                        Người viết <span class="name">Nguyễn Quốc Huy</span>
+                      </div>
                     </div>
                   </div>
                 </template>
@@ -158,33 +173,21 @@
               </h3>
 
               <div class="box_title_funtion">
-                <a href="javascript:void(0);" class="font_primary"
-                  >Xem tất cả</a
-                >
+                <a href="javascript:void(0);" class="font_primary">Xem tất cả</a>
               </div>
             </div>
             <div>
-              <div class="card_list_horizontal top_menu_content">
-                <template v-for="item in 8">
-                  <div class="card_item">
-                    <!-- Số thứ tự -->
-                    <!-- <div class="item_number">
-                      {{ item }}
-                    </div> -->
-
-                    <!-- Nội dung card -->
-                    <div class="card_item_content">
-                      <div class="image">
-                        <img
-                          src="https://recipe1.ezmember.co.kr/cache/data/goods/24/10/41/1000047271/1000047271_list_036.jpg"
-                          alt="default"
-                        />
-                      </div>
-                      <div class="content_details">
-                        <h3 class="box_title">Text Title {{ item }}</h3>
-                        <p>
-                          Text Description fdsfds afdddddd dddddd dddd ddddđ
-                        </p>
+              <div class="top_menu_content">
+                <template v-for="item in 9">
+                  <div class="card-v1-hori">
+                    <div class="card-image" :style="{
+                      backgroundImage: `url(https://recipe1.ezmember.co.kr/cache/data/goods/24/10/41/1000047271/1000047271_list_036.jpg)`,
+                    }"></div>
+                    <div class="card-content">
+                      <div class="category">Illustration</div>
+                      <div class="heading">
+                        A heading that must span over two lines
+                        <div class="author">By <span class="name">Abi</span> 4 days ago</div>
                       </div>
                     </div>
                   </div>
@@ -196,7 +199,7 @@
         <!-- End Top Menu -->
       </div>
 
-      <div class="flex_3">
+      <div class="flex_2">
         <div class="box dp_block">
           <div class="box_section">
             <div class="box_inner">
@@ -205,95 +208,45 @@
               </h3>
 
               <div class="box_title_funtion">
-                <a href="javascript:void(0);" class="font_primary"
-                  >Xem tất cả</a
-                >
+                <a href="javascript:void(0);" class="font_primary">Xem tất cả</a>
               </div>
             </div>
             <div style="width: 315px">
-              <swiper
-                key="store"
-                v-bind="{
-                  slidesPerView: 1,
-                  slidesPerGroup: 1,
-                  spaceBetween: 0,
-                  Pagination: true,
-                  navigation: true,
-                  loop: true,
-                  autoplay: {
-                    delay: 3000,
-                  },
-                }"
-                :modules="modules"
-                class="cart_list dp_flex jc_center"
-              >
-                <swiper-slide
-                  v-for="item in 5"
-                  class="cart_item"
-                  style="max-width: 315px"
-                >
-                  <div class="image">
-                    <img
-                      src="https://recipe1.ezmember.co.kr/cache/data/goods/24/10/41/1000047271/1000047271_list_036.jpg"
-                      alt="default"
-                    />
-                  </div>
-                  <div
-                    class="cart_item_content"
-                    data-status="1"
-                    data-show-button="true"
-                  >
-                    <p class="box_title mg_0">Text Title {{ item }}</p>
-                    <p>Text Descriptionfdsfdsafddddddddddddddddddddđ</p>
+              <swiper key="store" v-bind="{
+                slidesPerView: 1,
+                slidesPerGroup: 1,
+                spaceBetween: 0,
+                Pagination: true,
+                navigation: true,
+                loop: true,
+                autoplay: {
+                  delay: 3000,
+                },
+              }" :modules="modules" class="dp_flex jc_center">
+                <swiper-slide v-for="item in 5">
+                  <div class="card-v1">
+                    <div class="card-v1-image" :style="{
+                      height: '200px',
+                      backgroundImage: `url(https://recipe1.ezmember.co.kr/cache/data/goods/24/10/41/1000047271/1000047271_list_036.jpg)`,
+                    }"></div>
+                    <div class="category">Đang diễn ra</div>
+                    <div class="heading">
+                      A heading that must span over two lines
+                      <div class="author">
+                        <span class="name">Thời gian:</span> 12/12/2024 - 13/12/2024
+                        <br />
+                        <span class="name">Người tạo:</span> Nguyễn Quốc Huy
+                      </div>
+                    </div>
                   </div>
                 </swiper-slide>
               </swiper>
             </div>
           </div>
         </div>
-        <div class="box dp_block flex_3">
-          <div class="box_section">
-            <div class="box_inner">
-              <h3 class="box_title_sm">
-                <text class="font_primary">Món Ngon</text
-                ><span>Thịnh Hành</span>
-              </h3>
 
-              <div class="box_title_funtion">
-                <a href="javascript:void(0);" class="font_primary"
-                  >Xem tất cả</a
-                >
-              </div>
-            </div>
-            <div>
-              <div class="card_list_horizontal">
-                <template v-for="item in 3">
-                  <div class="card_item mg_b5">
-                    <!-- Số thứ tự -->
-                    <!-- <div class="item_number">
-                      {{ item }}
-                    </div> -->
-
-                    <!-- Nội dung card -->
-                    <div class="card_item_content">
-                      <div class="image">
-                        <img
-                          src="https://recipe1.ezmember.co.kr/cache/data/goods/24/10/41/1000047271/1000047271_list_036.jpg"
-                          alt="default"
-                        />
-                      </div>
-                      <div class="content_details">
-                        <h3 class="box_title">Text Title {{ item }}</h3>
-                        <p>
-                          Text Description fdsfds afdddddd dddddd dddd ddddđ
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </template>
-              </div>
-            </div>
-          </div>
+        <div class="mg_b30" v-for="item in 3">
+          <img class="" style="width: 100%;" src="../../assets/images/banner/Banner 1.png" />
         </div>
       </div>
     </div>
@@ -301,10 +254,7 @@
 
     <!-- Start Banner Food -->
     <div class="mb_8">
-      <img
-        class="wd_p100"
-        src="../../assets/images/banner/Thêm tiêu đề phụ.png"
-      />
+      <img class="wd_p100" src="../../assets/images/banner/Thêm tiêu đề phụ.png" />
     </div>
     <!-- End Banner Food -->
 
@@ -321,30 +271,20 @@
           </div>
         </div>
         <div>
-          <swiper
-            key="cookies_store"
-            v-bind="swiperOptions"
-            :modules="modules"
-            class="cart_list"
-          >
-            <swiper-slide v-for="item in 50">
-              <div class="cart_item">
-                <div class="image">
-                  <img
-                    src="https://recipe1.ezmember.co.kr/cache/data/goods/24/10/41/1000047271/1000047271_list_036.jpg"
-                    alt="default"
-                  />
-                </div>
-                <div
-                  class="cart_item_content"
-                  data-status="1"
-                  data-show-button="true"
-                >
-                  <p class="box_title mg_0">Text Title {{ item }}</p>
-                  <p>Text Description</p>
-                  <p class="dp_flex">
-                    <Rating @v-model="selectedRating" /><span>(100)</span>
-                  </p>
+          <swiper key="cookies_store" v-bind="swiperOptions" :modules="modules" class="cart_list">
+            <swiper-slide v-for="item in 30">
+              <div class="card-v1">
+                <div class="card-v1-image" :style="{
+                  backgroundImage: `url(https://via.placeholder.com/320x180.png?text=Event+1)`,
+                }"></div>
+                <div class="category">Đang diễn ra</div>
+                <div class="heading">
+                  A heading that must span over two lines
+                  <div class="author">
+                    <span class="name">Thời gian:</span> 12/12/2024 - 13/12/2024
+                    <br />
+                    <span class="name">Người tạo:</span> Nguyễn Quốc Huy
+                  </div>
                 </div>
               </div>
             </swiper-slide>
@@ -356,10 +296,7 @@
 
     <!-- Start Banner sales -->
     <div class="mb_8">
-      <img
-        class="wd_p100"
-        src="../../assets/images/banner/banner 4.png"
-      />
+      <img class="wd_p100" src="../../assets/images/banner/banner 4.png" />
     </div>
     <!-- End Banner sales -->
 
@@ -400,26 +337,21 @@
           </div>
         </div>
         <div>
-          <div class="top_blogs cart_list dp_flex">
-            <template v-for="item in 6">
-              <div class="cart_item" style="max-width: 180px">
-                <div class="image">
-                  <img
-                    src="https://recipe1.ezmember.co.kr/cache/data/goods/24/10/41/1000047271/1000047271_list_036.jpg"
-                    alt="default"
-                  />
-                </div>
-                <div
-                  class="cart_item_content"
-                  data-status="1"
-                  data-show-button="true"
-                >
-                  <p class="box_title mg_0">Text Title {{ item }}</p>
-                  <span>status</span>
-                  <p>Text Descriptionfdsfdsafddddddddddddddddddddđ</p>
+          <div class="top_blogs dp_flex">
+            <div class="card-v1" v-for="item in 5">
+              <div class="card-v1-image" :style="{
+                backgroundImage: `url(https://via.placeholder.com/320x180.png?text=Event+1)`,
+              }"></div>
+              <div class="category">Đang diễn ra</div>
+              <div class="heading">
+                A heading that must span over two lines
+                <div class="author">
+                  <span class="name">Thời gian:</span> 12/12/2024 - 13/12/2024
+                  <br />
+                  <span class="name">Người tạo:</span> Nguyễn Quốc Huy
                 </div>
               </div>
-            </template>
+            </div>
           </div>
         </div>
       </div>
@@ -452,5 +384,4 @@ const swiperOptions = {
 const selectedRating = ref(0);
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

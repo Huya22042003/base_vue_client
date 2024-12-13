@@ -1,7 +1,7 @@
 <template>
-  <a :style="{ width: `${width}px`, position: 'relative' }" href="javascript:void(0)">
+  <div :style="{ width: `${width}px`, position: 'relative' }" class="transition_light" href="javascript:void(0)">
     <img class="wd_p100" :src="imageUrl" alt="Avatar" />
-  </a>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -20,14 +20,11 @@ defineProps({
 </script>
 
 <style scoped>
-a {
+div {
   display: block;
-}
-img {
   overflow: hidden;
   border-radius: 50%;
   border: 4px solid rgb(204 204 204 / 80%);
-  z-index: 2;
-  position: inherit;
+  cursor: pointer;
 }
 </style>
