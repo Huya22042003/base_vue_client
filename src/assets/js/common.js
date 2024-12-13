@@ -25,6 +25,15 @@ export function gnbOneDepth() {
   });
 }
 
+export function setPaddingContent(check) {
+  let content = document.querySelector(".content_wrapper");
+  if (check) {
+    content.style.paddingTop = '157px';    
+  } else {
+    content.style.paddingTop = '195px';
+  }
+}
+
 export function siteMap() {
   let body = document.body;
   let btnMenu = document.querySelector(".header_wrap .btn_menu");

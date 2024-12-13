@@ -212,12 +212,16 @@
 	.header_info .buttons button {
 		font-size: 12px;
 	}
-
-	.nav_wrap {
-		display: none;
+	
+	.gnb_2depth {
+		top: 20px;
 	}
 
-	/*.gnb_submenu {*/
+	/* .nav_wrap {
+		display: none;
+	} */
+
+	/* .gnb_submenu {*/
 	/*	left: -100% !important;*/
 	/*	top: 63px;*/
 	/*	padding: 0 30px;*/
@@ -300,7 +304,7 @@
 	/*	height: 50px;*/
 	/*	align-items: center;*/
 	/*	font-size: 18px;*/
-	/*}*/
+	/*} */
 
 	/* content 1024 */
 	.content_wrapper {

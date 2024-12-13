@@ -189,7 +189,7 @@
   display: flex;
   background-color: #fff;
   overflow: hidden;
-  margin: 10px auto;
+  margin: 15px auto;
 }
 
 /* Image section */
