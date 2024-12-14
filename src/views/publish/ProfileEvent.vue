@@ -10,7 +10,7 @@
     </div> -->
         <div class="box_section">
             <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px">
-                <div class="card-v1" v-for="item in 7">
+                <div class="card-v1" @click="onOpen()" v-for="item in 7">
                     <div class="card-v1-image" :style="{
                         backgroundImage: `url(https://via.placeholder.com/320x180.png?text=Event+1)`,
                     }"></div>
@@ -27,27 +27,19 @@
             </div>
         </div>
     </div>
+    <PopupEventDetail :is-open="isOpen" :onClose="onClose" />
 </template>
 <script setup lang="ts">
-const upcomingEvents = ref([
-    {
-        title: "Hội Thảo Công Nghệ 2024",
-        date: "20/12/2024",
-        description: "Tham gia để khám phá những xu hướng công nghệ mới nhất.",
-        image: "https://via.placeholder.com/320x180.png?text=Event+1",
-    },
-    {
-        title: "Ngày Hội Việc Làm",
-        date: "15/01/2025",
-        description: "Cơ hội gặp gỡ và ứng tuyển vào các công ty hàng đầu.",
-        image: "https://via.placeholder.com/320x180.png?text=Event+2",
-    },
-    {
-        title: "Chương Trình Từ Thiện",
-        date: "01/02/2025",
-        description: "Góp phần hỗ trợ cộng đồng thông qua các hoạt động ý nghĩa.",
-        image: "https://via.placeholder.com/320x180.png?text=Event+3",
-    },
-]);
+import PopupEventDetail from './PopupEventDetail.vue';
+
+const isOpen = ref(false);
+
+const onOpen = () => {
+    isOpen.value = true;
+}
+
+const onClose = () => {
+    isOpen.value = false;
+}
 </script>
 <style scoped></style>

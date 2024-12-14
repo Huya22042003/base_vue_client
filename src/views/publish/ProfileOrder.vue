@@ -43,10 +43,8 @@
           </div>
           <div class="product-card" v-for="item in 3">
             <div class="product-image">
-              <img
-                src="https://recipe1.ezmember.co.kr/cache/recipe/2018/07/29/52046ea43391de69233f594b0b52bb311.JPG"
-                alt="Product Image"
-              />
+              <img src="https://recipe1.ezmember.co.kr/cache/recipe/2018/07/29/52046ea43391de69233f594b0b52bb311.JPG"
+                alt="Product Image" />
             </div>
             <div class="product-info">
               <h3 class="product-name">Sản phẩm {{ item }}</h3>
@@ -59,7 +57,10 @@
                   <span class="original-price">70.000₫</span>
                   <span class="product-price">50.000₫</span>
                 </div>
-                <button class="add-to-cart">Thêm</button>
+                <div>
+                  <button class="save-to-cart mg_r5">Lưu</button>
+                  <button class="add-to-cart">Thêm</button>
+                </div>
               </div>
             </div>
           </div>
@@ -87,10 +88,9 @@
           <hr />
           <div class="menu">
             <div class="order_custom mg_b10" v-for="item in 6">
-              <button type="button" class="btn_icon icon_only remove"></button>
+              <button type="button" class="btn_icon icon_only closePre wd_15"></button>
               <div>
-                <a href="#section6" class="link-item mg_0"
-                  >Sản phẩm {{ item }}: 50.000₫
+                <a href="#section6" class="link-item mg_0">Sản phẩm {{ item }}: 50.000₫
                 </a>
               </div>
               <div class="plus_minus">
@@ -116,11 +116,9 @@
           <hr />
           <div class="menu">
             <div class="order_custom mg_b10" v-for="item in 3">
-              <button type="button" class="btn_icon icon_only remove"></button>
+              <button type="button" class="btn_icon icon_only closePre wd_15"></button>
               <div>
-                <a href="#section6" class="link-item mg_0"
-                  >Vourcher {{ item }}</a
-                >
+                <a href="#section6" class="link-item mg_0">Vourcher {{ item }}</a>
               </div>
               <div class="ta_r">50.000₫</div>
             </div>
@@ -130,7 +128,9 @@
         <hr />
         <div class="dp_flex al_center jc_between mg_b35">
           <div class="bold">Mã Giảm Giá</div>
-          <div><InputBase class="wd_100" /></div>
+          <div>
+            <InputBase class="wd_100" />
+          </div>
         </div>
 
         <hr />
@@ -253,6 +253,17 @@
 
 .add-to-cart {
   background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-to-cart {
+  background-color: var(--yellow);
   color: white;
   border: none;
   border-radius: 4px;

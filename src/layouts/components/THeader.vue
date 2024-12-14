@@ -18,13 +18,13 @@
           ">
           지금 가입하고, <b style="color: #ffe400">최대 2만원</b> 할인혜택을
           받아보세요!</a>
-        <a @click="() => {setPaddingContent(true);checkCouponBanner = false;}" style="
+        <!-- <a @click="() => {setPaddingContent(true);checkCouponBanner = false;}" style="
             display: inline-block;
             position: absolute;
             right: 10px;
             top: 6px;
             cursor: pointer;
-          "><img src="//recipe1.ezmember.co.kr/img/mobile/btn_close.png" alt="닫기" width="18" /></a>
+          "><img src="//recipe1.ezmember.co.kr/img/mobile/btn_close.png" alt="닫기" width="18" /></a> -->
       </div>
     </div>
     <div class="header_top">
@@ -93,8 +93,8 @@ const router = useRouter();
 const menus = ref();
 const subMenus = ref([
   {
-    screenName: "Menu 1",
-    name: "Menu 1",
+    screenName: "home",
+    name: "Home",
     subMenus: []
   },
   {
@@ -102,8 +102,8 @@ const subMenus = ref([
     name: "Menu 2",
     subMenus: [
       {
-        screenName: "Sub Menu 1",
-        name: "Sub Menu 1",
+        screenName: "profile-user",
+        name: "Cửa Hàng",
         subMenus: []
       },
       {

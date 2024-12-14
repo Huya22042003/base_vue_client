@@ -17,7 +17,7 @@
           leave-from-class="opacity-100"
           leave-to-class="opacity-0"
       >
-        <div class="popup_wrap" v-if="isOpen" :style="isQr ? 'max-width:600px;' :''" ref="modalContentRef">
+        <div :class="`popup_wrap ${size}`" v-if="isOpen" :style="isQr ? 'max-width:600px;' :''" ref="modalContentRef">
           <div class="popup_title" v-if="isShowHeader">
             <button type="button" class="popup_close" @click="closeModal">닫기</button>
             <h3>
@@ -60,6 +60,10 @@ export default {
     isQr : {
       type : Boolean,
       default : false
+    },
+    size: {
+      type: String,
+      default: 'md'
     }
   },
   setup(props, ctx) {
@@ -139,8 +143,17 @@ export default {
 
 .popup_wrap {
   z-index: 999;
-  width: 50dvw;
 }
+.popup_wrap.lg {
+  width: 1100px;
+}
+.popup_wrap.md {
+  width: 800px;
+}
+.popup_wrap.xs {
+  width: 465px;
+}
+
 
 .popup_content {
   max-height: 60dvh;

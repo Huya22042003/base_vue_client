@@ -629,6 +629,7 @@
 .font_navy{color: var(--navy) !important;}
 .font_blue{color: var(--blue) !important;}
 .font_primary{color: var(--primary) !important;}
+.font_green{color: var(--green) !important;}
 
 /* font-size */
 .font_12{ font-size: 12px !important; }
