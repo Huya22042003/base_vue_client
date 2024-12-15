@@ -129,7 +129,7 @@
         <div class="dp_flex al_center jc_between mg_b35">
           <div class="bold">Mã Giảm Giá</div>
           <div>
-            <InputBase class="wd_100" />
+            <InputBase id="inputVModel" v-model="inputVModel" class="wd_100" />
           </div>
         </div>
 
@@ -153,6 +153,9 @@
     <!-- End Order -->
   </div>
 </template>
+<script setup lang="ts">
+const inputVModel = ref()
+</script>
 <style scoped>
 .menu {
   counter-reset: menu-counter;

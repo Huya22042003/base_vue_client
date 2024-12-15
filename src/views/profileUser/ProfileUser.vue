@@ -155,6 +155,12 @@ M11,7v4.586L8.293,14.293a1,1,0,1,0,1.414,1.414l3-3A1,1,0,0,0,13,12V7a1,1,0,0,0-2
                     <p class="radio_tab_lg">
                         <input type="radio" id="radio_4" name="radio" v-model="tabCheck" :value="3" />
                         <label for="radio_4">
+                            <Badge :count="9999"> Đánh Giá </Badge>
+                        </label>
+                    </p>
+                    <p class="radio_tab_lg">
+                        <input type="radio" id="radio_5" name="radio" v-model="tabCheck" :value="4" />
+                        <label for="radio_5">
                             <span class="badge-container"> Khác + </span>
                         </label>
                     </p>
@@ -165,7 +171,7 @@ M11,7v4.586L8.293,14.293a1,1,0,1,0,1.414,1.414l3-3A1,1,0,0,0,13,12V7a1,1,0,0,0-2
         <ProfileOrder v-if="tabCheck == 0" />
         <ProfileVourcher v-if="tabCheck == 1" />
         <ProfileEvent v-if="tabCheck == 2" />
-        <ProfileOther v-if="tabCheck == 3" />
+        <ProfileOther v-if="tabCheck == 4" />
     </div>
 </template>
 <script setup lang="ts">

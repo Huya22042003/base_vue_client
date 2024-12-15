@@ -34,8 +34,14 @@ export const routes_pub = [
         path: '/profile-user',
         name: 'profile-user',
         meta: {title: 'TemplateUi'},
-        component: () => import('@/views/publish/ProfileUser.vue'),
+        component: () => import('@/views/profileUser/ProfileUser.vue'),
       },
+      {
+        path: '/bill',
+        name: 'bill',
+        meta: {title: 'TemplateUi'},
+        component: () => import('@/views/billMng/BillClient.vue'),
+      }
     ],
   },
 ];
