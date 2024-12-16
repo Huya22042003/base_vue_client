@@ -107,8 +107,8 @@ const subMenus = ref([
         subMenus: []
       },
       {
-        screenName: "Sub Menu 1",
-        name: "Sub Menu 1",
+        screenName: "bill",
+        name: "bill",
         subMenus: []
       },
       {
