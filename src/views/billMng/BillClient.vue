@@ -45,7 +45,7 @@
                         <text class="font_primary">Thông Tin Đơn Hàng</text>
                     </h3>
                 </div>
-                <div class="search_box col_3 wd_p100">
+                <div class="search_box col_2 wd_p100">
                     <ul>
                         <li class="mg_t10">
                             <p>Mã Hóa Đơn</p>
@@ -74,6 +74,24 @@
                         <li class="mg_t10">
                             <p>Địa Chỉ</p>
                             <span>Số 60, Hoàng Quốc Việt Hoàng Quốc Việt, Phường Nghĩa Đô, Quận Cầu Giấy, Hà Nội</span>
+                        </li>
+                        <li class="mg_t10">
+                            <p>Loại Thanh Toán</p>
+                            <span>
+                                Thanh Toán Online
+                            </span>
+                        </li>
+                        <li class="mg_t10">
+                            <p>Cửa Hàng</p>
+                            <span v-tooltip="'Xem Cửa Hàng'">
+                                <a href="javascript:void(0);" class="font_primary">Cửa Hàng Bán Bún</a>
+                            </span>
+                        </li>
+                        <li class="mg_t10">
+                            <p>Địa Chỉ</p>
+                            <span>
+                                Số 60, Hoàng Quốc Việt Hoàng Quốc Việt, Phường Nghĩa Đô, Quận Cầu Giấy, Hà Nội
+                            </span>
                         </li>
                         <li class="mg_t10">
                             <p>Ghi Chú</p>
