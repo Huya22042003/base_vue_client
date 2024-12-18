@@ -1,8 +1,8 @@
 .card-v1 {
   background: white;
   padding: 0.4em;
-  border-radius: 6px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  /* border-radius: 6px; */
+  /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1); */
 }
 
 .card-v1 .card-v1-image {
@@ -63,8 +63,8 @@
   align-items: center;
   background: white;
   padding: 0.4em;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* border-radius: 6px; */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .card-v1-hori .card-image {

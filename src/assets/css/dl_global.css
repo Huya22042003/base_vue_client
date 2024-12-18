@@ -650,6 +650,7 @@
 .bg_gray{ background: #cccccc !important;}
 .bg_blue{ background-color: var(--blue) !important;}
 .bg_orange{ background-color: var(--primary) !important;}
+.bg_primary_2{ background-color: #F9D7CA !important;}
 
 /* border */
 .border_none{ border: none !important; }
@@ -681,6 +682,7 @@
 .bo_wd10 { border-width: 10px !important; }
 
 /* border radius */
+.bo_rd0 { border-radius: 0px !important; -webkit-border-radius: 0px !important; -moz-border-radius: 0px !important; }
 .bo_rd1 { border-radius: 1px !important; -webkit-border-radius: 1px !important; -moz-border-radius: 1px !important; }
 .bo_rd2 { border-radius: 2px !important; -webkit-border-radius: 2px !important; -moz-border-radius: 2px !important; }
 .bo_rd3 { border-radius: 3px !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important; }

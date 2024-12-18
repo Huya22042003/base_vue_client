@@ -4,7 +4,7 @@
             <div class="box_section">
                 <div class="box_inner">
                     <h3 class="box_title_sm">
-                        <text class="font_primary">Đơn Hàng MHA-23467891</text><span>Đang Vận Chuyển</span>
+                        Đơn Hàng MHA-23467891<span class="font_primary">Đang Vận Chuyển</span>
                     </h3>
                 </div>
                 <div class="majorDerive_step mg_t45">
@@ -23,7 +23,17 @@
                         </li>
                         <li class="">
                             <a href="#"><strong>🚚</strong>
+                                <p>Đã Giao Cho ĐVVC <br />14-12-2024 14:00</p>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="#"><strong>📦</strong>
                                 <p>Đang Vận Chuyển <br />14-12-2024 14:00</p>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="#"><strong>📦</strong>
+                                <p>Giao Hàng Thành Công <br />14-12-2024 14:00</p>
                             </a>
                         </li>
                         <li class="">
@@ -32,6 +42,22 @@
                             </a>
                         </li>
                     </ul>
+                </div>
+                <div class="box_section btn_secondary pd_20 mg_t40">
+                    Đơn Hàng Đang Được Vận Chuyển. Shipper sẽ sớm gọi tới, bạn hãy chú ý điện thoại để không bỏ vỡ chuyến hàng nhé :33
+                </div>
+                <div class="box_section dp_flex jc_center mg_t40">
+                    <div>
+                        <button type="button" class="button btn_xs btn_blue mg_l10">
+                            Hủy Đơn
+                        </button>
+                        <button type="button" class="button btn_xs btn_blue mg_l10">
+                            Xác Nhận Giao Hàng Thành Công
+                        </button>
+                        <button type="button" class="button btn_xs btn_white mg_l10">
+                            Liên Hệ Người Bán
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="position_a cancel_order">
