@@ -98,6 +98,11 @@ const subMenus = ref([
     subMenus: []
   },
   {
+    screenName: "portfolio",
+    name: "Profile",
+    subMenus: []
+  },
+  {
     screenName: "Menu 2",
     name: "Menu 2",
     subMenus: [
@@ -112,8 +117,13 @@ const subMenus = ref([
         subMenus: []
       },
       {
-        screenName: "Sub Menu 1",
-        name: "Sub Menu 1",
+        screenName: "menu-detail",
+        name: "Công Thức",
+        subMenus: []
+      },
+      {
+        screenName: "article-detail",
+        name: "Bài Viết",
         subMenus: []
       },
     ]

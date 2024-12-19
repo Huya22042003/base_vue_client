@@ -28,7 +28,13 @@ export const routes_pub = [
         path: '/menu-detail',
         name: 'menu-detail',
         meta: {title: 'TemplateUi'},
-        component: () => import('@/views/publish/MenuDetail.vue'),
+        component: () => import('@/views/article/MenuDetail.vue'),
+      },
+      {
+        path: '/article-detail',
+        name: 'article-detail',
+        meta: {title: 'TemplateUi'},
+        component: () => import('@/views/article/ArticleDetail.vue'),
       },
       {
         path: '/profile-user',
@@ -41,6 +47,11 @@ export const routes_pub = [
         name: 'bill',
         meta: {title: 'TemplateUi'},
         component: () => import('@/views/billMng/BillClient.vue'),
+      },
+      {
+        path: '/portfolio',
+        name: 'portfolio',
+        component: () => import('@/views/portfolio/Portfolio.vue'),
       }
     ],
   },

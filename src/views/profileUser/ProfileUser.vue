@@ -18,7 +18,9 @@
                             <button type="button" class="btn_xs" style="height: 20px;">Hà Nội</button>
                             <p class="box_title_sm mg_b0">
                                 Cửa Hàng Bán Hàng Abc Dxez - Chuyên Cung Cấp Thực Phẩm Sạch
-                                <button class="btn_icon icon_only tick_good" v-tooltip="'Huy Hiệu'"></button>
+
+                                <img src="/src/assets/images/icon_event/logo.svg" v-tooltip="'Cửa Hàng Thân Thiện'" style="width: 30px; margin-bottom: 10px;"/>
+                                <!-- <button class="btn_icon icon_only tick_good" v-tooltip="'Huy Hiệu'"></button> -->
                             </p>
                             <p class="font_gray lh_22 mg_b10 mg_t10">60 Hoàng Quốc Việt, Nam Từ Liêm, Cầu Giấy, Hà Đông, Hà Nội.</p>
                             <p class="font_gray lh_22 dp_flex al_center mg_b10">Lượt Thích: 1.000<svg class="mg_l5" fill="#898D9C" height="16px" width="16px"
