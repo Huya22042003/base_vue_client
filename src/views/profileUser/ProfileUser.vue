@@ -7,7 +7,7 @@
                     <img id="img_qrcode" src="https://recipe1.ezmember.co.kr/cache/recipe/2024/05/08/qr_6893285.png"
                         class="wd_p100" />
                 </div>
-                <div class="container_menu_detail dp_flex" style="gap: 20px;">
+                <div class="container_menu_detail dp_flex gap_20">
                     <div class="flex_1">
                         <img src="https://recipe1.ezmember.co.kr/cache/recipe/2018/07/29/52046ea43391de69233f594b0b52bb311.JPG"
                             class="wd_p100" />

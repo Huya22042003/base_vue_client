@@ -2,7 +2,7 @@
   <div class="box_section">
     <h3 class="box_title_custom">Thực Đơn Hôm Nay</h3>
   </div>
-  <div style="display: flex; gap: 30px">
+  <div class="dp_flex gap_30">
     <!-- Start Category -->
     <div class="flex_2">
       <div class="box dp_block">

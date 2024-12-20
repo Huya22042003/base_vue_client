@@ -9,7 +9,7 @@
       </div>
     </div> -->
         <div class="box_section">
-            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px">
+            <div class="card_list_other">
                 <div class="card-v1" v-for="item in 5">
                     <div class="card-v1-image" :style="{
                         backgroundImage: `url(https://via.placeholder.com/320x180.png?text=Event+1)`,
@@ -31,7 +31,7 @@
       </div>
     </div> -->
         <div class="box_section">
-            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px">
+            <div class="card_list_other">
                 <div class="card-v1" v-for="item in 5">
                     <div class="card-v1-image" :style="{
                         backgroundImage: `url(https://via.placeholder.com/320x180.png?text=Event+1)`,
@@ -53,7 +53,7 @@
       </div>
     </div> -->
         <div class="box_section">
-            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px">
+            <div class="card_list_other">
                 <div class="card-v1" v-for="item in 7">
                     <div class="card-v1-image" :style="{
                         backgroundImage: `url(https://via.placeholder.com/320x180.png?text=Event+1)`,
@@ -81,7 +81,7 @@
       </div>
     </div> -->
         <div class="box_section">
-            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px">
+            <div class="card_list_other">
                 <div class="card-v1" v-for="item in 7">
                     <div class="card-v1-image" :style="{
                         backgroundImage: `url(https://via.placeholder.com/320x180.png?text=Event+1)`,
@@ -101,5 +101,8 @@
     </div>
   </template>
   <style scoped>
+  .card_list_other {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px
+  }
   </style>
   

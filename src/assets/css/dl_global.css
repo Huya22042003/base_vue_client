@@ -551,6 +551,18 @@
 .flex_9 { flex: 9; }
 .flex_10 { flex: 10; }
 
+.gap_10 { gap: 10px; }
+.gap_15 { gap: 15px; }
+.gap_20 { gap: 20px; }
+.gap_25 { gap: 25px; }
+.gap_30 { gap: 30px; }
+.gap_35 { gap: 35px; }
+.gap_40 { gap: 40px; }
+.gap_45 { gap: 45px; }
+.gap_50 { gap: 50px; }
+.gap_55 { gap: 55px; }
+.gap_60 { gap: 60px; }
+
 .hidden {
 	display: none;
 	overflow: hidden;
