@@ -21,6 +21,11 @@
           <div class="box dp_block">
             <div class="box_inner">
               <h3 class="box_title">BOX TITLE</h3>
+              <span class="box_title_fun">title function</span>
+              <ul class="box_list">
+                <li class="box_list_item">item 1</li>
+                <li class="box_list_item on">item select</li>
+              </ul>
               <p>
                 box 내에 영역 1개 일때
                 <br>

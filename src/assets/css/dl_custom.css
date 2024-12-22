@@ -87,6 +87,34 @@
   word-wrap: break-word;
 }
 
+.box_title_fun {
+  font-size: 1.25rem !important;
+  margin: 0;
+  text-decoration: underline;
+  color: var(--primary);
+  word-wrap: break-word;
+  cursor: pointer;
+}
+
+.box_list {
+  display: block;
+  background-color: var(--white);
+}
+
+.box_list_item {
+  background-color: var(--white);
+  cursor: pointer;
+  font-size: 1.25rem;
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: all .3s ease;
+  font-weight: 500;
+}
+
+.box_list_item.on, .box_list_item:hover {
+  background-color: #cccccc66;
+}
+
 .cart_item_content p {
   word-wrap: break-word;
   font-size: 1.1rem;
