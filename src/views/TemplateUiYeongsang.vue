@@ -26,6 +26,15 @@
                 <li class="box_list_item">item 1</li>
                 <li class="box_list_item on">item select</li>
               </ul>
+              <div class="dropdown">
+                <!-- <button class="btn_icon ellipsis"></button> -->
+                <button class="btn_primary">Drop down hover me</button>
+                <div class="dropdown-content">
+                  <a class="dropdown-item" href="#">Option 1</a>
+                  <a class="dropdown-item" href="#">Option 2</a>
+                  <a class="dropdown-item" href="#">Option 3</a>
+                </div>
+              </div>
               <p>
                 box 내에 영역 1개 일때
                 <br>
