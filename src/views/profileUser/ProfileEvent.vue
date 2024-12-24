@@ -9,7 +9,7 @@
       </div>
     </div> -->
         <div class="box_section">
-            <div class="event_list">
+            <div class="dp_grid grid_col_5">
                 <div class="card-v1" @click="onOpen()" v-for="item in 7">
                     <div class="card-v1-image" :style="{
                         backgroundImage: `url(https://via.placeholder.com/320x180.png?text=Event+1)`,
@@ -43,7 +43,4 @@ const onClose = () => {
 }
 </script>
 <style scoped>
-.event_list {
-    display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
-}
 </style>

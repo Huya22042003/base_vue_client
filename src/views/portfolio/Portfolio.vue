@@ -21,7 +21,7 @@
                             <li class="box_list_item" @click="changeTab('vourcher')" :class="checkTab == 'vourcher' && 'on'">Mã Giảm Giá</li>
                             <li class="box_list_item" @click="changeTab('shop')" :class="checkTab == 'shop' && 'on'">Cửa Hàng</li>
                             <li class="box_list_item" @click="changeTab('articel')" :class="checkTab == 'articel' && 'on'">Bài Viết</li>
-                            <li class="box_list_item" @click="changeTab('menu')" :class="checkTab == 'menu' && 'on'">Thực Đơn</li>
+                            <li class="box_list_item" @click="changeTab('event')" :class="checkTab == 'event' && 'on'">Sự Kiện</li>
                         </ul>
                     </div>
                 </div>
@@ -33,28 +33,47 @@
                 <PortfolioVourcher v-if="checkTab == 'vourcher'"/>
                 <PortfolioShopMng v-if="checkTab == 'shop'"/>
                 <PortfolioArticel v-if="checkTab == 'articel'" />
-                <PortfolioMenu v-if="checkTab == 'menu'" />
+                <PortfolioEvent v-if="checkTab == 'event'" />
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-type TabNameType = "order" | "articel" | "menu" | "notifical" | "account" | "vourcher" | "shop";
+import { ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
+type TabNameType = "order" | "articel" | "event" | "notifical" | "account" | "vourcher" | "shop";
 
 import PortfolioAccountMng from './portfolioAccount/PortfolioAccountMng.vue';
 import PortfolioArticel from './portfolioArticel/PortfolioArticel.vue';
-import PortfolioMenu from './portfolioMenu/PortfolioMenu.vue';
 import PortfolioNotificalMng from './portfolioNotifical/PortfolioNotificalMng.vue';
 import PortfolioOrderMng from './portfolioOrder/PortfolioOrderMng.vue';
 import PortfolioShopMng from './portfolioShop/PortfolioShopMng.vue';
 import PortfolioVourcher from './portfolioVourcher/PortfolioVourcher.vue';
+import PortfolioEvent from './portfolioEvent/PortfolioEvent.vue';
 
+const route = useRoute();
+const router = useRouter();
+
+const tabFromUrl = route.query.tab as TabNameType;
 const checkTab = ref<TabNameType>("order");
 
-const changeTab = (tab: TabNameType) => {
-    checkTab.value = tab;
+if (tabFromUrl) {
+  checkTab.value = tabFromUrl;
 }
+
+const changeTab = (tab: TabNameType) => {
+  checkTab.value = tab;
+  router.push({ query: { ...route.query, tab } });
+};
+
+watch(() => route.query.tab, (newTab) => {
+  if (newTab && newTab !== checkTab.value) {
+    checkTab.value = newTab as TabNameType;
+  }
+});
+
 </script>
 
 <style scoped></style>

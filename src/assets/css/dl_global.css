@@ -530,6 +530,7 @@
 .dp_inline{ display: inline-block !important; }
 .dp_tablecell{ display: table-cell; }
 .dp_flex{ display: flex !important; }
+.dp_grid{ display: grid !important; }
 .dp_inlineflex{ display: inline-flex !important; }
 .al_center{ align-items: center !important; }
 .jc_center{ justify-content: center !important; }
@@ -562,6 +563,17 @@
 .gap_50 { gap: 50px; }
 .gap_55 { gap: 55px; }
 .gap_60 { gap: 60px; }
+
+.grid_col_1 { grid-template-columns: repeat(1, 1fr); }
+.grid_col_2 { grid-template-columns: repeat(2, 1fr); }
+.grid_col_3 { grid-template-columns: repeat(3, 1fr); }
+.grid_col_4 { grid-template-columns: repeat(4, 1fr); }
+.grid_col_5 { grid-template-columns: repeat(5, 1fr); }
+.grid_col_6 { grid-template-columns: repeat(6, 1fr); }
+.grid_col_7 { grid-template-columns: repeat(7, 1fr); }
+.grid_col_8 { grid-template-columns: repeat(8, 1fr); }
+.grid_col_9 { grid-template-columns: repeat(9, 1fr); }
+.grid_col_10 { grid-template-columns: repeat(10, 1fr); }
 
 .hidden {
 	display: none;

@@ -100,7 +100,7 @@
             autoplay: {
               delay: 6000,
             },
-          }" :modules="modules" class="dp_flex jc_center" style="gap: 20px;">
+          }" :modules="modules" class="dp_flex jc_center gap_20">
             <swiper-slide v-for="(item, index) in 10">
               <div class="voucher-card code-discount mg_r20" :key="index">
                 <div class="left transition_light">
@@ -124,7 +124,7 @@
     </div>
 
     <!-- Start Blogs -->
-    <div class="dp_flex blogs" style="gap: 30px;">
+    <div class="dp_flex blogs gap_30">
       <div class="flex_5">
         <!-- Start Top Blogs -->
         <div class="box dp_block">

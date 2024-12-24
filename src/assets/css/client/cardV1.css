@@ -14,6 +14,8 @@
   min-height: 130px;
   border-radius: 6px 6px 0 0;
   transition: all 0.2s ease;
+  display: flex;
+  justify-content: end;
 }
 
 .card-v1 .card-v1-image:hover {
@@ -46,7 +48,7 @@
   color: gray;
   font-weight: 400;
   font-size: 11px;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .card-v1 .name {
