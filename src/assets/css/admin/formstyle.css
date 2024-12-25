@@ -639,7 +639,6 @@ body.swal2-toast-shown .swal2-container:has(.custom_toast) {
 }
 .radio_tab_lg input:checked + label,
 .radio_tab_lg input:hover + label {
-  font-weight: 600;
   color: var(--primary);
   border-color: var(--primary);
 }

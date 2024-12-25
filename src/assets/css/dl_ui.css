@@ -1068,7 +1068,7 @@ body > .loading_box {
 }
 
 .datepicker table tr td.active.active {
-    background: var(--black-color) !important;
+    /* background: var(--black-color) !important; */
 }
 
 .datepicker-dropdown.datepicker-orient-top::before {

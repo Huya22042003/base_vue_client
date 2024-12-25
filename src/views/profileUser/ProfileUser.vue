@@ -14,13 +14,17 @@
                     </div>
                     <div class="flex_1">
                         <div>
-                            <button type="button" class="btn_xs btn_secondary mg_r5 bo_rd0" style="height: 20px;">Cửa Hàng</button>
-                            <button type="button" class="btn_xs" style="height: 20px;">Hà Nội</button>
+                            <!-- <button type="button" class="btn_xs btn_secondary mg_r5 bo_rd0" style="height: 20px;">Cửa Hàng</button>
+                            <button type="button" class="btn_xs" style="height: 20px;">Hà Nội</button> -->
                             <p class="box_title_sm mg_b0">
                                 Cửa Hàng Bán Hàng Abc Dxez - Chuyên Cung Cấp Thực Phẩm Sạch
 
                                 <img src="/src/assets/images/icon_event/logo.svg" v-tooltip="'Cửa Hàng Thân Thiện'" style="width: 30px; margin-bottom: 10px;"/>
                                 <!-- <button class="btn_icon icon_only tick_good" v-tooltip="'Huy Hiệu'"></button> -->
+                            </p>
+                            <p class="dp_flex mg_b10">
+                                <button type="button" class="btn_xs btn_primary mg_r5 bo_rd0" style="height: 20px;">Thích</button>
+                                <button type="button" class="btn_xs btn_bo_primary bo_rd0" style="height: 20px;">Chia Sẻ</button>
                             </p>
                             <p class="font_gray lh_22 mg_b10 mg_t10">60 Hoàng Quốc Việt, Nam Từ Liêm, Cầu Giấy, Hà Đông, Hà Nội.</p>
                             <p class="font_gray lh_22 dp_flex al_center mg_b10">Lượt Thích: 1.000<svg class="mg_l5" fill="#898D9C" height="16px" width="16px"
@@ -52,10 +56,6 @@
                                     <a href="javascript:void(0);" class="font_primary">Xem thêm</a>
                                 </div>
                             </div>
-                            <p class="dp_flex mg_b10">
-                                <button type="button" class="btn_xs btn_primary mg_r5 bo_rd0" style="height: 20px;">Thích</button>
-                                <button type="button" class="btn_xs btn_bo_primary bo_rd0" style="height: 20px;">Chia Sẻ</button>
-                            </p>
                             <span class="dp_flex mg_b10">
                                 <span class="font_gray normal dp_flex" v-tooltip="'8:00 - 23:00'"><svg fill="#898D9C"
                                         width="20px" height="20px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1"

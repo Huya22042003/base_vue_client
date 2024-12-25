@@ -4,10 +4,7 @@
   </div>
   <div class="box dp_block">
     <div class="box_section">
-      <div class="search-container mg_b25">
-        <span class="search-icon">&#128269;</span>
-        <input type="text" class="search-input" placeholder="Tìm kiếm..." />
-      </div>
+      <InputSearch/>
       <!-- Start Code Discount -->
       <div class="box_section mg_b20">
         <div class="box_inner">
@@ -16,7 +13,7 @@
           </span>
         </div>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+      <div class="dp_grid gap_20 grid_col_3">
         <div
           class="voucher-card code-discount"
           v-for="(item, index) in 4"
@@ -46,7 +43,7 @@
           </span>
         </div>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+      <div class="dp_grid gap_20 grid_col_3">
         <div
           class="voucher-card voucher-discount"
           v-for="(item, index) in 5"
@@ -72,38 +69,4 @@
   </div>
 </template>
 <style scoped>
-/* Container */
-.search-container {
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-}
-
-/* Icon tìm kiếm */
-.search-icon {
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #aaa;
-  pointer-events: none;
-}
-
-/* Input */
-.search-input {
-  width: 100%;
-  padding: 10px 15px 10px 40px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-
-/* Focus effect */
-.search-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
 </style>

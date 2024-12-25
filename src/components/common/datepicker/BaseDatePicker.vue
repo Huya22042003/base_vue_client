@@ -10,7 +10,7 @@
     />
     <teleport to="#app" v-if="stateDatePicker">
       <div v-if="stateDatePicker" class="datepicker-wrapper" :class="datepickerClass" ref="datepicker">
-        <v-locale-provider locale="ko">
+        <v-locale-provider locale="vi">
           <v-date-picker
               v-model="picker"
               @update:modelValue="handleDateSelect"

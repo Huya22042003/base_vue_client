@@ -1,11 +1,13 @@
 <template>
-  <div :style="{ width: `${width}px`, position: 'relative' }" class="transition_light" href="javascript:void(0)">
-    <img class="wd_p100" :src="imageUrl" alt="Avatar" />
+  <div :style="{ width: `${width}px`, position: 'relative' }" class="transition_light avatar" href="javascript:void(0)">
+    <img v-if="mode == MODE_DETAIL" class="wd_p100" :src="imageUrl" alt="Avatar" />
   </div>
 </template>
 
 <script lang="ts" setup>
-defineProps({
+import { MODE_DETAIL } from '@/constants/screen.const';
+
+const props = defineProps({
   imageUrl: {
     type: String,
     required: true,
@@ -16,15 +18,11 @@ defineProps({
     type: Number,
     default: 60,
   },
+  mode: {
+    type: String,
+    default: MODE_DETAIL
+  }
 });
 </script>
 
-<style scoped>
-div {
-  display: block;
-  overflow: hidden;
-  border-radius: 50%;
-  border: 4px solid rgb(204 204 204 / 80%);
-  cursor: pointer;
-}
-</style>
+<style scoped></style>
