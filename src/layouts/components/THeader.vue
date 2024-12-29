@@ -32,7 +32,7 @@
         <button type="button" class="btn_menu">메뉴보기</button>
         <h1 class="header_logo">
           <router-link to="/">
-            <!-- <img src="@/assets/images/common/img_logo.svg" alt="영산대학교"/> -->
+            <img src="@/assets/images/common/img_logo.png" alt="영산대학교"/>
           </router-link>
         </h1>
         <!-- <div class="header_function">
